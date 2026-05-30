@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Gulette 🎀</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:      #FF6B9D;
+  --rose-d:    #E8538A;
+  --rose-l:    #FFD6E8;
+  --rose-xl:   #FFF0F7;
+  --peach:     #FF8C61;
+  --gold:      #FFBE3D;
+  --gold-l:    #FFF5D6;
+  --mint:      #3DD6A3;
+  --mint-l:    #D6F7EE;
+  --sky:       #5BB8FF;
+  --sky-l:     #D6EEFF;
+  --lavender:  #A78BFA;
+  --lav-l:     #EDE9FE;
+  --cream:     #FFFAF7;
+  --white:     #FFFFFF;
+  --ink:       #2D1B2E;
+  --ink-m:     #6B4E71;
+  --ink-l:     #B09AB8;
+  --r:         22px;
+  --r-sm:      14px;
+  --r-xs:      10px;
+  --shadow:    0 4px 20px rgba(255,107,157,0.15);
+  --shadow-m:  0 8px 32px rgba(255,107,157,0.2);
+  --shadow-xl: 0 16px 48px rgba(255,107,157,0.25);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:#F5E8F0;
+  display:flex;
+  justify-content:center;
+  min-height:100vh;
+  align-items:flex-start;
+}
+
+#app{
+  width:100%;
+  max-width:430px;
+  min-height:100vh;
+  background:var(--cream);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ── SCREENS ── */
+.screen{
+  display:none;
+  flex-direction:column;
+  flex:1;
+  min-height:100vh;
+  animation:screenIn .3s cubic-bezier(.4,0,.2,1);
+  padding-bottom:78px;
+}
+.screen.active{display:flex}
+
+@keyframes screenIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ══════════════════════════════════════
+   ONBOARDING
+══════════════════════════════════════ */
+#screen-onboarding{
+  background:linear-gradient(170deg,#FFD6E8 0%,#FFF0F7 40%,#F5EDFF 100%);
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:48px 28px 40px;
+  padding-bottom:40px!important;
+}
+
+.ob-mascot{
+  font-size:88px;
+  animation:mascotBob 3s ease-in-out infinite;
+  filter:drop-shadow(0 10px 22px rgba(255,107,157,.25));
+  margin-bottom:4px;
+  display:block;
+}
+@keyframes mascotBob{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-14px) rotate(2deg)}
+}
+
+.ob-sparkles{font-size:22px;letter-spacing:6px;margin-bottom:12px;display:block}
+
+.ob-title{
+  font-size:52px;
+  font-weight:900;
+  letter-spacing:-2px;
+  background:linear-gradient(135deg,var(--rose),#C84B97);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:8px;
+}
+.ob-subtitle{
+  font-size:15px;
+  color:var(--ink-m);
+  line-height:1.6;
+  margin-bottom:36px;
+  max-width:280px;
+}
+
+.ob-card{
+  background:var(--white);
+  border-radius:var(--r);
+  padding:26px 22px;
+  width:100%;
+  box-shadow:var(--shadow-m);
+  margin-bottom:16px;
+  text-align:left;
+}
+.ob-card-title{
+  font-size:16px;
+  font-weight:800;
+  color:var(--ink);
+  margin-bottom:14px;
+}
+.name-input{
+  width:100%;
+  border:2.5px solid var(--rose-l);
+  border-radius:var(--r-sm);
+  padding:13px 16px;
+  font-size:16px;
+  font-family:'Nunito',sans-serif;
+  color:var(--ink);
+  background:var(--rose-xl);
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  font-weight:700;
+}
+.name-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(255,107,157,.15)}
+
+.goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.goal-btn{
+  background:var(--rose-xl);
+  border:2.5px solid var(--rose-l);
+  border-radius:var(--r-sm);
+  padding:12px 10px;
+  font-family:'Nunito',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink-m);
+  cursor:pointer;
+  transition:all .2s;
+  text-align:center;
+}
+.goal-btn:hover,.goal-btn.selected{
+  background:var(--rose-l);
+  border-color:var(--rose);
+  color:var(--rose-d);
+  transform:scale(1.03);
+}
+
+.btn-main{
+  width:100%;
+  background:linear-gradient(135deg,var(--rose),var(--rose-d));
+  color:#fff;
+  border:none;
+  border-radius:var(--r-sm);
+  padding:17px;
+  font-size:17px;
+  font-weight:900;
+  font-family:'Nunito',sans-serif;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(255,107,157,.35);
+  transition:all .2s;
+  letter-spacing:.3px;
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,107,157,.45)}
+.btn-main:active{transform:translateY(1px)}
+
+/* ══════════════════════════════════════
+   BOTTOM NAV
+══════════════════════════════════════ */
+.bottom-nav{
+  position:fixed;
+  bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;
+  background:var(--white);
+  border-top:1.5px solid var(--rose-l);
+  display:flex;
+  padding:10px 0 18px;
+  z-index:200;
+  box-shadow:0 -4px 24px rgba(0,0,0,.05);
+}
+.nav-btn{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  cursor:pointer;
+  padding:4px 0;
+  transition:all .2s;
+  background:none;
+  border:none;
+  font-family:'Nunito',sans-serif;
+}
+.nav-btn .nav-ico{font-size:24px;transition:transform .2s}
+.nav-btn .nav-lbl{font-size:11px;font-weight:700;color:var(--ink-l);transition:color .2s}
+.nav-btn.active .nav-lbl{color:var(--rose)}
+.nav-btn.active .nav-ico{transform:scale(1.18)}
+
+/* ══════════════════════════════════════
+   HOME
+══════════════════════════════════════ */
+#screen-home{background:var(--cream)}
+
+.home-header{
+  padding:52px 22px 24px;
+  background:linear-gradient(150deg,#FFD6E8 0%,#FFE8F2 60%,#F5EDFF 100%);
+  position:relative;
+  overflow:hidden;
+}
+.home-header::after{
+  content:'';
+  position:absolute;
+  right:-30px;top:-30px;
+  width:160px;height:160px;
+  background:radial-gradient(circle,rgba(255,255,255,.55),transparent 70%);
+  border-radius:50%;
+}
+.hh-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.hh-greeting{font-size:12px;color:var(--ink-m);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
+.hh-name{font-size:24px;font-weight:900;color:var(--ink)}
+.hh-name span{color:var(--rose-d)}
+.hh-badges{display:flex;gap:8px;align-items:center}
+.badge{
+  background:rgba(255,255,255,.8);
+  border-radius:50px;
+  padding:7px 13px;
+  font-size:13px;
+  font-weight:800;
+  color:var(--ink);
+  display:flex;align-items:center;gap:5px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+.xp-row{margin-top:4px}
+.xp-track{
+  height:10px;
+  background:rgba(255,255,255,.5);
+  border-radius:50px;
+  overflow:hidden;
+  margin-bottom:5px;
+}
+.xp-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--rose),#FF3E9A);
+  border-radius:50px;
+  transition:width .7s cubic-bezier(.34,1.56,.64,1);
+}
+.xp-meta{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--ink-m)}
+
+.home-body{padding:20px 18px;flex:1;overflow-y:auto}
+
+/* Daily review banner */
+.daily-banner{
+  background:linear-gradient(135deg,var(--rose),#FF3E9A);
+  border-radius:var(--r);
+  padding:18px 20px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:0 8px 28px rgba(255,107,157,.3);
+  cursor:pointer;
+  transition:all .2s;
+  margin-bottom:22px;
+  position:relative;
+  overflow:hidden;
+}
+.daily-banner::before{
+  content:'';position:absolute;right:-20px;top:-20px;
+  width:100px;height:100px;
+  background:rgba(255,255,255,.12);border-radius:50%;
+}
+.daily-banner:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(255,107,157,.4)}
+.db-icon{font-size:40px;flex-shrink:0}
+.db-text h3{color:#fff;font-size:16px;font-weight:900}
+.db-text p{color:rgba(255,255,255,.85);font-size:13px;font-weight:600;margin-top:2px}
+.db-arrow{color:#fff;font-size:22px;font-weight:900;margin-left:auto}
+
+/* Section header */
+.sec-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;margin-top:6px;
+}
+.sec-title{font-size:19px;font-weight:900;color:var(--ink)}
+.sec-sub{font-size:12px;font-weight:700;color:var(--rose);cursor:pointer}
+
+/* Chapter blocks */
+.chapter-block{margin-bottom:28px}
+.chapter-label{
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:var(--ink-l);
+  margin-bottom:12px;
+  padding-left:4px;
+}
+
+/* Lesson path nodes */
+.lesson-path{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+  padding:0 10px;
+}
+.path-row{
+  display:flex;
+  align-items:center;
+  width:100%;
+  justify-content:center;
+  position:relative;
+}
+.path-row.odd{justify-content:flex-start;padding-left:30px}
+.path-row.even{justify-content:flex-end;padding-right:30px}
+.path-row.center{justify-content:center}
+
+.path-connector{
+  position:absolute;
+  width:3px;
+  height:28px;
+  background:var(--rose-l);
+  border-radius:3px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:0;
+}
+.path-connector.done{background:var(--gold)}
+
+.lesson-node{
+  width:76px;height:76px;
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+  border:4px solid transparent;
+  z-index:1;
+  flex-shrink:0;
+}
+.lesson-node.unlocked{
+  background:linear-gradient(145deg,var(--rose),var(--rose-d));
+  border-color:rgba(255,255,255,.5);
+  box-shadow:0 6px 22px rgba(255,107,157,.38),0 2px 0 rgba(180,40,100,.35);
+}
+.lesson-node.unlocked:hover{transform:scale(1.1) translateY(-3px);box-shadow:0 12px 32px rgba(255,107,157,.5)}
+.lesson-node.unlocked:active{transform:scale(.96)}
+.lesson-node.completed{
+  background:linear-gradient(145deg,var(--gold),#F5A020);
+  border-color:rgba(255,255,255,.6);
+  box-shadow:0 6px 22px rgba(255,190,61,.4),0 2px 0 rgba(180,120,0,.25);
+}
+.lesson-node.completed:hover{transform:scale(1.08)}
+.lesson-node.locked{
+  background:var(--rose-xl);
+  border-color:var(--rose-l);
+  cursor:not-allowed;
+  opacity:.6;
+}
+.node-icon{font-size:28px}
+.node-lbl{
+  font-size:8.5px;font-weight:900;
+  color:#fff;text-align:center;
+  line-height:1.2;margin-top:2px;
+  max-width:68px;
+}
+.lesson-node.locked .node-lbl{color:var(--ink-l)}
+
+.node-info-bubble{
+  position:absolute;
+  background:var(--white);
+  border-radius:var(--r-sm);
+  padding:10px 14px;
+  box-shadow:var(--shadow-m);
+  font-size:12px;font-weight:700;
+  color:var(--ink);
+  white-space:nowrap;
+  top:-52px;left:50%;transform:translateX(-50%);
+  display:none;z-index:10;
+}
+.node-info-bubble::after{
+  content:'';position:absolute;
+  bottom:-6px;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:var(--white);border-bottom:none;
+}
+.lesson-node:hover .node-info-bubble{display:block}
+
+/* ══════════════════════════════════════
+   LESSON SCREEN
+══════════════════════════════════════ */
+#screen-lesson{background:var(--cream)}
+
+.lesson-topbar{
+  padding:52px 20px 14px;
+  background:var(--white);
+  display:flex;align-items:center;gap:12px;
+  position:sticky;top:0;z-index:50;
+  border-bottom:1.5px solid var(--rose-xl);
+}
+.btn-back{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--rose-xl);
+  border:none;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-m);transition:all .2s;flex-shrink:0;
+}
+.btn-back:hover{background:var(--rose-l);color:var(--rose-d)}
+.progress-track{
+  flex:1;height:10px;
+  background:var(--rose-xl);border-radius:50px;overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--rose),#FF3E9A);
+  border-radius:50px;
+  transition:width .5s cubic-bezier(.34,1.56,.64,1);
+}
+.hearts-row{display:flex;gap:3px;font-size:18px;flex-shrink:0}
+
+.lesson-body{
+  flex:1;padding:22px 20px 140px;
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+
+/* Exercise elements */
+.ex-type-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--rose-xl);
+  border-radius:50px;padding:6px 14px;
+  font-size:11.5px;font-weight:900;
+  color:var(--rose);
+  text-transform:uppercase;letter-spacing:.7px;
+  margin-bottom:18px;
+}
+.ex-prompt{
+  font-size:19px;font-weight:800;color:var(--ink);
+  line-height:1.4;margin-bottom:20px;
+}
+.hz-card{
+  background:linear-gradient(135deg,var(--rose-xl),#FFF5FD);
+  border:2px solid var(--rose-l);
+  border-radius:var(--r);
+  padding:24px 20px;
+  text-align:center;
+  margin-bottom:20px;
+}
+.hz-script{
+  font-family:'Noto Nastaliq Urdu',serif;
+  font-size:38px;
+  font-weight:700;
+  color:var(--ink);
+  direction:rtl;
+  line-height:1.4;
+  margin-bottom:8px;
+  display:block;
+}
+.hz-latin{
+  font-size:16px;font-weight:700;
+  color:var(--rose);font-style:italic;
+  display:block;margin-bottom:4px;
+}
+.hz-nl{
+  font-size:14px;font-weight:600;
+  color:var(--ink-m);display:block;
+}
+
+/* Multiple choice */
+.choices{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.choice{
+  background:var(--white);
+  border:2.5px solid var(--rose-l);
+  border-radius:var(--r-sm);
+  padding:16px 18px;
+  font-size:15px;font-weight:700;
+  color:var(--ink);
+  cursor:pointer;
+  transition:all .2s;
+  text-align:left;
+  display:flex;align-items:center;gap:12px;
+  font-family:'Nunito',sans-serif;
+}
+.choice:hover:not(:disabled){
+  border-color:var(--rose);
+  background:var(--rose-xl);
+  transform:translateX(5px);
+}
+.choice.correct{
+  border-color:#22c55e;background:#f0fdf4;color:#166534;
+  animation:pulse .3s ease;
+}
+.choice.wrong{
+  border-color:#ef4444;background:#fef2f2;color:#991b1b;
+  animation:shake .35s ease;
+}
+.choice-letter{
+  width:28px;height:28px;border-radius:8px;
+  background:var(--rose-xl);border:2px solid var(--rose-l);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:900;color:var(--rose);
+  flex-shrink:0;transition:all .2s;
+}
+.choice.correct .choice-letter{background:#dcfce7;border-color:#22c55e;color:#16a34a}
+.choice.wrong .choice-letter{background:#fee2e2;border-color:#ef4444;color:#dc2626}
+
+/* Word tiles (word bank) */
+.word-bank{
+  display:flex;flex-wrap:wrap;gap:8px;
+  padding:16px;
+  background:var(--rose-xl);
+  border-radius:var(--r-sm);
+  min-height:60px;margin-bottom:12px;
+  border:2px dashed var(--rose-l);
+}
+.word-answer-zone{
+  display:flex;flex-wrap:wrap;gap:8px;
+  padding:16px;
+  background:var(--white);
+  border-radius:var(--r-sm);
+  min-height:60px;
+  border:2.5px solid var(--rose-l);
+  margin-bottom:12px;
+  transition:border-color .2s;
+}
+.word-answer-zone.active{border-color:var(--rose)}
+.word-tile{
+  background:var(--white);
+  border:2.5px solid var(--rose-l);
+  border-radius:var(--r-xs);
+  padding:9px 16px;
+  font-size:14px;font-weight:800;
+  color:var(--ink);
+  cursor:pointer;
+  transition:all .18s;
+  font-family:'Nunito',sans-serif;
+  direction:rtl;
+  user-select:none;
+}
+.word-tile:hover{
+  border-color:var(--rose);background:var(--rose-xl);
+  transform:translateY(-2px);
+}
+.word-tile.placed{opacity:.35;pointer-events:none}
+.word-tile.answer-tile{
+  background:var(--rose-xl);border-color:var(--rose);color:var(--rose-d);
+}
+.word-tile.answer-tile:hover{background:var(--rose-l)}
+
+/* Typing exercise */
+.type-wrap{position:relative;margin-top:8px}
+.type-input{
+  width:100%;
+  border:2.5px solid var(--rose-l);
+  border-radius:var(--r-sm);
+  padding:16px 18px;
+  font-size:26px;
+  direction:rtl;text-align:right;
+  outline:none;
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Noto Nastaliq Urdu',serif;
+  transition:all .2s;
+  font-weight:700;
+}
+.type-input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(255,107,157,.12)}
+.type-input.ok{border-color:#22c55e;background:#f0fdf4}
+.type-input.err{border-color:#ef4444;background:#fef2f2;animation:shake .35s ease}
+.hint-text{
+  font-size:13px;font-weight:700;
+  color:var(--ink-m);margin-top:8px;
+  display:none;
+}
+.hint-text.show{display:block;animation:screenIn .2s ease}
+
+/* Check button */
+.btn-check{
+  margin-top:auto;
+  background:linear-gradient(135deg,var(--rose),var(--rose-d));
+  color:#fff;border:none;
+  border-radius:var(--r-sm);
+  padding:17px;font-size:17px;font-weight:900;
+  cursor:pointer;width:100%;
+  box-shadow:0 6px 22px rgba(255,107,157,.32);
+  transition:all .2s;
+  font-family:'Nunito',sans-serif;
+  position:sticky;bottom:20px;
+}
+.btn-check:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,157,.42)}
+.btn-check:disabled{background:var(--rose-l);color:var(--rose);box-shadow:none;cursor:not-allowed;transform:none}
+
+/* Feedback bar */
+.feedback-bar{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;
+  padding:18px 22px 32px;
+  display:flex;align-items:center;gap:14px;
+  z-index:150;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  border-top-left-radius:24px;
+  border-top-right-radius:24px;
+}
+.feedback-bar.ok-fb{background:#f0fdf4;border-top:3px solid #22c55e}
+.feedback-bar.err-fb{background:#fef2f2;border-top:3px solid #ef4444}
+.feedback-bar.hidden{display:none}
+.fb-icon{font-size:30px}
+.fb-body{flex:1}
+.fb-title{font-size:16px;font-weight:900}
+.ok-fb .fb-title{color:#166534}
+.err-fb .fb-title{color:#991b1b}
+.fb-hint{font-size:13px;font-weight:600;color:var(--ink-m);margin-top:3px}
+.btn-continue{
+  background:linear-gradient(135deg,var(--rose),var(--rose-d));
+  color:#fff;border:none;border-radius:var(--r-sm);
+  padding:13px 20px;font-size:14px;font-weight:900;
+  cursor:pointer;font-family:'Nunito',sans-serif;
+  white-space:nowrap;
+  box-shadow:0 4px 16px rgba(255,107,157,.3);
+}
+
+/* ══════════════════════════════════════
+   RESULT
+══════════════════════════════════════ */
+#screen-result{
+  background:linear-gradient(170deg,#FFD6E8 0%,#FFF0F7 50%,#F0E8FF 100%);
+  align-items:center;justify-content:center;
+  text-align:center;padding:48px 28px;
+  padding-bottom:48px!important;
+}
+.res-mascot{font-size:84px;animation:mascotBob 2s infinite;margin-bottom:16px}
+.res-title{
+  font-size:36px;font-weight:900;
+  background:linear-gradient(135deg,var(--rose),#C84B97);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:6px;
+}
+.res-sub{font-size:14px;font-weight:700;color:var(--ink-m);margin-bottom:28px}
+.res-stats{display:flex;gap:12px;width:100%;margin-bottom:28px}
+.res-stat{
+  flex:1;background:var(--white);border-radius:var(--r-sm);
+  padding:18px 10px;box-shadow:var(--shadow);
+}
+.res-num{font-size:30px;font-weight:900;color:var(--rose)}
+.res-lbl{font-size:11px;font-weight:700;color:var(--ink-l);margin-top:3px}
+
+/* ══════════════════════════════════════
+   VOCABULARY / REVIEW
+══════════════════════════════════════ */
+#screen-review{background:var(--cream)}
+.rev-header{
+  background:linear-gradient(135deg,#FFD6E8,#FFE8F2);
+  padding:52px 22px 24px;
+}
+.rev-header h2{font-size:24px;font-weight:900;color:var(--ink)}
+.rev-header p{font-size:13px;font-weight:600;color:var(--ink-m);margin-top:4px}
+
+.rev-filter-row{
+  display:flex;gap:8px;padding:16px 18px 8px;
+  overflow-x:auto;
+}
+.filter-chip{
+  background:var(--white);
+  border:2px solid var(--rose-l);
+  border-radius:50px;
+  padding:7px 16px;
+  font-size:12px;font-weight:800;
+  color:var(--ink-m);
+  cursor:pointer;white-space:nowrap;transition:all .2s;
+  flex-shrink:0;font-family:'Nunito',sans-serif;
+}
+.filter-chip.active{background:var(--rose);border-color:var(--rose);color:#fff}
+
+.word-list{padding:8px 18px 20px;display:flex;flex-direction:column;gap:10px}
+.word-card{
+  background:var(--white);
+  border-radius:var(--r-sm);
+  padding:14px 16px;
+  box-shadow:0 3px 12px rgba(255,107,157,.07);
+  display:flex;align-items:center;gap:14px;
+}
+.wc-script{
+  font-family:'Noto Nastaliq Urdu',serif;
+  font-size:28px;font-weight:700;color:var(--ink);
+  direction:rtl;min-width:70px;text-align:right;
+  line-height:1.4;
+}
+.wc-info{flex:1}
+.wc-latin{font-size:13px;font-weight:700;color:var(--rose);font-style:italic}
+.wc-nl{font-size:14px;font-weight:700;color:var(--ink-m);margin-top:2px}
+.mastery-bar{
+  display:flex;gap:3px;flex-direction:column;
+  align-items:center;
+}
+.mastery-pip{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--rose-l);transition:all .3s;
+}
+.mastery-pip.on{background:var(--rose)}
+.mastery-pip.gold{background:var(--gold)}
+.mastery-pip.green{background:var(--mint)}
+
+
+
+/* ══════════════════════════════════════
+   PROFILE
+══════════════════════════════════════ */
+#screen-profile{background:var(--cream)}
+.prof-header{
+  background:linear-gradient(150deg,#FFD6E8,#FFE8F2 60%,#F5EDFF);
+  padding:60px 24px 32px;text-align:center;
+}
+.prof-avatar{
+  width:88px;height:88px;
+  background:var(--white);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:44px;margin:0 auto 14px;
+  box-shadow:var(--shadow-xl);
+  border:4px solid var(--rose-l);
+}
+.prof-name{font-size:24px;font-weight:900;color:var(--ink)}
+.prof-level{font-size:13px;font-weight:700;color:var(--ink-m);margin-top:4px}
+
+.prof-body{padding:22px 18px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.stat-card{
+  background:var(--white);border-radius:var(--r-sm);
+  padding:16px 14px;
+  box-shadow:0 3px 12px rgba(255,107,157,.08);
+  display:flex;align-items:center;gap:10px;
+}
+.stat-ico{font-size:28px}
+.stat-num{font-size:22px;font-weight:900;color:var(--ink)}
+.stat-lbl{font-size:11px;font-weight:700;color:var(--ink-l)}
+
+.achv-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.achv-item{
+  background:var(--white);
+  border-radius:var(--r-sm);
+  padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:0 3px 12px rgba(255,107,157,.06);
+}
+.achv-ico{
+  width:44px;height:44px;background:var(--rose-xl);
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.achv-ico.earned{background:linear-gradient(135deg,var(--rose-l),var(--rose))}
+.achv-name{font-size:14px;font-weight:800;color:var(--ink)}
+.achv-desc{font-size:12px;font-weight:600;color:var(--ink-l);margin-top:2px}
+.achv-check{color:#22c55e;font-size:18px;margin-left:auto}
+
+/* ══════════════════════════════════════
+   CONFETTI & FX
+══════════════════════════════════════ */
+#confetti-wrap{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:999;
+}
+.cfetti{
+  position:absolute;
+  width:9px;height:9px;
+  animation:cfFall linear forwards;
+}
+@keyframes cfFall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
+.float-sparkle{
+  position:fixed;font-size:20px;pointer-events:none;z-index:998;
+  animation:floatUp 1s ease forwards;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:1}
+  100%{transform:translateY(-110px) scale(.4);opacity:0}
+}
+
+/* ══════════════════════════════════════
+   SHARED UTILS
+══════════════════════════════════════ */
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-7px)}
+  40%{transform:translateX(7px)}
+  60%{transform:translateX(-5px)}
+  80%{transform:translateX(5px)}
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.03)}
+  100%{transform:scale(1)}
+}
+
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--rose-l);border-radius:2px}
+
+.scroll-pad{height:20px}
+
+/* Conversation exercise */
+.convo-bubble{
+  background:var(--white);border:2px solid var(--rose-l);
+  border-radius:var(--r);padding:18px 20px;
+  margin-bottom:14px;
+}
+.convo-role{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;color:var(--rose);margin-bottom:6px}
+.convo-hz{
+  font-family:'Noto Nastaliq Urdu',serif;
+  font-size:24px;direction:rtl;font-weight:700;
+  color:var(--ink);line-height:1.5;
+}
+.convo-latin{font-size:13px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px}
+.convo-nl{font-size:13px;font-weight:600;color:var(--ink-m);margin-top:2px}
+
+/* Scroll area for vocab */
+.scroll-area{overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+/* Toast */
+.toast{
+  position:fixed;top:72px;left:50%;transform:translateX(-50%) translateY(-20px);
+  background:var(--ink);color:#fff;
+  border-radius:50px;padding:10px 22px;
+  font-size:14px;font-weight:800;
+  z-index:500;opacity:0;
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);
+  white-space:nowrap;
+  pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Streak fire animation */
+.streak-fire{
+  display:inline-block;
+  animation:firePulse 1s ease-in-out infinite;
+}
+@keyframes firePulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.2)}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ONBOARDING -->
+<div id="screen-onboarding" class="screen active">
+  <span class="ob-mascot">🐰</span>
+  <span class="ob-sparkles">🌸 ✨ 🎀</span>
+  <div class="ob-title">Gulette</div>
+  <div class="ob-subtitle">Leer Hazaragi op de leukste manier ooit — dagelijkse zinnen, echte taal, met liefde gemaakt 🌸</div>
+
+  <div class="ob-card">
+    <div class="ob-card-title">👋 Hoe heet jij?</div>
+    <input class="name-input" id="name-input" type="text" placeholder="jouw naam..." maxlength="20" oninput="checkNameInput()">
+  </div>
+
+  <div class="ob-card">
+    <div class="ob-card-title">🎯 Wat is jouw doel?</div>
+    <div class="goal-grid">
+      <button class="goal-btn" onclick="selectGoal(this,'5')">⚡ 5 min/dag<br><small>Casual</small></button>
+      <button class="goal-btn selected" onclick="selectGoal(this,'10')">🌸 10 min/dag<br><small>Normaal</small></button>
+      <button class="goal-btn" onclick="selectGoal(this,'15')">🔥 15 min/dag<br><small>Serieus</small></button>
+      <button class="goal-btn" onclick="selectGoal(this,'20')">💎 20 min/dag<br><small>Intensief</small></button>
+    </div>
+  </div>
+
+  <button class="btn-main" id="btn-start" onclick="startApp()" disabled style="opacity:.5">Laten we beginnen! 🎀</button>
+</div>
+
+<!-- HOME -->
+<div id="screen-home" class="screen">
+  <div class="home-header">
+    <div class="hh-top">
+      <div>
+        <div class="hh-greeting">Welkom terug</div>
+        <div class="hh-name">Hoi, <span id="home-name">?</span> 🎀</div>
+      </div>
+      <div class="hh-badges">
+        <div class="badge"><span class="streak-fire">🔥</span><span id="streak-count">0</span></div>
+        <div class="badge">⭐ <span id="xp-count">0</span></div>
+      </div>
+    </div>
+    <div class="xp-row">
+      <div class="xp-track"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+      <div class="xp-meta">
+        <span id="xp-meta-l">0 XP</span>
+        <span id="xp-meta-r">Level 1</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-body scroll-area">
+    <div class="daily-banner" onclick="startDailyReview()">
+      <div class="db-icon">🐰</div>
+      <div class="db-text">
+        <h3>Dagelijkse herhaling</h3>
+        <p id="daily-count-text">Woorden klaar voor review!</p>
+      </div>
+      <div class="db-arrow">›</div>
+    </div>
+
+    <div class="sec-hdr">
+      <div class="sec-title">Lessen 🌸</div>
+    </div>
+
+    <div id="lesson-chapters"></div>
+    <div class="scroll-pad"></div>
+  </div>
+</div>
+
+<!-- LESSON -->
+<div id="screen-lesson" class="screen">
+  <div class="lesson-topbar">
+    <button class="btn-back" onclick="confirmLeaveLesson()">✕</button>
+    <div class="progress-track">
+      <div class="progress-fill" id="lesson-prog" style="width:0%"></div>
+    </div>
+    <div class="hearts-row" id="hearts-display">❤️❤️❤️</div>
+  </div>
+  <div class="lesson-body" id="lesson-body"></div>
+  <div class="feedback-bar hidden" id="feedback-bar">
+    <div class="fb-icon" id="fb-icon"></div>
+    <div class="fb-body">
+      <div class="fb-title" id="fb-title"></div>
+      <div class="fb-hint" id="fb-hint"></div>
+    </div>
+    <button class="btn-continue" id="btn-continue" onclick="nextExercise()">Verder →</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="screen-result" class="screen">
+  <div class="res-mascot">🐰</div>
+  <div class="res-title">Geweldig! 🎀</div>
+  <div class="res-sub" id="res-sub">Les voltooid!</div>
+  <div class="res-stats">
+    <div class="res-stat">
+      <div class="res-num" id="res-xp">+0</div>
+      <div class="res-lbl">XP verdiend</div>
+    </div>
+    <div class="res-stat">
+      <div class="res-num" id="res-acc">0/0</div>
+      <div class="res-lbl">Correct</div>
+    </div>
+    <div class="res-stat">
+      <div class="res-num" id="res-streak">🔥0</div>
+      <div class="res-lbl">Streak</div>
+    </div>
+  </div>
+  <button class="btn-main" onclick="goHome()">Terug naar huis 🌸</button>
+</div>
+
+<!-- VOCABULARY -->
+<div id="screen-review" class="screen">
+  <div class="rev-header">
+    <h2>Mijn woorden 📖</h2>
+    <p id="rev-sub">Alle geleerde woorden</p>
+  </div>
+  <div class="rev-filter-row">
+    <button class="filter-chip active" onclick="filterWords('all',this)">Alles</button>
+    <button class="filter-chip" onclick="filterWords('new',this)">🌱 Nieuw</button>
+    <button class="filter-chip" onclick="filterWords('learning',this)">📖 Aan het leren</button>
+    <button class="filter-chip" onclick="filterWords('mastered',this)">⭐ Geleerd</button>
+  </div>
+  <div class="word-list scroll-area" id="word-list"></div>
+</div>
+
+
+
+<!-- PROFILE -->
+<div id="screen-profile" class="screen">
+  <div class="prof-header">
+    <div class="prof-avatar">🐰</div>
+    <div class="prof-name" id="prof-name">?</div>
+    <div class="prof-level" id="prof-level">Level 1 · Beginner 🌱</div>
+  </div>
+  <div class="prof-body scroll-area">
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-ico">⭐</div><div><div class="stat-num" id="p-xp">0</div><div class="stat-lbl">Totaal XP</div></div></div>
+      <div class="stat-card"><div class="stat-ico">🔥</div><div><div class="stat-num" id="p-streak">0</div><div class="stat-lbl">Dag streak</div></div></div>
+      <div class="stat-card"><div class="stat-ico">📚</div><div><div class="stat-num" id="p-words">0</div><div class="stat-lbl">Woorden</div></div></div>
+      <div class="stat-card"><div class="stat-ico">✅</div><div><div class="stat-num" id="p-lessons">0</div><div class="stat-lbl">Lessen</div></div></div>
+    </div>
+    <div class="sec-title" style="margin-bottom:12px">Achievements 🏆</div>
+    <div class="achv-list" id="achv-list"></div>
+    <div class="scroll-pad"></div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottom-nav" style="display:none">
+  <button class="nav-btn active" onclick="navTo('home',this)" id="nav-home">
+    <span class="nav-ico">🏠</span><span class="nav-lbl">Thuis</span>
+  </button>
+  <button class="nav-btn" onclick="navTo('review',this)" id="nav-review">
+    <span class="nav-ico">📖</span><span class="nav-lbl">Woorden</span>
+  </button>
+
+  <button class="nav-btn" onclick="navTo('profile',this)" id="nav-profile">
+    <span class="nav-ico">🎀</span><span class="nav-lbl">Profiel</span>
+  </button>
+</nav>
+
+<div id="confetti-wrap"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════════
+let state = {
+  name: '',
+  goal: 10,
+  xp: 0,
+  streak: 0,
+  lastStudy: null,
+  lessonsCompleted: [],
+  vocabulary: {},
+  achievements: []
+};
+
+function saveState() {
+  localStorage.setItem('gulette_v3', JSON.stringify(state));
+}
+function loadState() {
+  try {
+    const s = localStorage.getItem('gulette_v3');
+    if (s) state = { ...state, ...JSON.parse(s) };
+  } catch(e) {}
+}
+
+// ════════════════════════════════════════════════════════════
+//  LESSON DATA  —  Large expandable content library
+// ════════════════════════════════════════════════════════════
+const CHAPTERS = [
+  {
+    id: 'basics',
+    label: '🌱 Hoofdstuk 1 · Basis',
+    lessons: [
+      {
+        id: 'greetings1',
+        title: 'Begroetingen',
+        subtitle: 'Hallo, tot ziens!',
+        icon: '👋',
+        xp: 15,
+        words: [
+          { hz:'سلام', tr:'salaam', nl:'Hallo' },
+          { hz:'خوبی؟', tr:'khobi?', nl:'Hoe gaat het?' },
+          { hz:'خوبم', tr:'khobam', nl:'Ik ben goed' },
+          { hz:'ممنون', tr:'mamnon', nl:'Dank je wel' },
+          { hz:'خداحافظ', tr:'khodaa hafez', nl:'Tot ziens' },
+          { hz:'نام‌ات چیه؟', tr:'naamat chiye?', nl:'Hoe heet jij?' },
+        ],
+        sentences: [
+          { hz:'سلام، خوبی؟', tr:'salaam, khobi?', nl:'Hallo, hoe gaat het?' },
+          { hz:'ممنون، خوبم', tr:'mamnon, khobam', nl:'Dank je, ik ben goed' },
+          { hz:'نام‌ات چیه؟ نام‌م سارا اس', tr:'naamat chiye? naamam saara as', nl:'Hoe heet jij? Mijn naam is Sara' },
+        ]
+      },
+      {
+        id: 'greetings2',
+        title: 'Meer begroetingen',
+        subtitle: 'Goedemorgen, goedenacht...',
+        icon: '☀️',
+        xp: 15,
+        words: [
+          { hz:'صبح بخیر', tr:'sobh bakhair', nl:'Goedemorgen' },
+          { hz:'شب بخیر', tr:'shab bakhair', nl:'Goedenacht' },
+          { hz:'خوش آمدید', tr:'khosh aamadid', nl:'Welkom' },
+          { hz:'بفرمایید', tr:'befarmayid', nl:'Alsjeblieft / Kom binnen' },
+          { hz:'چطور هستی؟', tr:'chetour hasti?', nl:'Hoe ben je?' },
+          { hz:'مشکلی نیست', tr:'moshkeli nist', nl:'Geen probleem' },
+        ],
+        sentences: [
+          { hz:'صبح بخیر، خوبی؟', tr:'sobh bakhair, khobi?', nl:'Goedemorgen, hoe gaat het?' },
+          { hz:'خوش آمدید، بفرمایید', tr:'khosh aamadid, befarmayid', nl:'Welkom, kom binnen' },
+        ]
+      },
+      {
+        id: 'numbers',
+        title: 'Cijfers 1-20',
+        subtitle: 'Een, twee, drie...',
+        icon: '🔢',
+        xp: 20,
+        words: [
+          { hz:'یک', tr:'yak', nl:'Een (1)' },
+          { hz:'دو', tr:'do', nl:'Twee (2)' },
+          { hz:'سه', tr:'se', nl:'Drie (3)' },
+          { hz:'چار', tr:'chaar', nl:'Vier (4)' },
+          { hz:'پنج', tr:'panj', nl:'Vijf (5)' },
+          { hz:'شش', tr:'shash', nl:'Zes (6)' },
+          { hz:'هفت', tr:'haft', nl:'Zeven (7)' },
+          { hz:'هشت', tr:'hasht', nl:'Acht (8)' },
+          { hz:'نه', tr:'no', nl:'Negen (9)' },
+          { hz:'ده', tr:'da', nl:'Tien (10)' },
+        ],
+        sentences: [
+          { hz:'یک چای بیار', tr:'yak chaai biaar', nl:'Breng één thee' },
+          { hz:'ده تومان', tr:'da tomaan', nl:'Tien toman' },
+        ]
+      },
+      {
+        id: 'colors',
+        title: 'Kleuren',
+        subtitle: 'Rood, blauw, groen...',
+        icon: '🌈',
+        xp: 20,
+        words: [
+          { hz:'سرخ', tr:'sorkh', nl:'Rood' },
+          { hz:'آبی', tr:'aabi', nl:'Blauw' },
+          { hz:'سبز', tr:'sabz', nl:'Groen' },
+          { hz:'سفید', tr:'sefaid', nl:'Wit' },
+          { hz:'سیاه', tr:'siyaa', nl:'Zwart' },
+          { hz:'زرد', tr:'zard', nl:'Geel' },
+          { hz:'صورتی', tr:'sorati', nl:'Roze' },
+          { hz:'بنفش', tr:'banafsh', nl:'Paars' },
+        ],
+        sentences: [
+          { hz:'لباسم سرخ اس', tr:'lebaasamam sorkh as', nl:'Mijn kleding is rood' },
+          { hz:'آسمان آبی اس', tr:'aasemaan aabi as', nl:'De lucht is blauw' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'family_food',
+    label: '🏡 Hoofdstuk 2 · Thuis & Familie',
+    lessons: [
+      {
+        id: 'family',
+        title: 'Familie',
+        subtitle: 'Mama, papa, broer...',
+        icon: '👨‍👩‍👧',
+        xp: 20,
+        words: [
+          { hz:'مادر', tr:'maadar', nl:'Moeder' },
+          { hz:'پدر', tr:'padar', nl:'Vader' },
+          { hz:'برادر', tr:'baraadar', nl:'Broer' },
+          { hz:'خواهر', tr:'khwahar', nl:'Zus' },
+          { hz:'بچه', tr:'bacha', nl:'Kind' },
+          { hz:'دوست', tr:'dost', nl:'Vriend(in)' },
+          { hz:'شوهر', tr:'showhar', nl:'Man/Echtgenoot' },
+          { hz:'زن', tr:'zan', nl:'Vrouw/Echtgenote' },
+          { hz:'مادرکلان', tr:'maadarkalan', nl:'Oma (moederskant)' },
+          { hz:'پدرکلان', tr:'padarkalan', nl:'Opa (vaderskant)' },
+        ],
+        sentences: [
+          { hz:'مادرم خیلی مهربان اس', tr:'maadaram khaili mehrabaan as', nl:'Mijn moeder is erg lief' },
+          { hz:'برادرم دو سال از مو کلان‌تر اس', tr:'baraadarom do saal az mo kalaan-tar as', nl:'Mijn broer is twee jaar ouder dan ik' },
+        ]
+      },
+      {
+        id: 'food',
+        title: 'Eten & Drinken',
+        subtitle: 'Chai, naan, bolani...',
+        icon: '🍵',
+        xp: 20,
+        words: [
+          { hz:'چای', tr:'chaai', nl:'Thee' },
+          { hz:'نان', tr:'naan', nl:'Brood' },
+          { hz:'آب', tr:'aab', nl:'Water' },
+          { hz:'گوشت', tr:'gosht', nl:'Vlees' },
+          { hz:'برنج', tr:'birinj', nl:'Rijst' },
+          { hz:'میوه', tr:'mewa', nl:'Fruit' },
+          { hz:'شیرینی', tr:'shireeni', nl:'Snoep/Zoet' },
+          { hz:'خوشمزه', tr:'khoshmaza', nl:'Lekker' },
+          { hz:'تشنه', tr:'tashna', nl:'Dorstig' },
+          { hz:'گشنه', tr:'goshna', nl:'Hongerig' },
+        ],
+        sentences: [
+          { hz:'یک چای بریزو', tr:'yak chaai berizo', nl:'Schenk een thee in' },
+          { hz:'این چای خیلی خوشمزه اس', tr:'ain chaai khaili khoshmaza as', nl:'Deze thee is heel lekker' },
+          { hz:'گشنه‌م، نان داری؟', tr:'goshnanam, naan daari?', nl:'Ik heb honger, heb je brood?' },
+        ]
+      },
+      {
+        id: 'home',
+        title: 'Thuis',
+        subtitle: 'Kamer, slaapkamer...',
+        icon: '🏠',
+        xp: 20,
+        words: [
+          { hz:'خانه', tr:'khaana', nl:'Huis' },
+          { hz:'اتاق', tr:'otaaq', nl:'Kamer' },
+          { hz:'آشپزخانه', tr:'aashpazkhana', nl:'Keuken' },
+          { hz:'درب', tr:'darb', nl:'Deur' },
+          { hz:'پنجره', tr:'panjara', nl:'Raam' },
+          { hz:'تخت', tr:'takht', nl:'Bed' },
+          { hz:'صندلی', tr:'sandali', nl:'Stoel' },
+          { hz:'میز', tr:'mez', nl:'Tafel' },
+        ],
+        sentences: [
+          { hz:'خانه‌مو دو اتاق داره', tr:'khaanamao do otaaq daara', nl:'Ons huis heeft twee kamers' },
+          { hz:'درب باز اس', tr:'darb baaz as', nl:'De deur is open' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'emotions_daily',
+    label: '💕 Hoofdstuk 3 · Gevoel & Leven',
+    lessons: [
+      {
+        id: 'emotions',
+        title: 'Gevoelens',
+        subtitle: 'Blij, verdrietig, moe...',
+        icon: '💕',
+        xp: 25,
+        words: [
+          { hz:'خوش', tr:'khosh', nl:'Blij/Gelukkig' },
+          { hz:'غمگین', tr:'ghamgeen', nl:'Verdrietig' },
+          { hz:'خسته', tr:'khasta', nl:'Moe' },
+          { hz:'خوشحال', tr:'khoshhaal', nl:'Vrolijk' },
+          { hz:'عاشق', tr:'aasheq', nl:'Verliefd' },
+          { hz:'دل‌تنگی', tr:'deltangi', nl:'Gemis/Verlangen' },
+          { hz:'ترس', tr:'tars', nl:'Bang/Angst' },
+          { hz:'عصبانی', tr:'asabaani', nl:'Boos' },
+          { hz:'دوستت دارم', tr:'dostat daaram', nl:'Ik hou van jou' },
+          { hz:'دلم تنگته', tr:'delam tangta', nl:'Ik mis je' },
+        ],
+        sentences: [
+          { hz:'امروز خیلی خوشحالم', tr:'emroz khaili khoshhaalama', nl:'Vandaag ben ik heel blij' },
+          { hz:'دلم تنگته، کجایی؟', tr:'delam tangta, kojayi?', nl:'Ik mis je, waar ben je?' },
+          { hz:'چرا عصبانی هستی؟', tr:'chera asabaani hasti?', nl:'Waarom ben je boos?' },
+        ]
+      },
+      {
+        id: 'daily_life',
+        title: 'Dagelijks leven',
+        subtitle: 'Werk, tijd, geld...',
+        icon: '☀️',
+        xp: 25,
+        words: [
+          { hz:'کار', tr:'kaar', nl:'Werk' },
+          { hz:'وقت', tr:'waqt', nl:'Tijd' },
+          { hz:'پول', tr:'pool', nl:'Geld' },
+          { hz:'بازار', tr:'baazaar', nl:'Markt/Winkel' },
+          { hz:'موبایل', tr:'mobaail', nl:'Telefoon' },
+          { hz:'امروز', tr:'emroz', nl:'Vandaag' },
+          { hz:'فردا', tr:'farda', nl:'Morgen' },
+          { hz:'دیروز', tr:'diroz', nl:'Gisteren' },
+          { hz:'حالا', tr:'haala', nl:'Nu' },
+          { hz:'بعد', tr:'baad', nl:'Later' },
+        ],
+        sentences: [
+          { hz:'امروز کار دارم', tr:'emroz kaar daaram', nl:'Vandaag heb ik werk' },
+          { hz:'فردا بازار می‌ریم', tr:'farda baazaar me-rim', nl:'Morgen gaan we naar de markt' },
+          { hz:'وقت نداری؟', tr:'waqt naadaari?', nl:'Heb je geen tijd?' },
+        ]
+      },
+      {
+        id: 'weather',
+        title: 'Weer & Seizoenen',
+        subtitle: 'Warm, koud, regen...',
+        icon: '🌤️',
+        xp: 25,
+        words: [
+          { hz:'هوا', tr:'hawa', nl:'Weer/Lucht' },
+          { hz:'گرم', tr:'garm', nl:'Warm' },
+          { hz:'سرد', tr:'sard', nl:'Koud' },
+          { hz:'باران', tr:'baaran', nl:'Regen' },
+          { hz:'برف', tr:'barf', nl:'Sneeuw' },
+          { hz:'آفتاب', tr:'aaftaab', nl:'Zon' },
+          { hz:'زمستان', tr:'zemestaan', nl:'Winter' },
+          { hz:'تابستان', tr:'taabestaan', nl:'Zomer' },
+        ],
+        sentences: [
+          { hz:'امروز هوا گرم اس', tr:'emroz hawa garm as', nl:'Vandaag is het weer warm' },
+          { hz:'زمستان اس، خیلی سرد اس', tr:'zemestaan as, khaili sard as', nl:'Het is winter, het is erg koud' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'conversation',
+    label: '💬 Hoofdstuk 4 · Conversatie',
+    lessons: [
+      {
+        id: 'shopping',
+        title: 'Winkelen',
+        subtitle: 'Kopen, prijzen, handelen...',
+        icon: '🛒',
+        xp: 30,
+        words: [
+          { hz:'چند پول اس؟', tr:'chand pool as?', nl:'Hoeveel kost het?' },
+          { hz:'ارزان', tr:'arzaan', nl:'Goedkoop' },
+          { hz:'گران', tr:'geraan', nl:'Duur' },
+          { hz:'بخر', tr:'bakhara', nl:'Kopen' },
+          { hz:'بفروش', tr:'befarosh', nl:'Verkopen' },
+          { hz:'تخفیف', tr:'takhfif', nl:'Korting' },
+          { hz:'کافی اس', tr:'kaafi as', nl:'Het is genoeg' },
+        ],
+        sentences: [
+          { hz:'این چند پول اس؟', tr:'ain chand pool as?', nl:'Hoeveel kost dit?' },
+          { hz:'خیلی گران اس، تخفیف بده', tr:'khaili geraan as, takhfif bede', nl:'Het is te duur, geef korting' },
+          { hz:'یک کیلو سیب می‌خوام', tr:'yak kilo seb me-khaam', nl:'Ik wil een kilo appels' },
+        ]
+      },
+      {
+        id: 'directions',
+        title: 'Weg vragen',
+        subtitle: 'Links, rechts, ver...',
+        icon: '🗺️',
+        xp: 30,
+        words: [
+          { hz:'کجا', tr:'koja', nl:'Waar' },
+          { hz:'راست', tr:'raast', nl:'Rechts' },
+          { hz:'چپ', tr:'chap', nl:'Links' },
+          { hz:'مستقیم', tr:'mostaghim', nl:'Rechtdoor' },
+          { hz:'دور', tr:'door', nl:'Ver' },
+          { hz:'نزدیک', tr:'nazdik', nl:'Dichtbij' },
+          { hz:'بازار کجاس؟', tr:'baazaar kojaas?', nl:'Waar is de markt?' },
+        ],
+        sentences: [
+          { hz:'مستقیم برو، بعد راست بپیچ', tr:'mostaghim bero, baad raast bepich', nl:'Ga rechtdoor, daarna sla rechts af' },
+          { hz:'خانه‌ات کجاس؟', tr:'khaanaat kojaas?', nl:'Waar is jouw huis?' },
+        ]
+      },
+      {
+        id: 'compliments',
+        title: 'Complimenten & Vriendelijkheid',
+        subtitle: 'Je bent mooi, goed zo...',
+        icon: '🌸',
+        xp: 30,
+        words: [
+          { hz:'قشنگ', tr:'qashanq', nl:'Mooi' },
+          { hz:'آفرین', tr:'aafarin', nl:'Goed zo! / Bravo!' },
+          { hz:'خوبه', tr:'khoba', nl:'Goed/Prima' },
+          { hz:'ماشاالله', tr:'mashaallah', nl:'MashaAllah (bewondering)' },
+          { hz:'مهربان', tr:'mehrabaan', nl:'Lief/Vriendelijk' },
+          { hz:'باهوش', tr:'baahoosh', nl:'Slim' },
+          { hz:'قوی', tr:'ghawi', nl:'Sterk' },
+        ],
+        sentences: [
+          { hz:'تو خیلی قشنگ هستی', tr:'to khaili qashanq hasti', nl:'Jij bent heel mooi' },
+          { hz:'آفرین! خوب کردی', tr:'aafarin! khob kardi', nl:'Goed zo! Je hebt het goed gedaan' },
+          { hz:'ماشاالله چقدر باهوشی', tr:'mashaallah chaqadr baahooshi', nl:'MashaAllah, wat ben jij slim' },
+        ]
+      },
+      {
+        id: 'flirting',
+        title: 'Romantiek & Flirten',
+        subtitle: 'Ik mis je, je bent mooi...',
+        icon: '💌',
+        xp: 35,
+        words: [
+          { hz:'دوستت دارم', tr:'dostat daaram', nl:'Ik hou van jou' },
+          { hz:'عاشقتم', tr:'aasheqatam', nl:'Ik ben verliefd op jou' },
+          { hz:'دلم تنگته', tr:'delam tangta', nl:'Ik mis je zo' },
+          { hz:'نمی‌تونم بی‌تو باشم', tr:'nemi-tonam bi-to baasham', nl:'Ik kan niet zonder jou' },
+          { hz:'خوش‌تیپ', tr:'khosh-tip', nl:'Knap/Stijlvol' },
+          { hz:'دل‌ربا', tr:'delroba', nl:'Betoverend/Aantrekkelijk' },
+          { hz:'یارم', tr:'yaaram', nl:'Mijn geliefde' },
+        ],
+        sentences: [
+          { hz:'از وقتی دیدمت دلم لرزید', tr:'az waqti didamat delam larzid', nl:'Vanaf het moment dat ik je zag, klopte mijn hart' },
+          { hz:'یارم، دلم تنگته برات', tr:'yaaram, delam tangta baraat', nl:'Mijn lieve, ik mis je zo' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'culture_slang',
+    label: '🌟 Hoofdstuk 5 · Cultuur & Slang',
+    lessons: [
+      {
+        id: 'slang',
+        title: 'Hazara slang',
+        subtitle: 'Echte straattaal...',
+        icon: '😎',
+        xp: 35,
+        words: [
+          { hz:'جان', tr:'jaan', nl:'Lieverd / Schat (aanspreekvorm)' },
+          { hz:'یار', tr:'yaar', nl:'Vriend / Kerel' },
+          { hz:'حالا چی؟', tr:'haala chi?', nl:'En nu? / So what?' },
+          { hz:'بیخود', tr:'beikhod', nl:'Voor niks / Tevergeefs' },
+          { hz:'خفه شو', tr:'khafa sho', nl:'Hou je mond (informeel)' },
+          { hz:'ببین', tr:'bebin', nl:'Kijk / Luister' },
+          { hz:'اصلاً', tr:'aslan', nl:'Helemaal niet / Totaal' },
+          { hz:'والله', tr:'wallah', nl:'Echt waar! (bij Allah)' },
+        ],
+        sentences: [
+          { hz:'والله جان، اصلاً نمی‌دانم', tr:'wallah jaan, aslan nemi-danam', nl:'Echt waar lieverd, ik weet het totaal niet' },
+          { hz:'یار، ببین چی شد', tr:'yaar, bebin chi shod', nl:'Man, kijk wat er is gebeurd' },
+        ]
+      },
+      {
+        id: 'culture',
+        title: 'Cultuur & Tradities',
+        subtitle: 'Gastvrijheid, feesten...',
+        icon: '🎊',
+        xp: 35,
+        words: [
+          { hz:'مهمانی', tr:'mehmaani', nl:'Feest/Bezoek' },
+          { hz:'مهمان‌نوازی', tr:'mehman-nawaazi', nl:'Gastvrijheid' },
+          { hz:'نوروز', tr:'nowroz', nl:'Nieuwjaar (Perzisch)' },
+          { hz:'عروسی', tr:'arosi', nl:'Bruiloft' },
+          { hz:'بسم الله', tr:'bismillah', nl:'In naam van Allah (voor het eten)' },
+          { hz:'صفا آوردید', tr:'safaa aawordid', nl:'Jullie geven glans (welkomszin)' },
+          { hz:'دستت درد نکنه', tr:'dastat dard nakona', nl:'Dankjewel voor je inspanning' },
+        ],
+        sentences: [
+          { hz:'نوروز مبارک!', tr:'nowroz mobaarak!', nl:'Gelukkig Nieuwjaar!' },
+          { hz:'دستت درد نکنه، خیلی خوشمزه بود', tr:'dastat dard nakona, khaili khoshmaza bood', nl:'Dankje voor je moeite, het was heel lekker' },
+        ]
+      },
+      {
+        id: 'internet',
+        title: 'Internet & Teksten',
+        subtitle: 'WhatsApp, online talk...',
+        icon: '📱',
+        xp: 30,
+        words: [
+          { hz:'اوکی', tr:'oki', nl:'Oké' },
+          { hz:'خب', tr:'khab', nl:'Oké / Nou (informeel)' },
+          { hz:'آخ جان', tr:'aakh jaan', nl:'Yes! / Wauw!' },
+          { hz:'نه بابا', tr:'na baabaa', nl:'Nee joh / Serieus?' },
+          { hz:'هستی؟', tr:'hasti?', nl:'Ben je er?' },
+          { hz:'بعداً زنگ می‌زنم', tr:'baadon zang me-zanam', nl:'Ik bel je later' },
+          { hz:'مراقب خودت باش', tr:'moraaqeb khodat baash', nl:'Zorg goed voor jezelf' },
+        ],
+        sentences: [
+          { hz:'هستی؟ دلم تنگته', tr:'hasti? delam tangta', nl:'Ben je er? Ik mis je' },
+          { hz:'آخ جان! خوشحال شدم', tr:'aakh jaan! khoshhaal shodam', nl:'Yes! Ik werd blij' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'advanced',
+    label: '💎 Hoofdstuk 6 · Gevorderd',
+    lessons: [
+      {
+        id: 'stories',
+        title: 'Vertellingen',
+        subtitle: 'Verhalen & verleden tijd...',
+        icon: '📖',
+        xp: 40,
+        words: [
+          { hz:'قصه', tr:'qessa', nl:'Verhaal' },
+          { hz:'روزی روزگاری', tr:'rozi rozgaari', nl:'Er was eens' },
+          { hz:'رفت', tr:'raft', nl:'Ging (verleden)' },
+          { hz:'آمد', tr:'aamad', nl:'Kwam (verleden)' },
+          { hz:'گفت', tr:'goft', nl:'Zei (verleden)' },
+          { hz:'دید', tr:'did', nl:'Zag (verleden)' },
+          { hz:'بود', tr:'bood', nl:'Was (verleden)' },
+        ],
+        sentences: [
+          { hz:'روزی روزگاری یک دختر بود', tr:'rozi rozgaari yak dokhtar bood', nl:'Er was eens een meisje' },
+          { hz:'رفت به بازار و نان خرید', tr:'raft ba baazaar wa naan kharid', nl:'Ze ging naar de markt en kocht brood' },
+        ]
+      },
+      {
+        id: 'arguments',
+        title: 'Meningsverschillen',
+        subtitle: 'Discussie, standpunten...',
+        icon: '🗣️',
+        xp: 40,
+        words: [
+          { hz:'درست اس', tr:'dorost as', nl:'Dat klopt / Juist' },
+          { hz:'اشتباه', tr:'eshtebaa', nl:'Fout / Vergissing' },
+          { hz:'موافقم', tr:'mowaafeqam', nl:'Ik ben het eens' },
+          { hz:'مخالفم', tr:'mokhaalfam', nl:'Ik ben het oneens' },
+          { hz:'به نظرم', tr:'ba nazaram', nl:'Naar mijn mening' },
+          { hz:'چرا؟', tr:'chera?', nl:'Waarom?' },
+          { hz:'دلیل', tr:'dalil', nl:'Reden/Bewijs' },
+        ],
+        sentences: [
+          { hz:'به نظرم این اشتباه اس', tr:'ba nazaram ain eshtebaa as', nl:'Naar mijn mening is dit fout' },
+          { hz:'موافقم، درست می‌گی', tr:'mowaafeqam, dorost megi', nl:'Ik ben het eens, je hebt gelijk' },
+        ]
+      },
+      {
+        id: 'school',
+        title: 'School & Leren',
+        subtitle: 'Klas, studeren...',
+        icon: '🏫',
+        xp: 35,
+        words: [
+          { hz:'مکتب', tr:'maktab', nl:'School' },
+          { hz:'معلم', tr:'mo\'alem', nl:'Leraar' },
+          { hz:'شاگرد', tr:'shaagerd', nl:'Leerling' },
+          { hz:'کتاب', tr:'ketaab', nl:'Boek' },
+          { hz:'درس', tr:'dars', nl:'Les' },
+          { hz:'امتحان', tr:'emtehaan', nl:'Toets/Examen' },
+          { hz:'سبق', tr:'sabaq', nl:'Huiswerk / Lesinhoud' },
+        ],
+        sentences: [
+          { hz:'امروز امتحان دارم', tr:'emroz emtehaan daaram', nl:'Vandaag heb ik een toets' },
+          { hz:'معلمم خیلی خوب اس', tr:'mo\'alemam khaili khob as', nl:'Mijn leraar is heel goed' },
+        ]
+      },
+    ]
+  }
+];
+
+const ACHIEVEMENTS = [
+  { id:'first_lesson', icon:'🌱', name:'Eerste stap', desc:'Eerste les voltooid!' },
+  { id:'streak_3', icon:'🔥', name:'3 dagen streak', desc:'3 dagen op rij geleerd' },
+  { id:'streak_7', icon:'💫', name:'7 dagen streak', desc:'Een hele week!' },
+  { id:'words_10', icon:'📚', name:'10 woorden', desc:'10 woorden geleerd' },
+  { id:'words_30', icon:'🌸', name:'30 woorden', desc:'30 woorden geleerd' },
+  { id:'words_60', icon:'💎', name:'60 woorden', desc:'Echt gevorderd!' },
+  { id:'xp_100', icon:'⭐', name:'100 XP', desc:'100 XP verzameld' },
+  { id:'xp_500', icon:'🏆', name:'500 XP', desc:'Echt gedreven!' },
+  { id:'perfect', icon:'✨', name:'Perfect!', desc:'Les zonder fouten afgemaakt' },
+  { id:'chapter2', icon:'🏡', name:'Hoofdstuk 2', desc:'Thuis & Familie gestart' },
+  { id:'chapter3', icon:'💕', name:'Hoofdstuk 3', desc:'Gevoel & Leven gestart' },
+];
+
+// ════════════════════════════════════════════════════════════
+//  SCREEN NAV
+// ════════════════════════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+function navTo(id, btn) {
+  showScreen(id);
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (id === 'review') renderReview();
+  if (id === 'profile') renderProfile();
+}
+
+function goHome() {
+  showScreen('home');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-home').classList.add('active');
+  renderHome();
+}
+
+// ════════════════════════════════════════════════════════════
+//  ONBOARDING
+// ════════════════════════════════════════════════════════════
+let selectedGoal = 10;
+function checkNameInput() {
+  const v = document.getElementById('name-input').value.trim();
+  const btn = document.getElementById('btn-start');
+  btn.disabled = v.length < 2;
+  btn.style.opacity = v.length < 2 ? '.5' : '1';
+}
+function selectGoal(btn, val) {
+  document.querySelectorAll('.goal-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedGoal = parseInt(val);
+}
+function startApp() {
+  const name = document.getElementById('name-input').value.trim();
+  if (!name) return;
+  state.name = name;
+  state.goal = selectedGoal;
+  saveState();
+  document.getElementById('bottom-nav').style.display = 'flex';
+  goHome();
+}
+
+// ════════════════════════════════════════════════════════════
+//  HOME
+// ════════════════════════════════════════════════════════════
+function renderHome() {
+  document.getElementById('home-name').textContent = state.name;
+  document.getElementById('streak-count').textContent = state.streak;
+  document.getElementById('xp-count').textContent = state.xp;
+
+  const level = Math.floor(state.xp / 100) + 1;
+  const pct = (state.xp % 100);
+  document.getElementById('xp-fill').style.width = pct + '%';
+  document.getElementById('xp-meta-l').textContent = state.xp + ' XP';
+  document.getElementById('xp-meta-r').textContent = 'Level ' + level;
+
+  // Daily review count
+  const dueCount = Object.values(state.vocabulary).filter(v => !v.nextReview || new Date(v.nextReview) <= new Date()).length;
+  document.getElementById('daily-count-text').textContent = dueCount > 0 ? `${dueCount} woorden klaar voor review!` : 'Je bent up-to-date! 🌸';
+
+  // Build lesson chapters
+  const container = document.getElementById('lesson-chapters');
+  container.innerHTML = '';
+
+  let totalCompleted = 0;
+  CHAPTERS.forEach((ch, ci) => {
+    const block = document.createElement('div');
+    block.className = 'chapter-block';
+    block.innerHTML = `<div class="chapter-label">${ch.label}</div>`;
+
+    const path = document.createElement('div');
+    path.className = 'lesson-path';
+
+    ch.lessons.forEach((lesson, li) => {
+      const done = state.lessonsCompleted.includes(lesson.id);
+      if (done) totalCompleted++;
+
+      // Unlock logic: first lesson of each chapter locked if prev chapter not started
+      const isLocked = ci > 0 && li === 0 &&
+        CHAPTERS[ci-1].lessons.filter(l => state.lessonsCompleted.includes(l.id)).length === 0;
+
+      const alignClass = ['center','odd','even','center','odd','even'][li % 6] || 'center';
+
+      const row = document.createElement('div');
+      row.className = 'path-row ' + alignClass;
+      row.style.marginBottom = '12px';
+
+      let statusClass = done ? 'completed' : (isLocked ? 'locked' : 'unlocked');
+      row.innerHTML = `
+        <div class="lesson-node ${statusClass}" ${!isLocked ? `onclick="startLesson('${lesson.id}')"` : ''}>
+          <div class="node-info-bubble">${lesson.title} · +${lesson.xp} XP</div>
+          <div class="node-icon">${lesson.icon}</div>
+          <div class="node-lbl">${lesson.title}</div>
+        </div>
+      `;
+      path.appendChild(row);
+    });
+
+    block.appendChild(path);
+    container.appendChild(block);
+  });
+}
+
+// ════════════════════════════════════════════════════════════
+//  LESSON ENGINE
+// ════════════════════════════════════════════════════════════
+let currentLesson = null;
+let exercises = [];
+let exIdx = 0;
+let correctCount = 0;
+let wrongCount = 0;
+let lessonXP = 0;
+let awaitingContinue = false;
+
+function getLessonById(id) {
+  for (const ch of CHAPTERS)
+    for (const l of ch.lessons)
+      if (l.id === id) return l;
+  return null;
+}
+
+function startLesson(id) {
+  currentLesson = getLessonById(id);
+  if (!currentLesson) return;
+
+  // Build exercise queue
+  exercises = buildExercises(currentLesson);
+  exIdx = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  lessonXP = 0;
+  awaitingContinue = false;
+
+  showScreen('lesson');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  updateHearts();
+  renderExercise();
+}
+
+function buildExercises(lesson) {
+  const exs = [];
+  const allWords = [...lesson.words];
+  const allSentences = lesson.sentences || [];
+
+  // 1. Introduce each word (show card)
+  allWords.slice(0, 6).forEach(w => {
+    exs.push({ type: 'intro', word: w });
+  });
+
+  // 2. Multiple choice: hz→nl
+  shuffle(allWords).slice(0, 5).forEach(w => {
+    const distractors = allWords.filter(x => x.hz !== w.hz);
+    const choices = [w.nl, ...shuffle(distractors).slice(0,3).map(x => x.nl)];
+    exs.push({ type: 'mc_nl', word: w, choices: shuffle(choices) });
+  });
+
+  // 3. Multiple choice: nl→hz
+  shuffle(allWords).slice(0, 4).forEach(w => {
+    const distractors = allWords.filter(x => x.hz !== w.hz);
+    const choices = [w.hz, ...shuffle(distractors).slice(0,3).map(x => x.hz)];
+    exs.push({ type: 'mc_hz', word: w, choices: shuffle(choices) });
+  });
+
+  // 4. Word bank sentence (if sentences available)
+  allSentences.slice(0, 2).forEach(s => {
+    exs.push({ type: 'wordbank', sentence: s });
+  });
+
+  // 5. Typing (typing the Hazaragi)
+  shuffle(allWords).slice(0, 3).forEach(w => {
+    exs.push({ type: 'type', word: w });
+  });
+
+  // 6. Final review: mc again on trickier ones
+  shuffle(allWords).slice(0, 3).forEach(w => {
+    const distractors = allWords.filter(x => x.hz !== w.hz);
+    if (distractors.length >= 3) {
+      const choices = [w.nl, ...shuffle(distractors).slice(0,3).map(x => x.nl)];
+      exs.push({ type: 'mc_nl', word: w, choices: shuffle(choices) });
+    }
+  });
+
+  return exs;
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function updateProgress() {
+  const pct = Math.round((exIdx / exercises.length) * 100);
+  document.getElementById('lesson-prog').style.width = pct + '%';
+}
+
+function updateHearts() {
+  const h = 3; // no hearts punishment — always full
+  document.getElementById('hearts-display').textContent = '❤️'.repeat(h);
+}
+
+function renderExercise() {
+  if (exIdx >= exercises.length) { finishLesson(); return; }
+
+  updateProgress();
+  hideFeedback();
+
+  const ex = exercises[exIdx];
+  const body = document.getElementById('lesson-body');
+  body.innerHTML = '';
+
+  if (ex.type === 'intro') renderIntro(ex, body);
+  else if (ex.type === 'mc_nl') renderMC_nl(ex, body);
+  else if (ex.type === 'mc_hz') renderMC_hz(ex, body);
+  else if (ex.type === 'wordbank') renderWordbank(ex, body);
+  else if (ex.type === 'type') renderType(ex, body);
+  else nextExercise();
+}
+
+function renderIntro(ex, body) {
+  const w = ex.word;
+  body.innerHTML = `
+    <div class="ex-type-pill">📖 Nieuw woord</div>
+    <div class="ex-prompt">Leer dit woord kennen:</div>
+    <div class="hz-card">
+      <span class="hz-script">${w.hz}</span>
+      <span class="hz-latin">${w.tr}</span>
+      <span class="hz-nl">= ${w.nl}</span>
+    </div>
+    <div style="flex:1"></div>
+    <button class="btn-check" onclick="nextExercise()">Begrepen! 🌸</button>
+  `;
+  // Add to vocabulary
+  if (!state.vocabulary[w.hz]) {
+    state.vocabulary[w.hz] = { nl: w.nl, tr: w.tr, mastery: 0, nextReview: null };
+  }
+  saveState();
+}
+
+function renderMC_nl(ex, body) {
+  const w = ex.word;
+  const letters = ['A','B','C','D'];
+  body.innerHTML = `
+    <div class="ex-type-pill">🎯 Kies de vertaling</div>
+    <div class="ex-prompt">Wat betekent dit woord?</div>
+    <div class="hz-card">
+      <span class="hz-script">${w.hz}</span>
+      <span class="hz-latin">${w.tr}</span>
+    </div>
+    <div class="choices" id="choices-wrap">
+      ${ex.choices.map((c, i) => `
+        <button class="choice" onclick="checkMC(this,'${c.replace(/'/g,"\\'")}','${w.nl.replace(/'/g,"\\'")}','${w.hz.replace(/'/g,"\\'")}','${w.tr.replace(/'/g,"\\'")}')">
+          <span class="choice-letter">${letters[i]}</span>${c}
+        </button>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderMC_hz(ex, body) {
+  const w = ex.word;
+  const letters = ['A','B','C','D'];
+  body.innerHTML = `
+    <div class="ex-type-pill">🔤 Kies het Hazaragi</div>
+    <div class="ex-prompt">Welk woord betekent <strong>"${w.nl}"</strong>?</div>
+    <div class="choices" id="choices-wrap">
+      ${ex.choices.map((c, i) => `
+        <button class="choice" onclick="checkMC_hz(this,'${c.replace(/'/g,"\\'")}','${w.hz.replace(/'/g,"\\'")}','${w.nl.replace(/'/g,"\\'")}','${w.tr.replace(/'/g,"\\'")}')">
+          <span class="choice-letter">${letters[i]}</span>
+          <span style="font-family:'Noto Nastaliq Urdu',serif;font-size:22px;direction:rtl">${c}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderWordbank(ex, body) {
+  const s = ex.sentence;
+  const words = s.hz.split(' ').filter(Boolean);
+  const shuffled = shuffle(words);
+
+  body.innerHTML = `
+    <div class="ex-type-pill">🧩 Maak de zin</div>
+    <div class="ex-prompt">Zet de woorden in de juiste volgorde:</div>
+    <div class="convo-bubble">
+      <div class="convo-nl">"${s.nl}"</div>
+      <div class="convo-latin" style="margin-top:6px">${s.tr}</div>
+    </div>
+    <div class="word-answer-zone" id="answer-zone"></div>
+    <div class="word-bank" id="word-bank">
+      ${shuffled.map((w, i) => `<button class="word-tile" onclick="moveToAnswer(this,'${w.replace(/'/g,"\\'")}')">
+        ${w}</button>`).join('')}
+    </div>
+    <div class="hint-text" id="wb-hint"></div>
+    <button class="btn-check" id="btn-check-wb" onclick="checkWordbank('${words.join(' ').replace(/'/g,"\\'")}','${s.nl.replace(/'/g,"\\'")}','${s.tr.replace(/'/g,"\\'")}')">Controleer ✓</button>
+  `;
+}
+
+function moveToAnswer(tile, word) {
+  tile.classList.add('placed');
+  const zone = document.getElementById('answer-zone');
+  const newTile = document.createElement('button');
+  newTile.className = 'word-tile answer-tile';
+  newTile.textContent = word;
+  newTile.dataset.word = word;
+  newTile.onclick = function() { moveBackToBank(this, tile); };
+  zone.appendChild(newTile);
+  zone.classList.add('active');
+}
+
+function moveBackToBank(answerTile, originalTile) {
+  answerTile.remove();
+  originalTile.classList.remove('placed');
+  const zone = document.getElementById('answer-zone');
+  if (!zone.querySelector('.answer-tile')) zone.classList.remove('active');
+}
+
+function checkWordbank(correct, nl, tr) {
+  const zone = document.getElementById('answer-zone');
+  const tiles = zone.querySelectorAll('.answer-tile');
+  const answer = Array.from(tiles).map(t => t.dataset.word).join(' ');
+
+  if (answer === correct) {
+    correctCount++;
+    lessonXP += 8;
+    showFeedback(true, '🎀 Correct!', `"${nl}" = ${tr}`);
+    spawnSparkles();
+  } else {
+    wrongCount++;
+    showFeedback(false, 'Probeer opnieuw!', `Juist: ${correct}`);
+  }
+}
+
+function renderType(ex, body) {
+  const w = ex.word;
+  body.innerHTML = `
+    <div class="ex-type-pill">⌨️ Typ het woord</div>
+    <div class="ex-prompt">Typ het Hazaragi woord voor:</div>
+    <div class="hz-card">
+      <span class="hz-nl" style="font-size:22px;font-weight:900;color:var(--ink)">${w.nl}</span>
+      <span class="hz-latin" style="margin-top:6px">${w.tr}</span>
+    </div>
+    <div class="type-wrap">
+      <input class="type-input" id="type-input" placeholder="Typ hier..." 
+        oninput="typeChanged()" onkeydown="typeKey(event)">
+    </div>
+    <div class="hint-text" id="type-hint"></div>
+    <div style="flex:1"></div>
+    <button class="btn-check" id="btn-check-type" onclick="checkType('${w.hz.replace(/'/g,"\\'")}','${w.nl.replace(/'/g,"\\'")}','${w.tr.replace(/'/g,"\\'")}')">
+      Controleer ✓
+    </button>
+  `;
+  setTimeout(() => document.getElementById('type-input')?.focus(), 100);
+}
+
+function typeChanged() {
+  const v = document.getElementById('type-input').value;
+  document.getElementById('type-input').classList.remove('ok','err');
+}
+
+function typeKey(e) {
+  if (e.key === 'Enter') {
+    const inp = document.getElementById('type-input');
+    const ex = exercises[exIdx];
+    checkType(ex.word.hz, ex.word.nl, ex.word.tr);
+  }
+}
+
+function checkType(correct, nl, tr) {
+  const inp = document.getElementById('type-input');
+  const val = inp.value.trim();
+  if (!val) return;
+
+  const normalizeArabic = s => s.replace(/[ًٌٍَُِّْ]/g,'').replace(/[آأإا]/g,'ا').replace(/[يی]/g,'ی').replace(/[ةه]/g,'ه');
+
+  if (normalizeArabic(val) === normalizeArabic(correct)) {
+    inp.classList.add('ok');
+    correctCount++;
+    lessonXP += 10;
+    showFeedback(true, '✨ Uitstekend!', `${correct} = ${nl}`);
+    spawnSparkles();
+    updateMastery(correct, true);
+  } else {
+    inp.classList.add('err');
+    wrongCount++;
+    const hint = document.getElementById('type-hint');
+    hint.textContent = `💡 Juiste antwoord: ${correct} (${tr})`;
+    hint.classList.add('show');
+    showFeedback(false, 'Niet helemaal!', `Het juiste antwoord is: ${correct}`);
+    updateMastery(correct, false);
+  }
+}
+
+function checkMC(btn, chosen, correct, hz, tr) {
+  if (awaitingContinue) return;
+  awaitingContinue = true;
+  document.querySelectorAll('.choice').forEach(b => b.disabled = true);
+
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    correctCount++;
+    lessonXP += 5;
+    showFeedback(true, '🌸 Goed gedaan!', `${hz} = ${correct}`);
+    spawnSparkles();
+    updateMastery(hz, true);
+  } else {
+    btn.classList.add('wrong');
+    wrongCount++;
+    document.querySelectorAll('.choice').forEach(b => {
+      if (b.textContent.includes(correct)) b.classList.add('correct');
+    });
+    showFeedback(false, 'Bijna!', `${hz} betekent: ${correct} (${tr})`);
+    updateMastery(hz, false);
+  }
+}
+
+function checkMC_hz(btn, chosen, correct, nl, tr) {
+  if (awaitingContinue) return;
+  awaitingContinue = true;
+  document.querySelectorAll('.choice').forEach(b => b.disabled = true);
+
+  if (chosen === correct) {
+    btn.classList.add('correct');
+    correctCount++;
+    lessonXP += 5;
+    showFeedback(true, '🌸 Goed gedaan!', `${correct} (${tr}) = ${nl}`);
+    spawnSparkles();
+    updateMastery(correct, true);
+  } else {
+    btn.classList.add('wrong');
+    wrongCount++;
+    document.querySelectorAll('.choice').forEach(b => {
+      const span = b.querySelector('span:last-child');
+      if (span && span.textContent.trim() === correct) b.classList.add('correct');
+    });
+    showFeedback(false, 'Bijna!', `Het juiste antwoord: ${correct} (${tr})`);
+    updateMastery(correct, false);
+  }
+}
+
+function updateMastery(hz, correct) {
+  if (!state.vocabulary[hz]) return;
+  const v = state.vocabulary[hz];
+  if (correct) {
+    v.mastery = Math.min(3, (v.mastery || 0) + 1);
+    const days = [1, 3, 7, 14][v.mastery - 1] || 1;
+    v.nextReview = new Date(Date.now() + days * 86400000).toISOString();
+  } else {
+    v.mastery = Math.max(0, (v.mastery || 0) - 0.5);
+    v.nextReview = new Date(Date.now() + 3600000).toISOString(); // 1hr
+  }
+  saveState();
+}
+
+function showFeedback(ok, title, hint) {
+  const bar = document.getElementById('feedback-bar');
+  bar.className = 'feedback-bar ' + (ok ? 'ok-fb' : 'err-fb');
+  document.getElementById('fb-icon').textContent = ok ? '🎀' : '🐰';
+  document.getElementById('fb-title').textContent = title;
+  document.getElementById('fb-hint').textContent = hint;
+  awaitingContinue = true;
+}
+
+function hideFeedback() {
+  document.getElementById('feedback-bar').className = 'feedback-bar hidden';
+  awaitingContinue = false;
+}
+
+function nextExercise() {
+  exIdx++;
+  awaitingContinue = false;
+  renderExercise();
+}
+
+function confirmLeaveLesson() {
+  if (confirm('Les verlaten? Je voortgang gaat verloren.')) goHome();
+}
+
+function finishLesson() {
+  if (!state.lessonsCompleted.includes(currentLesson.id)) {
+    state.lessonsCompleted.push(currentLesson.id);
+  }
+  state.xp += lessonXP;
+  updateStreak();
+  checkAchievements();
+  saveState();
+
+  document.getElementById('res-xp').textContent = '+' + lessonXP;
+  document.getElementById('res-acc').textContent = correctCount + '/' + (correctCount + wrongCount);
+  document.getElementById('res-streak').textContent = '🔥' + state.streak;
+  document.getElementById('res-sub').textContent = `${currentLesson.title} voltooid! 🌸`;
+
+  showScreen('result');
+  spawnConfetti();
+}
+
+// ════════════════════════════════════════════════════════════
+//  DAILY REVIEW
+// ════════════════════════════════════════════════════════════
+function startDailyReview() {
+  const due = Object.entries(state.vocabulary)
+    .filter(([hz, v]) => !v.nextReview || new Date(v.nextReview) <= new Date());
+
+  if (due.length === 0) { showToast('Geen reviews nu! Kom later terug 🌸'); return; }
+
+  const reviewWords = due.slice(0,12).map(([hz, v]) => ({ hz, nl: v.nl, tr: v.tr }));
+  currentLesson = {
+    id: '_review',
+    title: 'Dagelijkse herhaling',
+    xp: Math.min(30, reviewWords.length * 3),
+    words: reviewWords,
+    sentences: []
+  };
+
+  exercises = buildExercises(currentLesson);
+  exIdx = 0; correctCount = 0; wrongCount = 0; lessonXP = 0;
+  showScreen('lesson');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  updateHearts();
+  renderExercise();
+}
+
+// ════════════════════════════════════════════════════════════
+//  STREAK & ACHIEVEMENTS
+// ════════════════════════════════════════════════════════════
+function updateStreak() {
+  const today = new Date().toDateString();
+  const last = state.lastStudy;
+  if (last === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  if (last === yesterday) state.streak++;
+  else if (last !== today) state.streak = 1;
+  state.lastStudy = today;
+}
+
+function checkAchievements() {
+  const add = id => { if (!state.achievements.includes(id)) { state.achievements.push(id); showToast('Achievement: ' + ACHIEVEMENTS.find(a=>a.id===id)?.name + '! 🏆'); }};
+  if (state.lessonsCompleted.length >= 1) add('first_lesson');
+  if (state.streak >= 3) add('streak_3');
+  if (state.streak >= 7) add('streak_7');
+  const wc = Object.keys(state.vocabulary).length;
+  if (wc >= 10) add('words_10');
+  if (wc >= 30) add('words_30');
+  if (wc >= 60) add('words_60');
+  if (state.xp >= 100) add('xp_100');
+  if (state.xp >= 500) add('xp_500');
+  if (wrongCount === 0 && correctCount > 0) add('perfect');
+  const ch2Lessons = CHAPTERS[1].lessons.map(l => l.id);
+  if (ch2Lessons.some(id => state.lessonsCompleted.includes(id))) add('chapter2');
+  const ch3Lessons = CHAPTERS[2].lessons.map(l => l.id);
+  if (ch3Lessons.some(id => state.lessonsCompleted.includes(id))) add('chapter3');
+}
+
+// ════════════════════════════════════════════════════════════
+//  VOCABULARY SCREEN
+// ════════════════════════════════════════════════════════════
+let currentFilter = 'all';
+function filterWords(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReview();
+}
+
+function renderReview() {
+  const entries = Object.entries(state.vocabulary);
+  document.getElementById('rev-sub').textContent = `${entries.length} woorden geleerd`;
+
+  let filtered = entries;
+  if (currentFilter === 'new') filtered = entries.filter(([,v]) => (v.mastery||0) === 0);
+  if (currentFilter === 'learning') filtered = entries.filter(([,v]) => (v.mastery||0) > 0 && (v.mastery||0) < 3);
+  if (currentFilter === 'mastered') filtered = entries.filter(([,v]) => (v.mastery||0) >= 3);
+
+  const list = document.getElementById('word-list');
+  if (filtered.length === 0) {
+    list.innerHTML = '<div style="text-align:center;color:var(--ink-l);padding:40px 20px;font-weight:700">Geen woorden hier 🌸<br><small>Start een les om te beginnen!</small></div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(([hz, v]) => {
+    const m = Math.round(v.mastery || 0);
+    const pips = [0,1,2,3].map(i => {
+      let cls = '';
+      if (i < m) cls = m >= 3 ? 'on gold' : (m >= 2 ? 'on green' : 'on');
+      return `<div class="mastery-pip ${cls}"></div>`;
+    }).join('');
+    return `
+      <div class="word-card">
+        <div class="wc-script">${hz}</div>
+        <div class="wc-info">
+          <div class="wc-latin">${v.tr || ''}</div>
+          <div class="wc-nl">${v.nl || ''}</div>
+        </div>
+        <div class="mastery-bar">${pips}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ════════════════════════════════════════════════════════════
+//  PROFILE
+// ════════════════════════════════════════════════════════════
+function renderProfile() {
+  document.getElementById('prof-name').textContent = state.name;
+  const level = Math.floor(state.xp / 100) + 1;
+  const titles = ['Beginner 🌱','Leerling 📖','Gevorderd 🌸','Expert 💎','Meester ✨'];
+  document.getElementById('prof-level').textContent = `Level ${level} · ${titles[Math.min(level-1, titles.length-1)]}`;
+  document.getElementById('p-xp').textContent = state.xp;
+  document.getElementById('p-streak').textContent = state.streak;
+  document.getElementById('p-words').textContent = Object.keys(state.vocabulary).length;
+  document.getElementById('p-lessons').textContent = state.lessonsCompleted.length;
+
+  const list = document.getElementById('achv-list');
+  list.innerHTML = ACHIEVEMENTS.map(a => {
+    const earned = state.achievements.includes(a.id);
+    return `
+      <div class="achv-item">
+        <div class="achv-ico ${earned ? 'earned' : ''}">${a.icon}</div>
+        <div>
+          <div class="achv-name" style="color:${earned ? 'var(--ink)' : 'var(--ink-l)'}">${a.name}</div>
+          <div class="achv-desc">${a.desc}</div>
+        </div>
+        ${earned ? '<div class="achv-check">✓</div>' : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+
+
+// ════════════════════════════════════════════════════════════
+//  FX
+// ════════════════════════════════════════════════════════════
+function spawnConfetti() {
+  const colors = ['#FF6B9D','#FFD6E8','#FFBE3D','#A78BFA','#3DD6A3','#fff'];
+  const wrap = document.getElementById('confetti-wrap');
+  for (let i=0; i<50; i++) {
+    setTimeout(() => {
+      const p = document.createElement('div');
+      p.className = 'cfetti';
+      p.style.cssText = `left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${0.8+Math.random()*0.9}s;animation-delay:${Math.random()*0.5}s;border-radius:${Math.random()>.5?'50%':'3px'};`;
+      wrap.appendChild(p);
+      setTimeout(() => p.remove(), 2000);
+    }, i*25);
+  }
+}
+
+function spawnSparkles() {
+  const emojis = ['✨','🌸','💕','⭐'];
+  for (let i=0; i<3; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'float-sparkle';
+      el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      const x = 50 + (Math.random()-0.5)*200;
+      el.style.cssText = `left:${x}px;top:${window.innerHeight/2}px`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1000);
+    }, i*120);
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ════════════════════════════════════════════════════════════
+//  BOOT
+// ════════════════════════════════════════════════════════════
+loadState();
+if (state.name) {
+  document.getElementById('bottom-nav').style.display = 'flex';
+  renderHome();
+  showScreen('home');
+} else {
+  showScreen('onboarding');
+}
+</script>
+</body>
+</html>
