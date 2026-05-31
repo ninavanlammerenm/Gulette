@@ -519,9 +519,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
   <div class="achvs-title">🏆 Prestaties</div>
   <div id="a-list"></div>
 </div>
-  </div>
 </div>
-
 <!-- ═══════════════════ NAV ═══════════════════ -->
 <div class="bnav" id="bnav" style="display:none">
   <button class="nb on" onclick="navTo('home',this)"><div class="ni">🏠</div><div class="nl">Thuis</div></button>
@@ -2275,12 +2273,13 @@ function resetData(){
     goal:10
   };
 
-  // Navbar verbergen en naar onboarding
   document.getElementById('bnav').style.display = 'none';
-  showScreen('onboarding');
 
-  showToast('🧨 Alle voortgang gewist');
-}
+  // Reset ook de naam-input
+  document.getElementById('name-inp').value = '';
+  document.getElementById('btn-start').disabled = true;
+
+  showScreen('onboarding');
 
 </script>
 </body>
