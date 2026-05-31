@@ -320,6 +320,33 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 @keyframes fall{to{top:110vh;transform:rotate(720deg)}}
 .sparkle{position:fixed;font-size:24px;pointer-events:none;z-index:600;animation:sparkUp .9s ease-out forwards}
 @keyframes sparkUp{to{transform:translateY(-80px) scale(0);opacity:0}}
+
+.hint-btn{
+  background:var(--lav-l);
+  border:2px solid var(--lav);
+  border-radius:var(--r-xs);
+  padding:10px 16px;
+  font-size:13px;
+  font-weight:800;
+  color:var(--lav);
+  cursor:pointer;
+  font-family:'Nunito',sans-serif;
+  transition:all .18s;
+  margin-top:10px;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.hint-btn:hover{
+  background:var(--lav);
+  color:#fff;
+}
+.hint-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
 </style>
 </head>
 <body>
@@ -477,6 +504,16 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
   <button class="nb" onclick="navTo('profile',this)"><div class="ni">👤</div><div class="nl">Profiel</div></button>
 </div>
 </div>
+
+// Veilige event delegation voor tiles
+document.addEventListener('click', function(e){
+  const tile = e.target.closest('[data-action]');
+  if(!tile) return;
+  const action = tile.dataset.action;
+  if(action === 'wbmove') wbMove(tile, tile.dataset.word);
+  if(action === 'mc_nl') chkMC(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
+  if(action === 'mc_hz') chkMC_hz(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.nl, tile.dataset.tr);
+});
 
 <script>
 // ══════════════════════════════════════════════════════
@@ -1586,7 +1623,7 @@ function rMC_nl(ex,body){
       <span class="hz-latin">${w.tr}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
-      <button class="ch-btn" onclick="chkMC(this,'${esc(c)}','${esc(w.nl)}','${esc(w.hz)}','${esc(w.tr)}')">
+      <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}</div>`;
 }
@@ -1599,7 +1636,7 @@ function rMC_hz(ex,body){
     <div class="type-pill">🔤 Kies Hazaragi</div>
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Hazaragi woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
     <div class="choices">${ex.choices.map((c,i)=>`
-      <button class="ch-btn" onclick="chkMC_hz(this,'${esc(c)}','${esc(w.hz)}','${esc(w.nl)}','${esc(w.tr)}')">
+      <button class="ch-btn" data-action="mc_hz" data-chosen="${c}" data-correct="${w.hz}" data-nl="${w.nl}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>
         <span style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;line-height:1.5">${c}</span>
       </button>`).join('')}</div>`;
@@ -1619,7 +1656,7 @@ function rWB(ex,body){
     </div>
     <div class="wb-answer" id="wb-ans"></div>
     <div class="wb-bank" id="wb-bnk">${shuf.map((w,i)=>`
-      <button class="w-tile" ontouchstart="wbMove(this,'${esc(w)}')" onclick="wbMove(this,'${esc(w)}')">${w}</button>s`).join('')}</div>
+      <button class="w-tile" data-action="wbmove" data-word="${w}">${w}</button>s`).join('')}</div>
     <div style="flex:1"></div>
     <button class="btn-check" onclick="chkWB('${esc(words.join(' '))}','${esc(s.nl)}','${esc(s.tr)}')">Controleer ✓</button>`;
 }
@@ -1645,6 +1682,8 @@ function chkWB(correct,nl,tr){
 // ── Type ──
 function rType(ex,body){
   const w=ex.w;
+  let hintLevel=0;
+
   body.innerHTML=`
     <div class="type-pill">⌨️ Actief ophalen</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px">Typ het Hazaragi woord voor:</p>
@@ -1653,9 +1692,9 @@ function rType(ex,body){
       <span class="hz-nl" style="font-size:24px;font-weight:900;color:var(--ink)">${w.nl}</span>
       <span class="hz-latin" style="margin-top:6px">${w.tr}</span>
     </div>
-    <input class="t-inp" id="t-inp" 
-      inputmode="text" 
-      lang="fa" 
+    <input class="t-inp" id="t-inp"
+      inputmode="text"
+      lang="fa"
       dir="rtl"
       autocomplete="off"
       autocorrect="off"
@@ -1665,8 +1704,29 @@ function rType(ex,body){
       oninput="this.classList.remove('ok','ng')"
       onkeydown="if(event.key==='Enter')chkType('${esc(w.hz)}','${esc(w.nl)}','${esc(w.tr)}')">
     <div class="t-hint" id="t-hint"></div>
+    <button class="hint-btn" id="hint-btn">💡 Hint</button>
     <div style="flex:1"></div>
     <button class="btn-check" onclick="chkType('${esc(w.hz)}','${esc(w.nl)}','${esc(w.tr)}')">Controleer ✓</button>`;
+
+  document.getElementById('hint-btn').addEventListener('click', ()=>{
+    hintLevel++;
+    const hintEl=document.getElementById('t-hint');
+    const hintBtn=document.getElementById('hint-btn');
+
+    if(hintLevel===1){
+      hintEl.innerHTML=`🔤 Uitspraak: <strong>${w.tr}</strong>`;
+      hintEl.classList.add('show');
+      hintBtn.textContent='💡 Toon antwoord';
+    } else if(hintLevel===2){
+      hintEl.innerHTML=`✍️ Antwoord: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${w.hz}</strong>`;
+      const inp=document.getElementById('t-inp');
+      inp.value=w.hz;
+      inp.classList.remove('ok','ng');
+      hintBtn.disabled=true;
+      hintBtn.textContent='✓ Antwoord getoond';
+    }
+  });
+
   setTimeout(()=>document.getElementById('t-inp')?.focus(),120);
 }
 
@@ -1897,19 +1957,32 @@ function renderProfile(){
 // ══════════════════════════════════════════════════════
 function confetti(){
   const cols=['#FF6B9D','#FFD6E8','#FFBE3D','#A78BFA','#3DD6A3','#fff','#FF8C61'];
-  const w=document.getElementById('cfwrap');
+  const wrap=document.getElementById('cfwrap');
+  // Zorg dat confetti binnen de app-container blijft
+  wrap.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:500;overflow:hidden;max-width:430px;left:50%;transform:translateX(-50%)';
   for(let i=0;i<55;i++)setTimeout(()=>{
     const p=document.createElement('div');p.className='cf';
-    p.style.cssText=`left:${Math.random()*100}%;background:${cols[~~(Math.random()*cols.length)]};animation-duration:${.7+Math.random()*.8}s;animation-delay:${Math.random()*.4}s;border-radius:${Math.random()>.5?'50%':'3px'};`;
-    w.appendChild(p);setTimeout(()=>p.remove(),2000);
+    p.style.cssText=`
+      left:${Math.random()*100}%;
+      background:${cols[~~(Math.random()*cols.length)]};
+      animation-duration:${.7+Math.random()*.8}s;
+      animation-delay:${Math.random()*.4}s;
+      border-radius:${Math.random()>.5?'50%':'3px'};
+      width:${6+~~(Math.random()*8)}px;
+      height:${6+~~(Math.random()*8)}px;
+    `;
+    wrap.appendChild(p);setTimeout(()=>p.remove(),2000);
   },i*20);
 }
 function sparkles(){
   const emos=['✨','🌸','💕','⭐','🎀','🏔️'];
+  const maxW=Math.min(window.innerWidth, 430); // respecteer max-width app
   for(let i=0;i<3;i++)setTimeout(()=>{
     const el=document.createElement('div');el.className='sparkle';
     el.textContent=emos[~~(Math.random()*emos.length)];
-    el.style.cssText=`left:${100+~~(Math.random()*200)}px;top:${~~(window.innerHeight*.4)}px`;
+    const x=40+~~(Math.random()*(maxW-80)); // minimaal 40px van de rand
+    const y=~~(window.innerHeight*.35)+~~(Math.random()*100);
+    el.style.cssText=`left:${x}px;top:${y}px`;
     document.body.appendChild(el);setTimeout(()=>el.remove(),900);
   },i*100);
 }
@@ -1918,7 +1991,7 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-const esc=s=>s.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+const esc=s=>s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ').replace(/\r/g,'');
 
 // ══════════════════════════════════════════════════════
 // BOOT
