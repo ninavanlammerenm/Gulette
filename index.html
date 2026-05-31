@@ -358,7 +358,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 <div id="toast"></div>
 
 <!-- ═══════════════════ ONBOARDING ═══════════════════ -->
-<div id="screen-onboarding" class="screen">
+<div id="screen-onboarding" class="screen active">
   <div class="ob-mascot">🐇</div>
   <div class="ob-pills">
     <div class="ob-pill">🏔️ Hazaragi</div>
@@ -2205,9 +2205,12 @@ function showToast(msg){
 load();
 if(S.name){
   document.getElementById('bnav').style.display='flex';
-  renderHome();showScreen('home');
-}else{showScreen('onboarding');}
-
+  renderHome();
+  showScreen('home');
+}else{
+  document.getElementById('bnav').style.display='none';
+  showScreen('onboarding');
+}
 // ══════════════════════════════════════════════════════
 // EXPORT & IMPORT
 // ══════════════════════════════════════════════════════
