@@ -26,7 +26,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 #app{width:100%;max-width:430px;height:100vh;height:-webkit-fill-available;background:var(--cream);position:relative;overflow:hidden;display:flex;flex-direction:column}
 
 /* SCREENS */
-.screen{display:none!important;flex-direction:column;flex:1;min-height:100vh;padding-bottom:80px;animation:fadeUp .28s cubic-bezier(.4,0,.2,1)}
+.screen{display:none!important;flex-direction:column;flex:1;min-height:100vh;padding-bottom:80px;animation:fadeUp .28s cubic-bezier(.4,0,.2,1);overflow-y:auto;-webkit-overflow-scrolling:touch}
 #screen-lesson{min-height:unset;padding-bottom:0;}
 .screen.active{display:flex!important}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -65,7 +65,8 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 .nb.on .ni{transform:scale(1.2) translateY(-1px)}
 
 /* ── HOME ── */
-#screen-home{background:var(--cream)}
+#screen-home{background:var(--cream);display:flex;flex-direction:column}
+.hdr{padding:max(52px,env(safe-area-inset-top,52px)) 20px 22px;background:linear-gradient(155deg,#FFD6E8 0%,#FFE8F3 55%,#EDE9FE 100%);position:relative;overflow:hidden;flex-shrink:0}
 .hdr{padding:max(52px,env(safe-area-inset-top,52px)) 20px 22px;background:linear-gradient(155deg,#FFD6E8 0%,#FFE8F3 55%,#EDE9FE 100%);position:relative;overflow:hidden}
 .hdr::after{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(255,255,255,.5),transparent 65%);border-radius:50%;pointer-events:none}
 .hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
