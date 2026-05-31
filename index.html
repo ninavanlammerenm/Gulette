@@ -496,10 +496,26 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
     <div class="stat-card"><div class="stat-n" id="p-wds">0</div><div class="stat-l">📖 Woorden</div></div>
     <div class="stat-card"><div class="stat-n" id="p-les">0</div><div class="stat-l">✅ Lessen</div></div>
   </div>
-    <div class="achvs-sec">
-  <div class="achvs-title">💾 Voortgang</div>
+      <div class="achvs-sec">
+    <div class="achvs-title">💾 Voortgang</div>
 
-  <div style="display:flex;gap:10px;margin-bottom:10px">
+    <div style="display:flex;gap:10px;margin-bottom:10px">
+      <button onclick="exportData()" style="flex:1;background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer">
+        📤 Exporteer
+      </button>
+      <button onclick="document.getElementById('import-inp').click()" style="flex:1;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer">
+        📥 Importeer
+      </button>
+      <input type="file" id="import-inp" accept=".json" style="display:none" onchange="importData(event)">
+    </div>
+
+    <button onclick="resetData()" style="width:100%;background:linear-gradient(135deg,#f97373,#e11d48);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:20px;display:block">
+      🧨 Reset alle voortgang
+    </button>
+
+    <div class="achvs-title">🏆 Prestaties</div>
+    <div id="a-list"></div>
+  </div>
     <button onclick="exportData()" style="flex:1;background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(46,204,154,.3)">
       📤 Exporteer
     </button>
