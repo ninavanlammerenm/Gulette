@@ -1422,7 +1422,7 @@ function startApp(){
 // HOME
 // ══════════════════════════════════════════════════════
 function renderHome(){
-  document.getElementById('hdr-name').textContent=S.name;
+  document.getElementById('hdr-name').innerHTML = 'Salam, <em>' + S.name + '</em> 👋';
   document.getElementById('chip-streak').textContent=S.streak;
   document.getElementById('chip-xp').textContent=S.xp;
   const lvl=Math.floor(S.xp/100)+1;
