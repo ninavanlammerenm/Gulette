@@ -1390,6 +1390,7 @@ function navTo(id,btn){
 }
 function goHome(){
   showScreen('home');
+  document.getElementById('bnav').style.display='flex'; // ← voeg dit toe
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   document.querySelector('.nb').classList.add('on');
   renderHome();
@@ -1531,6 +1532,7 @@ function startLesson(id){
   EXS=buildExercises(CL);
   EI=CC=WC=LXP=0;WAITING=false;
   showScreen('lesson');
+  document.getElementById('bnav').style.display='none'; // ← voeg dit toe
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   renderEx();
 }
@@ -1969,6 +1971,8 @@ function startDailyReview(){
   EXS=buildExercises(CL);EI=CC=WC=LXP=0;
   showScreen('lesson');document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   renderEx();
+  document.getElementById('bnav').style.display='none'; // ← voeg dit toe
+showScreen('lesson');
 }
 
 // ══════════════════════════════════════════════════════
