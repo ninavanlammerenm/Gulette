@@ -108,14 +108,14 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 .ch-prog-pct{font-size:12px;font-weight:900;flex-shrink:0;min-width:32px;text-align:right}
 
 /* Daily review banner */
-.rev-banner{margin:0 18px 18px;background:linear-gradient(135deg,var(--rose),var(--rose-d));border-radius:var(--r);padding:20px 18px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh-rose);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;min-height:80px;width:calc(100% - 36px)}
+.rev-banner{margin:0 18px 18px;background:linear-gradient(135deg,var(--rose),var(--rose-d));border-radius:var(--r);padding:18px 16px;display:flex;flex-direction:row;align-items:center;gap:10px;box-shadow:var(--sh-rose);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;min-height:72px;box-sizing:border-box}
 .rev-banner::before{content:'';position:absolute;right:-15px;top:-15px;width:90px;height:90px;background:rgba(255,255,255,.1);border-radius:50%;pointer-events:none}
 .rev-banner:active{transform:scale(.98)}
 .rb-ico{font-size:40px;flex-shrink:0;line-height:1}
-.rb-txt h3{color:#fff;font-size:16px;font-weight:900;line-height:1.3}
-.rb-txt p{color:rgba(255,255,255,.85);font-size:13px;font-weight:700;margin-top:4px;line-height:1.3}
-.rb-txt{flex:1;min-width:0}
-.rb-arr{color:rgba(255,255,255,.8);font-size:20px;font-weight:900;margin-left:auto}
+.rb-txt{flex:1;min-width:0;overflow:hidden}
+.rb-txt h3{color:#fff;font-size:15px;font-weight:900;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rb-txt p{color:rgba(255,255,255,.85);font-size:12px;font-weight:700;margin-top:3px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rb-arr{color:rgba(255,255,255,.8);font-size:22px;font-weight:900;flex-shrink:0;margin-left:4px}
 
 /* Science tip banner */
 .sci-banner{margin:0 18px 14px;background:linear-gradient(135deg,var(--lav-l),#F5F0FF);border-radius:var(--r-sm);padding:13px 16px;display:flex;gap:10px;align-items:center;border:1.5px solid var(--lav)}
