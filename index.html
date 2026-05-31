@@ -524,6 +524,11 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 
 <script>
 
+if(window.speechSynthesis){
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+}
+
 // Veilige event delegation voor tiles
 document.addEventListener('click', function(e){
   const tile = e.target.closest('[data-action]');
@@ -2074,11 +2079,33 @@ function showPronModal(hz){
       <div class="pron-tip">= ${v.nl}</div>
     </div>`;
 
-  const closeBtn=document.createElement('button');
-  closeBtn.className='btn-check';
-  closeBtn.style.cssText='position:static;margin-top:16px';
-  closeBtn.textContent='Sluiten';
-  closeBtn.addEventListener('click',()=>bg.remove());
+  const speakBtn=document.createElement('button');
+speakBtn.style.cssText='width:100%;padding:14px;margin-top:12px;border-radius:var(--r-sm);border:2px solid var(--lav);background:var(--lav-xl,#f0eeff);color:var(--lav);font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer';
+speakBtn.textContent='🔊 Hoor uitspraak';
+speakBtn.addEventListener('click',()=>{
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const utt=new SpeechSynthesisUtterance(hz);
+  utt.lang='fa-IR';
+  utt.rate=0.85;
+  utt.pitch=1;
+
+  // Probeer Farsi/Arabische stem te vinden
+  const voices=window.speechSynthesis.getVoices();
+  const faVoice=voices.find(v=>v.lang.startsWith('fa')||v.lang.startsWith('ar'));
+  if(faVoice)utt.voice=faVoice;
+
+  speakBtn.textContent='🔊 ...';
+  utt.onend=()=>speakBtn.textContent='🔊 Hoor uitspraak';
+  utt.onerror=()=>speakBtn.textContent='❌ Niet beschikbaar';
+  window.speechSynthesis.speak(utt);
+});
+
+const closeBtn=document.createElement('button');
+closeBtn.className='btn-check';
+closeBtn.style.cssText='position:static;margin-top:10px';
+closeBtn.textContent='Sluiten';
+closeBtn.addEventListener('click',()=>bg.remove());
 
   modal.appendChild(dragEl);
   modal.appendChild(titleEl);
