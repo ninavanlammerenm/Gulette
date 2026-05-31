@@ -2253,10 +2253,8 @@ function importData(event){
 function resetData(){
   if(!confirm('Weet je ZEKER dat je alle voortgang wilt verwijderen? Dit kan niet ongedaan worden gemaakt.')) return;
 
-  // Verwijder opgeslagen data
   localStorage.removeItem('gulette_v3');
 
-  // State terug naar begin
   S = {
     name:'',
     xp:0,
@@ -2270,10 +2268,12 @@ function resetData(){
   };
 
   document.getElementById('bnav').style.display = 'none';
-
-  // Reset ook de naam-input
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('name-inp').value = '';
   document.getElementById('btn-start').disabled = true;
+  selGoalVal = 10;
+  document.querySelectorAll('.goal-opt').forEach(b => b.classList.remove('sel'));
+  document.querySelectorAll('.goal-opt')[1].classList.add('sel');
 
   showScreen('onboarding');
 }
