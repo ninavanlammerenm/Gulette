@@ -434,8 +434,12 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 <div id="screen-lesson" class="screen" style="padding-bottom:0">
   <div class="l-topbar">
     <button class="btn-x" onclick="leaveLesson()">✕</button>
-    <div class="l-prog-track"><div class="l-prog-fill" id="l-prog" style="width:0%"></div></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+      <div class="l-prog-track"><div class="l-prog-fill" id="l-prog" style="width:0%"></div></div>
+      <div style="font-size:11px;font-weight:800;color:var(--ink-l);text-align:center" id="l-counter">1 / 1</div>
+    </div>
     <div class="hearts" id="hearts">❤️❤️❤️</div>
+</div>
   </div>
   <div class="l-body" id="l-body"></div>
   <div class="fb-bar hide" id="fb-bar">
@@ -492,8 +496,19 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
     <div class="stat-card"><div class="stat-n" id="p-les">0</div><div class="stat-l">✅ Lessen</div></div>
   </div>
   <div class="achvs-sec">
-    <div class="achvs-title">🏆 Prestaties</div>
-    <div id="a-list"></div>
+  <div class="achvs-title">💾 Voortgang</div>
+  <div style="display:flex;gap:10px;margin-bottom:20px">
+    <button onclick="exportData()" style="flex:1;background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(46,204,154,.3)">
+      📤 Exporteer
+    </button>
+    <button onclick="document.getElementById('import-inp').click()" style="flex:1;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(91,184,255,.3)">
+      📥 Importeer
+    </button>
+    <input type="file" id="import-inp" accept=".json" style="display:none" onchange="importData(event)">
+  </div>
+  <div class="achvs-title">🏆 Prestaties</div>
+  <div id="a-list"></div>
+</div>
   </div>
 </div>
 
@@ -1553,6 +1568,7 @@ function renderEx(){
   if(EI>=EXS.length){finishLesson();return;}
   const pct=Math.round(EI/EXS.length*100);
   document.getElementById('l-prog').style.width=pct+'%';
+  document.getElementById('l-counter').textContent=(EI+1)+' / '+EXS.length;
   hideFB();
   const ex=EXS[EI];
   const body=document.getElementById('l-body');
@@ -1621,6 +1637,10 @@ function rMC_nl(ex,body){
     <div class="hz-card" style="margin-bottom:20px">
       <span class="hz-script">${w.hz}</span>
       <span class="hz-latin">${w.tr}</span>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:var(--lav-l);border-radius:50px;padding:4px 12px;margin-top:6px">
+        <span style="font-size:11px;font-weight:900;color:var(--lav)">🔤 uitspraak:</span>
+        <span style="font-size:13px;font-weight:800;color:var(--ink)">${w.tr}</span>
+      </div>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
@@ -1632,13 +1652,22 @@ function rMC_nl(ex,body){
 function rMC_hz(ex,body){
   const w=ex.w;
   const ltrs=['A','B','C','D'];
+  // Maak een map van hz→tr voor alle keuzes
+  const trMap={};
+  ex.choices.forEach(c=>{
+    const match=CL.words.find(x=>x.hz===c);
+    if(match)trMap[c]=match.tr;
+  });
   body.innerHTML=`
     <div class="type-pill">🔤 Kies Hazaragi</div>
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Hazaragi woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_hz" data-chosen="${c}" data-correct="${w.hz}" data-nl="${w.nl}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>
-        <span style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;line-height:1.5">${c}</span>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;line-height:1.5">${c}</span>
+          ${trMap[c]?`<span style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${trMap[c]}</span>`:''}
+        </div>
       </button>`).join('')}</div>`;
 }
 
@@ -1736,14 +1765,53 @@ function chkType(correct,nl,tr){
   const inp=document.getElementById('t-inp');
   const val=inp.value.trim();
   if(!val)return;
+
   if(normAr(val)===normAr(correct)){
-    inp.classList.add('ok');CC++;LXP+=10;
-    showFB(true,'✨ Uitstekend!',nl,correct);sparkles();updMastery(correct,true);
-  }else{
-    inp.classList.add('ng');WC++;
-    const h=document.getElementById('t-hint');
-    h.textContent=`💡 Juist: ${correct} (${tr})`;h.classList.add('show');
-    showFB(false,'Bijna!',`Juist: ${tr}`,correct);updMastery(correct,false);
+    // ✅ Goed antwoord
+    inp.classList.add('ok');
+
+    // Was dit een hertyp na een fout?
+    if(inp.dataset.retry==='true'){
+      // Geen extra XP voor hertypen
+      showFB(true,'✅ Goed overgetypt!',nl,correct);
+    } else {
+      CC++;LXP+=10;
+      showFB(true,'✨ Uitstekend!',nl,correct);
+      sparkles();
+    }
+    updMastery(correct,true);
+    inp.dataset.retry='false';
+
+  } else {
+    // ❌ Fout antwoord — moet overtyperen
+    WC++;
+    updMastery(correct,false);
+    inp.classList.add('ng');
+
+    // Toon het goede antwoord als voorbeeld
+    const hintEl=document.getElementById('t-hint');
+    hintEl.innerHTML=`✍️ Typ dit over: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
+    hintEl.classList.add('show');
+
+    // Leeg de input na korte vertraging
+    setTimeout(()=>{
+      inp.value='';
+      inp.classList.remove('ng');
+      inp.focus();
+    },800);
+
+    // Zet in retry modus
+    inp.dataset.retry='true';
+
+    // Verander de controleer knop tekst
+    const checkBtn=document.querySelector('.btn-check');
+    if(checkBtn){
+      checkBtn.textContent='Typ het over ✍️';
+      checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
+    }
+
+    // Blokkeer feedback bar — geen verder knop
+    showToast('✍️ Typ het goede woord over om verder te gaan!');
   }
 }
 
@@ -2001,6 +2069,49 @@ if(S.name){
   document.getElementById('bnav').style.display='flex';
   renderHome();showScreen('home');
 }else{showScreen('onboarding');}
+
+// ══════════════════════════════════════════════════════
+// EXPORT & IMPORT
+// ══════════════════════════════════════════════════════
+function exportData(){
+  const data=JSON.stringify(S,null,2);
+  const blob=new Blob([data],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const datum=new Date().toISOString().slice(0,10);
+  a.href=url;
+  a.download=`gulette-voortgang-${datum}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('📤 Voortgang geëxporteerd!');
+}
+
+function importData(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const imported=JSON.parse(e.target.result);
+      // Controleer of het een geldig Gulette bestand is
+      if(!imported.name||!imported.xp===undefined){
+        showToast('❌ Ongeldig bestand!');return;
+      }
+      if(confirm(`Voortgang van ${imported.name} laden? Je huidige voortgang wordt overschreven.`)){
+        S=imported;
+        save();
+        renderProfile();
+        showToast('📥 Voortgang geladen! 🌸');
+      }
+    }catch(err){
+      showToast('❌ Bestand kon niet worden gelezen');
+    }
+  };
+  reader.readAsText(file);
+  // Reset input zodat je hetzelfde bestand opnieuw kunt laden
+  event.target.value='';
+}
+
 </script>
 </body>
 </html>
