@@ -1384,12 +1384,13 @@ const showScreen = id => {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+id).classList.add('active');
 };
-function navTo(id,btn){
+function navTo(id, btn) {
   showScreen(id);
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
-  if(id==='review')renderVocab();
-  if(id==='profile')renderProfile();
+  if(id === 'review') renderVocab();
+  if(id === 'profile') renderProfile(); // ← dit staat er al
+  if(id === 'home') renderHome();       // ← voeg dit toe
 }
 function goHome(){
   showScreen('home');
