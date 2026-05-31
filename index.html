@@ -496,9 +496,10 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
     <div class="stat-card"><div class="stat-n" id="p-wds">0</div><div class="stat-l">📖 Woorden</div></div>
     <div class="stat-card"><div class="stat-n" id="p-les">0</div><div class="stat-l">✅ Lessen</div></div>
   </div>
-  <div class="achvs-sec">
+    <div class="achvs-sec">
   <div class="achvs-title">💾 Voortgang</div>
-  <div style="display:flex;gap:10px;margin-bottom:20px">
+
+  <div style="display:flex;gap:10px;margin-bottom:10px">
     <button onclick="exportData()" style="flex:1;background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(46,204,154,.3)">
       📤 Exporteer
     </button>
@@ -507,6 +508,14 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
     </button>
     <input type="file" id="import-inp" accept=".json" style="display:none" onchange="importData(event)">
   </div>
+
+  <!-- 🚨 NIEUW: alles resetten -->
+  <div style="margin-bottom:20px">
+    <button onclick="resetData()" style="width:100%;background:linear-gradient(135deg,#f97373,#e11d48);color:#fff;border:none;border-radius:var(--r-sm);padding:12px 14px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(248,113,113,.3)">
+      🧨 Reset alle voortgang
+    </button>
+  </div>
+
   <div class="achvs-title">🏆 Prestaties</div>
   <div id="a-list"></div>
 </div>
@@ -2245,6 +2254,32 @@ function importData(event){
   reader.readAsText(file);
   // Reset input zodat je hetzelfde bestand opnieuw kunt laden
   event.target.value='';
+}
+
+function resetData(){
+  if(!confirm('Weet je ZEKER dat je alle voortgang wilt verwijderen? Dit kan niet ongedaan worden gemaakt.')) return;
+
+  // Verwijder opgeslagen data
+  localStorage.removeItem('gulette_v3');
+
+  // State terug naar begin
+  S = {
+    name:'',
+    xp:0,
+    streak:0,
+    lastStudy:null,
+    done:[],
+    vocab:{},
+    achv:[],
+    weekActivity:[],
+    goal:10
+  };
+
+  // Navbar verbergen en naar onboarding
+  document.getElementById('bnav').style.display = 'none';
+  showScreen('onboarding');
+
+  showToast('🧨 Alle voortgang gewist');
 }
 
 </script>
