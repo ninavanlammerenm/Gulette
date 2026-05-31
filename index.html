@@ -483,29 +483,29 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
   <div class="w-list" id="w-list"></div>
 </div>
 
-<!-- ═══════════════════ PROFILE ═══════════════════ -->
+
+  <div class="prof-hdr">
+    <div class="prof-av">🐇</div>
+    <div class="prof-name" id="p-name">Naam</div>
+    <div class="prof-lvl" id="p-lvl">Level 1</div>
+  </div>
+
+   <!-- ═══════════════════ PROFILE ═══════════════════ -->
 <div id="screen-profile" class="screen">
   <div class="prof-hdr">
     <div class="prof-av">🐇</div>
     <div class="prof-name" id="p-name">Naam</div>
     <div class="prof-lvl" id="p-lvl">Level 1</div>
   </div>
-    <div class="stats-grid">
+  <div class="stats-grid">
     <div class="stat-card"><div class="stat-n" id="p-xp">0</div><div class="stat-l">⭐ XP</div></div>
     <div class="stat-card"><div class="stat-n" id="p-str">0</div><div class="stat-l">🔥 Streak</div></div>
     <div class="stat-card"><div class="stat-n" id="p-wds">0</div><div class="stat-l">📖 Woorden</div></div>
     <div class="stat-card"><div class="stat-n" id="p-les">0</div><div class="stat-l">✅ Lessen</div></div>
   </div>
-
-    <div style="padding:0 18px 12px">
-    <button onclick="resetData()" style="width:100%;background:linear-gradient(135deg,#f97373,#e11d48);color:#fff;border:none;border-radius:14px;padding:16px;font-size:15px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(225,29,72,.3)">
-      🧨 Reset alle voortgang
-    </button>
-  </div>
-
   <div class="achvs-sec">
-    <div class="achvs-title">💾 Export & Import</div>
-    <div style="display:flex;gap:10px;margin-bottom:20px">
+    <div class="achvs-title">💾 Voortgang</div>
+    <div style="display:flex;gap:10px;margin-bottom:10px">
       <button onclick="exportData()" style="flex:1;background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(46,204,154,.3)">
         📤 Exporteer
       </button>
@@ -514,48 +514,12 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
       </button>
       <input type="file" id="import-inp" accept=".json" style="display:none" onchange="importData(event)">
     </div>
+    <button onclick="resetData()" style="width:100%;background:linear-gradient(135deg,#f97373,#e11d48);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:15px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(225,29,72,.3);margin-bottom:20px">
+      🧨 Reset alle voortgang
+    </button>
     <div class="achvs-title">🏆 Prestaties</div>
     <div id="a-list"></div>
   </div>
-      <div class="achvs-sec">
-    <div class="achvs-title">💾 Voortgang</div>
-
-    <div style="display:flex;gap:10px;margin-bottom:10px">
-      <button onclick="exportData()" style="flex:1;background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer">
-        📤 Exporteer
-      </button>
-      <button onclick="document.getElementById('import-inp').click()" style="flex:1;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer">
-        📥 Importeer
-      </button>
-      <input type="file" id="import-inp" accept=".json" style="display:none" onchange="importData(event)">
-    </div>
-
-    <button onclick="resetData()" style="width:100%;background:linear-gradient(135deg,#f97373,#e11d48);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:20px;display:block">
-      🧨 Reset alle voortgang
-    </button>
-
-    <div class="achvs-title">🏆 Prestaties</div>
-    <div id="a-list"></div>
-  </div>
-    <button onclick="exportData()" style="flex:1;background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(46,204,154,.3)">
-      📤 Exporteer
-    </button>
-    <button onclick="document.getElementById('import-inp').click()" style="flex:1;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(91,184,255,.3)">
-      📥 Importeer
-    </button>
-    <input type="file" id="import-inp" accept=".json" style="display:none" onchange="importData(event)">
-  </div>
-
-  <!-- 🚨 NIEUW: alles resetten -->
-  <div style="margin-bottom:20px">
-    <button onclick="resetData()" style="width:100%;background:linear-gradient(135deg,#f97373,#e11d48);color:#fff;border:none;border-radius:var(--r-sm);padding:12px 14px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(248,113,113,.3)">
-      🧨 Reset alle voortgang
-    </button>
-  </div>
-
-  <div class="achvs-title">🏆 Prestaties</div>
-  <div id="a-list"></div>
-</div>
 </div>
 <!-- ═══════════════════ NAV ═══════════════════ -->
 <div class="bnav" id="bnav" style="display:none">
@@ -2317,6 +2281,7 @@ function resetData(){
   document.getElementById('btn-start').disabled = true;
 
   showScreen('onboarding');
+}
 
 </script>
 </body>
