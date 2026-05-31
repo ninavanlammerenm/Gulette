@@ -1964,15 +1964,17 @@ function finishLesson(){
 // DAILY REVIEW (Spaced Repetition)
 // ══════════════════════════════════════════════════════
 function startDailyReview(){
-  const due=Object.entries(S.vocab).filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
-  if(due.length===0){showToast('Geen reviews nu! Kom later terug 🌸');return;}
-  const rw=due.slice(0,14).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr,tip:''}));
-  CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,rw.length*2),words:rw,sentences:[],grammar:'Herhaling van eerder geleerde woorden — het hart van spaced repetition!'};
-  EXS=buildExercises(CL);EI=CC=WC=LXP=0;
-  showScreen('lesson');document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  const due = Object.entries(S.vocab).filter(([,v]) => !v.nr || new Date(v.nr) <= new Date());
+  if(due.length === 0){ showToast('Geen reviews nu! Kom later terug 🌸'); return; }
+  
+  const rw = due.slice(0,14).map(([hz,v]) => ({hz, nl:v.nl, tr:v.tr, tip:''}));
+  CL = {id:'_rev', title:'Dagelijkse herhaling', xp:Math.min(30,rw.length*2), words:rw, sentences:[], grammar:'Herhaling van eerder geleerde woorden!'};
+  EXS = buildExercises(CL); EI = CC = WC = LXP = 0;
+  
+  document.getElementById('bnav').style.display = 'none'; // ← eerst verbergen
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
+  showScreen('lesson'); // ← dan pas scherm tonen
   renderEx();
-  document.getElementById('bnav').style.display='none'; // ← voeg dit toe
-showScreen('lesson');
 }
 
 // ══════════════════════════════════════════════════════
