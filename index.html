@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>Gulette 🎀</title>
+<title>Gulette 🐇</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -217,7 +217,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 /* Feedback bar */
 .fb-bar{
   position:fixed;
-  bottom:56px; /* boven de bottom nav (ongeveer nav-hoogte) */
+  bottom:80px; /* boven de bottom nav (ongeveer nav-hoogte) */
   left:50%;
   transform:translateX(-50%);
   width:100%;
@@ -357,7 +357,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 
 <!-- ═══════════════════ ONBOARDING ═══════════════════ -->
 <div id="screen-onboarding" class="screen">
-  <div class="ob-mascot">🎀</div>
+  <div class="ob-mascot">🐇</div>
   <div class="ob-pills">
     <div class="ob-pill">🏔️ Hazaragi</div>
     <div class="ob-pill">🧠 Wetenschappelijk</div>
@@ -443,7 +443,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
   </div>
   <div class="l-body" id="l-body"></div>
   <div class="fb-bar hide" id="fb-bar">
-    <div class="fb-ico" id="fb-ico">🎀</div>
+    <div class="fb-ico" id="fb-ico">🐇</div>
     <div class="fb-bd">
       <div class="fb-ttl" id="fb-ttl"></div>
       <div class="fb-sub" id="fb-sub"></div>
@@ -455,7 +455,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 
 <!-- ═══════════════════ RESULT ═══════════════════ -->
 <div id="screen-result" class="screen" style="padding-bottom:48px!important">
-  <div class="res-mas">🎀</div>
+  <div class="res-mas">🐇</div>
   <div class="res-ttl">Geweldig!</div>
   <div class="res-sub" id="res-sub">Les voltooid!</div>
   <div class="res-stats">
@@ -485,7 +485,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 <!-- ═══════════════════ PROFILE ═══════════════════ -->
 <div id="screen-profile" class="screen">
   <div class="prof-hdr">
-    <div class="prof-av">🎀</div>
+    <div class="prof-av">🐇</div>
     <div class="prof-name" id="p-name">Naam</div>
     <div class="prof-lvl" id="p-lvl">Level 1</div>
   </div>
@@ -520,6 +520,10 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 </div>
 </div>
 
+
+
+<script>
+
 // Veilige event delegation voor tiles
 document.addEventListener('click', function(e){
   const tile = e.target.closest('[data-action]');
@@ -528,9 +532,11 @@ document.addEventListener('click', function(e){
   if(action === 'wbmove') wbMove(tile, tile.dataset.word);
   if(action === 'mc_nl') chkMC(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
   if(action === 'mc_hz') chkMC_hz(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.nl, tile.dataset.tr);
+
+  const wc = e.target.closest('.wc[data-hz]');
+  if(wc) showPronModal(wc.dataset.hz);
 });
 
-<script>
 // ══════════════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════════════
@@ -1574,6 +1580,7 @@ function renderEx(){
   const body=document.getElementById('l-body');
   body.innerHTML='';
   body.scrollTop=0;
+  window.scrollTo(0,0);
   if(ex.type==='intro')rIntro(ex,body);
   else if(ex.type==='context')rContext(ex,body);
   else if(ex.type==='mc_nl')rMC_nl(ex,body);
@@ -1676,6 +1683,11 @@ function rWB(ex,body){
   const s=ex.s;
   const words=s.hz.split(' ').filter(Boolean);
   const shuf=shuffle(words);
+
+  const correct = words.join(' ');
+  const nl = s.nl;
+  const tr = s.tr;
+
   body.innerHTML=`
     <div class="type-pill">🧩 Zin samenstellen</div>
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:14px">Zet de Hazaragi woorden in volgorde:</p>
@@ -1684,10 +1696,12 @@ function rWB(ex,body){
       <div style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
     </div>
     <div class="wb-answer" id="wb-ans"></div>
-    <div class="wb-bank" id="wb-bnk">${shuf.map((w,i)=>`
-      <button class="w-tile" data-action="wbmove" data-word="${w}">${w}</button>s`).join('')}</div>
+    <div class="wb-bank" id="wb-bnk">${shuf.map(w=>`
+      <button class="w-tile" data-action="wbmove" data-word="${w}">${w}</button>`).join('')}</div>
     <div style="flex:1"></div>
-    <button class="btn-check" onclick="chkWB('${esc(words.join(' '))}','${esc(s.nl)}','${esc(s.tr)}')">Controleer ✓</button>`;
+    <button class="btn-check" id="btn-check-wb">Controleer ✓</button>`;
+
+  document.getElementById('btn-check-wb').addEventListener('click', ()=> chkWB(correct, nl, tr));
 }
 
 function wbMove(tile,word){
@@ -1729,34 +1743,41 @@ function rType(ex,body){
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
-      placeholder="Typ in Hazaragi schrift..."
-      oninput="this.classList.remove('ok','ng')"
-      onkeydown="if(event.key==='Enter')chkType('${esc(w.hz)}','${esc(w.nl)}','${esc(w.tr)}')">
+      placeholder="Typ in Hazaragi schrift...">
     <div class="t-hint" id="t-hint"></div>
     <button class="hint-btn" id="hint-btn">💡 Hint</button>
     <div style="flex:1"></div>
-    <button class="btn-check" onclick="chkType('${esc(w.hz)}','${esc(w.nl)}','${esc(w.tr)}')">Controleer ✓</button>`;
+    <button class="btn-check" id="btn-check-type">Controleer ✓</button>`;
 
-  document.getElementById('hint-btn').addEventListener('click', ()=>{
+  const correct = w.hz;
+  const nl = w.nl;
+  const tr = w.tr;
+
+  const inp = document.getElementById('t-inp');
+  const hintBtn = document.getElementById('hint-btn');
+  const hintEl = document.getElementById('t-hint');
+
+  inp.addEventListener('input', ()=> inp.classList.remove('ok','ng'));
+  inp.addEventListener('keydown', e=>{ if(e.key==='Enter') chkType(correct, nl, tr); });
+
+  document.getElementById('btn-check-type').addEventListener('click', ()=> chkType(correct, nl, tr));
+
+  hintBtn.addEventListener('click', ()=>{
     hintLevel++;
-    const hintEl=document.getElementById('t-hint');
-    const hintBtn=document.getElementById('hint-btn');
-
     if(hintLevel===1){
-      hintEl.innerHTML=`🔤 Uitspraak: <strong>${w.tr}</strong>`;
+      hintEl.innerHTML=`🔤 Uitspraak: <strong>${tr}</strong>`;
       hintEl.classList.add('show');
       hintBtn.textContent='💡 Toon antwoord';
     } else if(hintLevel===2){
-      hintEl.innerHTML=`✍️ Antwoord: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${w.hz}</strong>`;
-      const inp=document.getElementById('t-inp');
-      inp.value=w.hz;
+      hintEl.innerHTML=`✍️ Antwoord: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
+      inp.value=correct;
       inp.classList.remove('ok','ng');
       hintBtn.disabled=true;
       hintBtn.textContent='✓ Antwoord getoond';
     }
   });
 
-  setTimeout(()=>document.getElementById('t-inp')?.focus(),120);
+  setTimeout(()=> inp.focus(), 120);
 }
 
 const normAr=s=>s.replace(/[ًٌٍَُِّْ]/g,'').replace(/[آأإا]/g,'ا').replace(/[يی]/g,'ی').replace(/ة/g,'ه').trim();
@@ -1810,8 +1831,7 @@ function chkType(correct,nl,tr){
       checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
     }
 
-    // Blokkeer feedback bar — geen verder knop
-    showToast('✍️ Typ het goede woord over om verder te gaan!');
+      hideFB();
   }
 }
 
@@ -1878,7 +1898,48 @@ function showFB(ok,title,hint,hzText){
 }
 function hideFB(){document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
 function nextEx(){EI++;WAITING=false;renderEx();}
-function leaveLesson(){if(confirm('Les verlaten?'))goHome();}
+function leaveLesson(){
+  const bg=document.createElement('div');
+  bg.className='modal-bg';
+
+  const modal=document.createElement('div');
+  modal.className='modal';
+
+  const drag=document.createElement('div');
+  drag.className='modal-drag';
+
+  const title=document.createElement('div');
+  title.style.cssText='font-size:18px;font-weight:900;color:var(--ink);margin-bottom:8px';
+  title.textContent='Les verlaten? 🎀';
+
+  const sub=document.createElement('div');
+  sub.style.cssText='font-size:14px;font-weight:600;color:var(--ink-m);margin-bottom:24px';
+  sub.textContent='Je voortgang in deze les gaat verloren.';
+
+  const btnRow=document.createElement('div');
+  btnRow.style.cssText='display:flex;gap:10px';
+
+  const btnStay=document.createElement('button');
+  btnStay.className='btn-check';
+  btnStay.style.cssText='position:static;flex:1;background:linear-gradient(135deg,var(--rose),var(--rose-d))';
+  btnStay.textContent='Doorgaan 💪';
+  btnStay.addEventListener('click',()=>bg.remove());
+
+  const btnLeave=document.createElement('button');
+  btnLeave.style.cssText='flex:1;background:var(--rose-xl);color:var(--rose-d);border:2px solid var(--rose-l);border-radius:var(--r-sm);padding:17px;font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer';
+  btnLeave.textContent='Verlaten';
+  btnLeave.addEventListener('click',()=>{bg.remove();WAITING=false;hideFB();goHome();});
+
+  btnRow.appendChild(btnStay);
+  btnRow.appendChild(btnLeave);
+  modal.appendChild(drag);
+  modal.appendChild(title);
+  modal.appendChild(sub);
+  modal.appendChild(btnRow);
+  bg.appendChild(modal);
+  bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
+  document.body.appendChild(bg);
+}
 
 // ── Finish ──
 function finishLesson(){
@@ -1912,12 +1973,25 @@ function updStreak(){
   const today=new Date().toDateString();
   const todayIdx=new Date().getDay();
   const idx=todayIdx===0?6:todayIdx-1;
-  if(!S.weekActivity)S.weekActivity=[];
+
+  // Reset weekActiviteit elke maandag
+  const now=new Date();
+  const isMonday=now.getDay()===1;
+  const lastStudyDate=S.lastStudy?new Date(S.lastStudy):null;
+  const lastWasThisWeek=lastStudyDate&&lastStudyDate>=getMonday(now);
+  if(!S.weekActivity||(!lastWasThisWeek&&isMonday))S.weekActivity=[];
+
   if(!S.weekActivity.includes(idx))S.weekActivity.push(idx);
   if(S.lastStudy===today)return;
   const yest=new Date(Date.now()-86400000).toDateString();
   S.streak=S.lastStudy===yest?S.streak+1:1;
   S.lastStudy=today;
+}
+
+function getMonday(d){
+  const day=d.getDay();
+  const diff=d.getDate()-(day===0?6:day-1);
+  return new Date(d.setDate(diff));
 }
 
 function checkAchv(){
@@ -1956,7 +2030,7 @@ function renderVocab(){
     const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
     const due=!v.nr||new Date(v.nr)<=new Date();
     const nxt=v.nr?timeUntil(v.nr):'Nu';
-    return `<div class="wc" onclick="showPronModal('${esc(hz)}')">
+    return `<div class="wc" data-hz="${hz}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
         <div class="wc-tr">${v.tr||''}</div>
@@ -1981,20 +2055,49 @@ function showPronModal(hz){
   const tip=getPronTip(hz);
   const bg=document.createElement('div');
   bg.className='modal-bg';
-  bg.innerHTML=`<div class="modal">
-    <div class="modal-drag"></div>
-    <div class="modal-title">${hz}</div>
-    <div class="pron-row">
-      <div class="pron-hz">${hz}</div>
+
+  const modal=document.createElement('div');
+  modal.className='modal';
+
+  const dragEl=document.createElement('div');
+  dragEl.className='modal-drag';
+
+  const titleEl=document.createElement('div');
+  titleEl.className='modal-title';
+  titleEl.textContent=hz;
+
+  const row1=document.createElement('div');
+  row1.className='pron-row';
+  row1.innerHTML=`<div class="pron-hz">${hz}</div>
+    <div class="pron-info">
+      <div class="pron-latin">${v.tr}</div>
+      <div class="pron-tip">= ${v.nl}</div>
+    </div>`;
+
+  const closeBtn=document.createElement('button');
+  closeBtn.className='btn-check';
+  closeBtn.style.cssText='position:static;margin-top:16px';
+  closeBtn.textContent='Sluiten';
+  closeBtn.addEventListener('click',()=>bg.remove());
+
+  modal.appendChild(dragEl);
+  modal.appendChild(titleEl);
+  modal.appendChild(row1);
+
+  if(tip){
+    const row2=document.createElement('div');
+    row2.className='pron-row';
+    row2.innerHTML=`<div class="pron-hz">🔊</div>
       <div class="pron-info">
-        <div class="pron-latin">${v.tr}</div>
-        <div class="pron-tip">= ${v.nl}</div>
-      </div>
-    </div>
-    ${tip?`<div class="pron-row"><div class="pron-hz">🔊</div><div class="pron-info"><div class="pron-latin">Uitspraaktip</div><div class="pron-tip">${tip}</div></div></div>`:''}
-    <button class="btn-check" style="position:static;margin-top:16px" onclick="this.closest('.modal-bg').remove()">Sluiten</button>
-  </div>`;
-  bg.onclick=e=>{if(e.target===bg)bg.remove();};
+        <div class="pron-latin">Uitspraaktip</div>
+        <div class="pron-tip">${tip}</div>
+      </div>`;
+    modal.appendChild(row2);
+  }
+
+  modal.appendChild(closeBtn);
+  bg.appendChild(modal);
+  bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
   document.body.appendChild(bg);
 }
 
@@ -2059,8 +2162,6 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-const esc=s=>s.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ').replace(/\r/g,'');
-
 // ══════════════════════════════════════════════════════
 // BOOT
 // ══════════════════════════════════════════════════════
@@ -2094,7 +2195,7 @@ function importData(event){
     try{
       const imported=JSON.parse(e.target.result);
       // Controleer of het een geldig Gulette bestand is
-      if(!imported.name||!imported.xp===undefined){
+      if(!imported.name || imported.xp === undefined){
         showToast('❌ Ongeldig bestand!');return;
       }
       if(confirm(`Voortgang van ${imported.name} laden? Je huidige voortgang wordt overschreven.`)){
