@@ -358,7 +358,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 <div id="toast"></div>
 
 <!-- ═══════════════════ ONBOARDING ═══════════════════ -->
-<div id="screen-onboarding" class="screen active">
+<div id="screen-onboarding" class="screen">
   <div class="ob-mascot">🐇</div>
   <div class="ob-pills">
     <div class="ob-pill">🏔️ Hazaragi</div>
@@ -2203,13 +2203,18 @@ function showToast(msg){
 // BOOT
 // ══════════════════════════════════════════════════════
 load();
-if(S.name){
-  document.getElementById('bnav').style.display='flex';
-  renderHome();
-  showScreen('home');
-}else{
-  document.getElementById('bnav').style.display='none';
-  showScreen('onboarding');
+try {
+  if(S.name){
+    document.getElementById('bnav').style.display='flex';
+    renderHome();
+    showScreen('home');
+  }else{
+    document.getElementById('bnav').style.display='none';
+    showScreen('onboarding');
+  }
+} catch(e) {
+  localStorage.clear();
+  location.reload();
 }
 // ══════════════════════════════════════════════════════
 // EXPORT & IMPORT
