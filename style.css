@@ -185,9 +185,9 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
 
 /* Word bank */
-.wb-answer{display:flex;flex-wrap:wrap;gap:7px;min-height:54px;border:2.5px solid var(--rose-l);border-radius:var(--r-sm);padding:12px;background:var(--white);margin-bottom:10px;transition:border-color .2s;align-content:flex-start}
+.wb-answer{display:flex;flex-wrap:wrap;gap:7px;min-height:54px;border:2.5px solid var(--rose-l);border-radius:var(--r-sm);padding:12px;background:var(--white);margin-bottom:10px;transition:border-color .2s;align-content:flex-start;direction:rtl}
 .wb-answer.has{border-color:var(--rose)}
-.wb-bank{display:flex;flex-wrap:wrap;gap:7px;min-height:54px;border:2px dashed var(--rose-l);border-radius:var(--r-sm);padding:12px;background:var(--rose-xl);align-content:flex-start}
+.wb-bank{display:flex;flex-wrap:wrap;gap:7px;min-height:54px;border:2px dashed var(--rose-l);border-radius:var(--r-sm);padding:12px;background:var(--rose-xl);align-content:flex-start;direction:rtl}
 .w-tile{background:var(--white);border:2px solid var(--ink-xl);border-radius:8px;padding:8px 14px;font-size:16px;font-weight:700;color:var(--ink);cursor:pointer;transition:all .16s;font-family:'Noto Naskh Arabic',serif;direction:rtl;user-select:none;touch-action:manipulation;line-height:1.5}
 .w-tile:hover,.w-tile:active{border-color:var(--rose);background:var(--rose-xl);transform:scale(1.04)}
 .w-tile.placed{opacity:.3;pointer-events:none}

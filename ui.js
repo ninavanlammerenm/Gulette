@@ -164,9 +164,12 @@ function renderHome(){
       const row=document.createElement('div');
       row.className='l-row '+aligns[li%6];
       const cls=done?'d':(locked?'lk':'u');
-      row.innerHTML=`<div class="l-node ${cls}" ${!locked?`onclick="startLesson('${lesson.id}')"`:''} data-id="${lesson.id}">
-        <div class="n-tooltip">${lesson.title} · +${lesson.xp} XP</div>
-        <div class="n-ico">${lesson.icon}</div>
+      const nodeClick=locked?`showToast('Voltooi eerst de vorige les! 🔒')`:`startLesson('${lesson.id}')`;
+      const tooltipTxt=locked?'🔒 Vergrendeld — voltooi de vorige les':`${lesson.title} · +${lesson.xp} XP`;
+      const nodeIcon=locked?'🔒':lesson.icon;
+      row.innerHTML=`<div class="l-node ${cls}" onclick="${nodeClick}" data-id="${lesson.id}">
+        <div class="n-tooltip">${tooltipTxt}</div>
+        <div class="n-ico">${nodeIcon}</div>
         <div class="n-lbl">${lesson.title}</div>
         ${done?'<div class="n-done-badge">✓</div>':''}
       </div>`;
