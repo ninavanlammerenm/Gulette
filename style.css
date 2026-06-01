@@ -125,7 +125,7 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 .l-node.u{background:linear-gradient(145deg,var(--rose),var(--rose-d));border-color:rgba(255,255,255,.45);box-shadow:0 6px 20px rgba(255,107,157,.38),0 3px 0 rgba(180,40,100,.3)}
 .l-node.u:active{transform:scale(.93)}
 .l-node.d{background:linear-gradient(145deg,var(--gold),var(--gold-d));border-color:rgba(255,255,255,.5);box-shadow:0 6px 20px rgba(255,190,61,.38),0 3px 0 rgba(180,120,0,.2)}
-.l-node.lk{background:var(--rose-xl);border-color:var(--rose-l);cursor:not-allowed;opacity:.55}
+.l-node.lk{background:var(--rose-xl);border-color:var(--rose-l);cursor:pointer;opacity:.55}
 .n-ico{font-size:28px;pointer-events:none}
 .n-lbl{font-size:8px;font-weight:900;color:#fff;text-align:center;line-height:1.25;margin-top:1px;pointer-events:none;max-width:70px;padding:0 4px}
 .l-node.lk .n-lbl{color:var(--ink-l)}
