@@ -90,7 +90,6 @@ function renderEx(){
 // ── Intro card ──
 function rIntro(ex,body){
   const w=ex.w;
-  const tip=getPronTip(w.hz);
   body.innerHTML=`
     <div class="type-pill">📖 Nieuw woord</div>
     <div class="hz-card">
@@ -98,8 +97,6 @@ function rIntro(ex,body){
       <span class="hz-latin">${w.tr}</span>
       <span class="hz-nl">= ${w.nl}</span>
     </div>
-    ${w.tip?`<div class="pronun-tip"><div class="pt-ico">💡</div><div class="pt-body"><div class="pt-title">Hazaragi weetje</div><div class="pt-text">${w.tip}</div></div></div>`:''}
-    ${tip?`<div class="pronun-tip"><div class="pt-ico">🔊</div><div class="pt-body"><div class="pt-title">Uitspraak</div><div class="pt-text">${tip}</div></div></div>`:''}
     <div style="flex:1"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
@@ -119,7 +116,6 @@ function rContext(ex,body){
       <div class="ctx-tr">${s.tr}</div>
       <div class="ctx-nl">"${s.nl}"</div>
     </div>
-    ${CL.grammar?`<div class="pattern-tip"><div class="pt-ico">🧠</div><div class="pt-body"><div class="pt-title">Taalpatroon</div><div class="pt-text">${CL.grammar}</div></div></div>`:''}
     <div style="flex:1"></div>
     <button class="btn-check" onclick="nextEx()">Ik snap het! ✓</button>`;
 }
@@ -246,8 +242,7 @@ function rType(ex,body){
 
   body.innerHTML=`
     <div class="type-pill">⌨️ Actief ophalen</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px">Typ het Hazaragi woord voor:</p>
-    <p style="font-size:11px;font-weight:700;color:var(--lav);margin-bottom:16px">🧠 Actief ophalen verankert woorden het beste!</p>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Hazaragi woord voor:</p>
     <div class="hz-card" style="margin-bottom:18px">
       <span class="hz-nl" style="font-size:24px;font-weight:900;color:var(--ink)">${w.nl}</span>
       <span class="hz-latin" style="margin-top:6px">${w.tr}</span>

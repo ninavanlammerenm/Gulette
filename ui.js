@@ -204,10 +204,12 @@ function renderVocab(){
     const due=!v.nr||new Date(v.nr)<=new Date();
     const nxt=v.nr?timeUntil(v.nr):'Nu';
     const accent=due&&m<2?'var(--rose-d)':m>=4?'var(--mint)':m>=2?'var(--lav)':'var(--gold)';
+    // markeer lange klanken (dubbele klinkers) in de uitspraak
+    const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
     return `<div class="wc" data-hz="${hz}" style="border-left:4px solid ${accent}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
-        <div class="wc-tr">${v.tr||''}</div>
+        <div class="wc-pron">🔊 ${pron}</div>
         <div class="wc-nl">${v.nl||''}</div>
         <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}</div>
       </div>
