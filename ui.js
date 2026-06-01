@@ -93,9 +93,6 @@ function renderHome(){
   document.getElementById('xp-l').textContent=S.xp+' XP';
   document.getElementById('xp-r').textContent='Level '+lvl;
 
-  sciIdx=(sciIdx+1)%SCI_TIPS.length;
-  document.getElementById('sci-tip-txt').innerHTML=SCI_TIPS[sciIdx];
-
   // Week dots
   const days=['Ma','Di','Wo','Do','Vr','Za','Zo'];
   const todayDay=new Date().getDay();
@@ -116,14 +113,17 @@ function renderHome(){
   document.getElementById('sc-sub').textContent=`${activeDays} van 7`;
 
   // Due count
-  const due=Object.values(S.vocab).filter(v=>!v.nr||new Date(v.nr)<=new Date()).length;
+  const allVocab=Object.values(S.vocab);
+  const due=allVocab.filter(v=>!v.nr||new Date(v.nr)<=new Date()).length;
   const total=Object.keys(S.vocab).length;
   if(due>0){
     document.getElementById('rev-count-txt').textContent=`${due} van ${total} woorden klaar voor herhaling! 🌸`;
   }else if(total===0){
     document.getElementById('rev-count-txt').textContent='Start een les om woorden te leren 🌸';
   }else{
-    document.getElementById('rev-count-txt').textContent='Je bent helemaal bij! Kom later terug 🌸';
+    const nextDue=allVocab.filter(v=>v.nr).map(v=>new Date(v.nr)).sort((a,b)=>a-b)[0];
+    const eta=nextDue?timeUntil(nextDue.toISOString()):'?';
+    document.getElementById('rev-count-txt').textContent=`Alles herhaald! Volgende review over ${eta} ✅`;
   }
 
   // Chapters / lesson path
@@ -132,7 +132,10 @@ function renderHome(){
   CHAPTERS.forEach((ch,ci)=>{
     const block=document.createElement('div');
     block.className='ch-block';
-    block.innerHTML=`<div class="ch-label">${ch.label}</div>`;
+    const totalWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).length,0);
+    const learnedWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).filter(w=>S.vocab[w.hz]).length,0);
+    const chProg=totalWords>0?`<span class="ch-prog">${learnedWords}/${totalWords} woorden</span>`:'';
+    block.innerHTML=`<div class="ch-label">${ch.label}${chProg}</div>`;
     const path=document.createElement('div');
     path.className='l-path';
 
@@ -358,6 +361,37 @@ function showPronModal(hz){
 }
 
 // ══════════════════════════════════════════════════════
+// XP GRAPH
+// ══════════════════════════════════════════════════════
+function renderXPGraph(){
+  const el=document.getElementById('xp-graph');
+  if(!el)return;
+  const log=S.xpLog||{};
+  // build last 7 days
+  const days=[];
+  const dayNames=['Zo','Ma','Di','Wo','Do','Vr','Za'];
+  for(let i=6;i>=0;i--){
+    const d=new Date(Date.now()-i*86400000);
+    const key=d.toISOString().slice(0,10);
+    days.push({label:dayNames[d.getDay()],xp:log[key]||0,isToday:i===0});
+  }
+  const maxXP=Math.max(...days.map(d=>d.xp),1);
+  const W=320,H=90,pad=6,barW=32,gap=8;
+  const bars=days.map((d,i)=>{
+    const x=pad+i*(barW+gap);
+    const barH=Math.max(4,Math.round((d.xp/maxXP)*(H-28)));
+    const y=H-14-barH;
+    const fill=d.isToday?'var(--rose)':d.xp>0?'var(--lav)':'var(--ink-xl)';
+    return `<g>
+      <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="6" fill="${fill}"/>
+      ${d.xp>0?`<text x="${x+barW/2}" y="${y-4}" text-anchor="middle" font-size="9" font-weight="900" fill="var(--ink-m)">${d.xp}</text>`:''}
+      <text x="${x+barW/2}" y="${H-1}" text-anchor="middle" font-size="9" font-weight="800" fill="${d.isToday?'var(--rose)':'var(--ink-l)'}">${d.label}</text>
+    </g>`;
+  }).join('');
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="overflow:visible">${bars}</svg>`;
+}
+
+// ══════════════════════════════════════════════════════
 // PROFILE
 // ══════════════════════════════════════════════════════
 function renderProfile(){
@@ -369,6 +403,7 @@ function renderProfile(){
   document.getElementById('p-str').textContent=S.streak;
   document.getElementById('p-wds').textContent=Object.keys(S.vocab).length;
   document.getElementById('p-les').textContent=S.done.length;
+  renderXPGraph();
   document.getElementById('a-list').innerHTML=ACHVS.map(a=>{
     const on=S.achv.includes(a.id);
     return `<div class="ac">

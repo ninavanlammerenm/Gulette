@@ -83,10 +83,7 @@
     <div class="rb-arr">›</div>
   </div>
 
-  <div class="sci-banner">
-    <div class="sci-ico">🧠</div>
-    <div class="sci-txt" id="sci-tip-txt"><strong>Tip:</strong> Herhaling op het juiste moment verankert woorden in je geheugen!</div>
-  </div>
+
 
   <div class="lessons-section" id="chapters-wrap"></div>
 </div>
@@ -163,6 +160,10 @@
     <div class="stat-card"><div class="stat-n" id="p-wds">0</div><div class="stat-l">📖 Woorden</div></div>
     <div class="stat-card"><div class="stat-n" id="p-les">0</div><div class="stat-l">✅ Lessen</div></div>
   </div>
+  <div class="xp-graph-sec">
+    <div class="achvs-title">📈 XP deze week</div>
+    <div id="xp-graph"></div>
+  </div>
   <div class="achvs-sec">
     <div class="achvs-title">💾 Voortgang</div>
     <div style="display:flex;gap:10px;margin-bottom:10px">
@@ -202,6 +203,10 @@
     <div class="ovh-setup-ico">📝</div>
     <div class="ovh-setup-ttl">Overhoring</div>
     <div class="ovh-setup-sub" id="ovh-total-lbl">0 woorden beschikbaar</div>
+    <div class="ovh-timer-row">
+      <span class="ovh-timer-lbl">⏱ Timer (10s per vraag)</span>
+      <button class="ovh-timer-toggle" id="ovh-timer-toggle" onclick="toggleOvhTimer(this)">Uit</button>
+    </div>
     <div class="ovh-sizes">
       <button class="ovh-size-btn" data-n="10" data-sub="Snel" onclick="startOvhoring(10)">
         <div class="ovh-size-n">10</div>

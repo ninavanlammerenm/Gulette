@@ -254,7 +254,7 @@ function rType(ex,body){
       spellcheck="false"
       placeholder="Typ in Hazaragi schrift...">
     <div class="t-hint" id="t-hint"></div>
-    <button class="hint-btn" id="hint-btn">💡 Hint (uitspraak)</button>
+    <button class="hint-btn" id="hint-btn">💡 Toon antwoord</button>
     <div style="flex:1"></div>
     <button class="btn-check" id="btn-check-type">Controleer ✓</button>`;
 
@@ -274,21 +274,15 @@ function rType(ex,body){
   checkBtn.addEventListener('click', doCheckType);
 
   hintBtn.addEventListener('click', ()=>{
-    hintLevel++;
-    if(hintLevel===1){
-      hintEl.innerHTML=`🔤 Uitspraak: <strong>${w.tr}</strong>`;
-      hintEl.classList.add('show');
-      hintBtn.textContent='💡 Toon antwoord';
-    } else if(hintLevel===2){
-      hintEl.innerHTML=`✍️ Antwoord: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
-      inp.value=correct;
-      inp.classList.remove('ok','ng');
-      hintBtn.disabled=true;
-      hintBtn.textContent='✓ Antwoord getoond';
-      retryMode=true;
-      checkBtn.textContent='Typ het over ✍️';
-      checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
-    }
+    hintEl.innerHTML=`✍️ Antwoord: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
+    hintEl.classList.add('show');
+    inp.value=correct;
+    inp.classList.remove('ok','ng');
+    hintBtn.disabled=true;
+    hintBtn.textContent='✓ Antwoord getoond';
+    retryMode=true;
+    checkBtn.textContent='Typ het over ✍️';
+    checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
   });
 
   function doCheckType(){
@@ -419,6 +413,7 @@ function finishLesson(){
   const bonusXP=HEARTS===3?5:0;
   LXP+=bonusXP;
   S.xp+=LXP;
+  logXP(LXP);
   updStreak();checkAchv();save();
 
   document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` ✨+${bonusXP} bonus`:'');

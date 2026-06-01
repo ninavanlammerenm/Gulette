@@ -97,7 +97,8 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 /* Lesson path */
 .lessons-section{padding:0 18px}
 .ch-block{margin-bottom:28px}
-.ch-label{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:1.3px;color:var(--ink-l);margin-bottom:14px;padding-left:2px}
+.ch-label{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:1.3px;color:var(--ink-l);margin-bottom:14px;padding-left:2px;display:flex;align-items:center;justify-content:space-between}
+.ch-prog{font-size:10px;font-weight:800;color:var(--mint);background:rgba(61,214,163,.12);border-radius:50px;padding:2px 8px;text-transform:none;letter-spacing:0}
 .l-path{display:flex;flex-direction:column;align-items:center;gap:8px}
 .l-row{width:100%;display:flex;align-items:center;justify-content:center;position:relative}
 .l-row.lft{justify-content:flex-start;padding-left:24px}
@@ -264,6 +265,9 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 .stat-card{background:var(--white);border-radius:var(--r-sm);padding:18px 14px;box-shadow:var(--sh);text-align:center}
 .stat-n{font-size:30px;font-weight:900;color:var(--rose)}
 .stat-l{font-size:11px;font-weight:800;color:var(--ink-l);text-transform:uppercase;letter-spacing:.3px;margin-top:3px}
+.xp-graph-sec{padding:0 18px 20px}
+.xp-graph-sec .achvs-title{font-size:17px;font-weight:900;color:var(--ink);margin-bottom:12px}
+#xp-graph{background:var(--white);border-radius:var(--r-sm);box-shadow:var(--sh);padding:14px 10px 6px}
 .achvs-sec{padding:0 18px 24px}
 .achvs-title{font-size:17px;font-weight:900;color:var(--ink);margin-bottom:14px}
 .ac{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--white);border-radius:var(--r-sm);box-shadow:var(--sh);margin-bottom:8px}
@@ -366,7 +370,14 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 .ovh-res-score span{font-size:28px;color:var(--ink-l)}
 .ovh-res-pct{font-size:15px;font-weight:800;color:var(--lav)}
 .ovh-res-msg{font-size:14px;font-weight:700;color:var(--ink-m);margin-bottom:8px}
-.ovh-res-btns{display:flex;gap:10px;width:100%}
+.ovh-res-btns{display:flex;flex-wrap:wrap;gap:10px;width:100%}
+.ovh-timer-row{display:flex;align-items:center;justify-content:space-between;background:var(--white);border-radius:var(--r-sm);padding:14px 16px;box-shadow:var(--sh);margin-bottom:14px;width:100%}
+.ovh-timer-lbl{font-size:14px;font-weight:800;color:var(--ink)}
+.ovh-timer-toggle{border:2.5px solid var(--ink-xl);background:var(--cream);color:var(--ink-m);border-radius:50px;padding:6px 18px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s}
+.ovh-timer-toggle.on{background:linear-gradient(135deg,var(--mint),#27ae60);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(61,214,163,.4)}
+.ovh-timer{font-size:48px;font-weight:900;color:var(--lav);text-align:center;line-height:1;margin-bottom:4px;transition:color .3s}
+.ovh-timer.urgent{color:var(--rose-d);animation:pulse .5s ease infinite alternate}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.1)}}
 .ovh-perfect{background:var(--mint-l);border:2px solid var(--mint);border-radius:var(--r-sm);padding:14px;text-align:center;font-size:14px;font-weight:800;color:var(--mint);width:100%}
 .ovh-errs{width:100%;border-top:2px solid var(--rose-xl);padding-top:18px;margin-top:8px;display:flex;flex-direction:column;gap:8px}
 .ovh-errs-ttl{font-size:13px;font-weight:900;color:var(--rose);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}

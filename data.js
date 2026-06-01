@@ -1306,6 +1306,246 @@ const CHAPTERS=[
       ]
     },
   ]},
+
+  { id:'ch16', label:'🌿 Hoofdstuk 16 · Natuur & Seizoenen', color:'#3DD6A3', lessons:[
+    { id:'nature_seasons', title:'Seizoenen', icon:'🌸', xp:18, words:[
+        {hz:'بهار',tr:'bahaar',nl:'Lente',tip:''},
+        {hz:'تابستان',tr:'taabestaan',nl:'Zomer',tip:''},
+        {hz:'خزان',tr:'khazaan',nl:'Herfst',tip:''},
+        {hz:'زمستان',tr:'zemestaan',nl:'Winter',tip:''},
+        {hz:'باران',tr:'baaraan',nl:'Regen',tip:''},
+        {hz:'برف',tr:'barf',nl:'Sneeuw',tip:''},
+        {hz:'آفتاب',tr:'aaftaab',nl:'Zon',tip:''},
+        {hz:'هوا',tr:'hawaa',nl:'Weer / Lucht',tip:''},
+      ],
+      sentences:[
+        {hz:'بهار آمد، گلا شگفت',tr:'bahaar aamad, golaa shegoft',nl:'De lente is gekomen, de bloemen zijn gebloeid'},
+        {hz:'زمستان سرد اَس، برف می‌باره',tr:'zemestaan sard as, barf me-baara',nl:'De winter is koud, het sneeuwt'},
+      ]
+    },
+    { id:'nature_land', title:'Natuur & Landschap', icon:'🏔️', xp:18, words:[
+        {hz:'کوه',tr:'kooh',nl:'Berg',tip:'Lange oo'},
+        {hz:'دریا',tr:'daryaa',nl:'Rivier / Zee',tip:''},
+        {hz:'دشت',tr:'dasht',nl:'Steppe / Vlakte',tip:'Typisch Hazara landschap'},
+        {hz:'درخت',tr:'darakht',nl:'Boom',tip:''},
+        {hz:'گل',tr:'gol',nl:'Bloem',tip:''},
+        {hz:'آب',tr:'aab',nl:'Water',tip:'Lange aa'},
+        {hz:'زمین',tr:'zameen',nl:'Aarde / Grond',tip:''},
+        {hz:'آسمان',tr:'aasmaan',nl:'Hemel / Lucht',tip:''},
+      ],
+      sentences:[
+        {hz:'کوه‌های هزارستان بلند اَن',tr:'koohaaay hazaaristaan boland an',nl:'De bergen van Hazarastan zijn hoog'},
+        {hz:'آب صاف دریا خوشگل اَس',tr:'aab saaf daryaa khoshgal as',nl:'Het heldere water van de rivier is mooi'},
+      ]
+    },
+    { id:'nature_animals', title:'Dieren', icon:'🐾', xp:18, words:[
+        {hz:'اسپ',tr:'asp',nl:'Paard',tip:'Hazaragi — Dari "اسب"'},
+        {hz:'گاو',tr:'gaaw',nl:'Koe',tip:'Lange aa'},
+        {hz:'سگ',tr:'sag',nl:'Hond',tip:''},
+        {hz:'پشک',tr:'pishak',nl:'Kat',tip:''},
+        {hz:'مرغ',tr:'morgh',nl:'Kip',tip:''},
+        {hz:'ماهی',tr:'maahee',nl:'Vis',tip:''},
+        {hz:'پرنده',tr:'paranda',nl:'Vogel',tip:''},
+        {hz:'خرگوش',tr:'khargoosh',nl:'Konijn',tip:''},
+      ],
+      sentences:[
+        {hz:'اسپ پهلوان حیوانِ مهم اَس',tr:'asp pahlawaane hayawaane mohim as',nl:'Het paard is een belangrijk dier voor de Hazara'},
+        {hz:'پشکم شیر می‌خوره',tr:'pishakam sheer me-khora',nl:'Mijn kat drinkt melk'},
+      ]
+    },
+  ]},
+
+  { id:'ch17', label:'💊 Hoofdstuk 17 · Gezondheid & Lichaam', color:'#FF6B9D', lessons:[
+    { id:'health_body', title:'Lichaamsdelen', icon:'🫀', xp:18, words:[
+        {hz:'سر',tr:'sar',nl:'Hoofd',tip:''},
+        {hz:'دست',tr:'dast',nl:'Hand / Arm',tip:''},
+        {hz:'پا',tr:'paa',nl:'Voet / Been',tip:'Lange aa'},
+        {hz:'چشم',tr:'chashm',nl:'Oog',tip:''},
+        {hz:'گوش',tr:'gosh',nl:'Oor',tip:''},
+        {hz:'دهن',tr:'dahan',nl:'Mond',tip:''},
+        {hz:'بینی',tr:'beenee',nl:'Neus',tip:''},
+        {hz:'قلب',tr:'qalb',nl:'Hart',tip:''},
+      ],
+      sentences:[
+        {hz:'سرم درد می‌کنه',tr:'saram dard me-kona',nl:'Mijn hoofd doet pijn'},
+        {hz:'چشمام خسته اَن',tr:'chashmaame khasta an',nl:'Mijn ogen zijn moe'},
+      ]
+    },
+    { id:'health_illness', title:'Ziekte & Genezing', icon:'🏥', xp:18, words:[
+        {hz:'مریض',tr:'mareez',nl:'Ziek / Patiënt',tip:''},
+        {hz:'درد',tr:'dard',nl:'Pijn',tip:''},
+        {hz:'تب',tr:'tab',nl:'Koorts',tip:''},
+        {hz:'دوا',tr:'dawaa',nl:'Medicijn',tip:''},
+        {hz:'داکتر',tr:'daaktar',nl:'Dokter',tip:'Hazaragi/Dari'},
+        {hz:'شفاخانه',tr:'shafaakhaana',nl:'Ziekenhuis',tip:'"شفا" = genezing'},
+        {hz:'صحی',tr:'sehhee',nl:'Gezond',tip:''},
+        {hz:'آرام',tr:'aaraam',nl:'Rust / Rustig',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'مریض استم، به داکتر می‌رم',tr:'mareez astam, ba daaktar me-ram',nl:'Ik ben ziek, ik ga naar de dokter'},
+        {hz:'دوا خوردم، حالا بهترم',tr:'dawaa khordam, haala bahtaram',nl:'Ik heb medicijn genomen, nu ben ik beter'},
+      ]
+    },
+    { id:'health_habits', title:'Gezonde Gewoonten', icon:'🧘', xp:18, words:[
+        {hz:'خواب',tr:'khaab',nl:'Slaap',tip:'Lange aa'},
+        {hz:'ورزش',tr:'warzesh',nl:'Sport / Oefenen',tip:''},
+        {hz:'خوراک',tr:'khoraak',nl:'Voedsel / Maaltijd',tip:''},
+        {hz:'نوشیدن',tr:'noosheedan',nl:'Drinken',tip:''},
+        {hz:'استراحت',tr:'estaahaat',nl:'Ontspanning',tip:''},
+        {hz:'قوت',tr:'qowwat',nl:'Kracht / Energie',tip:''},
+        {hz:'صبر',tr:'sabr',nl:'Geduld',tip:''},
+        {hz:'پاک',tr:'paak',nl:'Schoon / Rein',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'هشت ساعت خواب مهم اَس',tr:'hasht saa\'at khaab mohim as',nl:'Acht uur slaap is belangrijk'},
+        {hz:'روزانه ورزش کو، صحی می‌مانی',tr:'rozaana warzesh ko, sehhee me-maani',nl:'Sport dagelijks, dan blijf je gezond'},
+      ]
+    },
+  ]},
+
+  { id:'ch18', label:'🎭 Hoofdstuk 18 · Cultuur & Tradities', color:'#FFBE3D', lessons:[
+    { id:'culture_celebrations', title:'Feesten & Tradities', icon:'🎉', xp:20, words:[
+        {hz:'نوروز',tr:'nawrooz',nl:'Nieuwjaar (Perzisch)',tip:'Letterlijk "nieuwe dag" — begin lente'},
+        {hz:'عید',tr:'eed',nl:'Feestdag / Eid',tip:'Islamitisch feest'},
+        {hz:'جشن',tr:'jashn',nl:'Viering / Feest',tip:''},
+        {hz:'مهمانی',tr:'mehmaanee',nl:'Bezoek / Bijeenkomst',tip:''},
+        {hz:'سور',tr:'soor',nl:'Bruiloft / Feestmaal',tip:'Typisch Hazaragi bruiloft'},
+        {hz:'هدیه',tr:'hadya',nl:'Cadeau',tip:''},
+        {hz:'برکت',tr:'barakat',nl:'Zegen / Overvloed',tip:'Arabische oorsprong'},
+        {hz:'دعا',tr:'do\'aa',nl:'Gebed / Wens',tip:''},
+      ],
+      sentences:[
+        {hz:'نوروز مبارک! سال نو خوش',tr:'nawrooz mubaarak! saal-e-naw khosh',nl:'Gelukkig Nieuwjaar! Een goed nieuw jaar'},
+        {hz:'سورِ عروسی شادمانه بود',tr:'soor-e-aroosee shaadmaana bood',nl:'De bruiloft was vreugdevol'},
+      ]
+    },
+    { id:'culture_music', title:'Muziek & Kunst', icon:'🎵', xp:18, words:[
+        {hz:'موزیک',tr:'moozeeq',nl:'Muziek',tip:''},
+        {hz:'سرود',tr:'sorod',nl:'Lied / Hymne',tip:''},
+        {hz:'دهل',tr:'dohol',nl:'Trommel / Drum',tip:'Typisch Hazara instrument'},
+        {hz:'سرنی',tr:'sarnaay',nl:'Fluit',tip:'Traditionele blaasinstrument'},
+        {hz:'رقص',tr:'raqs',nl:'Dans',tip:''},
+        {hz:'شعر',tr:'she\'r',nl:'Gedicht',tip:'Hazara poëzie is beroemd'},
+        {hz:'نقاشی',tr:'naqaashee',nl:'Tekening / Schilderij',tip:''},
+        {hz:'داستان',tr:'daastaan',nl:'Verhaal',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'دهل و سرنی موزیک هزارگی اَس',tr:'dohol o sarnaay moozeeq-e hazaaragi as',nl:'Dohol en sarnai zijn Hazaragi muziek'},
+        {hz:'یک شعر هزارگی بخوان',tr:'yak she\'r-e hazaaragi bakhwaan',nl:'Lees een Hazaragi gedicht voor'},
+      ]
+    },
+    { id:'culture_food', title:'Hazaragi Keuken', icon:'🍽️', xp:18, words:[
+        {hz:'بولانی',tr:'bollaanee',nl:'Gevulde flatbread',tip:'Typisch Afghaans gerecht'},
+        {hz:'قورمه',tr:'qorma',nl:'Stoofschotel',tip:'Basisgerecht in Hazaragi keuken'},
+        {hz:'اشک',tr:'ashak',nl:'Dumplings met prei',tip:'Beroemd Afghaans gerecht'},
+        {hz:'قابلی',tr:'qaaboli',nl:'Pilav met vlees en rozijnen',tip:'Nationaal gerecht Afghanistan'},
+        {hz:'چلو',tr:'challow',nl:'Gestoomde rijst',tip:''},
+        {hz:'شیر',tr:'sheer',nl:'Melk',tip:''},
+        {hz:'روغن',tr:'roghan',nl:'Olie / Vet',tip:''},
+        {hz:'نمک',tr:'namak',nl:'Zout',tip:''},
+      ],
+      sentences:[
+        {hz:'مادرم قورمه پختی، لذیذ بود',tr:'maadaram qorma pakhti, lazeez bood',nl:'Mijn moeder maakte stoofschotel, het was heerlijk'},
+        {hz:'اشک غذای مخصوص هزاره اَس',tr:'ashak ghazaa-ye makhsos-e hazaara as',nl:'Ashak is een speciaal Hazara gerecht'},
+      ]
+    },
+  ]},
+
+  { id:'ch19', label:'🍎 Hoofdstuk 19 · Eten & Keuken', color:'#FF8C61', lessons:[
+    { id:'food_basics', title:'Basisvoedsel', icon:'🥗', xp:18, words:[
+        {hz:'نان',tr:'naan',nl:'Brood',tip:'Lange aa — staple voedsel'},
+        {hz:'گوشت',tr:'gosht',nl:'Vlees',tip:''},
+        {hz:'سبزی',tr:'sabzee',nl:'Groente',tip:''},
+        {hz:'میوه',tr:'mewa',nl:'Fruit',tip:''},
+        {hz:'چای',tr:'chaay',nl:'Thee',tip:'Lange aa — altijd aanwezig!'},
+        {hz:'قهوه',tr:'qahwa',nl:'Koffie',tip:''},
+        {hz:'برنج',tr:'berenj',nl:'Rijst',tip:''},
+        {hz:'تخم‌مرغ',tr:'tokhm-morgh',nl:'Ei',tip:'Letterlijk "kippenei"'},
+      ],
+      sentences:[
+        {hz:'صبحانه نان و چای می‌خورم',tr:'sobhaana naan o chaay me-khorem',nl:'\'s Ochtends eet ik brood en thee'},
+        {hz:'گوشت و برنج غذای خوب اَس',tr:'gosht o berenj ghazaa-ye khob as',nl:'Vlees en rijst is goed eten'},
+      ]
+    },
+    { id:'food_taste', title:'Smaken & Smaak', icon:'👅', xp:18, words:[
+        {hz:'شیرین',tr:'shereen',nl:'Zoet',tip:''},
+        {hz:'تلخ',tr:'talkh',nl:'Bitter',tip:''},
+        {hz:'شور',tr:'shorr',nl:'Zout(ig)',tip:''},
+        {hz:'ترش',tr:'torsh',nl:'Zuur',tip:''},
+        {hz:'تند',tr:'tond',nl:'Pittig / Scherp',tip:''},
+        {hz:'خوش‌مزه',tr:'khosh-maza',nl:'Lekker',tip:'"خوش" = goed + "مزه" = smaak'},
+        {hz:'بدمزه',tr:'bad-maza',nl:'Vies / Niet lekker',tip:''},
+        {hz:'گرم',tr:'garm',nl:'Warm / Heet',tip:''},
+      ],
+      sentences:[
+        {hz:'این قورمه خوش‌مزه اَس',tr:'een qorma khosh-maza as',nl:'Deze stoofschotel is lekker'},
+        {hz:'چای گرم می‌خوام',tr:'chaay garm me-khaam',nl:'Ik wil warme thee'},
+      ]
+    },
+    { id:'food_cooking', title:'Koken & Keuken', icon:'👨‍🍳', xp:18, words:[
+        {hz:'آشپز',tr:'aashpaz',nl:'Kok / Chef',tip:'"آشپزی" = koken'},
+        {hz:'دیگ',tr:'deeg',nl:'Pan / Pot',tip:''},
+        {hz:'کارد',tr:'kaard',nl:'Mes',tip:''},
+        {hz:'بشقاب',tr:'boshqaab',nl:'Bord',tip:'Lange oo en aa'},
+        {hz:'پختن',tr:'pakhtan',nl:'Koken (werkwoord)',tip:''},
+        {hz:'بریدن',tr:'boredan',nl:'Snijden',tip:''},
+        {hz:'سرختن',tr:'sorkhtan',nl:'Bakken / Braden',tip:''},
+        {hz:'خوردن',tr:'khordan',nl:'Eten (werkwoord)',tip:''},
+      ],
+      sentences:[
+        {hz:'مادرم خوب آشپزی می‌کنه',tr:'maadaram khob aashpazee me-kona',nl:'Mijn moeder kookt goed'},
+        {hz:'گوشت را سرختم، بعد سبزی افزودم',tr:'gosht ra sorkhti, ba\'d sabzee afzodam',nl:'Ik bakte het vlees, daarna voegde ik groente toe'},
+      ]
+    },
+  ]},
+
+  { id:'ch20', label:'💭 Hoofdstuk 20 · Gevoelens & Gedachten', color:'#A78BFA', lessons:[
+    { id:'emotions_basic', title:'Basisgevoelens', icon:'💕', xp:20, words:[
+        {hz:'خوشحال',tr:'khoshaal',nl:'Blij / Gelukkig',tip:'"خوش" = goed + "حال" = toestand'},
+        {hz:'غمگین',tr:'ghamgeen',nl:'Verdrietig / Bedroefd',tip:'Lange ee'},
+        {hz:'ترسیده',tr:'tarseeda',nl:'Bang / Angstig',tip:'Van "ترسیدن" = bang zijn'},
+        {hz:'خشمگین',tr:'khashmageen',nl:'Boos / Kwaad',tip:''},
+        {hz:'حیران',tr:'hayraan',nl:'Verbaasd / Versteld',tip:'Lange aa'},
+        {hz:'شرمنده',tr:'sharmanda',nl:'Verlegen / Beschaamd',tip:''},
+        {hz:'دلتنگ',tr:'deltang',nl:'Heimwee / Gemist',tip:'"دل" = hart + "تنگ" = nauw'},
+        {hz:'آرام',tr:'aaraam',nl:'Rustig / Kalm',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'وقتی خانواده‌ام رو می‌بینم خوشحالم',tr:'waqti khaanawaadam ra me-beenam khoshaalem',nl:'Als ik mijn familie zie ben ik blij'},
+        {hz:'دلتنگ وطنم استم',tr:'deltang-e watnam astam',nl:'Ik mis mijn thuisland'},
+      ]
+    },
+    { id:'emotions_thinking', title:'Gedachten & Ideeën', icon:'🧠', xp:18, words:[
+        {hz:'فکر',tr:'fekr',nl:'Gedachte / Denken',tip:''},
+        {hz:'خیال',tr:'khayaal',nl:'Idee / Verbeelding',tip:'Lange aa'},
+        {hz:'یاد',tr:'yaad',nl:'Herinnering / Geheugen',tip:'Lange aa'},
+        {hz:'رویا',tr:'royaa',nl:'Droom',tip:'Lange aa'},
+        {hz:'امید',tr:'omeed',nl:'Hoop',tip:'Lange ee'},
+        {hz:'باور',tr:'baawor',nl:'Geloof / Overtuiging',tip:''},
+        {hz:'فهمیدن',tr:'fahmedan',nl:'Begrijpen',tip:''},
+        {hz:'یاد گرفتن',tr:'yaad gereftan',nl:'Leren / Onthouden',tip:'"یاد" = geheugen + "گرفتن" = pakken'},
+      ],
+      sentences:[
+        {hz:'فکر می‌کنم درست اَس',tr:'fekr me-konam dorost as',nl:'Ik denk dat het correct is'},
+        {hz:'امیدم اَس که موفق می‌شم',tr:'omeedam as ke mawaffaq me-sham',nl:'Ik hoop dat ik succesvol word'},
+      ]
+    },
+    { id:'emotions_character', title:'Karakter & Relaties', icon:'🤝', xp:18, words:[
+        {hz:'مهربان',tr:'mehrabaan',nl:'Vriendelijk / Lief',tip:'Lange aa'},
+        {hz:'دوست',tr:'dost',nl:'Vriend',tip:''},
+        {hz:'دشمن',tr:'doshman',nl:'Vijand',tip:''},
+        {hz:'امین',tr:'ameen',nl:'Eerlijk / Betrouwbaar',tip:'Lange ee'},
+        {hz:'شجاع',tr:'shojaa',nl:'Dapper / Moedig',tip:'Hazara zijn bekend om hun moed'},
+        {hz:'صادق',tr:'saadaq',nl:'Oprecht',tip:'Lange aa'},
+        {hz:'احترام',tr:'ehtaraam',nl:'Respect',tip:'Lange aa'},
+        {hz:'اعتماد',tr:'e\'temaad',nl:'Vertrouwen',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'دوستم مهربان و امین اَس',tr:'dostam mehrabaan o ameen as',nl:'Mijn vriend is vriendelijk en eerlijk'},
+        {hz:'احترام مهم‌ترین چیز اَس',tr:'ehtaraam mohimtareen cheez as',nl:'Respect is het belangrijkste ding'},
+      ]
+    },
+  ]},
 ];
 
 // ══════════════════════════════════════════════════════
@@ -1332,6 +1572,11 @@ const ACHVS = [
   {id:'ch11',icon:'🌆',name:'Stad & Vervoer',desc:'Hoofdstuk 11 gestart'},
   {id:'ch12',icon:'💻',name:'Technologie',desc:'Hoofdstuk 12 gestart'},
   {id:'ch13',icon:'🌍',name:'Diaspora',desc:'Hoofdstuk 13 gestart'},
+  {id:'ch16',icon:'🌿',name:'Natuur & Seizoenen',desc:'Hoofdstuk 16 gestart'},
+  {id:'ch17',icon:'💊',name:'Gezondheid',desc:'Hoofdstuk 17 gestart'},
+  {id:'ch18',icon:'🎭',name:'Cultuur & Tradities',desc:'Hoofdstuk 18 gestart'},
+  {id:'ch19',icon:'🍎',name:'Eten & Keuken',desc:'Hoofdstuk 19 gestart'},
+  {id:'ch20',icon:'💭',name:'Gevoelens',desc:'Hoofdstuk 20 gestart'},
   {id:'ch2',icon:'🏡',name:'Hoofdstuk 2',desc:'Familie & Thuis gestart'},
   {id:'ch3',icon:'💕',name:'Hoofdstuk 3',desc:'Gevoel & Dagelijks gestart'},
   {id:'ch4',icon:'💬',name:'Hoofdstuk 4',desc:'Conversatie gestart'},

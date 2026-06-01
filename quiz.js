@@ -2,41 +2,54 @@
 // OVERHORING — standalone quiz (no hearts, no lessons)
 // ══════════════════════════════════════════════════════
 let _ovhWords=[], _ovhIdx=0, _ovhScore=0, _ovhErrors=[], _ovhChoices=[];
+let _ovhTimer=false, _ovhTimerID=null, _ovhTimerSec=0;
 
 function openOvhSetup(){
   const total=Object.keys(S.vocab).length;
   if(total<4){showToast('Leer eerst meer woorden! Voltooi een les. 📚');return;}
-  const cap=n=>Math.min(n,total);
   document.getElementById('ovh-setup').style.display='flex';
   document.getElementById('ovh-quiz').style.display='none';
   document.getElementById('ovh-overlay').classList.add('open');
   document.getElementById('ovh-total-lbl').textContent=total+' woorden beschikbaar';
-  // disable buttons if not enough words
   document.querySelectorAll('.ovh-size-btn').forEach(b=>{
     const n=+b.dataset.n;
     b.disabled=total<n;
     b.querySelector('.ovh-size-sub').textContent=total<n?'Niet genoeg woorden':b.dataset.sub;
   });
+  _ovhTimer=false;
+  const tb=document.getElementById('ovh-timer-toggle');
+  if(tb)tb.classList.remove('on');
 }
 
 function closeOvhoring(){
+  if(_ovhTimerID){clearInterval(_ovhTimerID);_ovhTimerID=null;}
   document.getElementById('ovh-overlay').classList.remove('open');
 }
 
-function startOvhoring(n){
-  const words=Object.entries(S.vocab);
-  const pool=Math.min(n, words.length);
-  // sort: due + low mastery first, then shuffle the top pool
-  const sorted=[...words].sort(([,a],[,b])=>{
-    const dueA=!a.nr||new Date(a.nr)<=new Date()?0:1;
-    const dueB=!b.nr||new Date(b.nr)<=new Date()?0:1;
-    if(dueA!==dueB)return dueA-dueB;
-    return (a.mastery||0)-(b.mastery||0);
-  });
-  _ovhWords=shuffle(sorted.slice(0,pool)).map(([hz,v])=>({
-    hz, v,
-    dir: Math.random()>.5?'hz_nl':'nl_hz'
-  }));
+function toggleOvhTimer(btn){
+  _ovhTimer=!_ovhTimer;
+  btn.textContent=_ovhTimer?'Aan':'Uit';
+  btn.classList.toggle('on',_ovhTimer);
+}
+
+function startOvhoring(n, wordList){
+  if(wordList){
+    // retry errors mode
+    _ovhWords=wordList;
+  } else {
+    const words=Object.entries(S.vocab);
+    const pool=Math.min(n, words.length);
+    const sorted=[...words].sort(([,a],[,b])=>{
+      const dueA=!a.nr||new Date(a.nr)<=new Date()?0:1;
+      const dueB=!b.nr||new Date(b.nr)<=new Date()?0:1;
+      if(dueA!==dueB)return dueA-dueB;
+      return (a.mastery||0)-(b.mastery||0);
+    });
+    _ovhWords=shuffle(sorted.slice(0,pool)).map(([hz,v])=>({
+      hz, v,
+      dir: Math.random()>.5?'hz_nl':'nl_hz'
+    }));
+  }
   _ovhIdx=0; _ovhScore=0; _ovhErrors=[];
   document.getElementById('ovh-setup').style.display='none';
   document.getElementById('ovh-quiz').style.display='flex';
@@ -44,6 +57,7 @@ function startOvhoring(n){
 }
 
 function renderOvh(){
+  if(_ovhTimerID){clearInterval(_ovhTimerID);_ovhTimerID=null;}
   const total=_ovhWords.length;
   const prog=Math.round(_ovhIdx/total*100);
   document.getElementById('ovh-prog').style.width=prog+'%';
@@ -57,7 +71,8 @@ function renderOvh(){
 
   let prompt, correct;
   if(dir==='hz_nl'){
-    prompt=`<div class="ovh-hz-word">${hz}</div><div class="ovh-latin">${v.tr||''}</div>`;
+    const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
+    prompt=`<div class="ovh-hz-word">${hz}</div><div class="ovh-latin">🔊 ${pron}</div>`;
     correct=v.nl;
     const dist=shuffle(allWords.filter(([h])=>h!==hz)).slice(0,3).map(([,d])=>d.nl);
     _ovhChoices=shuffle([correct,...dist]);
@@ -69,7 +84,9 @@ function renderOvh(){
   }
 
   const isRTL=dir==='nl_hz';
+  const timerHTML=_ovhTimer?`<div class="ovh-timer" id="ovh-timer">10</div>`:'';
   document.getElementById('ovh-body').innerHTML=`
+    ${timerHTML}
     <div class="type-pill">${dir==='hz_nl'?'Wat betekent dit?':'Hoe schrijf je dit?'}</div>
     <div class="ovh-prompt">${prompt}</div>
     <div class="choices">${_ovhChoices.map((c,i)=>`
@@ -77,9 +94,32 @@ function renderOvh(){
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}
     </div>`;
+
+  if(_ovhTimer){
+    _ovhTimerSec=10;
+    _ovhTimerID=setInterval(()=>{
+      _ovhTimerSec--;
+      const el=document.getElementById('ovh-timer');
+      if(el){el.textContent=_ovhTimerSec;if(_ovhTimerSec<=3)el.classList.add('urgent');}
+      if(_ovhTimerSec<=0){
+        clearInterval(_ovhTimerID);_ovhTimerID=null;
+        // Time's up — count as wrong
+        document.querySelectorAll('#ovh-body .ch-btn').forEach((b,i)=>{
+          b.disabled=true;
+          if(_ovhChoices[i]===correct)b.classList.add('ok');
+        });
+        _ovhErrors.push({hz,v,chosen:'—',correct,dir});
+        sfxWrong();
+        updMastery(hz,false);
+        save();
+        setTimeout(()=>{_ovhIdx++;renderOvh();},1200);
+      }
+    },1000);
+  }
 }
 
 function answerOvh(btn,idx){
+  if(_ovhTimerID){clearInterval(_ovhTimerID);_ovhTimerID=null;}
   const {hz,v,dir}=_ovhWords[_ovhIdx];
   const chosen=_ovhChoices[idx];
   const correct=dir==='hz_nl'?v.nl:hz;
@@ -101,6 +141,11 @@ function answerOvh(btn,idx){
   }
   save();
   setTimeout(()=>{_ovhIdx++;renderOvh();},ok?700:1300);
+}
+
+function retryOvhErrors(){
+  const errorWords=_ovhErrors.map(({hz,v,dir})=>({hz,v,dir:dir==='hz_nl'?'nl_hz':'hz_nl'}));
+  startOvhoring(0, errorWords);
 }
 
 function renderOvhResult(){
@@ -130,6 +175,7 @@ function renderOvhResult(){
       <div class="ovh-res-msg">${msg}</div>
       <div class="ovh-res-btns">
         <button class="btn-check" style="position:static" onclick="startOvhoring(${total})">Opnieuw</button>
+        ${_ovhErrors.length?`<button class="btn-check" style="position:static;background:linear-gradient(135deg,var(--peach),#e07040)" onclick="retryOvhErrors()">🔁 Fouten herhalen (${_ovhErrors.length})</button>`:''}
         <button class="btn-check" style="position:static;background:var(--ink)" onclick="closeOvhoring()">Klaar</button>
       </div>
       ${errHTML}
