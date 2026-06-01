@@ -74,6 +74,15 @@
     <div class="rb-arr">›</div>
   </div>
 
+  <div class="ovh-banner" onclick="openOvhSetup()">
+    <div class="rb-ico">📝</div>
+    <div class="rb-txt">
+      <h3>Overhoring</h3>
+      <p>Test jezelf zonder les — kies hoeveel vragen</p>
+    </div>
+    <div class="rb-arr">›</div>
+  </div>
+
   <div class="sci-banner">
     <div class="sci-ico">🧠</div>
     <div class="sci-txt" id="sci-tip-txt"><strong>Tip:</strong> Herhaling op het juiste moment verankert woorden in je geheugen!</div>
@@ -141,6 +150,44 @@
   <div class="w-list" id="w-list"></div>
 </div>
 
+<!-- ═══════════════════ OVERHORING ═══════════════════ -->
+<div class="ovh-overlay" id="ovh-overlay">
+  <div class="ovh-topbar">
+    <button class="btn-x" onclick="closeOvhoring()">✕</button>
+    <div class="qt-prog-track"><div class="qt-prog-fill" id="ovh-prog" style="width:0%"></div></div>
+    <div class="ovh-counter" id="ovh-counter">1 / 10</div>
+  </div>
+
+  <!-- Setup scherm -->
+  <div class="ovh-setup" id="ovh-setup">
+    <div class="ovh-setup-ico">📝</div>
+    <div class="ovh-setup-ttl">Overhoring</div>
+    <div class="ovh-setup-sub" id="ovh-total-lbl">0 woorden beschikbaar</div>
+    <div class="ovh-sizes">
+      <button class="ovh-size-btn" data-n="10" data-sub="Snel" onclick="startOvhoring(10)">
+        <div class="ovh-size-n">10</div>
+        <div class="ovh-size-lbl">vragen</div>
+        <div class="ovh-size-sub">Snel</div>
+      </button>
+      <button class="ovh-size-btn" data-n="20" data-sub="Normaal" onclick="startOvhoring(20)">
+        <div class="ovh-size-n">20</div>
+        <div class="ovh-size-lbl">vragen</div>
+        <div class="ovh-size-sub">Normaal</div>
+      </button>
+      <button class="ovh-size-btn" data-n="9999" data-sub="Alles" onclick="startOvhoring(9999)">
+        <div class="ovh-size-n">Alle</div>
+        <div class="ovh-size-lbl">woorden</div>
+        <div class="ovh-size-sub">Alles</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Quiz body -->
+  <div class="ovh-quiz" id="ovh-quiz" style="display:none">
+    <div class="ovh-body" id="ovh-body"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════ QUICK TEST ═══════════════════ -->
 <div class="qt-overlay" id="qt-overlay">
   <div class="qt-inner">
@@ -200,6 +247,7 @@
 <script src="state.js"></script>
 <script src="ui.js"></script>
 <script src="lesson.js"></script>
+<script src="quiz.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

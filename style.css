@@ -321,6 +321,60 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
   cursor:not-allowed;
 }
 
+/* ── OVERHORING BANNER (home) ── */
+.ovh-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#EDE9FE,#F0EBFF);border-radius:var(--r);padding:16px 18px;margin:0 16px 14px;cursor:pointer;transition:all .18s;box-shadow:0 4px 18px rgba(167,139,250,.2);border:2px solid rgba(167,139,250,.2)}
+.ovh-banner:active{transform:scale(.98)}
+.ovh-banner .rb-ico{font-size:30px;flex-shrink:0}
+.ovh-banner .rb-txt h3{font-size:15px;font-weight:900;color:var(--ink)}
+.ovh-banner .rb-txt p{font-size:12px;font-weight:600;color:var(--ink-m);margin-top:2px}
+.ovh-banner .rb-arr{font-size:24px;font-weight:900;color:var(--lav);margin-left:auto;flex-shrink:0}
+
+/* ── OVERHORING OVERLAY ── */
+.ovh-overlay{position:fixed;inset:0;background:var(--cream);z-index:400;display:none;flex-direction:column;max-width:430px;width:100%;left:50%;transform:translateX(-50%)}
+.ovh-overlay.open{display:flex}
+.ovh-topbar{display:flex;align-items:center;gap:12px;padding:max(48px,env(safe-area-inset-top,48px)) 18px 16px;background:var(--white);box-shadow:0 2px 12px rgba(45,27,46,.06);flex-shrink:0}
+.ovh-counter{font-size:12px;font-weight:900;color:var(--ink-l);white-space:nowrap;min-width:48px;text-align:right}
+
+/* Setup scherm */
+.ovh-setup{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:6px;text-align:center}
+.ovh-setup-ico{font-size:64px;margin-bottom:8px}
+.ovh-setup-ttl{font-size:28px;font-weight:900;color:var(--ink)}
+.ovh-setup-sub{font-size:14px;font-weight:600;color:var(--ink-m);margin-bottom:24px}
+.ovh-sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:360px}
+.ovh-size-btn{background:var(--white);border:2.5px solid var(--ink-xl);border-radius:var(--r-sm);padding:18px 10px;cursor:pointer;transition:all .18s;font-family:'Nunito',sans-serif;text-align:center}
+.ovh-size-btn:hover:not(:disabled){border-color:var(--lav);background:var(--lav-l);transform:translateY(-2px)}
+.ovh-size-btn:disabled{opacity:.35;cursor:not-allowed}
+.ovh-size-n{font-size:26px;font-weight:900;color:var(--ink)}
+.ovh-size-lbl{font-size:11px;font-weight:700;color:var(--ink-m)}
+.ovh-size-sub{font-size:10px;font-weight:800;color:var(--lav);margin-top:4px}
+
+/* Quiz body */
+.ovh-quiz{flex:1;overflow-y:auto;display:flex;flex-direction:column}
+.ovh-body{flex:1;padding:24px 20px 40px;display:flex;flex-direction:column;gap:16px}
+.ovh-hz-word{font-family:'Noto Naskh Arabic',serif;font-size:48px;font-weight:700;direction:rtl;color:var(--ink);line-height:1.6;text-align:center}
+.ovh-nl-word{font-size:26px;font-weight:900;color:var(--ink);text-align:center;line-height:1.4}
+.ovh-latin{font-size:15px;font-weight:700;color:var(--rose);font-style:italic;text-align:center}
+.ovh-prompt{background:linear-gradient(145deg,#EDE9FE,#F5F0FF);border:2px solid var(--lav-l);border-radius:var(--r);padding:24px 20px;text-align:center;display:flex;flex-direction:column;gap:6px}
+.ch-rtl{font-family:'Noto Naskh Arabic',serif;direction:rtl;font-size:18px;justify-content:flex-end}
+.ch-rtl .ch-ltr{order:1;margin-left:auto;margin-right:0}
+
+/* Result */
+.ovh-result{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:8px}
+.ovh-res-emoji{font-size:64px;margin-bottom:4px}
+.ovh-res-score{font-size:52px;font-weight:900;color:var(--ink);line-height:1}
+.ovh-res-score span{font-size:28px;color:var(--ink-l)}
+.ovh-res-pct{font-size:15px;font-weight:800;color:var(--lav)}
+.ovh-res-msg{font-size:14px;font-weight:700;color:var(--ink-m);margin-bottom:8px}
+.ovh-res-btns{display:flex;gap:10px;width:100%}
+.ovh-perfect{background:var(--mint-l);border:2px solid var(--mint);border-radius:var(--r-sm);padding:14px;text-align:center;font-size:14px;font-weight:800;color:var(--mint);width:100%}
+.ovh-errs{width:100%;border-top:2px solid var(--rose-xl);padding-top:18px;margin-top:8px;display:flex;flex-direction:column;gap:8px}
+.ovh-errs-ttl{font-size:13px;font-weight:900;color:var(--rose);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.ovh-err-row{background:var(--white);border-radius:var(--r-xs);padding:12px 14px;box-shadow:var(--sh);display:flex;align-items:center;gap:12px}
+.ovh-err-hz{font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;color:var(--ink);min-width:56px}
+.ovh-err-detail{display:flex;flex-direction:column;gap:3px}
+.ovh-err-ok{font-size:12px;font-weight:800;color:#16a34a}
+.ovh-err-ng{font-size:12px;font-weight:700;color:#dc2626;text-decoration:line-through}
+
 /* ── VOCAB HEADER TOP ROW ── */
 .rev-hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
 .btn-quiz{background:linear-gradient(135deg,var(--lav),#8B6FF0);color:#fff;border:none;border-radius:var(--r-sm);padding:10px 14px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;white-space:nowrap;box-shadow:0 4px 14px rgba(167,139,250,.35);flex-shrink:0;transition:all .18s}
