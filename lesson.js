@@ -90,11 +90,12 @@ function renderEx(){
 // ── Intro card ──
 function rIntro(ex,body){
   const w=ex.w;
+  const pron=(w.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
   body.innerHTML=`
     <div class="type-pill">📖 Nieuw woord</div>
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
-      <span class="hz-latin">${w.tr}</span>
+      <span class="hz-latin">🔊 ${pron}</span>
       <span class="hz-nl">= ${w.nl}</span>
     </div>
     <div style="flex:1"></div>
@@ -136,11 +137,7 @@ function rMC_nl(ex,body){
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:18px">Wat betekent dit Hazaragi woord?</p>
     <div class="hz-card" style="margin-bottom:20px">
       <span class="hz-script">${w.hz}</span>
-      <span class="hz-latin">${w.tr}</span>
-      <div style="display:inline-flex;align-items:center;gap:6px;background:var(--lav-l);border-radius:50px;padding:4px 12px;margin-top:6px">
-        <span style="font-size:11px;font-weight:900;color:var(--lav)">🔤 uitspraak:</span>
-        <span style="font-size:13px;font-weight:800;color:var(--ink)">${w.tr}</span>
-      </div>
+      <span class="hz-latin">🔊 ${(w.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>')}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
