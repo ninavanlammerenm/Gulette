@@ -10,7 +10,8 @@ const EX_TYPE_LABELS={
   mc_nl:'🎯 Betekenis',
   mc_hz:'🔤 Hazaragi',
   wb:'🧩 Zin',
-  type:'⌨️ Typen'
+  type:'⌨️ Typen',
+  cloze:'🧩 Vul in'
 };
 
 function getLessonById(id){
@@ -37,22 +38,43 @@ function buildExercises(lesson){
   const ws=[...lesson.words];
   const ss=lesson.sentences||[];
 
-  ws.slice(0,6).forEach(w=>exs.push({type:'intro',w}));
+  // 1. Intro: contextual encoding — show word + matching sentence if available
+  ws.slice(0,6).forEach(w=>{
+    const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
+    exs.push({type:'intro',w,ctxSentence});
+  });
+
+  // 2. Context card (inductive pattern recognition)
   if(ss.length>0)exs.push({type:'context',ss});
 
+  // 3. Cloze: fill-in-the-blank in a sentence — contextual active recall
+  ss.forEach(s=>{
+    const match=ws.find(w=>s.hz.includes(w.hz));
+    if(match){
+      const d=ws.filter(x=>x.hz!==match.hz);
+      if(d.length>=3)exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
+    }
+  });
+
+  // 4. MC meaning (hz→nl): recognition
   shuffle(ws).slice(0,5).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
     if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
+  // 5. MC hazaragi (nl→hz): production recognition
   shuffle(ws).slice(0,4).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
     if(d.length>=3)exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
   });
 
+  // 6. Word bank (sentence ordering): output production
   ss.slice(0,2).forEach(s=>exs.push({type:'wb',s}));
+
+  // 7. Typing (active recall): strongest encoding
   shuffle(ws).slice(0,3).forEach(w=>exs.push({type:'type',w}));
 
+  // 8. Final MC round: spaced retrieval within session (interleaving effect)
   shuffle(ws).slice(0,4).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
     if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
@@ -80,6 +102,7 @@ function renderEx(){
 
   if(ex.type==='intro')    rIntro(ex,body);
   else if(ex.type==='context') rContext(ex,body);
+  else if(ex.type==='cloze')   rCloze(ex,body);
   else if(ex.type==='mc_nl')   rMC_nl(ex,body);
   else if(ex.type==='mc_hz')   rMC_hz(ex,body);
   else if(ex.type==='wb')      rWB(ex,body);
@@ -91,17 +114,48 @@ function renderEx(){
 function rIntro(ex,body){
   const w=ex.w;
   const pron=(w.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
+  const s=ex.ctxSentence;
+  // Highlight the word in the context sentence
+  const ctxHTML=s?`
+    <div class="ctx-mini">
+      <div class="ctx-mini-hz">${s.hz.replace(w.hz,`<mark>${w.hz}</mark>`)}</div>
+      <div class="ctx-mini-nl">"${s.nl}"</div>
+    </div>`:'';
+  // Pre-testing effect: if word is known, ask for self-assessment before confirming
+  // This activates prior knowledge and strengthens the memory trace
+  const isKnown=(S.vocab[w.hz]?.mastery||0)>0;
+  const actionBtns=isKnown
+    ?`<div class="self-assess-row">
+        <button class="sa-btn sa-no" onclick="saAnswer(false,'${w.hz.replace(/'/g,"\\'")}')">❌ Wist ik niet</button>
+        <button class="sa-btn sa-yes" onclick="saAnswer(true,'${w.hz.replace(/'/g,"\\'")}')">✅ Wist ik het!</button>
+      </div>`
+    :`<button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
+
   body.innerHTML=`
-    <div class="type-pill">📖 Nieuw woord</div>
+    <div class="type-pill">📖 ${isKnown?'Herhaling':'Nieuw woord'}</div>
+    ${isKnown?`<p style="font-size:13px;font-weight:700;color:var(--lav);margin-bottom:10px">💭 Wist je dit woord al?</p>`:''}
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <span class="hz-latin">🔊 ${pron}</span>
       <span class="hz-nl">= ${w.nl}</span>
     </div>
+    ${ctxHTML}
     <div style="flex:1"></div>
-    <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
+    ${actionBtns}`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
   save();
+}
+
+// Self-assessment after intro card — pre-testing effect
+function saAnswer(knew, hz){
+  if(knew){
+    CC++;LXP+=3;
+    updMastery(hz,true);
+    sfxCorrect();
+  } else {
+    updMastery(hz,false);
+  }
+  nextEx();
 }
 
 // ── Context / inductief leren ──
@@ -119,6 +173,32 @@ function rContext(ex,body){
     </div>
     <div style="flex:1"></div>
     <button class="btn-check" onclick="nextEx()">Ik snap het! ✓</button>`;
+}
+
+// ── Cloze (fill-in-the-blank) ──
+// Science: combines contextual encoding + active recall = highest retention
+function rCloze(ex,body){
+  const {s,w,choices}=ex;
+  const ltrs=['A','B','C','D'];
+  // Blank out the word in the sentence
+  const blankedHz=s.hz.replace(w.hz,'<span class="cloze-blank">___</span>');
+  body.innerHTML=`
+    <div class="type-pill">🧩 Vul de zin aan</div>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk woord past in de zin?</p>
+    <div class="ctx-card" style="margin-bottom:20px">
+      <div class="ctx-sentence">${blankedHz}</div>
+      <div class="ctx-tr">${s.tr.replace(w.tr,'___')}</div>
+      <div class="ctx-nl">"${s.nl}"</div>
+    </div>
+    <div class="choices">${choices.map((c,i)=>`
+      <button class="ch-btn ch-rtl" data-action="mc_hz" data-chosen="${c}" data-correct="${w.hz}" data-nl="${w.nl}" data-tr="${w.tr}">
+        <span class="ch-ltr">${ltrs[i]}</span>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;line-height:1.5">${c}</span>
+          <span style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${CL.words.find(x=>x.hz===c)?.tr||''}</span>
+        </div>
+      </button>`).join('')}
+    </div>`;
 }
 
 function getPronTip(hz){
@@ -436,10 +516,24 @@ function finishLesson(){
 // DAILY REVIEW
 // ══════════════════════════════════════════════════════
 function startDailyReview(){
-  const due=Object.entries(S.vocab).filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
+  const now=new Date();
+  const allEntries=Object.entries(S.vocab);
+  const due=allEntries.filter(([,v])=>!v.nr||new Date(v.nr)<=now);
   if(due.length===0){showToast('Geen reviews nu! Kom later terug 🌸');return;}
-  const rw=due.slice(0,14).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr,tip:''}));
-  CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,rw.length*2),words:rw,sentences:[],grammar:'Herhaling van eerder geleerde woorden!'};
+
+  // Interleaving: take up to 10 due words, then add 2-4 words from other mastery levels
+  // Science: interleaving different difficulty levels improves long-term retention
+  const dueSlice=shuffle(due).slice(0,10);
+  const dueHzSet=new Set(dueSlice.map(([hz])=>hz));
+  const notDue=allEntries.filter(([hz,v])=>!dueHzSet.has(hz)&&(v.mastery||0)>0);
+  // Pick interleaved words: mix of low-mastery (hard) and high-mastery (easy)
+  const lowMastery=notDue.filter(([,v])=>(v.mastery||0)<=2);
+  const highMastery=notDue.filter(([,v])=>(v.mastery||0)>=4);
+  const interleaved=[...shuffle(lowMastery).slice(0,2),...shuffle(highMastery).slice(0,2)];
+  const pool=shuffle([...dueSlice,...interleaved]);
+
+  const rw=pool.map(([hz,v])=>({hz,nl:v.nl,tr:v.tr,tip:''}));
+  CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,rw.length*2),words:rw,sentences:[]};
   EXS=buildExercises(CL);EI=CC=WC=LXP=0;
   HEARTS=3;
   document.getElementById('bnav').style.display='none';

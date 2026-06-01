@@ -143,6 +143,23 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
 .ctx-tr{font-size:13px;font-weight:600;color:var(--rose);font-style:italic;margin-bottom:3px}
 .ctx-nl{font-size:13px;font-weight:700;color:var(--ink-m)}
 
+/* Context mini (on intro card) */
+.ctx-mini{background:linear-gradient(135deg,#FFF0F5,#FFE8EF);border:1.5px solid var(--rose-l);border-radius:var(--r-xs);padding:12px 14px;margin-top:12px}
+.ctx-mini-hz{font-family:'Noto Naskh Arabic',serif;font-size:18px;direction:rtl;text-align:right;color:var(--ink);line-height:1.7}
+.ctx-mini-hz mark{background:var(--rose-xl);color:var(--rose-d);border-radius:4px;padding:0 3px;font-weight:900}
+.ctx-mini-nl{font-size:12px;font-weight:700;color:var(--ink-m);margin-top:4px}
+
+/* Cloze blank */
+.cloze-blank{display:inline-block;min-width:52px;border-bottom:3px solid var(--rose);color:transparent;background:var(--rose-xl);border-radius:4px;margin:0 4px;line-height:1.2}
+
+/* Self-assessment buttons (pre-testing effect) */
+.self-assess-row{display:flex;gap:10px;width:100%}
+.sa-btn{flex:1;padding:16px 10px;border:none;border-radius:var(--r-sm);font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s}
+.sa-no{background:linear-gradient(135deg,#FEE2E2,#FECACA);color:#dc2626}
+.sa-no:hover{background:linear-gradient(135deg,#FECACA,#FCA5A5);transform:translateY(-1px)}
+.sa-yes{background:linear-gradient(135deg,#D1FAE5,#A7F3D0);color:#16a34a}
+.sa-yes:hover{background:linear-gradient(135deg,#A7F3D0,#6EE7B7);transform:translateY(-1px)}
+
 /* Pattern tip */
 .pattern-tip{background:linear-gradient(135deg,var(--mint-l),#E8FFF8);border:2px solid var(--mint);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
 .pt-ico{font-size:20px;flex-shrink:0;margin-top:1px}
