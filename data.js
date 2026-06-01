@@ -284,7 +284,7 @@ const CHAPTERS=[
         {hz:'سر',tr:'sar',nl:'Hoofd',tip:''},
         {hz:'چشم',tr:'chashm',nl:'Oog',tip:'"چشم" = ook: "ja met plezier"'},
         {hz:'دهن',tr:'dahan',nl:'Mond',tip:''},
-        {hz:'دست',tr:'dast',nl:'Hand / Arm',tip:'"دستت درد نکنه" = bedankt voor je moeite'},
+        {hz:'دست',tr:'dist',nl:'Hand / Arm',tip:'"دستت درد نکنه" = bedankt voor je moeite'},
         {hz:'پا',tr:'paa',nl:'Voet / Been',tip:''},
         {hz:'دل',tr:'del',nl:'Hart / Gevoel',tip:'"دل" is het emotiecentrum in Hazaragi!'},
         {hz:'شکم',tr:'shekam',nl:'Buik',tip:''},

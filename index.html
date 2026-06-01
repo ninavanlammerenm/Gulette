@@ -120,17 +120,37 @@
 <!-- ═══════════════════ VOCAB ═══════════════════ -->
 <div id="screen-review" class="screen">
   <div class="rev-hdr">
-    <h2>📚 Mijn woordenlijst</h2>
-    <p id="rev-sub">0 woorden geleerd</p>
+    <div class="rev-hdr-top">
+      <div>
+        <h2>📚 Mijn woordenlijst</h2>
+        <p id="rev-sub">0 woorden geleerd</p>
+      </div>
+      <button class="btn-quiz" onclick="startQuickTest()">⚡ Test jezelf</button>
+    </div>
+    <div class="search-wrap">
+      <span class="search-ico">🔍</span>
+      <input class="search-inp" id="vocab-search" type="text" placeholder="Zoek op woord of vertaling..." oninput="renderVocab()">
+    </div>
   </div>
   <div class="filter-row">
     <button class="fc on" onclick="filterW('all',this)">Alle</button>
-    <button class="fc" onclick="filterW('new',this)">Nieuw</button>
+    <button class="fc" onclick="filterW('due',this)">Review nu</button>
     <button class="fc" onclick="filterW('learning',this)">Leren</button>
     <button class="fc" onclick="filterW('mastered',this)">Beheerst</button>
-    <button class="fc" onclick="filterW('due',this)">Review nu</button>
   </div>
   <div class="w-list" id="w-list"></div>
+</div>
+
+<!-- ═══════════════════ QUICK TEST ═══════════════════ -->
+<div class="qt-overlay" id="qt-overlay">
+  <div class="qt-inner">
+    <div class="qt-topbar">
+      <button class="btn-x" onclick="closeQuickTest()">✕</button>
+      <div class="qt-prog-track"><div class="qt-prog-fill" id="qt-prog" style="width:0%"></div></div>
+      <div style="width:38px"></div>
+    </div>
+    <div class="qt-body" id="qt-body"></div>
+  </div>
 </div>
 
 <!-- ═══════════════════ PROFILE ═══════════════════ -->

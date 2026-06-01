@@ -320,3 +320,23 @@ body{font-family:'Nunito',sans-serif;background:#EDD8EC;display:flex;justify-con
   opacity:.45;
   cursor:not-allowed;
 }
+
+/* ── VOCAB HEADER TOP ROW ── */
+.rev-hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.btn-quiz{background:linear-gradient(135deg,var(--lav),#8B6FF0);color:#fff;border:none;border-radius:var(--r-sm);padding:10px 14px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;white-space:nowrap;box-shadow:0 4px 14px rgba(167,139,250,.35);flex-shrink:0;transition:all .18s}
+.btn-quiz:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(167,139,250,.5)}
+
+/* ── SEARCH ── */
+.search-wrap{display:flex;align-items:center;gap:10px;background:var(--white);border-radius:var(--r-sm);padding:11px 14px;box-shadow:var(--sh);margin-top:2px}
+.search-ico{font-size:16px;flex-shrink:0}
+.search-inp{flex:1;border:none;outline:none;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--ink);background:transparent}
+.search-inp::placeholder{color:var(--ink-l);font-weight:600}
+
+/* ── QUICK TEST OVERLAY ── */
+.qt-overlay{position:fixed;inset:0;background:var(--cream);z-index:400;display:none;flex-direction:column;max-width:430px;width:100%;left:50%;transform:translateX(-50%)}
+.qt-overlay.open{display:flex}
+.qt-inner{display:flex;flex-direction:column;flex:1;overflow:hidden}
+.qt-topbar{display:flex;align-items:center;gap:12px;padding:max(48px,env(safe-area-inset-top,48px)) 18px 16px;background:var(--white);box-shadow:0 2px 12px rgba(45,27,46,.06)}
+.qt-prog-track{flex:1;height:8px;background:var(--rose-xl);border-radius:50px;overflow:hidden}
+.qt-prog-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-d));border-radius:50px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.qt-body{flex:1;overflow-y:auto;padding:28px 20px 40px;display:flex;flex-direction:column;gap:18px}

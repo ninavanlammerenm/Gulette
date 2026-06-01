@@ -171,16 +171,31 @@ function filterW(f,btn){
 }
 
 function renderVocab(){
+  const search=(document.getElementById('vocab-search')?.value||'').toLowerCase().trim();
   const ents=Object.entries(S.vocab);
   document.getElementById('rev-sub').textContent=ents.length+' woorden geleerd';
   let list=ents;
-  if(wFilter==='new')      list=ents.filter(([,v])=>(v.mastery||0)===0);
-  else if(wFilter==='learning') list=ents.filter(([,v])=>(v.mastery||0)>0&&(v.mastery||0)<3);
+  if(wFilter==='learning') list=ents.filter(([,v])=>(v.mastery||0)>0&&(v.mastery||0)<3);
   else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.mastery||0)>=3);
   else if(wFilter==='due')      list=ents.filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
+
+  if(search) list=list.filter(([hz,v])=>
+    hz.includes(search)||
+    (v.nl||'').toLowerCase().includes(search)||
+    (v.tr||'').toLowerCase().includes(search)
+  );
+
+  // Sorteren: review-klaar eerst, dan oplopend op mastery (laag = meeste aandacht nodig)
+  list=list.sort(([,a],[,b])=>{
+    const dueA=!a.nr||new Date(a.nr)<=new Date()?0:1;
+    const dueB=!b.nr||new Date(b.nr)<=new Date()?0:1;
+    if(dueA!==dueB)return dueA-dueB;
+    return (a.mastery||0)-(b.mastery||0);
+  });
+
   const el=document.getElementById('w-list');
   if(!list.length){
-    el.innerHTML='<div style="text-align:center;color:var(--ink-l);padding:44px 20px;font-weight:700;line-height:2">Geen woorden hier 🌸<br><small>Start een les om te beginnen!</small></div>';
+    el.innerHTML='<div style="text-align:center;color:var(--ink-l);padding:44px 20px;font-weight:700;line-height:2">Geen woorden gevonden 🌸<br><small>Probeer een andere zoekterm.</small></div>';
     return;
   }
   el.innerHTML=list.map(([hz,v])=>{
@@ -188,7 +203,8 @@ function renderVocab(){
     const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
     const due=!v.nr||new Date(v.nr)<=new Date();
     const nxt=v.nr?timeUntil(v.nr):'Nu';
-    return `<div class="wc" data-hz="${hz}">
+    const accent=due&&m<2?'var(--rose-d)':m>=4?'var(--mint)':m>=2?'var(--lav)':'var(--gold)';
+    return `<div class="wc" data-hz="${hz}" style="border-left:4px solid ${accent}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
         <div class="wc-tr">${v.tr||''}</div>
@@ -198,6 +214,80 @@ function renderVocab(){
       <div class="m-pips">${pips}</div>
     </div>`;
   }).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// QUICK TEST
+// ══════════════════════════════════════════════════════
+let _qtWords=[],_qtIdx=0,_qtScore=0,_qtChoices=[];
+
+function startQuickTest(){
+  const words=Object.entries(S.vocab);
+  if(words.length<4){showToast('Leer eerst meer woorden! 📚');return;}
+  // Prioriteer laag mastery en review-klaar
+  const sorted=[...words].sort(([,a],[,b])=>{
+    const dueA=!a.nr||new Date(a.nr)<=new Date()?0:1;
+    const dueB=!b.nr||new Date(b.nr)<=new Date()?0:1;
+    if(dueA!==dueB)return dueA-dueB;
+    return (a.mastery||0)-(b.mastery||0);
+  });
+  _qtWords=sorted.slice(0,5);
+  _qtIdx=0;_qtScore=0;
+  document.getElementById('qt-overlay').classList.add('open');
+  renderQT();
+}
+
+function closeQuickTest(){
+  document.getElementById('qt-overlay').classList.remove('open');
+}
+
+function renderQT(){
+  const prog=Math.round(_qtIdx/_qtWords.length*100);
+  document.getElementById('qt-prog').style.width=prog+'%';
+  if(_qtIdx>=_qtWords.length){
+    const all=_qtWords.length;
+    document.getElementById('qt-body').innerHTML=`
+      <div style="text-align:center;padding:40px 0;display:flex;flex-direction:column;align-items:center;gap:12px">
+        <div style="font-size:64px">${_qtScore===all?'🌟':'🌸'}</div>
+        <div style="font-size:26px;font-weight:900;color:var(--ink)">${_qtScore} van ${all} goed</div>
+        <div style="font-size:14px;font-weight:700;color:var(--ink-m)">${_qtScore===all?'Foutloos! Geweldig!':_qtScore>=3?'Goed gedaan!':'Blijf oefenen!'}</div>
+        <button class="btn-check" style="position:static;margin-top:16px" onclick="closeQuickTest()">Klaar ✓</button>
+      </div>`;
+    return;
+  }
+  const [hz,v]=_qtWords[_qtIdx];
+  const allWords=Object.entries(S.vocab);
+  const distractors=shuffle(allWords.filter(([h])=>h!==hz));
+  _qtChoices=shuffle([v.nl,...distractors.slice(0,3).map(([,d])=>d.nl)]);
+  const ltrs=['A','B','C','D'];
+  document.getElementById('qt-body').innerHTML=`
+    <div class="type-pill">⚡ Vraag ${_qtIdx+1} van ${_qtWords.length}</div>
+    <div class="hz-card" style="margin-bottom:20px">
+      <span class="hz-script">${hz}</span>
+      <span class="hz-latin">${v.tr||''}</span>
+    </div>
+    <div class="choices">${_qtChoices.map((c,i)=>`
+      <button class="ch-btn" onclick="answerQT(this,${i})">
+        <span class="ch-ltr">${ltrs[i]}</span>${c}
+      </button>`).join('')}</div>`;
+}
+
+function answerQT(btn,idx){
+  const chosen=_qtChoices[idx];
+  const correct=_qtWords[_qtIdx][1].nl;
+  document.querySelectorAll('#qt-body .ch-btn').forEach(b=>b.disabled=true);
+  if(chosen===correct){
+    btn.classList.add('ok');_qtScore++;
+    sfxCorrect();
+    setTimeout(()=>{_qtIdx++;renderQT();},700);
+  }else{
+    btn.classList.add('ng');
+    document.querySelectorAll('#qt-body .ch-btn').forEach(b=>{
+      if(_qtChoices[Array.from(document.querySelectorAll('#qt-body .ch-btn')).indexOf(b)]===correct)b.classList.add('ok');
+    });
+    sfxWrong();
+    setTimeout(()=>{_qtIdx++;renderQT();},1200);
+  }
 }
 
 function timeUntil(iso){
