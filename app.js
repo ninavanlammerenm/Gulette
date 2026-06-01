@@ -6,14 +6,14 @@ if(window.speechSynthesis){
   window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
 }
 
-// Veilige event delegation voor tiles
+// ── Veilige event delegation ──
 document.addEventListener('click', function(e){
   const tile = e.target.closest('[data-action]');
   if(!tile) return;
   const action = tile.dataset.action;
   if(action === 'wbmove') wbMove(tile, tile.dataset.word);
-  if(action === 'mc_nl') chkMC(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
-  if(action === 'mc_hz') chkMC_hz(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.nl, tile.dataset.tr);
+  if(action === 'mc_nl')  chkMC(tile,    tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
+  if(action === 'mc_hz')  chkMC_hz(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.nl, tile.dataset.tr);
 
   const wc = e.target.closest('.wc[data-hz]');
   if(wc) showPronModal(wc.dataset.hz);
@@ -29,6 +29,81 @@ const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse
 let sciIdx=0;
 
 // ══════════════════════════════════════════════════════
+// AUDIO FEEDBACK  (Web Audio API — geen externe bestanden)
+// ══════════════════════════════════════════════════════
+let _actx=null;
+function getACtx(){
+  if(!_actx){try{_actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+  return _actx;
+}
+
+function playTone(freq,dur,type='sine',vol=0.18){
+  const ctx=getACtx();if(!ctx)return;
+  try{
+    if(ctx.state==='suspended')ctx.resume();
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.type=type;osc.frequency.setValueAtTime(freq,ctx.currentTime);
+    gain.gain.setValueAtTime(vol,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+    osc.start(ctx.currentTime);osc.stop(ctx.currentTime+dur);
+  }catch(e){}
+}
+
+function sfxCorrect(){
+  // vrolijk oplopend akkoord
+  playTone(520,0.12,'sine',0.15);
+  setTimeout(()=>playTone(660,0.12,'sine',0.15),80);
+  setTimeout(()=>playTone(780,0.18,'sine',0.15),160);
+}
+
+function sfxWrong(){
+  // zacht dalend signaal
+  playTone(300,0.15,'sawtooth',0.08);
+  setTimeout(()=>playTone(220,0.2,'sawtooth',0.08),100);
+}
+
+function sfxFinish(){
+  [0,80,160,240,320].forEach((t,i)=>{
+    const freqs=[440,550,660,770,880];
+    setTimeout(()=>playTone(freqs[i],0.25,'sine',0.14),t);
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// HEARTS
+// ══════════════════════════════════════════════════════
+let HEARTS=3;
+
+function renderHearts(){
+  const el=document.getElementById('hearts');
+  if(!el)return;
+  el.innerHTML='';
+  for(let i=0;i<3;i++){
+    const span=document.createElement('span');
+    span.style.cssText='transition:all .3s;display:inline-block';
+    span.textContent=i<HEARTS?'❤️':'🖤';
+    if(i>=HEARTS){span.style.opacity='0.35';span.style.filter='grayscale(1)';}
+    el.appendChild(span);
+  }
+}
+
+function loseHeart(){
+  if(HEARTS<=0)return;
+  HEARTS--;
+  renderHearts();
+  // schud-animatie op hartjes
+  const el=document.getElementById('hearts');
+  if(el){
+    el.style.animation='none';
+    requestAnimationFrame(()=>{
+      el.style.animation='shake .32s ease';
+    });
+  }
+}
+
+// ══════════════════════════════════════════════════════
 // NAV
 // ══════════════════════════════════════════════════════
 const showScreen = id => {
@@ -40,9 +115,9 @@ function navTo(id, btn) {
   showScreen(id);
   document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
-  if(id === 'review') renderVocab();
-  if(id === 'profile') renderProfile();
-  if(id === 'home') renderHome();
+  if(id==='review')  renderVocab();
+  if(id==='profile') renderProfile();
+  if(id==='home')    renderHome();
 }
 
 function goHome(){
@@ -82,7 +157,7 @@ function startApp(){
 // HOME
 // ══════════════════════════════════════════════════════
 function renderHome(){
-  document.getElementById('hdr-name').innerHTML = 'Salam, <em>' + S.name + '</em> 👋';
+  document.getElementById('hdr-name').innerHTML='Salam, <em>'+S.name+'</em> 👋';
   document.getElementById('chip-streak').textContent=S.streak;
   document.getElementById('chip-xp').textContent=S.xp;
   const lvl=Math.floor(S.xp/100)+1;
@@ -134,7 +209,14 @@ function renderHome(){
 
   // Due count
   const due=Object.values(S.vocab).filter(v=>!v.nr||new Date(v.nr)<=new Date()).length;
-  document.getElementById('rev-count-txt').textContent=due>0?`${due} woorden klaar voor herhaling! 🌸`:'Je bent helemaal bij! 🌸';
+  const total=Object.keys(S.vocab).length;
+  if(due>0){
+    document.getElementById('rev-count-txt').textContent=`${due} van ${total} woorden klaar voor herhaling! 🌸`;
+  }else if(total===0){
+    document.getElementById('rev-count-txt').textContent='Start een les om woorden te leren 🌸';
+  }else{
+    document.getElementById('rev-count-txt').textContent='Je bent helemaal bij! Kom later terug 🌸';
+  }
 
   // Chapters / lesson path
   const cw=document.getElementById('chapters-wrap');
@@ -173,6 +255,16 @@ function renderHome(){
 // ══════════════════════════════════════════════════════
 let CL=null,EXS=[],EI=0,CC=0,WC=0,LXP=0,WAITING=false;
 
+// Oefentype labels voor de voortgangsbalk
+const EX_TYPE_LABELS={
+  intro:'📖 Nieuw woord',
+  context:'🔍 Patroon',
+  mc_nl:'🎯 Betekenis',
+  mc_hz:'🔤 Hazaragi',
+  wb:'🧩 Zin',
+  type:'⌨️ Typen'
+};
+
 function getLessonById(id){
   for(const ch of CHAPTERS)for(const l of ch.lessons)if(l.id===id)return l;
   return null;
@@ -182,10 +274,13 @@ function startLesson(id){
   CL=getLessonById(id);
   if(!CL)return;
   EXS=buildExercises(CL);
-  EI=CC=WC=LXP=0;WAITING=false;
+  EI=CC=WC=LXP=0;
+  HEARTS=3;
+  WAITING=false;
   showScreen('lesson');
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  renderHearts();
   renderEx();
 }
 
@@ -224,19 +319,23 @@ function renderEx(){
   if(EI>=EXS.length){finishLesson();return;}
   const pct=Math.round(EI/EXS.length*100);
   document.getElementById('l-prog').style.width=pct+'%';
-  document.getElementById('l-counter').textContent=(EI+1)+' / '+EXS.length;
-  hideFB();
+
   const ex=EXS[EI];
+  const typeLabel=EX_TYPE_LABELS[ex.type]||'';
+  document.getElementById('l-counter').textContent=`${typeLabel}  ${EI+1}/${EXS.length}`;
+
+  hideFB();
   const body=document.getElementById('l-body');
   body.innerHTML='';
   body.scrollTop=0;
   window.scrollTo(0,0);
-  if(ex.type==='intro')rIntro(ex,body);
-  else if(ex.type==='context')rContext(ex,body);
-  else if(ex.type==='mc_nl')rMC_nl(ex,body);
-  else if(ex.type==='mc_hz')rMC_hz(ex,body);
-  else if(ex.type==='wb')rWB(ex,body);
-  else if(ex.type==='type')rType(ex,body);
+
+  if(ex.type==='intro')    rIntro(ex,body);
+  else if(ex.type==='context') rContext(ex,body);
+  else if(ex.type==='mc_nl')   rMC_nl(ex,body);
+  else if(ex.type==='mc_hz')   rMC_hz(ex,body);
+  else if(ex.type==='wb')      rWB(ex,body);
+  else if(ex.type==='type')    rType(ex,body);
   else nextEx();
 }
 
@@ -328,6 +427,7 @@ function rMC_hz(ex,body){
 }
 
 // ── Word bank ──
+// FIX: gebruik data-word consequent (was data-word in bank, data-w in answer → mismatch)
 function rWB(ex,body){
   const s=ex.s;
   const words=s.hz.split(' ').filter(Boolean);
@@ -345,33 +445,59 @@ function rWB(ex,body){
     <div class="wb-bank" id="wb-bnk">${shuf.map(w=>`
       <button class="w-tile" data-action="wbmove" data-word="${w}">${w}</button>`).join('')}</div>
     <div style="flex:1"></div>
-    <button class="btn-check" id="btn-check-wb">Controleer ✓</button>`;
+    <button class="btn-check" id="btn-check-wb" disabled>Controleer ✓</button>`;
 
-  document.getElementById('btn-check-wb').addEventListener('click', ()=> chkWB(correct, s.nl, s.tr));
+  // Schakel knop in zodra er minstens één tegel geplaatst is
+  const ansEl=document.getElementById('wb-ans');
+  const observer=new MutationObserver(()=>{
+    const count=ansEl.querySelectorAll('.ans').length;
+    document.getElementById('btn-check-wb').disabled=count===0;
+  });
+  observer.observe(ansEl,{childList:true});
+
+  document.getElementById('btn-check-wb').addEventListener('click', ()=>{ observer.disconnect(); chkWB(correct, s.nl, s.tr); });
 }
 
-function wbMove(tile,word){
+// FIX: gebruik data-word consistent (was dataset.w, nu dataset.word)
+function wbMove(tile, word){
   tile.classList.add('placed');
   const zone=document.getElementById('wb-ans');
   const t=document.createElement('button');
-  t.className='w-tile ans';t.textContent=word;t.dataset.w=word;
-  t.onclick=()=>{t.remove();tile.classList.remove('placed');
-    if(!document.getElementById('wb-ans').querySelector('.ans'))
-      document.getElementById('wb-ans').classList.remove('has');};
-  zone.appendChild(t);zone.classList.add('has');
+  t.className='w-tile ans';
+  t.textContent=word;
+  t.dataset.word=word; // ← was dataset.w (bug fix)
+  t.onclick=()=>{
+    t.remove();
+    tile.classList.remove('placed');
+    const remaining=document.getElementById('wb-ans').querySelectorAll('.ans').length;
+    if(remaining===0)document.getElementById('wb-ans').classList.remove('has');
+  };
+  zone.appendChild(t);
+  zone.classList.add('has');
 }
 
+// FIX: gebruik dataset.word (was dataset.w)
 function chkWB(correct,nl,tr){
   const tiles=document.getElementById('wb-ans').querySelectorAll('.ans');
-  const ans=Array.from(tiles).map(t=>t.dataset.w).join(' ');
-  if(ans===correct){CC++;LXP+=8;showFB(true,'🎀 Correct!',nl,'');sparkles();}
-  else{WC++;showFB(false,'Niet helemaal!','Juist: '+tr,correct);}
+  const ans=Array.from(tiles).map(t=>t.dataset.word).join(' '); // ← was dataset.w (bug fix)
+  if(ans===correct){
+    CC++;LXP+=8;
+    sfxCorrect();
+    showFB(true,'🎀 Correct!',nl,'');
+    sparkles();
+  }else{
+    WC++;
+    sfxWrong();
+    loseHeart();
+    showFB(false,'Niet helemaal!','Juist: '+tr,correct);
+  }
 }
 
 // ── Type ──
 function rType(ex,body){
   const w=ex.w;
   let hintLevel=0;
+  let retryMode=false; // FIX: boolean ipv dataset string
 
   body.innerHTML=`
     <div class="type-pill">⌨️ Actief ophalen</div>
@@ -391,7 +517,7 @@ function rType(ex,body){
       spellcheck="false"
       placeholder="Typ in Hazaragi schrift...">
     <div class="t-hint" id="t-hint"></div>
-    <button class="hint-btn" id="hint-btn">💡 Hint</button>
+    <button class="hint-btn" id="hint-btn">💡 Hint (uitspraak)</button>
     <div style="flex:1"></div>
     <button class="btn-check" id="btn-check-type">Controleer ✓</button>`;
 
@@ -399,10 +525,17 @@ function rType(ex,body){
   const inp=document.getElementById('t-inp');
   const hintBtn=document.getElementById('hint-btn');
   const hintEl=document.getElementById('t-hint');
+  const checkBtn=document.getElementById('btn-check-type');
 
-  inp.addEventListener('input', ()=> inp.classList.remove('ok','ng'));
-  inp.addEventListener('keydown', e=>{ if(e.key==='Enter') chkType(correct, w.nl, w.tr); });
-  document.getElementById('btn-check-type').addEventListener('click', ()=> chkType(correct, w.nl, w.tr));
+  inp.addEventListener('input', ()=>{
+    inp.classList.remove('ok','ng');
+    // herstel check-knop als gebruiker na fout opnieuw typt
+    if(retryMode){
+      checkBtn.textContent='Typ het over ✍️';
+    }
+  });
+  inp.addEventListener('keydown', e=>{ if(e.key==='Enter') doCheckType(); });
+  checkBtn.addEventListener('click', doCheckType);
 
   hintBtn.addEventListener('click', ()=>{
     hintLevel++;
@@ -416,51 +549,57 @@ function rType(ex,body){
       inp.classList.remove('ok','ng');
       hintBtn.disabled=true;
       hintBtn.textContent='✓ Antwoord getoond';
-    }
-  });
-
-  setTimeout(()=> inp.focus(), 120);
-}
-
-const normAr=s=>s.replace(/[ًٌٍَُِّْ]/g,'').replace(/[آأإا]/g,'ا').replace(/[يی]/g,'ی').replace(/ة/g,'ه').trim();
-
-function chkType(correct,nl,tr){
-  const inp=document.getElementById('t-inp');
-  const val=inp.value.trim();
-  if(!val)return;
-
-  if(normAr(val)===normAr(correct)){
-    inp.classList.add('ok');
-    if(inp.dataset.retry==='true'){
-      showFB(true,'✅ Goed overgetypt!',nl,correct);
-    } else {
-      CC++;LXP+=10;
-      showFB(true,'✨ Uitstekend!',nl,correct);
-      sparkles();
-    }
-    updMastery(correct,true);
-    inp.dataset.retry='false';
-  } else {
-    WC++;
-    updMastery(correct,false);
-    inp.classList.add('ng');
-    const hintEl=document.getElementById('t-hint');
-    hintEl.innerHTML=`✍️ Typ dit over: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
-    hintEl.classList.add('show');
-    setTimeout(()=>{
-      inp.value='';
-      inp.classList.remove('ng');
-      inp.focus();
-    },800);
-    inp.dataset.retry='true';
-    const checkBtn=document.querySelector('.btn-check');
-    if(checkBtn){
+      retryMode=true; // toon als "overtypen"
       checkBtn.textContent='Typ het over ✍️';
       checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
     }
-    hideFB();
+  });
+
+  function doCheckType(){
+    const val=inp.value.trim();
+    if(!val)return;
+
+    if(normAr(val)===normAr(correct)){
+      inp.classList.add('ok');
+      sfxCorrect();
+      if(retryMode){
+        // Antwoord was al getoond — geen XP bonus, maar ga wel door
+        showFB(true,'✅ Goed overgetypt!',w.nl,correct);
+      } else {
+        CC++;LXP+=10;
+        showFB(true,'✨ Uitstekend!',w.nl,correct);
+        sparkles();
+      }
+      updMastery(correct,!retryMode);
+    } else {
+      // Eerste fout
+      if(!retryMode){
+        WC++;
+        sfxWrong();
+        loseHeart();
+        updMastery(correct,false);
+        retryMode=true;
+      }
+      inp.classList.add('ng');
+      hintEl.innerHTML=`✍️ Typ dit over: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
+      hintEl.classList.add('show');
+      // verberg hint-knop (antwoord al zichtbaar)
+      hintBtn.style.display='none';
+      checkBtn.textContent='Typ het over ✍️';
+      checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
+      setTimeout(()=>{
+        inp.value='';
+        inp.classList.remove('ng');
+        inp.focus();
+      },700);
+      hideFB();
+    }
   }
+
+  setTimeout(()=>inp.focus(), 120);
 }
+
+const normAr=s=>s.replace(/[ًٌٍَُِّْ]/g,'').replace(/[آأإا]/g,'ا').replace(/[يی]/g,'ی').replace(/ة/g,'ه').trim();
 
 // ── MC checks ──
 function chkMC(btn,chosen,correct,hz,tr){
@@ -468,13 +607,21 @@ function chkMC(btn,chosen,correct,hz,tr){
   document.querySelectorAll('.ch-btn').forEach(b=>b.disabled=true);
   if(chosen===correct){
     btn.classList.add('ok');CC++;LXP+=5;
-    showFB(true,'🌸 Goed!',correct,hz);sparkles();updMastery(hz,true);
+    sfxCorrect();
+    showFB(true,'🌸 Goed!',correct,hz);
+    sparkles();
+    updMastery(hz,true);
   }else{
     btn.classList.add('ng');WC++;
+    sfxWrong();
+    loseHeart();
+    // markeer het juiste antwoord groen
     document.querySelectorAll('.ch-btn').forEach(b=>{
-      if(b.textContent.replace(/[A-D]/g,'').trim()===correct||b.querySelector('span:last-child')?.textContent.trim()===correct)b.classList.add('ok');
+      const txt=b.childNodes[1]?.textContent?.trim()||b.querySelector('span:last-child')?.textContent?.trim()||'';
+      if(txt===correct)b.classList.add('ok');
     });
-    showFB(false,'Bijna!',`${hz} (${tr}) = ${correct}`,hz);updMastery(hz,false);
+    showFB(false,'Bijna!',`${hz} (${tr}) = ${correct}`,hz);
+    updMastery(hz,false);
   }
 }
 
@@ -483,14 +630,22 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
   document.querySelectorAll('.ch-btn').forEach(b=>b.disabled=true);
   if(chosen===correct){
     btn.classList.add('ok');CC++;LXP+=5;
-    showFB(true,'🌸 Goed!',nl,correct);sparkles();updMastery(correct,true);
+    sfxCorrect();
+    showFB(true,'🌸 Goed!',nl,correct);
+    sparkles();
+    updMastery(correct,true);
   }else{
     btn.classList.add('ng');WC++;
+    sfxWrong();
+    loseHeart();
     document.querySelectorAll('.ch-btn').forEach(b=>{
       const s=b.querySelector('span:last-child');
-      if(s&&s.textContent.trim()===correct)b.classList.add('ok');
+      if(s&&s.querySelector&&s.querySelector('[style*="direction"]')?.textContent?.trim()===correct)b.classList.add('ok');
+      // fallback: tekst direct in span
+      if(s&&!s.children.length&&s.textContent.trim()===correct)b.classList.add('ok');
     });
-    showFB(false,'Bijna!',`Juist: ${correct} (${tr})`,correct);updMastery(correct,false);
+    showFB(false,'Bijna!',`Juist: ${correct} (${tr})`,correct);
+    updMastery(correct,false);
   }
 }
 
@@ -501,7 +656,7 @@ function updMastery(hz,ok){
   if(ok){
     v.mastery=Math.min(5,(v.mastery||0)+1);
     const intervals=[1,3,7,14,30];
-    const d=intervals[v.mastery-1]||30;
+    const d=intervals[Math.min(v.mastery-1,4)];
     v.nr=new Date(Date.now()+d*86400000).toISOString();
   }else{
     v.mastery=Math.max(0,(v.mastery||0)-1);
@@ -528,43 +683,44 @@ function leaveLesson(){
   bg.className='modal-bg';
   const modal=document.createElement('div');
   modal.className='modal';
-  const drag=document.createElement('div');
-  drag.className='modal-drag';
-  const title=document.createElement('div');
-  title.style.cssText='font-size:18px;font-weight:900;color:var(--ink);margin-bottom:8px';
-  title.textContent='Les verlaten? 🎀';
-  const sub=document.createElement('div');
-  sub.style.cssText='font-size:14px;font-weight:600;color:var(--ink-m);margin-bottom:24px';
-  sub.textContent='Je voortgang in deze les gaat verloren.';
-  const btnRow=document.createElement('div');
-  btnRow.style.cssText='display:flex;gap:10px';
-  const btnStay=document.createElement('button');
-  btnStay.className='btn-check';
-  btnStay.style.cssText='position:static;flex:1;background:linear-gradient(135deg,var(--rose),var(--rose-d))';
-  btnStay.textContent='Doorgaan 💪';
-  btnStay.addEventListener('click',()=>bg.remove());
-  const btnLeave=document.createElement('button');
-  btnLeave.style.cssText='flex:1;background:var(--rose-xl);color:var(--rose-d);border:2px solid var(--rose-l);border-radius:var(--r-sm);padding:17px;font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer';
-  btnLeave.textContent='Verlaten';
-  btnLeave.addEventListener('click',()=>{bg.remove();WAITING=false;hideFB();goHome();});
-  btnRow.appendChild(btnStay);
-  btnRow.appendChild(btnLeave);
-  modal.appendChild(drag);modal.appendChild(title);modal.appendChild(sub);modal.appendChild(btnRow);
+  modal.innerHTML=`
+    <div class="modal-drag"></div>
+    <div style="font-size:18px;font-weight:900;color:var(--ink);margin-bottom:8px">Les verlaten? 🎀</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink-m);margin-bottom:24px">Je voortgang in deze les gaat verloren.</div>
+    <div style="display:flex;gap:10px">
+      <button id="modal-stay" style="flex:1;background:linear-gradient(135deg,var(--rose),var(--rose-d));color:#fff;border:none;border-radius:var(--r-sm);padding:17px;font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer">Doorgaan 💪</button>
+      <button id="modal-leave" style="flex:1;background:var(--rose-xl);color:var(--rose-d);border:2px solid var(--rose-l);border-radius:var(--r-sm);padding:17px;font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer">Verlaten</button>
+    </div>`;
   bg.appendChild(modal);
   bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
+  modal.querySelector('#modal-stay').addEventListener('click',()=>bg.remove());
+  modal.querySelector('#modal-leave').addEventListener('click',()=>{bg.remove();WAITING=false;hideFB();goHome();});
   document.body.appendChild(bg);
 }
 
 // ── Finish ──
 function finishLesson(){
   if(!S.done.includes(CL.id))S.done.push(CL.id);
+  const bonusXP=HEARTS===3?5:0; // perfecte bonus
+  LXP+=bonusXP;
   S.xp+=LXP;
   updStreak();checkAchv();save();
-  document.getElementById('r-xp').textContent='+'+LXP;
+
+  document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` ✨+${bonusXP} bonus`:'');
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
   document.getElementById('r-str').textContent='🔥'+S.streak;
   document.getElementById('res-sub').textContent=CL.title+' voltooid! 🌸';
-  showScreen('result');confetti();
+
+  // Perfecte les → extra bericht
+  if(WC===0&&CC>0){
+    document.querySelector('.res-ttl').textContent='Foutloos! 🌟';
+  }else{
+    document.querySelector('.res-ttl').textContent='Geweldig!';
+  }
+
+  showScreen('result');
+  sfxFinish();
+  confetti();
 }
 
 // ══════════════════════════════════════════════════════
@@ -576,9 +732,11 @@ function startDailyReview(){
   const rw=due.slice(0,14).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr,tip:''}));
   CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,rw.length*2),words:rw,sentences:[],grammar:'Herhaling van eerder geleerde woorden!'};
   EXS=buildExercises(CL);EI=CC=WC=LXP=0;
+  HEARTS=3;
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   showScreen('lesson');
+  renderHearts();
   renderEx();
 }
 
@@ -604,7 +762,7 @@ function updStreak(){
 function getMonday(d){
   const day=d.getDay();
   const diff=d.getDate()-(day===0?6:day-1);
-  return new Date(d.setDate(diff));
+  return new Date(new Date(d).setDate(diff));
 }
 
 function checkAchv(){
@@ -632,12 +790,15 @@ function renderVocab(){
   const ents=Object.entries(S.vocab);
   document.getElementById('rev-sub').textContent=ents.length+' woorden geleerd';
   let list=ents;
-  if(wFilter==='new')list=ents.filter(([,v])=>(v.mastery||0)===0);
-  else if(wFilter==='learning')list=ents.filter(([,v])=>(v.mastery||0)>0&&(v.mastery||0)<3);
-  else if(wFilter==='mastered')list=ents.filter(([,v])=>(v.mastery||0)>=3);
-  else if(wFilter==='due')list=ents.filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
+  if(wFilter==='new')      list=ents.filter(([,v])=>(v.mastery||0)===0);
+  else if(wFilter==='learning') list=ents.filter(([,v])=>(v.mastery||0)>0&&(v.mastery||0)<3);
+  else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.mastery||0)>=3);
+  else if(wFilter==='due')      list=ents.filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
   const el=document.getElementById('w-list');
-  if(!list.length){el.innerHTML='<div style="text-align:center;color:var(--ink-l);padding:44px 20px;font-weight:700;line-height:2">Geen woorden hier 🌸<br><small>Start een les om te beginnen!</small></div>';return;}
+  if(!list.length){
+    el.innerHTML='<div style="text-align:center;color:var(--ink-l);padding:44px 20px;font-weight:700;line-height:2">Geen woorden hier 🌸<br><small>Start een les om te beginnen!</small></div>';
+    return;
+  }
   el.innerHTML=list.map(([hz,v])=>{
     const m=Math.round(v.mastery||0);
     const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
@@ -781,16 +942,13 @@ function exportData(){
   const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;
-  a.download=`gulette-voortgang-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
+  a.href=url;a.download=`gulette-voortgang-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();URL.revokeObjectURL(url);
   showToast('📤 Voortgang geëxporteerd!');
 }
 
 function importData(event){
-  const file=event.target.files[0];
-  if(!file)return;
+  const file=event.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=e=>{
     try{
