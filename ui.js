@@ -96,43 +96,24 @@ function renderHome(){
   sciIdx=(sciIdx+1)%SCI_TIPS.length;
   document.getElementById('sci-tip-txt').innerHTML=SCI_TIPS[sciIdx];
 
-  // Week bars
+  // Week dots
   const days=['Ma','Di','Wo','Do','Vr','Za','Zo'];
-  const today=new Date().getDay();
-  const todayIdx=today===0?6:today-1;
+  const todayDay=new Date().getDay();
+  const todayIdx=todayDay===0?6:todayDay-1;
   const wa=S.weekActivity||[];
-  const wbEl=document.getElementById('week-bars');
-  wbEl.innerHTML='';
+  const dotsEl=document.getElementById('week-dots');
+  dotsEl.innerHTML='';
   let activeDays=0;
   days.forEach((d,i)=>{
     const active=wa.includes(i);
     if(active)activeDays++;
     const isToday=i===todayIdx;
-    const h=active?100:8;
-    const color=active?(isToday?'#FF6B9D':'#FFB8D4'):'#FFE0EE';
-    wbEl.innerHTML+=`<div class="day-bar-wrap">
-      <div class="day-bar-bg"><div class="day-bar-fill" style="height:${h}%;background:${color}"></div></div>
-      <div class="day-lbl${isToday?' today':''}">${d}</div>
-    </div>`;
+    const dot=document.createElement('div');
+    dot.className='week-dot'+(active?' active':'')+(isToday?' today':'');
+    dot.title=d;
+    dotsEl.appendChild(dot);
   });
-  document.getElementById('sc-sub').textContent=`${activeDays} van 7 dagen actief`;
-
-  // Chapter progress bars
-  const cpEl=document.getElementById('ch-prog-list');
-  cpEl.innerHTML='';
-  CHAPTERS.forEach(ch=>{
-    const total=ch.lessons.length;
-    const done=ch.lessons.filter(l=>S.done.includes(l.id)).length;
-    const pct2=total?Math.round(done/total*100):0;
-    cpEl.innerHTML+=`<div class="ch-prog-item">
-      <div class="ch-prog-icon">${ch.lessons[0].icon}</div>
-      <div class="ch-prog-info">
-        <div class="ch-prog-name">${ch.label.replace(/^[^ ]+ /,'')}</div>
-        <div class="ch-prog-track"><div class="ch-prog-fill" style="width:${pct2}%;background:${ch.color}"></div></div>
-      </div>
-      <div class="ch-prog-pct" style="color:${ch.color}">${pct2}%</div>
-    </div>`;
-  });
+  document.getElementById('sc-sub').textContent=`${activeDays} van 7`;
 
   // Due count
   const due=Object.values(S.vocab).filter(v=>!v.nr||new Date(v.nr)<=new Date()).length;
