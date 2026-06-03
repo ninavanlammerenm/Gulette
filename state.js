@@ -2,6 +2,29 @@
 // STATE
 // ══════════════════════════════════════════════════════
 let S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},achv:[],weekActivity:[],goal:10,xpLog:{}};
+
+// ══════════════════════════════════════════════════════
+// NEDERLANDS UITSPRAAKGIDS
+// ══════════════════════════════════════════════════════
+function toDutchPhonetic(tr){
+  if(!tr) return '';
+  // Gebruik placeholders om dubbele vervangingen te voorkomen
+  return tr
+    .replace(/kh/gi,'⟨CH⟩')  // خ = zachte ch (zoals in "Bach")
+    .replace(/gh/gi,'⟨G⟩')   // غ = zachte g
+    .replace(/sh/gi,'sj')     // ش = sj (zoals in "sjaal")
+    .replace(/ch/gi,'tsj')    // چ = tsj (zoals in "check")
+    .replace(/zh/gi,'zj')     // ژ = zj
+    .replace(/aa/gi,'aa')     // lange aa blijft
+    .replace(/oo/gi,'oe')     // lange o → oe (zoals in "boek")
+    .replace(/ee/gi,'ie')     // lange e/i → ie (zoals in "fiets")
+    .replace(/ai/gi,'aj')     // ai → aj
+    .replace(/q/gi,'k')       // ق = diepe k (keel)
+    .replace(/'/g,'')         // keelklank weghalen
+    .replace(/⟨CH⟩/g,'ch')   // khain → ch
+    .replace(/⟨G⟩/g,'g')     // ghain → g
+    .trim();
+}
 const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
 

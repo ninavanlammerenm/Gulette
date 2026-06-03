@@ -431,3 +431,8 @@ body.hide-roman .ovh-latin,
 body.hide-roman .wc-pron,
 body.hide-roman .ctx-tr,
 body.hide-roman .pron-latin{ display:none!important }
+
+/* ── NEDERLANDSE UITSPRAAKGIDS ── */
+.hz-dutch{font-size:21px;font-weight:900;color:var(--rose-d);display:block;margin:6px 0 2px;letter-spacing:.5px;font-family:'Nunito',sans-serif}
+.wc-dutch{font-size:15px;font-weight:900;color:var(--rose-d);margin-bottom:2px;font-family:'Nunito',sans-serif}
+.ovh-dutch{font-size:22px;font-weight:900;color:var(--rose-d);text-align:center;letter-spacing:.5px}

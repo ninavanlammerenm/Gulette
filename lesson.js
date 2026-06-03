@@ -124,10 +124,12 @@ function rIntro(ex,body){
       <div class="ctx-mini-hz">${s.hz.replace(w.hz,`<mark>${w.hz}</mark>`)}</div>
       <div class="ctx-mini-nl">"${s.nl}"</div>
     </div>`:'';
+  const dutch=toDutchPhonetic(w.tr);
   body.innerHTML=`
     <div class="type-pill">📖 Nieuw woord</div>
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
+      <span class="hz-dutch">🗣️ ${dutch}</span>
       <span class="hz-latin">🔊 ${pron}</span>
       <span class="hz-nl">= ${w.nl}</span>
     </div>
@@ -209,6 +211,7 @@ function rMC_nl(ex,body){
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:18px">Wat betekent dit Hazaragi woord?</p>
     <div class="hz-card" style="margin-bottom:20px">
       <span class="hz-script">${w.hz}</span>
+      <span class="hz-dutch">🗣️ ${toDutchPhonetic(w.tr)}</span>
       <span class="hz-latin">🔊 ${(w.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>')}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
@@ -314,7 +317,8 @@ function rType(ex,body){
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Hazaragi woord voor:</p>
     <div class="hz-card" style="margin-bottom:18px">
       <span class="hz-nl" style="font-size:24px;font-weight:900;color:var(--ink)">${w.nl}</span>
-      <span class="hz-latin" style="margin-top:6px">${w.tr}</span>
+      <span class="hz-dutch">🗣️ ${toDutchPhonetic(w.tr)}</span>
+      <span class="hz-latin" style="margin-top:2px">${w.tr}</span>
     </div>
     <input class="t-inp" id="t-inp"
       inputmode="text"

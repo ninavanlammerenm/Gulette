@@ -230,9 +230,11 @@ function renderVocab(){
     const accent=due&&m<2?'var(--rose-d)':m>=4?'var(--mint)':m>=2?'var(--lav)':'var(--gold)';
     // markeer lange klanken (dubbele klinkers) in de uitspraak
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
+    const dutch=toDutchPhonetic(v.tr);
     return `<div class="wc" data-hz="${hz}" style="border-left:4px solid ${accent}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
+        <div class="wc-dutch">🗣️ ${dutch}</div>
         <div class="wc-pron">🔊 ${pron}</div>
         <div class="wc-nl">${v.nl||''}</div>
         <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
@@ -340,6 +342,7 @@ function showPronModal(hz){
   row1.className='pron-row';
   row1.innerHTML=`<div class="pron-hz">${hz}</div>
     <div class="pron-info">
+      <div style="font-size:17px;font-weight:900;color:var(--rose-d);margin-bottom:3px">🗣️ ${toDutchPhonetic(v.tr)}</div>
       <div class="pron-latin">${v.tr}</div>
       <div class="pron-tip">= ${v.nl}</div>
     </div>`;

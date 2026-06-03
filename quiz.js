@@ -72,7 +72,8 @@ function renderOvh(){
   let prompt, correct;
   if(dir==='hz_nl'){
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
-    prompt=`<div class="ovh-hz-word">${hz}</div><div class="ovh-latin">🔊 ${pron}</div>`;
+    const dutch=toDutchPhonetic(v.tr);
+    prompt=`<div class="ovh-hz-word">${hz}</div><div class="ovh-dutch">🗣️ ${dutch}</div><div class="ovh-latin">🔊 ${pron}</div>`;
     correct=v.nl;
     const dist=shuffle(allWords.filter(([h])=>h!==hz)).slice(0,3).map(([,d])=>d.nl);
     _ovhChoices=shuffle([correct,...dist]);
