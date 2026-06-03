@@ -1,4 +1,4 @@
-﻿// ══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // UITSPRAAK TIPS (Hazaragi-specifiek)
 // ══════════════════════════════════════════════════════
 const PRONUN_TIPS={
@@ -27,7 +27,70 @@ const SCI_TIPS=[
 // ══════════════════════════════════════════════════════
 // LESMATERIAAL
 // ══════════════════════════════════════════════════════
-const CHAPTERS=[
+const CHAPTERS=[  { id:'ch_alf', label:'🔡 Hoofdstuk A · Leer het schrift', color:'#D4A0B0', lessons:[
+
+    { id:'alf_intro', title:'Het Arabische schrift', sub:'Hoe werkt het?', icon:'🔡', xp:15,
+      pronTips:['خ','غ','ع','ق'],
+      grammar:'Hazaragi schrijft van rechts naar links met het Arabische schrift. Letters hebben 2–4 vormen afhankelijk van positie.',
+      words:[
+        {hz:'ا — آ',tr:'alef / alef madda',nl:'"a" of "aa" klank',tip:'Eerste letter — staat altijd los of aan het begin'},
+        {hz:'ب — پ — ت',tr:'ba — pa — ta',nl:'"b", "p", "t" klanken',tip:'Dezelfde vorm, verschillend aantal puntjes!'},
+        {hz:'ج — چ — ح — خ',tr:'jim — che — ha — kha',nl:'"j", "ch", "h", "kh"',tip:'"ح" = zachte h, "خ" = keel-g'},
+        {hz:'د — ذ — ر — ز — ژ',tr:'dal — zal — ra — za — zhe',nl:'"d", "z", "r", "z", "zh"',tip:'"ر" = gerolde r, "ژ" = als "j" in "jardin"'},
+        {hz:'س — ش',tr:'sin — shin',nl:'"s" en "sh"',tip:'Drie tanden boven de lijn'},
+        {hz:'ع — غ',tr:'ain — ghain',nl:'keel-a en keel-gh',tip:'"ع" = zachte keel, "غ" = rommelende r'},
+        {hz:'ف — ق — ک — گ',tr:'fa — qa — ka — ga',nl:'"f", "q", "k", "g"',tip:'"ق" = diepe keel-k — typisch Hazaragi'},
+        {hz:'ل — م — ن',tr:'lam — mim — nun',nl:'"l", "m", "n"',tip:'Basis-medeklinkers'},
+        {hz:'و',tr:'waw / oo',nl:'"w" of "oo" klank',tip:'Aan het begin "w", in het midden "oo"'},
+        {hz:'ی',tr:'ya / i',nl:'"y" of "ie" klank',tip:'Aan het begin "y", op andere posities "ie"'},
+      ],
+      sentences:[
+        {hz:'سلام',tr:'salaam',nl:'Hallo — lees van rechts naar links: س-ل-ا-م'},
+        {hz:'خوبم',tr:'khobam',nl:'Ik ben goed — let op: خ = keel-g'},
+        {hz:'مو',tr:'mo',nl:'Wij — twee letters: م + و'},
+      ]
+    },
+
+    { id:'alf_vowels', title:'Klinkers & lange klanken', sub:'Korte en lange klinkers', icon:'🔊', xp:15,
+      pronTips:['آ','ر'],
+      grammar:'Korte klinkers (fatHa, kasra, Damma) schrijf je zelden. Lange klanken schrijf je WEL: "آ/ا" = aa, "و" = oo, "ی" = ee.',
+      words:[
+        {hz:'آ',tr:'aa (lang)',nl:'Lange "aa" klank',tip:'"آب" (aab) = water — let op de tilde op de ا'},
+        {hz:'ا',tr:'a (in midden)',nl:'Korte of lange "a"',tip:'Na een klinker in een woord'},
+        {hz:'و = oo',tr:'oo (lang)',nl:'Lange "oo" klank',tip:'"پول" (pool) = geld'},
+        {hz:'ی = ee',tr:'ee (lang)',nl:'Lange "ee" klank',tip:'"بی" (bi) = zonder — lang ie'},
+        {hz:'َ (fatHa)',tr:'a (kort)',nl:'Korte "a" klank (accent)',tip:'Kleine streep boven de letter — zelden geschreven'},
+        {hz:'ِ (kasra)',tr:'e / i (kort)',nl:'Korte "e/i" klank',tip:'Kleine streep onder de letter'},
+        {hz:'ُ (Damma)',tr:'o / u (kort)',nl:'Korte "o/u" klank',tip:'Klein haakje boven de letter'},
+        {hz:'تشدید ّ',tr:'tashdid',nl:'Dubbele letter',tip:'Kleine "w" boven letter = zeg de letter dubbel'},
+      ],
+      sentences:[
+        {hz:'آب',tr:'aab',nl:'Water — lange aa gevolgd door b'},
+        {hz:'بیست',tr:'bist',nl:'Twintig — ب+ی+س+ت'},
+        {hz:'سلام',tr:'salaam',nl:'Hallo — س+ل+ا+م, lange aa in het midden'},
+      ]
+    },
+
+    { id:'alf_reading', title:'Lees je eerste zinnen', sub:'Van letters naar woorden', icon:'📖', xp:20,
+      pronTips:['خ','ع','غ','ق'],
+      grammar:'Oefen met herkennen. Je hoeft nog niet perfect te schrijven — lees eerst!',
+      words:[
+        {hz:'ب + ا + ب + ا = باوا',tr:'b+aa+w+aa = baawaa',nl:'Vader — 4 letters',tip:'Lees langzaam van rechts naar links'},
+        {hz:'س + ل + ا + م = سلام',tr:'s+l+aa+m = salaam',nl:'Hallo — 4 letters',tip:''},
+        {hz:'خ + و + ب = خوب',tr:'kh+oo+b = khob',nl:'Goed — 3 letters',tip:'"خ" = keel-g'},
+        {hz:'م + ا + د + ر = مادر',tr:'m+aa+d+ar = maadar',nl:'Moeder — 4 letters',tip:''},
+        {hz:'د + و + س + ت = دوست',tr:'d+oo+s+t = dost',nl:'Vriend — 4 letters',tip:''},
+        {hz:'ن + ا + م = نام',tr:'n+aa+m = naam',nl:'Naam — 3 letters',tip:''},
+        {hz:'چ + ا + ی = چای',tr:'ch+aa+y = chaay',nl:'Thee — 3 letters',tip:'"چ" = ch klank'},
+        {hz:'ه + ز + ا + ر = هزار',tr:'h+z+aa+r = hazaar',nl:'Duizend — 4 letters',tip:''},
+      ],
+      sentences:[
+        {hz:'نامم گل اَس',tr:'naamam gol as',nl:'Mijn naam is Gol — nu kan je het lezen!'},
+        {hz:'خوبم، تشکر',tr:'khobam, tashakor',nl:'Ik ben goed, dank je'},
+        {hz:'دوستت دارم',tr:'dostat daaram',nl:'Ik hou van jou'},
+      ]
+    },
+  ]},
 
   { id:'ch1', label:'🌸 Hoofdstuk 1 · Eerste woorden', color:'#FF6B9D', lessons:[
 
@@ -112,6 +175,120 @@ const CHAPTERS=[
         {hz:'لباسم سرخ اَس',tr:'lebaasam sorkh as',nl:'Mijn kleding is rood',tip:'"اَس" = is (Hazaragi)'},
         {hz:'چشمانت آبی اَس؟',tr:'chashmaanat aabi as?',nl:'Zijn jouw ogen blauw?'},
         {hz:'آسمان سبز نیس، آبی اَس',tr:'aasmaan sabz nis, aabi as',nl:'De lucht is niet groen, het is blauw'},
+      ]
+    },
+  ]},
+
+  { id:'ch21', label:'🔢 Hoofdstuk 21 · Cijfers & Tijd', color:'#F06C78', lessons:[
+
+    { id:'numbers_11_20', title:'Cijfers 11–20', sub:'Elf tot twintig', icon:'🔢', xp:20,
+      pronTips:['ر'],
+      grammar:'Patroon: "یازده" t/m "نزده" hebben elk een eigen vorm. Daarna: "بیست" (20) + "و" + eenheid.',
+      words:[
+        {hz:'یازده',tr:'yaazda',nl:'Elf',tip:'Hazaragi: "yaazda" — snel uitgesproken'},
+        {hz:'دوازده',tr:'dwaazda',nl:'Twaalf',tip:''},
+        {hz:'سیزده',tr:'sezda',nl:'Dertien',tip:'Hazaragi: "sezda"'},
+        {hz:'چارده',tr:'chaarda',nl:'Veertien',tip:'Van "چار" (4) + "ده" (10)'},
+        {hz:'پانزده',tr:'paanza',nl:'Vijftien',tip:''},
+        {hz:'شانزده',tr:'shaanza',nl:'Zestien',tip:''},
+        {hz:'هفده',tr:'hafda',nl:'Zeventien',tip:''},
+        {hz:'هژده',tr:'hazda',nl:'Achttien',tip:'Hazaragi: "hazda" — unieke uitspraak!'},
+        {hz:'نزده',tr:'nezda',nl:'Negentien',tip:''},
+        {hz:'بیست',tr:'bist',nl:'Twintig',tip:''},
+      ],
+      sentences:[
+        {hz:'بیست و یک روز مانده',tr:'bist o yak roz maanda',nl:'Nog eenentwintig dagen',tip:'"و" = en — zo maak je samengestelde getallen'},
+        {hz:'دوازده شاگرد دَ صنف اَس',tr:'dwaazda shaagerd da sanf as',nl:'Er zijn twaalf leerlingen in de klas'},
+        {hz:'هژده ساله هستم',tr:'hazda saala hastam',nl:'Ik ben achttien jaar'},
+      ]
+    },
+
+    { id:'numbers_big', title:'Cijfers 30–1000', sub:'Grote getallen', icon:'💯', xp:20,
+      pronTips:['ر'],
+      grammar:'"صد" = honderd. "دو صد" = tweehonderd. "هزار" = duizend. Simpel combineren!',
+      words:[
+        {hz:'سی',tr:'si',nl:'Dertig',tip:''},
+        {hz:'چل',tr:'chel',nl:'Veertig',tip:'Hazaragi: "chel" — Farsi "chehel"'},
+        {hz:'پنجاه',tr:'panjaa',nl:'Vijftig',tip:''},
+        {hz:'شصت',tr:'shast',nl:'Zestig',tip:''},
+        {hz:'هفتاد',tr:'haftaad',nl:'Zeventig',tip:''},
+        {hz:'هشتاد',tr:'hashtaad',nl:'Tachtig',tip:''},
+        {hz:'نود',tr:'nawad',nl:'Negentig',tip:''},
+        {hz:'صد',tr:'sad',nl:'Honderd',tip:''},
+        {hz:'پنج صد',tr:'panj sad',nl:'Vijfhonderd',tip:''},
+        {hz:'هزار',tr:'hazaar',nl:'Duizend',tip:'Lange aa — ook een Hazara-achternaam!'},
+      ],
+      sentences:[
+        {hz:'هزار تشکر!',tr:'hazaar tashakor!',nl:'Duizendmaal dank!',tip:'Vaste uitdrukking voor grote dankbaarheid'},
+        {hz:'صد کیلومتر دور اَس',tr:'sad kilometer door as',nl:'Het is honderd kilometer ver'},
+        {hz:'پنجاه نفر آمدن',tr:'panjaa nafar aamadan',nl:'Vijftig mensen zijn gekomen'},
+      ]
+    },
+
+    { id:'days_week', title:'Dagen van de week', sub:'Maandag t/m zondag', icon:'📅', xp:20,
+      pronTips:['ش'],
+      grammar:'"شنبه" (shanba) = zaterdag is de basis. Andere dagen = getal + "شنبه".',
+      words:[
+        {hz:'دوشنبه',tr:'doshanba',nl:'Maandag',tip:'"دو" = twee + "شنبه"'},
+        {hz:'سه‌شنبه',tr:'seshanba',nl:'Dinsdag',tip:'"سه" = drie'},
+        {hz:'چارشنبه',tr:'chaarshanba',nl:'Woensdag',tip:'"چار" = vier'},
+        {hz:'پنجشنبه',tr:'panjshanba',nl:'Donderdag',tip:'"پنج" = vijf'},
+        {hz:'جمعه',tr:'jome',nl:'Vrijdag',tip:'Heilige dag — vrij in Afghanistan'},
+        {hz:'شنبه',tr:'shanba',nl:'Zaterdag',tip:''},
+        {hz:'یکشنبه',tr:'yakshanba',nl:'Zondag',tip:'"یک" = één'},
+        {hz:'هفته',tr:'hafta',nl:'Week',tip:''},
+        {hz:'آخر هفته',tr:'aakhir-e-hafta',nl:'Weekend',tip:''},
+        {hz:'هفته دیگه',tr:'hafta diga',nl:'Volgende week',tip:''},
+      ],
+      sentences:[
+        {hz:'چارشنبه می‌آیم، آماده باش',tr:'chaarshanba me-aaym, aamaada baash',nl:'Woensdag kom ik, wees klaar'},
+        {hz:'جمعه خانه هستم',tr:'jome khaana hastam',nl:'Vrijdag ben ik thuis'},
+        {hz:'هفته دیگه مسابقه داریم',tr:'hafta diga masaabeqa daarem',nl:'Volgende week hebben we een wedstrijd'},
+      ]
+    },
+
+    { id:'clock_time', title:'Klokkijken & Tijdsaanduidingen', sub:'Hoe laat is het?', icon:'⏰', xp:25,
+      pronTips:['ر'],
+      grammar:'"ساعت چند اَس؟" = hoe laat is het? "ساعت سه و نیم" = half vier.',
+      words:[
+        {hz:'ساعت',tr:'saat',nl:'Uur / Klok / Horloge',tip:''},
+        {hz:'دقیقه',tr:'daqiqa',nl:'Minuut',tip:''},
+        {hz:'نیم',tr:'nim',nl:'Half',tip:'"ساعت سه و نیم" = half vier (3:30)'},
+        {hz:'ربع',tr:'rob',nl:'Kwart',tip:'"ربع کم" = kwart voor'},
+        {hz:'صبح',tr:'sobh',nl:'Ochtend',tip:''},
+        {hz:'چاشت',tr:'chaasht',nl:'Middag / Noon',tip:'Hazaragi woord — Farsi "ظهر"'},
+        {hz:'بعد از چاشت',tr:'baad az chaasht',nl:'Namiddag',tip:''},
+        {hz:'شام',tr:'shaam',nl:'Avond / Avondeten',tip:''},
+        {hz:'نیمه شب',tr:'nima-shab',nl:'Middernacht',tip:''},
+        {hz:'دیر شد',tr:'deer shod',nl:'Het is te laat',tip:'Veelgebruikte uitdrukking'},
+      ],
+      sentences:[
+        {hz:'ساعت چند اَس؟',tr:'saat chand as?',nl:'Hoe laat is het?'},
+        {hz:'ساعت هشت و نیم صبح اَس',tr:'saat hasht o nim sobh as',nl:'Het is half negen \'s ochtends'},
+        {hz:'دیر شد، زود برو!',tr:'deer shod, zod bero!',nl:'Het is te laat, ga snel!'},
+      ]
+    },
+    { id:'months', title:'Maanden van het jaar', sub:'Januari t/m december', icon:'📆', xp:20,
+      pronTips:['ر'],
+      grammar:'In Nederland gebruik je de Gregoriaanse maanden. Hazaragi/Dari heeft ook Shamsi maanden (Hamal t/m Howt) voor de Afghaanse kalender.',
+      words:[
+        {hz:'جنوری',tr:'janawaari',nl:'Januari',tip:''},
+        {hz:'فبروری',tr:'febrawaari',nl:'Februari',tip:''},
+        {hz:'مارچ',tr:'maarch',nl:'Maart',tip:''},
+        {hz:'اپریل',tr:'aprel',nl:'April',tip:''},
+        {hz:'می',tr:'mey',nl:'Mei',tip:''},
+        {hz:'جون',tr:'joon',nl:'Juni',tip:''},
+        {hz:'جولای',tr:'jolaayi',nl:'Juli',tip:''},
+        {hz:'آگست',tr:'aagast',nl:'Augustus',tip:''},
+        {hz:'سپتمبر',tr:'septambar',nl:'September',tip:''},
+        {hz:'اکتوبر',tr:'oktobar',nl:'Oktober',tip:''},
+        {hz:'نومبر',tr:'nawambar',nl:'November',tip:''},
+        {hz:'دسمبر',tr:'desembar',nl:'December',tip:'Koudste maand — "زمستان" begint'},
+      ],
+      sentences:[
+        {hz:'نوروز دَ مارچ اَس',tr:'nawrooz da maarch as',nl:'Nowruz is in maart'},
+        {hz:'دَ کدام ماه تولدت اَس؟',tr:'da kodaam maah tawalladat as?',nl:'In welke maand is je verjaardag?'},
+        {hz:'دسمبر خیلی سرد اَس دَ هالند',tr:'desembar khaili sard as da haaland',nl:'December is heel koud in Nederland'},
       ]
     },
   ]},
@@ -267,6 +444,75 @@ const CHAPTERS=[
     },
   ]},
 
+  { id:'ch23', label:'🏠 Hoofdstuk 23 · Huis & Dagelijks Leven', color:'#8E9A5A', lessons:[
+
+    { id:'rooms', title:'Kamers van het huis', sub:'Woonkamer, slaapkamer...', icon:'🛋️', xp:20,
+      pronTips:['خ'],
+      grammar:'"دَ اتاق خواب هستم" = ik ben in de slaapkamer. "دَ" is het Hazaragi voorzetsel voor locatie.',
+      words:[
+        {hz:'هال',tr:'haal',nl:'Woonkamer',tip:'Leenwoord van "hall"'},
+        {hz:'اتاق خواب',tr:'otaaq-khaab',nl:'Slaapkamer',tip:'"خواب" = slaap'},
+        {hz:'حمام',tr:'hamaam',nl:'Badkamer',tip:''},
+        {hz:'دستشویی',tr:'dast-shoyi',nl:'Toilet / WC',tip:'Letterlijk "handenwasplaats"'},
+        {hz:'آشپزخانه',tr:'aashpaz-khaana',nl:'Keuken',tip:'Letterlijk "kookhuis"'},
+        {hz:'زیرزمین',tr:'zirzameen',nl:'Kelder',tip:'"زیر" = onder + "زمین" = grond'},
+        {hz:'بالکن',tr:'baalkun',nl:'Balkon',tip:''},
+        {hz:'پله',tr:'pala',nl:'Trap',tip:''},
+        {hz:'راهرو',tr:'raahro',nl:'Gang / Hal',tip:''},
+        {hz:'سقف',tr:'saqf',nl:'Plafond',tip:''},
+      ],
+      sentences:[
+        {hz:'دَ اتاق خوابم هستم',tr:'da otaaq-khaabam hastam',nl:'Ik ben in mijn slaapkamer'},
+        {hz:'حمام خراب اَس، دستشویی کار می‌کنه',tr:'hamaam khraab as, dast-shoyi kaar me-kona',nl:'De badkamer is kapot, het toilet werkt'},
+        {hz:'بالکنمو قشنگ اَس، شهر دیده می‌شه',tr:'baalkuanamo qashanq as, shahr dida meshe',nl:'Ons balkon is mooi, je ziet de stad'},
+      ]
+    },
+
+    { id:'furniture', title:'Meubels & Inrichting', sub:'Bank, tapijt, spiegel...', icon:'🛏️', xp:20,
+      pronTips:['ر'],
+      grammar:'Traditioneel Hazara huis: "تشک" (matras) op de vloer + "قالین" (tapijt) — geen Westerse meubels.',
+      words:[
+        {hz:'صوفه',tr:'sofa',nl:'Bank / Sofa',tip:'Leenwoord'},
+        {hz:'تشک',tr:'tashak',nl:'Matras',tip:'Traditioneel: op de grond'},
+        {hz:'بالشت',tr:'baalshat',nl:'Kussen',tip:''},
+        {hz:'لحاف',tr:'lahaaf',nl:'Deken',tip:''},
+        {hz:'قالین',tr:'qaaleen',nl:'Vloerkleed / Tapijt',tip:'Perzische tapijten zijn beroemde kunst'},
+        {hz:'پرده',tr:'parda',nl:'Gordijn',tip:''},
+        {hz:'آینه',tr:'aayna',nl:'Spiegel',tip:''},
+        {hz:'الماری',tr:'almaaree',nl:'Kledingkast',tip:''},
+        {hz:'رف',tr:'raf',nl:'Plank',tip:''},
+        {hz:'فانوس',tr:'faanos',nl:'Lamp / Lantaarn',tip:''},
+      ],
+      sentences:[
+        {hz:'دَ صوفه بنشین، چای می‌آرم',tr:'da sofa benshin, chaay me-aaram',nl:'Ga op de bank zitten, ik breng thee'},
+        {hz:'قالینمو خیلی کهنه شده',tr:'qaaleenamo khaili kohna shoda',nl:'Ons vloerkleed is erg oud geworden'},
+        {hz:'پرده را ببند، آفتاب می‌زنه',tr:'parda ra baband, aaftaab me-zana',nl:'Sluit het gordijn, de zon schijnt'},
+      ]
+    },
+
+    { id:'household_chores', title:'Huishoudelijke taken', sub:'Schoonmaken, wassen, koken...', icon:'🧹', xp:25,
+      pronTips:['ر','ش'],
+      grammar:'"کردن" = doen. Taak + "کردن" = taak uitvoeren. "جارو کردن" = vegen.',
+      words:[
+        {hz:'جارو کردن',tr:'jaaro kardan',nl:'Vegen / Stofzuigen',tip:'"جارو" = bezem'},
+        {hz:'شستن',tr:'shostan',nl:'Wassen',tip:'"لباس شستن" = kleding wassen'},
+        {hz:'پاک کردن',tr:'paak kardan',nl:'Schoonmaken',tip:''},
+        {hz:'ظرف شستن',tr:'zarf shostan',nl:'Afwassen',tip:'"ظرف" = vaat'},
+        {hz:'خرید کردن',tr:'kharid kardan',nl:'Boodschappen doen',tip:''},
+        {hz:'مرتب کردن',tr:'moratab kardan',nl:'Opruimen',tip:''},
+        {hz:'آب دادن',tr:'aab daadan',nl:'Water geven (planten)',tip:''},
+        {hz:'کثیف',tr:'kasif',nl:'Vies / Vuil',tip:''},
+        {hz:'تمیز',tr:'tamiz',nl:'Schoon',tip:''},
+        {hz:'نظافت',tr:'nazaafat',nl:'Schoonmaak / Hygiëne',tip:''},
+      ],
+      sentences:[
+        {hz:'اتاقت را مرتب کو، خیلی کثیف اَس',tr:'otaaqat ra moratab ko, khaili kasif as',nl:'Ruim je kamer op, het is heel rommelig'},
+        {hz:'ظرف‌ها را بشور، من جارو می‌کنم',tr:'zarfhaa ra beshor, man jaaro me-konam',nl:'Was de vaat, ik zal vegen'},
+        {hz:'هر روز نظافت خانه مهم اَس',tr:'har roz nazaafat-e-khaana mohim as',nl:'Elke dag schoonmaken is belangrijk'},
+      ]
+    },
+  ]},
+
   { id:'ch3', label:'💕 Hoofdstuk 3 · Gevoel & Dagelijks', color:'#A78BFA', lessons:[
 
     { id:'emotions', title:'Gevoelens', sub:'Blij, moe, verliefd...', icon:'💕', xp:25,
@@ -355,6 +601,123 @@ const CHAPTERS=[
         {hz:'سرم درد می‌کنه',tr:'saram dard me-kona',nl:'Mijn hoofd doet pijn'},
         {hz:'چشمانت قشنگ اَس',tr:'chashmaanat qashanq as',nl:'Jouw ogen zijn mooi'},
         {hz:'دلم درد می‌کنه',tr:'delam dard me-kona',nl:'Mijn hart doet pijn'},
+      ]
+    },
+  ]},
+
+  { id:'ch19', label:'🍎 Hoofdstuk 19 · Eten & Keuken', color:'#FF8C61', lessons:[
+    { id:'food_basics', title:'Basisvoedsel', icon:'🥗', xp:18, words:[
+        {hz:'نان',tr:'naan',nl:'Brood',tip:'Lange aa — staple voedsel'},
+        {hz:'گوشت',tr:'gosht',nl:'Vlees',tip:''},
+        {hz:'سبزی',tr:'sabzee',nl:'Groente',tip:''},
+        {hz:'میوه',tr:'mewa',nl:'Fruit',tip:''},
+        {hz:'چای',tr:'chaay',nl:'Thee',tip:'Lange aa — altijd aanwezig!'},
+        {hz:'قهوه',tr:'qahwa',nl:'Koffie',tip:''},
+        {hz:'برنج',tr:'berenj',nl:'Rijst',tip:''},
+        {hz:'تخم‌مرغ',tr:'tokhm-morgh',nl:'Ei',tip:'Letterlijk "kippenei"'},
+      ],
+      sentences:[
+        {hz:'صبحانه نان و چای می‌خورم',tr:'sobhaana naan o chaay me-khorem',nl:'\'s Ochtends eet ik brood en thee'},
+        {hz:'گوشت و برنج غذای خوب اَس',tr:'gosht o berenj ghazaa-ye khob as',nl:'Vlees en rijst is goed eten'},
+      ]
+    },
+    { id:'food_taste', title:'Smaken & Smaak', icon:'👅', xp:18, words:[
+        {hz:'شیرین',tr:'shereen',nl:'Zoet',tip:''},
+        {hz:'تلخ',tr:'talkh',nl:'Bitter',tip:''},
+        {hz:'شور',tr:'shorr',nl:'Zout(ig)',tip:''},
+        {hz:'ترش',tr:'torsh',nl:'Zuur',tip:''},
+        {hz:'تند',tr:'tond',nl:'Pittig / Scherp',tip:''},
+        {hz:'خوش‌مزه',tr:'khosh-maza',nl:'Lekker',tip:'"خوش" = goed + "مزه" = smaak'},
+        {hz:'بدمزه',tr:'bad-maza',nl:'Vies / Niet lekker',tip:''},
+        {hz:'گرم',tr:'garm',nl:'Warm / Heet',tip:''},
+      ],
+      sentences:[
+        {hz:'این قورمه خوش‌مزه اَس',tr:'een qorma khosh-maza as',nl:'Deze stoofschotel is lekker'},
+        {hz:'چای گرم می‌خوام',tr:'chaay garm me-khaam',nl:'Ik wil warme thee'},
+      ]
+    },
+    { id:'food_cooking', title:'Koken & Keuken', icon:'👨‍🍳', xp:18, words:[
+        {hz:'آشپز',tr:'aashpaz',nl:'Kok / Chef',tip:'"آشپزی" = koken'},
+        {hz:'دیگ',tr:'deeg',nl:'Pan / Pot',tip:''},
+        {hz:'کارد',tr:'kaard',nl:'Mes',tip:''},
+        {hz:'بشقاب',tr:'boshqaab',nl:'Bord',tip:'Lange oo en aa'},
+        {hz:'پختن',tr:'pakhtan',nl:'Koken (werkwoord)',tip:''},
+        {hz:'بریدن',tr:'boredan',nl:'Snijden',tip:''},
+        {hz:'سرختن',tr:'sorkhtan',nl:'Bakken / Braden',tip:''},
+        {hz:'خوردن',tr:'khordan',nl:'Eten (werkwoord)',tip:''},
+      ],
+      sentences:[
+        {hz:'مادرم خوب آشپزی می‌کنه',tr:'maadaram khob aashpazee me-kona',nl:'Mijn moeder kookt goed'},
+        {hz:'گوشت را سرختم، بعد سبزی افزودم',tr:'gosht ra sorkhti, ba\'d sabzee afzodam',nl:'Ik bakte het vlees, daarna voegde ik groente toe'},
+      ]
+    },
+  ]},
+
+  { id:'ch26', label:'🍎 Hoofdstuk 26 · Fruit, Groenten & Markt', color:'#F06C78', lessons:[
+
+    { id:'fruits', title:'Fruit', sub:'Granaatappel, druiven, abrikoos...', icon:'🍎', xp:20,
+      pronTips:['آ','ر'],
+      grammar:'"انار" = granaatappel — symbool van vruchtbaarheid. Afghanistan is beroemd om zijn fruit.',
+      words:[
+        {hz:'انار',tr:'anaar',nl:'Granaatappel',tip:'Nationaal fruit — symbool van vruchtbaarheid'},
+        {hz:'انگور',tr:'angoor',nl:'Druif',tip:'Afghanistan heeft de zoetste druiven ter wereld'},
+        {hz:'زردآلو',tr:'zardaalo',nl:'Abrikoos',tip:'Typisch Afghaans — "gele pruim"'},
+        {hz:'توت',tr:'toot',nl:'Moerbei',tip:'Typisch Afghaanse vrucht — gekookt en gedroogd'},
+        {hz:'هندوانه',tr:'hendowaana',nl:'Watermeloen',tip:'Groot en zoet in de zomer'},
+        {hz:'خربزه',tr:'kharboza',nl:'Meloen',tip:'Kandahari meloenen zijn wereldberoemd'},
+        {hz:'آلو',tr:'aalo',nl:'Pruim',tip:''},
+        {hz:'سیب',tr:'seb',nl:'Appel',tip:''},
+        {hz:'انجیر',tr:'anjeer',nl:'Vijg',tip:'Vijgenbomen groeien in Afghanistan'},
+        {hz:'میوه خشک',tr:'mewa-khoshk',nl:'Gedroogd fruit',tip:'Traditioneel Hazara cadeau bij bezoek'},
+      ],
+      sentences:[
+        {hz:'یک کیلو انار می‌خوام',tr:'yak kilo anaar me-khaam',nl:'Ik wil een kilo granaatappelen'},
+        {hz:'انگورهای افغانی شیرین‌ترین اَن',tr:'angoorhaayi afghaani shireentareen an',nl:'Afghaanse druiven zijn de zoetste'},
+        {hz:'میوه خشک برای مهمان خریدم',tr:'mewa-khoshk baraayi mehman kharidam',nl:'Ik kocht gedroogd fruit voor de gast'},
+      ]
+    },
+
+    { id:'vegetables', title:'Groenten', sub:'Ui, tomaat, aubergine...', icon:'🥕', xp:20,
+      pronTips:['خ'],
+      grammar:'"سبزی" = groente én verse kruiden. "بدون پیاز نمی‌شه" = zonder ui gaat het niet.',
+      words:[
+        {hz:'پیاز',tr:'pyaaz',nl:'Ui',tip:'Basis van ÉLK Afghaans gerecht'},
+        {hz:'گوجه فرنگی',tr:'goja-farangi',nl:'Tomaat',tip:'Letterlijk "Europese pruim"'},
+        {hz:'بادنجان',tr:'baadanjaan',nl:'Aubergine',tip:'Populair in Afghaanse keuken'},
+        {hz:'کدو',tr:'kado',nl:'Pompoen / Courgette',tip:''},
+        {hz:'اسفناج',tr:'espanaaj',nl:'Spinazie',tip:''},
+        {hz:'سیر',tr:'sir',nl:'Knoflook',tip:'Onmisbaar!'},
+        {hz:'کرفس',tr:'karafs',nl:'Selderij',tip:''},
+        {hz:'زنجبیل',tr:'zanjabil',nl:'Gember',tip:''},
+        {hz:'سبزی',tr:'sabzee',nl:'Verse kruiden / Groente',tip:'Onmisbaar op de Afghaanse tafel'},
+        {hz:'ترکاری',tr:'tarkaari',nl:'Groenteschotel',tip:'Typisch Hazara stoofgerecht met groenten'},
+      ],
+      sentences:[
+        {hz:'بدون پیاز و سیر آشپزی نمی‌شه',tr:'bedoon pyaaz o sir aashpazi nemishe',nl:'Koken zonder ui en knoflook kan niet'},
+        {hz:'بادنجان با گوشت خیلی خوشمزه می‌شه',tr:'baadanjaan baa gosht khaili khoshmaza meshe',nl:'Aubergine met vlees wordt heel lekker'},
+        {hz:'یک دسته سبزی تازه بیار',tr:'yak dasta sabzee taaza biaar',nl:'Breng een bosje verse kruiden'},
+      ]
+    },
+
+    { id:'market_life', title:'Op de markt', sub:'Wegen, handelen, afrekenen...', icon:'🏪', xp:25,
+      pronTips:['خ','ق'],
+      grammar:'"چند پول اَس؟" = hoeveel kost het? Handelen op de markt is normaal en verwacht!',
+      words:[
+        {hz:'وزن کردن',tr:'wazn kardan',nl:'Wegen',tip:''},
+        {hz:'ترازو',tr:'tarazo',nl:'Weegschaal',tip:''},
+        {hz:'نیم کیلو',tr:'nim kilo',nl:'Half kilo',tip:''},
+        {hz:'تازه',tr:'taaza',nl:'Vers',tip:'Altijd vragen of iets vers is!'},
+        {hz:'خراب',tr:'khraab',nl:'Bedorven / Kapot',tip:''},
+        {hz:'فروشنده',tr:'foroshanda',nl:'Verkoper',tip:''},
+        {hz:'خریدار',tr:'kharidaar',nl:'Koper',tip:''},
+        {hz:'حساب کردن',tr:'hesaab kardan',nl:'Afrekenen',tip:''},
+        {hz:'پس دادن',tr:'pas daadan',nl:'Wisselgeld teruggeven',tip:'"پس" = terug'},
+        {hz:'چانه زدن',tr:'chaana zadan',nl:'Afdingen / Onderhandelen',tip:'Normaal en verwacht op de markt!'},
+      ],
+      sentences:[
+        {hz:'این میوه تازه اَس؟ خراب نیس؟',tr:'een mewa taaza as? khraab nis?',nl:'Is dit fruit vers? Is het niet bedorven?'},
+        {hz:'دو کیلو وزن کو، حسابم کو',tr:'do kilo wazn ko, hesaabam ko',nl:'Weeg twee kilo, reken me af'},
+        {hz:'خیلی گران اَس، کمتر نمی‌شه؟',tr:'khaili geraan as, kamtar nemishe?',nl:'Het is te duur, kan het niet minder?'},
       ]
     },
   ]},
@@ -503,6 +866,142 @@ const CHAPTERS=[
     },
   ]},
 
+  { id:'ch22', label:'👗 Hoofdstuk 22 · Kleding & Uiterlijk', color:'#F9C3Cb', lessons:[
+
+    { id:'clothing', title:'Kleding', sub:'Shirt, broek, schoenen...', icon:'👕', xp:25,
+      pronTips:['خ','ش'],
+      grammar:'"پوشیدن" = dragen/aantrekken. "درآوردن" = uitdoen. Tegengestelden die je allebei nodig hebt!',
+      words:[
+        {hz:'لباس',tr:'lebaas',nl:'Kleding (algemeen)',tip:''},
+        {hz:'پیراهن',tr:'peraahan',nl:'Overhemd / Jurk',tip:''},
+        {hz:'شلوار',tr:'shalwaar',nl:'Broek',tip:'Lange aa'},
+        {hz:'کفش',tr:'kafsh',nl:'Schoenen',tip:''},
+        {hz:'جوراب',tr:'joraab',nl:'Sokken',tip:''},
+        {hz:'کت',tr:'kat',nl:'Jas / Jasje',tip:''},
+        {hz:'کلاه',tr:'kolaah',nl:'Hoed / Pet / Muts',tip:''},
+        {hz:'روسری',tr:'roosari',nl:'Hoofddoek',tip:''},
+        {hz:'پوشیدن',tr:'poshedan',nl:'Dragen / Aantrekken',tip:''},
+        {hz:'درآوردن',tr:'dar-aawordan',nl:'Uitdoen / Uittrekken',tip:''},
+      ],
+      sentences:[
+        {hz:'لباست قشنگ اَس، کجا خریدی؟',tr:'lebaasat qashanq as, koja kharidi?',nl:'Je kleding is mooi, waar heb je het gekocht?'},
+        {hz:'هوا سرد اَس، کت بپوش',tr:'hawaa sard as, kat beposh',nl:'Het is koud, trek je jas aan'},
+        {hz:'کفشم تنگ اَس، درد می‌کنه',tr:'kafasham tang as, dard me-kona',nl:'Mijn schoen is strak, het doet pijn'},
+      ]
+    },
+
+    { id:'appearance', title:'Uiterlijk & Beschrijving', sub:'Lang, kort, jong, oud...', icon:'🪞', xp:25,
+      pronTips:['ر','خ'],
+      grammar:'"قد بلند" = lang. "قد کوتاه" = kort. Eigenschap direct vóór of na het naamwoord.',
+      words:[
+        {hz:'مو',tr:'moo',nl:'Haar',tip:'Niet verwarren met "مو" = wij!'},
+        {hz:'قد',tr:'qad',nl:'Lengte / Gestalte',tip:''},
+        {hz:'بلند',tr:'boland',nl:'Lang / Hoog',tip:''},
+        {hz:'کوتاه',tr:'kotaah',nl:'Kort',tip:''},
+        {hz:'جوان',tr:'jawaan',nl:'Jong',tip:''},
+        {hz:'پیر',tr:'peer',nl:'Oud (persoon)',tip:''},
+        {hz:'لاغر',tr:'laaghar',nl:'Slank / Dun',tip:''},
+        {hz:'چاق',tr:'chaaq',nl:'Dik / Mollig',tip:''},
+        {hz:'ریش',tr:'rish',nl:'Baard',tip:''},
+        {hz:'خوش‌تیپ',tr:'khosh-tip',nl:'Stijlvol / Knap',tip:'Moderne term'},
+      ],
+      sentences:[
+        {hz:'برارم قد بلند و لاغر اَس',tr:'baraaram qad boland o laaghar as',nl:'Mijn broer is lang en slank'},
+        {hz:'مویت خیلی قشنگ اَس',tr:'mooyat khaili qashanq as',nl:'Je haar is heel mooi'},
+        {hz:'او پیر نیس، هنوز جوان اَس',tr:'o peer nis, hanoz jawaan as',nl:'Hij/zij is niet oud, nog steeds jong'},
+      ]
+    },
+
+    { id:'clothing_shopping', title:'Kleding kopen', sub:'Maat, passen, betalen...', icon:'🛍️', xp:30,
+      pronTips:['خ'],
+      grammar:'"اندازه" = maat. "پرو کردن" = passen. Altijd vragen: "بزرگتر داری؟" = heb je iets groters?',
+      words:[
+        {hz:'اندازه',tr:'andaaza',nl:'Maat / Grootte',tip:''},
+        {hz:'پرو کردن',tr:'paro kardan',nl:'Passen (kleding)',tip:''},
+        {hz:'بزرگ',tr:'bozorg',nl:'Groot',tip:''},
+        {hz:'کوچک',tr:'kochak',nl:'Klein',tip:''},
+        {hz:'تنگ',tr:'tang',nl:'Strak / Nauw',tip:''},
+        {hz:'گشاد',tr:'goshaad',nl:'Wijd / Ruim',tip:''},
+        {hz:'نو',tr:'no',nl:'Nieuw',tip:''},
+        {hz:'کهنه',tr:'kohna',nl:'Oud / Versleten',tip:''},
+        {hz:'رنگ',tr:'rang',nl:'Kleur',tip:''},
+        {hz:'مد',tr:'mod',nl:'Mode / Trend',tip:'Leenwoord van "mode"'},
+      ],
+      sentences:[
+        {hz:'این اندازه‌ام درس نیس، بزرگتر داری؟',tr:'een andaazaam doros nis, bozoghtar daari?',nl:'Deze maat past niet, heb je iets groters?'},
+        {hz:'پرو کنم ببینم چطور اَس',tr:'paro konam bebinam chetor as',nl:'Laat me het passen om te zien hoe het zit'},
+        {hz:'این رنگ مد اَس؟',tr:'een rang mod as?',nl:'Is deze kleur in de mode?'},
+      ]
+    },
+  ]},
+
+  { id:'ch28', label:'🔄 Hoofdstuk 28 · Tegenstellingen', color:'#F06C78', lessons:[
+
+    { id:'opp_adj', title:'Tegengestelde bijvoeglijke naamwoorden', sub:'Groot↔Klein, Snel↔Langzaam...', icon:'↔️', xp:25,
+      pronTips:['خ','ر'],
+      grammar:'Tegenstellingen leren verdubbelt je woordenschat in één keer! Leer altijd beide woorden samen.',
+      words:[
+        {hz:'بزرگ ↔ کوچک',tr:'bozorg ↔ kochak',nl:'Groot ↔ Klein',tip:''},
+        {hz:'بلند ↔ کوتاه',tr:'boland ↔ kotaah',nl:'Lang/Hoog ↔ Kort/Laag',tip:''},
+        {hz:'تند ↔ آهسته',tr:'tand ↔ aahesta',nl:'Snel ↔ Langzaam',tip:'"آهسته" = rustig/langzaam'},
+        {hz:'گرم ↔ سرد',tr:'garm ↔ sard',nl:'Warm ↔ Koud',tip:''},
+        {hz:'سنگین ↔ سبک',tr:'sangeen ↔ sabok',nl:'Zwaar ↔ Licht',tip:''},
+        {hz:'تازه ↔ کهنه',tr:'taaza ↔ kohna',nl:'Vers/Nieuw ↔ Oud/Versleten',tip:''},
+        {hz:'قوی ↔ ضعیف',tr:'qaawi ↔ za\'if',nl:'Sterk ↔ Zwak',tip:''},
+        {hz:'خوش ↔ بد',tr:'khosh ↔ bad',nl:'Goed/Fijn ↔ Slecht',tip:'"خوش" = breed gebruikt voor fijn/goed'},
+        {hz:'پاک ↔ کثیف',tr:'paak ↔ kasif',nl:'Schoon ↔ Vies',tip:''},
+        {hz:'راست ↔ دروغ',tr:'raast ↔ doroogh',nl:'Eerlijk/Rechts ↔ Leugen/Links',tip:'Context bepaalt betekenis'},
+      ],
+      sentences:[
+        {hz:'این کیف سنگین اَس — آن یکی سبک اَس',tr:'een kif sangeen as — aan yaki sabok as',nl:'Deze tas is zwaar — die andere is licht'},
+        {hz:'هوا گرم نیس، خیلی سرد اَس',tr:'hawaa garm nis, khaili sard as',nl:'Het weer is niet warm, het is heel koud'},
+        {hz:'قوی باش، ضعیف نباش',tr:'qaawi baash, za\'if nabaash',nl:'Wees sterk, wees niet zwak'},
+      ]
+    },
+
+    { id:'opp_verbs', title:'Tegengestelde werkwoorden', sub:'Gaan↔Komen, Kopen↔Verkopen...', icon:'🔃', xp:25,
+      pronTips:['ر'],
+      grammar:'"رفتن" (gaan) ↔ "آمدن" (komen). Werkwoordstegenstellingen zijn essentieel voor conversatie.',
+      words:[
+        {hz:'رفتن ↔ آمدن',tr:'raftan ↔ aamadan',nl:'Gaan ↔ Komen',tip:'De twee meest gebruikte werkwoorden'},
+        {hz:'خریدن ↔ فروختن',tr:'kharidan ↔ forookhtan',nl:'Kopen ↔ Verkopen',tip:''},
+        {hz:'گرفتن ↔ دادن',tr:'gereftan ↔ daadan',nl:'Nemen ↔ Geven',tip:''},
+        {hz:'باز کردن ↔ بستن',tr:'baaz kardan ↔ bastan',nl:'Openen ↔ Sluiten',tip:''},
+        {hz:'بلند کردن ↔ گذاشتن',tr:'boland kardan ↔ gozaashtan',nl:'Optillen ↔ Neerzetten',tip:''},
+        {hz:'پوشیدن ↔ درآوردن',tr:'poshedan ↔ dar-aawordan',nl:'Aandoen ↔ Uitdoen',tip:''},
+        {hz:'یاد گرفتن ↔ فراموش کردن',tr:'yaad gereftan ↔ faraamoosh kardan',nl:'Leren ↔ Vergeten',tip:'"فراموش" = vergeten — Leer dit niet vergeten!'},
+        {hz:'شروع کردن ↔ تموم کردن',tr:'shoro kardan ↔ tamoom kardan',nl:'Beginnen ↔ Eindigen/Afmaken',tip:''},
+        {hz:'خوابیدن ↔ بیدار شدن',tr:'khwaabidan ↔ bidaar shodan',nl:'Slapen ↔ Wakker worden',tip:''},
+        {hz:'خندیدن ↔ گریستن',tr:'khandidan ↔ geriistan',nl:'Lachen ↔ Huilen',tip:''},
+      ],
+      sentences:[
+        {hz:'فراموش نکو، یاد داشته باش',tr:'faraamoosh nako, yaad daashta baash',nl:'Vergeet het niet, onthoud het'},
+        {hz:'دروازه را ببند، سرد اَس',tr:'darwaaza ra baband, sard as',nl:'Doe de deur dicht, het is koud'},
+        {hz:'شروع کو — وقت داری',tr:'shoro ko — waqt daari',nl:'Begin — je hebt tijd'},
+      ]
+    },
+
+    { id:'opp_context', title:'Tegenstellingen in gesprek', sub:'Toepassen in zinnen', icon:'💬', xp:30,
+      pronTips:['خ'],
+      grammar:'Tegenstellingen maken je uitdrukkingsvermogen veel rijker. Gebruik "اما" (maar) om ze te verbinden.',
+      words:[
+        {hz:'دور ↔ نزدیک',tr:'door ↔ nazdik',nl:'Ver ↔ Dichtbij',tip:''},
+        {hz:'زود ↔ دیر',tr:'zod ↔ deer',nl:'Vroeg/Snel ↔ Laat/Langzaam',tip:'"زود بیا" = kom snel, "دیر شد" = te laat'},
+        {hz:'همیشه ↔ هیچ‌وقت',tr:'hamisha ↔ hichawaqt',nl:'Altijd ↔ Nooit',tip:''},
+        {hz:'قبل ↔ بعد',tr:'qabl ↔ baad',nl:'Vóór ↔ Na',tip:''},
+        {hz:'کم ↔ زیاد',tr:'kam ↔ ziyaad',nl:'Weinig ↔ Veel',tip:''},
+        {hz:'تنها ↔ با هم',tr:'tanhaa ↔ baa ham',nl:'Alleen ↔ Samen',tip:'"با هم" = letterlijk "met elkaar"'},
+        {hz:'شاد ↔ غمگین',tr:'shaad ↔ ghamgeen',nl:'Blij ↔ Verdrietig',tip:''},
+        {hz:'درست ↔ اشتباه',tr:'doros ↔ eshtebaa',nl:'Juist ↔ Fout',tip:'Hazaragi: "doros" niet "dorost"'},
+      ],
+      sentences:[
+        {hz:'همیشه راست بگو، هیچ‌وقت دروغ نگو',tr:'hamisha raast bego, hichawaqt doroogh nago',nl:'Zeg altijd de waarheid, zeg nooit een leugen'},
+        {hz:'زود بیا، دیر نشه',tr:'zod bia, deer nashe',nl:'Kom snel, laat het niet te laat worden'},
+        {hz:'تنها بودم اما حالا با هم هستیم',tr:'tanhaa boodam amma haala baa ham hastim',nl:'Ik was alleen maar nu zijn we samen'},
+      ]
+    },
+  ]},
+
   { id:'ch5', label:'🌟 Hoofdstuk 5 · Cultuur & Slang', color:'#FFBE3D', lessons:[
 
     { id:'slang', title:'Hazara spreektaal', sub:'Echte dagelijkse woorden', icon:'😎', xp:35,
@@ -563,6 +1062,182 @@ const CHAPTERS=[
         {hz:'هستی؟ دلم تنگته',tr:'hasti? delam tangta',nl:'Ben je er? Ik mis je'},
         {hz:'خب، بعداً زنگ می‌زنم',tr:'khab, baadan zang me-zanam',nl:'Oké, ik bel je later'},
         {hz:'مراقب خودت باش، شب بخیر',tr:'moraaqeb khodat baash, shab bakhair',nl:'Zorg voor jezelf, goedenacht'},
+      ]
+    },
+  ]},
+
+  { id:'ch18', label:'🎭 Hoofdstuk 18 · Cultuur & Tradities', color:'#FFBE3D', lessons:[
+    { id:'culture_celebrations', title:'Feesten & Tradities', icon:'🎉', xp:20, words:[
+        {hz:'نوروز',tr:'nawrooz',nl:'Nieuwjaar (Perzisch)',tip:'Letterlijk "nieuwe dag" — begin lente'},
+        {hz:'عید',tr:'eed',nl:'Feestdag / Eid',tip:'Islamitisch feest'},
+        {hz:'جشن',tr:'jashn',nl:'Viering / Feest',tip:''},
+        {hz:'مهمانی',tr:'mehmaanee',nl:'Bezoek / Bijeenkomst',tip:''},
+        {hz:'سور',tr:'soor',nl:'Bruiloft / Feestmaal',tip:'Typisch Hazaragi bruiloft'},
+        {hz:'هدیه',tr:'hadya',nl:'Cadeau',tip:''},
+        {hz:'برکت',tr:'barakat',nl:'Zegen / Overvloed',tip:'Arabische oorsprong'},
+        {hz:'دعا',tr:'do\'aa',nl:'Gebed / Wens',tip:''},
+      ],
+      sentences:[
+        {hz:'نوروز مبارک! سال نو خوش',tr:'nawrooz mubaarak! saal-e-naw khosh',nl:'Gelukkig Nieuwjaar! Een goed nieuw jaar'},
+        {hz:'سورِ عروسی شادمانه بود',tr:'soor-e-aroosee shaadmaana bood',nl:'De bruiloft was vreugdevol'},
+      ]
+    },
+    { id:'culture_music', title:'Muziek & Kunst', icon:'🎵', xp:18, words:[
+        {hz:'موزیک',tr:'moozeeq',nl:'Muziek',tip:''},
+        {hz:'سرود',tr:'sorod',nl:'Lied / Hymne',tip:''},
+        {hz:'دهل',tr:'dohol',nl:'Trommel / Drum',tip:'Typisch Hazara instrument'},
+        {hz:'سرنی',tr:'sarnaay',nl:'Fluit',tip:'Traditionele blaasinstrument'},
+        {hz:'رقص',tr:'raqs',nl:'Dans',tip:''},
+        {hz:'شعر',tr:'she\'r',nl:'Gedicht',tip:'Hazara poëzie is beroemd'},
+        {hz:'نقاشی',tr:'naqaashee',nl:'Tekening / Schilderij',tip:''},
+        {hz:'داستان',tr:'daastaan',nl:'Verhaal',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'دهل و سرنی موزیک هزارگی اَس',tr:'dohol o sarnaay moozeeq-e hazaaragi as',nl:'Dohol en sarnai zijn Hazaragi muziek'},
+        {hz:'یک شعر هزارگی بخوان',tr:'yak she\'r-e hazaaragi bakhwaan',nl:'Lees een Hazaragi gedicht voor'},
+      ]
+    },
+    { id:'culture_food', title:'Hazaragi Keuken', icon:'🍽️', xp:18, words:[
+        {hz:'بولانی',tr:'bollaanee',nl:'Gevulde flatbread',tip:'Typisch Afghaans gerecht'},
+        {hz:'قورمه',tr:'qorma',nl:'Stoofschotel',tip:'Basisgerecht in Hazaragi keuken'},
+        {hz:'اشک',tr:'ashak',nl:'Dumplings met prei',tip:'Beroemd Afghaans gerecht'},
+        {hz:'قابلی',tr:'qaaboli',nl:'Pilav met vlees en rozijnen',tip:'Nationaal gerecht Afghanistan'},
+        {hz:'چلو',tr:'challow',nl:'Gestoomde rijst',tip:''},
+        {hz:'شیر',tr:'sheer',nl:'Melk',tip:''},
+        {hz:'روغن',tr:'roghan',nl:'Olie / Vet',tip:''},
+        {hz:'نمک',tr:'namak',nl:'Zout',tip:''},
+      ],
+      sentences:[
+        {hz:'مادرم قورمه پختی، لذیذ بود',tr:'maadaram qorma pakhti, lazeez bood',nl:'Mijn moeder maakte stoofschotel, het was heerlijk'},
+        {hz:'اشک غذای مخصوص هزاره اَس',tr:'ashak ghazaa-ye makhsos-e hazaara as',nl:'Ashak is een speciaal Hazara gerecht'},
+      ]
+    },
+  ]},
+
+  { id:'ch29', label:'🎭 Hoofdstuk 29 · Rollenspel-scenario\'s', color:'#F9C3Cb', lessons:[
+
+    { id:'role_cafe', title:'In een Afghaans restaurant', sub:'Bestellen, betalen, complimenteren', icon:'🍵', xp:35,
+      pronTips:['خ','ر'],
+      grammar:'Bestellen doe je met "می‌خوام" + gerecht. Betalen: "حساب بیار" = breng de rekening.',
+      words:[
+        {hz:'چی داری؟',tr:'chi daari?',nl:'Wat heb je? (menukaart)',tip:'Directe manier om het menu te vragen'},
+        {hz:'یک بشقاب',tr:'yak boshqaab',nl:'Één bord (portie)',tip:'"بشقاب" = bord'},
+        {hz:'چای سبز',tr:'chaay sabz',nl:'Groene thee',tip:''},
+        {hz:'حساب بیار',tr:'hesaab biaar',nl:'Breng de rekening',tip:''},
+        {hz:'مزه‌اش خوب بود؟',tr:'mazash khob bood?',nl:'Was het lekker?',tip:'Na het eten vragen'},
+        {hz:'نوش جانت',tr:'nosh jaanat',nl:'Eet smakelijk',tip:'Zeg dit als iemand eet'},
+        {hz:'دستت درد نکنه',tr:'dastat dard nakona',nl:'Dank je voor de moeite',tip:'Na de maaltijd verplicht!'},
+        {hz:'بفرمایین',tr:'befarmaayin',nl:'Alstublieft / Kom binnen',tip:'Gastvrije uitnodiging'},
+        {hz:'صفا آوردید',tr:'safaa aawordid',nl:'Welkom (bij aankomst gast)',tip:'Typisch Hazara gastvrijheid'},
+        {hz:'سیر شدم',tr:'seer shodam',nl:'Ik ben vol / Ik heb genoeg gegeten',tip:'Zeg dit na de maaltijd'},
+      ],
+      sentences:[
+        {hz:'یک بشقاب قابلی و دو چای سبز می‌خوام',tr:'yak boshqaab qaaboli o do chaay sabz me-khaam',nl:'Ik wil één bord qaboli en twee groene theeën'},
+        {hz:'خیلی خوشمزه بود، دستت درد نکنه',tr:'khaili khoshmaza bood, dastat dard nakona',nl:'Het was heel lekker, dank je voor de moeite'},
+        {hz:'حساب بیار، می‌خوام بروم',tr:'hesaab biaar, me-khaam beram',nl:'Breng de rekening, ik wil gaan'},
+      ]
+    },
+
+    { id:'role_visit', title:'Iemand bezoeken', sub:'Binnenkomen, zitten, afscheid', icon:'🏡', xp:35,
+      pronTips:['خ','ع'],
+      grammar:'Gastvrijheid is heilig in Hazara cultuur. Leer de volledige rituelen van aankomst tot vertrek.',
+      words:[
+        {hz:'در زدن',tr:'dar zadan',nl:'Kloppen / Aanbellen',tip:'Letterlijk "deur slaan"'},
+        {hz:'بفرمایین داخل',tr:'befarmaayin daakhel',nl:'Kom maar binnen',tip:'"داخل" = binnen'},
+        {hz:'مزاحم نیستم؟',tr:'mozaahem nistam?',nl:'Stoor ik niet?',tip:'Beleefd vragen bij aankomst'},
+        {hz:'خیر خوش آمدی',tr:'khayr khosh aamadi',nl:'Welkom, fijn dat je er bent',tip:'Hartelijk welkom'},
+        {hz:'بنشینید',tr:'benshinnid',nl:'Gaat u zitten',tip:'Beleefd meervoud/formeel'},
+        {hz:'چای بیارم؟',tr:'chaay biyaaram?',nl:'Zal ik thee brengen?',tip:'Eerste vraag aan elke gast'},
+        {hz:'نه تشکر، زحمت نکشید',tr:'na tashakor, zahmat nakashid',nl:'Nee dank u, doe geen moeite',tip:'Beleefd weigeren (maar ga toch thee drinken!)'},
+        {hz:'وقتم تنگ اَس',tr:'waqtam tang as',nl:'Mijn tijd is krap / Ik moet gaan',tip:'Beleefd vertrekaankondiging'},
+        {hz:'باز بیا',tr:'baaz bia',nl:'Kom nog eens',tip:'Altijd zeggen bij afscheid'},
+        {hz:'خدا حافظ',tr:'khodaa haafez',nl:'Vaarwel',tip:'Formeel afscheid'},
+      ],
+      sentences:[
+        {hz:'صفا آوردید، بفرمایین داخل، بنشینید',tr:'safaa aawordid, befarmaayin daakhel, benshinnid',nl:'Welkom, kom binnen, gaat u zitten'},
+        {hz:'مزاحم نیستم؟ — نه جان، خوش آمدی!',tr:'mozaahem nistam? — na jaan, khosh aamadi!',nl:'Stoor ik niet? — Nee lieverd, welkom!'},
+        {hz:'وقتم تنگ اَس، باید برم — باز بیا!',tr:'waqtam tang as, baayad beram — baaz bia!',nl:'Ik moet gaan — Kom nog eens!'},
+      ]
+    },
+
+    { id:'role_phone', title:'Bellen & WhatsApp', sub:'Gesprek starten, sluiten', icon:'📱', xp:30,
+      pronTips:['خ'],
+      grammar:'"هستی؟" = ben je er? — het typische eerste WhatsApp-bericht bij Hazara. Daarna volgt alles vanzelf.',
+      words:[
+        {hz:'الو؟',tr:'aloo?',nl:'Hallo? (telefoon)',tip:'Altijd "الو" bij bellen, nooit "سلام" als eerste'},
+        {hz:'کی هستی؟',tr:'ki hasti?',nl:'Wie ben jij?',tip:'Als je het nummer niet kent'},
+        {hz:'صدات قطع می‌شه',tr:'sedaat qat meshe',nl:'Je valt weg / Slechte verbinding',tip:''},
+        {hz:'دوباره زنگ بزن',tr:'dobaara zang bezan',nl:'Bel nog eens',tip:''},
+        {hz:'مسیج بده',tr:'mesij bede',nl:'Stuur een bericht',tip:'Leenwoord van "message"'},
+        {hz:'آنلاین هستی؟',tr:'onlayn hasti?',nl:'Ben je online?',tip:''},
+        {hz:'ویس بده',tr:'weys bede',nl:'Stuur een voicemail',tip:'Leenwoord van "voice"'},
+        {hz:'تماس گرفتم',tr:'tamaas gereftam',nl:'Ik heb gebeld',tip:'"تماس" = contact/verbinding'},
+        {hz:'جواب نمی‌دی',tr:'jawaab nemi-di',nl:'Je neemt niet op',tip:''},
+        {hz:'قطع کو',tr:'qat ko',nl:'Hang op',tip:'Letterlijk "snij af"'},
+      ],
+      sentences:[
+        {hz:'هستی؟ دلم تنگته',tr:'hasti? delam tangta',nl:'Ben je er? Ik mis je'},
+        {hz:'صدات قطع می‌شه، ویس بده',tr:'sedaat qat meshe, weys bede',nl:'Je valt weg, stuur een voicemail'},
+        {hz:'جواب نمی‌دی، مسیج دادم',tr:'jawaab nemi-di, mesij daadam',nl:'Je neemt niet op, ik heb een bericht gestuurd'},
+      ]
+    },
+  ]},
+
+  { id:'ch_gram3', label:'📖 Grammatica 3 · Gevorderd', color:'#8B6FF0', lessons:[
+
+    { id:'gram3_sov', title:'Zinsbouw: S-O-W', sub:'Subject · Object · Werkwoord', icon:'📐', xp:30,
+      pronTips:['ر'],
+      grammar:'Hazaragi is een SOW-taal: Subject + Object + Werkwoord. Het werkwoord staat ALTIJD aan het einde!',
+      words:[
+        {hz:'من نان می‌خورم',tr:'man naan me-khoram',nl:'Ik eet brood',tip:'S(من) + O(نان) + W(می‌خورم)'},
+        {hz:'او کتاب می‌خواند',tr:'o ketaab me-khwaand',nl:'Hij/zij leest een boek',tip:'S + O + W — werkwoord altijd last'},
+        {hz:'مو چای می‌خوریم',tr:'mo chaai me-khorim',nl:'Wij drinken thee',tip:'"مو" = wij (Hazaragi)'},
+        {hz:'من تو را دوست دارم',tr:'man to ra dost daaram',nl:'Ik hou van jou',tip:'"را" markeert het object'},
+        {hz:'مو هزارگی یاد می‌گیریم',tr:'mo hazaaragi yaad me-girim',nl:'Wij leren Hazaragi',tip:'S + O + W'},
+      ],
+      sentences:[
+        {hz:'من هر روز چای می‌نوشم',tr:'man har roz chaai me-nosham',nl:'Ik drink elke dag thee'},
+        {hz:'او دیروز بازار رفت',tr:'o diroz baazaar raft',nl:'Hij/zij ging gisteren naar de markt'},
+        {hz:'شما چی کار می‌کنین؟',tr:'shoma chi kaar me-konin?',nl:'Wat doen jullie?'},
+      ]
+    },
+
+    { id:'gram3_verleden', title:'Verleden tijd', sub:'Ik ging, jij at, hij zei...', icon:'⏪', xp:35,
+      pronTips:['ر'],
+      grammar:'Verleden tijd: werkwoordstam + persoonuitgang. Stam van "رفتن" = رفت. Geen "می‌" prefix!',
+      words:[
+        {hz:'رفتم',tr:'raftam',nl:'Ik ging',tip:'رفت + "-م" (ik)'},
+        {hz:'رفتی',tr:'rafti',nl:'Jij ging',tip:'رفت + "-ی" (jij)'},
+        {hz:'رفت',tr:'raft',nl:'Hij/Zij ging',tip:'Enkel de stam — geen uitgang'},
+        {hz:'رفتیم',tr:'raftim',nl:'Wij gingen',tip:'رفت + "-یم" (wij)'},
+        {hz:'خوردم',tr:'khordam',nl:'Ik at',tip:'Stam "خورد" + "-م"'},
+        {hz:'گفتم',tr:'goftam',nl:'Ik zei',tip:'Stam "گفت" + "-م"'},
+        {hz:'دیدم',tr:'didam',nl:'Ik zag',tip:'Stam "دید" + "-م"'},
+        {hz:'نرفتم',tr:'naraftam',nl:'Ik ging niet',tip:'"نه" + "رفتم" → "نرفتم"'},
+      ],
+      sentences:[
+        {hz:'دیروز مکتب رفتم',tr:'diroz maktab raftam',nl:'Gisteren ging ik naar school'},
+        {hz:'چی خوردی؟ نان خوردم',tr:'chi khordi? naan khordam',nl:'Wat at jij? Ik at brood'},
+        {hz:'نرفتم چون مریض بودم',tr:'naraftam chon mariz boodam',nl:'Ik ging niet omdat ik ziek was'},
+      ]
+    },
+
+    { id:'gram3_postposities', title:'Postposities', sub:'In, van, met, voor...', icon:'🔀', xp:30,
+      pronTips:['خ'],
+      grammar:'Hazaragi gebruikt "دَ" (da) waar Dari "در" of "به" zegt. Postposities staan vóór het zelfstandig naamwoord.',
+      words:[
+        {hz:'دَ',tr:'da',nl:'In / Naar / Bij',tip:'Hazaragi kenmerkwoord — Dari gebruikt "در" of "به"'},
+        {hz:'از',tr:'az',nl:'Van / Uit',tip:'"از کجا آمدی؟" = waar kom je vandaan?'},
+        {hz:'با',tr:'baa',nl:'Met',tip:'"با هم" = samen (letterlijk: met elkaar)'},
+        {hz:'برای',tr:'baraayi',nl:'Voor',tip:'"برای تو" = voor jou'},
+        {hz:'تا',tr:'taa',nl:'Tot / Naar',tip:'"تا فردا" = tot morgen'},
+        {hz:'بدون',tr:'bedoon',nl:'Zonder',tip:'"بدون تو" = zonder jou'},
+        {hz:'دَ خانه',tr:'da khaana',nl:'Thuis / Naar huis',tip:'Typische Hazaragi constructie'},
+      ],
+      sentences:[
+        {hz:'دَ مکتب می‌رم',tr:'da maktab me-ram',nl:'Ik ga naar school',tip:'"دَ" = naar (Hazaragi)'},
+        {hz:'از کجا آمدی؟',tr:'az koja aamadi?',nl:'Waar kom je vandaan?'},
+        {hz:'با تو می‌آیم، بدون تو نمی‌رم',tr:'baa to me-aaym, bedoon to nemi-ram',nl:'Ik kom met jou, zonder jou ga ik niet'},
       ]
     },
   ]},
@@ -633,61 +1308,113 @@ const CHAPTERS=[
     },
   ]},
 
-  { id:'ch_gram3', label:'📖 Grammatica 3 · Gevorderd', color:'#8B6FF0', lessons:[
+  { id:'ch_gram4', label:'📖 Grammatica 4 · Modale werkwoorden', color:'#8B6FF0', lessons:[
 
-    { id:'gram3_sov', title:'Zinsbouw: S-O-W', sub:'Subject · Object · Werkwoord', icon:'📐', xp:30,
-      pronTips:['ر'],
-      grammar:'Hazaragi is een SOW-taal: Subject + Object + Werkwoord. Het werkwoord staat ALTIJD aan het einde!',
+    { id:'gram4_modal', title:'Modale werkwoorden', sub:'Kunnen, moeten, mogen...', icon:'⚙️', xp:35,
+      pronTips:['ت'],
+      grammar:'"می‌تانم" (Hazaragi) = kan. Farsi zegt "می‌توانم" — markant verschil! Leer de Hazaragi vorm.',
       words:[
-        {hz:'من نان می‌خورم',tr:'man naan me-khoram',nl:'Ik eet brood',tip:'S(من) + O(نان) + W(می‌خورم)'},
-        {hz:'او کتاب می‌خواند',tr:'o ketaab me-khwaand',nl:'Hij/zij leest een boek',tip:'S + O + W — werkwoord altijd last'},
-        {hz:'مو چای می‌خوریم',tr:'mo chaai me-khorim',nl:'Wij drinken thee',tip:'"مو" = wij (Hazaragi)'},
-        {hz:'من تو را دوست دارم',tr:'man to ra dost daaram',nl:'Ik hou van jou',tip:'"را" markeert het object'},
-        {hz:'مو هزارگی یاد می‌گیریم',tr:'mo hazaaragi yaad me-girim',nl:'Wij leren Hazaragi',tip:'S + O + W'},
+        {hz:'باید',tr:'baayad',nl:'Moet / Dient te',tip:'"باید بری" = je moet gaan'},
+        {hz:'نباید',tr:'nabaayad',nl:'Mag niet / Moet niet',tip:''},
+        {hz:'می‌تانم',tr:'me-taanam',nl:'Ik kan (Hazaragi)',tip:'HAZARAGI — Farsi: "می‌توانم"'},
+        {hz:'نمی‌تانم',tr:'nemi-taanam',nl:'Ik kan niet',tip:''},
+        {hz:'می‌تانی',tr:'me-taani',nl:'Jij kan',tip:''},
+        {hz:'می‌تانه',tr:'me-taana',nl:'Hij/Zij kan',tip:''},
+        {hz:'می‌خوام',tr:'me-khaam',nl:'Ik wil',tip:''},
+        {hz:'نمی‌خوام',tr:'nemi-khaam',nl:'Ik wil niet',tip:''},
       ],
       sentences:[
-        {hz:'من هر روز چای می‌نوشم',tr:'man har roz chaai me-nosham',nl:'Ik drink elke dag thee'},
-        {hz:'او دیروز بازار رفت',tr:'o diroz baazaar raft',nl:'Hij/zij ging gisteren naar de markt'},
-        {hz:'شما چی کار می‌کنین؟',tr:'shoma chi kaar me-konin?',nl:'Wat doen jullie?'},
+        {hz:'نمی‌تانم بیام، کار دارم',tr:'nemi-taanam biyaam, kaar daaram',nl:'Ik kan niet komen, ik heb werk'},
+        {hz:'باید امتحان بدی، نباید غیب بشی',tr:'baayad emtehaan bedi, nabaayad ghayb beshi',nl:'Je moet examen doen, je mag niet wegblijven'},
+        {hz:'می‌خوام بیام اما نمی‌تانم',tr:'me-khaam biyaam amma nemi-taanam',nl:'Ik wil komen maar ik kan niet'},
       ]
     },
 
-    { id:'gram3_verleden', title:'Verleden tijd', sub:'Ik ging, jij at, hij zei...', icon:'⏪', xp:35,
-      pronTips:['ر'],
-      grammar:'Verleden tijd: werkwoordstam + persoonuitgang. Stam van "رفتن" = رفت. Geen "می‌" prefix!',
-      words:[
-        {hz:'رفتم',tr:'raftam',nl:'Ik ging',tip:'رفت + "-م" (ik)'},
-        {hz:'رفتی',tr:'rafti',nl:'Jij ging',tip:'رفت + "-ی" (jij)'},
-        {hz:'رفت',tr:'raft',nl:'Hij/Zij ging',tip:'Enkel de stam — geen uitgang'},
-        {hz:'رفتیم',tr:'raftim',nl:'Wij gingen',tip:'رفت + "-یم" (wij)'},
-        {hz:'خوردم',tr:'khordam',nl:'Ik at',tip:'Stam "خورد" + "-م"'},
-        {hz:'گفتم',tr:'goftam',nl:'Ik zei',tip:'Stam "گفت" + "-م"'},
-        {hz:'دیدم',tr:'didam',nl:'Ik zag',tip:'Stam "دید" + "-م"'},
-        {hz:'نرفتم',tr:'naraftam',nl:'Ik ging niet',tip:'"نه" + "رفتم" → "نرفتم"'},
-      ],
-      sentences:[
-        {hz:'دیروز مکتب رفتم',tr:'diroz maktab raftam',nl:'Gisteren ging ik naar school'},
-        {hz:'چی خوردی؟ نان خوردم',tr:'chi khordi? naan khordam',nl:'Wat at jij? Ik at brood'},
-        {hz:'نرفتم چون مریض بودم',tr:'naraftam chon mariz boodam',nl:'Ik ging niet omdat ik ziek was'},
-      ]
-    },
-
-    { id:'gram3_postposities', title:'Postposities', sub:'In, van, met, voor...', icon:'🔀', xp:30,
+    { id:'gram4_future', title:'Toekomende tijd', sub:'Morgen ga ik, ik zal komen...', icon:'🔮', xp:35,
       pronTips:['خ'],
-      grammar:'Hazaragi gebruikt "دَ" (da) waar Dari "در" of "به" zegt. Postposities staan vóór het zelfstandig naamwoord.',
+      grammar:'Toekomst in Hazaragi: tijdwoord ("فردا", "بعداً") + tegenwoordige tijd. Of: "می‌خوام" + werkwoord.',
       words:[
-        {hz:'دَ',tr:'da',nl:'In / Naar / Bij',tip:'Hazaragi kenmerkwoord — Dari gebruikt "در" of "به"'},
-        {hz:'از',tr:'az',nl:'Van / Uit',tip:'"از کجا آمدی؟" = waar kom je vandaan?'},
-        {hz:'با',tr:'baa',nl:'Met',tip:'"با هم" = samen (letterlijk: met elkaar)'},
-        {hz:'برای',tr:'baraayi',nl:'Voor',tip:'"برای تو" = voor jou'},
-        {hz:'تا',tr:'taa',nl:'Tot / Naar',tip:'"تا فردا" = tot morgen'},
-        {hz:'بدون',tr:'bedoon',nl:'Zonder',tip:'"بدون تو" = zonder jou'},
-        {hz:'دَ خانه',tr:'da khaana',nl:'Thuis / Naar huis',tip:'Typische Hazaragi constructie'},
+        {hz:'فردا می‌رم',tr:'farda me-ram',nl:'Morgen ga ik',tip:'"فردا" maakt het toekomstig'},
+        {hz:'می‌خوام برم',tr:'me-khaam baram',nl:'Ik ga (straks)',tip:'Letterlijk "ik wil gaan"'},
+        {hz:'زود می‌آم',tr:'zod me-aam',nl:'Ik kom snel',tip:''},
+        {hz:'بعداً می‌گم',tr:'baadan me-gam',nl:'Ik zeg het later',tip:''},
+        {hz:'ایشالله می‌شه',tr:'ishaallah meshe',nl:'Het zal lukken, inshallah',tip:'Positief toekomstdenken'},
+        {hz:'وقتی بیای',tr:'wakhti biyaayi',nl:'Wanneer je komt',tip:'"وقتی" = wanneer (toekomst)'},
+        {hz:'تا دیروقت',tr:'taa deerowaqt',nl:'Tot laat',tip:''},
+        {hz:'حتماً می‌آم',tr:'hatman me-aam',nl:'Ik kom zeker',tip:'"حتماً" = absoluut'},
       ],
       sentences:[
-        {hz:'دَ مکتب می‌رم',tr:'da maktab me-ram',nl:'Ik ga naar school',tip:'"دَ" = naar (Hazaragi)'},
-        {hz:'از کجا آمدی؟',tr:'az koja aamadi?',nl:'Waar kom je vandaan?'},
-        {hz:'با تو می‌آیم، بدون تو نمی‌رم',tr:'baa to me-aaym, bedoon to nemi-ram',nl:'Ik kom met jou, zonder jou ga ik niet'},
+        {hz:'فردا صبح زود می‌آم، آماده باش',tr:'farda sobh zod me-aam, aamaada baash',nl:'Morgenochtend vroeg kom ik, wees klaar'},
+        {hz:'ایشالله همه چیز خوب می‌شه',tr:'ishaallah hama chiz khob meshe',nl:'Inshallah wordt alles goed'},
+        {hz:'وقتی بیای بهت می‌گم',tr:'wakhti biyaayi bahat me-gam',nl:'Wanneer je komt vertel ik het je'},
+      ]
+    },
+
+    { id:'gram4_conditional', title:'Als... dan... (Voorwaarden)', sub:'Conditionals', icon:'🔀', xp:30,
+      pronTips:['ر'],
+      grammar:'"اگر" (agar) = als. Patroon: "اگر [voorwaarde], [gevolg]". Werkwoord in de als-zin eindigt op "-ی".',
+      words:[
+        {hz:'اگر',tr:'agar',nl:'Als / Indien',tip:'Staat altijd aan het begin'},
+        {hz:'اگر بیای',tr:'agar biyaayi',nl:'Als jij komt',tip:''},
+        {hz:'اگر نبود',tr:'agar nabood',nl:'Als het er niet was',tip:''},
+        {hz:'وگرنه',tr:'wagarna',nl:'Anders / Zo niet',tip:'"وگرنه" = anders wordt het...'},
+        {hz:'حتماً',tr:'hatman',nl:'Zeker / Absoluut',tip:''},
+        {hz:'شاید',tr:'shaayad',nl:'Misschien',tip:''},
+        {hz:'احتمالاً',tr:'ehtemaalan',nl:'Waarschijnlijk',tip:''},
+        {hz:'در صورتی که',tr:'dar sorati ke',nl:'In het geval dat (formeel)',tip:''},
+      ],
+      sentences:[
+        {hz:'اگر بیای، چای می‌پزم',tr:'agar biyaayi, chaay me-pazam',nl:'Als jij komt, zet ik thee'},
+        {hz:'اگر پول داشتم، کمکت می‌کردم',tr:'agar pool dashtam, kamaket me-kardam',nl:'Als ik geld had, had ik je geholpen'},
+        {hz:'حتماً بیا، وگرنه دلم تنگته',tr:'hatman bia, wagarna delam tangta',nl:'Kom zeker, anders mis ik je'},
+      ]
+    },
+  ]},
+
+  { id:'ch20', label:'💭 Hoofdstuk 20 · Gevoelens & Gedachten', color:'#A78BFA', lessons:[
+    { id:'emotions_basic', title:'Basisgevoelens', icon:'💕', xp:20, words:[
+        {hz:'خوشحال',tr:'khoshaal',nl:'Blij / Gelukkig',tip:'"خوش" = goed + "حال" = toestand'},
+        {hz:'غمگین',tr:'ghamgeen',nl:'Verdrietig / Bedroefd',tip:'Lange ee'},
+        {hz:'ترسیده',tr:'tarseeda',nl:'Bang / Angstig',tip:'Van "ترسیدن" = bang zijn'},
+        {hz:'خشمگین',tr:'khashmageen',nl:'Boos / Kwaad',tip:''},
+        {hz:'حیران',tr:'hayraan',nl:'Verbaasd / Versteld',tip:'Lange aa'},
+        {hz:'شرمنده',tr:'sharmanda',nl:'Verlegen / Beschaamd',tip:''},
+        {hz:'دلتنگ',tr:'deltang',nl:'Heimwee / Gemist',tip:'"دل" = hart + "تنگ" = nauw'},
+        {hz:'آرام',tr:'aaraam',nl:'Rustig / Kalm',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'وقتی خانواده‌ام رو می‌بینم خوشحالم',tr:'waqti khaanawaadam ra me-beenam khoshaalem',nl:'Als ik mijn familie zie ben ik blij'},
+        {hz:'دلتنگ وطنم استم',tr:'deltang-e watnam astam',nl:'Ik mis mijn thuisland'},
+      ]
+    },
+    { id:'emotions_thinking', title:'Gedachten & Ideeën', icon:'🧠', xp:18, words:[
+        {hz:'فکر',tr:'fekr',nl:'Gedachte / Denken',tip:''},
+        {hz:'خیال',tr:'khayaal',nl:'Idee / Verbeelding',tip:'Lange aa'},
+        {hz:'یاد',tr:'yaad',nl:'Herinnering / Geheugen',tip:'Lange aa'},
+        {hz:'رویا',tr:'royaa',nl:'Droom',tip:'Lange aa'},
+        {hz:'امید',tr:'omeed',nl:'Hoop',tip:'Lange ee'},
+        {hz:'باور',tr:'baawor',nl:'Geloof / Overtuiging',tip:''},
+        {hz:'فهمیدن',tr:'fahmedan',nl:'Begrijpen',tip:''},
+        {hz:'یاد گرفتن',tr:'yaad gereftan',nl:'Leren / Onthouden',tip:'"یاد" = geheugen + "گرفتن" = pakken'},
+      ],
+      sentences:[
+        {hz:'فکر می‌کنم درست اَس',tr:'fekr me-konam dorost as',nl:'Ik denk dat het correct is'},
+        {hz:'امیدم اَس که موفق می‌شم',tr:'omeedam as ke mawaffaq me-sham',nl:'Ik hoop dat ik succesvol word'},
+      ]
+    },
+    { id:'emotions_character', title:'Karakter & Relaties', icon:'🤝', xp:18, words:[
+        {hz:'مهربان',tr:'mehrabaan',nl:'Vriendelijk / Lief',tip:'Lange aa'},
+        {hz:'دوست',tr:'dost',nl:'Vriend',tip:''},
+        {hz:'دشمن',tr:'doshman',nl:'Vijand',tip:''},
+        {hz:'امین',tr:'ameen',nl:'Eerlijk / Betrouwbaar',tip:'Lange ee'},
+        {hz:'شجاع',tr:'shojaa',nl:'Dapper / Moedig',tip:'Hazara zijn bekend om hun moed'},
+        {hz:'صادق',tr:'saadaq',nl:'Oprecht',tip:'Lange aa'},
+        {hz:'احترام',tr:'ehtaraam',nl:'Respect',tip:'Lange aa'},
+        {hz:'اعتماد',tr:'e\'temaad',nl:'Vertrouwen',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'دوستم مهربان و امین اَس',tr:'dostam mehrabaan o ameen as',nl:'Mijn vriend is vriendelijk en eerlijk'},
+        {hz:'احترام مهم‌ترین چیز اَس',tr:'ehtaraam mohimtareen cheez as',nl:'Respect is het belangrijkste ding'},
       ]
     },
   ]},
@@ -755,6 +1482,123 @@ const CHAPTERS=[
       sentences:[
         {hz:'کوه‌های هزاراجات خیلی قشنگ اَس',tr:'kohhaaye hazaarajaat khaili qashanq as',nl:'De bergen van Hazarajat zijn heel mooi'},
         {hz:'شب ستاره‌ها قشنگن',tr:'shab setaarahaa qashanghan',nl:'\'s Nachts zijn de sterren mooi'},
+      ]
+    },
+  ]},
+
+  { id:'ch17', label:'💊 Hoofdstuk 17 · Gezondheid & Lichaam', color:'#FF6B9D', lessons:[
+    { id:'health_body', title:'Lichaamsdelen', icon:'🫀', xp:18, words:[
+        {hz:'سر',tr:'sar',nl:'Hoofd',tip:''},
+        {hz:'دست',tr:'dast',nl:'Hand / Arm',tip:''},
+        {hz:'پا',tr:'paa',nl:'Voet / Been',tip:'Lange aa'},
+        {hz:'چشم',tr:'chashm',nl:'Oog',tip:''},
+        {hz:'گوش',tr:'gosh',nl:'Oor',tip:''},
+        {hz:'دهن',tr:'dahan',nl:'Mond',tip:''},
+        {hz:'بینی',tr:'beenee',nl:'Neus',tip:''},
+        {hz:'قلب',tr:'qalb',nl:'Hart',tip:''},
+      ],
+      sentences:[
+        {hz:'سرم درد می‌کنه',tr:'saram dard me-kona',nl:'Mijn hoofd doet pijn'},
+        {hz:'چشمام خسته اَن',tr:'chashmaame khasta an',nl:'Mijn ogen zijn moe'},
+      ]
+    },
+    { id:'health_illness', title:'Ziekte & Genezing', icon:'🏥', xp:18, words:[
+        {hz:'مریض',tr:'mareez',nl:'Ziek / Patiënt',tip:''},
+        {hz:'درد',tr:'dard',nl:'Pijn',tip:''},
+        {hz:'تب',tr:'tab',nl:'Koorts',tip:''},
+        {hz:'دوا',tr:'dawaa',nl:'Medicijn',tip:''},
+        {hz:'داکتر',tr:'daaktar',nl:'Dokter',tip:'Hazaragi/Dari'},
+        {hz:'شفاخانه',tr:'shafaakhaana',nl:'Ziekenhuis',tip:'"شفا" = genezing'},
+        {hz:'صحی',tr:'sehhee',nl:'Gezond',tip:''},
+        {hz:'آرام',tr:'aaraam',nl:'Rust / Rustig',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'مریض استم، به داکتر می‌رم',tr:'mareez astam, ba daaktar me-ram',nl:'Ik ben ziek, ik ga naar de dokter'},
+        {hz:'دوا خوردم، حالا بهترم',tr:'dawaa khordam, haala bahtaram',nl:'Ik heb medicijn genomen, nu ben ik beter'},
+      ]
+    },
+    { id:'health_habits', title:'Gezonde Gewoonten', icon:'🧘', xp:18, words:[
+        {hz:'خواب',tr:'khaab',nl:'Slaap',tip:'Lange aa'},
+        {hz:'ورزش',tr:'warzesh',nl:'Sport / Oefenen',tip:''},
+        {hz:'خوراک',tr:'khoraak',nl:'Voedsel / Maaltijd',tip:''},
+        {hz:'نوشیدن',tr:'noosheedan',nl:'Drinken',tip:''},
+        {hz:'استراحت',tr:'estaahaat',nl:'Ontspanning',tip:''},
+        {hz:'قوت',tr:'qowwat',nl:'Kracht / Energie',tip:''},
+        {hz:'صبر',tr:'sabr',nl:'Geduld',tip:''},
+        {hz:'پاک',tr:'paak',nl:'Schoon / Rein',tip:'Lange aa'},
+      ],
+      sentences:[
+        {hz:'هشت ساعت خواب مهم اَس',tr:'hasht saa\'at khaab mohim as',nl:'Acht uur slaap is belangrijk'},
+        {hz:'روزانه ورزش کو، صحی می‌مانی',tr:'rozaana warzesh ko, sehhee me-maani',nl:'Sport dagelijks, dan blijf je gezond'},
+      ]
+    },
+  ]},
+
+  { id:'ch27', label:'💪 Hoofdstuk 27 · Gezondheid & Welzijn', color:'#F9C3Cb', lessons:[
+
+    { id:'health_doctor', title:'Bij de dokter', sub:'Symptomen, recept, behandeling...', icon:'🏥', xp:35,
+      pronTips:['ع','خ'],
+      grammar:'"چی دردی داری؟" = wat mankeert je? Letterlijk "welke pijn heb je?" — directe Hazaragi vraag.',
+      words:[
+        {hz:'نسخه',tr:'neskha',nl:'Recept (dokter)',tip:''},
+        {hz:'آزمایش',tr:'aazmaaesh',nl:'Bloedonderzoek / Test',tip:''},
+        {hz:'عملیات',tr:'amaliyaat',nl:'Operatie',tip:''},
+        {hz:'زخم',tr:'zakhm',nl:'Wond',tip:''},
+        {hz:'خون',tr:'khoon',nl:'Bloed',tip:'Lange oo'},
+        {hz:'تنفس',tr:'tanafos',nl:'Ademhaling',tip:''},
+        {hz:'ضعف',tr:'za\'f',nl:'Zwakte / Duizeligheid',tip:''},
+        {hz:'حساسیت',tr:'hassaasiyat',nl:'Allergie',tip:''},
+        {hz:'بستری شدن',tr:'bastari shodan',nl:'Opgenomen worden',tip:'"بستری" = in het ziekenhuis'},
+        {hz:'مرخص شدن',tr:'markhyas shodan',nl:'Ontslagen worden (ziekenhuis)',tip:''},
+      ],
+      sentences:[
+        {hz:'دکتر نسخه نوشت و آزمایش خواست',tr:'doktor neskha nawesht wa aazmaaesh khawast',nl:'De dokter schreef een recept en vroeg om een bloedonderzoek'},
+        {hz:'تبم سی و هشت اَس، حساسیت دارم',tr:'tabam si o hasht as, hassaasiyat daaram',nl:'Mijn koorts is 38, ik heb een allergie'},
+        {hz:'الحمدلله از شفاخانه مرخص شدم',tr:'alhamdolillah az shafaakhaana markhyas shodam',nl:'Alhamdulillah ben ik uit het ziekenhuis ontslagen'},
+      ]
+    },
+
+    { id:'sports_advanced', title:'Sport & Wedstrijden', sub:'Trainen, scoren, winnen...', icon:'⚽', xp:30,
+      pronTips:['ر','و'],
+      grammar:'"گل زدن" = doelpunt scoren. Letterlijk "bloem slaan" — mooie Hazaragi voetbalterm!',
+      words:[
+        {hz:'تمرین',tr:'tamrin',nl:'Training / Oefening',tip:''},
+        {hz:'مسابقه',tr:'masaabeqa',nl:'Wedstrijd',tip:''},
+        {hz:'برنده',tr:'baranda',nl:'Winnaar',tip:''},
+        {hz:'بازنده',tr:'baazanda',nl:'Verliezer',tip:''},
+        {hz:'گل زدن',tr:'gol zadan',nl:'Doelpunt scoren',tip:'Letterlijk "bloem slaan"'},
+        {hz:'برد',tr:'bord',nl:'Winst / Won',tip:''},
+        {hz:'باخت',tr:'baakht',nl:'Verlies / Verloor',tip:''},
+        {hz:'تیم',tr:'tim',nl:'Team',tip:''},
+        {hz:'جام',tr:'jaam',nl:'Beker / Trofee',tip:'"جام جهانی" = WK'},
+        {hz:'قهرمانی',tr:'qahremaani',nl:'Kampioenschap',tip:''},
+      ],
+      sentences:[
+        {hz:'تیمم برد، خیلی خوشحالیم!',tr:'teamam bord, khaili khoshaaolim!',nl:'Mijn team heeft gewonnen, we zijn heel blij!'},
+        {hz:'هر روز تمرین می‌کنم که قوی بشم',tr:'har roz tamrin me-konam ke qaawi besham',nl:'Elke dag train ik om sterk te worden'},
+        {hz:'یک گل زد و قهرمان شد!',tr:'yak gol zad wa qahramaan shod!',nl:'Hij scoorde één doelpunt en werd kampioen!'},
+      ]
+    },
+
+    { id:'mental_health', title:'Mentale gezondheid & Welzijn', sub:'Stress, rust, steun...', icon:'🧘', xp:35,
+      pronTips:['ع','خ'],
+      grammar:'"آرامش" = diepe innerlijke rust. Meer dan alleen "آرام" (rustig) — het gaat over welzijn.',
+      words:[
+        {hz:'آرامش',tr:'aaraamesh',nl:'Innerlijke rust / Kalmte',tip:''},
+        {hz:'استرس',tr:'estres',nl:'Stress',tip:'Leenwoord — moderne term'},
+        {hz:'نگران',tr:'negaraan',nl:'Bezorgd / Ongerust',tip:''},
+        {hz:'تنها',tr:'tanhaa',nl:'Alleen / Eenzaam',tip:''},
+        {hz:'حمایت',tr:'hemaayet',nl:'Steun',tip:''},
+        {hz:'امیدوار',tr:'omidwaar',nl:'Hoopvol',tip:'"امید" = hoop + "-وار" = hebbend'},
+        {hz:'قوی بودن',tr:'qaawi boodan',nl:'Sterk zijn',tip:'"قوی باش" = wees sterk'},
+        {hz:'دل پری',tr:'del-pori',nl:'Opgekropte verdriet',tip:'Hazara uitdrukking: "vol hart"'},
+        {hz:'خوش خیال',tr:'khosh-khiyaal',nl:'Optimistisch',tip:'"خوش" = goed + "خیال" = gedachten'},
+        {hz:'صبر کردن',tr:'sabr kardan',nl:'Geduld hebben',tip:'"صبر تلخ است ولی میوه‌اش شیرین" — klassiek spreekwoord'},
+      ],
+      sentences:[
+        {hz:'نگران نباش، همه چیز درس می‌شه',tr:'negaraan nabaash, hama chiz doros meshe',nl:'Wees niet ongerust, alles komt goed'},
+        {hz:'استرس زیاد داری، آرامش لازم اَس',tr:'estres ziyaad daari, aaraamesh laazem as',nl:'Je hebt veel stress, je hebt rust nodig'},
+        {hz:'قوی باش، مو پشتتیم',tr:'qaawi baash, mo posht-etim',nl:'Wees sterk, wij staan achter jou'},
       ]
     },
   ]},
@@ -897,73 +1741,6 @@ const CHAPTERS=[
     },
   ]},
 
-  { id:'ch10', label:'👑 Hoofdstuk 10 · Expert Niveau', color:'#A78BFA', lessons:[
-
-    { id:'cooking', title:'Koken & Recepten', sub:'Hazara gerechten...', icon:'🍽️', xp:60,
-      pronTips:['خ','ق','ع'],
-      grammar:'"مانتو" (dumplings), "قروت" (gedroogde yoghurt), "بولانی" zijn typisch Hazara gerechten.',
-      words:[
-        {hz:'پختن',tr:'pakhtan',nl:'Koken',tip:''},
-        {hz:'روغن',tr:'roghan',nl:'Olie / Vet',tip:''},
-        {hz:'نمک',tr:'namak',nl:'Zout',tip:''},
-        {hz:'پیاز',tr:'pyaaz',nl:'Ui',tip:'Basis van elk Afghaans recept'},
-        {hz:'گشنیز',tr:'gashniiz',nl:'Koriander',tip:''},
-        {hz:'قورمه',tr:'qorma',nl:'Stoofgerecht',tip:''},
-        {hz:'مانتو',tr:'maanto',nl:'Manto (dumplings)',tip:'GELIEFD Hazara gerecht!'},
-        {hz:'قروت',tr:'qoroot',nl:'Gedroogde yoghurt',tip:''},
-        {hz:'بریانی',tr:'beryaani',nl:'Biryani',tip:''},
-        {hz:'چکنه',tr:'chakana',nl:'Hazaragi soep',tip:'Traditionele Hazara maaltijdsoep'},
-      ],
-      sentences:[
-        {hz:'امروز مانتو پختم، بیا بخور',tr:'emroz maanto pakhtam, bia bakhoor',nl:'Vandaag heb ik manto gekookt, kom eten'},
-        {hz:'قورمه بدون پیاز نمی‌شه',tr:'qorma bedoon pyaaz nemishe',nl:'Qorma kan niet zonder ui'},
-        {hz:'قروت روی مانتو بریز',tr:'qoroot roi maanto beriz',nl:'Giet qoroot over de manto'},
-      ]
-    },
-
-    { id:'fluent_expressions', title:'Spreekwoorden & Wijsheid', sub:'Native-level uitdrukkingen', icon:'💬', xp:65,
-      pronTips:['خ','غ','ع','ق'],
-      grammar:'Hazaragi spreekwoorden combineren Perzische, Mongoolse en lokale wijsheid.',
-      words:[
-        {hz:'دل به دل راه داره',tr:'del ba del raah daara',nl:'Harten vinden een weg',tip:'Als je aan iemand denkt, denken zij aan jou'},
-        {hz:'کاچی به از هیچی',tr:'kaachi be az hichi',nl:'Iets is beter dan niets',tip:'Klassiek spreekwoord'},
-        {hz:'چشم',tr:'chashm',nl:'Ja, met plezier!',tip:'Beleefd "ja" — letterlijk "oog"'},
-        {hz:'نوش جانت',tr:'nosh jaanat',nl:'Smakelijk / Geniet ervan',tip:''},
-        {hz:'سر به سرم نذار',tr:'sar ba saram nazaar',nl:'Doe niet moeilijk',tip:''},
-        {hz:'دلم می‌خواد',tr:'delam mekhad',nl:'Ik verlang ernaar',tip:''},
-        {hz:'مهمان حبیب خداست',tr:'mehman habiib khodaast',nl:'Een gast is de geliefde van God',tip:''},
-        {hz:'صبر تلخ است ولی میوه‌اش شیرین',tr:'sabr talkh ast wali mewash shirin',nl:'Geduld is bitter maar de vrucht is zoet',tip:''},
-      ],
-      sentences:[
-        {hz:'دل به دل راه داره، به تو فکر می‌کردم',tr:'del ba del raah daara, ba to fekr me-kardam',nl:'Harten vinden een weg — ik dacht net aan jou'},
-        {hz:'چشم، هر کاری بگی می‌کنم',tr:'chashm, har kaari begi mekonam',nl:'Ja met plezier, wat je ook zegt zal ik doen'},
-        {hz:'صبر کو، همه چیز خوش می‌شه',tr:'sabr ko, hama chiz khosh meshe',nl:'Wees geduldig, alles wordt goed'},
-      ]
-    },
-
-    { id:'hazara_identity', title:'Hazara identiteit', sub:'Geschiedenis, taal, trots...', icon:'🏔️', xp:70,
-      pronTips:['خ','غ','ع','ق','ر'],
-      grammar:'De Hazara zijn een volk met Mongoolse, Turkse en Perzische wortels.',
-      words:[
-        {hz:'هزاره',tr:'hazaara',nl:'Hazara (volk)',tip:''},
-        {hz:'هزاراجات',tr:'hazaarajaat',nl:'Hazarajat (land van de Hazara)',tip:''},
-        {hz:'بامیان',tr:'baamiaan',nl:'Bamiyan',tip:'Hoofdstad Hazarajat'},
-        {hz:'زبان مادری',tr:'zabaan maadari',nl:'Moedertaal',tip:''},
-        {hz:'فرهنگ',tr:'farhang',nl:'Cultuur',tip:''},
-        {hz:'تاریخ',tr:'taareekh',nl:'Geschiedenis',tip:''},
-        {hz:'مقاومت',tr:'moqaawamat',nl:'Verzet / Weerstand',tip:''},
-        {hz:'افتخار',tr:'eftekhar',nl:'Trots',tip:''},
-        {hz:'وحدت',tr:'wahdat',nl:'Eenheid',tip:''},
-        {hz:'آزادی',tr:'aazaadi',nl:'Vrijheid',tip:''},
-      ],
-      sentences:[
-        {hz:'زبان مادریم هزارگی اَس',tr:'zabaan maadaram hazaaragi as',nl:'Mijn moedertaal is Hazaragi'},
-        {hz:'به فرهنگم افتخار می‌کنم',tr:'ba farhangam eftekhar me-konam',nl:'Ik ben trots op mijn cultuur'},
-        {hz:'هزاراجات قلب افغانستان اَس',tr:'hazaarajaat qalb afghaaanistaan as',nl:'Hazarajat is het hart van Afghanistan'},
-      ]
-    },
-  ]},
-
   { id:'ch11', label:'🌆 Hoofdstuk 11 · Stad & Vervoer', color:'#5BB8FF', lessons:[
 
     { id:'transport', title:'Vervoer', sub:'Bus, taxi, motor, fiets...', icon:'🚌', xp:40,
@@ -1028,140 +1805,6 @@ const CHAPTERS=[
         {hz:'آپارتمانم دَ طبقه سوم اَس',tr:'aapaartemaanam da tabqa sowm as',nl:'Mijn appartement is op de derde verdieping'},
         {hz:'همسایمو خیلی خوب هستن',tr:'hamsaayamo khaili khob hastan',nl:'Onze buren zijn heel goed'},
         {hz:'شهر امشب خیلی قشنگ اَس',tr:'shahr emshab khaili qashanq as',nl:'De stad is vanavond heel mooi'},
-      ]
-    },
-  ]},
-
-  { id:'ch12', label:'💻 Hoofdstuk 12 · Technologie & Media', color:'#3DD6A3', lessons:[
-
-    { id:'tech_devices', title:'Apparaten & Internet', sub:'Computer, internet, oplader...', icon:'💻', xp:40,
-      pronTips:['خ'],
-      grammar:'Moderne Hazaragi neemt veel Engelse technologiewoorden over als directe leenwoorden.',
-      words:[
-        {hz:'کمپیوتر',tr:'kampyutar',nl:'Computer',tip:'Hazaragi: "kampyutar" — directe uitspraak'},
-        {hz:'انترنت',tr:'entarnet',nl:'Internet',tip:'Hazaragi uitspraak: "entarnet"'},
-        {hz:'شارژر',tr:'shaarjar',nl:'Oplader',tip:'Van "charger"'},
-        {hz:'بیتری',tr:'beetri',nl:'Batterij / Accu',tip:'Van "battery"'},
-        {hz:'وای‌فای',tr:'waay-faay',nl:'Wifi',tip:''},
-        {hz:'پسورد',tr:'paswerd',nl:'Wachtwoord',tip:'Van "password"'},
-        {hz:'سکرین',tr:'skrin',nl:'Scherm',tip:'Van "screen"'},
-        {hz:'دانلود کردن',tr:'daanlod kardan',nl:'Downloaden',tip:''},
-        {hz:'آپلود کردن',tr:'aaplod kardan',nl:'Uploaden',tip:''},
-      ],
-      sentences:[
-        {hz:'وای‌فای پسوردش چیست؟',tr:'waay-faay paswerdash chist?',nl:'Wat is het wifi-wachtwoord?'},
-        {hz:'کمپیوترم خراب شد، کمک کو',tr:'kampyutaram khraab shod, kamak ko',nl:'Mijn computer is stuk gegaan, help me'},
-        {hz:'بیتریم تموم شد، شارژر داری؟',tr:'beetrim tamom shod, shaarjar daari?',nl:'Mijn batterij is leeg, heb je een oplader?'},
-      ]
-    },
-
-    { id:'social_media', title:'Sociale media', sub:'Sturen, liken, delen...', icon:'📲', xp:35,
-      pronTips:['خ'],
-      grammar:'"پیام دادن" (payaam daadan) = een bericht sturen. In Hazaragi/Dari is dit de standaard uitdrukking.',
-      words:[
-        {hz:'پیام',tr:'payaam',nl:'Bericht',tip:''},
-        {hz:'عکس',tr:'aks',nl:'Foto',tip:''},
-        {hz:'ویدیو',tr:'widyo',nl:'Video',tip:''},
-        {hz:'لایک کردن',tr:'layk kardan',nl:'Liken',tip:''},
-        {hz:'شیر کردن',tr:'sher kardan',nl:'Delen / Sharen',tip:'Van "share"'},
-        {hz:'فالو کردن',tr:'faalo kardan',nl:'Volgen',tip:'Van "follow"'},
-        {hz:'گروپ',tr:'grop',nl:'Groep',tip:'WhatsApp groep'},
-        {hz:'پست',tr:'post',nl:'Post / Bericht',tip:'Social media post'},
-        {hz:'کامنت',tr:'kaamant',nl:'Reactie / Comment',tip:''},
-        {hz:'استوری',tr:'estori',nl:'Story',tip:'Instagram/WhatsApp story'},
-      ],
-      sentences:[
-        {hz:'عکست قشنگ اَس، لایک کردم',tr:'aksat qashanq as, layk kardam',nl:'Jouw foto is mooi, ik heb geliket'},
-        {hz:'پیام بده وختی رسیدی',tr:'payaam bede wakhti rasidi',nl:'Stuur een bericht als je bent aangekomen'},
-        {hz:'این ویدیو را شیر کو',tr:'ain widyo ra sher ko',nl:'Deel deze video'},
-      ]
-    },
-
-    { id:'news_media', title:'Nieuws & Actualiteit', sub:'Nieuws, oorlog, politiek...', icon:'📰', xp:45,
-      pronTips:['خ','ع','غ'],
-      grammar:'"خبر" (khabar) = nieuws/bericht. "خبر داری؟" = weet je het al? (informeel)',
-      words:[
-        {hz:'خبر',tr:'khabar',nl:'Nieuws / Bericht',tip:'"خبر داری؟" = weet je het al?'},
-        {hz:'رادیو',tr:'raadyo',nl:'Radio',tip:''},
-        {hz:'تلویزیون',tr:'telwizyon',nl:'Televisie',tip:''},
-        {hz:'روزنامه',tr:'roznama',nl:'Krant',tip:'"روز" = dag, "نامه" = brief/letter'},
-        {hz:'سیاست',tr:'siyaasat',nl:'Politiek',tip:''},
-        {hz:'صلح',tr:'solh',nl:'Vrede',tip:''},
-        {hz:'جنگ',tr:'jang',nl:'Oorlog',tip:''},
-        {hz:'حق',tr:'haq',nl:'Recht / Waarheid',tip:'"حق داری" = je hebt gelijk'},
-        {hz:'آزادی',tr:'aazaadi',nl:'Vrijheid',tip:''},
-        {hz:'انتخابات',tr:'entekhaabaat',nl:'Verkiezingen',tip:''},
-      ],
-      sentences:[
-        {hz:'خبرهای امروز چیست؟',tr:'khabarhaaye emroz chist?',nl:'Wat is het nieuws van vandaag?'},
-        {hz:'ایشالله صلح می‌آید',tr:'ishaallah solh me-aayd',nl:'Inshallah komt de vrede'},
-        {hz:'حق آزادی برای همه اَس',tr:'haq aazaadi baraayi hama as',nl:'Het recht op vrijheid is voor iedereen'},
-      ]
-    },
-  ]},
-
-  { id:'ch13', label:'🌍 Hoofdstuk 13 · Diaspora & Gemeenschap', color:'#FF8C61', lessons:[
-
-    { id:'diaspora', title:'Leven in het buitenland', sub:'Vaderland, heimwee, integratie...', icon:'✈️', xp:50,
-      pronTips:['غ','ع'],
-      grammar:'"غربت" (ghorbat) = het gevoel ver van huis te zijn. Een diepgevoeld woord in de Hazara gemeenschap.',
-      words:[
-        {hz:'وطن',tr:'watan',nl:'Vaderland / Thuisland',tip:'Diep emotioneel woord'},
-        {hz:'غربت',tr:'ghorbat',nl:'Ballingschap / Ver van huis',tip:'Veelgebruikt in Hazara poëzie'},
-        {hz:'دلتنگ وطن',tr:'deltang-e watan',nl:'Heimwee naar het thuisland',tip:'Samengesteld: "دل" + "تنگ" + "وطن"'},
-        {hz:'مهاجر',tr:'mohaajir',nl:'Migrant',tip:''},
-        {hz:'پناهنده',tr:'panaahanda',nl:'Vluchteling',tip:''},
-        {hz:'اقامت',tr:'eqaamat',nl:'Verblijfsvergunning',tip:''},
-        {hz:'ویزه',tr:'wiza',nl:'Visum',tip:''},
-        {hz:'سفارت',tr:'sefaarat',nl:'Ambassade',tip:''},
-        {hz:'تابعیت',tr:'taabi\'iyat',nl:'Nationaliteit',tip:''},
-      ],
-      sentences:[
-        {hz:'دَ غربت هستم اما دلم دَ وطن اَس',tr:'da ghorbat hastam ama delam da watan as',nl:'Ik ben in het buitenland maar mijn hart is thuis'},
-        {hz:'دلتنگ وطنم، دلتنگ خانواده‌ام',tr:'deltang-e watanam, deltang-e khaanwadaam',nl:'Ik heb heimwee naar mijn land, naar mijn familie'},
-        {hz:'اقامتم تمدید شد، الحمدلله',tr:'eqaamatam tamdid shod, alhamdolillah',nl:'Mijn verblijfsvergunning is verlengd, alhamdulillah'},
-      ]
-    },
-
-    { id:'community', title:'Gemeenschap & Solidariteit', sub:'Hulp, samenwerken, eenheid...', icon:'🤝', xp:45,
-      pronTips:['ع','خ'],
-      grammar:'Hazara gemeenschap: "همبستگی" (hambastagi = solidariteit) is een kernwaarde.',
-      words:[
-        {hz:'همبستگی',tr:'hambastagi',nl:'Solidariteit',tip:'Kernwaarde Hazara gemeenschap'},
-        {hz:'کمک',tr:'kamak',nl:'Hulp',tip:'"کمک کردن" = helpen'},
-        {hz:'همکاری',tr:'hamkaari',nl:'Samenwerking',tip:''},
-        {hz:'جامعه',tr:'jaama\'a',nl:'Gemeenschap',tip:''},
-        {hz:'فامیل',tr:'faamil',nl:'Familie (groot)',tip:'Hele familiekring — breder dan "خانواده"'},
-        {hz:'رهبر',tr:'rahbar',nl:'Leider',tip:''},
-        {hz:'مسئولیت',tr:'mas\'ooliyat',nl:'Verantwoordelijkheid',tip:''},
-        {hz:'احترام',tr:'ehtaraam',nl:'Respect',tip:'"احترام کردن" = respecteren'},
-        {hz:'اعتماد',tr:'e\'temaad',nl:'Vertrouwen',tip:''},
-      ],
-      sentences:[
-        {hz:'مو باید به هم کمک کنیم',tr:'mo baayad ba ham kamak konim',nl:'Wij moeten elkaar helpen'},
-        {hz:'همبستگی ما قوی‌تر اَس از هر چیز',tr:'hambastagi maa qawitaar as az har chiz',nl:'Onze solidariteit is sterker dan alles'},
-        {hz:'احترام به بزرگان واجب اَس',tr:'ehtaraam ba bozorgaan waajeb as',nl:'Respect voor ouderen is verplicht'},
-      ]
-    },
-
-    { id:'identity', title:'Taal & Identiteit', sub:'Wie ben ik, mijn taal, mijn roots...', icon:'🏔️', xp:55,
-      pronTips:['خ','غ','ع'],
-      grammar:'"زبان مادری" = moedertaal. Voor de Hazara is Hazaragi de taal van het hart, identiteit en trots.',
-      words:[
-        {hz:'هویت',tr:'howiyat',nl:'Identiteit',tip:''},
-        {hz:'ریشه',tr:'risha',nl:'Wortel / Afkomst',tip:'"ریشه داشتن" = geworteld zijn'},
-        {hz:'زبان مادری',tr:'zabaan maadari',nl:'Moedertaal',tip:''},
-        {hz:'فرهنگ',tr:'farhang',nl:'Cultuur',tip:''},
-        {hz:'نسل',tr:'nasl',nl:'Generatie',tip:''},
-        {hz:'میراث',tr:'miraas',nl:'Erfenis / Nalatenschap',tip:''},
-        {hz:'افتخار',tr:'eftekhar',nl:'Trots',tip:'"افتخار می‌کنم" = ik ben trots'},
-        {hz:'حافظه',tr:'haafeza',nl:'Geheugen / Herinneringen',tip:''},
-        {hz:'آینده',tr:'aayanda',nl:'Toekomst',tip:''},
-      ],
-      sentences:[
-        {hz:'من هزاره هستم و افتخار می‌کنم',tr:'man hazaara hastam wa eftekhar me-konam',nl:'Ik ben Hazara en ik ben er trots op'},
-        {hz:'زبان مادریم را فراموش نمی‌کنم',tr:'zabaan maadaram ra faraamoosh nemi-konam',nl:'Ik vergeet mijn moedertaal niet'},
-        {hz:'ریشه‌هامو قوی اَس، هر کجا باشم',tr:'rishahaamo qaawi as, har koja baasham',nl:'Mijn wortels zijn sterk, waar ik ook ben'},
       ]
     },
   ]},
@@ -1355,515 +1998,6 @@ const CHAPTERS=[
     },
   ]},
 
-  { id:'ch17', label:'💊 Hoofdstuk 17 · Gezondheid & Lichaam', color:'#FF6B9D', lessons:[
-    { id:'health_body', title:'Lichaamsdelen', icon:'🫀', xp:18, words:[
-        {hz:'سر',tr:'sar',nl:'Hoofd',tip:''},
-        {hz:'دست',tr:'dast',nl:'Hand / Arm',tip:''},
-        {hz:'پا',tr:'paa',nl:'Voet / Been',tip:'Lange aa'},
-        {hz:'چشم',tr:'chashm',nl:'Oog',tip:''},
-        {hz:'گوش',tr:'gosh',nl:'Oor',tip:''},
-        {hz:'دهن',tr:'dahan',nl:'Mond',tip:''},
-        {hz:'بینی',tr:'beenee',nl:'Neus',tip:''},
-        {hz:'قلب',tr:'qalb',nl:'Hart',tip:''},
-      ],
-      sentences:[
-        {hz:'سرم درد می‌کنه',tr:'saram dard me-kona',nl:'Mijn hoofd doet pijn'},
-        {hz:'چشمام خسته اَن',tr:'chashmaame khasta an',nl:'Mijn ogen zijn moe'},
-      ]
-    },
-    { id:'health_illness', title:'Ziekte & Genezing', icon:'🏥', xp:18, words:[
-        {hz:'مریض',tr:'mareez',nl:'Ziek / Patiënt',tip:''},
-        {hz:'درد',tr:'dard',nl:'Pijn',tip:''},
-        {hz:'تب',tr:'tab',nl:'Koorts',tip:''},
-        {hz:'دوا',tr:'dawaa',nl:'Medicijn',tip:''},
-        {hz:'داکتر',tr:'daaktar',nl:'Dokter',tip:'Hazaragi/Dari'},
-        {hz:'شفاخانه',tr:'shafaakhaana',nl:'Ziekenhuis',tip:'"شفا" = genezing'},
-        {hz:'صحی',tr:'sehhee',nl:'Gezond',tip:''},
-        {hz:'آرام',tr:'aaraam',nl:'Rust / Rustig',tip:'Lange aa'},
-      ],
-      sentences:[
-        {hz:'مریض استم، به داکتر می‌رم',tr:'mareez astam, ba daaktar me-ram',nl:'Ik ben ziek, ik ga naar de dokter'},
-        {hz:'دوا خوردم، حالا بهترم',tr:'dawaa khordam, haala bahtaram',nl:'Ik heb medicijn genomen, nu ben ik beter'},
-      ]
-    },
-    { id:'health_habits', title:'Gezonde Gewoonten', icon:'🧘', xp:18, words:[
-        {hz:'خواب',tr:'khaab',nl:'Slaap',tip:'Lange aa'},
-        {hz:'ورزش',tr:'warzesh',nl:'Sport / Oefenen',tip:''},
-        {hz:'خوراک',tr:'khoraak',nl:'Voedsel / Maaltijd',tip:''},
-        {hz:'نوشیدن',tr:'noosheedan',nl:'Drinken',tip:''},
-        {hz:'استراحت',tr:'estaahaat',nl:'Ontspanning',tip:''},
-        {hz:'قوت',tr:'qowwat',nl:'Kracht / Energie',tip:''},
-        {hz:'صبر',tr:'sabr',nl:'Geduld',tip:''},
-        {hz:'پاک',tr:'paak',nl:'Schoon / Rein',tip:'Lange aa'},
-      ],
-      sentences:[
-        {hz:'هشت ساعت خواب مهم اَس',tr:'hasht saa\'at khaab mohim as',nl:'Acht uur slaap is belangrijk'},
-        {hz:'روزانه ورزش کو، صحی می‌مانی',tr:'rozaana warzesh ko, sehhee me-maani',nl:'Sport dagelijks, dan blijf je gezond'},
-      ]
-    },
-  ]},
-
-  { id:'ch18', label:'🎭 Hoofdstuk 18 · Cultuur & Tradities', color:'#FFBE3D', lessons:[
-    { id:'culture_celebrations', title:'Feesten & Tradities', icon:'🎉', xp:20, words:[
-        {hz:'نوروز',tr:'nawrooz',nl:'Nieuwjaar (Perzisch)',tip:'Letterlijk "nieuwe dag" — begin lente'},
-        {hz:'عید',tr:'eed',nl:'Feestdag / Eid',tip:'Islamitisch feest'},
-        {hz:'جشن',tr:'jashn',nl:'Viering / Feest',tip:''},
-        {hz:'مهمانی',tr:'mehmaanee',nl:'Bezoek / Bijeenkomst',tip:''},
-        {hz:'سور',tr:'soor',nl:'Bruiloft / Feestmaal',tip:'Typisch Hazaragi bruiloft'},
-        {hz:'هدیه',tr:'hadya',nl:'Cadeau',tip:''},
-        {hz:'برکت',tr:'barakat',nl:'Zegen / Overvloed',tip:'Arabische oorsprong'},
-        {hz:'دعا',tr:'do\'aa',nl:'Gebed / Wens',tip:''},
-      ],
-      sentences:[
-        {hz:'نوروز مبارک! سال نو خوش',tr:'nawrooz mubaarak! saal-e-naw khosh',nl:'Gelukkig Nieuwjaar! Een goed nieuw jaar'},
-        {hz:'سورِ عروسی شادمانه بود',tr:'soor-e-aroosee shaadmaana bood',nl:'De bruiloft was vreugdevol'},
-      ]
-    },
-    { id:'culture_music', title:'Muziek & Kunst', icon:'🎵', xp:18, words:[
-        {hz:'موزیک',tr:'moozeeq',nl:'Muziek',tip:''},
-        {hz:'سرود',tr:'sorod',nl:'Lied / Hymne',tip:''},
-        {hz:'دهل',tr:'dohol',nl:'Trommel / Drum',tip:'Typisch Hazara instrument'},
-        {hz:'سرنی',tr:'sarnaay',nl:'Fluit',tip:'Traditionele blaasinstrument'},
-        {hz:'رقص',tr:'raqs',nl:'Dans',tip:''},
-        {hz:'شعر',tr:'she\'r',nl:'Gedicht',tip:'Hazara poëzie is beroemd'},
-        {hz:'نقاشی',tr:'naqaashee',nl:'Tekening / Schilderij',tip:''},
-        {hz:'داستان',tr:'daastaan',nl:'Verhaal',tip:'Lange aa'},
-      ],
-      sentences:[
-        {hz:'دهل و سرنی موزیک هزارگی اَس',tr:'dohol o sarnaay moozeeq-e hazaaragi as',nl:'Dohol en sarnai zijn Hazaragi muziek'},
-        {hz:'یک شعر هزارگی بخوان',tr:'yak she\'r-e hazaaragi bakhwaan',nl:'Lees een Hazaragi gedicht voor'},
-      ]
-    },
-    { id:'culture_food', title:'Hazaragi Keuken', icon:'🍽️', xp:18, words:[
-        {hz:'بولانی',tr:'bollaanee',nl:'Gevulde flatbread',tip:'Typisch Afghaans gerecht'},
-        {hz:'قورمه',tr:'qorma',nl:'Stoofschotel',tip:'Basisgerecht in Hazaragi keuken'},
-        {hz:'اشک',tr:'ashak',nl:'Dumplings met prei',tip:'Beroemd Afghaans gerecht'},
-        {hz:'قابلی',tr:'qaaboli',nl:'Pilav met vlees en rozijnen',tip:'Nationaal gerecht Afghanistan'},
-        {hz:'چلو',tr:'challow',nl:'Gestoomde rijst',tip:''},
-        {hz:'شیر',tr:'sheer',nl:'Melk',tip:''},
-        {hz:'روغن',tr:'roghan',nl:'Olie / Vet',tip:''},
-        {hz:'نمک',tr:'namak',nl:'Zout',tip:''},
-      ],
-      sentences:[
-        {hz:'مادرم قورمه پختی، لذیذ بود',tr:'maadaram qorma pakhti, lazeez bood',nl:'Mijn moeder maakte stoofschotel, het was heerlijk'},
-        {hz:'اشک غذای مخصوص هزاره اَس',tr:'ashak ghazaa-ye makhsos-e hazaara as',nl:'Ashak is een speciaal Hazara gerecht'},
-      ]
-    },
-  ]},
-
-  { id:'ch19', label:'🍎 Hoofdstuk 19 · Eten & Keuken', color:'#FF8C61', lessons:[
-    { id:'food_basics', title:'Basisvoedsel', icon:'🥗', xp:18, words:[
-        {hz:'نان',tr:'naan',nl:'Brood',tip:'Lange aa — staple voedsel'},
-        {hz:'گوشت',tr:'gosht',nl:'Vlees',tip:''},
-        {hz:'سبزی',tr:'sabzee',nl:'Groente',tip:''},
-        {hz:'میوه',tr:'mewa',nl:'Fruit',tip:''},
-        {hz:'چای',tr:'chaay',nl:'Thee',tip:'Lange aa — altijd aanwezig!'},
-        {hz:'قهوه',tr:'qahwa',nl:'Koffie',tip:''},
-        {hz:'برنج',tr:'berenj',nl:'Rijst',tip:''},
-        {hz:'تخم‌مرغ',tr:'tokhm-morgh',nl:'Ei',tip:'Letterlijk "kippenei"'},
-      ],
-      sentences:[
-        {hz:'صبحانه نان و چای می‌خورم',tr:'sobhaana naan o chaay me-khorem',nl:'\'s Ochtends eet ik brood en thee'},
-        {hz:'گوشت و برنج غذای خوب اَس',tr:'gosht o berenj ghazaa-ye khob as',nl:'Vlees en rijst is goed eten'},
-      ]
-    },
-    { id:'food_taste', title:'Smaken & Smaak', icon:'👅', xp:18, words:[
-        {hz:'شیرین',tr:'shereen',nl:'Zoet',tip:''},
-        {hz:'تلخ',tr:'talkh',nl:'Bitter',tip:''},
-        {hz:'شور',tr:'shorr',nl:'Zout(ig)',tip:''},
-        {hz:'ترش',tr:'torsh',nl:'Zuur',tip:''},
-        {hz:'تند',tr:'tond',nl:'Pittig / Scherp',tip:''},
-        {hz:'خوش‌مزه',tr:'khosh-maza',nl:'Lekker',tip:'"خوش" = goed + "مزه" = smaak'},
-        {hz:'بدمزه',tr:'bad-maza',nl:'Vies / Niet lekker',tip:''},
-        {hz:'گرم',tr:'garm',nl:'Warm / Heet',tip:''},
-      ],
-      sentences:[
-        {hz:'این قورمه خوش‌مزه اَس',tr:'een qorma khosh-maza as',nl:'Deze stoofschotel is lekker'},
-        {hz:'چای گرم می‌خوام',tr:'chaay garm me-khaam',nl:'Ik wil warme thee'},
-      ]
-    },
-    { id:'food_cooking', title:'Koken & Keuken', icon:'👨‍🍳', xp:18, words:[
-        {hz:'آشپز',tr:'aashpaz',nl:'Kok / Chef',tip:'"آشپزی" = koken'},
-        {hz:'دیگ',tr:'deeg',nl:'Pan / Pot',tip:''},
-        {hz:'کارد',tr:'kaard',nl:'Mes',tip:''},
-        {hz:'بشقاب',tr:'boshqaab',nl:'Bord',tip:'Lange oo en aa'},
-        {hz:'پختن',tr:'pakhtan',nl:'Koken (werkwoord)',tip:''},
-        {hz:'بریدن',tr:'boredan',nl:'Snijden',tip:''},
-        {hz:'سرختن',tr:'sorkhtan',nl:'Bakken / Braden',tip:''},
-        {hz:'خوردن',tr:'khordan',nl:'Eten (werkwoord)',tip:''},
-      ],
-      sentences:[
-        {hz:'مادرم خوب آشپزی می‌کنه',tr:'maadaram khob aashpazee me-kona',nl:'Mijn moeder kookt goed'},
-        {hz:'گوشت را سرختم، بعد سبزی افزودم',tr:'gosht ra sorkhti, ba\'d sabzee afzodam',nl:'Ik bakte het vlees, daarna voegde ik groente toe'},
-      ]
-    },
-  ]},
-
-  { id:'ch20', label:'💭 Hoofdstuk 20 · Gevoelens & Gedachten', color:'#A78BFA', lessons:[
-    { id:'emotions_basic', title:'Basisgevoelens', icon:'💕', xp:20, words:[
-        {hz:'خوشحال',tr:'khoshaal',nl:'Blij / Gelukkig',tip:'"خوش" = goed + "حال" = toestand'},
-        {hz:'غمگین',tr:'ghamgeen',nl:'Verdrietig / Bedroefd',tip:'Lange ee'},
-        {hz:'ترسیده',tr:'tarseeda',nl:'Bang / Angstig',tip:'Van "ترسیدن" = bang zijn'},
-        {hz:'خشمگین',tr:'khashmageen',nl:'Boos / Kwaad',tip:''},
-        {hz:'حیران',tr:'hayraan',nl:'Verbaasd / Versteld',tip:'Lange aa'},
-        {hz:'شرمنده',tr:'sharmanda',nl:'Verlegen / Beschaamd',tip:''},
-        {hz:'دلتنگ',tr:'deltang',nl:'Heimwee / Gemist',tip:'"دل" = hart + "تنگ" = nauw'},
-        {hz:'آرام',tr:'aaraam',nl:'Rustig / Kalm',tip:'Lange aa'},
-      ],
-      sentences:[
-        {hz:'وقتی خانواده‌ام رو می‌بینم خوشحالم',tr:'waqti khaanawaadam ra me-beenam khoshaalem',nl:'Als ik mijn familie zie ben ik blij'},
-        {hz:'دلتنگ وطنم استم',tr:'deltang-e watnam astam',nl:'Ik mis mijn thuisland'},
-      ]
-    },
-    { id:'emotions_thinking', title:'Gedachten & Ideeën', icon:'🧠', xp:18, words:[
-        {hz:'فکر',tr:'fekr',nl:'Gedachte / Denken',tip:''},
-        {hz:'خیال',tr:'khayaal',nl:'Idee / Verbeelding',tip:'Lange aa'},
-        {hz:'یاد',tr:'yaad',nl:'Herinnering / Geheugen',tip:'Lange aa'},
-        {hz:'رویا',tr:'royaa',nl:'Droom',tip:'Lange aa'},
-        {hz:'امید',tr:'omeed',nl:'Hoop',tip:'Lange ee'},
-        {hz:'باور',tr:'baawor',nl:'Geloof / Overtuiging',tip:''},
-        {hz:'فهمیدن',tr:'fahmedan',nl:'Begrijpen',tip:''},
-        {hz:'یاد گرفتن',tr:'yaad gereftan',nl:'Leren / Onthouden',tip:'"یاد" = geheugen + "گرفتن" = pakken'},
-      ],
-      sentences:[
-        {hz:'فکر می‌کنم درست اَس',tr:'fekr me-konam dorost as',nl:'Ik denk dat het correct is'},
-        {hz:'امیدم اَس که موفق می‌شم',tr:'omeedam as ke mawaffaq me-sham',nl:'Ik hoop dat ik succesvol word'},
-      ]
-    },
-    { id:'emotions_character', title:'Karakter & Relaties', icon:'🤝', xp:18, words:[
-        {hz:'مهربان',tr:'mehrabaan',nl:'Vriendelijk / Lief',tip:'Lange aa'},
-        {hz:'دوست',tr:'dost',nl:'Vriend',tip:''},
-        {hz:'دشمن',tr:'doshman',nl:'Vijand',tip:''},
-        {hz:'امین',tr:'ameen',nl:'Eerlijk / Betrouwbaar',tip:'Lange ee'},
-        {hz:'شجاع',tr:'shojaa',nl:'Dapper / Moedig',tip:'Hazara zijn bekend om hun moed'},
-        {hz:'صادق',tr:'saadaq',nl:'Oprecht',tip:'Lange aa'},
-        {hz:'احترام',tr:'ehtaraam',nl:'Respect',tip:'Lange aa'},
-        {hz:'اعتماد',tr:'e\'temaad',nl:'Vertrouwen',tip:'Lange aa'},
-      ],
-      sentences:[
-        {hz:'دوستم مهربان و امین اَس',tr:'dostam mehrabaan o ameen as',nl:'Mijn vriend is vriendelijk en eerlijk'},
-        {hz:'احترام مهم‌ترین چیز اَس',tr:'ehtaraam mohimtareen cheez as',nl:'Respect is het belangrijkste ding'},
-      ]
-    },
-  ]},
-
-  { id:'ch_alf', label:'🔡 Hoofdstuk A · Leer het schrift', color:'#D4A0B0', lessons:[
-
-    { id:'alf_intro', title:'Het Arabische schrift', sub:'Hoe werkt het?', icon:'🔡', xp:15,
-      pronTips:['خ','غ','ع','ق'],
-      grammar:'Hazaragi schrijft van rechts naar links met het Arabische schrift. Letters hebben 2–4 vormen afhankelijk van positie.',
-      words:[
-        {hz:'ا — آ',tr:'alef / alef madda',nl:'"a" of "aa" klank',tip:'Eerste letter — staat altijd los of aan het begin'},
-        {hz:'ب — پ — ت',tr:'ba — pa — ta',nl:'"b", "p", "t" klanken',tip:'Dezelfde vorm, verschillend aantal puntjes!'},
-        {hz:'ج — چ — ح — خ',tr:'jim — che — ha — kha',nl:'"j", "ch", "h", "kh"',tip:'"ح" = zachte h, "خ" = keel-g'},
-        {hz:'د — ذ — ر — ز — ژ',tr:'dal — zal — ra — za — zhe',nl:'"d", "z", "r", "z", "zh"',tip:'"ر" = gerolde r, "ژ" = als "j" in "jardin"'},
-        {hz:'س — ش',tr:'sin — shin',nl:'"s" en "sh"',tip:'Drie tanden boven de lijn'},
-        {hz:'ع — غ',tr:'ain — ghain',nl:'keel-a en keel-gh',tip:'"ع" = zachte keel, "غ" = rommelende r'},
-        {hz:'ف — ق — ک — گ',tr:'fa — qa — ka — ga',nl:'"f", "q", "k", "g"',tip:'"ق" = diepe keel-k — typisch Hazaragi'},
-        {hz:'ل — م — ن',tr:'lam — mim — nun',nl:'"l", "m", "n"',tip:'Basis-medeklinkers'},
-        {hz:'و',tr:'waw / oo',nl:'"w" of "oo" klank',tip:'Aan het begin "w", in het midden "oo"'},
-        {hz:'ی',tr:'ya / i',nl:'"y" of "ie" klank',tip:'Aan het begin "y", op andere posities "ie"'},
-      ],
-      sentences:[
-        {hz:'سلام',tr:'salaam',nl:'Hallo — lees van rechts naar links: س-ل-ا-م'},
-        {hz:'خوبم',tr:'khobam',nl:'Ik ben goed — let op: خ = keel-g'},
-        {hz:'مو',tr:'mo',nl:'Wij — twee letters: م + و'},
-      ]
-    },
-
-    { id:'alf_vowels', title:'Klinkers & lange klanken', sub:'Korte en lange klinkers', icon:'🔊', xp:15,
-      pronTips:['آ','ر'],
-      grammar:'Korte klinkers (fatHa, kasra, Damma) schrijf je zelden. Lange klanken schrijf je WEL: "آ/ا" = aa, "و" = oo, "ی" = ee.',
-      words:[
-        {hz:'آ',tr:'aa (lang)',nl:'Lange "aa" klank',tip:'"آب" (aab) = water — let op de tilde op de ا'},
-        {hz:'ا',tr:'a (in midden)',nl:'Korte of lange "a"',tip:'Na een klinker in een woord'},
-        {hz:'و = oo',tr:'oo (lang)',nl:'Lange "oo" klank',tip:'"پول" (pool) = geld'},
-        {hz:'ی = ee',tr:'ee (lang)',nl:'Lange "ee" klank',tip:'"بی" (bi) = zonder — lang ie'},
-        {hz:'َ (fatHa)',tr:'a (kort)',nl:'Korte "a" klank (accent)',tip:'Kleine streep boven de letter — zelden geschreven'},
-        {hz:'ِ (kasra)',tr:'e / i (kort)',nl:'Korte "e/i" klank',tip:'Kleine streep onder de letter'},
-        {hz:'ُ (Damma)',tr:'o / u (kort)',nl:'Korte "o/u" klank',tip:'Klein haakje boven de letter'},
-        {hz:'تشدید ّ',tr:'tashdid',nl:'Dubbele letter',tip:'Kleine "w" boven letter = zeg de letter dubbel'},
-      ],
-      sentences:[
-        {hz:'آب',tr:'aab',nl:'Water — lange aa gevolgd door b'},
-        {hz:'بیست',tr:'bist',nl:'Twintig — ب+ی+س+ت'},
-        {hz:'سلام',tr:'salaam',nl:'Hallo — س+ل+ا+م, lange aa in het midden'},
-      ]
-    },
-
-    { id:'alf_reading', title:'Lees je eerste zinnen', sub:'Van letters naar woorden', icon:'📖', xp:20,
-      pronTips:['خ','ع','غ','ق'],
-      grammar:'Oefen met herkennen. Je hoeft nog niet perfect te schrijven — lees eerst!',
-      words:[
-        {hz:'ب + ا + ب + ا = باوا',tr:'b+aa+w+aa = baawaa',nl:'Vader — 4 letters',tip:'Lees langzaam van rechts naar links'},
-        {hz:'س + ل + ا + م = سلام',tr:'s+l+aa+m = salaam',nl:'Hallo — 4 letters',tip:''},
-        {hz:'خ + و + ب = خوب',tr:'kh+oo+b = khob',nl:'Goed — 3 letters',tip:'"خ" = keel-g'},
-        {hz:'م + ا + د + ر = مادر',tr:'m+aa+d+ar = maadar',nl:'Moeder — 4 letters',tip:''},
-        {hz:'د + و + س + ت = دوست',tr:'d+oo+s+t = dost',nl:'Vriend — 4 letters',tip:''},
-        {hz:'ن + ا + م = نام',tr:'n+aa+m = naam',nl:'Naam — 3 letters',tip:''},
-        {hz:'چ + ا + ی = چای',tr:'ch+aa+y = chaay',nl:'Thee — 3 letters',tip:'"چ" = ch klank'},
-        {hz:'ه + ز + ا + ر = هزار',tr:'h+z+aa+r = hazaar',nl:'Duizend — 4 letters',tip:''},
-      ],
-      sentences:[
-        {hz:'نامم گل اَس',tr:'naamam gol as',nl:'Mijn naam is Gol — nu kan je het lezen!'},
-        {hz:'خوبم، تشکر',tr:'khobam, tashakor',nl:'Ik ben goed, dank je'},
-        {hz:'دوستت دارم',tr:'dostat daaram',nl:'Ik hou van jou'},
-      ]
-    },
-  ]},
-
-  { id:'ch21', label:'🔢 Hoofdstuk 21 · Cijfers & Tijd', color:'#F06C78', lessons:[
-
-    { id:'numbers_11_20', title:'Cijfers 11–20', sub:'Elf tot twintig', icon:'🔢', xp:20,
-      pronTips:['ر'],
-      grammar:'Patroon: "یازده" t/m "نزده" hebben elk een eigen vorm. Daarna: "بیست" (20) + "و" + eenheid.',
-      words:[
-        {hz:'یازده',tr:'yaazda',nl:'Elf',tip:'Hazaragi: "yaazda" — snel uitgesproken'},
-        {hz:'دوازده',tr:'dwaazda',nl:'Twaalf',tip:''},
-        {hz:'سیزده',tr:'sezda',nl:'Dertien',tip:'Hazaragi: "sezda"'},
-        {hz:'چارده',tr:'chaarda',nl:'Veertien',tip:'Van "چار" (4) + "ده" (10)'},
-        {hz:'پانزده',tr:'paanza',nl:'Vijftien',tip:''},
-        {hz:'شانزده',tr:'shaanza',nl:'Zestien',tip:''},
-        {hz:'هفده',tr:'hafda',nl:'Zeventien',tip:''},
-        {hz:'هژده',tr:'hazda',nl:'Achttien',tip:'Hazaragi: "hazda" — unieke uitspraak!'},
-        {hz:'نزده',tr:'nezda',nl:'Negentien',tip:''},
-        {hz:'بیست',tr:'bist',nl:'Twintig',tip:''},
-      ],
-      sentences:[
-        {hz:'بیست و یک روز مانده',tr:'bist o yak roz maanda',nl:'Nog eenentwintig dagen',tip:'"و" = en — zo maak je samengestelde getallen'},
-        {hz:'دوازده شاگرد دَ صنف اَس',tr:'dwaazda shaagerd da sanf as',nl:'Er zijn twaalf leerlingen in de klas'},
-        {hz:'هژده ساله هستم',tr:'hazda saala hastam',nl:'Ik ben achttien jaar'},
-      ]
-    },
-
-    { id:'numbers_big', title:'Cijfers 30–1000', sub:'Grote getallen', icon:'💯', xp:20,
-      pronTips:['ر'],
-      grammar:'"صد" = honderd. "دو صد" = tweehonderd. "هزار" = duizend. Simpel combineren!',
-      words:[
-        {hz:'سی',tr:'si',nl:'Dertig',tip:''},
-        {hz:'چل',tr:'chel',nl:'Veertig',tip:'Hazaragi: "chel" — Farsi "chehel"'},
-        {hz:'پنجاه',tr:'panjaa',nl:'Vijftig',tip:''},
-        {hz:'شصت',tr:'shast',nl:'Zestig',tip:''},
-        {hz:'هفتاد',tr:'haftaad',nl:'Zeventig',tip:''},
-        {hz:'هشتاد',tr:'hashtaad',nl:'Tachtig',tip:''},
-        {hz:'نود',tr:'nawad',nl:'Negentig',tip:''},
-        {hz:'صد',tr:'sad',nl:'Honderd',tip:''},
-        {hz:'پنج صد',tr:'panj sad',nl:'Vijfhonderd',tip:''},
-        {hz:'هزار',tr:'hazaar',nl:'Duizend',tip:'Lange aa — ook een Hazara-achternaam!'},
-      ],
-      sentences:[
-        {hz:'هزار تشکر!',tr:'hazaar tashakor!',nl:'Duizendmaal dank!',tip:'Vaste uitdrukking voor grote dankbaarheid'},
-        {hz:'صد کیلومتر دور اَس',tr:'sad kilometer door as',nl:'Het is honderd kilometer ver'},
-        {hz:'پنجاه نفر آمدن',tr:'panjaa nafar aamadan',nl:'Vijftig mensen zijn gekomen'},
-      ]
-    },
-
-    { id:'days_week', title:'Dagen van de week', sub:'Maandag t/m zondag', icon:'📅', xp:20,
-      pronTips:['ش'],
-      grammar:'"شنبه" (shanba) = zaterdag is de basis. Andere dagen = getal + "شنبه".',
-      words:[
-        {hz:'دوشنبه',tr:'doshanba',nl:'Maandag',tip:'"دو" = twee + "شنبه"'},
-        {hz:'سه‌شنبه',tr:'seshanba',nl:'Dinsdag',tip:'"سه" = drie'},
-        {hz:'چارشنبه',tr:'chaarshanba',nl:'Woensdag',tip:'"چار" = vier'},
-        {hz:'پنجشنبه',tr:'panjshanba',nl:'Donderdag',tip:'"پنج" = vijf'},
-        {hz:'جمعه',tr:'jome',nl:'Vrijdag',tip:'Heilige dag — vrij in Afghanistan'},
-        {hz:'شنبه',tr:'shanba',nl:'Zaterdag',tip:''},
-        {hz:'یکشنبه',tr:'yakshanba',nl:'Zondag',tip:'"یک" = één'},
-        {hz:'هفته',tr:'hafta',nl:'Week',tip:''},
-        {hz:'آخر هفته',tr:'aakhir-e-hafta',nl:'Weekend',tip:''},
-        {hz:'هفته دیگه',tr:'hafta diga',nl:'Volgende week',tip:''},
-      ],
-      sentences:[
-        {hz:'چارشنبه می‌آیم، آماده باش',tr:'chaarshanba me-aaym, aamaada baash',nl:'Woensdag kom ik, wees klaar'},
-        {hz:'جمعه خانه هستم',tr:'jome khaana hastam',nl:'Vrijdag ben ik thuis'},
-        {hz:'هفته دیگه مسابقه داریم',tr:'hafta diga masaabeqa daarem',nl:'Volgende week hebben we een wedstrijd'},
-      ]
-    },
-
-    { id:'clock_time', title:'Klokkijken & Tijdsaanduidingen', sub:'Hoe laat is het?', icon:'⏰', xp:25,
-      pronTips:['ر'],
-      grammar:'"ساعت چند اَس؟" = hoe laat is het? "ساعت سه و نیم" = half vier.',
-      words:[
-        {hz:'ساعت',tr:'saat',nl:'Uur / Klok / Horloge',tip:''},
-        {hz:'دقیقه',tr:'daqiqa',nl:'Minuut',tip:''},
-        {hz:'نیم',tr:'nim',nl:'Half',tip:'"ساعت سه و نیم" = half vier (3:30)'},
-        {hz:'ربع',tr:'rob',nl:'Kwart',tip:'"ربع کم" = kwart voor'},
-        {hz:'صبح',tr:'sobh',nl:'Ochtend',tip:''},
-        {hz:'چاشت',tr:'chaasht',nl:'Middag / Noon',tip:'Hazaragi woord — Farsi "ظهر"'},
-        {hz:'بعد از چاشت',tr:'baad az chaasht',nl:'Namiddag',tip:''},
-        {hz:'شام',tr:'shaam',nl:'Avond / Avondeten',tip:''},
-        {hz:'نیمه شب',tr:'nima-shab',nl:'Middernacht',tip:''},
-        {hz:'دیر شد',tr:'deer shod',nl:'Het is te laat',tip:'Veelgebruikte uitdrukking'},
-      ],
-      sentences:[
-        {hz:'ساعت چند اَس؟',tr:'saat chand as?',nl:'Hoe laat is het?'},
-        {hz:'ساعت هشت و نیم صبح اَس',tr:'saat hasht o nim sobh as',nl:'Het is half negen \'s ochtends'},
-        {hz:'دیر شد، زود برو!',tr:'deer shod, zod bero!',nl:'Het is te laat, ga snel!'},
-      ]
-    },
-    { id:'months', title:'Maanden van het jaar', sub:'Januari t/m december', icon:'📆', xp:20,
-      pronTips:['ر'],
-      grammar:'In Nederland gebruik je de Gregoriaanse maanden. Hazaragi/Dari heeft ook Shamsi maanden (Hamal t/m Howt) voor de Afghaanse kalender.',
-      words:[
-        {hz:'جنوری',tr:'janawaari',nl:'Januari',tip:''},
-        {hz:'فبروری',tr:'febrawaari',nl:'Februari',tip:''},
-        {hz:'مارچ',tr:'maarch',nl:'Maart',tip:''},
-        {hz:'اپریل',tr:'aprel',nl:'April',tip:''},
-        {hz:'می',tr:'mey',nl:'Mei',tip:''},
-        {hz:'جون',tr:'joon',nl:'Juni',tip:''},
-        {hz:'جولای',tr:'jolaayi',nl:'Juli',tip:''},
-        {hz:'آگست',tr:'aagast',nl:'Augustus',tip:''},
-        {hz:'سپتمبر',tr:'septambar',nl:'September',tip:''},
-        {hz:'اکتوبر',tr:'oktobar',nl:'Oktober',tip:''},
-        {hz:'نومبر',tr:'nawambar',nl:'November',tip:''},
-        {hz:'دسمبر',tr:'desembar',nl:'December',tip:'Koudste maand — "زمستان" begint'},
-      ],
-      sentences:[
-        {hz:'نوروز دَ مارچ اَس',tr:'nawrooz da maarch as',nl:'Nowruz is in maart'},
-        {hz:'دَ کدام ماه تولدت اَس؟',tr:'da kodaam maah tawalladat as?',nl:'In welke maand is je verjaardag?'},
-        {hz:'دسمبر خیلی سرد اَس دَ هالند',tr:'desembar khaili sard as da haaland',nl:'December is heel koud in Nederland'},
-      ]
-    },
-  ]},
-
-  { id:'ch22', label:'👗 Hoofdstuk 22 · Kleding & Uiterlijk', color:'#F9C3Cb', lessons:[
-
-    { id:'clothing', title:'Kleding', sub:'Shirt, broek, schoenen...', icon:'👕', xp:25,
-      pronTips:['خ','ش'],
-      grammar:'"پوشیدن" = dragen/aantrekken. "درآوردن" = uitdoen. Tegengestelden die je allebei nodig hebt!',
-      words:[
-        {hz:'لباس',tr:'lebaas',nl:'Kleding (algemeen)',tip:''},
-        {hz:'پیراهن',tr:'peraahan',nl:'Overhemd / Jurk',tip:''},
-        {hz:'شلوار',tr:'shalwaar',nl:'Broek',tip:'Lange aa'},
-        {hz:'کفش',tr:'kafsh',nl:'Schoenen',tip:''},
-        {hz:'جوراب',tr:'joraab',nl:'Sokken',tip:''},
-        {hz:'کت',tr:'kat',nl:'Jas / Jasje',tip:''},
-        {hz:'کلاه',tr:'kolaah',nl:'Hoed / Pet / Muts',tip:''},
-        {hz:'روسری',tr:'roosari',nl:'Hoofddoek',tip:''},
-        {hz:'پوشیدن',tr:'poshedan',nl:'Dragen / Aantrekken',tip:''},
-        {hz:'درآوردن',tr:'dar-aawordan',nl:'Uitdoen / Uittrekken',tip:''},
-      ],
-      sentences:[
-        {hz:'لباست قشنگ اَس، کجا خریدی؟',tr:'lebaasat qashanq as, koja kharidi?',nl:'Je kleding is mooi, waar heb je het gekocht?'},
-        {hz:'هوا سرد اَس، کت بپوش',tr:'hawaa sard as, kat beposh',nl:'Het is koud, trek je jas aan'},
-        {hz:'کفشم تنگ اَس، درد می‌کنه',tr:'kafasham tang as, dard me-kona',nl:'Mijn schoen is strak, het doet pijn'},
-      ]
-    },
-
-    { id:'appearance', title:'Uiterlijk & Beschrijving', sub:'Lang, kort, jong, oud...', icon:'🪞', xp:25,
-      pronTips:['ر','خ'],
-      grammar:'"قد بلند" = lang. "قد کوتاه" = kort. Eigenschap direct vóór of na het naamwoord.',
-      words:[
-        {hz:'مو',tr:'moo',nl:'Haar',tip:'Niet verwarren met "مو" = wij!'},
-        {hz:'قد',tr:'qad',nl:'Lengte / Gestalte',tip:''},
-        {hz:'بلند',tr:'boland',nl:'Lang / Hoog',tip:''},
-        {hz:'کوتاه',tr:'kotaah',nl:'Kort',tip:''},
-        {hz:'جوان',tr:'jawaan',nl:'Jong',tip:''},
-        {hz:'پیر',tr:'peer',nl:'Oud (persoon)',tip:''},
-        {hz:'لاغر',tr:'laaghar',nl:'Slank / Dun',tip:''},
-        {hz:'چاق',tr:'chaaq',nl:'Dik / Mollig',tip:''},
-        {hz:'ریش',tr:'rish',nl:'Baard',tip:''},
-        {hz:'خوش‌تیپ',tr:'khosh-tip',nl:'Stijlvol / Knap',tip:'Moderne term'},
-      ],
-      sentences:[
-        {hz:'برارم قد بلند و لاغر اَس',tr:'baraaram qad boland o laaghar as',nl:'Mijn broer is lang en slank'},
-        {hz:'مویت خیلی قشنگ اَس',tr:'mooyat khaili qashanq as',nl:'Je haar is heel mooi'},
-        {hz:'او پیر نیس، هنوز جوان اَس',tr:'o peer nis, hanoz jawaan as',nl:'Hij/zij is niet oud, nog steeds jong'},
-      ]
-    },
-
-    { id:'clothing_shopping', title:'Kleding kopen', sub:'Maat, passen, betalen...', icon:'🛍️', xp:30,
-      pronTips:['خ'],
-      grammar:'"اندازه" = maat. "پرو کردن" = passen. Altijd vragen: "بزرگتر داری؟" = heb je iets groters?',
-      words:[
-        {hz:'اندازه',tr:'andaaza',nl:'Maat / Grootte',tip:''},
-        {hz:'پرو کردن',tr:'paro kardan',nl:'Passen (kleding)',tip:''},
-        {hz:'بزرگ',tr:'bozorg',nl:'Groot',tip:''},
-        {hz:'کوچک',tr:'kochak',nl:'Klein',tip:''},
-        {hz:'تنگ',tr:'tang',nl:'Strak / Nauw',tip:''},
-        {hz:'گشاد',tr:'goshaad',nl:'Wijd / Ruim',tip:''},
-        {hz:'نو',tr:'no',nl:'Nieuw',tip:''},
-        {hz:'کهنه',tr:'kohna',nl:'Oud / Versleten',tip:''},
-        {hz:'رنگ',tr:'rang',nl:'Kleur',tip:''},
-        {hz:'مد',tr:'mod',nl:'Mode / Trend',tip:'Leenwoord van "mode"'},
-      ],
-      sentences:[
-        {hz:'این اندازه‌ام درس نیس، بزرگتر داری؟',tr:'een andaazaam doros nis, bozoghtar daari?',nl:'Deze maat past niet, heb je iets groters?'},
-        {hz:'پرو کنم ببینم چطور اَس',tr:'paro konam bebinam chetor as',nl:'Laat me het passen om te zien hoe het zit'},
-        {hz:'این رنگ مد اَس؟',tr:'een rang mod as?',nl:'Is deze kleur in de mode?'},
-      ]
-    },
-  ]},
-
-  { id:'ch23', label:'🏠 Hoofdstuk 23 · Huis & Dagelijks Leven', color:'#8E9A5A', lessons:[
-
-    { id:'rooms', title:'Kamers van het huis', sub:'Woonkamer, slaapkamer...', icon:'🛋️', xp:20,
-      pronTips:['خ'],
-      grammar:'"دَ اتاق خواب هستم" = ik ben in de slaapkamer. "دَ" is het Hazaragi voorzetsel voor locatie.',
-      words:[
-        {hz:'هال',tr:'haal',nl:'Woonkamer',tip:'Leenwoord van "hall"'},
-        {hz:'اتاق خواب',tr:'otaaq-khaab',nl:'Slaapkamer',tip:'"خواب" = slaap'},
-        {hz:'حمام',tr:'hamaam',nl:'Badkamer',tip:''},
-        {hz:'دستشویی',tr:'dast-shoyi',nl:'Toilet / WC',tip:'Letterlijk "handenwasplaats"'},
-        {hz:'آشپزخانه',tr:'aashpaz-khaana',nl:'Keuken',tip:'Letterlijk "kookhuis"'},
-        {hz:'زیرزمین',tr:'zirzameen',nl:'Kelder',tip:'"زیر" = onder + "زمین" = grond'},
-        {hz:'بالکن',tr:'baalkun',nl:'Balkon',tip:''},
-        {hz:'پله',tr:'pala',nl:'Trap',tip:''},
-        {hz:'راهرو',tr:'raahro',nl:'Gang / Hal',tip:''},
-        {hz:'سقف',tr:'saqf',nl:'Plafond',tip:''},
-      ],
-      sentences:[
-        {hz:'دَ اتاق خوابم هستم',tr:'da otaaq-khaabam hastam',nl:'Ik ben in mijn slaapkamer'},
-        {hz:'حمام خراب اَس، دستشویی کار می‌کنه',tr:'hamaam khraab as, dast-shoyi kaar me-kona',nl:'De badkamer is kapot, het toilet werkt'},
-        {hz:'بالکنمو قشنگ اَس، شهر دیده می‌شه',tr:'baalkuanamo qashanq as, shahr dida meshe',nl:'Ons balkon is mooi, je ziet de stad'},
-      ]
-    },
-
-    { id:'furniture', title:'Meubels & Inrichting', sub:'Bank, tapijt, spiegel...', icon:'🛏️', xp:20,
-      pronTips:['ر'],
-      grammar:'Traditioneel Hazara huis: "تشک" (matras) op de vloer + "قالین" (tapijt) — geen Westerse meubels.',
-      words:[
-        {hz:'صوفه',tr:'sofa',nl:'Bank / Sofa',tip:'Leenwoord'},
-        {hz:'تشک',tr:'tashak',nl:'Matras',tip:'Traditioneel: op de grond'},
-        {hz:'بالشت',tr:'baalshat',nl:'Kussen',tip:''},
-        {hz:'لحاف',tr:'lahaaf',nl:'Deken',tip:''},
-        {hz:'قالین',tr:'qaaleen',nl:'Vloerkleed / Tapijt',tip:'Perzische tapijten zijn beroemde kunst'},
-        {hz:'پرده',tr:'parda',nl:'Gordijn',tip:''},
-        {hz:'آینه',tr:'aayna',nl:'Spiegel',tip:''},
-        {hz:'الماری',tr:'almaaree',nl:'Kledingkast',tip:''},
-        {hz:'رف',tr:'raf',nl:'Plank',tip:''},
-        {hz:'فانوس',tr:'faanos',nl:'Lamp / Lantaarn',tip:''},
-      ],
-      sentences:[
-        {hz:'دَ صوفه بنشین، چای می‌آرم',tr:'da sofa benshin, chaay me-aaram',nl:'Ga op de bank zitten, ik breng thee'},
-        {hz:'قالینمو خیلی کهنه شده',tr:'qaaleenamo khaili kohna shoda',nl:'Ons vloerkleed is erg oud geworden'},
-        {hz:'پرده را ببند، آفتاب می‌زنه',tr:'parda ra baband, aaftaab me-zana',nl:'Sluit het gordijn, de zon schijnt'},
-      ]
-    },
-
-    { id:'household_chores', title:'Huishoudelijke taken', sub:'Schoonmaken, wassen, koken...', icon:'🧹', xp:25,
-      pronTips:['ر','ش'],
-      grammar:'"کردن" = doen. Taak + "کردن" = taak uitvoeren. "جارو کردن" = vegen.',
-      words:[
-        {hz:'جارو کردن',tr:'jaaro kardan',nl:'Vegen / Stofzuigen',tip:'"جارو" = bezem'},
-        {hz:'شستن',tr:'shostan',nl:'Wassen',tip:'"لباس شستن" = kleding wassen'},
-        {hz:'پاک کردن',tr:'paak kardan',nl:'Schoonmaken',tip:''},
-        {hz:'ظرف شستن',tr:'zarf shostan',nl:'Afwassen',tip:'"ظرف" = vaat'},
-        {hz:'خرید کردن',tr:'kharid kardan',nl:'Boodschappen doen',tip:''},
-        {hz:'مرتب کردن',tr:'moratab kardan',nl:'Opruimen',tip:''},
-        {hz:'آب دادن',tr:'aab daadan',nl:'Water geven (planten)',tip:''},
-        {hz:'کثیف',tr:'kasif',nl:'Vies / Vuil',tip:''},
-        {hz:'تمیز',tr:'tamiz',nl:'Schoon',tip:''},
-        {hz:'نظافت',tr:'nazaafat',nl:'Schoonmaak / Hygiëne',tip:''},
-      ],
-      sentences:[
-        {hz:'اتاقت را مرتب کو، خیلی کثیف اَس',tr:'otaaqat ra moratab ko, khaili kasif as',nl:'Ruim je kamer op, het is heel rommelig'},
-        {hz:'ظرف‌ها را بشور، من جارو می‌کنم',tr:'zarfhaa ra beshor, man jaaro me-konam',nl:'Was de vaat, ik zal vegen'},
-        {hz:'هر روز نظافت خانه مهم اَس',tr:'har roz nazaafat-e-khaana mohim as',nl:'Elke dag schoonmaken is belangrijk'},
-      ]
-    },
-  ]},
-
   { id:'ch24', label:'🌾 Hoofdstuk 24 · Landbouw & Wilde Natuur', color:'#8E9A5A', lessons:[
 
     { id:'farming', title:'Landbouw & Gewassen', sub:'Tarwe, druiven, meloenen...', icon:'🌾', xp:30,
@@ -1929,6 +2063,67 @@ const CHAPTERS=[
         {hz:'امسال خشکسالی شد، زمین آب نداشت',tr:'emsaal khushksaalee shod, zameen aab nadaasht',nl:'Dit jaar was er droogte, het land had geen water'},
         {hz:'باید از محیط زیست حفاظت کنیم',tr:'baayad az mohit-e-zist hefaazat konim',nl:'We moeten het milieu beschermen'},
         {hz:'طوفان آمد، همه دَ خانه موندن',tr:'toofaan aamad, hama da khaana moondan',nl:'De storm kwam, iedereen bleef thuis'},
+      ]
+    },
+  ]},
+
+  { id:'ch_gram5', label:'📖 Grammatica 5 · Hazaragi vs Dari', color:'#8B6FF0', lessons:[
+
+    { id:'gram5_sound', title:'Uitspraakverschillen', sub:'Hoe Hazaragi klinkt anders', icon:'🗣️', xp:30,
+      pronTips:['خ','و','ر'],
+      grammar:'Hazaragi en Dari zijn verwant maar duidelijk verschillend. Als je Dari spreekt klinkt Hazaragi als een eigen taal!',
+      words:[
+        {hz:'آو (Hz) ← آب (Da)',tr:'aaw ← aab',nl:'Water: Hz "aaw", Dari "aab"',tip:'De "b" wordt "w" in Hazaragi — typisch kenmerk'},
+        {hz:'نیس (Hz) ← نیست (Da)',tr:'nis ← nist',nl:'Is niet: Hz "nis", Dari "nist"',tip:'Eindmedeklinkers vallen weg'},
+        {hz:'اَس (Hz) ← است (Da)',tr:'as ← ast',nl:'Is: Hz "as", Dari "ast"',tip:'Korter in Hazaragi'},
+        {hz:'می‌ره (Hz) ← می‌رود (Da)',tr:'me-ra ← me-rawad',nl:'Gaat: Hz "-h" uitgang, Dari "-d"',tip:'Werkwoorduitgangen verschillen'},
+        {hz:'چتور (Hz) ← چطور (Da)',tr:'chetor ← chetor',nl:'Hoe: Hz "chetor", Dari "chetor"',tip:'Kleine uitspraakverschillen'},
+        {hz:'مو (Hz) ← ما (Da)',tr:'mo ← maa',nl:'Wij: Hz "mo", Dari "maa"',tip:'GROOTSTE verschil — Mongooolse invloed op Hazaragi'},
+        {hz:'حالی (Hz) ← حالا (Da)',tr:'haali ← haala',nl:'Nu: Hz "haali", Dari "haala"',tip:''},
+        {hz:'وخت (Hz) ← وقت (Da)',tr:'wakht ← waqt',nl:'Tijd: Hz "wakht", Dari "waqt"',tip:''},
+      ],
+      sentences:[
+        {hz:'آو می‌خوام — (Dari: آب می‌خواهم)',tr:'aaw me-khaam — aab me-khaaham',nl:'Ik wil water — hoor het verschil!'},
+        {hz:'مو با هم می‌ریم — (Dari: ما با هم می‌رویم)',tr:'mo baa ham me-rim — maa baa ham me-rowim',nl:'Wij gaan samen — "مو" vs "ما"'},
+        {hz:'مشکلی نیس — (Dari: مشکلی نیست)',tr:'moshkeli nis — moshkeli nist',nl:'Geen probleem — Hz korter'},
+      ]
+    },
+
+    { id:'gram5_vocab', title:'Woordenschatverschillen', sub:'Andere woorden voor hetzelfde', icon:'📚', xp:30,
+      pronTips:['خ'],
+      grammar:'Sommige Hazaragi woorden komen van het Mongools of Turks en bestaan niet in Dari.',
+      words:[
+        {hz:'باوا (Hz) ← باباا (Da)',tr:'baawaa ← baabaa',nl:'Vader: Hz "baawaa" (Mongools!)',tip:'"باوا" is een Mongoools leenwoord'},
+        {hz:'مادرکلان (Hz)',tr:'maadar-kalaan',nl:'Oma: letterlijk "grote moeder"',tip:'"کلان" = groot in Hazaragi (Mongools: "katan")'},
+        {hz:'باواکلان (Hz)',tr:'baawaa-kalaan',nl:'Opa: letterlijk "grote vader"',tip:'Bestaat niet in Dari'},
+        {hz:'برار (Hz) ← برادر (Da)',tr:'baraar ← baraadar',nl:'Broer: Hz korter',tip:'Hazaragi knipt eindlettergrepen'},
+        {hz:'کاکا (Hz)',tr:'kaakaa',nl:'Oom (vaders broer)',tip:'Mongools leenwoord — Dari gebruikt "کاکا" ook maar het is Hazaragi'},
+        {hz:'اسپ (Hz) ← اسب (Da)',tr:'asp ← asb',nl:'Paard: Hz "asp", Dari "asb"',tip:'"},ب" uitgang wordt "پ" in Hazaragi'},
+        {hz:'سیا (Hz) ← سیاه (Da)',tr:'siya ← siyaah',nl:'Zwart: Hz "siya" korter',tip:'Eindklinkers vallen weg'},
+        {hz:'خو (Hz)',tr:'kho',nl:'"Nou / Dan" — geen Dari equivalent',tip:'Verbindingswoord — typisch Hazaragi'},
+      ],
+      sentences:[
+        {hz:'باواکلانم قصه می‌گفت — Dari gebruikt "پدربزرگ"',tr:'baawakalanam qessa megoft',nl:'Mijn opa vertelde verhalen'},
+        {hz:'برارم آمد — Dari: "برادرم آمد"',tr:'baraaram aamad',nl:'Mijn broer is gekomen — let op het verschil'},
+        {hz:'خو، چی می‌خوای؟',tr:'kho, chi me-khaai?',nl:'Nou, wat wil je? — "خو" bestaat niet in Dari'},
+      ]
+    },
+
+    { id:'gram5_grammar', title:'Grammaticaverschillen', sub:'Uitgangen en vormen', icon:'⚙️', xp:25,
+      pronTips:['خ'],
+      grammar:'Hazaragi werkwoorden hebben andere uitgangen dan Dari. De "-ین" uitgang (jullie) is typisch Hazaragi.',
+      words:[
+        {hz:'هستین (Hz) ← هستید (Da)',tr:'hastin ← hastid',nl:'Jullie zijn: Hz "-ین", Dari "-ید"',tip:'"-ین" uitgang = typisch Hazaragi'},
+        {hz:'می‌رین (Hz) ← می‌روید (Da)',tr:'me-rin ← me-rowid',nl:'Jullie gaan',tip:'Hetzelfde patroon'},
+        {hz:'بفرمایین (Hz) ← بفرمایید (Da)',tr:'befarmaayin ← befarmaaayid',nl:'Alstublieft (beleefd)',tip:'"-ین" vs "-ید" uitgang'},
+        {hz:'می‌تانم (Hz) ← می‌توانم (Da)',tr:'me-taanam ← me-tawaanam',nl:'Ik kan: Hz "taan", Dari "tawaan"',tip:'Typisch Hazaragi werkwoord'},
+        {hz:'"دَ" (Hz) ← "در/به" (Da)',tr:'da ← dar / be',nl:'"Dَ" = in/naar/bij (Hazaragi)',tip:'"دَ" doet het werk van meerdere Dari voorzetsels'},
+        {hz:'خانمو (Hz) ← خانه‌ما (Da)',tr:'khaanamao ← khaana-maa',nl:'Ons huis: Hz "-مو" = ons',tip:'Bezit meervoud: "-مو" Hazaragi, "-مان" Dari'},
+      ],
+      sentences:[
+        {hz:'شما هستین؟ — (Dari: شما هستید؟)',tr:'shoma hastin?',nl:'Zijn jullie er? — hoor het verschil'},
+        {hz:'دَ خانه می‌رم — (Dari: به خانه می‌روم)',tr:'da khaana me-ram',nl:'Ik ga naar huis — "دَ" vs "به"'},
+        {hz:'نمی‌تانم — (Dari: نمی‌توانم)',tr:'nemi-taanam',nl:'Ik kan niet — duidelijk Hazaragi!'},
       ]
     },
   ]},
@@ -2002,400 +2197,203 @@ const CHAPTERS=[
     },
   ]},
 
-  { id:'ch_gram4', label:'📖 Grammatica 4 · Modale werkwoorden', color:'#8B6FF0', lessons:[
+  { id:'ch10', label:'👑 Hoofdstuk 10 · Expert Niveau', color:'#A78BFA', lessons:[
 
-    { id:'gram4_modal', title:'Modale werkwoorden', sub:'Kunnen, moeten, mogen...', icon:'⚙️', xp:35,
-      pronTips:['ت'],
-      grammar:'"می‌تانم" (Hazaragi) = kan. Farsi zegt "می‌توانم" — markant verschil! Leer de Hazaragi vorm.',
+    { id:'cooking', title:'Koken & Recepten', sub:'Hazara gerechten...', icon:'🍽️', xp:60,
+      pronTips:['خ','ق','ع'],
+      grammar:'"مانتو" (dumplings), "قروت" (gedroogde yoghurt), "بولانی" zijn typisch Hazara gerechten.',
       words:[
-        {hz:'باید',tr:'baayad',nl:'Moet / Dient te',tip:'"باید بری" = je moet gaan'},
-        {hz:'نباید',tr:'nabaayad',nl:'Mag niet / Moet niet',tip:''},
-        {hz:'می‌تانم',tr:'me-taanam',nl:'Ik kan (Hazaragi)',tip:'HAZARAGI — Farsi: "می‌توانم"'},
-        {hz:'نمی‌تانم',tr:'nemi-taanam',nl:'Ik kan niet',tip:''},
-        {hz:'می‌تانی',tr:'me-taani',nl:'Jij kan',tip:''},
-        {hz:'می‌تانه',tr:'me-taana',nl:'Hij/Zij kan',tip:''},
-        {hz:'می‌خوام',tr:'me-khaam',nl:'Ik wil',tip:''},
-        {hz:'نمی‌خوام',tr:'nemi-khaam',nl:'Ik wil niet',tip:''},
+        {hz:'پختن',tr:'pakhtan',nl:'Koken',tip:''},
+        {hz:'روغن',tr:'roghan',nl:'Olie / Vet',tip:''},
+        {hz:'نمک',tr:'namak',nl:'Zout',tip:''},
+        {hz:'پیاز',tr:'pyaaz',nl:'Ui',tip:'Basis van elk Afghaans recept'},
+        {hz:'گشنیز',tr:'gashniiz',nl:'Koriander',tip:''},
+        {hz:'قورمه',tr:'qorma',nl:'Stoofgerecht',tip:''},
+        {hz:'مانتو',tr:'maanto',nl:'Manto (dumplings)',tip:'GELIEFD Hazara gerecht!'},
+        {hz:'قروت',tr:'qoroot',nl:'Gedroogde yoghurt',tip:''},
+        {hz:'بریانی',tr:'beryaani',nl:'Biryani',tip:''},
+        {hz:'چکنه',tr:'chakana',nl:'Hazaragi soep',tip:'Traditionele Hazara maaltijdsoep'},
       ],
       sentences:[
-        {hz:'نمی‌تانم بیام، کار دارم',tr:'nemi-taanam biyaam, kaar daaram',nl:'Ik kan niet komen, ik heb werk'},
-        {hz:'باید امتحان بدی، نباید غیب بشی',tr:'baayad emtehaan bedi, nabaayad ghayb beshi',nl:'Je moet examen doen, je mag niet wegblijven'},
-        {hz:'می‌خوام بیام اما نمی‌تانم',tr:'me-khaam biyaam amma nemi-taanam',nl:'Ik wil komen maar ik kan niet'},
+        {hz:'امروز مانتو پختم، بیا بخور',tr:'emroz maanto pakhtam, bia bakhoor',nl:'Vandaag heb ik manto gekookt, kom eten'},
+        {hz:'قورمه بدون پیاز نمی‌شه',tr:'qorma bedoon pyaaz nemishe',nl:'Qorma kan niet zonder ui'},
+        {hz:'قروت روی مانتو بریز',tr:'qoroot roi maanto beriz',nl:'Giet qoroot over de manto'},
       ]
     },
 
-    { id:'gram4_future', title:'Toekomende tijd', sub:'Morgen ga ik, ik zal komen...', icon:'🔮', xp:35,
-      pronTips:['خ'],
-      grammar:'Toekomst in Hazaragi: tijdwoord ("فردا", "بعداً") + tegenwoordige tijd. Of: "می‌خوام" + werkwoord.',
+    { id:'fluent_expressions', title:'Spreekwoorden & Wijsheid', sub:'Native-level uitdrukkingen', icon:'💬', xp:65,
+      pronTips:['خ','غ','ع','ق'],
+      grammar:'Hazaragi spreekwoorden combineren Perzische, Mongoolse en lokale wijsheid.',
       words:[
-        {hz:'فردا می‌رم',tr:'farda me-ram',nl:'Morgen ga ik',tip:'"فردا" maakt het toekomstig'},
-        {hz:'می‌خوام برم',tr:'me-khaam baram',nl:'Ik ga (straks)',tip:'Letterlijk "ik wil gaan"'},
-        {hz:'زود می‌آم',tr:'zod me-aam',nl:'Ik kom snel',tip:''},
-        {hz:'بعداً می‌گم',tr:'baadan me-gam',nl:'Ik zeg het later',tip:''},
-        {hz:'ایشالله می‌شه',tr:'ishaallah meshe',nl:'Het zal lukken, inshallah',tip:'Positief toekomstdenken'},
-        {hz:'وقتی بیای',tr:'wakhti biyaayi',nl:'Wanneer je komt',tip:'"وقتی" = wanneer (toekomst)'},
-        {hz:'تا دیروقت',tr:'taa deerowaqt',nl:'Tot laat',tip:''},
-        {hz:'حتماً می‌آم',tr:'hatman me-aam',nl:'Ik kom zeker',tip:'"حتماً" = absoluut'},
+        {hz:'دل به دل راه داره',tr:'del ba del raah daara',nl:'Harten vinden een weg',tip:'Als je aan iemand denkt, denken zij aan jou'},
+        {hz:'کاچی به از هیچی',tr:'kaachi be az hichi',nl:'Iets is beter dan niets',tip:'Klassiek spreekwoord'},
+        {hz:'چشم',tr:'chashm',nl:'Ja, met plezier!',tip:'Beleefd "ja" — letterlijk "oog"'},
+        {hz:'نوش جانت',tr:'nosh jaanat',nl:'Smakelijk / Geniet ervan',tip:''},
+        {hz:'سر به سرم نذار',tr:'sar ba saram nazaar',nl:'Doe niet moeilijk',tip:''},
+        {hz:'دلم می‌خواد',tr:'delam mekhad',nl:'Ik verlang ernaar',tip:''},
+        {hz:'مهمان حبیب خداست',tr:'mehman habiib khodaast',nl:'Een gast is de geliefde van God',tip:''},
+        {hz:'صبر تلخ است ولی میوه‌اش شیرین',tr:'sabr talkh ast wali mewash shirin',nl:'Geduld is bitter maar de vrucht is zoet',tip:''},
       ],
       sentences:[
-        {hz:'فردا صبح زود می‌آم، آماده باش',tr:'farda sobh zod me-aam, aamaada baash',nl:'Morgenochtend vroeg kom ik, wees klaar'},
-        {hz:'ایشالله همه چیز خوب می‌شه',tr:'ishaallah hama chiz khob meshe',nl:'Inshallah wordt alles goed'},
-        {hz:'وقتی بیای بهت می‌گم',tr:'wakhti biyaayi bahat me-gam',nl:'Wanneer je komt vertel ik het je'},
+        {hz:'دل به دل راه داره، به تو فکر می‌کردم',tr:'del ba del raah daara, ba to fekr me-kardam',nl:'Harten vinden een weg — ik dacht net aan jou'},
+        {hz:'چشم، هر کاری بگی می‌کنم',tr:'chashm, har kaari begi mekonam',nl:'Ja met plezier, wat je ook zegt zal ik doen'},
+        {hz:'صبر کو، همه چیز خوش می‌شه',tr:'sabr ko, hama chiz khosh meshe',nl:'Wees geduldig, alles wordt goed'},
       ]
     },
 
-    { id:'gram4_conditional', title:'Als... dan... (Voorwaarden)', sub:'Conditionals', icon:'🔀', xp:30,
-      pronTips:['ر'],
-      grammar:'"اگر" (agar) = als. Patroon: "اگر [voorwaarde], [gevolg]". Werkwoord in de als-zin eindigt op "-ی".',
+    { id:'hazara_identity', title:'Hazara identiteit', sub:'Geschiedenis, taal, trots...', icon:'🏔️', xp:70,
+      pronTips:['خ','غ','ع','ق','ر'],
+      grammar:'De Hazara zijn een volk met Mongoolse, Turkse en Perzische wortels.',
       words:[
-        {hz:'اگر',tr:'agar',nl:'Als / Indien',tip:'Staat altijd aan het begin'},
-        {hz:'اگر بیای',tr:'agar biyaayi',nl:'Als jij komt',tip:''},
-        {hz:'اگر نبود',tr:'agar nabood',nl:'Als het er niet was',tip:''},
-        {hz:'وگرنه',tr:'wagarna',nl:'Anders / Zo niet',tip:'"وگرنه" = anders wordt het...'},
-        {hz:'حتماً',tr:'hatman',nl:'Zeker / Absoluut',tip:''},
-        {hz:'شاید',tr:'shaayad',nl:'Misschien',tip:''},
-        {hz:'احتمالاً',tr:'ehtemaalan',nl:'Waarschijnlijk',tip:''},
-        {hz:'در صورتی که',tr:'dar sorati ke',nl:'In het geval dat (formeel)',tip:''},
+        {hz:'هزاره',tr:'hazaara',nl:'Hazara (volk)',tip:''},
+        {hz:'هزاراجات',tr:'hazaarajaat',nl:'Hazarajat (land van de Hazara)',tip:''},
+        {hz:'بامیان',tr:'baamiaan',nl:'Bamiyan',tip:'Hoofdstad Hazarajat'},
+        {hz:'زبان مادری',tr:'zabaan maadari',nl:'Moedertaal',tip:''},
+        {hz:'فرهنگ',tr:'farhang',nl:'Cultuur',tip:''},
+        {hz:'تاریخ',tr:'taareekh',nl:'Geschiedenis',tip:''},
+        {hz:'مقاومت',tr:'moqaawamat',nl:'Verzet / Weerstand',tip:''},
+        {hz:'افتخار',tr:'eftekhar',nl:'Trots',tip:''},
+        {hz:'وحدت',tr:'wahdat',nl:'Eenheid',tip:''},
+        {hz:'آزادی',tr:'aazaadi',nl:'Vrijheid',tip:''},
       ],
       sentences:[
-        {hz:'اگر بیای، چای می‌پزم',tr:'agar biyaayi, chaay me-pazam',nl:'Als jij komt, zet ik thee'},
-        {hz:'اگر پول داشتم، کمکت می‌کردم',tr:'agar pool dashtam, kamaket me-kardam',nl:'Als ik geld had, had ik je geholpen'},
-        {hz:'حتماً بیا، وگرنه دلم تنگته',tr:'hatman bia, wagarna delam tangta',nl:'Kom zeker, anders mis ik je'},
-      ]
-    },
-  ]},
-
-  { id:'ch26', label:'🍎 Hoofdstuk 26 · Fruit, Groenten & Markt', color:'#F06C78', lessons:[
-
-    { id:'fruits', title:'Fruit', sub:'Granaatappel, druiven, abrikoos...', icon:'🍎', xp:20,
-      pronTips:['آ','ر'],
-      grammar:'"انار" = granaatappel — symbool van vruchtbaarheid. Afghanistan is beroemd om zijn fruit.',
-      words:[
-        {hz:'انار',tr:'anaar',nl:'Granaatappel',tip:'Nationaal fruit — symbool van vruchtbaarheid'},
-        {hz:'انگور',tr:'angoor',nl:'Druif',tip:'Afghanistan heeft de zoetste druiven ter wereld'},
-        {hz:'زردآلو',tr:'zardaalo',nl:'Abrikoos',tip:'Typisch Afghaans — "gele pruim"'},
-        {hz:'توت',tr:'toot',nl:'Moerbei',tip:'Typisch Afghaanse vrucht — gekookt en gedroogd'},
-        {hz:'هندوانه',tr:'hendowaana',nl:'Watermeloen',tip:'Groot en zoet in de zomer'},
-        {hz:'خربزه',tr:'kharboza',nl:'Meloen',tip:'Kandahari meloenen zijn wereldberoemd'},
-        {hz:'آلو',tr:'aalo',nl:'Pruim',tip:''},
-        {hz:'سیب',tr:'seb',nl:'Appel',tip:''},
-        {hz:'انجیر',tr:'anjeer',nl:'Vijg',tip:'Vijgenbomen groeien in Afghanistan'},
-        {hz:'میوه خشک',tr:'mewa-khoshk',nl:'Gedroogd fruit',tip:'Traditioneel Hazara cadeau bij bezoek'},
-      ],
-      sentences:[
-        {hz:'یک کیلو انار می‌خوام',tr:'yak kilo anaar me-khaam',nl:'Ik wil een kilo granaatappelen'},
-        {hz:'انگورهای افغانی شیرین‌ترین اَن',tr:'angoorhaayi afghaani shireentareen an',nl:'Afghaanse druiven zijn de zoetste'},
-        {hz:'میوه خشک برای مهمان خریدم',tr:'mewa-khoshk baraayi mehman kharidam',nl:'Ik kocht gedroogd fruit voor de gast'},
-      ]
-    },
-
-    { id:'vegetables', title:'Groenten', sub:'Ui, tomaat, aubergine...', icon:'🥕', xp:20,
-      pronTips:['خ'],
-      grammar:'"سبزی" = groente én verse kruiden. "بدون پیاز نمی‌شه" = zonder ui gaat het niet.',
-      words:[
-        {hz:'پیاز',tr:'pyaaz',nl:'Ui',tip:'Basis van ÉLK Afghaans gerecht'},
-        {hz:'گوجه فرنگی',tr:'goja-farangi',nl:'Tomaat',tip:'Letterlijk "Europese pruim"'},
-        {hz:'بادنجان',tr:'baadanjaan',nl:'Aubergine',tip:'Populair in Afghaanse keuken'},
-        {hz:'کدو',tr:'kado',nl:'Pompoen / Courgette',tip:''},
-        {hz:'اسفناج',tr:'espanaaj',nl:'Spinazie',tip:''},
-        {hz:'سیر',tr:'sir',nl:'Knoflook',tip:'Onmisbaar!'},
-        {hz:'کرفس',tr:'karafs',nl:'Selderij',tip:''},
-        {hz:'زنجبیل',tr:'zanjabil',nl:'Gember',tip:''},
-        {hz:'سبزی',tr:'sabzee',nl:'Verse kruiden / Groente',tip:'Onmisbaar op de Afghaanse tafel'},
-        {hz:'ترکاری',tr:'tarkaari',nl:'Groenteschotel',tip:'Typisch Hazara stoofgerecht met groenten'},
-      ],
-      sentences:[
-        {hz:'بدون پیاز و سیر آشپزی نمی‌شه',tr:'bedoon pyaaz o sir aashpazi nemishe',nl:'Koken zonder ui en knoflook kan niet'},
-        {hz:'بادنجان با گوشت خیلی خوشمزه می‌شه',tr:'baadanjaan baa gosht khaili khoshmaza meshe',nl:'Aubergine met vlees wordt heel lekker'},
-        {hz:'یک دسته سبزی تازه بیار',tr:'yak dasta sabzee taaza biaar',nl:'Breng een bosje verse kruiden'},
-      ]
-    },
-
-    { id:'market_life', title:'Op de markt', sub:'Wegen, handelen, afrekenen...', icon:'🏪', xp:25,
-      pronTips:['خ','ق'],
-      grammar:'"چند پول اَس؟" = hoeveel kost het? Handelen op de markt is normaal en verwacht!',
-      words:[
-        {hz:'وزن کردن',tr:'wazn kardan',nl:'Wegen',tip:''},
-        {hz:'ترازو',tr:'tarazo',nl:'Weegschaal',tip:''},
-        {hz:'نیم کیلو',tr:'nim kilo',nl:'Half kilo',tip:''},
-        {hz:'تازه',tr:'taaza',nl:'Vers',tip:'Altijd vragen of iets vers is!'},
-        {hz:'خراب',tr:'khraab',nl:'Bedorven / Kapot',tip:''},
-        {hz:'فروشنده',tr:'foroshanda',nl:'Verkoper',tip:''},
-        {hz:'خریدار',tr:'kharidaar',nl:'Koper',tip:''},
-        {hz:'حساب کردن',tr:'hesaab kardan',nl:'Afrekenen',tip:''},
-        {hz:'پس دادن',tr:'pas daadan',nl:'Wisselgeld teruggeven',tip:'"پس" = terug'},
-        {hz:'چانه زدن',tr:'chaana zadan',nl:'Afdingen / Onderhandelen',tip:'Normaal en verwacht op de markt!'},
-      ],
-      sentences:[
-        {hz:'این میوه تازه اَس؟ خراب نیس؟',tr:'een mewa taaza as? khraab nis?',nl:'Is dit fruit vers? Is het niet bedorven?'},
-        {hz:'دو کیلو وزن کو، حسابم کو',tr:'do kilo wazn ko, hesaabam ko',nl:'Weeg twee kilo, reken me af'},
-        {hz:'خیلی گران اَس، کمتر نمی‌شه؟',tr:'khaili geraan as, kamtar nemishe?',nl:'Het is te duur, kan het niet minder?'},
+        {hz:'زبان مادریم هزارگی اَس',tr:'zabaan maadaram hazaaragi as',nl:'Mijn moedertaal is Hazaragi'},
+        {hz:'به فرهنگم افتخار می‌کنم',tr:'ba farhangam eftekhar me-konam',nl:'Ik ben trots op mijn cultuur'},
+        {hz:'هزاراجات قلب افغانستان اَس',tr:'hazaarajaat qalb afghaaanistaan as',nl:'Hazarajat is het hart van Afghanistan'},
       ]
     },
   ]},
 
-  { id:'ch27', label:'💪 Hoofdstuk 27 · Gezondheid & Welzijn', color:'#F9C3Cb', lessons:[
+  { id:'ch12', label:'💻 Hoofdstuk 12 · Technologie & Media', color:'#3DD6A3', lessons:[
 
-    { id:'health_doctor', title:'Bij de dokter', sub:'Symptomen, recept, behandeling...', icon:'🏥', xp:35,
+    { id:'tech_devices', title:'Apparaten & Internet', sub:'Computer, internet, oplader...', icon:'💻', xp:40,
+      pronTips:['خ'],
+      grammar:'Moderne Hazaragi neemt veel Engelse technologiewoorden over als directe leenwoorden.',
+      words:[
+        {hz:'کمپیوتر',tr:'kampyutar',nl:'Computer',tip:'Hazaragi: "kampyutar" — directe uitspraak'},
+        {hz:'انترنت',tr:'entarnet',nl:'Internet',tip:'Hazaragi uitspraak: "entarnet"'},
+        {hz:'شارژر',tr:'shaarjar',nl:'Oplader',tip:'Van "charger"'},
+        {hz:'بیتری',tr:'beetri',nl:'Batterij / Accu',tip:'Van "battery"'},
+        {hz:'وای‌فای',tr:'waay-faay',nl:'Wifi',tip:''},
+        {hz:'پسورد',tr:'paswerd',nl:'Wachtwoord',tip:'Van "password"'},
+        {hz:'سکرین',tr:'skrin',nl:'Scherm',tip:'Van "screen"'},
+        {hz:'دانلود کردن',tr:'daanlod kardan',nl:'Downloaden',tip:''},
+        {hz:'آپلود کردن',tr:'aaplod kardan',nl:'Uploaden',tip:''},
+      ],
+      sentences:[
+        {hz:'وای‌فای پسوردش چیست؟',tr:'waay-faay paswerdash chist?',nl:'Wat is het wifi-wachtwoord?'},
+        {hz:'کمپیوترم خراب شد، کمک کو',tr:'kampyutaram khraab shod, kamak ko',nl:'Mijn computer is stuk gegaan, help me'},
+        {hz:'بیتریم تموم شد، شارژر داری؟',tr:'beetrim tamom shod, shaarjar daari?',nl:'Mijn batterij is leeg, heb je een oplader?'},
+      ]
+    },
+
+    { id:'social_media', title:'Sociale media', sub:'Sturen, liken, delen...', icon:'📲', xp:35,
+      pronTips:['خ'],
+      grammar:'"پیام دادن" (payaam daadan) = een bericht sturen. In Hazaragi/Dari is dit de standaard uitdrukking.',
+      words:[
+        {hz:'پیام',tr:'payaam',nl:'Bericht',tip:''},
+        {hz:'عکس',tr:'aks',nl:'Foto',tip:''},
+        {hz:'ویدیو',tr:'widyo',nl:'Video',tip:''},
+        {hz:'لایک کردن',tr:'layk kardan',nl:'Liken',tip:''},
+        {hz:'شیر کردن',tr:'sher kardan',nl:'Delen / Sharen',tip:'Van "share"'},
+        {hz:'فالو کردن',tr:'faalo kardan',nl:'Volgen',tip:'Van "follow"'},
+        {hz:'گروپ',tr:'grop',nl:'Groep',tip:'WhatsApp groep'},
+        {hz:'پست',tr:'post',nl:'Post / Bericht',tip:'Social media post'},
+        {hz:'کامنت',tr:'kaamant',nl:'Reactie / Comment',tip:''},
+        {hz:'استوری',tr:'estori',nl:'Story',tip:'Instagram/WhatsApp story'},
+      ],
+      sentences:[
+        {hz:'عکست قشنگ اَس، لایک کردم',tr:'aksat qashanq as, layk kardam',nl:'Jouw foto is mooi, ik heb geliket'},
+        {hz:'پیام بده وختی رسیدی',tr:'payaam bede wakhti rasidi',nl:'Stuur een bericht als je bent aangekomen'},
+        {hz:'این ویدیو را شیر کو',tr:'ain widyo ra sher ko',nl:'Deel deze video'},
+      ]
+    },
+
+    { id:'news_media', title:'Nieuws & Actualiteit', sub:'Nieuws, oorlog, politiek...', icon:'📰', xp:45,
+      pronTips:['خ','ع','غ'],
+      grammar:'"خبر" (khabar) = nieuws/bericht. "خبر داری؟" = weet je het al? (informeel)',
+      words:[
+        {hz:'خبر',tr:'khabar',nl:'Nieuws / Bericht',tip:'"خبر داری؟" = weet je het al?'},
+        {hz:'رادیو',tr:'raadyo',nl:'Radio',tip:''},
+        {hz:'تلویزیون',tr:'telwizyon',nl:'Televisie',tip:''},
+        {hz:'روزنامه',tr:'roznama',nl:'Krant',tip:'"روز" = dag, "نامه" = brief/letter'},
+        {hz:'سیاست',tr:'siyaasat',nl:'Politiek',tip:''},
+        {hz:'صلح',tr:'solh',nl:'Vrede',tip:''},
+        {hz:'جنگ',tr:'jang',nl:'Oorlog',tip:''},
+        {hz:'حق',tr:'haq',nl:'Recht / Waarheid',tip:'"حق داری" = je hebt gelijk'},
+        {hz:'آزادی',tr:'aazaadi',nl:'Vrijheid',tip:''},
+        {hz:'انتخابات',tr:'entekhaabaat',nl:'Verkiezingen',tip:''},
+      ],
+      sentences:[
+        {hz:'خبرهای امروز چیست؟',tr:'khabarhaaye emroz chist?',nl:'Wat is het nieuws van vandaag?'},
+        {hz:'ایشالله صلح می‌آید',tr:'ishaallah solh me-aayd',nl:'Inshallah komt de vrede'},
+        {hz:'حق آزادی برای همه اَس',tr:'haq aazaadi baraayi hama as',nl:'Het recht op vrijheid is voor iedereen'},
+      ]
+    },
+  ]},
+
+  { id:'ch13', label:'🌍 Hoofdstuk 13 · Diaspora & Gemeenschap', color:'#FF8C61', lessons:[
+
+    { id:'diaspora', title:'Leven in het buitenland', sub:'Vaderland, heimwee, integratie...', icon:'✈️', xp:50,
+      pronTips:['غ','ع'],
+      grammar:'"غربت" (ghorbat) = het gevoel ver van huis te zijn. Een diepgevoeld woord in de Hazara gemeenschap.',
+      words:[
+        {hz:'وطن',tr:'watan',nl:'Vaderland / Thuisland',tip:'Diep emotioneel woord'},
+        {hz:'غربت',tr:'ghorbat',nl:'Ballingschap / Ver van huis',tip:'Veelgebruikt in Hazara poëzie'},
+        {hz:'دلتنگ وطن',tr:'deltang-e watan',nl:'Heimwee naar het thuisland',tip:'Samengesteld: "دل" + "تنگ" + "وطن"'},
+        {hz:'مهاجر',tr:'mohaajir',nl:'Migrant',tip:''},
+        {hz:'پناهنده',tr:'panaahanda',nl:'Vluchteling',tip:''},
+        {hz:'اقامت',tr:'eqaamat',nl:'Verblijfsvergunning',tip:''},
+        {hz:'ویزه',tr:'wiza',nl:'Visum',tip:''},
+        {hz:'سفارت',tr:'sefaarat',nl:'Ambassade',tip:''},
+        {hz:'تابعیت',tr:'taabi\'iyat',nl:'Nationaliteit',tip:''},
+      ],
+      sentences:[
+        {hz:'دَ غربت هستم اما دلم دَ وطن اَس',tr:'da ghorbat hastam ama delam da watan as',nl:'Ik ben in het buitenland maar mijn hart is thuis'},
+        {hz:'دلتنگ وطنم، دلتنگ خانواده‌ام',tr:'deltang-e watanam, deltang-e khaanwadaam',nl:'Ik heb heimwee naar mijn land, naar mijn familie'},
+        {hz:'اقامتم تمدید شد، الحمدلله',tr:'eqaamatam tamdid shod, alhamdolillah',nl:'Mijn verblijfsvergunning is verlengd, alhamdulillah'},
+      ]
+    },
+
+    { id:'community', title:'Gemeenschap & Solidariteit', sub:'Hulp, samenwerken, eenheid...', icon:'🤝', xp:45,
       pronTips:['ع','خ'],
-      grammar:'"چی دردی داری؟" = wat mankeert je? Letterlijk "welke pijn heb je?" — directe Hazaragi vraag.',
+      grammar:'Hazara gemeenschap: "همبستگی" (hambastagi = solidariteit) is een kernwaarde.',
       words:[
-        {hz:'نسخه',tr:'neskha',nl:'Recept (dokter)',tip:''},
-        {hz:'آزمایش',tr:'aazmaaesh',nl:'Bloedonderzoek / Test',tip:''},
-        {hz:'عملیات',tr:'amaliyaat',nl:'Operatie',tip:''},
-        {hz:'زخم',tr:'zakhm',nl:'Wond',tip:''},
-        {hz:'خون',tr:'khoon',nl:'Bloed',tip:'Lange oo'},
-        {hz:'تنفس',tr:'tanafos',nl:'Ademhaling',tip:''},
-        {hz:'ضعف',tr:'za\'f',nl:'Zwakte / Duizeligheid',tip:''},
-        {hz:'حساسیت',tr:'hassaasiyat',nl:'Allergie',tip:''},
-        {hz:'بستری شدن',tr:'bastari shodan',nl:'Opgenomen worden',tip:'"بستری" = in het ziekenhuis'},
-        {hz:'مرخص شدن',tr:'markhyas shodan',nl:'Ontslagen worden (ziekenhuis)',tip:''},
+        {hz:'همبستگی',tr:'hambastagi',nl:'Solidariteit',tip:'Kernwaarde Hazara gemeenschap'},
+        {hz:'کمک',tr:'kamak',nl:'Hulp',tip:'"کمک کردن" = helpen'},
+        {hz:'همکاری',tr:'hamkaari',nl:'Samenwerking',tip:''},
+        {hz:'جامعه',tr:'jaama\'a',nl:'Gemeenschap',tip:''},
+        {hz:'فامیل',tr:'faamil',nl:'Familie (groot)',tip:'Hele familiekring — breder dan "خانواده"'},
+        {hz:'رهبر',tr:'rahbar',nl:'Leider',tip:''},
+        {hz:'مسئولیت',tr:'mas\'ooliyat',nl:'Verantwoordelijkheid',tip:''},
+        {hz:'احترام',tr:'ehtaraam',nl:'Respect',tip:'"احترام کردن" = respecteren'},
+        {hz:'اعتماد',tr:'e\'temaad',nl:'Vertrouwen',tip:''},
       ],
       sentences:[
-        {hz:'دکتر نسخه نوشت و آزمایش خواست',tr:'doktor neskha nawesht wa aazmaaesh khawast',nl:'De dokter schreef een recept en vroeg om een bloedonderzoek'},
-        {hz:'تبم سی و هشت اَس، حساسیت دارم',tr:'tabam si o hasht as, hassaasiyat daaram',nl:'Mijn koorts is 38, ik heb een allergie'},
-        {hz:'الحمدلله از شفاخانه مرخص شدم',tr:'alhamdolillah az shafaakhaana markhyas shodam',nl:'Alhamdulillah ben ik uit het ziekenhuis ontslagen'},
+        {hz:'مو باید به هم کمک کنیم',tr:'mo baayad ba ham kamak konim',nl:'Wij moeten elkaar helpen'},
+        {hz:'همبستگی ما قوی‌تر اَس از هر چیز',tr:'hambastagi maa qawitaar as az har chiz',nl:'Onze solidariteit is sterker dan alles'},
+        {hz:'احترام به بزرگان واجب اَس',tr:'ehtaraam ba bozorgaan waajeb as',nl:'Respect voor ouderen is verplicht'},
       ]
     },
 
-    { id:'sports_advanced', title:'Sport & Wedstrijden', sub:'Trainen, scoren, winnen...', icon:'⚽', xp:30,
-      pronTips:['ر','و'],
-      grammar:'"گل زدن" = doelpunt scoren. Letterlijk "bloem slaan" — mooie Hazaragi voetbalterm!',
+    { id:'identity', title:'Taal & Identiteit', sub:'Wie ben ik, mijn taal, mijn roots...', icon:'🏔️', xp:55,
+      pronTips:['خ','غ','ع'],
+      grammar:'"زبان مادری" = moedertaal. Voor de Hazara is Hazaragi de taal van het hart, identiteit en trots.',
       words:[
-        {hz:'تمرین',tr:'tamrin',nl:'Training / Oefening',tip:''},
-        {hz:'مسابقه',tr:'masaabeqa',nl:'Wedstrijd',tip:''},
-        {hz:'برنده',tr:'baranda',nl:'Winnaar',tip:''},
-        {hz:'بازنده',tr:'baazanda',nl:'Verliezer',tip:''},
-        {hz:'گل زدن',tr:'gol zadan',nl:'Doelpunt scoren',tip:'Letterlijk "bloem slaan"'},
-        {hz:'برد',tr:'bord',nl:'Winst / Won',tip:''},
-        {hz:'باخت',tr:'baakht',nl:'Verlies / Verloor',tip:''},
-        {hz:'تیم',tr:'tim',nl:'Team',tip:''},
-        {hz:'جام',tr:'jaam',nl:'Beker / Trofee',tip:'"جام جهانی" = WK'},
-        {hz:'قهرمانی',tr:'qahremaani',nl:'Kampioenschap',tip:''},
+        {hz:'هویت',tr:'howiyat',nl:'Identiteit',tip:''},
+        {hz:'ریشه',tr:'risha',nl:'Wortel / Afkomst',tip:'"ریشه داشتن" = geworteld zijn'},
+        {hz:'زبان مادری',tr:'zabaan maadari',nl:'Moedertaal',tip:''},
+        {hz:'فرهنگ',tr:'farhang',nl:'Cultuur',tip:''},
+        {hz:'نسل',tr:'nasl',nl:'Generatie',tip:''},
+        {hz:'میراث',tr:'miraas',nl:'Erfenis / Nalatenschap',tip:''},
+        {hz:'افتخار',tr:'eftekhar',nl:'Trots',tip:'"افتخار می‌کنم" = ik ben trots'},
+        {hz:'حافظه',tr:'haafeza',nl:'Geheugen / Herinneringen',tip:''},
+        {hz:'آینده',tr:'aayanda',nl:'Toekomst',tip:''},
       ],
       sentences:[
-        {hz:'تیمم برد، خیلی خوشحالیم!',tr:'teamam bord, khaili khoshaaolim!',nl:'Mijn team heeft gewonnen, we zijn heel blij!'},
-        {hz:'هر روز تمرین می‌کنم که قوی بشم',tr:'har roz tamrin me-konam ke qaawi besham',nl:'Elke dag train ik om sterk te worden'},
-        {hz:'یک گل زد و قهرمان شد!',tr:'yak gol zad wa qahramaan shod!',nl:'Hij scoorde één doelpunt en werd kampioen!'},
-      ]
-    },
-
-    { id:'mental_health', title:'Mentale gezondheid & Welzijn', sub:'Stress, rust, steun...', icon:'🧘', xp:35,
-      pronTips:['ع','خ'],
-      grammar:'"آرامش" = diepe innerlijke rust. Meer dan alleen "آرام" (rustig) — het gaat over welzijn.',
-      words:[
-        {hz:'آرامش',tr:'aaraamesh',nl:'Innerlijke rust / Kalmte',tip:''},
-        {hz:'استرس',tr:'estres',nl:'Stress',tip:'Leenwoord — moderne term'},
-        {hz:'نگران',tr:'negaraan',nl:'Bezorgd / Ongerust',tip:''},
-        {hz:'تنها',tr:'tanhaa',nl:'Alleen / Eenzaam',tip:''},
-        {hz:'حمایت',tr:'hemaayet',nl:'Steun',tip:''},
-        {hz:'امیدوار',tr:'omidwaar',nl:'Hoopvol',tip:'"امید" = hoop + "-وار" = hebbend'},
-        {hz:'قوی بودن',tr:'qaawi boodan',nl:'Sterk zijn',tip:'"قوی باش" = wees sterk'},
-        {hz:'دل پری',tr:'del-pori',nl:'Opgekropte verdriet',tip:'Hazara uitdrukking: "vol hart"'},
-        {hz:'خوش خیال',tr:'khosh-khiyaal',nl:'Optimistisch',tip:'"خوش" = goed + "خیال" = gedachten'},
-        {hz:'صبر کردن',tr:'sabr kardan',nl:'Geduld hebben',tip:'"صبر تلخ است ولی میوه‌اش شیرین" — klassiek spreekwoord'},
-      ],
-      sentences:[
-        {hz:'نگران نباش، همه چیز درس می‌شه',tr:'negaraan nabaash, hama chiz doros meshe',nl:'Wees niet ongerust, alles komt goed'},
-        {hz:'استرس زیاد داری، آرامش لازم اَس',tr:'estres ziyaad daari, aaraamesh laazem as',nl:'Je hebt veel stress, je hebt rust nodig'},
-        {hz:'قوی باش، مو پشتتیم',tr:'qaawi baash, mo posht-etim',nl:'Wees sterk, wij staan achter jou'},
-      ]
-    },
-  ]},
-
-  { id:'ch28', label:'🔄 Hoofdstuk 28 · Tegenstellingen', color:'#F06C78', lessons:[
-
-    { id:'opp_adj', title:'Tegengestelde bijvoeglijke naamwoorden', sub:'Groot↔Klein, Snel↔Langzaam...', icon:'↔️', xp:25,
-      pronTips:['خ','ر'],
-      grammar:'Tegenstellingen leren verdubbelt je woordenschat in één keer! Leer altijd beide woorden samen.',
-      words:[
-        {hz:'بزرگ ↔ کوچک',tr:'bozorg ↔ kochak',nl:'Groot ↔ Klein',tip:''},
-        {hz:'بلند ↔ کوتاه',tr:'boland ↔ kotaah',nl:'Lang/Hoog ↔ Kort/Laag',tip:''},
-        {hz:'تند ↔ آهسته',tr:'tand ↔ aahesta',nl:'Snel ↔ Langzaam',tip:'"آهسته" = rustig/langzaam'},
-        {hz:'گرم ↔ سرد',tr:'garm ↔ sard',nl:'Warm ↔ Koud',tip:''},
-        {hz:'سنگین ↔ سبک',tr:'sangeen ↔ sabok',nl:'Zwaar ↔ Licht',tip:''},
-        {hz:'تازه ↔ کهنه',tr:'taaza ↔ kohna',nl:'Vers/Nieuw ↔ Oud/Versleten',tip:''},
-        {hz:'قوی ↔ ضعیف',tr:'qaawi ↔ za\'if',nl:'Sterk ↔ Zwak',tip:''},
-        {hz:'خوش ↔ بد',tr:'khosh ↔ bad',nl:'Goed/Fijn ↔ Slecht',tip:'"خوش" = breed gebruikt voor fijn/goed'},
-        {hz:'پاک ↔ کثیف',tr:'paak ↔ kasif',nl:'Schoon ↔ Vies',tip:''},
-        {hz:'راست ↔ دروغ',tr:'raast ↔ doroogh',nl:'Eerlijk/Rechts ↔ Leugen/Links',tip:'Context bepaalt betekenis'},
-      ],
-      sentences:[
-        {hz:'این کیف سنگین اَس — آن یکی سبک اَس',tr:'een kif sangeen as — aan yaki sabok as',nl:'Deze tas is zwaar — die andere is licht'},
-        {hz:'هوا گرم نیس، خیلی سرد اَس',tr:'hawaa garm nis, khaili sard as',nl:'Het weer is niet warm, het is heel koud'},
-        {hz:'قوی باش، ضعیف نباش',tr:'qaawi baash, za\'if nabaash',nl:'Wees sterk, wees niet zwak'},
-      ]
-    },
-
-    { id:'opp_verbs', title:'Tegengestelde werkwoorden', sub:'Gaan↔Komen, Kopen↔Verkopen...', icon:'🔃', xp:25,
-      pronTips:['ر'],
-      grammar:'"رفتن" (gaan) ↔ "آمدن" (komen). Werkwoordstegenstellingen zijn essentieel voor conversatie.',
-      words:[
-        {hz:'رفتن ↔ آمدن',tr:'raftan ↔ aamadan',nl:'Gaan ↔ Komen',tip:'De twee meest gebruikte werkwoorden'},
-        {hz:'خریدن ↔ فروختن',tr:'kharidan ↔ forookhtan',nl:'Kopen ↔ Verkopen',tip:''},
-        {hz:'گرفتن ↔ دادن',tr:'gereftan ↔ daadan',nl:'Nemen ↔ Geven',tip:''},
-        {hz:'باز کردن ↔ بستن',tr:'baaz kardan ↔ bastan',nl:'Openen ↔ Sluiten',tip:''},
-        {hz:'بلند کردن ↔ گذاشتن',tr:'boland kardan ↔ gozaashtan',nl:'Optillen ↔ Neerzetten',tip:''},
-        {hz:'پوشیدن ↔ درآوردن',tr:'poshedan ↔ dar-aawordan',nl:'Aandoen ↔ Uitdoen',tip:''},
-        {hz:'یاد گرفتن ↔ فراموش کردن',tr:'yaad gereftan ↔ faraamoosh kardan',nl:'Leren ↔ Vergeten',tip:'"فراموش" = vergeten — Leer dit niet vergeten!'},
-        {hz:'شروع کردن ↔ تموم کردن',tr:'shoro kardan ↔ tamoom kardan',nl:'Beginnen ↔ Eindigen/Afmaken',tip:''},
-        {hz:'خوابیدن ↔ بیدار شدن',tr:'khwaabidan ↔ bidaar shodan',nl:'Slapen ↔ Wakker worden',tip:''},
-        {hz:'خندیدن ↔ گریستن',tr:'khandidan ↔ geriistan',nl:'Lachen ↔ Huilen',tip:''},
-      ],
-      sentences:[
-        {hz:'فراموش نکو، یاد داشته باش',tr:'faraamoosh nako, yaad daashta baash',nl:'Vergeet het niet, onthoud het'},
-        {hz:'دروازه را ببند، سرد اَس',tr:'darwaaza ra baband, sard as',nl:'Doe de deur dicht, het is koud'},
-        {hz:'شروع کو — وقت داری',tr:'shoro ko — waqt daari',nl:'Begin — je hebt tijd'},
-      ]
-    },
-
-    { id:'opp_context', title:'Tegenstellingen in gesprek', sub:'Toepassen in zinnen', icon:'💬', xp:30,
-      pronTips:['خ'],
-      grammar:'Tegenstellingen maken je uitdrukkingsvermogen veel rijker. Gebruik "اما" (maar) om ze te verbinden.',
-      words:[
-        {hz:'دور ↔ نزدیک',tr:'door ↔ nazdik',nl:'Ver ↔ Dichtbij',tip:''},
-        {hz:'زود ↔ دیر',tr:'zod ↔ deer',nl:'Vroeg/Snel ↔ Laat/Langzaam',tip:'"زود بیا" = kom snel, "دیر شد" = te laat'},
-        {hz:'همیشه ↔ هیچ‌وقت',tr:'hamisha ↔ hichawaqt',nl:'Altijd ↔ Nooit',tip:''},
-        {hz:'قبل ↔ بعد',tr:'qabl ↔ baad',nl:'Vóór ↔ Na',tip:''},
-        {hz:'کم ↔ زیاد',tr:'kam ↔ ziyaad',nl:'Weinig ↔ Veel',tip:''},
-        {hz:'تنها ↔ با هم',tr:'tanhaa ↔ baa ham',nl:'Alleen ↔ Samen',tip:'"با هم" = letterlijk "met elkaar"'},
-        {hz:'شاد ↔ غمگین',tr:'shaad ↔ ghamgeen',nl:'Blij ↔ Verdrietig',tip:''},
-        {hz:'درست ↔ اشتباه',tr:'doros ↔ eshtebaa',nl:'Juist ↔ Fout',tip:'Hazaragi: "doros" niet "dorost"'},
-      ],
-      sentences:[
-        {hz:'همیشه راست بگو، هیچ‌وقت دروغ نگو',tr:'hamisha raast bego, hichawaqt doroogh nago',nl:'Zeg altijd de waarheid, zeg nooit een leugen'},
-        {hz:'زود بیا، دیر نشه',tr:'zod bia, deer nashe',nl:'Kom snel, laat het niet te laat worden'},
-        {hz:'تنها بودم اما حالا با هم هستیم',tr:'tanhaa boodam amma haala baa ham hastim',nl:'Ik was alleen maar nu zijn we samen'},
-      ]
-    },
-  ]},
-
-  { id:'ch_gram5', label:'📖 Grammatica 5 · Hazaragi vs Dari', color:'#8B6FF0', lessons:[
-
-    { id:'gram5_sound', title:'Uitspraakverschillen', sub:'Hoe Hazaragi klinkt anders', icon:'🗣️', xp:30,
-      pronTips:['خ','و','ر'],
-      grammar:'Hazaragi en Dari zijn verwant maar duidelijk verschillend. Als je Dari spreekt klinkt Hazaragi als een eigen taal!',
-      words:[
-        {hz:'آو (Hz) ← آب (Da)',tr:'aaw ← aab',nl:'Water: Hz "aaw", Dari "aab"',tip:'De "b" wordt "w" in Hazaragi — typisch kenmerk'},
-        {hz:'نیس (Hz) ← نیست (Da)',tr:'nis ← nist',nl:'Is niet: Hz "nis", Dari "nist"',tip:'Eindmedeklinkers vallen weg'},
-        {hz:'اَس (Hz) ← است (Da)',tr:'as ← ast',nl:'Is: Hz "as", Dari "ast"',tip:'Korter in Hazaragi'},
-        {hz:'می‌ره (Hz) ← می‌رود (Da)',tr:'me-ra ← me-rawad',nl:'Gaat: Hz "-h" uitgang, Dari "-d"',tip:'Werkwoorduitgangen verschillen'},
-        {hz:'چتور (Hz) ← چطور (Da)',tr:'chetor ← chetor',nl:'Hoe: Hz "chetor", Dari "chetor"',tip:'Kleine uitspraakverschillen'},
-        {hz:'مو (Hz) ← ما (Da)',tr:'mo ← maa',nl:'Wij: Hz "mo", Dari "maa"',tip:'GROOTSTE verschil — Mongooolse invloed op Hazaragi'},
-        {hz:'حالی (Hz) ← حالا (Da)',tr:'haali ← haala',nl:'Nu: Hz "haali", Dari "haala"',tip:''},
-        {hz:'وخت (Hz) ← وقت (Da)',tr:'wakht ← waqt',nl:'Tijd: Hz "wakht", Dari "waqt"',tip:''},
-      ],
-      sentences:[
-        {hz:'آو می‌خوام — (Dari: آب می‌خواهم)',tr:'aaw me-khaam — aab me-khaaham',nl:'Ik wil water — hoor het verschil!'},
-        {hz:'مو با هم می‌ریم — (Dari: ما با هم می‌رویم)',tr:'mo baa ham me-rim — maa baa ham me-rowim',nl:'Wij gaan samen — "مو" vs "ما"'},
-        {hz:'مشکلی نیس — (Dari: مشکلی نیست)',tr:'moshkeli nis — moshkeli nist',nl:'Geen probleem — Hz korter'},
-      ]
-    },
-
-    { id:'gram5_vocab', title:'Woordenschatverschillen', sub:'Andere woorden voor hetzelfde', icon:'📚', xp:30,
-      pronTips:['خ'],
-      grammar:'Sommige Hazaragi woorden komen van het Mongools of Turks en bestaan niet in Dari.',
-      words:[
-        {hz:'باوا (Hz) ← باباا (Da)',tr:'baawaa ← baabaa',nl:'Vader: Hz "baawaa" (Mongools!)',tip:'"باوا" is een Mongoools leenwoord'},
-        {hz:'مادرکلان (Hz)',tr:'maadar-kalaan',nl:'Oma: letterlijk "grote moeder"',tip:'"کلان" = groot in Hazaragi (Mongools: "katan")'},
-        {hz:'باواکلان (Hz)',tr:'baawaa-kalaan',nl:'Opa: letterlijk "grote vader"',tip:'Bestaat niet in Dari'},
-        {hz:'برار (Hz) ← برادر (Da)',tr:'baraar ← baraadar',nl:'Broer: Hz korter',tip:'Hazaragi knipt eindlettergrepen'},
-        {hz:'کاکا (Hz)',tr:'kaakaa',nl:'Oom (vaders broer)',tip:'Mongools leenwoord — Dari gebruikt "کاکا" ook maar het is Hazaragi'},
-        {hz:'اسپ (Hz) ← اسب (Da)',tr:'asp ← asb',nl:'Paard: Hz "asp", Dari "asb"',tip:'"},ب" uitgang wordt "پ" in Hazaragi'},
-        {hz:'سیا (Hz) ← سیاه (Da)',tr:'siya ← siyaah',nl:'Zwart: Hz "siya" korter',tip:'Eindklinkers vallen weg'},
-        {hz:'خو (Hz)',tr:'kho',nl:'"Nou / Dan" — geen Dari equivalent',tip:'Verbindingswoord — typisch Hazaragi'},
-      ],
-      sentences:[
-        {hz:'باواکلانم قصه می‌گفت — Dari gebruikt "پدربزرگ"',tr:'baawakalanam qessa megoft',nl:'Mijn opa vertelde verhalen'},
-        {hz:'برارم آمد — Dari: "برادرم آمد"',tr:'baraaram aamad',nl:'Mijn broer is gekomen — let op het verschil'},
-        {hz:'خو، چی می‌خوای؟',tr:'kho, chi me-khaai?',nl:'Nou, wat wil je? — "خو" bestaat niet in Dari'},
-      ]
-    },
-
-    { id:'gram5_grammar', title:'Grammaticaverschillen', sub:'Uitgangen en vormen', icon:'⚙️', xp:25,
-      pronTips:['خ'],
-      grammar:'Hazaragi werkwoorden hebben andere uitgangen dan Dari. De "-ین" uitgang (jullie) is typisch Hazaragi.',
-      words:[
-        {hz:'هستین (Hz) ← هستید (Da)',tr:'hastin ← hastid',nl:'Jullie zijn: Hz "-ین", Dari "-ید"',tip:'"-ین" uitgang = typisch Hazaragi'},
-        {hz:'می‌رین (Hz) ← می‌روید (Da)',tr:'me-rin ← me-rowid',nl:'Jullie gaan',tip:'Hetzelfde patroon'},
-        {hz:'بفرمایین (Hz) ← بفرمایید (Da)',tr:'befarmaayin ← befarmaaayid',nl:'Alstublieft (beleefd)',tip:'"-ین" vs "-ید" uitgang'},
-        {hz:'می‌تانم (Hz) ← می‌توانم (Da)',tr:'me-taanam ← me-tawaanam',nl:'Ik kan: Hz "taan", Dari "tawaan"',tip:'Typisch Hazaragi werkwoord'},
-        {hz:'"دَ" (Hz) ← "در/به" (Da)',tr:'da ← dar / be',nl:'"Dَ" = in/naar/bij (Hazaragi)',tip:'"دَ" doet het werk van meerdere Dari voorzetsels'},
-        {hz:'خانمو (Hz) ← خانه‌ما (Da)',tr:'khaanamao ← khaana-maa',nl:'Ons huis: Hz "-مو" = ons',tip:'Bezit meervoud: "-مو" Hazaragi, "-مان" Dari'},
-      ],
-      sentences:[
-        {hz:'شما هستین؟ — (Dari: شما هستید؟)',tr:'shoma hastin?',nl:'Zijn jullie er? — hoor het verschil'},
-        {hz:'دَ خانه می‌رم — (Dari: به خانه می‌روم)',tr:'da khaana me-ram',nl:'Ik ga naar huis — "دَ" vs "به"'},
-        {hz:'نمی‌تانم — (Dari: نمی‌توانم)',tr:'nemi-taanam',nl:'Ik kan niet — duidelijk Hazaragi!'},
-      ]
-    },
-  ]},
-
-  { id:'ch29', label:'🎭 Hoofdstuk 29 · Rollenspel-scenario\'s', color:'#F9C3Cb', lessons:[
-
-    { id:'role_cafe', title:'In een Afghaans restaurant', sub:'Bestellen, betalen, complimenteren', icon:'🍵', xp:35,
-      pronTips:['خ','ر'],
-      grammar:'Bestellen doe je met "می‌خوام" + gerecht. Betalen: "حساب بیار" = breng de rekening.',
-      words:[
-        {hz:'چی داری؟',tr:'chi daari?',nl:'Wat heb je? (menukaart)',tip:'Directe manier om het menu te vragen'},
-        {hz:'یک بشقاب',tr:'yak boshqaab',nl:'Één bord (portie)',tip:'"بشقاب" = bord'},
-        {hz:'چای سبز',tr:'chaay sabz',nl:'Groene thee',tip:''},
-        {hz:'حساب بیار',tr:'hesaab biaar',nl:'Breng de rekening',tip:''},
-        {hz:'مزه‌اش خوب بود؟',tr:'mazash khob bood?',nl:'Was het lekker?',tip:'Na het eten vragen'},
-        {hz:'نوش جانت',tr:'nosh jaanat',nl:'Eet smakelijk',tip:'Zeg dit als iemand eet'},
-        {hz:'دستت درد نکنه',tr:'dastat dard nakona',nl:'Dank je voor de moeite',tip:'Na de maaltijd verplicht!'},
-        {hz:'بفرمایین',tr:'befarmaayin',nl:'Alstublieft / Kom binnen',tip:'Gastvrije uitnodiging'},
-        {hz:'صفا آوردید',tr:'safaa aawordid',nl:'Welkom (bij aankomst gast)',tip:'Typisch Hazara gastvrijheid'},
-        {hz:'سیر شدم',tr:'seer shodam',nl:'Ik ben vol / Ik heb genoeg gegeten',tip:'Zeg dit na de maaltijd'},
-      ],
-      sentences:[
-        {hz:'یک بشقاب قابلی و دو چای سبز می‌خوام',tr:'yak boshqaab qaaboli o do chaay sabz me-khaam',nl:'Ik wil één bord qaboli en twee groene theeën'},
-        {hz:'خیلی خوشمزه بود، دستت درد نکنه',tr:'khaili khoshmaza bood, dastat dard nakona',nl:'Het was heel lekker, dank je voor de moeite'},
-        {hz:'حساب بیار، می‌خوام بروم',tr:'hesaab biaar, me-khaam beram',nl:'Breng de rekening, ik wil gaan'},
-      ]
-    },
-
-    { id:'role_visit', title:'Iemand bezoeken', sub:'Binnenkomen, zitten, afscheid', icon:'🏡', xp:35,
-      pronTips:['خ','ع'],
-      grammar:'Gastvrijheid is heilig in Hazara cultuur. Leer de volledige rituelen van aankomst tot vertrek.',
-      words:[
-        {hz:'در زدن',tr:'dar zadan',nl:'Kloppen / Aanbellen',tip:'Letterlijk "deur slaan"'},
-        {hz:'بفرمایین داخل',tr:'befarmaayin daakhel',nl:'Kom maar binnen',tip:'"داخل" = binnen'},
-        {hz:'مزاحم نیستم؟',tr:'mozaahem nistam?',nl:'Stoor ik niet?',tip:'Beleefd vragen bij aankomst'},
-        {hz:'خیر خوش آمدی',tr:'khayr khosh aamadi',nl:'Welkom, fijn dat je er bent',tip:'Hartelijk welkom'},
-        {hz:'بنشینید',tr:'benshinnid',nl:'Gaat u zitten',tip:'Beleefd meervoud/formeel'},
-        {hz:'چای بیارم؟',tr:'chaay biyaaram?',nl:'Zal ik thee brengen?',tip:'Eerste vraag aan elke gast'},
-        {hz:'نه تشکر، زحمت نکشید',tr:'na tashakor, zahmat nakashid',nl:'Nee dank u, doe geen moeite',tip:'Beleefd weigeren (maar ga toch thee drinken!)'},
-        {hz:'وقتم تنگ اَس',tr:'waqtam tang as',nl:'Mijn tijd is krap / Ik moet gaan',tip:'Beleefd vertrekaankondiging'},
-        {hz:'باز بیا',tr:'baaz bia',nl:'Kom nog eens',tip:'Altijd zeggen bij afscheid'},
-        {hz:'خدا حافظ',tr:'khodaa haafez',nl:'Vaarwel',tip:'Formeel afscheid'},
-      ],
-      sentences:[
-        {hz:'صفا آوردید، بفرمایین داخل، بنشینید',tr:'safaa aawordid, befarmaayin daakhel, benshinnid',nl:'Welkom, kom binnen, gaat u zitten'},
-        {hz:'مزاحم نیستم؟ — نه جان، خوش آمدی!',tr:'mozaahem nistam? — na jaan, khosh aamadi!',nl:'Stoor ik niet? — Nee lieverd, welkom!'},
-        {hz:'وقتم تنگ اَس، باید برم — باز بیا!',tr:'waqtam tang as, baayad beram — baaz bia!',nl:'Ik moet gaan — Kom nog eens!'},
-      ]
-    },
-
-    { id:'role_phone', title:'Bellen & WhatsApp', sub:'Gesprek starten, sluiten', icon:'📱', xp:30,
-      pronTips:['خ'],
-      grammar:'"هستی؟" = ben je er? — het typische eerste WhatsApp-bericht bij Hazara. Daarna volgt alles vanzelf.',
-      words:[
-        {hz:'الو؟',tr:'aloo?',nl:'Hallo? (telefoon)',tip:'Altijd "الو" bij bellen, nooit "سلام" als eerste'},
-        {hz:'کی هستی؟',tr:'ki hasti?',nl:'Wie ben jij?',tip:'Als je het nummer niet kent'},
-        {hz:'صدات قطع می‌شه',tr:'sedaat qat meshe',nl:'Je valt weg / Slechte verbinding',tip:''},
-        {hz:'دوباره زنگ بزن',tr:'dobaara zang bezan',nl:'Bel nog eens',tip:''},
-        {hz:'مسیج بده',tr:'mesij bede',nl:'Stuur een bericht',tip:'Leenwoord van "message"'},
-        {hz:'آنلاین هستی؟',tr:'onlayn hasti?',nl:'Ben je online?',tip:''},
-        {hz:'ویس بده',tr:'weys bede',nl:'Stuur een voicemail',tip:'Leenwoord van "voice"'},
-        {hz:'تماس گرفتم',tr:'tamaas gereftam',nl:'Ik heb gebeld',tip:'"تماس" = contact/verbinding'},
-        {hz:'جواب نمی‌دی',tr:'jawaab nemi-di',nl:'Je neemt niet op',tip:''},
-        {hz:'قطع کو',tr:'qat ko',nl:'Hang op',tip:'Letterlijk "snij af"'},
-      ],
-      sentences:[
-        {hz:'هستی؟ دلم تنگته',tr:'hasti? delam tangta',nl:'Ben je er? Ik mis je'},
-        {hz:'صدات قطع می‌شه، ویس بده',tr:'sedaat qat meshe, weys bede',nl:'Je valt weg, stuur een voicemail'},
-        {hz:'جواب نمی‌دی، مسیج دادم',tr:'jawaab nemi-di, mesij daadam',nl:'Je neemt niet op, ik heb een bericht gestuurd'},
+        {hz:'من هزاره هستم و افتخار می‌کنم',tr:'man hazaara hastam wa eftekhar me-konam',nl:'Ik ben Hazara en ik ben er trots op'},
+        {hz:'زبان مادریم را فراموش نمی‌کنم',tr:'zabaan maadaram ra faraamoosh nemi-konam',nl:'Ik vergeet mijn moedertaal niet'},
+        {hz:'ریشه‌هامو قوی اَس، هر کجا باشم',tr:'rishahaamo qaawi as, har koja baasham',nl:'Mijn wortels zijn sterk, waar ik ook ben'},
       ]
     },
   ]},
