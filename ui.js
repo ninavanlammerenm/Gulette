@@ -482,7 +482,7 @@ function resetData(){
 // FX
 // ══════════════════════════════════════════════════════
 function confetti(){
-  const cols=['#FF6B9D','#FFD6E8','#FFBE3D','#A78BFA','#3DD6A3','#fff','#FF8C61'];
+  const cols=['#F06C78','#F9C3Cb','#F6E7B8','#8E9A5A','#e24b5a','#fff','#FADADD'];
   const wrap=document.getElementById('cfwrap');
   wrap.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:500;overflow:hidden;max-width:430px;left:50%;transform:translateX(-50%)';
   for(let i=0;i<55;i++)setTimeout(()=>{
@@ -493,7 +493,7 @@ function confetti(){
 }
 
 function sparkles(){
-  const emos=['✨','🌸','💕','⭐','🎀','🏔️'];
+  const emos=['🍓','✨','🌸','💕','🍓','🌿'];
   const maxW=Math.min(window.innerWidth,430);
   for(let i=0;i<3;i++)setTimeout(()=>{
     const el=document.createElement('div');el.className='sparkle';
