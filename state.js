@@ -29,6 +29,7 @@ function updMastery(hz,ok){
   }else{
     v.mastery=Math.max(0,(v.mastery||0)-1);
     v.nr=new Date(Date.now()+3600000).toISOString();
+    v.errors=(v.errors||0)+1;
   }
   save();
 }

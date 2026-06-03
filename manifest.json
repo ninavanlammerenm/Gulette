@@ -1,0 +1,17 @@
+{
+  "name": "Gulette — Leer Hazaragi",
+  "short_name": "Gulette",
+  "description": "Leer Hazaragi met bewezen methodes",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff5f8",
+  "theme_color": "#FF6B9D",
+  "lang": "nl",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%23FF6B9D'/><text y='145' x='20' font-size='140'>🐇</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

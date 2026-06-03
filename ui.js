@@ -126,6 +126,19 @@ function renderHome(){
     document.getElementById('rev-count-txt').textContent=`Alles herhaald! Volgende review over ${eta} ✅`;
   }
 
+  // Zwakke woorden banner
+  const weakWords=Object.entries(S.vocab).filter(([,v])=>(v.errors||0)>=2).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0));
+  const wb=document.getElementById('weak-banner');
+  if(wb){
+    if(weakWords.length>=4){
+      wb.style.display='flex';
+      const top=weakWords.slice(0,3).map(([hz])=>hz).join('  ');
+      document.getElementById('weak-banner-txt').textContent=`${weakWords.length} woorden — bijv. ${top}`;
+    }else{
+      wb.style.display='none';
+    }
+  }
+
   // Chapters / lesson path
   const cw=document.getElementById('chapters-wrap');
   cw.innerHTML='';
@@ -173,6 +186,13 @@ function filterW(f,btn){
   wFilter=f;document.querySelectorAll('.fc').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderVocab();
 }
 
+function startWeakWordsDrill(){
+  const weakWords=Object.entries(S.vocab).filter(([,v])=>(v.errors||0)>=2).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0)).slice(0,20);
+  if(weakWords.length<4){showToast('Nog niet genoeg fouten-woorden! Maak meer oefeningen 💪');return;}
+  const wordList=weakWords.map(([hz,v])=>({hz,v,dir:Math.random()>.5?'hz_nl':'nl_hz'}));
+  startOvhoring(0,wordList);
+}
+
 function renderVocab(){
   const search=(document.getElementById('vocab-search')?.value||'').toLowerCase().trim();
   const ents=Object.entries(S.vocab);
@@ -181,6 +201,7 @@ function renderVocab(){
   if(wFilter==='learning') list=ents.filter(([,v])=>(v.mastery||0)>0&&(v.mastery||0)<3);
   else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.mastery||0)>=3);
   else if(wFilter==='due')      list=ents.filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
+  else if(wFilter==='fouten')   list=ents.filter(([,v])=>(v.errors||0)>=1).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0));
 
   if(search) list=list.filter(([hz,v])=>
     hz.includes(search)||
@@ -214,7 +235,7 @@ function renderVocab(){
       <div class="wc-info">
         <div class="wc-pron">🔊 ${pron}</div>
         <div class="wc-nl">${v.nl||''}</div>
-        <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}</div>
+        <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
       </div>
       <div class="m-pips">${pips}</div>
     </div>`;
@@ -404,6 +425,7 @@ function renderProfile(){
   document.getElementById('p-wds').textContent=Object.keys(S.vocab).length;
   document.getElementById('p-les').textContent=S.done.length;
   renderXPGraph();
+  updateNotifBtn();
   document.getElementById('a-list').innerHTML=ACHVS.map(a=>{
     const on=S.achv.includes(a.id);
     return `<div class="ac">

@@ -11,8 +11,20 @@ const EX_TYPE_LABELS={
   mc_hz:'🔤 Hazaragi',
   wb:'🧩 Zin',
   type:'⌨️ Typen',
-  cloze:'🧩 Vul in'
+  cloze:'🧩 Vul in',
+  listen:'🔊 Luisteren'
 };
+
+function speak(hz){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const utt=new SpeechSynthesisUtterance(hz);
+  utt.lang='fa-IR';utt.rate=0.8;utt.pitch=1;
+  const voices=window.speechSynthesis.getVoices();
+  const fa=voices.find(v=>v.lang.startsWith('fa')||v.lang.startsWith('ar'));
+  if(fa)utt.voice=fa;
+  window.speechSynthesis.speak(utt);
+}
 
 function getLessonById(id){
   for(const ch of CHAPTERS)for(const l of ch.lessons)if(l.id===id)return l;
@@ -80,6 +92,12 @@ function buildExercises(lesson){
     if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
+  // 9. Listen exercises: hear the word, pick the Dutch meaning
+  shuffle(ws).slice(0,3).forEach(w=>{
+    const d=ws.filter(x=>x.hz!==w.hz);
+    if(d.length>=3)exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+  });
+
   return exs;
 }
 
@@ -107,6 +125,7 @@ function renderEx(){
   else if(ex.type==='mc_hz')   rMC_hz(ex,body);
   else if(ex.type==='wb')      rWB(ex,body);
   else if(ex.type==='type')    rType(ex,body);
+  else if(ex.type==='listen')  rListen(ex,body);
   else nextEx();
 }
 
@@ -510,6 +529,22 @@ function finishLesson(){
   showScreen('result');
   sfxFinish();
   confetti();
+}
+
+// ── Listen ──
+function rListen(ex,body){
+  const w=ex.w;
+  const ltrs=['A','B','C','D'];
+  body.innerHTML=`
+    <div class="type-pill">🔊 Luisteroefening</div>
+    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:18px">Welk woord hoor je?</p>
+    <button class="listen-play-btn" id="listen-play-btn">🔊 Hoor het woord opnieuw</button>
+    <div class="choices" style="margin-top:20px">${ex.choices.map((c,i)=>`
+      <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
+        <span class="ch-ltr">${ltrs[i]}</span>${c}
+      </button>`).join('')}</div>`;
+  document.getElementById('listen-play-btn').addEventListener('click',()=>speak(w.hz));
+  setTimeout(()=>speak(w.hz),500);
 }
 
 // ══════════════════════════════════════════════════════
