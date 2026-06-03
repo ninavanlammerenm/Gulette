@@ -2,6 +2,7 @@
 // LES ENGINE
 // ══════════════════════════════════════════════════════
 let CL=null,EXS=[],EI=0,CC=0,WC=0,LXP=0,WAITING=false;
+let REQUEUED=new Set();
 
 // Oefentype labels voor de voortgangsbalk
 const EX_TYPE_LABELS={
@@ -12,19 +13,8 @@ const EX_TYPE_LABELS={
   wb:'🧩 Zin',
   type:'⌨️ Typen',
   cloze:'🧩 Vul in',
-  listen:'🔊 Luisteren'
+  repeat:'🔁 Herhaling'
 };
-
-function speak(hz){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(hz);
-  utt.lang='fa-IR';utt.rate=0.8;utt.pitch=1;
-  const voices=window.speechSynthesis.getVoices();
-  const fa=voices.find(v=>v.lang.startsWith('fa')||v.lang.startsWith('ar'));
-  if(fa)utt.voice=fa;
-  window.speechSynthesis.speak(utt);
-}
 
 function getLessonById(id){
   for(const ch of CHAPTERS)for(const l of ch.lessons)if(l.id===id)return l;
@@ -38,6 +28,7 @@ function startLesson(id){
   EI=CC=WC=LXP=0;
   HEARTS=3;
   WAITING=false;
+  REQUEUED=new Set();
   showScreen('lesson');
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -92,12 +83,6 @@ function buildExercises(lesson){
     if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
-  // 9. Listen exercises: hear the word, pick the Dutch meaning
-  shuffle(ws).slice(0,3).forEach(w=>{
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length>=3)exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
-  });
-
   return exs;
 }
 
@@ -109,7 +94,7 @@ function renderEx(){
   document.getElementById('l-prog').style.width=pct+'%';
 
   const ex=EXS[EI];
-  const typeLabel=EX_TYPE_LABELS[ex.type]||'';
+  const typeLabel=ex.requeued?EX_TYPE_LABELS.repeat:(EX_TYPE_LABELS[ex.type]||'');
   document.getElementById('l-counter').textContent=`${typeLabel}  ${EI+1}/${EXS.length}`;
 
   hideFB();
@@ -125,7 +110,6 @@ function renderEx(){
   else if(ex.type==='mc_hz')   rMC_hz(ex,body);
   else if(ex.type==='wb')      rWB(ex,body);
   else if(ex.type==='type')    rType(ex,body);
-  else if(ex.type==='listen')  rListen(ex,body);
   else nextEx();
 }
 
@@ -140,19 +124,8 @@ function rIntro(ex,body){
       <div class="ctx-mini-hz">${s.hz.replace(w.hz,`<mark>${w.hz}</mark>`)}</div>
       <div class="ctx-mini-nl">"${s.nl}"</div>
     </div>`:'';
-  // Pre-testing effect: if word is known, ask for self-assessment before confirming
-  // This activates prior knowledge and strengthens the memory trace
-  const isKnown=(S.vocab[w.hz]?.mastery||0)>0;
-  const actionBtns=isKnown
-    ?`<div class="self-assess-row">
-        <button class="sa-btn sa-no" onclick="saAnswer(false,'${w.hz.replace(/'/g,"\\'")}')">❌ Wist ik niet</button>
-        <button class="sa-btn sa-yes" onclick="saAnswer(true,'${w.hz.replace(/'/g,"\\'")}')">✅ Wist ik het!</button>
-      </div>`
-    :`<button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
-
   body.innerHTML=`
-    <div class="type-pill">📖 ${isKnown?'Herhaling':'Nieuw woord'}</div>
-    ${isKnown?`<p style="font-size:13px;font-weight:700;color:var(--lav);margin-bottom:10px">💭 Wist je dit woord al?</p>`:''}
+    <div class="type-pill">📖 Nieuw woord</div>
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <span class="hz-latin">🔊 ${pron}</span>
@@ -160,21 +133,21 @@ function rIntro(ex,body){
     </div>
     ${ctxHTML}
     <div style="flex:1"></div>
-    ${actionBtns}`;
+    <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
   save();
 }
 
-// Self-assessment after intro card — pre-testing effect
-function saAnswer(knew, hz){
-  if(knew){
-    CC++;LXP+=3;
-    updMastery(hz,true);
-    sfxCorrect();
-  } else {
-    updMastery(hz,false);
-  }
-  nextEx();
+// ── Herhaling bij fout antwoord ──
+function requeueWrong(hz){
+  if(REQUEUED.has(hz)) return false;
+  REQUEUED.add(hz);
+  const w=CL.words.find(x=>x.hz===hz);
+  if(!w) return false;
+  const d=CL.words.filter(x=>x.hz!==hz);
+  if(d.length<3) return false;
+  EXS.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),requeued:true});
+  return true;
 }
 
 // ── Context / inductief leren ──
@@ -405,6 +378,7 @@ function rType(ex,body){
         sfxWrong();
         loseHeart();
         updMastery(correct,false);
+        requeueWrong(correct);
         retryMode=true;
       }
       inp.classList.add('ng');
@@ -445,7 +419,8 @@ function chkMC(btn,chosen,correct,hz,tr){
       const txt=b.childNodes[1]?.textContent?.trim()||b.querySelector('span:last-child')?.textContent?.trim()||'';
       if(txt===correct)b.classList.add('ok');
     });
-    showFB(false,'Bijna!',`${hz} (${tr}) = ${correct}`,hz);
+    const requeued=requeueWrong(hz);
+    showFB(false,'Bijna!',`${hz} = ${correct}${requeued?' · 🔁 Komt later terug':''}`,hz);
     updMastery(hz,false);
   }
 }
@@ -468,7 +443,8 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
       if(s&&s.querySelector&&s.querySelector('[style*="direction"]')?.textContent?.trim()===correct)b.classList.add('ok');
       if(s&&!s.children.length&&s.textContent.trim()===correct)b.classList.add('ok');
     });
-    showFB(false,'Bijna!',`Juist: ${correct} (${tr})`,correct);
+    const requeued=requeueWrong(correct);
+    showFB(false,'Bijna!',`Juist: ${correct} (${tr})${requeued?' · 🔁 Komt later terug':''}`,correct);
     updMastery(correct,false);
   }
 }
@@ -531,21 +507,6 @@ function finishLesson(){
   confetti();
 }
 
-// ── Listen ──
-function rListen(ex,body){
-  const w=ex.w;
-  const ltrs=['A','B','C','D'];
-  body.innerHTML=`
-    <div class="type-pill">🔊 Luisteroefening</div>
-    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:18px">Welk woord hoor je?</p>
-    <button class="listen-play-btn" id="listen-play-btn">🔊 Hoor het woord opnieuw</button>
-    <div class="choices" style="margin-top:20px">${ex.choices.map((c,i)=>`
-      <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
-        <span class="ch-ltr">${ltrs[i]}</span>${c}
-      </button>`).join('')}</div>`;
-  document.getElementById('listen-play-btn').addEventListener('click',()=>speak(w.hz));
-  setTimeout(()=>speak(w.hz),500);
-}
 
 // ══════════════════════════════════════════════════════
 // DAILY REVIEW
