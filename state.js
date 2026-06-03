@@ -64,8 +64,8 @@ function checkAchv(){
   if(S.done.length>=1)add('first');
   if(S.streak>=3)add('streak3');if(S.streak>=7)add('streak7');if(S.streak>=30)add('streak30');
   const wc=Object.keys(S.vocab).length;
-  if(wc>=10)add('words10');if(wc>=30)add('words30');if(wc>=60)add('words60');if(wc>=100)add('words100');
-  if(S.xp>=100)add('xp100');if(S.xp>=500)add('xp500');if(S.xp>=1000)add('xp1000');
+  if(wc>=10)add('words10');if(wc>=30)add('words30');if(wc>=60)add('words60');if(wc>=100)add('words100');if(wc>=200)add('words200');if(wc>=300)add('words300');
+  if(S.xp>=100)add('xp100');if(S.xp>=500)add('xp500');if(S.xp>=1000)add('xp1000');if(S.xp>=2000)add('xp2000');
   if(WC===0&&CC>0)add('perfect');
   const checkCh=(chIdx,achId)=>{if(CHAPTERS[chIdx]&&CHAPTERS[chIdx].lessons.some(l=>S.done.includes(l.id)))add(achId);};
   [1,2,3,4,5,6,7,8,9].forEach((i,idx)=>checkCh(i,['ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10'][idx]));
