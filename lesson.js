@@ -214,7 +214,7 @@ function rCloze(ex,body){
         <span class="ch-ltr">${ltrs[i]}</span>
         <div style="display:flex;flex-direction:column;gap:2px">
           <span style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;line-height:1.5">${c}</span>
-          <span style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${CL.words.find(x=>x.hz===c)?.tr||''}</span>
+          <span class="hz-roman" style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${CL.words.find(x=>x.hz===c)?.tr||''}</span>
         </div>
       </button>`).join('')}
     </div>`;
@@ -261,7 +261,7 @@ function rMC_hz(ex,body){
         <span class="ch-ltr">${ltrs[i]}</span>
         <div style="display:flex;flex-direction:column;gap:2px">
           <span style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;line-height:1.5">${c}</span>
-          ${trMap[c]?`<span style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${trMap[c]}</span>`:''}
+          ${trMap[c]?`<span class="hz-roman" style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${trMap[c]}</span>`:''}
         </div>
       </button>`).join('')}</div>`;
 }
@@ -278,7 +278,7 @@ function rWB(ex,body){
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:14px">Zet de Hazaragi woorden in volgorde:</p>
     <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px">
       <div style="font-size:14px;font-weight:700;color:var(--ink-m)">"${s.nl}"</div>
-      <div style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
+      <div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
     </div>
     <div class="wb-answer" id="wb-ans"></div>
     <div class="wb-bank" id="wb-bnk">${shuf.map(w=>`

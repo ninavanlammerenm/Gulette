@@ -1547,6 +1547,71 @@ const CHAPTERS=[
     },
   ]},
 
+  { id:'ch_alf', label:'🔡 Hoofdstuk A · Leer het schrift', color:'#D4A0B0', lessons:[
+
+    { id:'alf_intro', title:'Het Arabische schrift', sub:'Hoe werkt het?', icon:'🔡', xp:15,
+      pronTips:['خ','غ','ع','ق'],
+      grammar:'Hazaragi schrijft van rechts naar links met het Arabische schrift. Letters hebben 2–4 vormen afhankelijk van positie.',
+      words:[
+        {hz:'ا — آ',tr:'alef / alef madda',nl:'"a" of "aa" klank',tip:'Eerste letter — staat altijd los of aan het begin'},
+        {hz:'ب — پ — ت',tr:'ba — pa — ta',nl:'"b", "p", "t" klanken',tip:'Dezelfde vorm, verschillend aantal puntjes!'},
+        {hz:'ج — چ — ح — خ',tr:'jim — che — ha — kha',nl:'"j", "ch", "h", "kh"',tip:'"ح" = zachte h, "خ" = keel-g'},
+        {hz:'د — ذ — ر — ز — ژ',tr:'dal — zal — ra — za — zhe',nl:'"d", "z", "r", "z", "zh"',tip:'"ر" = gerolde r, "ژ" = als "j" in "jardin"'},
+        {hz:'س — ش',tr:'sin — shin',nl:'"s" en "sh"',tip:'Drie tanden boven de lijn'},
+        {hz:'ع — غ',tr:'ain — ghain',nl:'keel-a en keel-gh',tip:'"ع" = zachte keel, "غ" = rommelende r'},
+        {hz:'ف — ق — ک — گ',tr:'fa — qa — ka — ga',nl:'"f", "q", "k", "g"',tip:'"ق" = diepe keel-k — typisch Hazaragi'},
+        {hz:'ل — م — ن',tr:'lam — mim — nun',nl:'"l", "m", "n"',tip:'Basis-medeklinkers'},
+        {hz:'و',tr:'waw / oo',nl:'"w" of "oo" klank',tip:'Aan het begin "w", in het midden "oo"'},
+        {hz:'ی',tr:'ya / i',nl:'"y" of "ie" klank',tip:'Aan het begin "y", op andere posities "ie"'},
+      ],
+      sentences:[
+        {hz:'سلام',tr:'salaam',nl:'Hallo — lees van rechts naar links: س-ل-ا-م'},
+        {hz:'خوبم',tr:'khobam',nl:'Ik ben goed — let op: خ = keel-g'},
+        {hz:'مو',tr:'mo',nl:'Wij — twee letters: م + و'},
+      ]
+    },
+
+    { id:'alf_vowels', title:'Klinkers & lange klanken', sub:'Korte en lange klinkers', icon:'🔊', xp:15,
+      pronTips:['آ','ر'],
+      grammar:'Korte klinkers (fatHa, kasra, Damma) schrijf je zelden. Lange klanken schrijf je WEL: "آ/ا" = aa, "و" = oo, "ی" = ee.',
+      words:[
+        {hz:'آ',tr:'aa (lang)',nl:'Lange "aa" klank',tip:'"آب" (aab) = water — let op de tilde op de ا'},
+        {hz:'ا',tr:'a (in midden)',nl:'Korte of lange "a"',tip:'Na een klinker in een woord'},
+        {hz:'و = oo',tr:'oo (lang)',nl:'Lange "oo" klank',tip:'"پول" (pool) = geld'},
+        {hz:'ی = ee',tr:'ee (lang)',nl:'Lange "ee" klank',tip:'"بی" (bi) = zonder — lang ie'},
+        {hz:'َ (fatHa)',tr:'a (kort)',nl:'Korte "a" klank (accent)',tip:'Kleine streep boven de letter — zelden geschreven'},
+        {hz:'ِ (kasra)',tr:'e / i (kort)',nl:'Korte "e/i" klank',tip:'Kleine streep onder de letter'},
+        {hz:'ُ (Damma)',tr:'o / u (kort)',nl:'Korte "o/u" klank',tip:'Klein haakje boven de letter'},
+        {hz:'تشدید ّ',tr:'tashdid',nl:'Dubbele letter',tip:'Kleine "w" boven letter = zeg de letter dubbel'},
+      ],
+      sentences:[
+        {hz:'آب',tr:'aab',nl:'Water — lange aa gevolgd door b'},
+        {hz:'بیست',tr:'bist',nl:'Twintig — ب+ی+س+ت'},
+        {hz:'سلام',tr:'salaam',nl:'Hallo — س+ل+ا+م, lange aa in het midden'},
+      ]
+    },
+
+    { id:'alf_reading', title:'Lees je eerste zinnen', sub:'Van letters naar woorden', icon:'📖', xp:20,
+      pronTips:['خ','ع','غ','ق'],
+      grammar:'Oefen met herkennen. Je hoeft nog niet perfect te schrijven — lees eerst!',
+      words:[
+        {hz:'ب + ا + ب + ا = باوا',tr:'b+aa+w+aa = baawaa',nl:'Vader — 4 letters',tip:'Lees langzaam van rechts naar links'},
+        {hz:'س + ل + ا + م = سلام',tr:'s+l+aa+m = salaam',nl:'Hallo — 4 letters',tip:''},
+        {hz:'خ + و + ب = خوب',tr:'kh+oo+b = khob',nl:'Goed — 3 letters',tip:'"خ" = keel-g'},
+        {hz:'م + ا + د + ر = مادر',tr:'m+aa+d+ar = maadar',nl:'Moeder — 4 letters',tip:''},
+        {hz:'د + و + س + ت = دوست',tr:'d+oo+s+t = dost',nl:'Vriend — 4 letters',tip:''},
+        {hz:'ن + ا + م = نام',tr:'n+aa+m = naam',nl:'Naam — 3 letters',tip:''},
+        {hz:'چ + ا + ی = چای',tr:'ch+aa+y = chaay',nl:'Thee — 3 letters',tip:'"چ" = ch klank'},
+        {hz:'ه + ز + ا + ر = هزار',tr:'h+z+aa+r = hazaar',nl:'Duizend — 4 letters',tip:''},
+      ],
+      sentences:[
+        {hz:'نامم گل اَس',tr:'naamam gol as',nl:'Mijn naam is Gol — nu kan je het lezen!'},
+        {hz:'خوبم، تشکر',tr:'khobam, tashakor',nl:'Ik ben goed, dank je'},
+        {hz:'دوستت دارم',tr:'dostat daaram',nl:'Ik hou van jou'},
+      ]
+    },
+  ]},
+
   { id:'ch21', label:'🔢 Hoofdstuk 21 · Cijfers & Tijd', color:'#F06C78', lessons:[
 
     { id:'numbers_11_20', title:'Cijfers 11–20', sub:'Elf tot twintig', icon:'🔢', xp:20,
@@ -1634,6 +1699,29 @@ const CHAPTERS=[
         {hz:'ساعت چند اَس؟',tr:'saat chand as?',nl:'Hoe laat is het?'},
         {hz:'ساعت هشت و نیم صبح اَس',tr:'saat hasht o nim sobh as',nl:'Het is half negen \'s ochtends'},
         {hz:'دیر شد، زود برو!',tr:'deer shod, zod bero!',nl:'Het is te laat, ga snel!'},
+      ]
+    },
+    { id:'months', title:'Maanden van het jaar', sub:'Januari t/m december', icon:'📆', xp:20,
+      pronTips:['ر'],
+      grammar:'In Nederland gebruik je de Gregoriaanse maanden. Hazaragi/Dari heeft ook Shamsi maanden (Hamal t/m Howt) voor de Afghaanse kalender.',
+      words:[
+        {hz:'جنوری',tr:'janawaari',nl:'Januari',tip:''},
+        {hz:'فبروری',tr:'febrawaari',nl:'Februari',tip:''},
+        {hz:'مارچ',tr:'maarch',nl:'Maart',tip:''},
+        {hz:'اپریل',tr:'aprel',nl:'April',tip:''},
+        {hz:'می',tr:'mey',nl:'Mei',tip:''},
+        {hz:'جون',tr:'joon',nl:'Juni',tip:''},
+        {hz:'جولای',tr:'jolaayi',nl:'Juli',tip:''},
+        {hz:'آگست',tr:'aagast',nl:'Augustus',tip:''},
+        {hz:'سپتمبر',tr:'septambar',nl:'September',tip:''},
+        {hz:'اکتوبر',tr:'oktobar',nl:'Oktober',tip:''},
+        {hz:'نومبر',tr:'nawambar',nl:'November',tip:''},
+        {hz:'دسمبر',tr:'desembar',nl:'December',tip:'Koudste maand — "زمستان" begint'},
+      ],
+      sentences:[
+        {hz:'نوروز دَ مارچ اَس',tr:'nawrooz da maarch as',nl:'Nowruz is in maart'},
+        {hz:'دَ کدام ماه تولدت اَس؟',tr:'da kodaam maah tawalladat as?',nl:'In welke maand is je verjaardag?'},
+        {hz:'دسمبر خیلی سرد اَس دَ هالند',tr:'desembar khaili sard as da haaland',nl:'December is heel koud in Nederland'},
       ]
     },
   ]},
@@ -2115,6 +2203,203 @@ const CHAPTERS=[
     },
   ]},
 
+  { id:'ch28', label:'🔄 Hoofdstuk 28 · Tegenstellingen', color:'#F06C78', lessons:[
+
+    { id:'opp_adj', title:'Tegengestelde bijvoeglijke naamwoorden', sub:'Groot↔Klein, Snel↔Langzaam...', icon:'↔️', xp:25,
+      pronTips:['خ','ر'],
+      grammar:'Tegenstellingen leren verdubbelt je woordenschat in één keer! Leer altijd beide woorden samen.',
+      words:[
+        {hz:'بزرگ ↔ کوچک',tr:'bozorg ↔ kochak',nl:'Groot ↔ Klein',tip:''},
+        {hz:'بلند ↔ کوتاه',tr:'boland ↔ kotaah',nl:'Lang/Hoog ↔ Kort/Laag',tip:''},
+        {hz:'تند ↔ آهسته',tr:'tand ↔ aahesta',nl:'Snel ↔ Langzaam',tip:'"آهسته" = rustig/langzaam'},
+        {hz:'گرم ↔ سرد',tr:'garm ↔ sard',nl:'Warm ↔ Koud',tip:''},
+        {hz:'سنگین ↔ سبک',tr:'sangeen ↔ sabok',nl:'Zwaar ↔ Licht',tip:''},
+        {hz:'تازه ↔ کهنه',tr:'taaza ↔ kohna',nl:'Vers/Nieuw ↔ Oud/Versleten',tip:''},
+        {hz:'قوی ↔ ضعیف',tr:'qaawi ↔ za\'if',nl:'Sterk ↔ Zwak',tip:''},
+        {hz:'خوش ↔ بد',tr:'khosh ↔ bad',nl:'Goed/Fijn ↔ Slecht',tip:'"خوش" = breed gebruikt voor fijn/goed'},
+        {hz:'پاک ↔ کثیف',tr:'paak ↔ kasif',nl:'Schoon ↔ Vies',tip:''},
+        {hz:'راست ↔ دروغ',tr:'raast ↔ doroogh',nl:'Eerlijk/Rechts ↔ Leugen/Links',tip:'Context bepaalt betekenis'},
+      ],
+      sentences:[
+        {hz:'این کیف سنگین اَس — آن یکی سبک اَس',tr:'een kif sangeen as — aan yaki sabok as',nl:'Deze tas is zwaar — die andere is licht'},
+        {hz:'هوا گرم نیس، خیلی سرد اَس',tr:'hawaa garm nis, khaili sard as',nl:'Het weer is niet warm, het is heel koud'},
+        {hz:'قوی باش، ضعیف نباش',tr:'qaawi baash, za\'if nabaash',nl:'Wees sterk, wees niet zwak'},
+      ]
+    },
+
+    { id:'opp_verbs', title:'Tegengestelde werkwoorden', sub:'Gaan↔Komen, Kopen↔Verkopen...', icon:'🔃', xp:25,
+      pronTips:['ر'],
+      grammar:'"رفتن" (gaan) ↔ "آمدن" (komen). Werkwoordstegenstellingen zijn essentieel voor conversatie.',
+      words:[
+        {hz:'رفتن ↔ آمدن',tr:'raftan ↔ aamadan',nl:'Gaan ↔ Komen',tip:'De twee meest gebruikte werkwoorden'},
+        {hz:'خریدن ↔ فروختن',tr:'kharidan ↔ forookhtan',nl:'Kopen ↔ Verkopen',tip:''},
+        {hz:'گرفتن ↔ دادن',tr:'gereftan ↔ daadan',nl:'Nemen ↔ Geven',tip:''},
+        {hz:'باز کردن ↔ بستن',tr:'baaz kardan ↔ bastan',nl:'Openen ↔ Sluiten',tip:''},
+        {hz:'بلند کردن ↔ گذاشتن',tr:'boland kardan ↔ gozaashtan',nl:'Optillen ↔ Neerzetten',tip:''},
+        {hz:'پوشیدن ↔ درآوردن',tr:'poshedan ↔ dar-aawordan',nl:'Aandoen ↔ Uitdoen',tip:''},
+        {hz:'یاد گرفتن ↔ فراموش کردن',tr:'yaad gereftan ↔ faraamoosh kardan',nl:'Leren ↔ Vergeten',tip:'"فراموش" = vergeten — Leer dit niet vergeten!'},
+        {hz:'شروع کردن ↔ تموم کردن',tr:'shoro kardan ↔ tamoom kardan',nl:'Beginnen ↔ Eindigen/Afmaken',tip:''},
+        {hz:'خوابیدن ↔ بیدار شدن',tr:'khwaabidan ↔ bidaar shodan',nl:'Slapen ↔ Wakker worden',tip:''},
+        {hz:'خندیدن ↔ گریستن',tr:'khandidan ↔ geriistan',nl:'Lachen ↔ Huilen',tip:''},
+      ],
+      sentences:[
+        {hz:'فراموش نکو، یاد داشته باش',tr:'faraamoosh nako, yaad daashta baash',nl:'Vergeet het niet, onthoud het'},
+        {hz:'دروازه را ببند، سرد اَس',tr:'darwaaza ra baband, sard as',nl:'Doe de deur dicht, het is koud'},
+        {hz:'شروع کو — وقت داری',tr:'shoro ko — waqt daari',nl:'Begin — je hebt tijd'},
+      ]
+    },
+
+    { id:'opp_context', title:'Tegenstellingen in gesprek', sub:'Toepassen in zinnen', icon:'💬', xp:30,
+      pronTips:['خ'],
+      grammar:'Tegenstellingen maken je uitdrukkingsvermogen veel rijker. Gebruik "اما" (maar) om ze te verbinden.',
+      words:[
+        {hz:'دور ↔ نزدیک',tr:'door ↔ nazdik',nl:'Ver ↔ Dichtbij',tip:''},
+        {hz:'زود ↔ دیر',tr:'zod ↔ deer',nl:'Vroeg/Snel ↔ Laat/Langzaam',tip:'"زود بیا" = kom snel, "دیر شد" = te laat'},
+        {hz:'همیشه ↔ هیچ‌وقت',tr:'hamisha ↔ hichawaqt',nl:'Altijd ↔ Nooit',tip:''},
+        {hz:'قبل ↔ بعد',tr:'qabl ↔ baad',nl:'Vóór ↔ Na',tip:''},
+        {hz:'کم ↔ زیاد',tr:'kam ↔ ziyaad',nl:'Weinig ↔ Veel',tip:''},
+        {hz:'تنها ↔ با هم',tr:'tanhaa ↔ baa ham',nl:'Alleen ↔ Samen',tip:'"با هم" = letterlijk "met elkaar"'},
+        {hz:'شاد ↔ غمگین',tr:'shaad ↔ ghamgeen',nl:'Blij ↔ Verdrietig',tip:''},
+        {hz:'درست ↔ اشتباه',tr:'doros ↔ eshtebaa',nl:'Juist ↔ Fout',tip:'Hazaragi: "doros" niet "dorost"'},
+      ],
+      sentences:[
+        {hz:'همیشه راست بگو، هیچ‌وقت دروغ نگو',tr:'hamisha raast bego, hichawaqt doroogh nago',nl:'Zeg altijd de waarheid, zeg nooit een leugen'},
+        {hz:'زود بیا، دیر نشه',tr:'zod bia, deer nashe',nl:'Kom snel, laat het niet te laat worden'},
+        {hz:'تنها بودم اما حالا با هم هستیم',tr:'tanhaa boodam amma haala baa ham hastim',nl:'Ik was alleen maar nu zijn we samen'},
+      ]
+    },
+  ]},
+
+  { id:'ch_gram5', label:'📖 Grammatica 5 · Hazaragi vs Dari', color:'#8B6FF0', lessons:[
+
+    { id:'gram5_sound', title:'Uitspraakverschillen', sub:'Hoe Hazaragi klinkt anders', icon:'🗣️', xp:30,
+      pronTips:['خ','و','ر'],
+      grammar:'Hazaragi en Dari zijn verwant maar duidelijk verschillend. Als je Dari spreekt klinkt Hazaragi als een eigen taal!',
+      words:[
+        {hz:'آو (Hz) ← آب (Da)',tr:'aaw ← aab',nl:'Water: Hz "aaw", Dari "aab"',tip:'De "b" wordt "w" in Hazaragi — typisch kenmerk'},
+        {hz:'نیس (Hz) ← نیست (Da)',tr:'nis ← nist',nl:'Is niet: Hz "nis", Dari "nist"',tip:'Eindmedeklinkers vallen weg'},
+        {hz:'اَس (Hz) ← است (Da)',tr:'as ← ast',nl:'Is: Hz "as", Dari "ast"',tip:'Korter in Hazaragi'},
+        {hz:'می‌ره (Hz) ← می‌رود (Da)',tr:'me-ra ← me-rawad',nl:'Gaat: Hz "-h" uitgang, Dari "-d"',tip:'Werkwoorduitgangen verschillen'},
+        {hz:'چتور (Hz) ← چطور (Da)',tr:'chetor ← chetor',nl:'Hoe: Hz "chetor", Dari "chetor"',tip:'Kleine uitspraakverschillen'},
+        {hz:'مو (Hz) ← ما (Da)',tr:'mo ← maa',nl:'Wij: Hz "mo", Dari "maa"',tip:'GROOTSTE verschil — Mongooolse invloed op Hazaragi'},
+        {hz:'حالی (Hz) ← حالا (Da)',tr:'haali ← haala',nl:'Nu: Hz "haali", Dari "haala"',tip:''},
+        {hz:'وخت (Hz) ← وقت (Da)',tr:'wakht ← waqt',nl:'Tijd: Hz "wakht", Dari "waqt"',tip:''},
+      ],
+      sentences:[
+        {hz:'آو می‌خوام — (Dari: آب می‌خواهم)',tr:'aaw me-khaam — aab me-khaaham',nl:'Ik wil water — hoor het verschil!'},
+        {hz:'مو با هم می‌ریم — (Dari: ما با هم می‌رویم)',tr:'mo baa ham me-rim — maa baa ham me-rowim',nl:'Wij gaan samen — "مو" vs "ما"'},
+        {hz:'مشکلی نیس — (Dari: مشکلی نیست)',tr:'moshkeli nis — moshkeli nist',nl:'Geen probleem — Hz korter'},
+      ]
+    },
+
+    { id:'gram5_vocab', title:'Woordenschatverschillen', sub:'Andere woorden voor hetzelfde', icon:'📚', xp:30,
+      pronTips:['خ'],
+      grammar:'Sommige Hazaragi woorden komen van het Mongools of Turks en bestaan niet in Dari.',
+      words:[
+        {hz:'باوا (Hz) ← باباا (Da)',tr:'baawaa ← baabaa',nl:'Vader: Hz "baawaa" (Mongools!)',tip:'"باوا" is een Mongoools leenwoord'},
+        {hz:'مادرکلان (Hz)',tr:'maadar-kalaan',nl:'Oma: letterlijk "grote moeder"',tip:'"کلان" = groot in Hazaragi (Mongools: "katan")'},
+        {hz:'باواکلان (Hz)',tr:'baawaa-kalaan',nl:'Opa: letterlijk "grote vader"',tip:'Bestaat niet in Dari'},
+        {hz:'برار (Hz) ← برادر (Da)',tr:'baraar ← baraadar',nl:'Broer: Hz korter',tip:'Hazaragi knipt eindlettergrepen'},
+        {hz:'کاکا (Hz)',tr:'kaakaa',nl:'Oom (vaders broer)',tip:'Mongools leenwoord — Dari gebruikt "کاکا" ook maar het is Hazaragi'},
+        {hz:'اسپ (Hz) ← اسب (Da)',tr:'asp ← asb',nl:'Paard: Hz "asp", Dari "asb"',tip:'"},ب" uitgang wordt "پ" in Hazaragi'},
+        {hz:'سیا (Hz) ← سیاه (Da)',tr:'siya ← siyaah',nl:'Zwart: Hz "siya" korter',tip:'Eindklinkers vallen weg'},
+        {hz:'خو (Hz)',tr:'kho',nl:'"Nou / Dan" — geen Dari equivalent',tip:'Verbindingswoord — typisch Hazaragi'},
+      ],
+      sentences:[
+        {hz:'باواکلانم قصه می‌گفت — Dari gebruikt "پدربزرگ"',tr:'baawakalanam qessa megoft',nl:'Mijn opa vertelde verhalen'},
+        {hz:'برارم آمد — Dari: "برادرم آمد"',tr:'baraaram aamad',nl:'Mijn broer is gekomen — let op het verschil'},
+        {hz:'خو، چی می‌خوای؟',tr:'kho, chi me-khaai?',nl:'Nou, wat wil je? — "خو" bestaat niet in Dari'},
+      ]
+    },
+
+    { id:'gram5_grammar', title:'Grammaticaverschillen', sub:'Uitgangen en vormen', icon:'⚙️', xp:25,
+      pronTips:['خ'],
+      grammar:'Hazaragi werkwoorden hebben andere uitgangen dan Dari. De "-ین" uitgang (jullie) is typisch Hazaragi.',
+      words:[
+        {hz:'هستین (Hz) ← هستید (Da)',tr:'hastin ← hastid',nl:'Jullie zijn: Hz "-ین", Dari "-ید"',tip:'"-ین" uitgang = typisch Hazaragi'},
+        {hz:'می‌رین (Hz) ← می‌روید (Da)',tr:'me-rin ← me-rowid',nl:'Jullie gaan',tip:'Hetzelfde patroon'},
+        {hz:'بفرمایین (Hz) ← بفرمایید (Da)',tr:'befarmaayin ← befarmaaayid',nl:'Alstublieft (beleefd)',tip:'"-ین" vs "-ید" uitgang'},
+        {hz:'می‌تانم (Hz) ← می‌توانم (Da)',tr:'me-taanam ← me-tawaanam',nl:'Ik kan: Hz "taan", Dari "tawaan"',tip:'Typisch Hazaragi werkwoord'},
+        {hz:'"دَ" (Hz) ← "در/به" (Da)',tr:'da ← dar / be',nl:'"Dَ" = in/naar/bij (Hazaragi)',tip:'"دَ" doet het werk van meerdere Dari voorzetsels'},
+        {hz:'خانمو (Hz) ← خانه‌ما (Da)',tr:'khaanamao ← khaana-maa',nl:'Ons huis: Hz "-مو" = ons',tip:'Bezit meervoud: "-مو" Hazaragi, "-مان" Dari'},
+      ],
+      sentences:[
+        {hz:'شما هستین؟ — (Dari: شما هستید؟)',tr:'shoma hastin?',nl:'Zijn jullie er? — hoor het verschil'},
+        {hz:'دَ خانه می‌رم — (Dari: به خانه می‌روم)',tr:'da khaana me-ram',nl:'Ik ga naar huis — "دَ" vs "به"'},
+        {hz:'نمی‌تانم — (Dari: نمی‌توانم)',tr:'nemi-taanam',nl:'Ik kan niet — duidelijk Hazaragi!'},
+      ]
+    },
+  ]},
+
+  { id:'ch29', label:'🎭 Hoofdstuk 29 · Rollenspel-scenario\'s', color:'#F9C3Cb', lessons:[
+
+    { id:'role_cafe', title:'In een Afghaans restaurant', sub:'Bestellen, betalen, complimenteren', icon:'🍵', xp:35,
+      pronTips:['خ','ر'],
+      grammar:'Bestellen doe je met "می‌خوام" + gerecht. Betalen: "حساب بیار" = breng de rekening.',
+      words:[
+        {hz:'چی داری؟',tr:'chi daari?',nl:'Wat heb je? (menukaart)',tip:'Directe manier om het menu te vragen'},
+        {hz:'یک بشقاب',tr:'yak boshqaab',nl:'Één bord (portie)',tip:'"بشقاب" = bord'},
+        {hz:'چای سبز',tr:'chaay sabz',nl:'Groene thee',tip:''},
+        {hz:'حساب بیار',tr:'hesaab biaar',nl:'Breng de rekening',tip:''},
+        {hz:'مزه‌اش خوب بود؟',tr:'mazash khob bood?',nl:'Was het lekker?',tip:'Na het eten vragen'},
+        {hz:'نوش جانت',tr:'nosh jaanat',nl:'Eet smakelijk',tip:'Zeg dit als iemand eet'},
+        {hz:'دستت درد نکنه',tr:'dastat dard nakona',nl:'Dank je voor de moeite',tip:'Na de maaltijd verplicht!'},
+        {hz:'بفرمایین',tr:'befarmaayin',nl:'Alstublieft / Kom binnen',tip:'Gastvrije uitnodiging'},
+        {hz:'صفا آوردید',tr:'safaa aawordid',nl:'Welkom (bij aankomst gast)',tip:'Typisch Hazara gastvrijheid'},
+        {hz:'سیر شدم',tr:'seer shodam',nl:'Ik ben vol / Ik heb genoeg gegeten',tip:'Zeg dit na de maaltijd'},
+      ],
+      sentences:[
+        {hz:'یک بشقاب قابلی و دو چای سبز می‌خوام',tr:'yak boshqaab qaaboli o do chaay sabz me-khaam',nl:'Ik wil één bord qaboli en twee groene theeën'},
+        {hz:'خیلی خوشمزه بود، دستت درد نکنه',tr:'khaili khoshmaza bood, dastat dard nakona',nl:'Het was heel lekker, dank je voor de moeite'},
+        {hz:'حساب بیار، می‌خوام بروم',tr:'hesaab biaar, me-khaam beram',nl:'Breng de rekening, ik wil gaan'},
+      ]
+    },
+
+    { id:'role_visit', title:'Iemand bezoeken', sub:'Binnenkomen, zitten, afscheid', icon:'🏡', xp:35,
+      pronTips:['خ','ع'],
+      grammar:'Gastvrijheid is heilig in Hazara cultuur. Leer de volledige rituelen van aankomst tot vertrek.',
+      words:[
+        {hz:'در زدن',tr:'dar zadan',nl:'Kloppen / Aanbellen',tip:'Letterlijk "deur slaan"'},
+        {hz:'بفرمایین داخل',tr:'befarmaayin daakhel',nl:'Kom maar binnen',tip:'"داخل" = binnen'},
+        {hz:'مزاحم نیستم؟',tr:'mozaahem nistam?',nl:'Stoor ik niet?',tip:'Beleefd vragen bij aankomst'},
+        {hz:'خیر خوش آمدی',tr:'khayr khosh aamadi',nl:'Welkom, fijn dat je er bent',tip:'Hartelijk welkom'},
+        {hz:'بنشینید',tr:'benshinnid',nl:'Gaat u zitten',tip:'Beleefd meervoud/formeel'},
+        {hz:'چای بیارم؟',tr:'chaay biyaaram?',nl:'Zal ik thee brengen?',tip:'Eerste vraag aan elke gast'},
+        {hz:'نه تشکر، زحمت نکشید',tr:'na tashakor, zahmat nakashid',nl:'Nee dank u, doe geen moeite',tip:'Beleefd weigeren (maar ga toch thee drinken!)'},
+        {hz:'وقتم تنگ اَس',tr:'waqtam tang as',nl:'Mijn tijd is krap / Ik moet gaan',tip:'Beleefd vertrekaankondiging'},
+        {hz:'باز بیا',tr:'baaz bia',nl:'Kom nog eens',tip:'Altijd zeggen bij afscheid'},
+        {hz:'خدا حافظ',tr:'khodaa haafez',nl:'Vaarwel',tip:'Formeel afscheid'},
+      ],
+      sentences:[
+        {hz:'صفا آوردید، بفرمایین داخل، بنشینید',tr:'safaa aawordid, befarmaayin daakhel, benshinnid',nl:'Welkom, kom binnen, gaat u zitten'},
+        {hz:'مزاحم نیستم؟ — نه جان، خوش آمدی!',tr:'mozaahem nistam? — na jaan, khosh aamadi!',nl:'Stoor ik niet? — Nee lieverd, welkom!'},
+        {hz:'وقتم تنگ اَس، باید برم — باز بیا!',tr:'waqtam tang as, baayad beram — baaz bia!',nl:'Ik moet gaan — Kom nog eens!'},
+      ]
+    },
+
+    { id:'role_phone', title:'Bellen & WhatsApp', sub:'Gesprek starten, sluiten', icon:'📱', xp:30,
+      pronTips:['خ'],
+      grammar:'"هستی؟" = ben je er? — het typische eerste WhatsApp-bericht bij Hazara. Daarna volgt alles vanzelf.',
+      words:[
+        {hz:'الو؟',tr:'aloo?',nl:'Hallo? (telefoon)',tip:'Altijd "الو" bij bellen, nooit "سلام" als eerste'},
+        {hz:'کی هستی؟',tr:'ki hasti?',nl:'Wie ben jij?',tip:'Als je het nummer niet kent'},
+        {hz:'صدات قطع می‌شه',tr:'sedaat qat meshe',nl:'Je valt weg / Slechte verbinding',tip:''},
+        {hz:'دوباره زنگ بزن',tr:'dobaara zang bezan',nl:'Bel nog eens',tip:''},
+        {hz:'مسیج بده',tr:'mesij bede',nl:'Stuur een bericht',tip:'Leenwoord van "message"'},
+        {hz:'آنلاین هستی؟',tr:'onlayn hasti?',nl:'Ben je online?',tip:''},
+        {hz:'ویس بده',tr:'weys bede',nl:'Stuur een voicemail',tip:'Leenwoord van "voice"'},
+        {hz:'تماس گرفتم',tr:'tamaas gereftam',nl:'Ik heb gebeld',tip:'"تماس" = contact/verbinding'},
+        {hz:'جواب نمی‌دی',tr:'jawaab nemi-di',nl:'Je neemt niet op',tip:''},
+        {hz:'قطع کو',tr:'qat ko',nl:'Hang op',tip:'Letterlijk "snij af"'},
+      ],
+      sentences:[
+        {hz:'هستی؟ دلم تنگته',tr:'hasti? delam tangta',nl:'Ben je er? Ik mis je'},
+        {hz:'صدات قطع می‌شه، ویس بده',tr:'sedaat qat meshe, weys bede',nl:'Je valt weg, stuur een voicemail'},
+        {hz:'جواب نمی‌دی، مسیج دادم',tr:'jawaab nemi-di, mesij daadam',nl:'Je neemt niet op, ik heb een bericht gestuurd'},
+      ]
+    },
+  ]},
+
 ];
 
 // ══════════════════════════════════════════════════════
@@ -2166,4 +2451,8 @@ const ACHVS = [
   {id:'words200',icon:'🌺',name:'200 woorden!',desc:'200 woorden geleerd — indrukwekkend!'},
   {id:'words300',icon:'🏔️',name:'300 woorden!',desc:'300 woorden — bijna vloeiend!'},
   {id:'xp2000',icon:'💫',name:'2000 XP',desc:'Meester van het Hazaragi!'},
+  {id:'ch_alf',icon:'🔡',name:'Schrift geleerd!',desc:'Het Arabische schrift onder de knie'},
+  {id:'ch28',icon:'🔄',name:'Tegenstellingen',desc:'Hoofdstuk 28 gestart'},
+  {id:'ch_gram5',icon:'🔬',name:'Hazaragi vs Dari',desc:'De verschillen ontdekt!'},
+  {id:'ch29',icon:'🎭',name:'Rollenspel',desc:'Echte gesprekken geoefend'},
 ];

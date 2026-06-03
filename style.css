@@ -423,3 +423,11 @@ body{font-family:'Nunito',sans-serif;background:#F5C6CC;display:flex;justify-con
 /* ── LUISTEREN KNOP ── */
 .listen-play-btn{width:100%;padding:22px 20px;background:linear-gradient(135deg,var(--rose),var(--rose-d));color:#fff;border:none;border-radius:var(--r);font-size:18px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 8px 28px rgba(240,108,120,.38);transition:all .2s;letter-spacing:.3px}
 .listen-play-btn:active{transform:scale(.97)}
+
+/* ── ROMANISERING TOGGLE ── */
+body.hide-roman .hz-latin,
+body.hide-roman .hz-roman,
+body.hide-roman .ovh-latin,
+body.hide-roman .wc-pron,
+body.hide-roman .ctx-tr,
+body.hide-roman .pron-latin{ display:none!important }

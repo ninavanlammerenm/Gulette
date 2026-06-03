@@ -425,7 +425,9 @@ function renderProfile(){
   document.getElementById('p-wds').textContent=Object.keys(S.vocab).length;
   document.getElementById('p-les').textContent=S.done.length;
   renderXPGraph();
+  renderChapterProgress();
   updateNotifBtn();
+  updateRomanBtn();
   document.getElementById('a-list').innerHTML=ACHVS.map(a=>{
     const on=S.achv.includes(a.id);
     return `<div class="ac">
@@ -503,6 +505,51 @@ function sparkles(){
     el.style.cssText=`left:${x}px;top:${y}px`;
     document.body.appendChild(el);setTimeout(()=>el.remove(),900);
   },i*100);
+}
+
+// ══════════════════════════════════════════════════════
+// ROMANISERING TOGGLE
+// ══════════════════════════════════════════════════════
+function toggleRoman(){
+  S.showRoman = S.showRoman === false ? true : false;
+  save();
+  document.body.classList.toggle('hide-roman', S.showRoman === false);
+  updateRomanBtn();
+}
+
+function updateRomanBtn(){
+  const btn = document.getElementById('roman-btn');
+  if(!btn) return;
+  const on = S.showRoman !== false;
+  btn.textContent = on ? '🔤 Uitspraakschrift: AAN' : '🔤 Uitspraakschrift: UIT';
+  btn.style.background = on
+    ? 'linear-gradient(135deg,var(--rose),var(--rose-d))'
+    : 'linear-gradient(135deg,var(--ink-xl),var(--ink-l))';
+  btn.style.color = on ? '#fff' : 'var(--ink-m)';
+}
+
+// ══════════════════════════════════════════════════════
+// HOOFDSTUK-VOORTGANG
+// ══════════════════════════════════════════════════════
+function renderChapterProgress(){
+  const el = document.getElementById('ch-progress-list');
+  if(!el) return;
+  el.innerHTML = CHAPTERS.map(ch=>{
+    const totalW = ch.lessons.reduce((s,l)=>s+(l.words||[]).length,0);
+    if(totalW === 0) return '';
+    const learnedW = ch.lessons.reduce((s,l)=>s+(l.words||[]).filter(w=>S.vocab[w.hz]).length,0);
+    const pct = Math.round(learnedW/totalW*100);
+    const color = pct>=80?'var(--mint)':pct>=40?'var(--rose)':'var(--rose-l)';
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <div style="font-size:12px;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%">${ch.label}</div>
+        <div style="font-size:11px;font-weight:700;color:var(--ink-l)">${learnedW}/${totalW}</div>
+      </div>
+      <div style="height:6px;background:var(--ink-xl);border-radius:50px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${color};border-radius:50px;transition:width .6s ease"></div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function showToast(msg){

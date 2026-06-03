@@ -87,6 +87,7 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
 load();
+if(S.showRoman===false) document.body.classList.add('hide-roman');
 try{
   if(S.name){
     document.getElementById('bnav').style.display='flex';
