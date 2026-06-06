@@ -19,8 +19,8 @@ const SCI_TIPS=[
   '<strong>Inductief leren:</strong> Je brein herkent patronen automatisch door voorbeelden te zien — kijk goed naar de zinsbouw.',
   '<strong>Actief ophalen:</strong> Typoefeningen zijn moeilijker maar verdubbelen retentie. Oefen ze extra!',
   '<strong>Interleaving:</strong> Door te wisselen tussen woord→NL en NL→woord leer je dieper.',
-  '<strong>Hazaragi vs Dari:</strong> Hazaragi heeft unieke Mongoolse & Turkse woorden — jij leert de <em>echte</em> taal!',
-  '<strong>Uitspraak:</strong> Hazaragi heeft retroflexe klanken (tongtip omhoog) die Dari/Farsi niet heeft.',
+  '<strong>Hazaragi:</strong> Hazaragi heeft unieke Mongoolse & Turkse woorden — jij leert de <em>echte</em> taal!',
+  '<strong>Uitspraak:</strong> Hazaragi heeft retroflexe klanken (tongtip omhoog) — uniek voor deze taal!',
   '<strong>Tip:</strong> Elke dag even leren is beter dan 1x per week lang leren. Consistentie wint!',
 ];
 
@@ -33,14 +33,14 @@ const CHAPTERS=[
 
     { id:'greet1', title:'Begroetingen', sub:'Hoi, dag, hoe gaat het', icon:'👋', xp:10,
       pronTips:['خ','ع'],
-      grammar:'In Hazaragi zeg je "اس" (as) voor "is", niet "است" (ast) zoals in Farsi.',
+      grammar:'In Hazaragi zeg je "اس" (as) voor "is".',
       words:[
         {hz:'سلام',tr:'salaam',nl:'Hallo / Hoi',tip:'Universele begroeting — altijd goed!'},
         {hz:'خداحافظ',tr:'khodaahaafez',nl:'Dag / Tot ziens',tip:'"خدا" = God, "حافظ" = bewaker: "God behoede je"'},
         {hz:'خوبی؟',tr:'khobi?',nl:'Hoe gaat het?',tip:'Informele dagelijkse vraag'},
         {hz:'خوبم',tr:'khobom',nl:'Ik ben goed',tip:'"خوب" = goed + "-م" → Hazaragi: -om'},
-        {hz:'تشکر',tr:'tashakor',nl:'Dank je',tip:'Hazaragi bedanking — "ممنون" is Dari, Hazaragi zegt "تشکر"'},
-        {hz:'بله',tr:'bale',nl:'Ja',tip:'Uitgesproken als "bale" — zelfde als Dari'},
+        {hz:'تشکر',tr:'tashakor',nl:'Dank je',tip:'Typisch Hazaragi'},
+        {hz:'بله',tr:'bale',nl:'Ja',tip:'Uitgesproken als "bale"'},
         {hz:'نه',tr:'na',nl:'Nee',tip:'Kort en duidelijk'},
         {hz:'لطفاً',tr:'lotfan',nl:'Alsjeblieft',tip:'Beleefd verzoek'},
       ],
@@ -57,11 +57,11 @@ const CHAPTERS=[
       words:[
         {hz:'صبح بخیر',tr:'sobh bakhair',nl:'Goedemorgen',tip:'Gebruik dit tot de middag'},
         {hz:'شب بخیر',tr:'shab bakhair',nl:'Goedenacht',tip:'Zeg dit bij het slapengaan'},
-        {hz:'خوش آمدید',tr:'khosh aamodid',nl:'Welkom (formeel)',tip:'Hazaragi: "aamodid" (niet "aamadid" zoals Farsi)'},
+        {hz:'خوش آمدید',tr:'khosh aamodid',nl:'Welkom (formeel)',tip:'Hazaragi: "aamodid"'},
         {hz:'بفرمایین',tr:'befarmaayin',nl:'Alsjeblieft / Kom binnen',tip:'Hazaragi meervoud/beleefd: "-ین" ipv "-ید"'},
         {hz:'مشکلی نیس',tr:'moshkeli nis',nl:'Geen probleem',tip:'Hazaragi: "نیس" (nis) ipv "نیست" (nist)'},
         {hz:'باز می‌بینیم',tr:'baaz me-binim',nl:'Tot ziens',tip:'"باز" = opnieuw, "می‌بینیم" = we zien'},
-        {hz:'چتوری؟',tr:'chetoori?',nl:'Hoe is het? (informeel)',tip:'Hazaragi: "چتور" — Iraans Farsi zegt "چطور"'},
+        {hz:'چتوری؟',tr:'chetoori?',nl:'Hoe is het? (informeel)',tip:'Typisch Hazaragi uitspraak'},
         {hz:'ایشالله',tr:'ishaallah',nl:'Hopelijk / Inshallah',tip:'Hazaragi uitspraak: "isha" (niet "insha")'},
       ],
       sentences:[
@@ -73,35 +73,35 @@ const CHAPTERS=[
 
     { id:'numbers', title:'Cijfers 1–10', sub:'Tellen in Hazaragi', icon:'🔢', xp:20,
       pronTips:['ر'],
-      grammar:'Hazaragi cijfers lijken op Dari maar let op: "نه" (no = 9), "ده" (da = 10) — spreek ze Hazaragi uit!',
+      grammar:'Let op: "نه" (no = 9), "ده" (da = 10) — spreek ze Hazaragi uit!',
       words:[
         {hz:'یک',tr:'yak',nl:'Één',tip:''},
         {hz:'دو',tr:'do',nl:'Twee',tip:''},
         {hz:'سه',tr:'se',nl:'Drie',tip:'Spreek uit als "seh"'},
-        {hz:'چار',tr:'chaar',nl:'Vier',tip:'Hazaragi: "chaar" — Farsi zegt "chahaar"'},
+        {hz:'چار',tr:'chaar',nl:'Vier',tip:'Hazaragi: "chaar"'},
         {hz:'پنج',tr:'panj',nl:'Vijf',tip:''},
-        {hz:'شش',tr:'shash',nl:'Zes',tip:'Hazaragi: "shash" — Farsi "shesh"'},
+        {hz:'شش',tr:'shash',nl:'Zes',tip:'Hazaragi: "shash"'},
         {hz:'هفت',tr:'haft',nl:'Zeven',tip:''},
         {hz:'هشت',tr:'hasht',nl:'Acht',tip:''},
-        {hz:'نه',tr:'no',nl:'Negen',tip:'Hazaragi: "no" — Farsi "noh"'},
-        {hz:'ده',tr:'da',nl:'Tien',tip:'Hazaragi: "da" — Farsi "dah"'},
+        {hz:'نه',tr:'no',nl:'Negen',tip:'Hazaragi: "no"'},
+        {hz:'ده',tr:'da',nl:'Tien',tip:'Hazaragi: "da"'},
       ],
       sentences:[
         {hz:'یک چای بیار',tr:'yak chaai biaar',nl:'Breng één thee'},
-        {hz:'مو پنج نفر هستیم',tr:'mo panj nafar hastim',nl:'Wij zijn met vijf personen',tip:'"مو" = wij (Hazaragi) — Farsi "مaa"'},
+        {hz:'مو پنج نفر هستیم',tr:'mo panj nafar hastim',nl:'Wij zijn met vijf personen',tip:'"مو" = wij (Hazaragi)'},
         {hz:'ده روز دیگه',tr:'da roz diga',nl:'Nog tien dagen',tip:'"دیگه" = nog/meer (Hazaragi uitspraak)'},
       ]
     },
 
     { id:'colors', title:'Kleuren', sub:'Rood, blauw, groen...', icon:'🎨', xp:20,
       pronTips:['ر','خ'],
-      grammar:'Hazaragi: "سرخ" (sorkh = rood) — Farsi zegt "قرمز" (ghermez). Hazaragi bewaart het oudere Perzische woord!',
+      grammar:'Hazaragi: "سرخ" (sorkh = rood). Hazaragi bewaart het oudere Perzische woord!',
       words:[
-        {hz:'سرخ',tr:'sorkh',nl:'Rood',tip:'Hazaragi/oud Perzisch — Farsi zegt "قرمز"'},
+        {hz:'سرخ',tr:'sorkh',nl:'Rood',tip:'Hazaragi/oud Perzisch woord'},
         {hz:'آبی',tr:'aabi',nl:'Blauw',tip:'Lange "aa" aan het begin'},
         {hz:'سبز',tr:'sabz',nl:'Groen',tip:''},
-        {hz:'سفید',tr:'safaid',nl:'Wit',tip:'Hazaragi: "safaid" — Farsi "sefid"'},
-        {hz:'سیا',tr:'siya',nl:'Zwart',tip:'Hazaragi: "سیا" (siya) — Farsi "سیاه" (siyaah)'},
+        {hz:'سفید',tr:'safaid',nl:'Wit',tip:'Hazaragi: "safaid"'},
+        {hz:'سیا',tr:'siya',nl:'Zwart',tip:'Hazaragi: "سیا" (siya)'},
         {hz:'زرد',tr:'zard',nl:'Geel',tip:''},
         {hz:'صورتی',tr:'sorati',nl:'Roze',tip:''},
         {hz:'بنفش',tr:'banafsh',nl:'Paars',tip:''},
@@ -145,7 +145,7 @@ const CHAPTERS=[
       grammar:'"صد" = honderd. "دو صد" = tweehonderd. "هزار" = duizend. Simpel combineren!',
       words:[
         {hz:'سی',tr:'si',nl:'Dertig',tip:''},
-        {hz:'چل',tr:'chel',nl:'Veertig',tip:'Hazaragi: "chel" — Farsi "chehel"'},
+        {hz:'چل',tr:'chel',nl:'Veertig',tip:'Hazaragi: "chel"'},
         {hz:'پنجاه',tr:'panjaa',nl:'Vijftig',tip:''},
         {hz:'شصت',tr:'shast',nl:'Zestig',tip:''},
         {hz:'هفتاد',tr:'haftaad',nl:'Zeventig',tip:''},
@@ -193,7 +193,7 @@ const CHAPTERS=[
         {hz:'نیم',tr:'nim',nl:'Half',tip:'"ساعت سه و نیم" = half vier (3:30)'},
         {hz:'ربع',tr:'rob',nl:'Kwart',tip:'"ربع کم" = kwart voor'},
         {hz:'صبح',tr:'sobh',nl:'Ochtend',tip:''},
-        {hz:'چاشت',tr:'chaasht',nl:'Middag / Noon',tip:'Hazaragi woord — Farsi "ظهر"'},
+        {hz:'چاشت',tr:'chaasht',nl:'Middag / Noon',tip:'Typisch Hazaragi woord'},
         {hz:'بعد از چاشت',tr:'baad az chaasht',nl:'Namiddag',tip:''},
         {hz:'شام',tr:'shaam',nl:'Avond / Avondeten',tip:''},
         {hz:'نیمه شب',tr:'nima-shab',nl:'Middernacht',tip:''},
@@ -207,7 +207,7 @@ const CHAPTERS=[
     },
     { id:'months', title:'Maanden van het jaar', sub:'Januari t/m december', icon:'📆', xp:20,
       pronTips:['ر'],
-      grammar:'In Nederland gebruik je de Gregoriaanse maanden. Hazaragi/Dari heeft ook Shamsi maanden (Hamal t/m Howt) voor de Afghaanse kalender.',
+      grammar:'In Nederland gebruik je de Gregoriaanse maanden. Hazaragi heeft ook Shamsi maanden (Hamal t/m Howt) voor de Afghaanse kalender.',
       words:[
         {hz:'جنوری',tr:'janawaari',nl:'Januari',tip:''},
         {hz:'فبروری',tr:'febrawaari',nl:'Februari',tip:''},
@@ -234,12 +234,12 @@ const CHAPTERS=[
 
     { id:'gram1_pronouns', title:'Voornaamwoorden', sub:'Ik, jij, hij, wij...', icon:'🧑', xp:20,
       pronTips:['خ'],
-      grammar:'Hazaragi "مو" (mo) = wij — uniek verschil met Dari "ما" (maa). Alle andere voornaamwoorden zijn vergelijkbaar.',
+      grammar:'In Hazaragi zeg je "مو" (mo) voor "wij".',
       words:[
-        {hz:'من',tr:'ma',nl:'Ik',tip:'Hazaragi uitspraak: "ma" (niet "man" zoals Farsi)'},
+        {hz:'من',tr:'ma',nl:'Ik',tip:'Hazaragi uitspraak: "ma"'},
         {hz:'تو',tr:'to',nl:'Jij',tip:''},
         {hz:'او',tr:'o',nl:'Hij / Zij',tip:'Hazaragi maakt geen onderscheid tussen hij en zij'},
-        {hz:'مو',tr:'mo',nl:'Wij',tip:'UNIEK Hazaragi — Dari/Farsi zegt "ما" (maa)'},
+        {hz:'مو',tr:'mo',nl:'Wij',tip:'UNIEK Hazaragi'},
         {hz:'شما',tr:'shoma',nl:'Jullie / U',tip:'Ook beleefd enkelvoud — voor respect naar ouderen'},
         {hz:'ایشان',tr:'ishan',nl:'Zij (meervoud)',tip:'Formeel meervoud'},
       ],
@@ -256,11 +256,11 @@ const CHAPTERS=[
       words:[
         {hz:'هستم',tr:'hastom',nl:'Ik ben',tip:'"هست" + "-م" → Hazaragi: -om'},
         {hz:'هستی',tr:'hasti',nl:'Jij bent',tip:'"هست" + "-ی"'},
-        {hz:'اَس',tr:'as',nl:'Hij/Zij is',tip:'Hazaragi: "اَس" — Dari: "است" (ast)'},
+        {hz:'اَس',tr:'as',nl:'Hij/Zij is',tip:'Hazaragi: "اَس"'},
         {hz:'هستیم',tr:'hastim',nl:'Wij zijn',tip:'"هست" + "-یم"'},
         {hz:'هستین',tr:'hastin',nl:'Jullie zijn',tip:'Hazaragi: "-ین" ipv "-ید"'},
         {hz:'نیستم',tr:'nistom',nl:'Ik ben niet',tip:'Ontkenning van "هستم"'},
-        {hz:'نیس',tr:'nis',nl:'Is niet',tip:'Hazaragi: "نیس" — Dari "نیست". Veelgebruikt!'},
+        {hz:'نیس',tr:'nis',nl:'Is niet',tip:'Hazaragi: "نیس". Veelgebruikt!'},
       ],
       sentences:[
         {hz:'مریضم، خوب نیستم',tr:'marizom, khob nistom',nl:'Ik ben ziek, ik ben niet goed'},
@@ -276,7 +276,7 @@ const CHAPTERS=[
         {hz:'نامم',tr:'naamam',nl:'Mijn naam',tip:'"نام" + "-م"'},
         {hz:'نامت',tr:'naamat',nl:'Jouw naam',tip:'"نام" + "-ت"'},
         {hz:'نامش',tr:'naamashe',nl:'Zijn/haar naam',tip:'"نام" + "-ش"'},
-        {hz:'خانمو',tr:'khaanamao',nl:'Ons huis',tip:'Hazaragi: "-مو" = ons — Dari heeft "-مان"'},
+        {hz:'خانمو',tr:'khaanamao',nl:'Ons huis',tip:'Hazaragi: "-مو" = ons'},
         {hz:'مادرم',tr:'maadaram',nl:'Mijn moeder',tip:''},
         {hz:'دوستت',tr:'dostat',nl:'Jouw vriend',tip:'"دوستت دارم" = ik hou van jou'},
         {hz:'کتابش',tr:'ketaabashe',nl:'Zijn/haar boek',tip:''},
@@ -293,11 +293,11 @@ const CHAPTERS=[
 
     { id:'family', title:'Familie', sub:'Mama, papa, broer...', icon:'👨‍👩‍👧', xp:20,
       pronTips:['ر','خ'],
-      grammar:'Hazaragi gebruikt "باوا" (baawaa) voor vader — een Mongolisch leenwoord! Farsi zegt "باباا" (baabaa).',
+      grammar:'Hazaragi gebruikt "باوا" (baawaa) voor vader — een Mongolisch leenwoord!',
       words:[
         {hz:'مادر',tr:'maadar',nl:'Moeder',tip:'Formeel — liefkoosnaam: "مادرجان" of "ننه" (nana)'},
-        {hz:'باوا',tr:'baawaa',nl:'Vader',tip:'Hazaragi/Mongools leenwoord — Farsi "باباا"'},
-        {hz:'برار',tr:'baraar',nl:'Broer',tip:'Hazaragi: "baraar" — Farsi "baraadar"'},
+        {hz:'باوا',tr:'baawaa',nl:'Vader',tip:'Hazaragi/Mongools leenwoord'},
+        {hz:'برار',tr:'baraar',nl:'Broer',tip:'Typisch Hazaragi'},
         {hz:'خواهر',tr:'khwahar',nl:'Zus',tip:'"خ" = zachte keel-g'},
         {hz:'بچه',tr:'bacha',nl:'Kind',tip:'Geliefd woord — ook als liefkoosnaam'},
         {hz:'دوست',tr:'dost',nl:'Vriend/Vriendin',tip:''},
@@ -310,7 +310,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'مادرم خیلی مهربان اَس',tr:'maadaram khaili mehrabaan as',nl:'Mijn moeder is erg lief'},
-        {hz:'برارم ده سال داره',tr:'baraaram da saal daara',nl:'Mijn broer is tien jaar',tip:'"داره" = heeft (Hazaragi) — Farsi "دارد"'},
+        {hz:'برارم ده سال داره',tr:'baraaram da saal daara',nl:'Mijn broer is tien jaar',tip:'"داره" = heeft (Hazaragi)'},
         {hz:'باواکلانم قصه می‌گفت',tr:'baawakalanam qessa megoft',nl:'Mijn opa vertelde verhalen'},
       ]
     },
@@ -321,7 +321,7 @@ const CHAPTERS=[
       words:[
         {hz:'چای',tr:'chaai',nl:'Thee',tip:'Altijd met gast serveren — cultureel essentieel!'},
         {hz:'نان',tr:'naan',nl:'Brood',tip:'Plat brood, basisvoedsel'},
-        {hz:'آو',tr:'aaw',nl:'Water',tip:'Hazaragi: "آو" (aaw) — Farsi "آب" (aab)'},
+        {hz:'آو',tr:'aaw',nl:'Water',tip:'Hazaragi: "آو" (aaw)'},
         {hz:'گوشت',tr:'gosht',nl:'Vlees',tip:''},
         {hz:'برنج',tr:'birinj',nl:'Rijst',tip:''},
         {hz:'میوه',tr:'mewa',nl:'Fruit',tip:''},
@@ -346,7 +346,7 @@ const CHAPTERS=[
         {hz:'خانه',tr:'khaana',nl:'Huis',tip:'"خ" = zachte keel-g'},
         {hz:'اتاق',tr:'otaaq',nl:'Kamer',tip:'"ق" = diepe keel-k'},
         {hz:'آشپزخانه',tr:'aashpazkhana',nl:'Keuken',tip:'Letterlijk: "kookhuis"'},
-        {hz:'دروازه',tr:'darwaaza',nl:'Deur (groot)',tip:'Hazaragi: "darwaaza" — Farsi "در" (dar)'},
+        {hz:'دروازه',tr:'darwaaza',nl:'Deur (groot)',tip:'Hazaragi: "darwaaza"'},
         {hz:'پنجره',tr:'panjara',nl:'Raam',tip:'Spreek uit als "pan-ja-ra"'},
         {hz:'تخت',tr:'takht',nl:'Bed',tip:''},
         {hz:'صندلی',tr:'sandali',nl:'Stoel',tip:''},
@@ -367,7 +367,7 @@ const CHAPTERS=[
       words:[
         {hz:'گوسفند',tr:'gosfand',nl:'Schaap',tip:'Belangrijk — de Hazara zijn herders'},
         {hz:'گاو',tr:'gaaw',nl:'Koe',tip:'Hazaragi: lange "aa"'},
-        {hz:'اسپ',tr:'asp',nl:'Paard',tip:'Hazaragi: "اسپ" — Farsi "اسب" (asb)'},
+        {hz:'اسپ',tr:'asp',nl:'Paard',tip:'Hazaragi: "اسپ"'},
         {hz:'خر',tr:'khar',nl:'Ezel',tip:'Belangrijk werkanimal in Afghanistan'},
         {hz:'مرغ',tr:'morgh',nl:'Kip',tip:''},
         {hz:'سگ',tr:'sag',nl:'Hond',tip:''},
@@ -477,17 +477,17 @@ const CHAPTERS=[
 
     { id:'daily', title:'Dagelijks leven', sub:'Werk, tijd, geld...', icon:'📅', xp:25,
       pronTips:['ر','و'],
-      grammar:'Hazaragi werkwoorden: "می‌ره" (gaat), "می‌گه" (zegt), "می‌خوره" (eet) — korter dan Farsi!',
+      grammar:'Hazaragi werkwoorden: "می‌ره" (gaat), "می‌گه" (zegt), "می‌خوره" (eet) — kort en krachtig!',
       words:[
         {hz:'کار',tr:'kaar',nl:'Werk',tip:''},
-        {hz:'وخت',tr:'wakht',nl:'Tijd',tip:'Hazaragi: "وخت" (wakht) — Farsi "وقت" (waqt)'},
+        {hz:'وخت',tr:'wakht',nl:'Tijd',tip:'Hazaragi: "وخت" (wakht)'},
         {hz:'پول',tr:'pool',nl:'Geld',tip:'Lange "oo" klank'},
         {hz:'بازار',tr:'baazaar',nl:'Markt',tip:''},
         {hz:'موبایل',tr:'mobaail',nl:'Telefoon',tip:'Leenwoord van "mobile"'},
         {hz:'امروز',tr:'emroz',nl:'Vandaag',tip:''},
         {hz:'فردا',tr:'farda',nl:'Morgen',tip:''},
         {hz:'دیروز',tr:'diroz',nl:'Gisteren',tip:''},
-        {hz:'حالی',tr:'haali',nl:'Nu / Op dit moment',tip:'Hazaragi: "haali" — Farsi "haalaa"'},
+        {hz:'حالی',tr:'haali',nl:'Nu / Op dit moment',tip:'Hazaragi: "haali"'},
         {hz:'بعد',tr:'baad',nl:'Later / Daarna',tip:''},
       ],
       sentences:[
@@ -499,7 +499,7 @@ const CHAPTERS=[
 
     { id:'weather', title:'Weer & Seizoenen', sub:'Warm, koud, sneeuw...', icon:'🌤️', xp:25,
       pronTips:['آ'],
-      grammar:'Hazaragi gebruikt "هوا" (hawa) voor weer/lucht. Uitspraak van seizoenen verschilt van Farsi!',
+      grammar:'Hazaragi gebruikt "هوا" (hawa) voor weer/lucht.',
       words:[
         {hz:'هوا',tr:'hawa',nl:'Weer / Lucht',tip:''},
         {hz:'گرم',tr:'garm',nl:'Warm',tip:''},
@@ -510,7 +510,7 @@ const CHAPTERS=[
         {hz:'زمستان',tr:'zemestaan',nl:'Winter',tip:'In Hazarajat extreem koud'},
         {hz:'تابستان',tr:'taabestaan',nl:'Zomer',tip:''},
         {hz:'بهار',tr:'bahaar',nl:'Lente',tip:''},
-        {hz:'خزان',tr:'khazaan',nl:'Herfst',tip:'Hazaragi/Dari: "خزان" — Farsi "پاییز"'},
+        {hz:'خزان',tr:'khazaan',nl:'Herfst',tip:'Hazaragi: "خزان"'},
       ],
       sentences:[
         {hz:'امروز هوا گرم اَس',tr:'emroz hawa garm as',nl:'Vandaag is het weer warm'},
@@ -667,7 +667,7 @@ const CHAPTERS=[
       words:[
         {hz:'می‌رم',tr:'mi-rom',nl:'Ik ga',tip:'"می‌" + stam "ر" (van رفتن) + "-م" → Hazaragi: -om'},
         {hz:'می‌ری',tr:'me-ri',nl:'Jij gaat',tip:'"-ی" = jij'},
-        {hz:'می‌ره',tr:'me-ra',nl:'Hij/Zij gaat',tip:'Hazaragi: "-ه" — Dari heeft "-د"'},
+        {hz:'می‌ره',tr:'me-ra',nl:'Hij/Zij gaat',tip:'Hazaragi: "-ه" uitgang'},
         {hz:'می‌ریم',tr:'me-rim',nl:'Wij gaan',tip:'"-یم" = wij'},
         {hz:'می‌رین',tr:'me-rin',nl:'Jullie gaan',tip:'Hazaragi: "-ین" ipv "-ید"'},
         {hz:'می‌خورم',tr:'mi-khorom',nl:'Ik eet',tip:'Stam van "خوردن" = خور'},
@@ -689,7 +689,7 @@ const CHAPTERS=[
         {hz:'نمی‌خوام',tr:'na-mi-khom',nl:'Ik wil niet',tip:''},
         {hz:'نمی‌دانم',tr:'na-mi-danom',nl:'Ik weet het niet',tip:'Veelgebruikte zin — leer dit van buiten!'},
         {hz:'نیستم',tr:'nistom',nl:'Ik ben niet',tip:''},
-        {hz:'نیس',tr:'nis',nl:'Is niet',tip:'Hazaragi: "نیس" — Dari "نیست"'},
+        {hz:'نیس',tr:'nis',nl:'Is niet',tip:'Hazaragi: "نیس"'},
         {hz:'مشکلی نیس',tr:'moshkeli nis',nl:'Geen probleem',tip:'Leer als één vaste uitdrukking'},
         {hz:'اصلاً',tr:'aslan',nl:'Helemaal niet',tip:'Versterkt de ontkenning'},
       ],
@@ -708,7 +708,7 @@ const CHAPTERS=[
         {hz:'چی',tr:'chi',nl:'Wat',tip:'"چی می‌خوای؟" = wat wil je?'},
         {hz:'کی',tr:'ki',nl:'Wie / Wanneer',tip:'Context bepaalt de betekenis'},
         {hz:'چرا',tr:'chera',nl:'Waarom',tip:''},
-        {hz:'چتور',tr:'chetor',nl:'Hoe',tip:'Hazaragi: "چتور" — Iraans Farsi "چطور"'},
+        {hz:'چتور',tr:'chetor',nl:'Hoe',tip:'Hazaragi: "چتور"'},
         {hz:'چند',tr:'chand',nl:'Hoeveel',tip:'"چند پول اَس؟" = hoeveel kost het?'},
         {hz:'کدام',tr:'kodaam',nl:'Welke',tip:''},
       ],
@@ -752,7 +752,7 @@ const CHAPTERS=[
         {hz:'مستقیم',tr:'mostaghim',nl:'Rechtdoor',tip:''},
         {hz:'دور',tr:'door',nl:'Ver',tip:''},
         {hz:'نزدیک',tr:'nazdik',nl:'Dichtbij',tip:''},
-        {hz:'اینجه',tr:'ainja',nl:'Hier',tip:'Hazaragi: "ainja" — Farsi "ainjaa"'},
+        {hz:'اینجه',tr:'ainja',nl:'Hier',tip:'Hazaragi: "ainja"'},
         {hz:'اونجه',tr:'onja',nl:'Daar',tip:''},
         {hz:'دَ',tr:'da',nl:'In / Naar / Bij',tip:'Hazaragi voorzetsel'},
       ],
@@ -793,7 +793,7 @@ const CHAPTERS=[
         {hz:'خوش‌تیپ',tr:'khosh-tip',nl:'Knap / Stijlvol',tip:''},
         {hz:'دل‌ربا',tr:'delrobaa',nl:'Betoverend',tip:'Letterlijk: "hart-steler"'},
         {hz:'یارم',tr:'yaaram',nl:'Mijn geliefde',tip:''},
-        {hz:'نمی‌تانم بی‌تو باشم',tr:'na-mi-taanom bi-to baasham',nl:'Ik kan niet zonder jou',tip:'Hazaragi: "تانستن" — Iraans Farsi zegt "تونستن"'},
+        {hz:'نمی‌تانم بی‌تو باشم',tr:'na-mi-taanom bi-to baasham',nl:'Ik kan niet zonder jou',tip:'Hazaragi: "تانستن"'},
         {hz:'رویا',tr:'roya',nl:'Droom / Lieveling',tip:''},
       ],
       sentences:[
@@ -1008,7 +1008,7 @@ const CHAPTERS=[
 
     { id:'slang', title:'Hazara spreektaal', sub:'Echte dagelijkse woorden', icon:'😎', xp:35,
       pronTips:['خ','و'],
-      grammar:'Hazaragi slang combineert Mongools, Turks en Dari. "خو" (kho = nou/dan) is typisch Hazaragi!',
+      grammar:'Hazaragi slang combineert Mongools, Turkse en eigen elementen. "خو" (kho = nou/dan) is typisch Hazaragi!',
       words:[
         {hz:'جان',tr:'jaan',nl:'Lieverd / Schat',tip:'"Sara jaan" = lieve Sara'},
         {hz:'یار',tr:'yaar',nl:'Vriend / Kerel',tip:''},
@@ -1226,9 +1226,9 @@ const CHAPTERS=[
 
     { id:'gram3_postposities', title:'Postposities', sub:'In, van, met, voor...', icon:'🔀', xp:30,
       pronTips:['خ'],
-      grammar:'Hazaragi gebruikt "دَ" (da) waar Dari "در" of "به" zegt. Postposities staan vóór het zelfstandig naamwoord.',
+      grammar:'Hazaragi gebruikt "دَ" (da) als veelzijdig voorzetsel voor locatie en richting. Postposities staan vóór het zelfstandig naamwoord.',
       words:[
-        {hz:'دَ',tr:'da',nl:'In / Naar / Bij',tip:'Hazaragi kenmerkwoord — Dari gebruikt "در" of "به"'},
+        {hz:'دَ',tr:'da',nl:'In / Naar / Bij',tip:'Hazaragi kenmerkwoord — doet het werk van meerdere voorzetsels'},
         {hz:'از',tr:'az',nl:'Van / Uit',tip:'"از کجا آمدی؟" = waar kom je vandaan?'},
         {hz:'با',tr:'baa',nl:'Met',tip:'"با هم" = samen (letterlijk: met elkaar)'},
         {hz:'برای',tr:'baraayi',nl:'Voor',tip:'"برای تو" = voor jou'},
@@ -1272,7 +1272,7 @@ const CHAPTERS=[
       pronTips:['ع','ر'],
       grammar:'Gebruik "به نظرم" (ba nazaram = naar mijn mening) om beleefd je mening te delen.',
       words:[
-        {hz:'درس اَس',tr:'doros as',nl:'Dat klopt',tip:'Hazaragi: "doros" — Farsi "درست"'},
+        {hz:'درس اَس',tr:'doros as',nl:'Dat klopt',tip:'Hazaragi: "doros"'},
         {hz:'اشتباه',tr:'eshtebaa',nl:'Fout / Vergissing',tip:''},
         {hz:'موافقم',tr:'mowaafeqom',nl:'Ik ben het eens',tip:''},
         {hz:'مخالفم',tr:'mokhaalfom',nl:'Ik ben het oneens',tip:''},
@@ -1290,7 +1290,7 @@ const CHAPTERS=[
 
     { id:'school', title:'School & Onderwijs', sub:'Klas, toets, leraar...', icon:'🏫', xp:35,
       pronTips:['ق'],
-      grammar:'"مکتب" (maktab) is het Hazaragi/Dari woord voor school.',
+      grammar:'"مکتب" (maktab) is het Hazaragi woord voor school.',
       words:[
         {hz:'مکتب',tr:'maktab',nl:'School',tip:''},
         {hz:'معلم',tr:'mo\'alem',nl:'Leraar',tip:''},
@@ -1300,7 +1300,7 @@ const CHAPTERS=[
         {hz:'امتحان',tr:'emtehaan',nl:'Toets / Examen',tip:''},
         {hz:'سبق',tr:'sabaq',nl:'Lesinhoud / Taak',tip:''},
         {hz:'قلم',tr:'qalam',nl:'Pen',tip:''},
-        {hz:'تخته سیاه',tr:'takhta siyaah',nl:'Schoolbord',tip:'Letterlijk "zwart bord" — standaard Hazaragi/Dari'},
+        {hz:'تخته سیاه',tr:'takhta siyaah',nl:'Schoolbord',tip:'Letterlijk "zwart bord"'},
       ],
       sentences:[
         {hz:'امروز امتحان دارم',tr:'emroz emtehaan darom',nl:'Vandaag heb ik een toets'},
@@ -1314,11 +1314,11 @@ const CHAPTERS=[
 
     { id:'gram4_modal', title:'Modale werkwoorden', sub:'Kunnen, moeten, mogen...', icon:'⚙️', xp:35,
       pronTips:['ت'],
-      grammar:'"می‌تانم" (Hazaragi) = kan. Farsi zegt "می‌توانم" — markant verschil! Leer de Hazaragi vorm.',
+      grammar:'"می‌تانم" is de Hazaragi vorm voor "kan". Leer de Hazaragi vorm goed!',
       words:[
         {hz:'باید',tr:'baayad',nl:'Moet / Dient te',tip:'"باید بری" = je moet gaan'},
         {hz:'نباید',tr:'nabaayad',nl:'Mag niet / Moet niet',tip:''},
-        {hz:'می‌تانم',tr:'mi-taanom',nl:'Ik kan (Hazaragi)',tip:'HAZARAGI — Farsi: "می‌توانم"'},
+        {hz:'می‌تانم',tr:'mi-taanom',nl:'Ik kan (Hazaragi)',tip:'Typisch Hazaragi werkwoord'},
         {hz:'نمی‌تانم',tr:'na-mi-taanom',nl:'Ik kan niet',tip:''},
         {hz:'می‌تانی',tr:'me-taani',nl:'Jij kan',tip:''},
         {hz:'می‌تانه',tr:'me-taana',nl:'Hij/Zij kan',tip:''},
@@ -1425,14 +1425,14 @@ const CHAPTERS=[
 
     { id:'health', title:'Ziek & Gezond', sub:'Pijn, dokter, medicijn...', icon:'💊', xp:45,
       pronTips:['ع','خ'],
-      grammar:'"مریض استم" (ik ben ziek) — "استم" is Hazaragi/Dari voor "هستم".',
+      grammar:'"مریض استم" (ik ben ziek) — "استم" is de Hazaragi variant voor "هستم".',
       words:[
         {hz:'مریض',tr:'mariz',nl:'Ziek',tip:''},
         {hz:'درد',tr:'dard',nl:'Pijn',tip:''},
         {hz:'دکتر',tr:'doktor',nl:'Dokter',tip:''},
         {hz:'دوا',tr:'dawaa',nl:'Medicijn',tip:''},
         {hz:'تب',tr:'tab',nl:'Koorts',tip:''},
-        {hz:'زکام',tr:'zakaam',nl:'Verkoudheid',tip:'Afghaans/Hazaragi woord — Iraans Farsi zegt "سرماخوردگی"'},
+        {hz:'زکام',tr:'zakaam',nl:'Verkoudheid',tip:'Typisch Hazaragi woord'},
         {hz:'شفا',tr:'shafaa',nl:'Genezing',tip:''},
         {hz:'تندرست',tr:'tandorost',nl:'Gezond',tip:''},
         {hz:'استراحت',tr:'estaraahat',nl:'Rust',tip:''},
@@ -1509,7 +1509,7 @@ const CHAPTERS=[
         {hz:'درد',tr:'dard',nl:'Pijn',tip:''},
         {hz:'تب',tr:'tab',nl:'Koorts',tip:''},
         {hz:'دوا',tr:'dawaa',nl:'Medicijn',tip:''},
-        {hz:'داکتر',tr:'daaktar',nl:'Dokter',tip:'Hazaragi/Dari'},
+        {hz:'داکتر',tr:'daaktar',nl:'Dokter',tip:'Hazaragi woord'},
         {hz:'شفاخانه',tr:'shafaakhaana',nl:'Ziekenhuis',tip:'"شفا" = genezing'},
         {hz:'صحی',tr:'sehhee',nl:'Gezond',tip:''},
         {hz:'آرام',tr:'aaraam',nl:'Rust / Rustig',tip:'Lange aa'},
@@ -1609,7 +1609,7 @@ const CHAPTERS=[
 
     { id:'travel', title:'Reizen', sub:'Vliegtuig, hotel, paspoort...', icon:'✈️', xp:50,
       pronTips:['خ','ق'],
-      grammar:'"طیاره" (tayaara = vliegtuig) is Hazaragi/Dari — Farsi zegt "هواپیما".',
+      grammar:'"طیاره" (tayaara = vliegtuig) is het Hazaragi woord.',
       words:[
         {hz:'سفر',tr:'safar',nl:'Reis',tip:'"سفر خوش" = goede reis!'},
         {hz:'طیاره',tr:'tayaara',nl:'Vliegtuig',tip:''},
@@ -1747,9 +1747,9 @@ const CHAPTERS=[
 
     { id:'transport', title:'Vervoer', sub:'Bus, taxi, motor, fiets...', icon:'🚌', xp:40,
       pronTips:['ر'],
-      grammar:'"موتر" (motar) = auto in Hazaragi/Dari — Iraans Farsi zegt "ماشین". Let op dit verschil!',
+      grammar:'"موتر" (motar) = auto in Hazaragi.',
       words:[
-        {hz:'موتر',tr:'motar',nl:'Auto',tip:'Hazaragi/Dari — Farsi zegt "ماشین"'},
+        {hz:'موتر',tr:'motar',nl:'Auto',tip:'Hazaragi woord'},
         {hz:'بس',tr:'bas',nl:'Bus',tip:''},
         {hz:'تکسی',tr:'taksi',nl:'Taxi',tip:''},
         {hz:'موترسایکل',tr:'motarsaaykl',nl:'Motorfiets',tip:''},
@@ -1769,9 +1769,9 @@ const CHAPTERS=[
 
     { id:'city_places', title:'In de stad', sub:'Bank, ziekenhuis, winkel...', icon:'🏙️', xp:40,
       pronTips:['خ','ق'],
-      grammar:'"شفاخانه" (shafaakhaana) = ziekenhuis in Hazaragi/Dari — Farsi zegt "بیمارستان". Totaal anders!',
+      grammar:'"شفاخانه" (shafaakhaana) = ziekenhuis in Hazaragi. Letterlijk "huis van genezing".',
       words:[
-        {hz:'شفاخانه',tr:'shafaakhaana',nl:'Ziekenhuis',tip:'Hazaragi/Dari — Farsi "بیمارستان"'},
+        {hz:'شفاخانه',tr:'shafaakhaana',nl:'Ziekenhuis',tip:'"شفا" = genezing + "خانه" = huis'},
         {hz:'بانک',tr:'baank',nl:'Bank',tip:''},
         {hz:'دوکان',tr:'dokaan',nl:'Winkel',tip:''},
         {hz:'مارکیت',tr:'maarkit',nl:'Winkelcentrum / Markt',tip:''},
@@ -1780,7 +1780,7 @@ const CHAPTERS=[
         {hz:'رستورانت',tr:'restoraat',nl:'Restaurant',tip:''},
         {hz:'پوست خانه',tr:'post khaana',nl:'Postkantoor',tip:'"پوست" = post (leenwoord)'},
         {hz:'کوچه',tr:'kocha',nl:'Steeg / Straat',tip:'Kleine straat of steeg'},
-        {hz:'سرک',tr:'sarak',nl:'Weg / Straat',tip:'Hazaragi/Dari — Farsi "خیابان"'},
+        {hz:'سرک',tr:'sarak',nl:'Weg / Straat',tip:'Hazaragi woord'},
       ],
       sentences:[
         {hz:'شفاخانه کجاست؟ مریض هستم',tr:'shafaakhaana kojaast? mariz hastom',nl:'Waar is het ziekenhuis? Ik ben ziek'},
@@ -1892,7 +1892,7 @@ const CHAPTERS=[
         {hz:'معلم',tr:'mo\'alem',nl:'Leraar',tip:'"ع" = zachte keel-stop'},
         {hz:'مهندس',tr:'mohandes',nl:'Ingenieur',tip:''},
         {hz:'قاضی',tr:'qaazi',nl:'Rechter',tip:'"ق" = diepe keel-k'},
-        {hz:'پولیس',tr:'polis',nl:'Politie / Agent',tip:'Hazaragi/Dari — Farsi "پلیس"'},
+        {hz:'پولیس',tr:'polis',nl:'Politie / Agent',tip:'Hazaragi woord'},
         {hz:'آشپز',tr:'aashpaz',nl:'Kok',tip:'"آشپزی" = koken'},
         {hz:'راننده',tr:'raananda',nl:'Chauffeur / Bestuurder',tip:''},
         {hz:'کارگر',tr:'kaarghar',nl:'Arbeider / Werker',tip:''},
@@ -1931,17 +1931,17 @@ const CHAPTERS=[
 
     { id:'money_finance', title:'Geld & Financiën', sub:'Loon, sparen, betalen...', icon:'💰', xp:40,
       pronTips:['خ'],
-      grammar:'"معاش" (ma\'aash) = salaris in Hazaragi/Dari. Farsi zegt "حقوق" (hoqooq). Let op dit verschil!',
+      grammar:'"معاش" (ma\'aash) = salaris in Hazaragi.',
       words:[
         {hz:'پول',tr:'pool',nl:'Geld',tip:'Lange oo'},
-        {hz:'معاش',tr:'ma\'aash',nl:'Salaris / Loon',tip:'Hazaragi/Dari — Farsi "حقوق"'},
+        {hz:'معاش',tr:'ma\'aash',nl:'Salaris / Loon',tip:'Hazaragi woord'},
         {hz:'پس‌انداز',tr:'pasandaaz',nl:'Spaargeld',tip:'"پس‌انداز کردن" = sparen'},
         {hz:'قرض',tr:'qarz',nl:'Schuld / Lening',tip:'"قرض دادن" = uitlenen'},
         {hz:'سود',tr:'sood',nl:'Winst / Rente',tip:''},
         {hz:'ضرر',tr:'zarar',nl:'Verlies',tip:''},
         {hz:'حساب',tr:'hesaab',nl:'Rekening / Berekening',tip:''},
         {hz:'بیمه',tr:'bima',nl:'Verzekering',tip:''},
-        {hz:'مالیه',tr:'maaliya',nl:'Belasting',tip:'Hazaragi/Dari — Farsi "مالیات"'},
+        {hz:'مالیه',tr:'maaliya',nl:'Belasting',tip:'Hazaragi woord'},
         {hz:'سرمایه',tr:'sarmaaaya',nl:'Kapitaal / Investering',tip:''},
       ],
       sentences:[
@@ -1984,7 +1984,7 @@ const CHAPTERS=[
       ]
     },
     { id:'nature_animals', title:'Dieren', icon:'🐾', xp:18, words:[
-        {hz:'اسپ',tr:'asp',nl:'Paard',tip:'Hazaragi — Dari "اسب"'},
+        {hz:'اسپ',tr:'asp',nl:'Paard',tip:'Typisch Hazaragi'},
         {hz:'گاو',tr:'gaaw',nl:'Koe',tip:'Lange aa'},
         {hz:'سگ',tr:'sag',nl:'Hond',tip:''},
         {hz:'پشک',tr:'pishak',nl:'Kat',tip:''},
@@ -2065,67 +2065,6 @@ const CHAPTERS=[
         {hz:'امسال خشکسالی شد، زمین آب نداشت',tr:'emsaal khushksaalee shod, zameen aab nadaasht',nl:'Dit jaar was er droogte, het land had geen water'},
         {hz:'باید از محیط زیست حفاظت کنیم',tr:'baayad az mohit-e-zist hefaazat konim',nl:'We moeten het milieu beschermen'},
         {hz:'طوفان آمد، همه دَ خانه موندن',tr:'toofaan aamad, hama da khaana moondan',nl:'De storm kwam, iedereen bleef thuis'},
-      ]
-    },
-  ]},
-
-  { id:'ch_gram5', label:'📖 Grammatica 5 · Hazaragi vs Dari', color:'#8B6FF0', lessons:[
-
-    { id:'gram5_sound', title:'Uitspraakverschillen', sub:'Hoe Hazaragi klinkt anders', icon:'🗣️', xp:30,
-      pronTips:['خ','و','ر'],
-      grammar:'Hazaragi en Dari zijn verwant maar duidelijk verschillend. Als je Dari spreekt klinkt Hazaragi als een eigen taal!',
-      words:[
-        {hz:'آو (Hz) ← آب (Da)',tr:'aaw ← aab',nl:'Water: Hz "aaw", Dari "aab"',tip:'De "b" wordt "w" in Hazaragi — typisch kenmerk'},
-        {hz:'نیس (Hz) ← نیست (Da)',tr:'nis ← nist',nl:'Is niet: Hz "nis", Dari "nist"',tip:'Eindmedeklinkers vallen weg'},
-        {hz:'اَس (Hz) ← است (Da)',tr:'as ← ast',nl:'Is: Hz "as", Dari "ast"',tip:'Korter in Hazaragi'},
-        {hz:'می‌ره (Hz) ← می‌رود (Da)',tr:'me-ra ← me-rawad',nl:'Gaat: Hz "-h" uitgang, Dari "-d"',tip:'Werkwoorduitgangen verschillen'},
-        {hz:'چتور (Hz) ← چطور (Da)',tr:'chetor ← chetor',nl:'Hoe: Hz "chetor", Dari "chetor"',tip:'Kleine uitspraakverschillen'},
-        {hz:'مو (Hz) ← ما (Da)',tr:'mo ← maa',nl:'Wij: Hz "mo", Dari "maa"',tip:'GROOTSTE verschil — Mongooolse invloed op Hazaragi'},
-        {hz:'حالی (Hz) ← حالا (Da)',tr:'haali ← haala',nl:'Nu: Hz "haali", Dari "haala"',tip:''},
-        {hz:'وخت (Hz) ← وقت (Da)',tr:'wakht ← waqt',nl:'Tijd: Hz "wakht", Dari "waqt"',tip:''},
-      ],
-      sentences:[
-        {hz:'آو می‌خوام — (Dari: آب می‌خواهم)',tr:'aaw mi-khom — aab me-khaaham',nl:'Ik wil water — hoor het verschil!'},
-        {hz:'مو با هم می‌ریم — (Dari: ما با هم می‌رویم)',tr:'mo baa ham me-rim — maa baa ham me-rowim',nl:'Wij gaan samen — "مو" vs "ما"'},
-        {hz:'مشکلی نیس — (Dari: مشکلی نیست)',tr:'moshkeli nis — moshkeli nist',nl:'Geen probleem — Hz korter'},
-      ]
-    },
-
-    { id:'gram5_vocab', title:'Woordenschatverschillen', sub:'Andere woorden voor hetzelfde', icon:'📚', xp:30,
-      pronTips:['خ'],
-      grammar:'Sommige Hazaragi woorden komen van het Mongools of Turks en bestaan niet in Dari.',
-      words:[
-        {hz:'باوا (Hz) ← باباا (Da)',tr:'baawaa ← baabaa',nl:'Vader: Hz "baawaa" (Mongools!)',tip:'"باوا" is een Mongoools leenwoord'},
-        {hz:'مادرکلان (Hz)',tr:'maadar-kalaan',nl:'Oma: letterlijk "grote moeder"',tip:'"کلان" = groot in Hazaragi (Mongools: "katan")'},
-        {hz:'باواکلان (Hz)',tr:'baawaa-kalaan',nl:'Opa: letterlijk "grote vader"',tip:'Bestaat niet in Dari'},
-        {hz:'برار (Hz) ← برادر (Da)',tr:'baraar ← baraadar',nl:'Broer: Hz korter',tip:'Hazaragi knipt eindlettergrepen'},
-        {hz:'کاکا (Hz)',tr:'kaakaa',nl:'Oom (vaders broer)',tip:'Mongools leenwoord — Dari gebruikt "کاکا" ook maar het is Hazaragi'},
-        {hz:'اسپ (Hz) ← اسب (Da)',tr:'asp ← asb',nl:'Paard: Hz "asp", Dari "asb"',tip:'"},ب" uitgang wordt "پ" in Hazaragi'},
-        {hz:'سیا (Hz) ← سیاه (Da)',tr:'siya ← siyaah',nl:'Zwart: Hz "siya" korter',tip:'Eindklinkers vallen weg'},
-        {hz:'خو (Hz)',tr:'kho',nl:'"Nou / Dan" — geen Dari equivalent',tip:'Verbindingswoord — typisch Hazaragi'},
-      ],
-      sentences:[
-        {hz:'باواکلانم قصه می‌گفت — Dari gebruikt "پدربزرگ"',tr:'baawakalanam qessa megoft',nl:'Mijn opa vertelde verhalen'},
-        {hz:'برارم آمد — Dari: "برادرم آمد"',tr:'baraaram aamad',nl:'Mijn broer is gekomen — let op het verschil'},
-        {hz:'خو، چی می‌خوای؟',tr:'kho, chi me-khaai?',nl:'Nou, wat wil je? — "خو" bestaat niet in Dari'},
-      ]
-    },
-
-    { id:'gram5_grammar', title:'Grammaticaverschillen', sub:'Uitgangen en vormen', icon:'⚙️', xp:25,
-      pronTips:['خ'],
-      grammar:'Hazaragi werkwoorden hebben andere uitgangen dan Dari. De "-ین" uitgang (jullie) is typisch Hazaragi.',
-      words:[
-        {hz:'هستین (Hz) ← هستید (Da)',tr:'hastin ← hastid',nl:'Jullie zijn: Hz "-ین", Dari "-ید"',tip:'"-ین" uitgang = typisch Hazaragi'},
-        {hz:'می‌رین (Hz) ← می‌روید (Da)',tr:'me-rin ← me-rowid',nl:'Jullie gaan',tip:'Hetzelfde patroon'},
-        {hz:'بفرمایین (Hz) ← بفرمایید (Da)',tr:'befarmaayin ← befarmaaayid',nl:'Alstublieft (beleefd)',tip:'"-ین" vs "-ید" uitgang'},
-        {hz:'می‌تانم (Hz) ← می‌توانم (Da)',tr:'mi-taanom ← me-tawaanam',nl:'Ik kan: Hz "taan", Dari "tawaan"',tip:'Typisch Hazaragi werkwoord'},
-        {hz:'"دَ" (Hz) ← "در/به" (Da)',tr:'da ← dar / be',nl:'"Dَ" = in/naar/bij (Hazaragi)',tip:'"دَ" doet het werk van meerdere Dari voorzetsels'},
-        {hz:'خانمو (Hz) ← خانه‌ما (Da)',tr:'khaanamao ← khaana-maa',nl:'Ons huis: Hz "-مو" = ons',tip:'Bezit meervoud: "-مو" Hazaragi, "-مان" Dari'},
-      ],
-      sentences:[
-        {hz:'شما هستین؟ — (Dari: شما هستید؟)',tr:'shoma hastin?',nl:'Zijn jullie er? — hoor het verschil'},
-        {hz:'دَ خانه می‌رم — (Dari: به خانه می‌روم)',tr:'da khaana mi-rom',nl:'Ik ga naar huis — "دَ" vs "به"'},
-        {hz:'نمی‌تانم — (Dari: نمی‌توانم)',tr:'na-mi-taanom',nl:'Ik kan niet — duidelijk Hazaragi!'},
       ]
     },
   ]},
@@ -2291,7 +2230,7 @@ const CHAPTERS=[
 
     { id:'social_media', title:'Sociale media', sub:'Sturen, liken, delen...', icon:'📲', xp:35,
       pronTips:['خ'],
-      grammar:'"پیام دادن" (payaam daadan) = een bericht sturen. In Hazaragi/Dari is dit de standaard uitdrukking.',
+      grammar:'"پیام دادن" (payaam daadan) = een bericht sturen. In Hazaragi is dit de standaard uitdrukking.',
       words:[
         {hz:'پیام',tr:'payaam',nl:'Bericht',tip:''},
         {hz:'عکس',tr:'aks',nl:'Foto',tip:''},
@@ -2453,6 +2392,5 @@ const ACHVS = [
   {id:'xp2000',icon:'💫',name:'2000 XP',desc:'Meester van het Hazaragi!'},
   {id:'ch0',icon:'🆘',name:'Overlevingsgids!',desc:'De allereerste basis-zinnen geleerd'},
   {id:'ch28',icon:'🔄',name:'Tegenstellingen',desc:'Hoofdstuk 28 gestart'},
-  {id:'ch_gram5',icon:'🔬',name:'Hazaragi vs Dari',desc:'De verschillen ontdekt!'},
   {id:'ch29',icon:'🎭',name:'Rollenspel',desc:'Echte gesprekken geoefend'},
 ];
