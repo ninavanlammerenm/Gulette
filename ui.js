@@ -353,16 +353,13 @@ function showPronModal(hz){
     if(!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     speakBtn.textContent='🔊 ...';
-    // Kleine vertraging na cancel() om race condition te vermijden
-    setTimeout(()=>{
-      const tekst = toDutchPhonetic(v.tr||'') || v.tr || 'woord';
-      const utt = new SpeechSynthesisUtterance(tekst);
-      utt.rate = 0.72;
-      utt.volume = 1;
-      utt.onend = ()=> speakBtn.textContent='🔊 Hoor uitspraak';
-      utt.onerror = ()=> speakBtn.textContent='🔊 Hoor uitspraak';
-      window.speechSynthesis.speak(utt);
-    }, 150);
+    const tekst = toDutchPhonetic(v.tr||'') || v.tr || 'woord';
+    const utt = new SpeechSynthesisUtterance(tekst);
+    utt.rate = 0.72;
+    utt.volume = 1;
+    utt.onend = ()=> speakBtn.textContent='🔊 Hoor uitspraak';
+    utt.onerror = ()=> speakBtn.textContent='🔊 Hoor uitspraak';
+    window.speechSynthesis.speak(utt);
   });
   const closeBtn=document.createElement('button');
   closeBtn.className='btn-check';
