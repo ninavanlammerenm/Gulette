@@ -351,34 +351,28 @@ function showPronModal(hz){
   speakBtn.textContent='🔊 Hoor uitspraak';
   speakBtn.addEventListener('click',()=>{
     if(!window.speechSynthesis){
-      speakBtn.textContent='❌ Niet beschikbaar op dit apparaat';
+      speakBtn.textContent='❌ Geen geluid beschikbaar';
       return;
     }
     window.speechSynthesis.cancel();
     if(window.speechSynthesis.paused) window.speechSynthesis.resume();
-    speakBtn.textContent='🔊 ...';
 
-    const voices=window.speechSynthesis.getVoices();
-    const faVoice=voices.find(vx=>vx.lang.startsWith('fa')||vx.lang.startsWith('ar')||vx.lang.startsWith('ur'));
-    const nlVoice=voices.find(vx=>vx.lang.startsWith('nl'));
+    // Altijd de Latijnse uitspraakvorm spreken — werkt met ELKE stem
+    const spokenText = toDutchPhonetic(v.tr||'') || v.tr || hz;
+    const utt = new SpeechSynthesisUtterance(spokenText);
+    utt.rate = 0.72;
+    utt.pitch = 1;
+    utt.volume = 1;
 
-    if(faVoice){
-      // Spreek Arabisch schrift met Perzische stem
-      const utt=new SpeechSynthesisUtterance(hz);
-      utt.voice=faVoice; utt.lang=faVoice.lang; utt.rate=0.78; utt.pitch=1; utt.volume=1;
-      utt.onend=()=>speakBtn.textContent='🔊 Hoor uitspraak';
-      utt.onerror=()=>speakBtn.textContent='🔊 Hoor uitspraak';
-      window.speechSynthesis.speak(utt);
-    } else {
-      // Geen Perzische stem — spreek de Nederlandse uitspraakgids uit
-      const dutch=toDutchPhonetic(v.tr||'');
-      const utt=new SpeechSynthesisUtterance(dutch||hz);
-      if(nlVoice){utt.voice=nlVoice; utt.lang='nl-NL';}
-      utt.rate=0.75; utt.pitch=1; utt.volume=1;
-      utt.onend=()=>speakBtn.textContent='🔊 Hoor uitspraak';
-      utt.onerror=()=>speakBtn.textContent='🔊 Hoor uitspraak';
-      window.speechSynthesis.speak(utt);
-    }
+    // Zoek Nederlandse stem (beste optie voor Dutch phonetic text)
+    const allVoices = window.speechSynthesis.getVoices();
+    const nlVoice = allVoices.find(vx => vx.lang && vx.lang.startsWith('nl'));
+    if(nlVoice){ utt.voice = nlVoice; utt.lang = 'nl-NL'; }
+
+    speakBtn.textContent = '🔊 ...';
+    utt.onend = () => speakBtn.textContent = '🔊 Hoor uitspraak';
+    utt.onerror = () => speakBtn.textContent = '🔊 Hoor uitspraak';
+    window.speechSynthesis.speak(utt);
   });
   const closeBtn=document.createElement('button');
   closeBtn.className='btn-check';
