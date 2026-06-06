@@ -350,17 +350,34 @@ function showPronModal(hz){
   speakBtn.style.cssText='width:100%;padding:14px;margin-top:12px;border-radius:var(--r-sm);border:2px solid var(--lav);background:var(--lav-xl,#f0eeff);color:var(--lav);font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer';
   speakBtn.textContent='🔊 Hoor uitspraak';
   speakBtn.addEventListener('click',()=>{
-    if(!window.speechSynthesis)return;
+    if(!window.speechSynthesis){
+      speakBtn.textContent='❌ Niet beschikbaar op dit apparaat';
+      return;
+    }
     window.speechSynthesis.cancel();
-    const utt=new SpeechSynthesisUtterance(hz);
-    utt.lang='fa-IR';utt.rate=0.85;utt.pitch=1;
-    const voices=window.speechSynthesis.getVoices();
-    const faVoice=voices.find(v=>v.lang.startsWith('fa')||v.lang.startsWith('ar'));
-    if(faVoice)utt.voice=faVoice;
     speakBtn.textContent='🔊 ...';
-    utt.onend=()=>speakBtn.textContent='🔊 Hoor uitspraak';
-    utt.onerror=()=>speakBtn.textContent='❌ Niet beschikbaar';
-    window.speechSynthesis.speak(utt);
+
+    function doSpeak(useLang){
+      const utt=new SpeechSynthesisUtterance(hz);
+      utt.rate=0.78;utt.pitch=1;
+      if(useLang){
+        utt.lang='fa-IR';
+        const voices=window.speechSynthesis.getVoices();
+        const best=voices.find(v=>v.lang.startsWith('fa')||v.lang.startsWith('ar')||v.lang.startsWith('ur'));
+        if(best)utt.voice=best;
+      }
+      utt.onend=()=>speakBtn.textContent='🔊 Hoor uitspraak';
+      utt.onerror=()=>{
+        if(useLang){
+          // Probeer opnieuw zonder taalbeperking (standaardstem)
+          doSpeak(false);
+        } else {
+          speakBtn.textContent='🔊 Hoor uitspraak';
+        }
+      };
+      window.speechSynthesis.speak(utt);
+    }
+    doSpeak(true);
   });
   const closeBtn=document.createElement('button');
   closeBtn.className='btn-check';
