@@ -436,3 +436,23 @@ body.hide-roman .pron-latin{ display:none!important }
 .hz-dutch{font-size:21px;font-weight:900;color:var(--rose-d);display:block;margin:6px 0 2px;letter-spacing:.5px;font-family:'Nunito',sans-serif}
 .wc-dutch{font-size:15px;font-weight:900;color:var(--rose-d);margin-bottom:2px;font-family:'Nunito',sans-serif}
 .ovh-dutch{font-size:22px;font-weight:900;color:var(--rose-d);text-align:center;letter-spacing:.5px}
+
+/* ── GRAMMATICA KAART ── */
+.grammar-card{background:linear-gradient(135deg,#F6F3DC,#FDFAEC);border:2px solid rgba(142,154,90,.3);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.grammar-title{font-size:13px;font-weight:900;color:var(--gold-d);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.grammar-text{font-size:14px;font-weight:700;color:var(--ink-m);line-height:1.65}
+/* ── UITSPRAAKTIPS ── */
+.pron-tips-list{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.pron-badge{display:flex;align-items:flex-start;gap:10px;background:var(--lav-l);border-radius:var(--r-sm);padding:10px 12px;border:1.5px solid var(--lav-l)}
+.pron-badge-char{font-family:'Noto Naskh Arabic',serif;font-size:26px;color:var(--ink);min-width:34px;text-align:center;line-height:1.4;flex-shrink:0}
+.pron-badge-info{font-size:12px;font-weight:700;color:var(--ink-m);line-height:1.55}
+.pron-badge-info strong{color:var(--rose-d)}
+/* ── WOORDTIP ── */
+.word-tip-card{background:var(--gold-l);border:1.5px solid rgba(142,154,90,.25);border-radius:var(--r-xs);padding:10px 14px;font-size:13px;font-weight:700;color:var(--ink-m);margin-top:10px;line-height:1.5}
+/* ── FOUTWOORDEN OP RESULTAAT ── */
+.res-wrong-section{width:100%;margin:8px 0 4px;text-align:left}
+.res-wrong-title{font-size:12px;font-weight:900;color:var(--rose-d);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.res-wrong-list{display:flex;flex-direction:column;gap:5px;margin-bottom:10px;max-height:180px;overflow-y:auto}
+.res-wrong-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.8);border-radius:var(--r-xs);padding:8px 12px;box-shadow:var(--sh)}
+.res-wrong-hz{font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl;color:var(--ink);min-width:48px;text-align:right;flex-shrink:0}
+.res-wrong-nl{font-size:13px;font-weight:700;color:var(--ink-m)}
