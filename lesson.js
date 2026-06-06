@@ -584,7 +584,7 @@ function finishLesson(){
   LXP+=bonusXP;
   S.xp+=LXP;
   logXP(LXP);
-  updStreak();checkAchv();save();
+  updStreak();checkAchv(WC===0&&CC>0);save();
 
   document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` ✨+${bonusXP} bonus`:'');
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
