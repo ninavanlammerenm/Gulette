@@ -166,7 +166,6 @@ function rIntro(ex,body){
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <span class="hz-dutch">🗣️ ${dutch}</span>
-      <span class="hz-latin">🔊 ${pron}</span>
       <span class="hz-nl">= ${w.nl}</span>
     </div>
     ${w.tip?`<div class="word-tip-card">💡 ${w.tip}</div>`:''}
