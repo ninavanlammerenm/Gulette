@@ -4,11 +4,10 @@
 let S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},achv:[],weekActivity:[],goal:10,xpLog:{}};
 
 // ══════════════════════════════════════════════════════
-// NEDERLANDS UITSPRAAKGIDS
+// UITSPRAAKSCHRIFT — geeft de romanisering ongewijzigd terug
 // ══════════════════════════════════════════════════════
-function toDutchPhonetic(tr){
-  return tr||'';
-}
+const toDutchPhonetic = tr => tr || '';
+
 const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
 
@@ -74,7 +73,6 @@ function checkAchv(){
   if(wc>=10)add('words10');if(wc>=30)add('words30');if(wc>=60)add('words60');if(wc>=100)add('words100');if(wc>=200)add('words200');if(wc>=300)add('words300');
   if(S.xp>=100)add('xp100');if(S.xp>=500)add('xp500');if(S.xp>=1000)add('xp1000');if(S.xp>=2000)add('xp2000');
   if(WC===0&&CC>0)add('perfect');
-  // Zoek op hoofdstuk-ID, niet op array-index (volgorde kan veranderen)
   const checkChById=id=>{
     const ch=CHAPTERS.find(c=>c.id===id);
     if(ch&&ch.lessons.some(l=>S.done.includes(l.id)))add(id);
