@@ -29,71 +29,6 @@ const SCI_TIPS=[
 // ══════════════════════════════════════════════════════
 const CHAPTERS=[
 
-  { id:'ch0', label:'🆘 Hoofdstuk 0 · Overlevingsgids', color:'#F06C78', lessons:[
-
-    { id:'survival_comm', title:'Ik begrijp het niet!', sub:'Als je vastzit', icon:'🤔', xp:15,
-      pronTips:['خ'],
-      grammar:'Dit zijn de zinnen die je het meest nodig hebt als beginner. Leer ze als eerste!',
-      words:[
-        {hz:'نمی‌فهمم',tr:'na-mi-fahom',nl:'Ik begrijp het niet',tip:'De meest eerlijke zin als beginner!'},
-        {hz:'دوباره بگو',tr:'dobaara bego',nl:'Zeg het nog eens',tip:'"دوباره" = opnieuw'},
-        {hz:'آهسته بگو',tr:'aahesta bego',nl:'Zeg het langzamer',tip:'"آهسته" = langzaam'},
-        {hz:'چه معنی داره؟',tr:'cha maani daara?',nl:'Wat betekent dit?',tip:'Wijs naar het woord en vraag dit'},
-        {hz:'هزارگی نمی‌دانم',tr:'hazaaragi na-mi-danom',nl:'Ik ken geen Hazaragi',tip:'Eerlijk en nuttig!'},
-        {hz:'هزارگی یاد می‌گیرم',tr:'hazaaragi yaad mi-girom',nl:'Ik leer Hazaragi',tip:'Ze zullen dit geweldig vinden!'},
-        {hz:'درست اَس؟',tr:'doros as?',nl:'Is het goed zo? / Klopt dit?',tip:'Na een poging vragen of het correct was'},
-        {hz:'کمکم کو',tr:'kamakam ko',nl:'Help me alsjeblieft',tip:'"کمک" = hulp'},
-      ],
-      sentences:[
-        {hz:'نمی‌فهمم، آهسته بگو',tr:'na-mi-fahom, aahesta bego',nl:'Ik begrijp het niet, zeg het langzamer'},
-        {hz:'هزارگی یاد می‌گیرم — درست اَس؟',tr:'hazaaragi yaad mi-girom — doros as?',nl:'Ik leer Hazaragi — is het goed zo?'},
-        {hz:'این چه معنی داره؟',tr:'een cha maani daara?',nl:'Wat betekent dit?'},
-      ]
-    },
-
-    { id:'survival_agree', title:'Ja, Nee & Misschien', sub:'Meer dan alleen بله en نه', icon:'👍', xp:15,
-      pronTips:['خ'],
-      grammar:'Naast "بله" (ja) en "نه" (nee) zijn er veel nuances. "چشم" is de mooiste manier van ja zeggen.',
-      words:[
-        {hz:'چشم',tr:'chashm',nl:'Ja, met plezier! (beleefd)',tip:'Letterlijk "oog" — de mooiste manier om ja te zeggen'},
-        {hz:'آره',tr:'aara',nl:'Ja (informeel)',tip:'Gebruik dit met vrienden'},
-        {hz:'نه بابا',tr:'na baabaa',nl:'Nee joh / Echt niet!',tip:'Informele ontkenning'},
-        {hz:'نمی‌دانم',tr:'na-mi-danom',nl:'Ik weet het niet',tip:'Veelgebruikt — leer dit van buiten!'},
-        {hz:'شاید',tr:'shaayad',nl:'Misschien',tip:''},
-        {hz:'البته',tr:'albatta',nl:'Natuurlijk! / Uiteraard!',tip:'Sterker dan "ja"'},
-        {hz:'اصلاً نه',tr:'aslan na',nl:'Absoluut niet',tip:'"اصلاً" versterkt de ontkenning'},
-        {hz:'حتماً',tr:'hatman',nl:'Zeker weten! / Absoluut',tip:'Sterke bevestiging'},
-      ],
-      sentences:[
-        {hz:'چشم، حتماً می‌آم',tr:'chashm, hatman mi-oom',nl:'Ja met plezier, ik kom zeker'},
-        {hz:'نمی‌دانم، شاید',tr:'na-mi-danom, shaayad',nl:'Ik weet het niet, misschien'},
-        {hz:'اصلاً نه، البته نه!',tr:'aslan na, albatta na!',nl:'Absoluut niet, natuurlijk niet!'},
-      ]
-    },
-
-    { id:'survival_practical', title:'Meest gebruikte zinnen', sub:'Direct toepasbaar', icon:'⚡', xp:20,
-      pronTips:['خ','ر'],
-      grammar:'Deze zinnen gebruik je elke dag. Ze zijn kort, krachtig en worden door elke Hazara begrepen.',
-      words:[
-        {hz:'صبر کو',tr:'sabr ko',nl:'Wacht even',tip:'"صبر" = geduld'},
-        {hz:'بیا اینجه',tr:'bia ainja',nl:'Kom hier',tip:'Direct en duidelijk'},
-        {hz:'برو',tr:'bero',nl:'Ga / Ga weg',tip:''},
-        {hz:'بنشین',tr:'benshin',nl:'Ga zitten',tip:''},
-        {hz:'بلند شو',tr:'boland sho',nl:'Sta op',tip:''},
-        {hz:'ببین',tr:'bebin',nl:'Kijk / Luister eens',tip:'Trekt aandacht'},
-        {hz:'بگیر',tr:'begir',nl:'Pak aan / Neem',tip:''},
-        {hz:'بده',tr:'bede',nl:'Geef (het)',tip:''},
-        {hz:'نگو',tr:'nago',nl:'Zeg het niet',tip:'"نه" + werkwoord = verbod'},
-        {hz:'خوب اَس',tr:'khob as',nl:'Het is goed / Oké',tip:'Kortste manier om iets goed te keuren'},
-      ],
-      sentences:[
-        {hz:'صبر کو، یک لحظه',tr:'sabr ko, yak lahza',nl:'Wacht even, één moment'},
-        {hz:'ببین، خوب اَس؟',tr:'bebin, khob as?',nl:'Kijk, is het goed?'},
-        {hz:'بیا اینجه، بنشین',tr:'bia ainja, benshin',nl:'Kom hier, ga zitten'},
-      ]
-    },
-  ]},
-
   { id:'ch1', label:'🌸 Hoofdstuk 1 · Eerste woorden', color:'#FF6B9D', lessons:[
 
     { id:'greet1', title:'Begroetingen', sub:'Hoi, dag, hoe gaat het', icon:'👋', xp:10,
@@ -1000,6 +935,71 @@ const CHAPTERS=[
         {hz:'همیشه راست بگو، هیچ‌وقت دروغ نگو',tr:'hamisha raast bego, hichawaqt doroogh nago',nl:'Zeg altijd de waarheid, zeg nooit een leugen'},
         {hz:'زود بیا، دیر نشه',tr:'zod bia, deer nashe',nl:'Kom snel, laat het niet te laat worden'},
         {hz:'تنها بودم اما حالا با هم هستیم',tr:'tanhaa boodom amma haala baa ham hastim',nl:'Ik was alleen maar nu zijn we samen'},
+      ]
+    },
+  ]},
+
+  { id:'ch0', label:'🆘 Overlevingsgids · Als je vastzit', color:'#F06C78', lessons:[
+
+    { id:'survival_comm', title:'Ik begrijp het niet!', sub:'Als je vastzit', icon:'🤔', xp:15,
+      pronTips:['خ'],
+      grammar:'Deze zinnen gebruik je als je ergens niet uitkomt in een gesprek. Handig om bij de hand te hebben!',
+      words:[
+        {hz:'نمی‌فهمم',tr:'na-mi-famom',nl:'Ik begrijp het niet',tip:'De meest eerlijke zin als beginner!'},
+        {hz:'دوباره بگو',tr:'dobaara bego',nl:'Zeg het nog eens',tip:'"دوباره" = opnieuw'},
+        {hz:'آهسته بگو',tr:'aahesta bego',nl:'Zeg het langzamer',tip:'"آهسته" = langzaam'},
+        {hz:'چه معنی داره؟',tr:'cha maani daara?',nl:'Wat betekent dit?',tip:'Wijs naar het woord en vraag dit'},
+        {hz:'هزارگی نمی‌دانم',tr:'hazaaragi na-mi-danom',nl:'Ik ken geen Hazaragi',tip:'Eerlijk en nuttig!'},
+        {hz:'هزارگی یاد می‌گیرم',tr:'hazaaragi yaad mi-girom',nl:'Ik leer Hazaragi',tip:'Ze zullen dit geweldig vinden!'},
+        {hz:'درست اَس؟',tr:'doros as?',nl:'Is het goed zo? / Klopt dit?',tip:'Na een poging vragen of het correct was'},
+        {hz:'کمکم کو',tr:'kamakam ko',nl:'Help me alsjeblieft',tip:'"کمک" = hulp'},
+      ],
+      sentences:[
+        {hz:'نمی‌فهمم، آهسته بگو',tr:'na-mi-famom, aahesta bego',nl:'Ik begrijp het niet, zeg het langzamer'},
+        {hz:'هزارگی یاد می‌گیرم — درست اَس؟',tr:'hazaaragi yaad mi-girom — doros as?',nl:'Ik leer Hazaragi — is het goed zo?'},
+        {hz:'این چه معنی داره؟',tr:'een cha maani daara?',nl:'Wat betekent dit?'},
+      ]
+    },
+
+    { id:'survival_agree', title:'Ja, Nee & Misschien', sub:'Meer dan alleen بله en نه', icon:'👍', xp:15,
+      pronTips:['خ'],
+      grammar:'Naast "بله" (ja) en "نه" (nee) zijn er veel nuances. "چشم" is de mooiste manier van ja zeggen.',
+      words:[
+        {hz:'چشم',tr:'chashm',nl:'Ja, met plezier! (beleefd)',tip:'Letterlijk "oog" — de mooiste manier om ja te zeggen'},
+        {hz:'آره',tr:'aara',nl:'Ja (informeel)',tip:'Gebruik dit met vrienden'},
+        {hz:'نه بابا',tr:'na baabaa',nl:'Nee joh / Echt niet!',tip:'Informele ontkenning'},
+        {hz:'نمی‌دانم',tr:'na-mi-danom',nl:'Ik weet het niet',tip:'Veelgebruikt — leer dit van buiten!'},
+        {hz:'شاید',tr:'shaayad',nl:'Misschien',tip:''},
+        {hz:'البته',tr:'albatta',nl:'Natuurlijk! / Uiteraard!',tip:'Sterker dan "ja"'},
+        {hz:'اصلاً نه',tr:'aslan na',nl:'Absoluut niet',tip:'"اصلاً" versterkt de ontkenning'},
+        {hz:'حتماً',tr:'hatman',nl:'Zeker weten! / Absoluut',tip:'Sterke bevestiging'},
+      ],
+      sentences:[
+        {hz:'چشم، حتماً می‌آم',tr:'chashm, hatman mi-oom',nl:'Ja met plezier, ik kom zeker'},
+        {hz:'نمی‌دانم، شاید',tr:'na-mi-danom, shaayad',nl:'Ik weet het niet, misschien'},
+        {hz:'اصلاً نه، البته نه!',tr:'aslan na, albatta na!',nl:'Absoluut niet, natuurlijk niet!'},
+      ]
+    },
+
+    { id:'survival_practical', title:'Meest gebruikte commando\'s', sub:'Direct toepasbaar', icon:'⚡', xp:20,
+      pronTips:['خ','ر'],
+      grammar:'Korte, directe zinnen die elke Hazara begrijpt. Handig als je snel iets moet zeggen.',
+      words:[
+        {hz:'صبر کو',tr:'sabr ko',nl:'Wacht even',tip:'"صبر" = geduld'},
+        {hz:'بیا اینجه',tr:'bia ainja',nl:'Kom hier',tip:'Direct en duidelijk'},
+        {hz:'برو',tr:'bero',nl:'Ga / Ga weg',tip:''},
+        {hz:'بنشین',tr:'benshin',nl:'Ga zitten',tip:''},
+        {hz:'بلند شو',tr:'boland sho',nl:'Sta op',tip:''},
+        {hz:'ببین',tr:'bebin',nl:'Kijk / Luister eens',tip:'Trekt aandacht'},
+        {hz:'بگیر',tr:'begir',nl:'Pak aan / Neem',tip:''},
+        {hz:'بده',tr:'bede',nl:'Geef (het)',tip:''},
+        {hz:'نگو',tr:'nago',nl:'Zeg het niet',tip:''},
+        {hz:'خوب اَس',tr:'khob as',nl:'Het is goed / Oké',tip:'Kortste manier om iets goed te keuren'},
+      ],
+      sentences:[
+        {hz:'صبر کو، یک لحظه',tr:'sabr ko, yak lahza',nl:'Wacht even, één moment'},
+        {hz:'ببین، خوب اَس؟',tr:'bebin, khob as?',nl:'Kijk, is het goed?'},
+        {hz:'بیا اینجه، بنشین',tr:'bia ainja, benshin',nl:'Kom hier, ga zitten'},
       ]
     },
   ]},

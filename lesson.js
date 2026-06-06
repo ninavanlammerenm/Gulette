@@ -157,6 +157,7 @@ function rIntro(ex,body){
   const ctxHTML=s?`
     <div class="ctx-mini">
       <div class="ctx-mini-hz">${s.hz.replace(w.hz,`<mark>${w.hz}</mark>`)}</div>
+      <div class="hz-roman" style="font-size:13px;font-weight:800;color:var(--rose-d);font-style:italic;margin:3px 0 2px">🗣️ ${toDutchPhonetic(s.tr)}</div>
       <div class="ctx-mini-nl">"${s.nl}"</div>
     </div>`:'';
   const dutch=toDutchPhonetic(w.tr);
