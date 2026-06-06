@@ -3,9 +3,17 @@
 // ══════════════════════════════════════════════════════
 let CL=null,EXS=[],EI=0,CC=0,WC=0,LXP=0,WAITING=false;
 let REQUEUED=new Set();
+let WRONG_WORDS=[],WRONG_SET=new Set();
+
+function trackWrong(hz,nl,tr){
+  if(WRONG_SET.has(hz))return;
+  WRONG_SET.add(hz);
+  WRONG_WORDS.push({hz,nl,tr:tr||''});
+}
 
 // Oefentype labels voor de voortgangsbalk
 const EX_TYPE_LABELS={
+  grammar:'📚 Les uitleg',
   intro:'📖 Nieuw woord',
   context:'🔍 Patroon',
   mc_nl:'🎯 Betekenis',
@@ -29,6 +37,7 @@ function startLesson(id){
   HEARTS=3;
   WAITING=false;
   REQUEUED=new Set();
+  WRONG_WORDS=[];WRONG_SET=new Set();
   showScreen('lesson');
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -40,6 +49,9 @@ function buildExercises(lesson){
   const exs=[];
   const ws=[...lesson.words];
   const ss=lesson.sentences||[];
+
+  // 0. Grammatica/taalregel kaart als eerste
+  if(lesson.grammar) exs.push({type:'grammar',grammar:lesson.grammar,pronTips:lesson.pronTips||[]});
 
   // 1. Intro: contextual encoding — show word + matching sentence if available
   ws.slice(0,6).forEach(w=>{
@@ -88,6 +100,28 @@ function buildExercises(lesson){
 
 const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
 
+// ── Grammatica/taalregel kaart ──
+function rGrammar(ex,body){
+  const pronHTML=(ex.pronTips||[]).map(char=>{
+    const t=PRONUN_TIPS[char];
+    if(!t)return '';
+    return `<div class="pron-badge">
+      <span class="pron-badge-char">${char}</span>
+      <div class="pron-badge-info"><strong>${t.latin}</strong> — ${t.tip}</div>
+    </div>`;
+  }).filter(Boolean).join('');
+
+  body.innerHTML=`
+    <div class="type-pill">📚 Les uitleg</div>
+    <div class="grammar-card">
+      <div class="grammar-title">💡 Taalregel van deze les</div>
+      <div class="grammar-text">${ex.grammar}</div>
+    </div>
+    ${pronHTML?`<p style="font-size:12px;font-weight:900;color:var(--ink-l);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">🔊 Uitspraaktips</p><div class="pron-tips-list">${pronHTML}</div>`:''}
+    <div style="flex:1"></div>
+    <button class="btn-check" onclick="nextEx()">Start de les! 🌸</button>`;
+}
+
 function renderEx(){
   if(EI>=EXS.length){finishLesson();return;}
   const pct=Math.round(EI/EXS.length*100);
@@ -103,7 +137,8 @@ function renderEx(){
   body.scrollTop=0;
   window.scrollTo(0,0);
 
-  if(ex.type==='intro')    rIntro(ex,body);
+  if(ex.type==='grammar')  rGrammar(ex,body);
+  else if(ex.type==='intro')    rIntro(ex,body);
   else if(ex.type==='context') rContext(ex,body);
   else if(ex.type==='cloze')   rCloze(ex,body);
   else if(ex.type==='mc_nl')   rMC_nl(ex,body);
@@ -133,6 +168,7 @@ function rIntro(ex,body){
       <span class="hz-latin">🔊 ${pron}</span>
       <span class="hz-nl">= ${w.nl}</span>
     </div>
+    ${w.tip?`<div class="word-tip-card">💡 ${w.tip}</div>`:''}
     ${ctxHTML}
     <div style="flex:1"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
@@ -368,13 +404,13 @@ function rType(ex,body){
     if(!val){ inp.focus(); return; }
 
     if(normAr(val)===normAr(correct)){
+      inp.blur(); // toetsenbord sluiten zodat feedbackbalk op de juiste plek staat
       inp.classList.add('ok');
       sfxCorrect();
       if(retryMode){
-        // Correct overschreven — direct door, geen "Verder" knop nodig
         CC++;LXP+=5;
         sparkles();
-        updMastery(correct,false); // half punt want het was retryMode
+        updMastery(correct,false);
         showFB(true,'✅ Overgetypt! Goed gedaan!',w.nl,correct);
       } else {
         CC++;LXP+=10;
@@ -389,9 +425,11 @@ function rType(ex,body){
         loseHeart();
         updMastery(correct,false);
         requeueWrong(correct);
+        trackWrong(correct,w.nl,w.tr);
         retryMode=true;
       }
       // Fout: schud het veld, toon correct antwoord prominent, leeg het veld
+      inp.blur(); // toetsenbord weg zodat animatie goed zichtbaar is
       inp.classList.add('ng');
       sfxWrong();
       showCorrectAnswer();
@@ -402,7 +440,7 @@ function rType(ex,body){
         inp.value='';
         inp.classList.remove('ng');
         inp.focus();
-      },600);
+      },700);
     }
   }
 
@@ -430,6 +468,7 @@ function chkMC(btn,chosen,correct,hz,tr){
       if(txt===correct)b.classList.add('ok');
     });
     const requeued=requeueWrong(hz);
+    trackWrong(hz,correct,tr);
     showFB(false,'Bijna!',`${hz} = ${correct}${requeued?' · 🔁 Komt later terug':''}`,hz);
     updMastery(hz,false);
   }
@@ -454,6 +493,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
       if(s&&!s.children.length&&s.textContent.trim()===correct)b.classList.add('ok');
     });
     const requeued=requeueWrong(correct);
+    trackWrong(correct,nl,tr);
     showFB(false,'Bijna!',`Juist: ${correct} (${tr})${requeued?' · 🔁 Komt later terug':''}`,correct);
     updMastery(correct,false);
   }
@@ -512,9 +552,31 @@ function finishLesson(){
     document.querySelector('.res-ttl').textContent='Geweldig!';
   }
 
+  // Foutwoorden sectie
+  const wrongSec=document.getElementById('res-wrong-section');
+  const wrongList=document.getElementById('res-wrong-list');
+  if(wrongSec&&wrongList){
+    if(WRONG_WORDS.length>0){
+      wrongSec.style.display='block';
+      wrongList.innerHTML=WRONG_WORDS.map(w=>`
+        <div class="res-wrong-row">
+          <div class="res-wrong-hz">${w.hz}</div>
+          <div class="res-wrong-nl">${w.nl}</div>
+        </div>`).join('');
+    }else{
+      wrongSec.style.display='none';
+    }
+  }
+
   showScreen('result');
   sfxFinish();
   confetti();
+}
+
+function retryLessonWrong(){
+  if(!WRONG_WORDS.length)return;
+  const wordList=WRONG_WORDS.map(w=>({hz:w.hz,v:{nl:w.nl,tr:w.tr,mastery:0,nr:null},dir:'hz_nl'}));
+  startOvhoring(0,wordList);
 }
 
 
