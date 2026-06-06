@@ -340,42 +340,48 @@ function rType(ex,body){
   const hintEl=document.getElementById('t-hint');
   const checkBtn=document.getElementById('btn-check-type');
 
-  inp.addEventListener('input', ()=>{
-    inp.classList.remove('ok','ng');
-    if(retryMode){
-      checkBtn.textContent='Typ het over ✍️';
-    }
-  });
+  function showCorrectAnswer(){
+    hintEl.innerHTML=`
+      <div style="font-size:12px;font-weight:800;color:var(--rose-d);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">✍️ Schrijf dit over:</div>
+      <div style="font-family:'Noto Naskh Arabic',serif;font-size:42px;direction:rtl;text-align:center;color:var(--ink);line-height:1.6;font-weight:700;background:var(--rose-xl);border-radius:var(--r-sm);padding:12px">${correct}</div>`;
+    hintEl.classList.add('show');
+  }
+
+  inp.addEventListener('input', ()=>{ inp.classList.remove('ok','ng'); });
   inp.addEventListener('keydown', e=>{ if(e.key==='Enter') doCheckType(); });
   checkBtn.addEventListener('click', doCheckType);
 
   hintBtn.addEventListener('click', ()=>{
-    hintEl.innerHTML=`✍️ Antwoord: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
-    hintEl.classList.add('show');
-    inp.value=correct;
-    inp.classList.remove('ok','ng');
+    showCorrectAnswer();
+    // Toon antwoord maar vul NOOIT het veld in — gebruiker moet zelf typen
+    inp.value='';
+    inp.focus();
     hintBtn.disabled=true;
-    hintBtn.textContent='✓ Antwoord getoond';
+    hintBtn.textContent='✓ Bekijk het antwoord hierboven';
     retryMode=true;
-    checkBtn.textContent='Typ het over ✍️';
+    checkBtn.textContent='Schrijf het over ✍️';
     checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
   });
 
   function doCheckType(){
     const val=inp.value.trim();
-    if(!val)return;
+    if(!val){ inp.focus(); return; }
 
     if(normAr(val)===normAr(correct)){
       inp.classList.add('ok');
       sfxCorrect();
       if(retryMode){
-        showFB(true,'✅ Goed overgetypt!',w.nl,correct);
+        // Correct overschreven — direct door, geen "Verder" knop nodig
+        CC++;LXP+=5;
+        sparkles();
+        updMastery(correct,false); // half punt want het was retryMode
+        showFB(true,'✅ Overgetypt! Goed gedaan!',w.nl,correct);
       } else {
         CC++;LXP+=10;
         showFB(true,'✨ Uitstekend!',w.nl,correct);
         sparkles();
+        updMastery(correct,true);
       }
-      updMastery(correct,!retryMode);
     } else {
       if(!retryMode){
         WC++;
@@ -385,18 +391,18 @@ function rType(ex,body){
         requeueWrong(correct);
         retryMode=true;
       }
+      // Fout: schud het veld, toon correct antwoord prominent, leeg het veld
       inp.classList.add('ng');
-      hintEl.innerHTML=`✍️ Typ dit over: <strong style="font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl">${correct}</strong>`;
-      hintEl.classList.add('show');
+      sfxWrong();
+      showCorrectAnswer();
       hintBtn.style.display='none';
-      checkBtn.textContent='Typ het over ✍️';
+      checkBtn.textContent='Schrijf het over ✍️';
       checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
       setTimeout(()=>{
         inp.value='';
         inp.classList.remove('ng');
         inp.focus();
-      },700);
-      hideFB();
+      },600);
     }
   }
 
