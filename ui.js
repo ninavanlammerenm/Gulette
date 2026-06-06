@@ -346,11 +346,6 @@ function showPronModal(hz){
       <div class="pron-latin">${v.tr}</div>
       <div class="pron-tip">= ${v.nl}</div>
     </div>`;
-  const spreekTekst=(toDutchPhonetic(v.tr||'')||v.tr||'woord').replace(/'/g,"\\'");
-  const speakBtn=document.createElement('button');
-  speakBtn.style.cssText='width:100%;padding:14px;margin-top:12px;border-radius:var(--r-sm);border:2px solid var(--lav);background:var(--lav-xl,#f0eeff);color:var(--lav);font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer';
-  speakBtn.textContent='🔊 Hoor uitspraak';
-  speakBtn.setAttribute('onclick',`guletteSpeak('${spreekTekst}',this)`);
   const closeBtn=document.createElement('button');
   closeBtn.className='btn-check';
   closeBtn.style.cssText='position:static;margin-top:10px';
@@ -367,7 +362,7 @@ function showPronModal(hz){
       </div>`;
     modal.appendChild(row2);
   }
-  modal.appendChild(speakBtn);modal.appendChild(closeBtn);
+  modal.appendChild(closeBtn);
   bg.appendChild(modal);
   bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
   document.body.appendChild(bg);
@@ -497,19 +492,6 @@ function sparkles(){
     el.style.cssText=`left:${x}px;top:${y}px`;
     document.body.appendChild(el);setTimeout(()=>el.remove(),900);
   },i*100);
-}
-
-// ══════════════════════════════════════════════════════
-// UITSPRAAK
-// ══════════════════════════════════════════════════════
-function guletteSpeak(tekst, btn){
-  if(!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  if(btn) btn.textContent='🔊 ...';
-  const utt=new SpeechSynthesisUtterance(tekst);
-  utt.rate=0.72; utt.volume=1;
-  utt.onend=()=>{if(btn)btn.textContent='🔊 Hoor uitspraak';};
-  window.speechSynthesis.speak(utt);
 }
 
 // ══════════════════════════════════════════════════════

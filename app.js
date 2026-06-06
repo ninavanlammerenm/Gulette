@@ -1,11 +1,6 @@
 // ══════════════════════════════════════════════════════
 // SPEECH INIT
 // ══════════════════════════════════════════════════════
-if(window.speechSynthesis){
-  window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
-}
-
 // ── Veilige event delegation ──
 document.addEventListener('click', function(e){
   const tile = e.target.closest('[data-action]');
