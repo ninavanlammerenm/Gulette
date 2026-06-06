@@ -34,7 +34,7 @@ function toggleOvhTimer(btn){
 
 function startOvhoring(n, wordList){
   if(wordList){
-    // retry errors mode
+    // retry-modus: wordList is array van {hz, v, dir}
     _ovhWords=wordList;
   } else {
     const words=Object.entries(S.vocab);
@@ -104,19 +104,35 @@ function renderOvh(){
       if(el){el.textContent=_ovhTimerSec;if(_ovhTimerSec<=3)el.classList.add('urgent');}
       if(_ovhTimerSec<=0){
         clearInterval(_ovhTimerID);_ovhTimerID=null;
-        // Time's up — count as wrong
         document.querySelectorAll('#ovh-body .ch-btn').forEach((b,i)=>{
           b.disabled=true;
           if(_ovhChoices[i]===correct)b.classList.add('ok');
         });
-        _ovhErrors.push({hz,v,chosen:'—',correct,dir});
+        // ── Fout door timer: registreer als fout ──
+        _registerOvhError(hz, v, '—', correct, dir);
         sfxWrong();
-        updMastery(hz,false);
-        save();
         setTimeout(()=>{_ovhIdx++;renderOvh();},1200);
       }
     },1000);
   }
+}
+
+// ── Centrale fout-registratie voor de overhoring ──
+// Zorgt dat fouten altijd in S.vocab.errors terechtkomen,
+// ook als het woord om wat voor reden nog niet in vocab zit.
+function _registerOvhError(hz, v, chosen, correct, dir){
+  // Zorg dat het woord in vocab staat (kan ontbreken bij retry-modus)
+  if(!S.vocab[hz]){
+    S.vocab[hz]={nl:v.nl, tr:v.tr||'', mastery:0, nr:null, errors:0};
+  }
+  // errors ophogen — dit is de kern van de fix
+  S.vocab[hz].errors=(S.vocab[hz].errors||0)+1;
+
+  // updMastery regelt mastery + next-review datum
+  updMastery(hz, false);
+
+  // Bewaar voor het eindresultaat-scherm
+  _ovhErrors.push({hz, v, chosen, correct, dir});
 }
 
 function answerOvh(btn,idx){
@@ -136,9 +152,9 @@ function answerOvh(btn,idx){
     document.querySelectorAll('#ovh-body .ch-btn').forEach((b,i)=>{
       if(_ovhChoices[i]===correct) b.classList.add('ok');
     });
-    _ovhErrors.push({hz,v,chosen,correct,dir});
+    // ── Gebruik centrale fout-registratie ──
+    _registerOvhError(hz, v, chosen, correct, dir);
     sfxWrong();
-    updMastery(hz,false);
   }
   save();
   setTimeout(()=>{_ovhIdx++;renderOvh();},ok?700:1300);
