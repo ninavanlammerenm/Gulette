@@ -604,6 +604,7 @@ function startDailyReview(){
   CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,rw.length*2),words:rw,sentences:[]};
   EXS=buildExercises(CL);EI=CC=WC=LXP=0;
   HEARTS=3;
+  WAITING=false;REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   showScreen('lesson');

@@ -88,6 +88,13 @@ function checkAchv(){
   if(wc>=10)add('words10');if(wc>=30)add('words30');if(wc>=60)add('words60');if(wc>=100)add('words100');if(wc>=200)add('words200');if(wc>=300)add('words300');
   if(S.xp>=100)add('xp100');if(S.xp>=500)add('xp500');if(S.xp>=1000)add('xp1000');if(S.xp>=2000)add('xp2000');
   if(WC===0&&CC>0)add('perfect');
-  const checkCh=(chIdx,achId)=>{if(CHAPTERS[chIdx]&&CHAPTERS[chIdx].lessons.some(l=>S.done.includes(l.id)))add(achId);};
-  [1,2,3,4,5,6,7,8,9].forEach((i,idx)=>checkCh(i,['ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10'][idx]));
+  // Zoek op hoofdstuk-ID, niet op array-index (volgorde kan veranderen)
+  const checkChById=id=>{
+    const ch=CHAPTERS.find(c=>c.id===id);
+    if(ch&&ch.lessons.some(l=>S.done.includes(l.id)))add(id);
+  };
+  ['ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10',
+   'ch0','ch11','ch12','ch13','ch14','ch15','ch16','ch17','ch18','ch19','ch20',
+   'ch21','ch22','ch23','ch24','ch25','ch26','ch27','ch28','ch29',
+   'ch_gram1','ch_gram2','ch_gram3','ch_gram4','ch_gram5'].forEach(checkChById);
 }
