@@ -355,29 +355,30 @@ function showPronModal(hz){
       return;
     }
     window.speechSynthesis.cancel();
+    if(window.speechSynthesis.paused) window.speechSynthesis.resume();
     speakBtn.textContent='🔊 ...';
 
-    function doSpeak(useLang){
+    const voices=window.speechSynthesis.getVoices();
+    const faVoice=voices.find(vx=>vx.lang.startsWith('fa')||vx.lang.startsWith('ar')||vx.lang.startsWith('ur'));
+    const nlVoice=voices.find(vx=>vx.lang.startsWith('nl'));
+
+    if(faVoice){
+      // Spreek Arabisch schrift met Perzische stem
       const utt=new SpeechSynthesisUtterance(hz);
-      utt.rate=0.78;utt.pitch=1;
-      if(useLang){
-        utt.lang='fa-IR';
-        const voices=window.speechSynthesis.getVoices();
-        const best=voices.find(v=>v.lang.startsWith('fa')||v.lang.startsWith('ar')||v.lang.startsWith('ur'));
-        if(best)utt.voice=best;
-      }
+      utt.voice=faVoice; utt.lang=faVoice.lang; utt.rate=0.78; utt.pitch=1; utt.volume=1;
       utt.onend=()=>speakBtn.textContent='🔊 Hoor uitspraak';
-      utt.onerror=()=>{
-        if(useLang){
-          // Probeer opnieuw zonder taalbeperking (standaardstem)
-          doSpeak(false);
-        } else {
-          speakBtn.textContent='🔊 Hoor uitspraak';
-        }
-      };
+      utt.onerror=()=>speakBtn.textContent='🔊 Hoor uitspraak';
+      window.speechSynthesis.speak(utt);
+    } else {
+      // Geen Perzische stem — spreek de Nederlandse uitspraakgids uit
+      const dutch=toDutchPhonetic(v.tr||'');
+      const utt=new SpeechSynthesisUtterance(dutch||hz);
+      if(nlVoice){utt.voice=nlVoice; utt.lang='nl-NL';}
+      utt.rate=0.75; utt.pitch=1; utt.volume=1;
+      utt.onend=()=>speakBtn.textContent='🔊 Hoor uitspraak';
+      utt.onerror=()=>speakBtn.textContent='🔊 Hoor uitspraak';
       window.speechSynthesis.speak(utt);
     }
-    doSpeak(true);
   });
   const closeBtn=document.createElement('button');
   closeBtn.className='btn-check';
