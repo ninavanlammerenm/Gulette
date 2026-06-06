@@ -98,6 +98,59 @@ function buildExercises(lesson){
   return exs;
 }
 
+// ══════════════════════════════════════════════════════
+// REVIEW OEFENINGEN — apart van buildExercises
+// Geen intro/grammar/wordbank — alleen actieve herhaling.
+// Mastery bepaalt de mix: laag mastery → meer typen,
+// hoog mastery → meer mc volstaat.
+// ══════════════════════════════════════════════════════
+function buildReviewExercises(words){
+  // words = array van {hz, nl, tr, mastery}
+  const exs=[];
+
+  // Bouw een pool van alle review-woorden als nep-les-objecten
+  // zodat we ze als keuze-opties kunnen gebruiken
+  const pool=words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
+
+  shuffle(words).forEach(w=>{
+    const distractors=pool.filter(x=>x.hz!==w.hz);
+    if(distractors.length<3) return; // te weinig woorden voor MC, sla over
+
+    const mastery=w.mastery||0;
+
+    // Lage mastery (0-2): altijd typen + mc_hz (productie)
+    // Hoge mastery (3+): alleen mc volstaat
+    if(mastery<=2){
+      // mc_nl: herkenning
+      exs.push({
+        type:'mc_nl',
+        w:{hz:w.hz,nl:w.nl,tr:w.tr},
+        choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])
+      });
+      // type: sterkste herhaling voor zwakke woorden
+      exs.push({type:'type',w:{hz:w.hz,nl:w.nl,tr:w.tr}});
+    } else {
+      // mc_nl of mc_hz afwisselend op basis van index
+      const useHz=Math.random()>0.5;
+      if(useHz){
+        exs.push({
+          type:'mc_hz',
+          w:{hz:w.hz,nl:w.nl,tr:w.tr},
+          choices:shuffle([w.hz,...shuffle(distractors).slice(0,3).map(x=>x.hz)])
+        });
+      } else {
+        exs.push({
+          type:'mc_nl',
+          w:{hz:w.hz,nl:w.nl,tr:w.tr},
+          choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])
+        });
+      }
+    }
+  });
+
+  return shuffle(exs);
+}
+
 const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
 
 // ── Grammatica/taalregel kaart ──
@@ -153,7 +206,6 @@ function rIntro(ex,body){
   const w=ex.w;
   const pron=(w.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
   const s=ex.ctxSentence;
-  // Highlight the word in the context sentence
   const ctxHTML=s?`
     <div class="ctx-mini">
       <div class="ctx-mini-hz">${s.hz.replace(w.hz,`<mark>${w.hz}</mark>`)}</div>
@@ -206,11 +258,9 @@ function rContext(ex,body){
 }
 
 // ── Cloze (fill-in-the-blank) ──
-// Science: combines contextual encoding + active recall = highest retention
 function rCloze(ex,body){
   const {s,w,choices}=ex;
   const ltrs=['A','B','C','D'];
-  // Blank out the word in the sentence
   const blankedHz=s.hz.replace(w.hz,'<span class="cloze-blank">___</span>');
   body.innerHTML=`
     <div class="type-pill">🧩 Vul de zin aan</div>
@@ -262,7 +312,7 @@ function rMC_hz(ex,body){
   const ltrs=['A','B','C','D'];
   const trMap={};
   ex.choices.forEach(c=>{
-    const match=CL.words.find(x=>x.hz===c);
+    const match=CL ? CL.words.find(x=>x.hz===c) : null;
     if(match)trMap[c]=match.tr;
   });
   body.innerHTML=`
@@ -298,14 +348,12 @@ function rWB(ex,body){
     <div style="flex:1"></div>
     <button class="btn-check" id="btn-check-wb" disabled>Controleer ✓</button>`;
 
-  // Schakel knop in zodra er minstens één tegel geplaatst is
   const ansEl=document.getElementById('wb-ans');
   const observer=new MutationObserver(()=>{
     const count=ansEl.querySelectorAll('.ans').length;
     document.getElementById('btn-check-wb').disabled=count===0;
   });
   observer.observe(ansEl,{childList:true});
-
   document.getElementById('btn-check-wb').addEventListener('click', ()=>{ observer.disconnect(); chkWB(correct, s.nl, s.tr); });
 }
 
@@ -345,7 +393,6 @@ function chkWB(correct,nl,tr){
 // ── Type ──
 function rType(ex,body){
   const w=ex.w;
-  let hintLevel=0;
   let retryMode=false;
 
   body.innerHTML=`
@@ -389,7 +436,6 @@ function rType(ex,body){
 
   hintBtn.addEventListener('click', ()=>{
     showCorrectAnswer();
-    // Toon antwoord maar vul NOOIT het veld in — gebruiker moet zelf typen
     inp.value='';
     inp.focus();
     hintBtn.disabled=true;
@@ -404,7 +450,7 @@ function rType(ex,body){
     if(!val){ inp.focus(); return; }
 
     if(normAr(val)===normAr(correct)){
-      inp.blur(); // toetsenbord sluiten zodat feedbackbalk op de juiste plek staat
+      inp.blur();
       inp.classList.add('ok');
       sfxCorrect();
       if(retryMode){
@@ -428,8 +474,7 @@ function rType(ex,body){
         trackWrong(correct,w.nl,w.tr);
         retryMode=true;
       }
-      // Fout: schud het veld, toon correct antwoord prominent, leeg het veld
-      inp.blur(); // toetsenbord weg zodat animatie goed zichtbaar is
+      inp.blur();
       inp.classList.add('ng');
       sfxWrong();
       showCorrectAnswer();
@@ -552,7 +597,6 @@ function finishLesson(){
     document.querySelector('.res-ttl').textContent='Geweldig!';
   }
 
-  // Foutwoorden sectie
   const wrongSec=document.getElementById('res-wrong-section');
   const wrongList=document.getElementById('res-wrong-list');
   if(wrongSec&&wrongList){
@@ -581,7 +625,7 @@ function retryLessonWrong(){
 
 
 // ══════════════════════════════════════════════════════
-// DAILY REVIEW
+// DAILY REVIEW — gebruikt nu buildReviewExercises
 // ══════════════════════════════════════════════════════
 function startDailyReview(){
   const now=new Date();
@@ -589,20 +633,27 @@ function startDailyReview(){
   const due=allEntries.filter(([,v])=>!v.nr||new Date(v.nr)<=now);
   if(due.length===0){showToast('Geen reviews nu! Kom later terug 🌸');return;}
 
-  // Interleaving: take up to 10 due words, then add 2-4 words from other mastery levels
-  // Science: interleaving different difficulty levels improves long-term retention
+  // Interleaving: tot 10 due woorden + 2-4 woorden van andere mastery-niveaus
   const dueSlice=shuffle(due).slice(0,10);
   const dueHzSet=new Set(dueSlice.map(([hz])=>hz));
   const notDue=allEntries.filter(([hz,v])=>!dueHzSet.has(hz)&&(v.mastery||0)>0);
-  // Pick interleaved words: mix of low-mastery (hard) and high-mastery (easy)
   const lowMastery=notDue.filter(([,v])=>(v.mastery||0)<=2);
   const highMastery=notDue.filter(([,v])=>(v.mastery||0)>=4);
   const interleaved=[...shuffle(lowMastery).slice(0,2),...shuffle(highMastery).slice(0,2)];
   const pool=shuffle([...dueSlice,...interleaved]);
 
-  const rw=pool.map(([hz,v])=>({hz,nl:v.nl,tr:v.tr,tip:''}));
-  CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,rw.length*2),words:rw,sentences:[]};
-  EXS=buildExercises(CL);EI=CC=WC=LXP=0;
+  // Zet om naar het formaat dat buildReviewExercises verwacht
+  const reviewWords=pool.map(([hz,v])=>({
+    hz,
+    nl:v.nl,
+    tr:v.tr||'',
+    mastery:v.mastery||0
+  }));
+
+  // Nep-les object voor finishLesson en de topbar
+  CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,reviewWords.length*2),words:reviewWords.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),sentences:[]};
+  EXS=buildReviewExercises(reviewWords);
+  EI=CC=WC=LXP=0;
   HEARTS=3;
   WAITING=false;REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
   document.getElementById('bnav').style.display='none';
