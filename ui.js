@@ -350,29 +350,19 @@ function showPronModal(hz){
   speakBtn.style.cssText='width:100%;padding:14px;margin-top:12px;border-radius:var(--r-sm);border:2px solid var(--lav);background:var(--lav-xl,#f0eeff);color:var(--lav);font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer';
   speakBtn.textContent='🔊 Hoor uitspraak';
   speakBtn.addEventListener('click',()=>{
-    if(!window.speechSynthesis){
-      speakBtn.textContent='❌ Geen geluid beschikbaar';
-      return;
-    }
+    if(!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
-    if(window.speechSynthesis.paused) window.speechSynthesis.resume();
-
-    // Altijd de Latijnse uitspraakvorm spreken — werkt met ELKE stem
-    const spokenText = toDutchPhonetic(v.tr||'') || v.tr || hz;
-    const utt = new SpeechSynthesisUtterance(spokenText);
-    utt.rate = 0.72;
-    utt.pitch = 1;
-    utt.volume = 1;
-
-    // Zoek Nederlandse stem (beste optie voor Dutch phonetic text)
-    const allVoices = window.speechSynthesis.getVoices();
-    const nlVoice = allVoices.find(vx => vx.lang && vx.lang.startsWith('nl'));
-    if(nlVoice){ utt.voice = nlVoice; utt.lang = 'nl-NL'; }
-
-    speakBtn.textContent = '🔊 ...';
-    utt.onend = () => speakBtn.textContent = '🔊 Hoor uitspraak';
-    utt.onerror = () => speakBtn.textContent = '🔊 Hoor uitspraak';
-    window.speechSynthesis.speak(utt);
+    speakBtn.textContent='🔊 ...';
+    // Kleine vertraging na cancel() om race condition te vermijden
+    setTimeout(()=>{
+      const tekst = toDutchPhonetic(v.tr||'') || v.tr || 'woord';
+      const utt = new SpeechSynthesisUtterance(tekst);
+      utt.rate = 0.72;
+      utt.volume = 1;
+      utt.onend = ()=> speakBtn.textContent='🔊 Hoor uitspraak';
+      utt.onerror = ()=> speakBtn.textContent='🔊 Hoor uitspraak';
+      window.speechSynthesis.speak(utt);
+    }, 150);
   });
   const closeBtn=document.createElement('button');
   closeBtn.className='btn-check';
