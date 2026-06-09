@@ -14,7 +14,9 @@ const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse
 let sciIdx=0;
 
 // ══════════════════════════════════════════════════════
-// SPACED REPETITION MASTERY
+// SPACED REPETITION — SM-2 variant met ease factor
+// Mastery 0–5, intervals groeien exponentieel bij consistent goed presteren.
+// Fout → consec reset, ease daalt, snelle herhaling (10 min of 1 uur).
 // ══════════════════════════════════════════════════════
 function logXP(amount){
   if(!amount||amount<=0)return;
@@ -24,18 +26,34 @@ function logXP(amount){
   save();
 }
 
-function updMastery(hz,ok){
+function updMastery(hz, ok){
   if(!S.vocab[hz])return;
   const v=S.vocab[hz];
+  // Initialiseer SM-2 velden als ze nog niet bestaan
+  if(!v.ease) v.ease=2.5;
+  if(v.consec===undefined) v.consec=0;
+
   if(ok){
     v.mastery=Math.min(5,(v.mastery||0)+1);
-    const intervals=[1,3,7,14,30];
-    const d=intervals[Math.min(v.mastery-1,4)];
-    v.nr=new Date(Date.now()+d*86400000).toISOString();
-  }else{
-    v.mastery=Math.max(0,(v.mastery||0)-1);
-    v.nr=new Date(Date.now()+3600000).toISOString();
+    v.consec++;
+    // Ease factor groeit langzaam bij herhaalde correcte antwoorden
+    v.ease=Math.min(3.2, v.ease+0.05);
+    // Basisintervals in dagen per mastery-niveau
+    const base=[1,3,7,14,30];
+    let d=base[Math.min(v.mastery-1,4)];
+    // Na 3+ opeenvolgende successen: stretch het interval met ease factor
+    if(v.consec>=3) d=Math.round(d*v.ease);
+    v.nr=new Date(Date.now()+Math.max(1,d)*86400000).toISOString();
+  } else {
+    const prev=v.mastery||0;
+    v.mastery=Math.max(0,prev-1);
+    v.consec=0;
+    // Ease factor daalt bij fouten
+    v.ease=Math.max(1.3, v.ease-0.2);
     v.errors=(v.errors||0)+1;
+    // Laag mastery: 10 minuten herhaling. Hoger mastery: 1 uur.
+    const delay=prev<=1 ? 10*60*1000 : 60*60*1000;
+    v.nr=new Date(Date.now()+delay).toISOString();
   }
   save();
 }
@@ -80,5 +98,9 @@ function checkAchv(perfect=false){
   ['ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10',
    'ch0','ch11','ch12','ch13','ch14','ch15','ch16','ch17','ch18','ch19','ch20',
    'ch21','ch22','ch23','ch24','ch25','ch26','ch27','ch28','ch29',
-   'ch_gram1','ch_gram2','ch_gram3','ch_gram4','ch_gram5'].forEach(checkChById);
+   'ch_gram1','ch_gram2','ch_gram3','ch_gram4','ch_gram5',
+   'ch30','ch31','ch32','ch33','ch34','ch35','ch36',
+   'ch37','ch38','ch39','ch40','ch41',
+   'ch42','ch43','ch44','ch45','ch46',
+   'ch47','ch48','ch49','ch50','ch51','ch52'].forEach(checkChById);
 }

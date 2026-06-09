@@ -6,12 +6,13 @@ document.addEventListener('click', function(e){
   const tile = e.target.closest('[data-action]');
   if(!tile) return;
   const action = tile.dataset.action;
-  if(action === 'wbmove') wbMove(tile, tile.dataset.word);
-  if(action === 'mc_nl')  chkMC(tile,    tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
-  if(action === 'mc_hz')  chkMC_hz(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.nl, tile.dataset.tr);
+  if(action === 'wbmove')  wbMove(tile,  tile.dataset.word);
+  if(action === 'ordmove') ordMove(tile, tile.dataset.word);
+  if(action === 'mc_nl')   chkMC(tile,    tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
+  if(action === 'mc_hz')   chkMC_hz(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.nl, tile.dataset.tr);
 
   const wc = e.target.closest('.wc[data-hz]');
-  if(wc) showPronModal(wc.dataset.hz);
+  if(wc) showWordDetail(wc.dataset.hz);
 });
 
 // ══════════════════════════════════════════════════════

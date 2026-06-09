@@ -139,6 +139,8 @@ function renderHome(){
     }
   }
 
+  renderDagwoord();
+
   // Chapters / lesson path
   const cw=document.getElementById('chapters-wrap');
   cw.innerHTML='';
@@ -148,7 +150,9 @@ function renderHome(){
     const totalWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).length,0);
     const learnedWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).filter(w=>S.vocab[w.hz]).length,0);
     const chProg=totalWords>0?`<span class="ch-prog">${learnedWords}/${totalWords} woorden</span>`:'';
-    block.innerHTML=`<div class="ch-label">${ch.label}${chProg}</div>`;
+    const anyDone=ch.lessons.some(l=>S.done.includes(l.id));
+    const revBtn=anyDone?`<button class="ch-rev-btn" title="Herhaal hoofdstuk" onclick="event.stopPropagation();startChapterReview('${ch.id}')">🔁</button>`:'';
+    block.innerHTML=`<div class="ch-label-row"><span class="ch-label-txt">${ch.label}${chProg}</span>${revBtn}</div>`;
     const path=document.createElement('div');
     path.className='l-path';
 
@@ -310,8 +314,8 @@ function answerQT(btn,idx){
     setTimeout(()=>{_qtIdx++;renderQT();},700);
   }else{
     btn.classList.add('ng');
-    document.querySelectorAll('#qt-body .ch-btn').forEach(b=>{
-      if(_qtChoices[Array.from(document.querySelectorAll('#qt-body .ch-btn')).indexOf(b)]===correct)b.classList.add('ok');
+    document.querySelectorAll('#qt-body .ch-btn').forEach((b,i)=>{
+      if(_qtChoices[i]===correct)b.classList.add('ok');
     });
     sfxWrong();
     setTimeout(()=>{_qtIdx++;renderQT();},1200);
@@ -412,6 +416,7 @@ function renderProfile(){
   document.getElementById('p-wds').textContent=Object.keys(S.vocab).length;
   document.getElementById('p-les').textContent=S.done.length;
   renderXPGraph();
+  renderMasteryDistrib();
   renderChapterProgress();
   updateNotifBtn();
   updateRomanBtn();
@@ -456,7 +461,7 @@ function importData(event){
 function resetData(){
   if(!confirm('Weet je ZEKER dat je alle voortgang wilt verwijderen? Dit kan niet ongedaan worden gemaakt.'))return;
   localStorage.removeItem('gulette_v3');
-  S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},achv:[],weekActivity:[],goal:10};
+  S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},achv:[],weekActivity:[],goal:10,xpLog:{},showRoman:true};
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('name-inp').value='';
@@ -537,6 +542,124 @@ function renderChapterProgress(){
       </div>
     </div>`;
   }).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// DAGWOORD
+// ══════════════════════════════════════════════════════
+function renderDagwoord(){
+  const el=document.getElementById('dagwoord-card');
+  if(!el)return;
+  const keys=Object.keys(S.vocab);
+  if(keys.length===0){el.style.display='none';return;}
+  const dayIdx=Math.floor(Date.now()/86400000)%keys.length;
+  const hz=keys[dayIdx];
+  const v=S.vocab[hz];
+  if(!v){el.style.display='none';return;}
+  let tip='';
+  for(const ch of CHAPTERS){
+    for(const l of ch.lessons){
+      const w=(l.words||[]).find(x=>x.hz===hz);
+      if(w&&w.tip){tip=w.tip;break;}
+    }
+    if(tip)break;
+  }
+  el.style.display='block';
+  document.getElementById('dw-body').innerHTML=`
+    <div class="dw-hz">${hz}</div>
+    <div class="dw-tr">${v.tr||''}</div>
+    <div class="dw-nl">= ${v.nl}</div>
+    ${tip?`<div class="dw-tip">💡 ${tip}</div>`:''}`;
+  const foot=document.getElementById('dw-foot');
+  if(foot){
+    const m=v.mastery||0;
+    const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
+    foot.innerHTML=`<div class="m-pips dw-pips">${pips}</div><div class="dw-due" onclick="event.stopPropagation();showWordDetail('${hz}')">Bekijk details ›</div>`;
+  }
+}
+
+// ══════════════════════════════════════════════════════
+// MASTERY DISTRIBUTIE
+// ══════════════════════════════════════════════════════
+function renderMasteryDistrib(){
+  const el=document.getElementById('mastery-distrib');
+  if(!el)return;
+  const counts=[0,0,0,0,0,0];
+  Object.values(S.vocab).forEach(v=>counts[Math.min(v.mastery||0,5)]++);
+  const total=counts.reduce((a,b)=>a+b,0);
+  if(!total){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--ink-l);font-weight:700">Nog geen woorden geleerd 🌱</div>';return;}
+  const max=Math.max(...counts,1);
+  const labels=['Nieuw','Basis','Leerling','Gevorderd','Expert','Meester'];
+  const colors=['var(--ink-l)','var(--peach)','var(--gold)','var(--rose)','var(--mint)','var(--lav)'];
+  const now=new Date();
+  const tomorrow=new Date(now.getTime()+86400000);
+  const inWeek=new Date(now.getTime()+7*86400000);
+  const dueNow=Object.values(S.vocab).filter(v=>!v.nr||new Date(v.nr)<=now).length;
+  const dueTomorrow=Object.values(S.vocab).filter(v=>v.nr&&new Date(v.nr)>now&&new Date(v.nr)<=tomorrow).length;
+  const dueWeek=Object.values(S.vocab).filter(v=>v.nr&&new Date(v.nr)>tomorrow&&new Date(v.nr)<=inWeek).length;
+  el.innerHTML=`
+    <div class="mastery-bars">${counts.map((c,i)=>`
+      <div class="mastery-bar-row">
+        <div class="mastery-bar-lbl">${labels[i]}</div>
+        <div class="mastery-bar-track"><div class="mastery-bar-fill" style="width:${max>0?Math.round(c/max*100):0}%;background:${colors[i]}"></div></div>
+        <div class="mastery-bar-n">${c}</div>
+      </div>`).join('')}
+    </div>
+    <div class="mastery-due-row">
+      <div class="mastery-due-item"><div class="mastery-due-n">${dueNow}</div><div class="mastery-due-l">Nu</div></div>
+      <div class="mastery-due-item"><div class="mastery-due-n">${dueTomorrow}</div><div class="mastery-due-l">Morgen</div></div>
+      <div class="mastery-due-item"><div class="mastery-due-n">${dueWeek}</div><div class="mastery-due-l">Week</div></div>
+      <div class="mastery-due-item"><div class="mastery-due-n">${total}</div><div class="mastery-due-l">Totaal</div></div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════════════════
+// WORD DETAIL MODAL
+// ══════════════════════════════════════════════════════
+function showWordDetail(hz){
+  const v=S.vocab[hz];if(!v)return;
+  const m=v.mastery||0;
+  const masteryNames=['Onbekend','Beginner','Leerling','Gevorderd','Expert','Meester'];
+  const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
+  const due=!v.nr||new Date(v.nr)<=new Date();
+  const nxt=v.nr?timeUntil(v.nr):'Nu';
+  const bg=document.createElement('div');
+  bg.className='modal-bg';
+  const modal=document.createElement('div');
+  modal.className='modal';
+  modal.innerHTML=`
+    <div class="modal-drag"></div>
+    <div class="wd-card">
+      <div class="wd-hz">${hz}</div>
+      <div class="wd-tr">🗣️ ${toDutchPhonetic(v.tr)}</div>
+      <div class="wd-nl">= ${v.nl}</div>
+    </div>
+    <div class="wd-stats">
+      <div class="wd-stat-box">
+        <div class="m-pips wd-pips">${pips}</div>
+        <div class="wd-stat-lbl">${masteryNames[m]}</div>
+      </div>
+      <div class="wd-stat-box">
+        <div class="wd-stat-n" style="color:${due?'var(--rose-d)':'var(--mint)'}">${due?'Nu':'over '+nxt}</div>
+        <div class="wd-stat-lbl">Herhaling</div>
+      </div>
+      ${v.errors?`<div class="wd-stat-box">
+        <div class="wd-stat-n" style="color:var(--rose-d)">${v.errors}</div>
+        <div class="wd-stat-lbl">Fouten</div>
+      </div>`:''}
+    </div>
+    <div style="display:flex;gap:8px;margin-top:4px">
+      <button class="btn-check" style="position:static;flex:1" id="wd-drill">⚡ Oefen nu</button>
+      <button class="btn-check" style="position:static;flex:1;background:var(--ink-xl);color:var(--ink)" id="wd-close">Sluiten</button>
+    </div>`;
+  bg.appendChild(modal);
+  bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
+  modal.querySelector('#wd-close').addEventListener('click',()=>bg.remove());
+  modal.querySelector('#wd-drill').addEventListener('click',()=>{
+    bg.remove();
+    startOvhoring(0,[{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
+  });
+  document.body.appendChild(bg);
 }
 
 function showToast(msg){

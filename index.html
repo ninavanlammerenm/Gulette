@@ -96,6 +96,12 @@
     <div class="rb-arr" style="color:var(--gold-d)">›</div>
   </div>
 
+  <div class="dagwoord-card" id="dagwoord-card" style="display:none">
+    <div class="dw-head">📖 Woord van de dag</div>
+    <div id="dw-body"></div>
+    <div class="dw-foot" id="dw-foot"></div>
+  </div>
+
   <div class="lessons-section" id="chapters-wrap"></div>
 </div>
 
@@ -109,6 +115,7 @@
     </div>
     <div class="hearts" id="hearts">❤️❤️❤️</div>
   </div>
+  <div class="combo-indicator" id="combo-indicator"></div>
   <div class="l-body" id="l-body"></div>
   <div class="fb-bar hide" id="fb-bar">
     <div class="fb-ico" id="fb-ico">🐇</div>
@@ -187,6 +194,8 @@
     <button id="roman-btn" onclick="toggleRoman()" style="width:100%;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:10px;transition:all .2s">
       🔤 Uitspraakschrift: AAN
     </button>
+    <div class="achvs-title" style="margin-top:6px">🎯 Woordbeheersing</div>
+    <div id="mastery-distrib" style="background:var(--white);border-radius:var(--r-sm);padding:16px;box-shadow:var(--sh);margin-bottom:20px"></div>
     <div class="achvs-title" style="margin-top:6px">📊 Voortgang per hoofdstuk</div>
     <div id="ch-progress-list" style="background:var(--white);border-radius:var(--r-sm);padding:16px;box-shadow:var(--sh);margin-bottom:20px"></div>
     <div class="achvs-title">💾 Opslaan</div>

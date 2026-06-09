@@ -4,6 +4,7 @@
 let CL=null,EXS=[],EI=0,CC=0,WC=0,LXP=0,WAITING=false;
 let REQUEUED=new Set();
 let WRONG_WORDS=[],WRONG_SET=new Set();
+let CC_COMBO=0;
 
 function trackWrong(hz,nl,tr){
   if(WRONG_SET.has(hz))return;
@@ -20,7 +21,8 @@ const EX_TYPE_LABELS={
   wb:'🧩 Zin',
   type:'⌨️ Typen',
   cloze:'🧩 Vul in',
-  repeat:'🔁 Herhaling'
+  repeat:'🔁 Herhaling',
+  order:'🔀 Volgorde'
 };
 
 function getLessonById(id){
@@ -32,7 +34,7 @@ function startLesson(id){
   CL=getLessonById(id);
   if(!CL)return;
   EXS=buildExercises(CL);
-  EI=CC=WC=LXP=0;
+  EI=CC=WC=LXP=CC_COMBO=0;
   HEARTS=3;
   WAITING=false;
   REQUEUED=new Set();
@@ -51,7 +53,7 @@ function buildExercises(lesson){
 
   if(lesson.grammar) exs.push({type:'grammar',grammar:lesson.grammar,pronTips:lesson.pronTips||[]});
 
-  ws.slice(0,6).forEach(w=>{
+  ws.slice(0,8).forEach(w=>{
     const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
     exs.push({type:'intro',w,ctxSentence});
   });
@@ -76,9 +78,17 @@ function buildExercises(lesson){
     if(d.length>=3)exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
   });
 
-  ss.slice(0,2).forEach(s=>exs.push({type:'wb',s}));
+  ss.slice(0,3).forEach(s=>exs.push({type:'wb',s}));
 
-  shuffle(ws).slice(0,3).forEach(w=>exs.push({type:'type',w}));
+  const orderable=ss.filter(s=>s.hz.split(' ').filter(Boolean).length>=3);
+  shuffle(orderable).slice(0,2).forEach(s=>{
+    const correctWords=s.hz.split(' ').filter(Boolean);
+    const distractors=shuffle(ws.map(w=>w.hz).filter(w=>!correctWords.includes(w))).slice(0,2);
+    exs.push({type:'order',s,distractors});
+  });
+
+  const typeable=ws.filter(w=>!w.hz.includes('↔'));
+  shuffle(typeable).slice(0,3).forEach(w=>exs.push({type:'type',w}));
 
   shuffle(ws).slice(0,4).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
@@ -90,36 +100,28 @@ function buildExercises(lesson){
 
 function buildReviewExercises(words){
   const exs=[];
-  const pool=words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
+  // Gebruik volledige vocab als distractorpool — bij kleine sessies anders altijd dezelfde afleiders
+  const fullPool=Object.entries(S.vocab).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''}));
+  const pool=fullPool.length>=4 ? fullPool : words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
 
   shuffle(words).forEach(w=>{
     const distractors=pool.filter(x=>x.hz!==w.hz);
-    if(distractors.length<3) return;
-
+    if(distractors.length<3)return;
     const mastery=w.mastery||0;
+    const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
+    const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])};
+    const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...shuffle(distractors).slice(0,3).map(x=>x.hz)])};
 
-    if(mastery<=2){
-      exs.push({
-        type:'mc_nl',
-        w:{hz:w.hz,nl:w.nl,tr:w.tr},
-        choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])
-      });
-      exs.push({type:'type',w:{hz:w.hz,nl:w.nl,tr:w.tr}});
+    if(mastery===0){
+      exs.push({type:'intro',w:wd,ctxSentence:null});
+      exs.push(mc_nl);
+    } else if(mastery<=2){
+      exs.push(mc_nl);
+      if(!w.hz.includes('↔'))exs.push({type:'type',w:wd});
+    } else if(mastery<=3){
+      exs.push(Math.random()>0.4 ? mc_hz : mc_nl);
     } else {
-      const useHz=Math.random()>0.5;
-      if(useHz){
-        exs.push({
-          type:'mc_hz',
-          w:{hz:w.hz,nl:w.nl,tr:w.tr},
-          choices:shuffle([w.hz,...shuffle(distractors).slice(0,3).map(x=>x.hz)])
-        });
-      } else {
-        exs.push({
-          type:'mc_nl',
-          w:{hz:w.hz,nl:w.nl,tr:w.tr},
-          choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])
-        });
-      }
+      exs.push(mc_hz);
     }
   });
 
@@ -172,6 +174,7 @@ function renderEx(){
   else if(ex.type==='mc_hz')   rMC_hz(ex,body);
   else if(ex.type==='wb')      rWB(ex,body);
   else if(ex.type==='type')    rType(ex,body);
+  else if(ex.type==='order')   rOrder(ex,body);
   else nextEx();
 }
 
@@ -432,7 +435,7 @@ function rType(ex,body){
       if(retryMode){
         CC++;LXP+=5;
         sparkles();
-        updMastery(correct,false);
+        // updMastery al aangeroepen bij de eerste fout — niet nogmaals aanroepen
         showFB(true,'✅ Overgetypt! Goed gedaan!',w.nl,correct);
       } else {
         CC++;LXP+=10;
@@ -478,16 +481,28 @@ const normAr=s=>s
   .trim();
 
 // ── FIX Bug 1: chkMC_hz correct-detectie — gebruik data-correct ipv querySelector ──
+function showComboIndicator(combo){
+  const el=document.getElementById('combo-indicator');
+  if(!el)return;
+  el.textContent=combo>=5?`⚡ ${combo}× Combo!`:`🔥 ${combo}× Combo`;
+  el.classList.add('show');
+  clearTimeout(el._timeout);
+  el._timeout=setTimeout(()=>el.classList.remove('show'),1800);
+}
+
 function chkMC(btn,chosen,correct,hz,tr){
   if(WAITING)return;WAITING=true;
   document.querySelectorAll('.ch-btn').forEach(b=>b.disabled=true);
   if(chosen===correct){
     btn.classList.add('ok');CC++;LXP+=5;
+    CC_COMBO++;
+    if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
     showFB(true,'🌸 Goed!',correct,hz);
     sparkles();
     updMastery(hz,true);
   }else{
+    CC_COMBO=0;
     btn.classList.add('ng');WC++;
     sfxWrong();
     loseHeart();
@@ -507,11 +522,14 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
   document.querySelectorAll('.ch-btn').forEach(b=>b.disabled=true);
   if(chosen===correct){
     btn.classList.add('ok');CC++;LXP+=5;
+    CC_COMBO++;
+    if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
     showFB(true,'🌸 Goed!',nl,correct);
     sparkles();
     updMastery(correct,true);
   }else{
+    CC_COMBO=0;
     btn.classList.add('ng');WC++;
     sfxWrong();
     loseHeart();
@@ -537,6 +555,93 @@ function showFB(ok,title,hint,hzText){
 }
 function hideFB(){document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
 function nextEx(){EI++;WAITING=false;renderEx();}
+
+function rOrder(ex,body){
+  const s=ex.s;
+  const correctWords=s.hz.split(' ').filter(Boolean);
+  const distractors=(ex.distractors||[]).slice(0,2);
+  const bank=shuffle([...correctWords,...distractors]);
+  const correct=correctWords.join(' ');
+
+  body.innerHTML=`
+    <div class="type-pill">🔀 Zinsvolgorde</div>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Vertaal naar Hazaragi:</p>
+    <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;border:1.5px solid var(--rose-l)">
+      <div style="font-size:16px;font-weight:700;color:var(--ink)">"${s.nl}"</div>
+      <div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
+    </div>
+    <div class="wb-answer" id="ord-ans"></div>
+    <div class="wb-bank" id="ord-bnk">${bank.map(w=>`
+      <button class="w-tile" data-action="ordmove" data-word="${w}">${w}</button>`).join('')}
+    </div>
+    <div style="flex:1"></div>
+    <button class="btn-check" id="btn-check-ord" disabled>Controleer ✓</button>`;
+
+  const ansEl=document.getElementById('ord-ans');
+  const observer=new MutationObserver(()=>{
+    document.getElementById('btn-check-ord').disabled=ansEl.querySelectorAll('.ans').length===0;
+  });
+  observer.observe(ansEl,{childList:true});
+  document.getElementById('btn-check-ord').addEventListener('click',()=>{observer.disconnect();chkOrder(correct,s.nl,s.tr);});
+}
+
+function ordMove(tile,word){
+  tile.classList.add('placed');
+  const zone=document.getElementById('ord-ans');
+  const t=document.createElement('button');
+  t.className='w-tile ans';
+  t.textContent=word;
+  t.dataset.word=word;
+  t.onclick=()=>{
+    t.remove();
+    tile.classList.remove('placed');
+    if(document.getElementById('ord-ans').querySelectorAll('.ans').length===0)
+      document.getElementById('ord-ans').classList.remove('has');
+  };
+  zone.appendChild(t);
+  zone.classList.add('has');
+}
+
+function chkOrder(correct,nl,tr){
+  const tiles=document.getElementById('ord-ans').querySelectorAll('.ans');
+  const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
+  if(ans===correct){
+    CC++;LXP+=10;
+    CC_COMBO++;
+    if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
+    sfxCorrect();
+    showFB(true,'🔀 Perfect! Juiste volgorde!',nl,'');
+    sparkles();
+  }else{
+    WC++;CC_COMBO=0;
+    sfxWrong();
+    loseHeart();
+    showFB(false,'Niet helemaal!','Juist: '+tr,correct);
+  }
+}
+
+function startChapterReview(chId){
+  const ch=CHAPTERS.find(c=>c.id===chId);
+  if(!ch)return;
+  const learnedWords=ch.lessons.flatMap(l=>(l.words||[]).filter(w=>S.vocab[w.hz]).map(w=>({
+    hz:w.hz,nl:w.nl,tr:w.tr||'',mastery:S.vocab[w.hz]?.mastery||0
+  })));
+  if(learnedWords.length<4){showToast('Leer eerst meer woorden in dit hoofdstuk! 📚');return;}
+  const label=ch.label.replace(/[^\p{L}\p{N}\s·]/gu,'').trim()||ch.id;
+  CL={
+    id:'_chrev_'+chId,
+    title:label,
+    xp:Math.min(40,learnedWords.length*2),
+    words:learnedWords.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),
+    sentences:[]
+  };
+  EXS=buildReviewExercises(learnedWords);
+  EI=CC=WC=LXP=CC_COMBO=0;HEARTS=3;WAITING=false;
+  REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
+  document.getElementById('bnav').style.display='none';
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  showScreen('lesson');renderHearts();renderEx();
+}
 
 function leaveLesson(){
   const bg=document.createElement('div');
@@ -609,29 +714,33 @@ function startDailyReview(){
   const due=allEntries.filter(([,v])=>!v.nr||new Date(v.nr)<=now);
   if(due.length===0){showToast('Geen reviews nu! Kom later terug 🌸');return;}
 
-  const dueSlice=shuffle(due).slice(0,10);
+  // Prioriteer: review-klaar, dan aanvullen met lage mastery & hoge mastery voor interleaving
+  const dueSlice=shuffle(due).slice(0,25);
   const dueHzSet=new Set(dueSlice.map(([hz])=>hz));
   const notDue=allEntries.filter(([hz,v])=>!dueHzSet.has(hz)&&(v.mastery||0)>0);
   const lowMastery=notDue.filter(([,v])=>(v.mastery||0)<=2);
   const highMastery=notDue.filter(([,v])=>(v.mastery||0)>=4);
-  const interleaved=[...shuffle(lowMastery).slice(0,2),...shuffle(highMastery).slice(0,2)];
+  const interleaved=[
+    ...shuffle(lowMastery).slice(0,5),
+    ...shuffle(highMastery).slice(0,3)
+  ];
   const pool=shuffle([...dueSlice,...interleaved]);
 
   const reviewWords=pool.map(([hz,v])=>({
-    hz,
-    nl:v.nl,
-    tr:v.tr||'',
-    mastery:v.mastery||0
+    hz, nl:v.nl, tr:v.tr||'', mastery:v.mastery||0
   }));
 
-  CL={id:'_rev',title:'Dagelijkse herhaling',xp:Math.min(30,reviewWords.length*2),words:reviewWords.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),sentences:[]};
+  CL={
+    id:'_rev',
+    title:'Dagelijkse herhaling',
+    xp:Math.min(60,reviewWords.length*2),
+    words:reviewWords.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),
+    sentences:[]
+  };
   EXS=buildReviewExercises(reviewWords);
-  EI=CC=WC=LXP=0;
-  HEARTS=3;
-  WAITING=false;REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
+  EI=CC=WC=LXP=CC_COMBO=0;HEARTS=3;WAITING=false;
+  REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  showScreen('lesson');
-  renderHearts();
-  renderEx();
+  showScreen('lesson');renderHearts();renderEx();
 }
