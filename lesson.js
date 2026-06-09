@@ -359,11 +359,13 @@ function chkWB(correct,nl,tr){
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
   if(ans===correct){
     CC++;LXP+=8;
+    CC_COMBO++;
+    if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
     showFB(true,'🎀 Correct!',nl,'');
     sparkles();
   }else{
-    WC++;
+    WC++;CC_COMBO=0;
     sfxWrong();
     loseHeart();
     showFB(false,'Niet helemaal!','Juist: '+tr,correct);
@@ -435,17 +437,18 @@ function rType(ex,body){
       if(retryMode){
         CC++;LXP+=5;
         sparkles();
-        // updMastery al aangeroepen bij de eerste fout — niet nogmaals aanroepen
         showFB(true,'✅ Overgetypt! Goed gedaan!',w.nl,correct);
       } else {
         CC++;LXP+=10;
+        CC_COMBO++;
+        if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
         showFB(true,'✨ Uitstekend!',w.nl,correct);
         sparkles();
         updMastery(correct,true);
       }
     } else {
       if(!retryMode){
-        WC++;
+        WC++;CC_COMBO=0;
         sfxWrong();
         loseHeart();
         updMastery(correct,false);
@@ -579,7 +582,7 @@ function rOrder(ex,body){
 
   const ansEl=document.getElementById('ord-ans');
   const observer=new MutationObserver(()=>{
-    document.getElementById('btn-check-ord').disabled=ansEl.querySelectorAll('.ans').length===0;
+    document.getElementById('btn-check-ord').disabled=ansEl.querySelectorAll('.ans').length!==correctWords.length;
   });
   observer.observe(ansEl,{childList:true});
   document.getElementById('btn-check-ord').addEventListener('click',()=>{observer.disconnect();chkOrder(correct,s.nl,s.tr);});
@@ -616,6 +619,7 @@ function chkOrder(correct,nl,tr){
     WC++;CC_COMBO=0;
     sfxWrong();
     loseHeart();
+    trackWrong(correct,nl,tr);
     showFB(false,'Niet helemaal!','Juist: '+tr,correct);
   }
 }
@@ -664,7 +668,7 @@ function leaveLesson(){
 }
 
 function finishLesson(){
-  if(!S.done.includes(CL.id))S.done.push(CL.id);
+  if(!CL.id.startsWith('_')&&!S.done.includes(CL.id))S.done.push(CL.id);
   const bonusXP=HEARTS===3?5:0;
   LXP+=bonusXP;
   S.xp+=LXP;

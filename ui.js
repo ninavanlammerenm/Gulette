@@ -657,6 +657,9 @@ function showWordDetail(hz){
   modal.querySelector('#wd-close').addEventListener('click',()=>bg.remove());
   modal.querySelector('#wd-drill').addEventListener('click',()=>{
     bg.remove();
+    document.getElementById('ovh-overlay').classList.add('open');
+    document.getElementById('ovh-setup').style.display='none';
+    document.getElementById('ovh-quiz').style.display='flex';
     startOvhoring(0,[{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
   });
   document.body.appendChild(bg);
