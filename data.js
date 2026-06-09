@@ -1,4 +1,4 @@
-// ══════════════════════════════════════════════════════
+﻿// ══════════════════════════════════════════════════════
 // UITSPRAAK TIPS (Hazaragi-specifiek)
 // ══════════════════════════════════════════════════════
 const PRONUN_TIPS={
@@ -3136,6 +3136,158 @@ const CHAPTERS=[
   ]},
 
   // ══════════════════════════════════════════════════════
+  // CH40 — ISLAMITISCHE DAGELIJKSE UITDRUKKINGEN
+  // ══════════════════════════════════════════════════════
+  { id:'ch40', label:'🌙 Hoofdstuk 40 · Islamitische Dagelijkse Uitdrukkingen', color:'#065f46',
+    lessons:[
+
+    { id:'islamic_daily', title:'Dagelijkse Islamitische Uitdrukkingen', sub:'Bismillah, Alhamdulillah, Mashallah...', icon:'🌙', xp:40,
+      pronTips:['ع','خ'],
+      grammar:'Deze uitdrukkingen zijn onlosmakelijk verbonden met Hazaragi dagelijks leven. Ze zijn geen formele religie maar normale spreektaal — je hoort ze tientallen keren per dag.',
+      words:[
+        {hz:'بسم الله',tr:'bismillaah',nl:'In de naam van God',tip:'Vóór elke activiteit: eten, beginnen, rijden'},
+        {hz:'الحمدلله',tr:'alhamdolillaah',nl:'Lof zij God / Gelukkig',tip:'Na goed nieuws of als antwoord op "hoe gaat het?"'},
+        {hz:'ایشالله',tr:'ishaallah',nl:'Als God het wil',tip:'Bij toekomstplannen — altijd zeggen!'},
+        {hz:'ماشاالله',tr:'mashaaallah',nl:'God zij geprezen (bij iets moois)',tip:'Bij complimenteren van een kind, prestatie — beschermt tegen boze oog'},
+        {hz:'سبحان الله',tr:'sobhaan-allaah',nl:'Geprezen zij God (bij verbazing)',tip:'Bij iets wonderlijks of moois'},
+        {hz:'استغفرالله',tr:'astaghferollaah',nl:'Ik zoek Gods vergiffenis',tip:'Bij slecht nieuws, fout of als schrik'},
+        {hz:'انا لله',tr:'innaa lillaah',nl:'Wij zijn van God (bij overlijden)',tip:'Bij slecht nieuws, overlijdensbericht'},
+        {hz:'یا الله',tr:'yaa allaah',nl:'Oh God! / Goede hemel!',tip:'Uitroep van verbazing, pijn of smeekbede'},
+        {hz:'جزاک الله',tr:'jazaak allaah',nl:'God moge je belonen',tip:'Dankbaarheid uitdrukken — sterker dan "تشکر"'},
+        {hz:'فی امان الله',tr:'fi amaan allaah',nl:'In Gods bescherming (afscheid)',tip:'Formeel/traditioneel afscheid'},
+        {hz:'خدا حافظ',tr:'khodaa haafez',nl:'God behoede je (tot ziens)',tip:'Letterlijke betekenis van "tot ziens" in Hazaragi'},
+        {hz:'توکل به خدا',tr:'tawakkal ba khodaa',nl:'Vertrouw op God',tip:'"توکل کردن" = op God vertrouwen'},
+      ],
+      sentences:[
+        {hz:'بسم الله، شروع می‌کنیم',tr:'bismillaah, shoroo mi-konim',nl:'In de naam van God, laten we beginnen'},
+        {hz:'الحمدلله خوبم، تشکر که پرسیدی',tr:'alhamdolillaah khobom, tashakor ka porsidi',nl:'Alhamdulillah ik ben goed, bedankt dat je het vraagt'},
+        {hz:'ماشاالله، چقدر قشنگ اَس!',tr:'mashaaallah, cheqadar qashang as!',nl:'Mashallah, wat is het mooi!'},
+      ]
+    },
+
+    { id:'islamic_prayer', title:'Gebed & Moskee', sub:'Salah, moskee, Quran...', icon:'🕌', xp:40,
+      pronTips:['ص','ع'],
+      grammar:'"نماز" = het islamitische gebed (salah). "مسجد" = moskee. Hazara moslims zijn overwegend sjiïtisch — het gebed volgt de sjiïtische vorm. "وضو" = rituele reiniging vóór gebed.',
+      words:[
+        {hz:'نماز',tr:'namaaz',nl:'Gebed (salah)',tip:'"نماز خواندن" = bidden'},
+        {hz:'مسجد',tr:'masjed',nl:'Moskee',tip:''},
+        {hz:'وضو',tr:'wozoo',nl:'Rituele reiniging',tip:'Verplicht vóór gebed'},
+        {hz:'قبله',tr:'qebla',nl:'Richting van Mekka',tip:'"قبله کجاست؟" = welke kant is Mekka?'},
+        {hz:'اذان',tr:'azaan',nl:'Gebedsoproep',tip:'Vijf keer per dag'},
+        {hz:'قرآن',tr:'qoraan',nl:'De Koran',tip:'"قرآن خواندن" = Koran lezen'},
+        {hz:'دعا',tr:'do\'aa',nl:'Smeekgebed / Zegen',tip:'"دعا کردن" = bidden/zegenen'},
+        {hz:'روزه',tr:'roza',nl:'Vasten (Ramadan)',tip:'"روزه داشتن" = vasten'},
+        {hz:'رمضان',tr:'ramazaan',nl:'Ramadan',tip:'Heilige vastenmaand'},
+        {hz:'عید',tr:'eid',nl:'Eid / Feestdag',tip:'"عید مبارک" = gelukkig eid'},
+        {hz:'زکات',tr:'zakaat',nl:'Zakat (armenbelasting)',tip:'Derde zuil van de islam'},
+        {hz:'حج',tr:'hajj',nl:'Hadj / Bedevaart',tip:'"حج رفتن" = naar Mekka gaan'},
+      ],
+      sentences:[
+        {hz:'وقت نماز اَس، برویم مسجد',tr:'waqt-e namaaz as, baravim masjed',nl:'Het is tijd voor gebed, laten we naar de moskee gaan'},
+        {hz:'رمضان ماه رحمت و برکت اَس',tr:'ramazaan maah-e rahmat wa barakat as',nl:'Ramadan is de maand van genade en zegen'},
+        {hz:'عید مبارک، خدا قبول کنه',tr:'eid mobaarak, khodaa qabol kona',nl:'Gelukkig eid, moge God het aanvaarden'},
+      ]
+    },
+
+    { id:'islamic_dua', title:'Zegenwensen & Duaas', sub:'Gebeden voor dagelijkse situaties...', icon:'🤲', xp:35,
+      pronTips:['خ','ع'],
+      grammar:'Duaas zijn korte gebeden voor specifieke situaties. Ze worden in het Arabisch uitgesproken maar zijn diep geïntegreerd in de Hazaragi spreektaal. Je hoeft ze niet te begrijpen — ze worden als geheel gebruikt.',
+      words:[
+        {hz:'خدا رحمتش کنه',tr:'khodaa rahmatash kona',nl:'Moge God hem/haar genadig zijn',tip:'Na het noemen van een overledene — altijd zeggen'},
+        {hz:'خدا شفا بده',tr:'khodaa shafaa beda',nl:'Moge God genezing geven',tip:'Bij ziekte van iemand'},
+        {hz:'خدا نگهت داره',tr:'khodaa negahat daara',nl:'Moge God je beschermen',tip:'Bezorgde zegen — bij vertrek'},
+        {hz:'خدا خیرت بده',tr:'khodaa kheyrat beda',nl:'Moge God je belonen met goed',tip:'Bij gulheid, goede daad'},
+        {hz:'خدا قبول کنه',tr:'khodaa qabol kona',nl:'Moge God het aanvaarden',tip:'Na gebed, vasten, goed werk'},
+        {hz:'خدا صبر بده',tr:'khodaa sabr beda',nl:'Moge God geduld geven',tip:'Bij verdriet, rouw'},
+        {hz:'برکت',tr:'barakat',nl:'Zegen / Overvloed',tip:'"برکت داشته باش" = wees gezegend'},
+        {hz:'رحمت',tr:'rahmat',nl:'Genade / Barmhartigheid',tip:'Van God of mensen'},
+        {hz:'امین',tr:'aameen',nl:'Amen',tip:'Na elke dua gezegd'},
+        {hz:'شفا',tr:'shafaa',nl:'Genezing',tip:'"شفا پیدا کن" = herstel snel'},
+      ],
+      sentences:[
+        {hz:'خدا شفا بده، زود خوب شو',tr:'khodaa shafaa beda, zud khob sho',nl:'Moge God genezing geven, word snel beter'},
+        {hz:'الحمدلله، خدا خیر بده برات',tr:'alhamdolillaah, khodaa kheyr beda baraat',nl:'Alhamdulillah, moge God je het goede geven'},
+        {hz:'خدا نگهت داره، مراقب باش',tr:'khodaa negahat daara, muraaqeb baash',nl:'Moge God je beschermen, pas op jezelf'},
+      ]
+    },
+
+  ]},
+
+  // ══════════════════════════════════════════════════════
+  // CH41 — CONVERSATIESTRATEGIEËN
+  // ══════════════════════════════════════════════════════
+  { id:'ch41', label:'🗣️ Hoofdstuk 41 · Conversatiestrategieën', color:'#1d4ed8',
+    lessons:[
+
+    { id:'conv_clarify', title:'Verduidelijken & Herhalen', sub:'Ik begrijp niet, zeg het opnieuw...', icon:'🔄', xp:35,
+      pronTips:['خ','ف'],
+      grammar:'"دوباره بگو" = zeg het opnieuw. "آهسته بگو" = zeg het langzamer. Dit zijn essentiële zinnen voor iemand die een taal leert — gebruik ze zonder schaamte!',
+      words:[
+        {hz:'دوباره',tr:'dobaara',nl:'Opnieuw / Nog een keer',tip:'"دوباره بگو" = zeg het opnieuw'},
+        {hz:'آهسته',tr:'aahesta',nl:'Langzaam',tip:'"آهسته‌تر" = nog langzamer'},
+        {hz:'بلند',tr:'boland',nl:'Harder / Luid',tip:'"بلندتر بگو" = spreek harder'},
+        {hz:'نفهمیدم',tr:'nafamidam',nl:'Ik begreep het niet',tip:'Eerlijk en beleefd zeggen'},
+        {hz:'یعنی چی؟',tr:'yani chi?',nl:'Wat betekent dat?',tip:'Universele verduidelijkingsvraag'},
+        {hz:'مطمئنی؟',tr:'motma\'eni?',nl:'Weet je het zeker?',tip:'Vriendelijk twijfelen'},
+        {hz:'درسته؟',tr:'dorosta?',nl:'Klopt dat? / Is dat juist?',tip:'Bevestiging vragen'},
+        {hz:'یادم نیس',tr:'yaadamnis',nl:'Ik weet het niet meer',tip:'Hazaragi: "نیس" = niet'},
+        {hz:'چطور می‌گن؟',tr:'chetor mi-gan?',nl:'Hoe zeggen ze dat?',tip:'Vragen hoe je iets zegt'},
+        {hz:'به هزارگی چه می‌گن؟',tr:'ba hazaaragi cha mi-gan?',nl:'Hoe zeg je dat in Hazaragi?',tip:'Perfecte leervraag!'},
+      ],
+      sentences:[
+        {hz:'دوباره بگو، آهسته‌تر',tr:'dobaara bego, aahesta-tar',nl:'Zeg het opnieuw, langzamer'},
+        {hz:'نفهمیدم، یعنی چی؟',tr:'nafamidam, yani chi?',nl:'Ik begreep het niet, wat betekent dat?'},
+        {hz:'به هزارگی چطور می‌گن "bedankt"؟',tr:'ba hazaaragi chetor mi-gan "bedankt"?',nl:'Hoe zeg je "bedankt" in Hazaragi?'},
+      ]
+    },
+
+    { id:'conv_agree', title:'Eens of Oneens', sub:'Akkoord, precies, absoluut...', icon:'👍', xp:30,
+      pronTips:['ع','خ'],
+      grammar:'"درست اَس" = dat klopt (Hazaragi). "راست اَس" = dat is waar. "موافق هستم" = ik ben het ermee eens. "مخالفم" = ik ben het er niet mee eens.',
+      words:[
+        {hz:'درست اَس',tr:'dorost as',nl:'Dat klopt / Juist',tip:'Bevestiging in Hazaragi'},
+        {hz:'راست اَس',tr:'raast as',nl:'Dat is waar / Precies',tip:''},
+        {hz:'موافقم',tr:'mowaafeqom',nl:'Ik ben het ermee eens',tip:'"موافق هستم" = ik ga akkoord'},
+        {hz:'مخالفم',tr:'mokhaalaefom',nl:'Ik ben het er niet mee eens',tip:'Vriendelijk oneens zijn'},
+        {hz:'بله، دقیقاً',tr:'bale, daqiqan',nl:'Ja, precies / Exact',tip:'Sterke bevestiging'},
+        {hz:'نه، اشتباه اَس',tr:'na, eshtbaah as',nl:'Nee, dat is fout',tip:'Vriendelijk corrigeren'},
+        {hz:'شاید',tr:'shaayad',nl:'Misschien',tip:'Onzekerheid uitdrukken'},
+        {hz:'نمی‌دانم',tr:'nami-daanoom',nl:'Ik weet het niet',tip:'Eerlijk antwoord'},
+        {hz:'فکر می‌کنم',tr:'fekr mi-konom',nl:'Ik denk dat...',tip:'"فکر می‌کنم درست اَس" = ik denk dat het klopt'},
+        {hz:'به نظرم',tr:'ba nazaram',nl:'Naar mijn mening',tip:'Mening geven'},
+      ],
+      sentences:[
+        {hz:'به نظرم درست اَس، موافقم',tr:'ba nazaram dorost as, mowaafeqom',nl:'Naar mijn mening klopt het, ik ben het ermee eens'},
+        {hz:'شاید، ولی مطمئن نیستم',tr:'shaayad, wali motma\'en nistam',nl:'Misschien, maar ik ben er niet zeker van'},
+        {hz:'نه، اشتباه اَس — اینطور نیس',tr:'na, eshtbaah as — intoor nis',nl:'Nee, dat klopt niet — zo is het niet'},
+      ]
+    },
+
+    { id:'conv_feelings_live', title:'Gevoel Uitdrukken in Gesprek', sub:'Verbaasd, boos, blij reageren...', icon:'😮', xp:35,
+      pronTips:['و','آ'],
+      grammar:'"وای!" = wow / ach! (verrassing of schrik). "آخ!" = au! (pijn). "واقعاً؟" = echt waar? (verbazing). Dit zijn spontane reacties — ze maken je Hazaragi klinken als een echte spreker.',
+      words:[
+        {hz:'وای!',tr:'waay!',nl:'Wauw! / Ach! / Oh nee!',tip:'Verbazing of schrik — heel veel gebruikt'},
+        {hz:'آخ!',tr:'aakh!',nl:'Au! / Oef!',tip:'Pijn of onplezierige verrassing'},
+        {hz:'واقعاً؟',tr:'waaqe\'an?',nl:'Echt waar?',tip:'Verbazing uitdrukken'},
+        {hz:'عالی اَس!',tr:'aali as!',nl:'Geweldig! / Fantastisch!',tip:'"عالی" = uitstekend'},
+        {hz:'چه بد!',tr:'cha bad!',nl:'Wat erg! / Wat jammer!',tip:'Medeleven of teleurstelling'},
+        {hz:'باور نمی‌کنم',tr:'baawor nami-konom',nl:'Ik kan het niet geloven',tip:''},
+        {hz:'خوشم می‌آد',tr:'khosham mi-aad',nl:'Ik vind het leuk / Ik hou ervan',tip:'"خوشم نمی‌آد" = ik hou er niet van'},
+        {hz:'ناراحت شدم',tr:'naaraahat shodam',nl:'Ik ben van streek geraakt',tip:'"ناراحت" = verdrietig / van streek'},
+        {hz:'تعجب کردم',tr:'ta\'ajjob kardam',nl:'Ik was verbaasd',tip:'"تعجب آور اَس" = het is verbazingwekkend'},
+        {hz:'خنده‌ام گرفت',tr:'khandaam gereft',nl:'Ik moest lachen',tip:'Letterlijk: het lachen pakte me'},
+      ],
+      sentences:[
+        {hz:'وای، واقعاً؟ باور نمی‌کنم!',tr:'waay, waaqe\'an? baawor nami-konom!',nl:'Wauw, echt waar? Ik kan het niet geloven!'},
+        {hz:'عالی اَس، خوشم آد!',tr:'aali as, khosham aad!',nl:'Geweldig, ik vind het leuk!'},
+        {hz:'چه بد، ناراحت شدم برات',tr:'cha bad, naaraahat shodam baraat',nl:'Wat erg, ik voel met je mee'},
+      ]
+    },
+
+  ]},
+
+  // ══════════════════════════════════════════════════════
   // CH42 — WINKELEN & ONDERHANDELEN
   // ══════════════════════════════════════════════════════
   { id:'ch42', label:'🛒 Hoofdstuk 42 · Winkelen & Onderhandelen', color:'#b45309',
@@ -3516,158 +3668,6 @@ const CHAPTERS=[
         {hz:'امشب قابلی داریم، بیا خانه ما',tr:'emshab qaaboli daarem, biyaa khaana maa',nl:'Vanavond hebben we qabuli, kom naar ons huis'},
         {hz:'مانتو خوشمزه‌ترین غذای افغانیه',tr:'maanto khoshmazatarin ghazaa-ye afghaanis',nl:'Manto is het lekkerste Afghaanse eten'},
         {hz:'نان تازه از تنور خوش‌بوی اَس',tr:'naan-e taaza az tanoor khoshbooy as',nl:'Vers brood uit de tandoor ruikt heerlijk'},
-      ]
-    },
-
-  ]},
-
-  // ══════════════════════════════════════════════════════
-  // CH40 — ISLAMITISCHE DAGELIJKSE UITDRUKKINGEN
-  // ══════════════════════════════════════════════════════
-  { id:'ch40', label:'🌙 Hoofdstuk 40 · Islamitische Dagelijkse Uitdrukkingen', color:'#065f46',
-    lessons:[
-
-    { id:'islamic_daily', title:'Dagelijkse Islamitische Uitdrukkingen', sub:'Bismillah, Alhamdulillah, Mashallah...', icon:'🌙', xp:40,
-      pronTips:['ع','خ'],
-      grammar:'Deze uitdrukkingen zijn onlosmakelijk verbonden met Hazaragi dagelijks leven. Ze zijn geen formele religie maar normale spreektaal — je hoort ze tientallen keren per dag.',
-      words:[
-        {hz:'بسم الله',tr:'bismillaah',nl:'In de naam van God',tip:'Vóór elke activiteit: eten, beginnen, rijden'},
-        {hz:'الحمدلله',tr:'alhamdolillaah',nl:'Lof zij God / Gelukkig',tip:'Na goed nieuws of als antwoord op "hoe gaat het?"'},
-        {hz:'ایشالله',tr:'ishaallah',nl:'Als God het wil',tip:'Bij toekomstplannen — altijd zeggen!'},
-        {hz:'ماشاالله',tr:'mashaaallah',nl:'God zij geprezen (bij iets moois)',tip:'Bij complimenteren van een kind, prestatie — beschermt tegen boze oog'},
-        {hz:'سبحان الله',tr:'sobhaan-allaah',nl:'Geprezen zij God (bij verbazing)',tip:'Bij iets wonderlijks of moois'},
-        {hz:'استغفرالله',tr:'astaghferollaah',nl:'Ik zoek Gods vergiffenis',tip:'Bij slecht nieuws, fout of als schrik'},
-        {hz:'انا لله',tr:'innaa lillaah',nl:'Wij zijn van God (bij overlijden)',tip:'Bij slecht nieuws, overlijdensbericht'},
-        {hz:'یا الله',tr:'yaa allaah',nl:'Oh God! / Goede hemel!',tip:'Uitroep van verbazing, pijn of smeekbede'},
-        {hz:'جزاک الله',tr:'jazaak allaah',nl:'God moge je belonen',tip:'Dankbaarheid uitdrukken — sterker dan "تشکر"'},
-        {hz:'فی امان الله',tr:'fi amaan allaah',nl:'In Gods bescherming (afscheid)',tip:'Formeel/traditioneel afscheid'},
-        {hz:'خدا حافظ',tr:'khodaa haafez',nl:'God behoede je (tot ziens)',tip:'Letterlijke betekenis van "tot ziens" in Hazaragi'},
-        {hz:'توکل به خدا',tr:'tawakkal ba khodaa',nl:'Vertrouw op God',tip:'"توکل کردن" = op God vertrouwen'},
-      ],
-      sentences:[
-        {hz:'بسم الله، شروع می‌کنیم',tr:'bismillaah, shoroo mi-konim',nl:'In de naam van God, laten we beginnen'},
-        {hz:'الحمدلله خوبم، تشکر که پرسیدی',tr:'alhamdolillaah khobom, tashakor ka porsidi',nl:'Alhamdulillah ik ben goed, bedankt dat je het vraagt'},
-        {hz:'ماشاالله، چقدر قشنگ اَس!',tr:'mashaaallah, cheqadar qashang as!',nl:'Mashallah, wat is het mooi!'},
-      ]
-    },
-
-    { id:'islamic_prayer', title:'Gebed & Moskee', sub:'Salah, moskee, Quran...', icon:'🕌', xp:40,
-      pronTips:['ص','ع'],
-      grammar:'"نماز" = het islamitische gebed (salah). "مسجد" = moskee. Hazara moslims zijn overwegend sjiïtisch — het gebed volgt de sjiïtische vorm. "وضو" = rituele reiniging vóór gebed.',
-      words:[
-        {hz:'نماز',tr:'namaaz',nl:'Gebed (salah)',tip:'"نماز خواندن" = bidden'},
-        {hz:'مسجد',tr:'masjed',nl:'Moskee',tip:''},
-        {hz:'وضو',tr:'wozoo',nl:'Rituele reiniging',tip:'Verplicht vóór gebed'},
-        {hz:'قبله',tr:'qebla',nl:'Richting van Mekka',tip:'"قبله کجاست؟" = welke kant is Mekka?'},
-        {hz:'اذان',tr:'azaan',nl:'Gebedsoproep',tip:'Vijf keer per dag'},
-        {hz:'قرآن',tr:'qoraan',nl:'De Koran',tip:'"قرآن خواندن" = Koran lezen'},
-        {hz:'دعا',tr:'do\'aa',nl:'Smeekgebed / Zegen',tip:'"دعا کردن" = bidden/zegenen'},
-        {hz:'روزه',tr:'roza',nl:'Vasten (Ramadan)',tip:'"روزه داشتن" = vasten'},
-        {hz:'رمضان',tr:'ramazaan',nl:'Ramadan',tip:'Heilige vastenmaand'},
-        {hz:'عید',tr:'eid',nl:'Eid / Feestdag',tip:'"عید مبارک" = gelukkig eid'},
-        {hz:'زکات',tr:'zakaat',nl:'Zakat (armenbelasting)',tip:'Derde zuil van de islam'},
-        {hz:'حج',tr:'hajj',nl:'Hadj / Bedevaart',tip:'"حج رفتن" = naar Mekka gaan'},
-      ],
-      sentences:[
-        {hz:'وقت نماز اَس، برویم مسجد',tr:'waqt-e namaaz as, baravim masjed',nl:'Het is tijd voor gebed, laten we naar de moskee gaan'},
-        {hz:'رمضان ماه رحمت و برکت اَس',tr:'ramazaan maah-e rahmat wa barakat as',nl:'Ramadan is de maand van genade en zegen'},
-        {hz:'عید مبارک، خدا قبول کنه',tr:'eid mobaarak, khodaa qabol kona',nl:'Gelukkig eid, moge God het aanvaarden'},
-      ]
-    },
-
-    { id:'islamic_dua', title:'Zegenwensen & Duaas', sub:'Gebeden voor dagelijkse situaties...', icon:'🤲', xp:35,
-      pronTips:['خ','ع'],
-      grammar:'Duaas zijn korte gebeden voor specifieke situaties. Ze worden in het Arabisch uitgesproken maar zijn diep geïntegreerd in de Hazaragi spreektaal. Je hoeft ze niet te begrijpen — ze worden als geheel gebruikt.',
-      words:[
-        {hz:'خدا رحمتش کنه',tr:'khodaa rahmatash kona',nl:'Moge God hem/haar genadig zijn',tip:'Na het noemen van een overledene — altijd zeggen'},
-        {hz:'خدا شفا بده',tr:'khodaa shafaa beda',nl:'Moge God genezing geven',tip:'Bij ziekte van iemand'},
-        {hz:'خدا نگهت داره',tr:'khodaa negahat daara',nl:'Moge God je beschermen',tip:'Bezorgde zegen — bij vertrek'},
-        {hz:'خدا خیرت بده',tr:'khodaa kheyrat beda',nl:'Moge God je belonen met goed',tip:'Bij gulheid, goede daad'},
-        {hz:'خدا قبول کنه',tr:'khodaa qabol kona',nl:'Moge God het aanvaarden',tip:'Na gebed, vasten, goed werk'},
-        {hz:'خدا صبر بده',tr:'khodaa sabr beda',nl:'Moge God geduld geven',tip:'Bij verdriet, rouw'},
-        {hz:'برکت',tr:'barakat',nl:'Zegen / Overvloed',tip:'"برکت داشته باش" = wees gezegend'},
-        {hz:'رحمت',tr:'rahmat',nl:'Genade / Barmhartigheid',tip:'Van God of mensen'},
-        {hz:'امین',tr:'aameen',nl:'Amen',tip:'Na elke dua gezegd'},
-        {hz:'شفا',tr:'shafaa',nl:'Genezing',tip:'"شفا پیدا کن" = herstel snel'},
-      ],
-      sentences:[
-        {hz:'خدا شفا بده، زود خوب شو',tr:'khodaa shafaa beda, zud khob sho',nl:'Moge God genezing geven, word snel beter'},
-        {hz:'الحمدلله، خدا خیر بده برات',tr:'alhamdolillaah, khodaa kheyr beda baraat',nl:'Alhamdulillah, moge God je het goede geven'},
-        {hz:'خدا نگهت داره، مراقب باش',tr:'khodaa negahat daara, muraaqeb baash',nl:'Moge God je beschermen, pas op jezelf'},
-      ]
-    },
-
-  ]},
-
-  // ══════════════════════════════════════════════════════
-  // CH41 — CONVERSATIESTRATEGIEËN
-  // ══════════════════════════════════════════════════════
-  { id:'ch41', label:'🗣️ Hoofdstuk 41 · Conversatiestrategieën', color:'#1d4ed8',
-    lessons:[
-
-    { id:'conv_clarify', title:'Verduidelijken & Herhalen', sub:'Ik begrijp niet, zeg het opnieuw...', icon:'🔄', xp:35,
-      pronTips:['خ','ف'],
-      grammar:'"دوباره بگو" = zeg het opnieuw. "آهسته بگو" = zeg het langzamer. Dit zijn essentiële zinnen voor iemand die een taal leert — gebruik ze zonder schaamte!',
-      words:[
-        {hz:'دوباره',tr:'dobaara',nl:'Opnieuw / Nog een keer',tip:'"دوباره بگو" = zeg het opnieuw'},
-        {hz:'آهسته',tr:'aahesta',nl:'Langzaam',tip:'"آهسته‌تر" = nog langzamer'},
-        {hz:'بلند',tr:'boland',nl:'Harder / Luid',tip:'"بلندتر بگو" = spreek harder'},
-        {hz:'نفهمیدم',tr:'nafamidam',nl:'Ik begreep het niet',tip:'Eerlijk en beleefd zeggen'},
-        {hz:'یعنی چی؟',tr:'yani chi?',nl:'Wat betekent dat?',tip:'Universele verduidelijkingsvraag'},
-        {hz:'مطمئنی؟',tr:'motma\'eni?',nl:'Weet je het zeker?',tip:'Vriendelijk twijfelen'},
-        {hz:'درسته؟',tr:'dorosta?',nl:'Klopt dat? / Is dat juist?',tip:'Bevestiging vragen'},
-        {hz:'یادم نیس',tr:'yaadamnis',nl:'Ik weet het niet meer',tip:'Hazaragi: "نیس" = niet'},
-        {hz:'چطور می‌گن؟',tr:'chetor mi-gan?',nl:'Hoe zeggen ze dat?',tip:'Vragen hoe je iets zegt'},
-        {hz:'به هزارگی چه می‌گن؟',tr:'ba hazaaragi cha mi-gan?',nl:'Hoe zeg je dat in Hazaragi?',tip:'Perfecte leervraag!'},
-      ],
-      sentences:[
-        {hz:'دوباره بگو، آهسته‌تر',tr:'dobaara bego, aahesta-tar',nl:'Zeg het opnieuw, langzamer'},
-        {hz:'نفهمیدم، یعنی چی؟',tr:'nafamidam, yani chi?',nl:'Ik begreep het niet, wat betekent dat?'},
-        {hz:'به هزارگی چطور می‌گن "bedankt"؟',tr:'ba hazaaragi chetor mi-gan "bedankt"?',nl:'Hoe zeg je "bedankt" in Hazaragi?'},
-      ]
-    },
-
-    { id:'conv_agree', title:'Eens of Oneens', sub:'Akkoord, precies, absoluut...', icon:'👍', xp:30,
-      pronTips:['ع','خ'],
-      grammar:'"درست اَس" = dat klopt (Hazaragi). "راست اَس" = dat is waar. "موافق هستم" = ik ben het ermee eens. "مخالفم" = ik ben het er niet mee eens.',
-      words:[
-        {hz:'درست اَس',tr:'dorost as',nl:'Dat klopt / Juist',tip:'Bevestiging in Hazaragi'},
-        {hz:'راست اَس',tr:'raast as',nl:'Dat is waar / Precies',tip:''},
-        {hz:'موافقم',tr:'mowaafeqom',nl:'Ik ben het ermee eens',tip:'"موافق هستم" = ik ga akkoord'},
-        {hz:'مخالفم',tr:'mokhaalaefom',nl:'Ik ben het er niet mee eens',tip:'Vriendelijk oneens zijn'},
-        {hz:'بله، دقیقاً',tr:'bale, daqiqan',nl:'Ja, precies / Exact',tip:'Sterke bevestiging'},
-        {hz:'نه، اشتباه اَس',tr:'na, eshtbaah as',nl:'Nee, dat is fout',tip:'Vriendelijk corrigeren'},
-        {hz:'شاید',tr:'shaayad',nl:'Misschien',tip:'Onzekerheid uitdrukken'},
-        {hz:'نمی‌دانم',tr:'nami-daanoom',nl:'Ik weet het niet',tip:'Eerlijk antwoord'},
-        {hz:'فکر می‌کنم',tr:'fekr mi-konom',nl:'Ik denk dat...',tip:'"فکر می‌کنم درست اَس" = ik denk dat het klopt'},
-        {hz:'به نظرم',tr:'ba nazaram',nl:'Naar mijn mening',tip:'Mening geven'},
-      ],
-      sentences:[
-        {hz:'به نظرم درست اَس، موافقم',tr:'ba nazaram dorost as, mowaafeqom',nl:'Naar mijn mening klopt het, ik ben het ermee eens'},
-        {hz:'شاید، ولی مطمئن نیستم',tr:'shaayad, wali motma\'en nistam',nl:'Misschien, maar ik ben er niet zeker van'},
-        {hz:'نه، اشتباه اَس — اینطور نیس',tr:'na, eshtbaah as — intoor nis',nl:'Nee, dat klopt niet — zo is het niet'},
-      ]
-    },
-
-    { id:'conv_feelings_live', title:'Gevoel Uitdrukken in Gesprek', sub:'Verbaasd, boos, blij reageren...', icon:'😮', xp:35,
-      pronTips:['و','آ'],
-      grammar:'"وای!" = wow / ach! (verrassing of schrik). "آخ!" = au! (pijn). "واقعاً؟" = echt waar? (verbazing). Dit zijn spontane reacties — ze maken je Hazaragi klinken als een echte spreker.',
-      words:[
-        {hz:'وای!',tr:'waay!',nl:'Wauw! / Ach! / Oh nee!',tip:'Verbazing of schrik — heel veel gebruikt'},
-        {hz:'آخ!',tr:'aakh!',nl:'Au! / Oef!',tip:'Pijn of onplezierige verrassing'},
-        {hz:'واقعاً؟',tr:'waaqe\'an?',nl:'Echt waar?',tip:'Verbazing uitdrukken'},
-        {hz:'عالی اَس!',tr:'aali as!',nl:'Geweldig! / Fantastisch!',tip:'"عالی" = uitstekend'},
-        {hz:'چه بد!',tr:'cha bad!',nl:'Wat erg! / Wat jammer!',tip:'Medeleven of teleurstelling'},
-        {hz:'باور نمی‌کنم',tr:'baawor nami-konom',nl:'Ik kan het niet geloven',tip:''},
-        {hz:'خوشم می‌آد',tr:'khosham mi-aad',nl:'Ik vind het leuk / Ik hou ervan',tip:'"خوشم نمی‌آد" = ik hou er niet van'},
-        {hz:'ناراحت شدم',tr:'naaraahat shodam',nl:'Ik ben van streek geraakt',tip:'"ناراحت" = verdrietig / van streek'},
-        {hz:'تعجب کردم',tr:'ta\'ajjob kardam',nl:'Ik was verbaasd',tip:'"تعجب آور اَس" = het is verbazingwekkend'},
-        {hz:'خنده‌ام گرفت',tr:'khandaam gereft',nl:'Ik moest lachen',tip:'Letterlijk: het lachen pakte me'},
-      ],
-      sentences:[
-        {hz:'وای، واقعاً؟ باور نمی‌کنم!',tr:'waay, waaqe\'an? baawor nami-konom!',nl:'Wauw, echt waar? Ik kan het niet geloven!'},
-        {hz:'عالی اَس، خوشم آد!',tr:'aali as, khosham aad!',nl:'Geweldig, ik vind het leuk!'},
-        {hz:'چه بد، ناراحت شدم برات',tr:'cha bad, naaraahat shodam baraat',nl:'Wat erg, ik voel met je mee'},
       ]
     },
 
