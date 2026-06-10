@@ -10,6 +10,7 @@ const toDutchPhonetic = tr => tr || '';
 
 const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
+const isDue=v=>!v.nr||new Date(v.nr)<=new Date();
 
 let sciIdx=0;
 

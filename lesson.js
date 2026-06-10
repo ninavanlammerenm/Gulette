@@ -5,6 +5,8 @@ let CL=null,EXS=[],EI=0,CC=0,WC=0,LXP=0,WAITING=false;
 let REQUEUED=new Set();
 let WRONG_WORDS=[],WRONG_SET=new Set();
 let CC_COMBO=0;
+let _comboTimeout=null;
+let _activeObserver=null;
 
 function trackWrong(hz,nl,tr){
   if(WRONG_SET.has(hz))return;
@@ -30,20 +32,20 @@ function getLessonById(id){
   return null;
 }
 
+function _launchLesson(){
+  if(_activeObserver){_activeObserver.disconnect();_activeObserver=null;}
+  EI=CC=WC=LXP=CC_COMBO=0;HEARTS=3;WAITING=false;
+  REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
+  document.getElementById('bnav').style.display='none';
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  showScreen('lesson');renderHearts();renderEx();
+}
+
 function startLesson(id){
   CL=getLessonById(id);
   if(!CL)return;
   EXS=buildExercises(CL);
-  EI=CC=WC=LXP=CC_COMBO=0;
-  HEARTS=3;
-  WAITING=false;
-  REQUEUED=new Set();
-  WRONG_WORDS=[];WRONG_SET=new Set();
-  showScreen('lesson');
-  document.getElementById('bnav').style.display='none';
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  renderHearts();
-  renderEx();
+  _launchLesson();
 }
 
 function buildExercises(lesson){
@@ -329,17 +331,17 @@ function rWB(ex,body){
     <button class="btn-check" id="btn-check-wb" disabled>Controleer ✓</button>`;
 
   const ansEl=document.getElementById('wb-ans');
-  const observer=new MutationObserver(()=>{
-    const count=ansEl.querySelectorAll('.ans').length;
-    document.getElementById('btn-check-wb').disabled=count===0;
+  if(_activeObserver){_activeObserver.disconnect();}
+  _activeObserver=new MutationObserver(()=>{
+    document.getElementById('btn-check-wb').disabled=ansEl.querySelectorAll('.ans').length===0;
   });
-  observer.observe(ansEl,{childList:true});
-  document.getElementById('btn-check-wb').addEventListener('click', ()=>{ observer.disconnect(); chkWB(correct, s.nl, s.tr); });
+  _activeObserver.observe(ansEl,{childList:true});
+  document.getElementById('btn-check-wb').addEventListener('click',()=>{_activeObserver.disconnect();_activeObserver=null;chkWB(correct,s.nl,s.tr);});
 }
 
-function wbMove(tile, word){
+function tileMove(tile, word, zoneId){
   tile.classList.add('placed');
-  const zone=document.getElementById('wb-ans');
+  const zone=document.getElementById(zoneId);
   const t=document.createElement('button');
   t.className='w-tile ans';
   t.textContent=word;
@@ -347,12 +349,13 @@ function wbMove(tile, word){
   t.onclick=()=>{
     t.remove();
     tile.classList.remove('placed');
-    const remaining=document.getElementById('wb-ans').querySelectorAll('.ans').length;
-    if(remaining===0)document.getElementById('wb-ans').classList.remove('has');
+    if(zone.querySelectorAll('.ans').length===0)zone.classList.remove('has');
   };
   zone.appendChild(t);
   zone.classList.add('has');
 }
+function wbMove(tile,word){tileMove(tile,word,'wb-ans');}
+function ordMove(tile,word){tileMove(tile,word,'ord-ans');}
 
 function chkWB(correct,nl,tr){
   const tiles=document.getElementById('wb-ans').querySelectorAll('.ans');
@@ -483,14 +486,13 @@ const normAr=s=>s
   .replace(/ة/g,'ه')
   .trim();
 
-// ── FIX Bug 1: chkMC_hz correct-detectie — gebruik data-correct ipv querySelector ──
 function showComboIndicator(combo){
   const el=document.getElementById('combo-indicator');
   if(!el)return;
   el.textContent=combo>=5?`⚡ ${combo}× Combo!`:`🔥 ${combo}× Combo`;
   el.classList.add('show');
-  clearTimeout(el._timeout);
-  el._timeout=setTimeout(()=>el.classList.remove('show'),1800);
+  clearTimeout(_comboTimeout);
+  _comboTimeout=setTimeout(()=>el.classList.remove('show'),1800);
 }
 
 function chkMC(btn,chosen,correct,hz,tr){
@@ -581,28 +583,12 @@ function rOrder(ex,body){
     <button class="btn-check" id="btn-check-ord" disabled>Controleer ✓</button>`;
 
   const ansEl=document.getElementById('ord-ans');
-  const observer=new MutationObserver(()=>{
+  if(_activeObserver){_activeObserver.disconnect();}
+  _activeObserver=new MutationObserver(()=>{
     document.getElementById('btn-check-ord').disabled=ansEl.querySelectorAll('.ans').length!==correctWords.length;
   });
-  observer.observe(ansEl,{childList:true});
-  document.getElementById('btn-check-ord').addEventListener('click',()=>{observer.disconnect();chkOrder(correct,s.nl,s.tr);});
-}
-
-function ordMove(tile,word){
-  tile.classList.add('placed');
-  const zone=document.getElementById('ord-ans');
-  const t=document.createElement('button');
-  t.className='w-tile ans';
-  t.textContent=word;
-  t.dataset.word=word;
-  t.onclick=()=>{
-    t.remove();
-    tile.classList.remove('placed');
-    if(document.getElementById('ord-ans').querySelectorAll('.ans').length===0)
-      document.getElementById('ord-ans').classList.remove('has');
-  };
-  zone.appendChild(t);
-  zone.classList.add('has');
+  _activeObserver.observe(ansEl,{childList:true});
+  document.getElementById('btn-check-ord').addEventListener('click',()=>{_activeObserver.disconnect();_activeObserver=null;chkOrder(correct,s.nl,s.tr);});
 }
 
 function chkOrder(correct,nl,tr){
@@ -640,11 +626,7 @@ function startChapterReview(chId){
     sentences:[]
   };
   EXS=buildReviewExercises(learnedWords);
-  EI=CC=WC=LXP=CC_COMBO=0;HEARTS=3;WAITING=false;
-  REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
-  document.getElementById('bnav').style.display='none';
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  showScreen('lesson');renderHearts();renderEx();
+  _launchLesson();
 }
 
 function leaveLesson(){
@@ -709,13 +691,12 @@ function finishLesson(){
 function retryLessonWrong(){
   if(!WRONG_WORDS.length)return;
   const wordList=WRONG_WORDS.map(w=>({hz:w.hz,v:{nl:w.nl,tr:w.tr,mastery:0,nr:null},dir:'hz_nl'}));
-  startOvhoring(0,wordList);
+  openOvhDirect(wordList);
 }
 
 function startDailyReview(){
-  const now=new Date();
   const allEntries=Object.entries(S.vocab);
-  const due=allEntries.filter(([,v])=>!v.nr||new Date(v.nr)<=now);
+  const due=allEntries.filter(([,v])=>isDue(v));
   if(due.length===0){showToast('Geen reviews nu! Kom later terug 🌸');return;}
 
   // Prioriteer: review-klaar, dan aanvullen met lage mastery & hoge mastery voor interleaving
@@ -742,9 +723,5 @@ function startDailyReview(){
     sentences:[]
   };
   EXS=buildReviewExercises(reviewWords);
-  EI=CC=WC=LXP=CC_COMBO=0;HEARTS=3;WAITING=false;
-  REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
-  document.getElementById('bnav').style.display='none';
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  showScreen('lesson');renderHearts();renderEx();
+  _launchLesson();
 }

@@ -61,6 +61,11 @@ function _ovhQtype(hz, mastery){
 // ══════════════════════════════════════════════════════
 // SESSION STARTEN
 // ══════════════════════════════════════════════════════
+function openOvhDirect(wordList){
+  document.getElementById('ovh-overlay').classList.add('open');
+  startOvhoring(0,wordList);
+}
+
 function startOvhoring(n, wordList){
   if(wordList){
     _ovhWords=wordList.map(w=>({...w, qtype:w.qtype||'mc'}));

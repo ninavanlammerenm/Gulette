@@ -114,7 +114,7 @@ function renderHome(){
 
   // Due count
   const allVocab=Object.values(S.vocab);
-  const due=allVocab.filter(v=>!v.nr||new Date(v.nr)<=new Date()).length;
+  const due=allVocab.filter(v=>isDue(v)).length;
   const total=Object.keys(S.vocab).length;
   if(due>0){
     document.getElementById('rev-count-txt').textContent=`${due} van ${total} woorden klaar voor herhaling! 🌸`;
@@ -228,8 +228,8 @@ function renderVocab(){
   }
   el.innerHTML=list.map(([hz,v])=>{
     const m=Math.round(v.mastery||0);
-    const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
-    const due=!v.nr||new Date(v.nr)<=new Date();
+    const pips=masteryPips(m);
+    const due=isDue(v);
     const nxt=v.nr?timeUntil(v.nr):'Nu';
     const accent=due&&m<2?'var(--rose-d)':m>=4?'var(--mint)':m>=2?'var(--lav)':'var(--gold)';
     // markeer lange klanken (dubbele klinkers) in de uitspraak
@@ -330,46 +330,8 @@ function timeUntil(iso){
   return Math.floor(h/24)+'d';
 }
 
-function showPronModal(hz){
-  const v=S.vocab[hz];if(!v)return;
-  const tip=getPronTip(hz);
-  const bg=document.createElement('div');
-  bg.className='modal-bg';
-  const modal=document.createElement('div');
-  modal.className='modal';
-  const dragEl=document.createElement('div');
-  dragEl.className='modal-drag';
-  const titleEl=document.createElement('div');
-  titleEl.className='modal-title';
-  titleEl.textContent=hz;
-  const row1=document.createElement('div');
-  row1.className='pron-row';
-  row1.innerHTML=`<div class="pron-hz">${hz}</div>
-    <div class="pron-info">
-      <div style="font-size:17px;font-weight:900;color:var(--rose-d);margin-bottom:3px">🗣️ ${toDutchPhonetic(v.tr)}</div>
-      <div class="pron-latin">${v.tr}</div>
-      <div class="pron-tip">= ${v.nl}</div>
-    </div>`;
-  const closeBtn=document.createElement('button');
-  closeBtn.className='btn-check';
-  closeBtn.style.cssText='position:static;margin-top:10px';
-  closeBtn.textContent='Sluiten';
-  closeBtn.addEventListener('click',()=>bg.remove());
-  modal.appendChild(dragEl);modal.appendChild(titleEl);modal.appendChild(row1);
-  if(tip){
-    const row2=document.createElement('div');
-    row2.className='pron-row';
-    row2.innerHTML=`<div class="pron-hz">🔊</div>
-      <div class="pron-info">
-        <div class="pron-latin">Uitspraaktip</div>
-        <div class="pron-tip">${tip}</div>
-      </div>`;
-    modal.appendChild(row2);
-  }
-  modal.appendChild(closeBtn);
-  bg.appendChild(modal);
-  bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
-  document.body.appendChild(bg);
+function masteryPips(m){
+  return [0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
 }
 
 // ══════════════════════════════════════════════════════
@@ -573,8 +535,7 @@ function renderDagwoord(){
   const foot=document.getElementById('dw-foot');
   if(foot){
     const m=v.mastery||0;
-    const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
-    foot.innerHTML=`<div class="m-pips dw-pips">${pips}</div><div class="dw-due" onclick="event.stopPropagation();showWordDetail('${hz}')">Bekijk details ›</div>`;
+    foot.innerHTML=`<div class="m-pips dw-pips">${masteryPips(m)}</div><div class="dw-due" onclick="event.stopPropagation();showWordDetail('${hz}')">Bekijk details ›</div>`;
   }
 }
 
@@ -585,18 +546,21 @@ function renderMasteryDistrib(){
   const el=document.getElementById('mastery-distrib');
   if(!el)return;
   const counts=[0,0,0,0,0,0];
-  Object.values(S.vocab).forEach(v=>counts[Math.min(v.mastery||0,5)]++);
+  let dueNow=0,dueTomorrow=0,dueWeek=0;
+  const now=new Date();
+  const tomorrow=new Date(now.getTime()+86400000);
+  const inWeek=new Date(now.getTime()+7*86400000);
+  Object.values(S.vocab).forEach(v=>{
+    counts[Math.min(v.mastery||0,5)]++;
+    if(!v.nr||new Date(v.nr)<=now) dueNow++;
+    else if(new Date(v.nr)<=tomorrow) dueTomorrow++;
+    else if(new Date(v.nr)<=inWeek) dueWeek++;
+  });
   const total=counts.reduce((a,b)=>a+b,0);
   if(!total){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--ink-l);font-weight:700">Nog geen woorden geleerd 🌱</div>';return;}
   const max=Math.max(...counts,1);
   const labels=['Nieuw','Basis','Leerling','Gevorderd','Expert','Meester'];
   const colors=['var(--ink-l)','var(--peach)','var(--gold)','var(--rose)','var(--mint)','var(--lav)'];
-  const now=new Date();
-  const tomorrow=new Date(now.getTime()+86400000);
-  const inWeek=new Date(now.getTime()+7*86400000);
-  const dueNow=Object.values(S.vocab).filter(v=>!v.nr||new Date(v.nr)<=now).length;
-  const dueTomorrow=Object.values(S.vocab).filter(v=>v.nr&&new Date(v.nr)>now&&new Date(v.nr)<=tomorrow).length;
-  const dueWeek=Object.values(S.vocab).filter(v=>v.nr&&new Date(v.nr)>tomorrow&&new Date(v.nr)<=inWeek).length;
   el.innerHTML=`
     <div class="mastery-bars">${counts.map((c,i)=>`
       <div class="mastery-bar-row">
@@ -620,8 +584,7 @@ function showWordDetail(hz){
   const v=S.vocab[hz];if(!v)return;
   const m=v.mastery||0;
   const masteryNames=['Onbekend','Beginner','Leerling','Gevorderd','Expert','Meester'];
-  const pips=[0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
-  const due=!v.nr||new Date(v.nr)<=new Date();
+  const due=isDue(v);
   const nxt=v.nr?timeUntil(v.nr):'Nu';
   const bg=document.createElement('div');
   bg.className='modal-bg';
@@ -636,7 +599,7 @@ function showWordDetail(hz){
     </div>
     <div class="wd-stats">
       <div class="wd-stat-box">
-        <div class="m-pips wd-pips">${pips}</div>
+        <div class="m-pips wd-pips">${masteryPips(m)}</div>
         <div class="wd-stat-lbl">${masteryNames[m]}</div>
       </div>
       <div class="wd-stat-box">
@@ -657,10 +620,7 @@ function showWordDetail(hz){
   modal.querySelector('#wd-close').addEventListener('click',()=>bg.remove());
   modal.querySelector('#wd-drill').addEventListener('click',()=>{
     bg.remove();
-    document.getElementById('ovh-overlay').classList.add('open');
-    document.getElementById('ovh-setup').style.display='none';
-    document.getElementById('ovh-quiz').style.display='flex';
-    startOvhoring(0,[{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
+    openOvhDirect([{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
   });
   document.body.appendChild(bg);
 }
