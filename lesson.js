@@ -737,7 +737,7 @@ function showGrammarHint(){
   modal.innerHTML=`
     <div class="modal-drag"></div>
     <div style="font-size:18px;font-weight:900;color:var(--ink);margin-bottom:12px">💡 Taalregel</div>
-    <div style="font-size:14px;font-weight:700;color:var(--ink-m);line-height:1.7">${CL.grammar}</div>
+    <div style="font-size:14px;font-weight:700;color:var(--ink-m);line-height:1.7">${CL.grammar.replace(/\n/g,'<br>')}</div>
     <button class="btn-check" style="position:static;margin-top:16px" id="grammar-close">Verder ✓</button>`;
   bg.appendChild(modal);
   bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});

@@ -45,6 +45,7 @@ function navTo(id, btn) {
   if(id==='review')  renderVocab();
   if(id==='profile') renderProfile();
   if(id==='home')    renderHome();
+  if(id==='grammar') renderGrammarLibrary();
 }
 
 function goHome(){
@@ -661,4 +662,49 @@ function showWordDetail(hz){
 function showToast(msg){
   const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+// ══════════════════════════════════════════════════════
+// GRAMMAR LIBRARY
+// ══════════════════════════════════════════════════════
+function renderGrammarLibrary(){
+  const container=document.getElementById('grammar-library-list');
+  if(!container)return;
+
+  const gramChapters=CHAPTERS.filter(c=>
+    c.id.startsWith('ch_gram')||c.id==='ch30'||c.id==='ch52'
+  );
+
+  let totalLessons=0;
+  let html='';
+  gramChapters.forEach(ch=>{
+    const lessons=(ch.lessons||[]).filter(l=>l.grammar);
+    if(!lessons.length)return;
+    totalLessons+=lessons.length;
+    html+=`<div class="gram-chapter">
+      <div class="gram-ch-label">${ch.label}</div>
+      ${lessons.map(l=>`
+        <div class="gram-item" onclick="toggleGramItem(this)">
+          <div class="gram-item-hdr">
+            <span class="gram-item-ico">${l.icon||'📖'}</span>
+            <div class="gram-item-info">
+              <div class="gram-item-title">${l.title}</div>
+              <div class="gram-item-sub">${l.sub||''}</div>
+            </div>
+            <span class="gram-item-arrow">›</span>
+          </div>
+          <div class="gram-item-body">${l.grammar.replace(/\n/g,'<br>')}</div>
+        </div>
+      `).join('')}
+    </div>`;
+  });
+
+  document.getElementById('gram-sub').textContent=`${totalLessons} taalregels om op te zoeken`;
+  container.innerHTML=html;
+}
+
+function toggleGramItem(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.gram-item.open').forEach(item=>item.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
 }
