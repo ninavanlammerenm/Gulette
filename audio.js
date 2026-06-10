@@ -9,16 +9,19 @@ function getACtx(){
 
 function playTone(freq,dur,type='sine',vol=0.18){
   const ctx=getACtx();if(!ctx)return;
-  try{
-    if(ctx.state==='suspended')ctx.resume();
-    const osc=ctx.createOscillator();
-    const gain=ctx.createGain();
-    osc.connect(gain);gain.connect(ctx.destination);
-    osc.type=type;osc.frequency.setValueAtTime(freq,ctx.currentTime);
-    gain.gain.setValueAtTime(vol,ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
-    osc.start(ctx.currentTime);osc.stop(ctx.currentTime+dur);
-  }catch(e){}
+  const _play=()=>{
+    try{
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.type=type;osc.frequency.setValueAtTime(freq,ctx.currentTime);
+      gain.gain.setValueAtTime(vol,ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+      osc.start(ctx.currentTime);osc.stop(ctx.currentTime+dur);
+    }catch(e){}
+  };
+  if(ctx.state==='suspended'){ctx.resume().then(_play).catch(()=>{});}
+  else _play();
 }
 
 function sfxCorrect(){
