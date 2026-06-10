@@ -12,6 +12,14 @@ const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
 const isDue=v=>!v.nr||new Date(v.nr)<=new Date();
 
+// XP → level (exponentieel: level n kost 100n XP, totaal = 50·n·(n-1))
+function getLevel(xp){return Math.floor((1+Math.sqrt(1+(xp||0)/12.5))/2);}
+function getLevelStart(lvl){return 50*lvl*(lvl-1);}
+function getLevelPct(xp){
+  const lvl=getLevel(xp);
+  return Math.min(99,Math.round((xp-getLevelStart(lvl))/(getLevelStart(lvl+1)-getLevelStart(lvl))*100));
+}
+
 let sciIdx=0;
 
 // ══════════════════════════════════════════════════════

@@ -30,7 +30,20 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.origin === location.origin) {
-    // Cache-first voor eigen bestanden (offline werkt altijd)
+    // Network-first voor eigen bestanden — updates worden altijd opgepikt
+    e.respondWith(
+      fetch(e.request)
+        .then(res => {
+          if (res.status === 200) {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          }
+          return res;
+        })
+        .catch(() => caches.match(e.request))
+    );
+  } else {
+    // Cache-first voor externe bronnen (fonts) — zelden gewijzigd
     e.respondWith(
       caches.match(e.request).then(r =>
         r || fetch(e.request).then(res => {
@@ -41,11 +54,6 @@ self.addEventListener('fetch', e => {
           return res;
         })
       )
-    );
-  } else {
-    // Network-first voor externe bronnen (fonts etc.)
-    e.respondWith(
-      fetch(e.request).catch(() => caches.match(e.request))
     );
   }
 });

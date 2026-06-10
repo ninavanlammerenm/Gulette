@@ -94,8 +94,8 @@ function renderHome(){
   if(shieldWrap)shieldWrap.style.display=shields>0?'flex':'none';
   const chipShields=document.getElementById('chip-shields');
   if(chipShields)chipShields.textContent=shields;
-  const lvl=Math.floor(S.xp/100)+1;
-  const pct=S.xp%100;
+  const lvl=getLevel(S.xp);
+  const pct=getLevelPct(S.xp);
   document.getElementById('xp-fill').style.width=pct+'%';
   document.getElementById('xp-l').textContent=S.xp+' XP';
   document.getElementById('xp-r').textContent='Level '+lvl;
@@ -377,7 +377,7 @@ function renderXPGraph(){
 // ══════════════════════════════════════════════════════
 function renderProfile(){
   document.getElementById('p-name').textContent=S.name;
-  const lvl=Math.floor(S.xp/100)+1;
+  const lvl=getLevel(S.xp);
   const titles=['Beginner 🌱','Leerling 📖','Gevorderd 🌸','Expert 💎','Meester ✨','Hazaragi-liefhebber 🏔️'];
   document.getElementById('p-lvl').textContent=`Level ${lvl} · ${titles[Math.min(lvl-1,5)]}`;
   document.getElementById('p-xp').textContent=S.xp;
@@ -390,11 +390,17 @@ function renderProfile(){
   updateNotifBtn();
   updateRomanBtn();
   updateSoundBtn();
+  const _wc=Object.keys(S.vocab).length;
+  const _ap={'words10':[_wc,10],'words30':[_wc,30],'words60':[_wc,60],'words100':[_wc,100],'words200':[_wc,200],'words300':[_wc,300],
+    'streak3':[S.streak,3],'streak7':[S.streak,7],'streak30':[S.streak,30],
+    'xp100':[S.xp,100],'xp500':[S.xp,500],'xp1000':[S.xp,1000],'xp2000':[S.xp,2000]};
   document.getElementById('a-list').innerHTML=ACHVS.map(a=>{
     const on=S.achv.includes(a.id);
+    const prog=!on&&_ap[a.id];
+    const progHTML=prog?`<div style="font-size:11px;font-weight:800;color:var(--lav);margin-top:3px">${Math.min(prog[0],prog[1])} / ${prog[1]}</div>`:'';
     return `<div class="ac">
       <div class="ac-ico${on?' on':''}">${a.icon}</div>
-      <div><div class="ac-name" style="color:${on?'var(--ink)':'var(--ink-l)'}">${a.name}</div><div class="ac-desc">${a.desc}</div></div>
+      <div><div class="ac-name" style="color:${on?'var(--ink)':'var(--ink-l)'}">${a.name}</div><div class="ac-desc">${a.desc}</div>${progHTML}</div>
       ${on?'<div class="ac-chk">✓</div>':''}
     </div>`;
   }).join('');

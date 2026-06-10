@@ -660,7 +660,10 @@ function leaveLesson(){
   bg.appendChild(modal);
   bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
   modal.querySelector('#modal-stay').addEventListener('click',()=>bg.remove());
-  modal.querySelector('#modal-leave').addEventListener('click',()=>{bg.remove();WAITING=false;hideFB();goHome();});
+  modal.querySelector('#modal-leave').addEventListener('click',()=>{
+    if(CC>=5){updStreak();save();}
+    bg.remove();WAITING=false;hideFB();goHome();
+  });
   document.body.appendChild(bg);
 }
 
