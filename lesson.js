@@ -292,11 +292,9 @@ function rMC_nl(ex,body){
   const ltrs=['A','B','C','D'];
   body.innerHTML=`
     <div class="type-pill">🎯 Wat betekent dit?</div>
-    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:18px">Wat betekent dit Hazaragi woord?</p>
-    <div class="hz-card" style="margin-bottom:20px">
+    <div class="hz-card hz-card-compact">
       <span class="hz-script">${w.hz}</span>
       <span class="hz-dutch">🗣️ ${toDutchPhonetic(w.tr)}</span>
-      <span class="hz-latin">🔊 ${(w.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>')}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
@@ -315,7 +313,7 @@ function rMC_hz(ex,body){
   };
   body.innerHTML=`
     <div class="type-pill">🔤 Kies Hazaragi</div>
-    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Hazaragi woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
+    <p style="font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk Hazaragi woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_hz" data-chosen="${c}" data-correct="${w.hz}" data-nl="${w.nl}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>
