@@ -49,20 +49,25 @@ function sfxFinish(){
 // ══════════════════════════════════════════════════════
 let _ttsVoice=null;
 let _ttsReady=false;
+let _ttsGood=false; // heeft een Arabisch-capabele stem
 
 function _loadVoices(){
   if(!('speechSynthesis' in window))return;
   const vs=window.speechSynthesis.getVoices();
   if(!vs.length)return;
   _ttsReady=true;
-  // Zoek beste stem voor Arabisch schrift: fa > ar > ur > fallback
-  _ttsVoice=
+  const good=
     vs.find(v=>v.lang==='fa-AF')||
     vs.find(v=>v.lang.startsWith('fa'))||
     vs.find(v=>v.lang.startsWith('ar'))||
-    vs.find(v=>v.lang.startsWith('ur'))||
-    vs.find(v=>v.default)||
-    vs[0]||null;
+    vs.find(v=>v.lang.startsWith('ur'));
+  if(good){
+    _ttsVoice=good;_ttsGood=true;
+  }else{
+    // Geen Arabisch-capabele stem — gebruik standaardstem (nl/whatever)
+    _ttsVoice=vs.find(v=>v.default)||vs[0]||null;
+    _ttsGood=false;
+  }
 }
 
 if('speechSynthesis' in window){
@@ -70,30 +75,58 @@ if('speechSynthesis' in window){
   _loadVoices();
 }
 
+// Zoek romanisering (tr) van een Arabisch woord op in de lesdata
+function _findRoman(hz){
+  if(typeof CHAPTERS==='undefined')return null;
+  for(const ch of CHAPTERS){
+    for(const l of ch.lessons||[]){
+      const w=(l.words||[]).find(x=>x.hz===hz);
+      if(w&&w.tr)return w.tr;
+    }
+  }
+  return null;
+}
+
 function speakHz(text){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
-  // Voices kunnen nog niet geladen zijn — probeer opnieuw
   if(!_ttsReady)_loadVoices();
+
+  let speak=text;
+  let lang=_ttsVoice?_ttsVoice.lang:'fa';
+
+  if(!_ttsGood){
+    // Geen Arabische stem — spreek de romanisering uit met beschikbare stem
+    const roman=_findRoman(text);
+    if(!roman)return; // kan niet zonder romanisering
+    speak=roman;
+    lang=_ttsVoice?_ttsVoice.lang:'nl';
+  }
+
   window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(text);
-  if(_ttsVoice) utt.voice=_ttsVoice;
-  utt.lang=_ttsVoice?_ttsVoice.lang:'fa';
-  utt.rate=0.78;
+  const utt=new SpeechSynthesisUtterance(speak);
+  if(_ttsVoice)utt.voice=_ttsVoice;
+  utt.lang=lang;
+  utt.rate=_ttsGood?0.78:0.72;
   utt.pitch=1.0;
   utt.onerror=()=>{};
   window.speechSynthesis.speak(utt);
 }
 
 function testAudio(){
-  if(!('speechSynthesis' in window)){
-    showToast('❌ Spraak niet beschikbaar in deze browser');return;
-  }
+  if(!('speechSynthesis' in window)){showToast('❌ Spraak niet beschikbaar');return;}
   _loadVoices();
-  const vs=window.speechSynthesis.getVoices();
-  if(!vs.length){
-    showToast('❌ Geen stemmen gevonden — probeer Chrome');return;
+  if(!_ttsReady){showToast('❌ Geen stemmen — probeer Chrome');return;}
+  if(_ttsGood){
+    showToast(`✅ ${_ttsVoice.name} (${_ttsVoice.lang})`);
+    speakHz('سلام');
+  }else{
+    showToast(`🔤 Stem: ${_ttsVoice?_ttsVoice.name:'geen'} — spreekt romanisering uit`);
+    // Spreek "salam" direct uit als test
+    window.speechSynthesis.cancel();
+    const utt=new SpeechSynthesisUtterance('salam');
+    if(_ttsVoice)utt.voice=_ttsVoice;
+    utt.lang=_ttsVoice?_ttsVoice.lang:'nl';
+    utt.rate=0.72;
+    window.speechSynthesis.speak(utt);
   }
-  const label=_ttsVoice?`✅ Stem: ${_ttsVoice.name} (${_ttsVoice.lang})`:'⚠️ Geen geschikte stem';
-  showToast(label);
-  speakHz('سلام');
 }
