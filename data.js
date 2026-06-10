@@ -24,7 +24,7 @@ const SCI_TIPS=[
   '<strong>Tip:</strong> Elke dag even leren is beter dan 1x per week lang leren. Consistentie wint!',
 ];
 
-// ══════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════
 // LESMATERIAAL
 // ══════════════════════════════════════════════════════
 const CHAPTERS=[
@@ -138,7 +138,7 @@ const CHAPTERS=[
         {hz:'مراقب باش',tr:'muraaqeb baash',nl:'Pas op jezelf',tip:'Zorgzame afsluiting van een gesprek'},
         {hz:'خوش بگذره',tr:'khosh bogzara',nl:'Veel plezier / Geniet ervan',tip:'Wens iemand een fijne tijd'},
         {hz:'در امان خدا',tr:'dar amaan-e khoda',nl:'Vaarwel — God zij met je',tip:'Traditionele/formele afscheid'},
-        {hz:'نوبت تو اَس',tr:'nowbat-e to as',nl:'Het is jouw beurt',tip:'"نوبت" = beurt — ook: afspraak'},
+        {hz:'نوبت تو اَس',tr:'nowbat-e tu as',nl:'Het is jouw beurt',tip:'"نوبت" = beurt — ook: afspraak'},
         {hz:'زود باش',tr:'zud baash',nl:'Schiet op / Vlug',tip:'Vriendelijke aansporing'},
       ],
       sentences:[
@@ -434,7 +434,7 @@ const CHAPTERS=[
         {hz:'عالی',tr:'aali',nl:'Geweldig / Uitstekend',tip:'"عالی!" = geweldig! — krachtige goedkeuring, universeel gebruikt'},
       ],
       sentences:[
-        {hz:'تو خیلی قشنگ هستی',tr:'to khaili qashanq hasti',nl:'Jij bent heel mooi'},
+        {hz:'تو خیلی قشنگ هستی',tr:'tu khaili qashanq hasti',nl:'Jij bent heel mooi'},
         {hz:'آفرین! خوب کردی',tr:'aafarin! khob kardi',nl:'Goed zo! Je hebt het goed gedaan'},
         {hz:'ماشاالله چقدر باهوشی',tr:'mashaallah chaqadr baahooshi',nl:'MashaAllah, wat ben jij slim'},
       ]
@@ -450,7 +450,7 @@ const CHAPTERS=[
         {hz:'خوش‌تیپ',tr:'khosh-tip',nl:'Knap / Stijlvol',tip:'Van "tip" = Engels type — modern Hazaragi leenwoord'},
         {hz:'دل‌ربا',tr:'delrobaa',nl:'Betoverend',tip:'Letterlijk: "hart-steler"'},
         {hz:'یارم',tr:'yaaram',nl:'Mijn geliefde',tip:'"یار" = vriend/geliefde in Hazaragi poëzie — ook als los compliment gebruikt'},
-        {hz:'نمی‌تانم بی‌تو باشم',tr:'na-mi-taanom bi-to baasham',nl:'Ik kan niet zonder jou',tip:'Hazaragi: "تانستن"'},
+        {hz:'نمی‌تانم بی‌تو باشم',tr:'na-mi-taanom bi-tu baasham',nl:'Ik kan niet zonder jou',tip:'Hazaragi: "تانستن"'},
         {hz:'رویا',tr:'roya',nl:'Droom / Lieveling',tip:'Zowel "droom" als vrouwennaam — "رویایم" = mijn droom'},
       ],
       sentences:[
@@ -528,25 +528,25 @@ const CHAPTERS=[
 
     { id:'gram1_pronouns', title:'Voornaamwoorden', sub:'Ik, jij, hij, wij...', icon:'🧑', xp:20,
       pronTips:['خ'],
-      grammar:'In Hazaragi zeg je "مو" (mo) voor "wij".',
+      grammar:'PERSOONLIJKE VOORNAAMWOORDEN — leer deze 6 als één blok:\n• من = ma (ik)\n• تو = tu (jij) — NIET Iraans "to"!\n• او = oo (hij/zij) — lange oo-klank, geen onderscheid man/vrouw\n• مو = mah (wij) — typisch Hazaragi, NIET Iraans "ما"\n• شما = shoma (jullie / beleefd u)\n• آنا = ana (zij, meervoud) — NIET Iraans "آنها"\n\nBelangrijk: deze zes voornaamwoorden bepalen de werkwoordsuitgang. Ma → -om, tu → -i, oo → -a, mah → -im, shoma → -in, ana → -an. Die eindingen kom je in ELKE les terug tegen.',
       words:[
-        {hz:'من',tr:'ma',nl:'Ik',tip:'Hazaragi uitspraak: "ma"'},
-        {hz:'تو',tr:'to',nl:'Jij',tip:''},
-        {hz:'او',tr:'o',nl:'Hij / Zij',tip:'Hazaragi maakt geen onderscheid tussen hij en zij'},
-        {hz:'مو',tr:'mo',nl:'Wij',tip:'UNIEK Hazaragi'},
+        {hz:'من',tr:'ma',nl:'Ik',tip:'Hazaragi: "ma" — kort a'},
+        {hz:'تو',tr:'tu',nl:'Jij',tip:'Hazaragi: "tu" — NIET Iraans "to"'},
+        {hz:'او',tr:'oo',nl:'Hij / Zij',tip:'Uitspraak: "oo" (lange oo-klank) — Hazaragi maakt geen onderscheid tussen hij en zij'},
+        {hz:'مو',tr:'mah',nl:'Wij',tip:'Typisch Hazaragi — NIET Iraans "ما"'},
         {hz:'شما',tr:'shoma',nl:'Jullie / U',tip:'Ook beleefd enkelvoud — voor respect naar ouderen'},
-        {hz:'ایشان',tr:'ishan',nl:'Zij (meervoud)',tip:'Formeel meervoud'},
+        {hz:'آنا',tr:'ana',nl:'Zij (meervoud)',tip:'Hazaragi: "آنا" — NIET Iraans "آنها" of formeel "ایشان"'},
       ],
       sentences:[
         {hz:'من هزاره هستم',tr:'ma hazaara hastom',nl:'Ik ben Hazara'},
-        {hz:'تو کجا هستی؟',tr:'to koja hasti?',nl:'Waar ben jij?'},
-        {hz:'مو با هم می‌ریم',tr:'mo baa ham me-rim',nl:'Wij gaan samen',tip:'"مو" = wij — typisch Hazaragi'},
+        {hz:'تو کجا هستی؟',tr:'tu koja hasti?',nl:'Waar ben jij?'},
+        {hz:'مو با هم می‌ریم',tr:'mah baa ham me-rim',nl:'Wij gaan samen',tip:'"مو" = mah (wij) — typisch Hazaragi'},
       ]
     },
 
     { id:'gram1_zijn', title:'Werkwoord "zijn"', sub:'Ik ben, jij bent, hij is...', icon:'🔗', xp:25,
       pronTips:['خ'],
-      grammar:'"اَس" (as) is de Hazaragi korte vorm van "است" (ast = is). Leer beide — je hoort ze allebei!',
+      grammar:'WERKWOORD ZIJN — volledige vervoeging:\nPositief: هستم (hastom=ik ben), هستی (hasti=jij bent), اَس (as=hij/zij is), هستیم (hastim=wij zijn), هستین (hastin=jullie zijn), هستن (hastan=zij zijn).\nNegatief: نیستم (nistom=ik ben niet), نیستی (nisti), نیس (nis=is niet), نیستیم, نیستین, نیستن.\n\nLet op twee vormen voor "is": "اَس" (as) is de typische Hazaragi/spreektaalvorm — dit hoor je het meest. "هست" is ook correct. In negatief: "نیس" (nis) = is niet — ook typisch Hazaragi (niet "نیست").\n\n❗ Hazaragi heeft GEEN verschil in werkwoord voor man/vrouw: "او هستی" én "او اَس" werken voor zowel hij als zij.',
       words:[
         {hz:'هستم',tr:'hastom',nl:'Ik ben',tip:'"هست" + "-م" → Hazaragi: -om'},
         {hz:'هستی',tr:'hasti',nl:'Jij bent',tip:'"هست" + "-ی"'},
@@ -565,7 +565,7 @@ const CHAPTERS=[
 
     { id:'gram1_bezit', title:'Bezit: -م / -ت / -ش', sub:'Mijn, jouw, zijn/haar...', icon:'🔑', xp:25,
       pronTips:['خ'],
-      grammar:'Bezit plak je direct aan het woord: "-م" = mijn, "-ت" = jouw, "-ش" = zijn/haar. Super simpel!',
+      grammar:'BEZITSSUFFIXEN — plak deze direct aan het zelfstandig naamwoord:\n• -م = mijn (نامم = mijn naam)\n• -ت = jouw (نامت = jouw naam)\n• -ش = zijn/haar (نامش = zijn/haar naam)\n• -مو = ons (Hazaragi! — نامِمو = onze naam) [ook: -مون]\n• -تون = jullie (نامِتون = jullie naam)\n• -شون = hun (نامِشون = hun naam)\n\nNA EEN KLINKER voeg je -یم/-یت/-یش toe: "خانه" + bezit = "خانه‌ام" (mijn huis). In Hazaragi spreektaal hoor je dit als "خانَم".\n\nVerschil met مال: bezitssuffix plak je AAN het woord ("کتابم" = mijn boek), terwijl "مال من" zelfstandig staat ("dit is van mij").',
       words:[
         {hz:'نامم',tr:'naamam',nl:'Mijn naam',tip:'"نام" + "-م"'},
         {hz:'نامت',tr:'naamat',nl:'Jouw naam',tip:'"نام" + "-ت"'},
@@ -584,7 +584,7 @@ const CHAPTERS=[
 
     { id:'gram1_meervoud', title:'Meervoud: -ها / -ان', sub:'Boeken, kinderen, vrienden...', icon:'📚', xp:25,
       pronTips:['ه'],
-      grammar:'Hazaragi meervoud: plak "-ها" achter bijna elk woord — voor dingen én mensen. "بچه‌ها" = kinderen. "-ان" bestaat ook maar is formeler. In dagelijks Hazaragi spreektaal gebruik je ALTIJD "-ها".',
+      grammar:'MEERVOUD in Hazaragi — twee achtervoegsels:\n• "-ها" (haa): dagelijks gebruik, voor dingen én mensen. "کتاب‌ها" = boeken, "بچه‌ها" = kinderen, "دوست‌ها" = vrienden.\n• "-ان" (aan): formeler, vooral voor mensen en beroepen. "دوستان" = vrienden (formeel), "کودکان" = kinderen (schrijftaal).\n\nIN HAZARAGI SPREEKTAAL gebruik je ALTIJD "-ها" — ook voor mensen.\n\nMeervoud + bezit: combineer met bezitssuffix: "کتاب‌هایم" (ketaab-haayam) = mijn boeken. "-های" + "-م/-ت/-ش".\n\nTip: als een woord al eindigt op een klinker, plak "-ها" direct: "خانه‌ها" (khaana-haa) = huizen.',
       words:[
         {hz:'کتاب‌ها',tr:'ketaab-haa',nl:'Boeken',tip:'"کتاب" + "-ها" — zo simpel!'},
         {hz:'بچه‌ها',tr:'bacha-haa',nl:'Kinderen',tip:'Meest gebruikte meervoud in Hazaragi'},
@@ -912,7 +912,7 @@ const CHAPTERS=[
         {hz:'صبر تلخ است ولی میوه‌اش شیرین',tr:'sabr talkh ast wali mewash shirin',nl:'Geduld is bitter maar de vrucht is zoet',tip:''},
       ],
       sentences:[
-        {hz:'دل به دل راه داره، به تو فکر می‌کردم',tr:'del ba del raah daara, ba to fekr mi-kardom',nl:'Harten vinden een weg — ik dacht net aan jou'},
+        {hz:'دل به دل راه داره، به تو فکر می‌کردم',tr:'del ba del raah daara, ba tu fekr mi-kardom',nl:'Harten vinden een weg — ik dacht net aan jou'},
         {hz:'چشم، هر کاری بگی می‌کنم',tr:'chashm, har kaari begi mi-konom',nl:'Ja met plezier, wat je ook zegt zal ik doen'},
         {hz:'صبر کو، همه چیز خوش می‌شه',tr:'sabr ko, hama chiz khosh meshe',nl:'Wees geduldig, alles wordt goed'},
       ]
@@ -945,7 +945,7 @@ const CHAPTERS=[
 
     { id:'gram2_heden', title:'Tegenwoordige tijd', sub:'Ik ga, jij eet, hij zegt...', icon:'⏰', xp:30,
       pronTips:['ر','و'],
-      grammar:'Patroon: "می‌" + werkwoordstam + persoonuitgang. "می‌" is het kenmerk van de tegenwoordige tijd.',
+      grammar:'TEGENWOORDIGE TIJD — patroon: "می‌" + HEDEN-STAM + PERSOONUITGANG.\n\nDe persoonuitgangen zijn: -om (ik), -i (jij), -a (hij/zij), -im (wij), -in (jullie), -an (zij).\nVoorbeeld met "رفتن" (gaan), hedenstam "رو-":\n→ می‌رم (mi-rom=ik ga), می‌ری (mi-ri=jij gaat), می‌ره (mi-ra=hij/zij gaat), می‌ریم (mi-rim=wij gaan), می‌رین (mi-rin=jullie gaan), می‌رن (mi-ran=zij gaan).\n\n❗ BELANGRIJKE HAZARAGI REGEL: "می‌" blijft altijd hetzelfde. Wat verandert is de STAM en de UITGANG.\n\n⚠️ DEZELFDE uitgangen (-om/-i/-a/-im/-in/-an) gebruik je OOK in de verleden tijd! Alleen de stam verandert. Zo lijkt de tegenwoordige tijd op de verleden tijd — dat is normaal in Hazaragi!',
       words:[
         {hz:'می‌رم',tr:'mi-rom',nl:'Ik ga',tip:'"می‌" + stam "ر" (van رفتن) + "-م" → Hazaragi: -om'},
         {hz:'می‌ری',tr:'me-ri',nl:'Jij gaat',tip:'"-ی" = jij'},
@@ -965,7 +965,7 @@ const CHAPTERS=[
 
     { id:'gram2_negatie', title:'Negatie', sub:'Niet, geen, helemaal niet...', icon:'🚫', xp:25,
       pronTips:['خ'],
-      grammar:'Negatie: voeg "نه" toe vóór het werkwoord → "نمی‌". "نیس" (nis) = is niet.',
+      grammar:'NEGATIE — twee patronen:\n① Werkwoorden met می‌: plak "نه" vóór "می‌" → "نمی‌". Voorbeeld: می‌رم → نمی‌رم (na-mi-rom = ik ga niet). Schrijving: نه + می = نمی.\n② Werkwoord "zijn": هستم → نیستم (nistom = ik ben niet). اَس → نیس (nis = is niet) — typisch Hazaragi!\n\nVOLLEDIGE NEGATIEVE ZIJN:\nnistom (ik ben niet), nisti (jij bent niet), nis (is niet), nistim (wij zijn niet), nistin (jullie zijn niet), nistan (zij zijn niet).\n\nVersterking: "اصلاً" (aslan) vóór de negatie = helemaal niet: "اصلاً نمی‌خوام" = ik wil het helemaal niet.\n\nBELANGRIJKE UITDRUKKING: "مشکلی نیس" (moshkeli nis) = geen probleem — leer dit van buiten!',
       words:[
         {hz:'نمی‌رم',tr:'na-mi-rom',nl:'Ik ga niet',tip:'"نه" + "می‌رم" → "نمی‌رم"'},
         {hz:'نمی‌خوام',tr:'na-mi-khom',nl:'Ik wil niet',tip:''},
@@ -984,7 +984,7 @@ const CHAPTERS=[
 
     { id:'gram2_imperatief', title:'Gebiedende wijs', sub:'Ga! Eet! Kom! Zeg!', icon:'📢', xp:30,
       pronTips:['ب'],
-      grammar:'Hazaragi gebiedende wijs: zet "بـ" (be-) vóór de werkwoordstam. "رفتن" → stam "رو" → "برو!" (ga!). Ontkenning: "نه" vóór het werkwoord → "نرو" (ga niet!). Deze vormen hoor je in ELKE Hazaragi zin — leer ze van buiten!',
+      grammar:'GEBIEDENDE WIJS — patroon: "بـ" (be-) + HEDEN-STAM van het werkwoord.\nVoorbeelden: برو (boro=ga!), بیا (biya=kom!), بخور (bekhoor=eet!), بده (beda=geef!), بگو (bego=zeg!), بخون (bekhoon=lees!).\n\nOntkenning gebiedende wijs: "نه" + stam → "نرو" (na-ro=ga niet!), "نخور" (na-khoor=eet niet!). GEEN "بـ" bij ontkenning!\n\nMEERVOUD (jullie): voeg "-ین" toe aan de gebiedende wijs: "بروین" (boroyin=gaan jullie!), "بیاین" (biyaayin=kom jullie!).\n\nTip: de gebiedende wijs heeft GEEN werkwoordpersoon-uitgang voor jij (enkelvoud) — het is puur de stam met "بـ". Dit is anders dan alle andere tijden!',
       words:[
         {hz:'برو',tr:'boro',nl:'Ga! (jij)',tip:'"نرو" = ga niet!'},
         {hz:'بیا',tr:'biya',nl:'Kom! (jij)',tip:'Meest gebruikte bevelsvorm — hoor je overal'},
@@ -1004,7 +1004,7 @@ const CHAPTERS=[
 
     { id:'gram2_vragen', title:'Vraagzinnen', sub:'Waar, wat, wie, waarom...', icon:'❓', xp:25,
       pronTips:['خ'],
-      grammar:'Hazaragi vraagzinnen: zelfde zinsbouw, alleen intonatie omhoog. Vraagwoorden staan vooraan de zin.',
+      grammar:'VRAAGZINNEN in Hazaragi — twee manieren:\n① Met vraagwoord: vraagwoord staat VOORAAN de zin, stem omhoog aan het einde. "کجا می‌ری؟" = waar ga je heen?\n② Ja/nee-vraag: zelfde zin als bewering maar stem gaat omhoog: "می‌ری؟" = ga je? (zonder vraagwoord).\n\nDE ZEVEN HOOFDVRAAGWOORDEN:\nکجا (koja=waar), چی (chi=wat), کی (ki=wie/wanneer), چرا (chera=waarom), چتور (chetor=hoe — Hazaragi!), چند (chand=hoeveel), کدام (kodaam=welke).\n\n❗ "هو" is GEEN Hazaragi vraagpartikel. In Hazaragi gebruik je INTONATIE, niet een apart woordje. Het werkwoord staat nog steeds aan het EINDE (SOV).',
       words:[
         {hz:'کجا',tr:'koja',nl:'Waar',tip:'"کجایی؟" = waar ben je?'},
         {hz:'چی',tr:'chi',nl:'Wat',tip:'"چی می‌خوای؟" = wat wil je?'},
@@ -1369,24 +1369,24 @@ const CHAPTERS=[
 
     { id:'gram3_sov', title:'Zinsbouw: S-O-W', sub:'Subject · Object · Werkwoord', icon:'📐', xp:30,
       pronTips:['ر'],
-      grammar:'Hazaragi is een SOW-taal: Subject + Object + Werkwoord. Het werkwoord staat ALTIJD aan het einde!',
+      grammar:'HAZARAGI ZINSBOUW: S-O-W (Subject + Object + Werkwoord)\nHet werkwoord staat ALTIJD aan het EINDE van de zin. Dit is andersom dan in het Nederlands!\n\nVoorbeelden:\n• NL: "Ik eet brood" → Hz: "من نان می‌خورم" (ik brood eet)\n• NL: "Jij leest een boek" → Hz: "تو کتاب می‌خوانی" (jij boek leest)\n\nOBJECT-MARKERING: het object (wat je doet) wordt soms gemarkeerd met "را" (ra): "تو را دوست دارم" = ik hou van jou (letterlijk: jou-ra liefheb ik).\n\nTIJD en PLAATS: staan VOOR het werkwoord maar ACHTER het subject: S + TIJD/PLAATS + O + W\n• "من دیروز مکتب رفتم" (ma diroz maktab raftom) = ik gisteren school ging = ik ging gisteren naar school.\n\nBIJZINNEN: de bijzin heeft ook altijd zijn eigen werkwoord aan het einde. Twee SOV-blokken achter elkaar!',
       words:[
         {hz:'من نان می‌خورم',tr:'ma naan mi-khorom',nl:'Ik eet brood',tip:'S(من) + O(نان) + W(می‌خورم)'},
-        {hz:'او کتاب می‌خواند',tr:'o ketaab me-khwaand',nl:'Hij/zij leest een boek',tip:'S + O + W — werkwoord altijd last'},
+        {hz:'او کتاب می‌خواند',tr:'oo ketaab me-khwaand',nl:'Hij/zij leest een boek',tip:'S + O + W — werkwoord altijd last'},
         {hz:'مو چای می‌خوریم',tr:'mo chaai me-khorim',nl:'Wij drinken thee',tip:'"مو" = wij (Hazaragi)'},
-        {hz:'من تو را دوست دارم',tr:'ma to ra dost darom',nl:'Ik hou van jou',tip:'"را" markeert het object'},
+        {hz:'من تو را دوست دارم',tr:'ma tu ra dost darom',nl:'Ik hou van jou',tip:'"را" markeert het object'},
         {hz:'مو هزارگی یاد می‌گیریم',tr:'mo hazaaragi yaad me-girim',nl:'Wij leren Hazaragi',tip:'S + O + W'},
       ],
       sentences:[
         {hz:'من هر روز چای می‌نوشم',tr:'ma har roz chaai mi-noshom',nl:'Ik drink elke dag thee'},
-        {hz:'او دیروز بازار رفت',tr:'o diroz baazaar raft',nl:'Hij/zij ging gisteren naar de markt'},
+        {hz:'او دیروز بازار رفت',tr:'oo diroz baazaar raft',nl:'Hij/zij ging gisteren naar de markt'},
         {hz:'شما چی کار می‌کنین؟',tr:'shoma chi kaar me-konin?',nl:'Wat doen jullie?'},
       ]
     },
 
     { id:'gram3_verleden', title:'Verleden tijd', sub:'Ik ging, jij at, hij zei...', icon:'⏪', xp:35,
       pronTips:['ر'],
-      grammar:'Verleden tijd: werkwoordstam + persoonuitgang. Stam van "رفتن" = رفت. Geen "می‌" prefix!',
+      grammar:'VERLEDEN TIJD — patroon: VERLEDEN-STAM + PERSOONUITGANG (GEEN "می‌"!).\n\n❗ CRUCIAAL: de uitgangen zijn PRECIES HETZELFDE als de tegenwoordige tijd!\n-om (ik), -i (jij), -a (hij/zij), -im (wij), -in (jullie), -an (zij)\n\nDat is WAAROM tijden soms op elkaar lijken — de STAM verandert, de UITGANG niet!\n• Tegenwoordig: می‌ + heden-stam (رو) + uitgang → می‌رم (ik ga)\n• Verleden: verleden-stam + uitgang → رفتم (ik ging)\n\nVEELGEBRUIKTE VERLEDEN STAMMEN:\n رفتن → رفت (gaan), خوردن → خورد (eten), گفتن → گفت (zeggen), دیدن → دید (zien), آمدن → آمد (komen), کردن → کرد (doen), دادن → داد (geven), بودن → بود (zijn).\n\nOntkenning: "نه" vóór de stam: نرفتم (na-raftom=ik ging niet).',
       words:[
         {hz:'رفتم',tr:'raftom',nl:'Ik ging',tip:'رفت + "-م" → Hazaragi: -om'},
         {hz:'رفتی',tr:'rafti',nl:'Jij ging',tip:'رفت + "-ی" (jij)'},
@@ -1419,7 +1419,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'دَ مکتب می‌رم',tr:'da maktab mi-rom',nl:'Ik ga naar school',tip:'"دَ" = naar (Hazaragi)'},
         {hz:'از کجا آمدی؟',tr:'az koja aamadi?',nl:'Waar kom je vandaan?'},
-        {hz:'با تو می‌آیم، بدون تو نمی‌رم',tr:'baa to mi-oom, bedoon to na-mi-rom',nl:'Ik kom met jou, zonder jou ga ik niet'},
+        {hz:'با تو می‌آیم، بدون تو نمی‌رم',tr:'baa tu mi-oom, bedoon tu na-mi-rom',nl:'Ik kom met jou, zonder jou ga ik niet'},
       ]
     },
   ]},
@@ -1704,7 +1704,7 @@ const CHAPTERS=[
 
     { id:'gram4_modal', title:'Modale werkwoorden', sub:'Kunnen, moeten, mogen...', icon:'⚙️', xp:35,
       pronTips:['ت'],
-      grammar:'"می‌تانم" is de Hazaragi vorm voor "kan". Leer de Hazaragi vorm goed!',
+      grammar:'MODALE WERKWOORDEN — de drie belangrijkste:\n\n① "می‌تانم" (mi-taanom) = ik kan — HAZARAGI EXCLUSIEF (niet "می‌توانم"!)\nVervoeging: mi-taanom, me-taani, me-taana, me-taanim, me-taanin, me-taanan.\nGebruik: می‌تانم + werkwoord: "می‌تانم بیام" = ik kan komen.\n\n② "باید" (baayad) = moet/dient te — ONVERANDERLIJK! Geen vervoeging nodig.\nGebruik: باید + werkwoord: "باید بری" = je moet gaan. "نباید بری" = je mag niet gaan.\n\n③ "می‌خوام" (mi-khom) = ik wil — ook als toekomst ("ik ga...")\nVervoeging: mi-khom, mi-khaay, mi-khaad, mi-khaaim, mi-khaain, mi-khaaan.\nGebruik: می‌خوام + werkwoord: "می‌خوام بیام" = ik wil/ga komen.',
       words:[
         {hz:'باید',tr:'baayad',nl:'Moet / Dient te',tip:'"باید بری" = je moet gaan'},
         {hz:'نباید',tr:'nabaayad',nl:'Mag niet / Moet niet',tip:''},
@@ -1724,7 +1724,7 @@ const CHAPTERS=[
 
     { id:'gram4_future', title:'Toekomende tijd', sub:'Morgen ga ik, ik zal komen...', icon:'🔮', xp:35,
       pronTips:['خ'],
-      grammar:'Toekomst in Hazaragi: tijdwoord ("فردا", "بعداً") + tegenwoordige tijd. Of: "می‌خوام" + werkwoord.',
+      grammar:'TOEKOMENDE TIJD in Hazaragi — drie strategieën:\n\n① TIJDWOORD + tegenwoordige tijd: voeg "فردا" (morgen), "بعداً" (later), "زود" (snel), "ایشالله" toe en gebruik de tegenwoordige tijd. "فردا می‌رم" = morgen ga ik (is toekomst door "فردا").\n\n② "می‌خوام" + infinitiefstam: "می‌خوام بیام" = ik ga komen / ik wil komen. Deze vorm is tegelijk wil én toekomst.\n\n③ "خواهم" (formeel, schrijftaal): bestaan in Dari maar Hazaragi spreektaal gebruikt dit NIET — gebruik altijd strategie ① of ②.\n\n❗ Hazaragi heeft GEEN aparte toekomsttijdsvorm. Tijdswoorden doen het werk. "ایشالله" toevoegen maakt automatisch duidelijk dat iets nog moet komen!',
       words:[
         {hz:'فردا می‌رم',tr:'farda mi-rom',nl:'Morgen ga ik',tip:'"فردا" maakt het toekomstig'},
         {hz:'می‌خوام برم',tr:'mi-khom baram',nl:'Ik ga (straks)',tip:'Letterlijk "ik wil gaan"'},
@@ -1744,7 +1744,7 @@ const CHAPTERS=[
 
     { id:'gram4_conditional', title:'Als... dan... (Voorwaarden)', sub:'Conditionals', icon:'🔀', xp:30,
       pronTips:['ر'],
-      grammar:'"اگر" (agar) = als. Patroon: "اگر [voorwaarde], [gevolg]". Werkwoord in de als-zin eindigt op "-ی".',
+      grammar:'VOORWAARDELIJKE ZINNEN — twee types:\n\n① REËLE CONDITIE (het kan echt gebeuren):\n"اگر" + tegenwoordige-tijdsvorm + hoofdzin in tegenwoordige tijd.\n"اگر بیای، چای می‌پزم" = als jij komt, zet ik thee.\nWerkwoord in de als-zin eindigt op "-ی" (jij-uitgang): بیای, بروی, بخوری.\n\n② HYPOTHETISCHE CONDITIE (kon maar niet):\n"اگر" + verleden-tijdsvorm + hoofdzin met "می‌-...-م".\n"اگر پول داشتم، کمکت می‌کردم" = als ik geld had (gehad), had ik je geholpen.\n\nANDERE CONNECTIVES:\n• "وگرنه" (wagarna) = anders / zo niet: "بیا، وگرنه دلم تنگته" = kom, anders mis ik je.\n• "تا" (taa) = zodat: "بخور تا قوت بگیری" = eet zodat je kracht krijgt.',
       words:[
         {hz:'اگر',tr:'agar',nl:'Als / Indien',tip:'Staat altijd aan het begin'},
         {hz:'اگر بیای',tr:'agar biyaayi',nl:'Als jij komt',tip:''},
@@ -1919,7 +1919,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'برارم قد بلند و لاغر اَس',tr:'baraaram qad boland o laaghar as',nl:'Mijn broer is lang en slank'},
         {hz:'مویت خیلی قشنگ اَس',tr:'mooyat khaili qashanq as',nl:'Je haar is heel mooi'},
-        {hz:'او پیر نیس، هنوز جوان اَس',tr:'o peer nis, hanoz jawaan as',nl:'Hij/zij is niet oud, nog steeds jong'},
+        {hz:'او پیر نیس، هنوز جوان اَس',tr:'oo peer nis, hanoz jawaan as',nl:'Hij/zij is niet oud, nog steeds jong'},
       ]
     },
 
@@ -2435,7 +2435,7 @@ const CHAPTERS=[
 
     { id:'gram5_adverbs', title:'Bijwoorden', sub:'Hoe, wanneer, hoeveel...', icon:'⚡', xp:35,
       pronTips:['خ','آ'],
-      grammar:'Bijwoorden staan meestal voor het werkwoord: "خیلی خوب اَس" (heel goed is). "هنوز" = nog steeds, "دیگه" = niet meer / al.',
+      grammar:'BIJWOORDEN — staan vóór het werkwoord of vóór het bijvoeglijk naamwoord.\n\nINTENSITEIT: خیلی (kheli=heel), زیاد (ziyaad=veel), کم (kam=weinig), خیلی زیاد (heel veel).\nSNELHEID: تند (tand=snel), آهسته (aahesta=langzaam).\nFREQUENTIE: همیشه (hamisha=altijd), هیچ‌وقت (hich-waqt=nooit), گاهی (gaahi=soms), اکثراً (aksaran=meestal).\nTIJD: هنوز (hanoz=nog steeds), دیگه (diga=niet meer/al), زود (zood=vroeg/snel), دیر (deer=laat).\n\nVOLGORDE in de zin: [SUBJECT] + [TIJDSBIJWOORD] + [OBJECT] + [BIJWOORD VAN GRAAD] + [WERKWOORD].\nBijwoorden van graad (خیلی, زیاد) staan DIRECT vóór het woord dat ze versterken.',
       words:[
         {hz:'خیلی',tr:'kheli',nl:'Heel / Erg',tip:'"خیلی خوب" = heel goed'},
         {hz:'زیاد',tr:'ziyaad',nl:'Veel',tip:'"زیاد نه" = niet veel'},
@@ -2451,7 +2451,7 @@ const CHAPTERS=[
         {hz:'شاید',tr:'shaayad',nl:'Misschien',tip:''},
       ],
       sentences:[
-        {hz:'تو خیلی تند حرف می‌زنی، آهسته‌تر بگو',tr:'to kheli tand harf mi-zani, aahesta-tar bego',nl:'Jij praat heel snel, spreek wat langzamer'},
+        {hz:'تو خیلی تند حرف می‌زنی، آهسته‌تر بگو',tr:'tu kheli tand harf mi-zani, aahesta-tar bego',nl:'Jij praat heel snel, spreek wat langzamer'},
         {hz:'من همیشه صبح زود بیدار می‌شم',tr:'ma hamisha sobh zud bediaar mi-shom',nl:'Ik word altijd vroeg in de ochtend wakker'},
         {hz:'شاید فردا بیام، هنوز مطمئن نیستم',tr:'shaayad farda biyaam, hanoz motma\'en nistam',nl:'Misschien kom ik morgen, ik weet het nog niet zeker'},
       ]
@@ -2459,7 +2459,7 @@ const CHAPTERS=[
 
     { id:'gram5_compare', title:'Vergelijkingen', sub:'Groter, beter, het beste...', icon:'📊', xp:40,
       pronTips:['خ','آ'],
-      grammar:'Vergrotende trap: voeg "-تر" toe: "بزرگ" → "بزرگ‌تر". Overtreffende trap: "-ترین": "بهترین" = het beste. "اَز" = dan (bij vergelijking).',
+      grammar:'VERGELIJKINGEN — drie niveaus:\n① Stellende trap: gewoon bijv.nw. "بزرگ" (bozorg=groot).\n② Vergrotende trap: bijv.nw. + "-تر" (tar): "بزرگ‌تر" (groter), "بهتر" (better), "کوچک‌تر" (kleiner).\n③ Overtreffende trap: bijv.nw. + "-ترین" (tarin): "بزرگترین" (grootst), "بهترین" (best), "بدترین" (slechtst).\n\nVERGELIJKING MET "اَز": [A] + vergrotende trap + "اَز" + [B] = A is ... dan B.\n"تو بهتر اَز من هستی" = jij bent beter dan ik.\n\nGELIJKSTELLING MET "مثل": [A] + "مثل" + [B] = A is zoals B.\n"مثل آب صاف اَس" = het is helder als water.\n\nONREGELMATIGEN: "خوب" (good) → "بهتر/بهترین" (beter/best) — niet "خوب‌تر"!',
       words:[
         {hz:'بزرگ‌تر',tr:'bozorg-tar',nl:'Groter',tip:'"بزرگ‌تر اَز من" = groter dan ik'},
         {hz:'کوچک‌تر',tr:'kochak-tar',nl:'Kleiner',tip:''},
@@ -2477,13 +2477,13 @@ const CHAPTERS=[
       sentences:[
         {hz:'این خونه بزرگ‌تر اَز اون خونه اَس',tr:'in khona bozorg-tar az aan khona as',nl:'Dit huis is groter dan dat huis'},
         {hz:'بهترین کار صبر کردن اَس',tr:'behtarin kaar sabr kardan as',nl:'Het beste wat je kunt doen is geduld hebben'},
-        {hz:'تو بهتر اَز دیروز حرف می‌زنی',tr:'to behtar az diroz harf mi-zani',nl:'Jij praat beter dan gisteren'},
+        {hz:'تو بهتر اَز دیروز حرف می‌زنی',tr:'tu behtar az diroz harf mi-zani',nl:'Jij praat beter dan gisteren'},
       ]
     },
 
     { id:'gram5_conjunctions', title:'Voegwoorden', sub:'Maar, omdat, als, wanneer...', icon:'🔗', xp:35,
       pronTips:['خ','ع'],
-      grammar:'Voegwoorden verbinden zinnen. "اما" = maar, "چون" = omdat, "اگه" = als (voorwaarde), "وقتی" = wanneer.',
+      grammar:'VOEGWOORDEN verbinden twee zinnen. In Hazaragi staat het werkwoord van ELKE deelzin nog steeds aan het EINDE (SOV blijft gelden!).\n\nNEVENSCHIKKING (gelijkwaardige zinnen):\n• اما (amma) = maar: "می‌خوام اما نمی‌تانم" = ik wil maar ik kan niet.\n• یا (yaa) = of: "چای یا قهوه؟"\n• هم (ham) = ook: "من هم اومدم" = ik ben ook gekomen.\n• پس (pas) = dus: "پس بریم" = laten we dus gaan.\n\nONDERSCHIKKING (bijzinnen):\n• چون (chon) = omdat: "نرفتم چون مریض بودم"\n• که (ka) = dat/die: "فکر می‌کنم که..."\n• وختی (wakhti) = wanneer/toen — Hazaragi! (niet "وقتی")\n• تا (taa) = totdat/zodat: "صبر کن تا بیام"\n• اگه/اگر (aga/agar) = als: "اگه بیای..."',
       words:[
         {hz:'اما',tr:'amma',nl:'Maar',tip:'"می‌خوام اما نمی‌تانم" = ik wil maar kan niet'},
         {hz:'چون',tr:'chon',nl:'Omdat',tip:'"نرفتم چون مریض بودم" = ging niet omdat ik ziek was'},
@@ -2497,9 +2497,9 @@ const CHAPTERS=[
         {hz:'بعد',tr:'ba\'d',nl:'Daarna / Nadat',tip:'"بعد از کار" = na het werk'},
       ],
       sentences:[
-        {hz:'می‌خوام بیام اما وقت ندارم',tr:'mi-khwaam biyaam amma waqt nadaaram',nl:'Ik wil komen maar ik heb geen tijd'},
+        {hz:'می‌خوام بیام اما وقت ندارم',tr:'mi-khom biyaam amma waqt nadaaram',nl:'Ik wil komen maar ik heb geen tijd'},
         {hz:'اگه خسته هستی، استراحت کن',tr:'aga khasta hasti, estraahat kon',nl:'Als je moe bent, rust dan uit'},
-        {hz:'وقتی بچه بودم، هزارستان زندگی می‌کردم',tr:'waqti bacha budam, hazaarastaan zendagi mi-kardam',nl:'Toen ik klein was, woonde ik in Hazarajat'},
+        {hz:'وختی بچه بودم، هزارستان زندگی می‌کردم',tr:'wakhti bacha boodom, hazaarastaan zendagi mi-kardom',nl:'Toen ik klein was, woonde ik in Hazarajat'},
       ]
     },
 
@@ -2897,7 +2897,7 @@ const CHAPTERS=[
         {hz:'بیمه',tr:'bima',nl:'Verzekering',tip:'"بیمه درمانی" = zorgverzekering'},
       ],
       sentences:[
-        {hz:'نسخه داکتر را دارم، دوا می‌خوام',tr:'noskha-ye daaktar ra daaram, dawaa mi-khwaam',nl:'Ik heb een recept van de dokter, ik wil medicijnen'},
+        {hz:'نسخه داکتر را دارم، دوا می‌خوام',tr:'noskha-ye daaktar ra daaram, dawaa mi-khom',nl:'Ik heb een recept van de dokter, ik wil medicijnen'},
         {hz:'این قرص برای تب اَس؟',tr:'in qors baraaye tab as?',nl:'Is deze pil voor koorts?'},
         {hz:'آلرژی به پنی‌سیلین دارم',tr:'aalarji ba penisilin daaram',nl:'Ik ben allergisch voor penicilline'},
       ]
@@ -2919,7 +2919,7 @@ const CHAPTERS=[
         {hz:'کوتاه',tr:'kotaah',nl:'Kort',tip:'"کوتاه‌تر" = korter'},
       ],
       sentences:[
-        {hz:'می‌خوام موهامو کوتاه کنم',tr:'mi-khwaam moo-haamo kotaah konom',nl:'Ik wil mijn haar laten knippen'},
+        {hz:'می‌خوام موهامو کوتاه کنم',tr:'mi-khom moo-haamo kotaah konom',nl:'Ik wil mijn haar laten knippen'},
         {hz:'چه مدلی می‌خوای؟',tr:'cha madali mi-khwaayi?',nl:'Welk kapsel wil je?'},
         {hz:'ریشم را هم اصلاح کو',tr:'risham ra ham eslaah ko',nl:'Scheer ook mijn baard'},
       ]
@@ -2941,8 +2941,8 @@ const CHAPTERS=[
         {hz:'رسید',tr:'rasid',nl:'Bon / Ontvangstbewijs',tip:''},
       ],
       sentences:[
-        {hz:'می‌خوام پول به کابل حواله کنم',tr:'mi-khwaam pool ba kabol hawaala konom',nl:'Ik wil geld overmaken naar Kabul'},
-        {hz:'حساب بانکی باز کردن می‌خوام',tr:'hesaab-e baanki baaz kardan mi-khwaam',nl:'Ik wil een bankrekening openen'},
+        {hz:'می‌خوام پول به کابل حواله کنم',tr:'mi-khom pool ba kabol hawaala konom',nl:'Ik wil geld overmaken naar Kabul'},
+        {hz:'حساب بانکی باز کردن می‌خوام',tr:'hesaab-e baanki baaz kardan mi-khom',nl:'Ik wil een bankrekening openen'},
         {hz:'رسید را نگه دار، ممکن لازم شه',tr:'rasid ra negah daar, momken laazem sha',nl:'Bewaar de bon, die is misschien nodig'},
       ]
     },
@@ -2995,7 +2995,7 @@ const CHAPTERS=[
         {hz:'الهام',tr:'elhaam',nl:'Inspiratie',tip:''},
       ],
       sentences:[
-        {hz:'خوشحالم که دارم هزارگی یاد می‌گیرم',tr:'khoshaalim ka daaram hazaaragi yaad mi-giram',nl:'Ik ben blij dat ik Hazaragi aan het leren ben'},
+        {hz:'خوشحالم که دارم هزارگی یاد می‌گیرم',tr:'khoshaalim ka daaram hazaaragi yaad mi-girom',nl:'Ik ben blij dat ik Hazaragi aan het leren ben'},
         {hz:'قوی باش، می‌تانی!',tr:'qaawi baash, mi-taani!',nl:'Wees sterk, je kunt het!'},
         {hz:'از تلاشت افتخار می‌کنم',tr:'az talaashat eftekhar mi-konom',nl:'Ik ben trots op jouw inzet'},
       ]
@@ -3397,7 +3397,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'می‌تونم این را پرو کنم؟',tr:'mi-tonom in ra paro konom?',nl:'Mag ik dit passen?'},
         {hz:'کمی تنگ اَس، سایز بزرگ‌تر داری؟',tr:'kami tang as, saayez bozorgtar daari?',nl:'Het is een beetje strak, heb je een grotere maat?'},
-        {hz:'رنگ دیگه‌ای داری؟ سرخ می‌خوام',tr:'rang-e digayi daari? sorkh mi-khwaam',nl:'Heb je een andere kleur? Ik wil rood'},
+        {hz:'رنگ دیگه‌ای داری؟ سرخ می‌خوام',tr:'rang-e digayi daari? sorkh mi-khom',nl:'Heb je een andere kleur? Ik wil rood'},
       ]
     },
 
@@ -3783,7 +3783,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'پنچر شدم، کمک کن',tr:'panchar shodam, komak kon',nl:'Ik heb een lekke band, help me'},
         {hz:'بنزین تمام شد، نزدیک‌ترین پمپ کجاست؟',tr:'benzin tamaam shod, nazdiktarin pomp kojaast?',nl:'De benzine is op, waar is het dichtstbijzijnde tankstation?'},
-        {hz:'موتر خراب شده، مکانیک می‌خواهم',tr:'motar kharaab shoda, mekanik mi-khaaham',nl:'De auto is kapot, ik heb een monteur nodig'},
+        {hz:'موتر خراب شده، مکانیک می‌خوام',tr:'motar kharaab shoda, mekanik mi-khom',nl:'De auto is kapot, ik heb een monteur nodig'},
       ]
     },
 
@@ -3814,7 +3814,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'داکتر، شکمم درد می‌کنه',tr:'daaktar, shekamam dard mi-kona',nl:'Dokter, mijn buik doet pijn'},
-        {hz:'از دیشب تب دارم و سرفه می‌کنم',tr:'az doshab tab daaram wa sorfa mi-konam',nl:'Ik heb al vanaf gisternacht koorts en ik hoest'},
+        {hz:'از دیشب تب دارم و سرفه می‌کنم',tr:'az doshab tab daaram wa sorfa mi-konom',nl:'Ik heb al vanaf gisternacht koorts en ik hoest'},
         {hz:'جای درد دقیقاً کجاست؟',tr:'jaaye dard daqiqan kojaast?',nl:'Waar precies doet het pijn?'},
       ]
     },
@@ -3888,8 +3888,8 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'زنگ بزن، منتظرم',tr:'zang bezan, montazeram',nl:'Bel me, ik wacht'},
-        {hz:'شماره‌ات را بده، واتساپ می‌فرستم',tr:'shomaarat ra beda, waatsaap mi-ferestam',nl:'Geef me je nummer, ik stuur je een WhatsApp'},
-        {hz:'سیگنال نیس، بعداً زنگ می‌زنم',tr:'signal nis, ba\'dan zang mi-zanam',nl:'Geen bereik, ik bel je later'},
+        {hz:'شماره‌ات را بده، واتساپ می‌فرستم',tr:'shomaarat ra beda, waatsaap mi-ferestom',nl:'Geef me je nummer, ik stuur je een WhatsApp'},
+        {hz:'سیگنال نیس، بعداً زنگ می‌زنم',tr:'signal nis, ba\'dan zang mi-zanom',nl:'Geen bereik, ik bel je later'},
       ]
     },
 
@@ -3931,7 +3931,7 @@ const CHAPTERS=[
         {hz:'حافظه',tr:'haafeza',nl:'Geheugen / Opslag',tip:'"حافظه پر اَس" = de opslag is vol'},
       ],
       sentences:[
-        {hz:'موبایلم شارج نیس، شارجر می‌خوام',tr:'mobayelam shaarj nis, shaarjar mi-khwaam',nl:'Mijn telefoon is niet opgeladen, ik heb een lader nodig'},
+        {hz:'موبایلم شارج نیس، شارجر می‌خوام',tr:'mobayelam shaarj nis, shaarjar mi-khom',nl:'Mijn telefoon is niet opgeladen, ik heb een lader nodig'},
         {hz:'لپ‌تاپ کار نمی‌کنه، خراب شده',tr:'lap-taap kaar nami-kona, kharaab shoda',nl:'De laptop werkt niet, hij is kapot'},
         {hz:'حافظه پر اَس، باید چیز پاک کنم',tr:'haafeza por as, baayad chiz paak konam',nl:'De opslag is vol, ik moet iets verwijderen'},
       ]
@@ -4097,7 +4097,7 @@ const CHAPTERS=[
 
     { id:'gram6_questions', title:'Vraagwoorden (verdieping)', sub:'Wie, wat, waar, wanneer, hoe...', icon:'❓', xp:45,
       pronTips:['ک','چ'],
-      grammar:'Verdieping van Grammatica 2. Hazaragi zegt "چتور" (chetor) voor "hoe" — NIET het Iraanse "چطور". Vraagwoorden staan vóór of achter de zin, intonatie omhoog. Nieuw hier: samengestelde vraagvormen zoals "از کجا", "با کی", "چه وقت".',
+      grammar:'VRAAGWOORDEN VERDIEPING — compleet overzicht:\n\nENKELVOUDIGE VRAAGWOORDEN:\nکجا (koja=waar), چی (chi=wat), کی (ki=wie), کِی (kay=wanneer), چرا (chera=waarom), چتور (chetor=hoe — Hazaragi!), چقدر (cheqadr=hoeveel), کدام (kodaam=welke).\n\nSAMENGESTELDE VRAAGVORMEN:\nاز کجا (az koja=van waar), با کی (baa ki=met wie), برای کی (baraayi ki=voor wie), چه وقت (cha waqt=hoe laat), از چند وقت (az chand waqt=hoelang al).\n\n❗ Hazaragi gebruikt "چتور" (chetor) voor "hoe" — NOOIT "چطور" (Iraans).\n❗ "کِی" (wanneer) en "کی" (wie) klinken bijna hetzelfde — intonatie en context maken het verschil.\n\nVraagwoorden staan aan het BEGIN, werkwoord aan het EINDE (SOV): "با کی رفتی؟" = met wie ben je gegaan?',
       words:[
         {hz:'کجا',tr:'koja',nl:'Waar',tip:'"کجا هستی؟" = waar ben je?'},
         {hz:'کِی',tr:'kay',nl:'Wanneer',tip:'"کِی می‌آی؟" = wanneer kom je?'},
@@ -4121,7 +4121,7 @@ const CHAPTERS=[
 
     { id:'gram6_time', title:'Tijdsuitdrukkingen', sub:'Altijd, nooit, soms, al, nog...', icon:'⏰', xp:40,
       pronTips:['ه','گ'],
-      grammar:'"هنوز" = nog steeds. "دیگه" = niet meer / al. "همیشه" = altijd. "هیچ‌وقت" = nooit. "گاهی" = soms. Deze tijdswoorden veranderen de betekenis van zinnen volledig — erg belangrijk!',
+      grammar:'TIJDSUITDRUKKINGEN — veranderen de betekenis van zinnen volledig!\n\nDURATIEF (hoelang/wanneer):\n• هنوز (hanoz) = nog steeds / nog niet: "هنوز نیامده" = hij is nog niet gekomen.\n• دیگه (diga) = niet meer / al: "دیگه نمی‌آم" = ik kom niet meer.\n• قبلاً (qablan) = vroeger: "قبلاً اینجا بودم" = vroeger was ik hier.\n\nFREQUENTIE:\n• همیشه (hamisha) = altijd | هیچ‌وقت (hich-waqt) = nooit | گاهی (gaahi) = soms | اکثراً (aksaran) = meestal.\n\nPUNTUEEL:\n• زود (zood) = snel/vroeg | دیر (deer) = laat | فوری (foori) = direct | بالاخره (baalakhera) = eindelijk.\n\nVOLGORDE: tijdsuitdrukkingen staan vóór het werkwoord, na het subject: "من هنوز نرفتم" = ik ben nog niet gegaan.',
       words:[
         {hz:'هنوز',tr:'hanoz',nl:'Nog / Nog steeds',tip:'"هنوز اینجاست" = hij is er nog steeds'},
         {hz:'دیگه',tr:'digha',nl:'Al / Niet meer',tip:'"دیگه نمی‌آم" = ik kom niet meer'},
@@ -4139,13 +4139,13 @@ const CHAPTERS=[
       sentences:[
         {hz:'هنوز نیامده، منتظریم',tr:'hanoz nayaamada, montazerim',nl:'Hij is nog niet gekomen, we wachten'},
         {hz:'همیشه دیر می‌آی، هیچ‌وقت سر وقت نیستی',tr:'hamesha deer mi-aay, hich-waqt sar-e waqt nisti',nl:'Je komt altijd te laat, je bent nooit op tijd'},
-        {hz:'بالاخره فهمیدم، گاهی اشتباه می‌کنم',tr:'baalakhera fahmidam, gaahi eshtbaah mi-konam',nl:'Eindelijk begrijp ik het, soms maak ik fouten'},
+        {hz:'بالاخره فهمیدم، گاهی اشتباه می‌کنم',tr:'baalakhera fahmidam, gaahi eshtbaah mi-konom',nl:'Eindelijk begrijp ik het, soms maak ik fouten'},
       ]
     },
 
     { id:'gram6_if', title:'Voorwaardelijke Zinnen', sub:'Als...dan, wanneer, tenzij...', icon:'🔀', xp:45,
       pronTips:['ا','ب'],
-      grammar:'"اگر" = als (voorwaarde). "وقتی" = wanneer (tijdstip). "مگر" = tenzij. Hazaragi voorwaardelijke zinnen: "اگر X باشه، Y می‌کنم" = als X het geval is, doe ik Y.',
+      grammar:'VOORWAARDELIJKE ZINNEN — verdieping (zie ook Grammatica 4):\n\n① REËEL: "اگر" + huidig tijdsvorm + hoofdzin: "اگر بیای، با هم می‌خوریم" = als je komt, eten we samen.\n② HYPOTHETISCH: "اگر" + verleden tijdsvorm + "می‌...م": "اگر پول داشتم، کمکت می‌کردم" = als ik geld had, had ik geholpen.\n③ TIJDSCONDITIE: "وختی" (wakhti=wanneer) + tegenwoordig: "وختی رسیدی زنگ بزن" = bel me wanneer je aankomt. ❗ "وختی" is Hazaragi — niet "وقتی"!\n\nVERDERE VERBINDERS:\n• مگر (magar) = tenzij: "نمی‌رم مگر اینکه بیای" = ik ga niet tenzij je meekomt.\n• با اینکه (baa inke) = hoewel: "با اینکه خسته بودم، رفتم" = hoewel ik moe was, ging ik.\n• به شرطی که (ba sharti ke) = op voorwaarde dat — formeler.',
       words:[
         {hz:'اگر',tr:'agar',nl:'Als / Indien',tip:'"اگر بیای، خوشم می‌شه" = als je komt, ben ik blij'},
         {hz:'وقتی',tr:'waqti',nl:'Wanneer (tijdstip)',tip:'"وقتی رسیدی، زنگ بزن" = wanneer je aankomt, bel me'},
@@ -4162,6 +4162,126 @@ const CHAPTERS=[
         {hz:'اگر بیای، با هم می‌خوریم',tr:'agar biyaay, baa ham mi-khorim',nl:'Als je komt, eten we samen'},
         {hz:'چون دیر آمدی، ناهار تمام شد',tr:'chon deer aamadi, naahaar tamaam shod',nl:'Omdat je te laat kwam, was de lunch op'},
         {hz:'با اینکه سخت بود، بالاخره تمام کردم',tr:'baa inke sakht bood, baalakhera tamaam kardam',nl:'Hoewel het moeilijk was, heb ik het uiteindelijk afgemaakt'},
+      ]
+    },
+
+  ]},
+
+  { id:'ch_gram7', label:'📖 Grammatica 7 · Tijden & Ezafe', color:'#8B6FF0', lessons:[
+
+    { id:'gram7_ezafe', title:'Ezafe: de koppel-e', sub:'Ons huis, mijn vriend, het grote kind...', icon:'🔗', xp:35,
+      pronTips:['ه','ی'],
+      grammar:'EZAFE (koppelklankie) verbindt twee woorden met een kort "-e" of "-ye" klankje.\n\nGebruik ①: BEZIT — zelfstandig naamwoord + ezafe + bezitter: "خانه‌ی ما" (khaana-ye mah) = ons huis. "نام پدر" (naam-e padar) = de naam van vader.\n\nGebruik ②: BIJVOEGLIJK NAAMWOORD — in Hazaragi staat het bijvoeglijk naamwoord NA het zelfstandig naamwoord! "پسر بزرگ" (pesar-e bozorg) = de grote jongen.\n\nREGELS: na klinker → "-ye": "خانه‌ی" (khaana-ye). Na medeklinker → "-e": "کتابِ" (ketaab-e).\n\n❗ Anders dan in het Nederlands staat het bijvoeglijk naamwoord altijd NA het zelfstandig naamwoord! En de bezitter staat ook ACHTER het bezit.',
+      words:[
+        {hz:'خانه‌ی ما',tr:'khaana-ye mah',nl:'Ons huis',tip:'"خانه" + ezafe "-ye" + "ما" — bezitsvorm'},
+        {hz:'خانه‌ی تو',tr:'khaana-ye tu',nl:'Jouw huis',tip:'"تو" = tu (NIET "to"!)'},
+        {hz:'پسر بزرگ',tr:'pesar-e bozorg',nl:'De grote jongen',tip:'Bijv.nw. staat NA het zelfstandig naamwoord'},
+        {hz:'کتاب خوب',tr:'ketaab-e khob',nl:'Het goede boek',tip:'"خوب" staat achter "کتاب"'},
+        {hz:'دوست من',tr:'dost-e ma',nl:'Mijn vriend',tip:'Ezafe: "دوست" + "-e" + "من"'},
+        {hz:'مادر خوب',tr:'maadar-e khob',nl:'De lieve moeder',tip:'Bijv.nw. "خوب" achter het naamwoord'},
+        {hz:'نام پدر',tr:'naam-e padar',nl:'De naam van vader',tip:'Ezafe voor bezit: naam van vader'},
+        {hz:'چای گرم',tr:'chaay-e garm',nl:'Warme thee',tip:'"گرم" staat NA "چای"'},
+      ],
+      sentences:[
+        {hz:'خانه‌ی ما بزرگ اَس',tr:'khaana-ye mah bozorg as',nl:'Ons huis is groot'},
+        {hz:'دوست خوب داشتن مهم اَس',tr:'dost-e khob daashtan mohim as',nl:'Een goede vriend hebben is belangrijk'},
+        {hz:'چای گرم بیار',tr:'chaay-e garm biaar',nl:'Breng warme thee'},
+      ]
+    },
+
+    { id:'gram7_adj', title:'Bijvoeglijke naamwoorden', sub:'Groot, mooi, snel, goed...', icon:'🎨', xp:30,
+      pronTips:['ی'],
+      grammar:'BIJVOEGLIJKE NAAMWOORDEN in Hazaragi staan NA het zelfstandig naamwoord:\n"خانه بزرگ" = groot huis (letterlijk: huis groot). Dit is anders dan in het Nederlands!\n\nMEERVOUD: meervoud is op het ZELFSTANDIG NAAMWOORD: "خانه‌های بزرگ" = grote huizen.\n\nGRADEN:\n• Stellend: بزرگ (bozorg=groot)\n• Vergrotend: بزرگتر (bozorgtar=groter) — voeg "-تر" toe\n• Overtreffend: بزرگترین (bozorgtarin=grootst) — voeg "-ترین" toe\n\nBIJZONDER: "خوب" (goed) heeft onregelmatige gradaties: بهتر (behtar=beter), بهترین (behtarin=best).\n\nVOORSPELLING: bijvoeglijk naamwoord als predicaat staat gewoon achter "اَس": "این خانه بزرگ اَس" = dit huis is groot.',
+      words:[
+        {hz:'بزرگ',tr:'bozorg',nl:'Groot',tip:'"خانه بزرگ" = groot huis — bijv.nw. NA zelfst.nw.'},
+        {hz:'کوچک',tr:'kochak',nl:'Klein',tip:'"کوچکتر" = kleiner'},
+        {hz:'خوب',tr:'khob',nl:'Goed',tip:'"بهتر" = beter — onregelmatig!'},
+        {hz:'بد',tr:'bad',nl:'Slecht',tip:'"بدتر" = slechter'},
+        {hz:'تازه',tr:'taaza',nl:'Vers / Nieuw',tip:'"نان تازه" = vers brood'},
+        {hz:'قشنگ',tr:'qashanq',nl:'Mooi',tip:'Hazaragi/Afghaans woord voor mooi'},
+        {hz:'پیر',tr:'peer',nl:'Oud (persoon)',tip:'"آدم پیر" = oude persoon'},
+        {hz:'جوان',tr:'jawaan',nl:'Jong',tip:'"جوانتر" = jonger'},
+        {hz:'بزرگتر',tr:'bozorgtar',nl:'Groter',tip:'"-تر" toevoegen aan bijv.nw.'},
+        {hz:'بهترین',tr:'behtarin',nl:'Het beste',tip:'"بهترین دوست" = de beste vriend'},
+      ],
+      sentences:[
+        {hz:'خانه‌ی بزرگ می‌خوام',tr:'khaana-ye bozorg mi-khom',nl:'Ik wil een groot huis'},
+        {hz:'او بزرگتر اَز من اَس',tr:'oo bozorgtar az ma as',nl:'Hij/zij is groter dan ik'},
+        {hz:'بهترین غذا مانتو اَس!',tr:'behtarin ghazaa maanto as!',nl:'Het beste eten is manto!'},
+      ]
+    },
+
+    { id:'gram7_imperfect', title:'Onvoltooid verleden tijd', sub:'Ik ging altijd, ik was aan het gaan...', icon:'⏪', xp:40,
+      pronTips:['ت','د'],
+      grammar:'ONVOLTOOID VERLEDEN TIJD — twee betekenissen:\n① Gewoonte in het verleden (vroeger deed ik altijd...)\n② Lopende handeling in het verleden (ik was aan het...)\n\nPATROON: "می‌" + VERLEDEN-STAM + PERSOONUITGANG\n\n❗ DE UITGANGEN ZIJN PRECIES HETZELFDE ALS TEGENWOORDIGE TIJD!\n(-om/-i/-a/-im/-in/-an)\n\nWat verandert is de STAM:\n• Tegenwoordig: می‌رم (mi-rom = ik ga — heden-stam "رو")\n• Onvoltooide verleden: می‌رفتم (mi-raftom = ik ging altijd — verleden-stam "رفت")\n\nVervoeging "رفتن" (gaan):\nmi-raftom, mi-rafti, mi-raft, mi-raftim, mi-raftin, mi-raftan.\n\nDit verschilt van enkelvoudig verleden (eenmalig): رفتم (raftom, zonder "می‌").',
+      words:[
+        {hz:'می‌رفتم',tr:'mi-raftom',nl:'Ik ging (altijd/was aan het gaan)',tip:'"می‌" + verleden stam "رفت" + "-م"'},
+        {hz:'می‌رفتی',tr:'mi-rafti',nl:'Jij ging (altijd)',tip:'Zelfde uitgang -i als tegenwoordige tijd!'},
+        {hz:'می‌رفت',tr:'mi-raft',nl:'Hij/zij ging (altijd)',tip:'Stam zonder uitgang voor hij/zij'},
+        {hz:'می‌خوردم',tr:'mi-khordom',nl:'Ik at (gewoonlijk)',tip:'"خورد" = verleden stam van "خوردن"'},
+        {hz:'می‌گفتم',tr:'mi-goftom',nl:'Ik zei (altijd)',tip:'"گفت" = verleden stam van "گفتن"'},
+        {hz:'می‌کردم',tr:'mi-kardom',nl:'Ik deed (gewoonlijk)',tip:'"کرد" = verleden stam — Hazaragi: -om!'},
+        {hz:'می‌بودم',tr:'mi-boodom',nl:'Ik was (vroeger)',tip:'"بود" = verleden stam van "بودن"'},
+      ],
+      sentences:[
+        {hz:'وختی بچه بودم، هر روز بازی می‌کردم',tr:'wakhti bacha boodom, har roz baazi mi-kardom',nl:'Toen ik klein was, speelde ik elke dag'},
+        {hz:'قبلاً اینجا زندگی می‌کردم',tr:'qablan injaa zendagi mi-kardom',nl:'Vroeger woonde ik hier'},
+        {hz:'داشتم غذا می‌خوردم که زنگ زد',tr:'daashdom ghazaa mi-khordom ka zang zad',nl:'Ik was aan het eten toen hij/zij belde'},
+      ]
+    },
+
+    { id:'gram7_perfect', title:'Voltooid tegenwoordige tijd', sub:'Ik ben gegaan, ik heb gegeten...', icon:'✅', xp:40,
+      pronTips:['ه'],
+      grammar:'VOLTOOID TEGENWOORDIGE TIJD (VTT) — actie die al afgerond is en nog relevant.\n\nPATROON: VERLEDEN-STAM + "-ه" + BEZITSSUFFIX\n\nVervoeging "رفتن" (gaan):\n• رفته‌ام (raftaam) = ik ben gegaan\n• رفته‌ای (raftaayi) = jij bent gegaan\n• رفته (rafta) = hij/zij is gegaan\n• رفته‌ایم (raftaaim) = wij zijn gegaan\n\nIN HAZARAGI SPREEKTAAL: "رفته‌ام" klinkt als "raftaam". De grens met enkelvoudig verleden ("رفتم") is dun — context bepaalt!\n\nONTKENNING: "نه" vóór de stam: "نرفته‌ام" (na-raftaam) = ik ben niet gegaan.\n\nGebruik VTT voor ervaringen (ik heb ooit...) en recente voltooide acties (ik heb net...).',
+      words:[
+        {hz:'رفته‌ام',tr:'raftaam',nl:'Ik ben gegaan',tip:'رفت + "-ه" + "-ام" → voltooide handeling'},
+        {hz:'خورده‌ام',tr:'khordaam',nl:'Ik heb gegeten',tip:'"خورد" + "-ه" + "-ام"'},
+        {hz:'دیده‌ام',tr:'didaam',nl:'Ik heb gezien',tip:'"دید" + "-ه" + "-ام"'},
+        {hz:'گفته‌ام',tr:'goftaam',nl:'Ik heb gezegd',tip:'"گفت" + "-ه" + "-ام"'},
+        {hz:'آمده‌ام',tr:'aamdaam',nl:'Ik ben gekomen',tip:'"آمد" + "-ه" + "-ام"'},
+        {hz:'نرفته‌ام',tr:'na-raftaam',nl:'Ik ben niet gegaan',tip:'"نه" + verleden stam = negatie VTT'},
+      ],
+      sentences:[
+        {hz:'نان خورده‌ام، سیر هستم',tr:'naan khordaam, seer hastom',nl:'Ik heb brood gegeten, ik ben vol'},
+        {hz:'این فیلم را دیده‌ام، خیلی خوب بود',tr:'in film ra didaam, kheli khob bood',nl:'Ik heb deze film gezien, het was heel goed'},
+        {hz:'هیچ‌وقت کابل نرفته‌ام',tr:'hich-waqt kaabul na-raftaam',nl:'Ik ben nooit naar Kabul gegaan'},
+      ]
+    },
+
+    { id:'gram7_ke', title:'که-bijzinnen', sub:'Ik weet dat..., de man die...', icon:'🔀', xp:40,
+      pronTips:['ک'],
+      grammar:'"که" (ka) is het Hazaragi "dat / die / wat". Twee functies:\n\n① BIJZINSINLEIDER (complement): "می‌دانم که آمده" = ik weet dat hij/zij is gekomen.\nPatroon: HOOFDZIN + "که" + BIJZIN (werkwoord bijzin ook aan het einde!).\n\n② RELATIVUM (betrekkelijk voornaamwoord): "مردی که آمد" = de man die gekomen is.\nPatroon: ZELFSTANDIG NAAMWOORD + "که" + BIJZIN.\n\nIN HAZARAGI SPREEKTAAL klinkt "که" als een korte "ka" — snel uitgesproken.\n\nLET OP: ook in de bijzin blijft SOV van kracht — werkwoord altijd aan het EINDE.\n\n"فکر می‌کنم که درست اَس" = ik denk dat het klopt (letterlijk: ik-denk dat klopt-het).',
+      words:[
+        {hz:'که',tr:'ka',nl:'Dat / Die / Wat',tip:'"که" verbindt twee zinnen — uitgesproken als "ka"'},
+        {hz:'می‌دانم که',tr:'mi-danom ka',nl:'Ik weet dat',tip:'Veelgebruikte combinatie — leer als één blok'},
+        {hz:'فکر می‌کنم که',tr:'fekr mi-konom ka',nl:'Ik denk dat',tip:'"فکر" = gedachte/mening'},
+        {hz:'می‌گویم که',tr:'mi-gom ka',nl:'Ik zeg dat',tip:''},
+        {hz:'کسی که',tr:'kasi ka',nl:'De persoon die',tip:'"کسی" = iemand'},
+        {hz:'چیزی که',tr:'chizi ka',nl:'Iets dat',tip:'"چیزی" = iets'},
+        {hz:'وختی که',tr:'wakhti ka',nl:'Op het moment dat',tip:'"وختی" = Hazaragi voor "wanneer"'},
+      ],
+      sentences:[
+        {hz:'می‌دانم که فردا می‌آیی',tr:'mi-danom ka farda mi-aayi',nl:'Ik weet dat je morgen komt'},
+        {hz:'فکر می‌کنم که درست اَس',tr:'fekr mi-konom ka doros as',nl:'Ik denk dat het klopt'},
+        {hz:'مردی که آمد دوستم اَس',tr:'mardi ka aamad dostam as',nl:'De man die gekomen is is mijn vriend'},
+      ]
+    },
+
+    { id:'gram7_maal', title:'مال — Bezit als zelfstandig woord', sub:'Van mij, van jou, het mijne...', icon:'👤', xp:25,
+      pronTips:['م'],
+      grammar:'"مال" (maal) = van / eigendom van. Gebruik dit als het bezit ZELFSTANDIG staat.\n\nMAAL + VOORNAAMWOORD:\n• مال من (maal-e ma) = van mij\n• مال تو (maal-e tu) = van jou\n• مال او (maal-e oo) = van hem/haar\n• مال ما (maal-e mah) = van ons\n• مال شما (maal-e shoma) = van jullie\n• مال کی؟ (maal-e ki?) = van wie?\n\nVERSCHIL MET BEZITSSUFFIXEN:\n• Suffix: "-م" AAN het woord: "کتابم" = mijn boek\n• مال: zelfstandig: "این کتاب مال من اَس" = dit boek is van mij\n\nGebruik "مال" als je nadruk wil op het bezit, of als er geen zelfstandig naamwoord bij staat.',
+      words:[
+        {hz:'مال من',tr:'maal-e ma',nl:'Van mij',tip:'"این مال من اَس" = dit is van mij'},
+        {hz:'مال تو',tr:'maal-e tu',nl:'Van jou',tip:'"تو" = tu — NIET "to"!'},
+        {hz:'مال او',tr:'maal-e oo',nl:'Van hem/haar',tip:'"oo" = lange oo-klank'},
+        {hz:'مال ما',tr:'maal-e mah',nl:'Van ons',tip:'Hazaragi: mah voor wij'},
+        {hz:'مال شما',tr:'maal-e shoma',nl:'Van jullie',tip:'Ook beleefd enkelvoud'},
+        {hz:'مال کی؟',tr:'maal-e ki?',nl:'Van wie?',tip:'"مال کی اَس؟" = van wie is het?'},
+      ],
+      sentences:[
+        {hz:'این مال من اَس، نه مال تو',tr:'ain maal-e ma as, na maal-e tu',nl:'Dit is van mij, niet van jou'},
+        {hz:'مال کی اَس این کتاب؟',tr:'maal-e ki as ain ketaab?',nl:'Van wie is dit boek?'},
+        {hz:'مال ماست، با هم کار می‌کنیم',tr:'maal-e maast, baa ham kaar mi-konim',nl:'Het is van ons, we werken samen'},
       ]
     },
 
@@ -4244,4 +4364,5 @@ const ACHVS = [
   {id:'ch50',icon:'☀️',name:'Dagelijkse Routine',desc:'Hoofdstuk 50 gestart'},
   {id:'ch51',icon:'🎊',name:'Feesten & Vieringen',desc:'Hoofdstuk 51 gestart'},
   {id:'ch52',icon:'📖',name:'Grammatica 6',desc:'Vraagzinnen & tijdsuitdrukkingen geleerd'},
+  {id:'ch_gram7',icon:'🔬',name:'Grammatica 7',desc:'Tijden & ezafe geleerd — bijna native!'},
 ];
