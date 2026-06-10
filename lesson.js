@@ -161,7 +161,6 @@ function rGrammar(ex,body){
       <div class="grammar-text">${ex.grammar}</div>
     </div>
     ${pronHTML?`<p style="font-size:12px;font-weight:900;color:var(--ink-l);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">🔊 Uitspraaktips</p><div class="pron-tips-list">${pronHTML}</div>`:''}
-    <div style="flex:1"></div>
     <button class="btn-check" onclick="nextEx()">Start de les! 🌸</button>`;
 }
 
@@ -214,7 +213,6 @@ function rIntro(ex,body){
     </div>
     ${w.tip?`<div class="word-tip-card">💡 ${w.tip}</div>`:''}
     ${ctxHTML}
-    <div style="flex:1"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
   save();
@@ -253,7 +251,6 @@ function rContext(ex,body){
       <div class="ctx-tr">${s.tr}</div>
       <div class="ctx-nl">"${s.nl}"</div>
     </div>
-    <div style="flex:1"></div>
     <button class="btn-check" onclick="nextEx()">Ik snap het! ✓</button>`;
 }
 
@@ -340,7 +337,6 @@ function rWB(ex,body){
     <div class="wb-answer" id="wb-ans"></div>
     <div class="wb-bank" id="wb-bnk">${shuf.map(w=>`
       <button class="w-tile" data-action="wbmove" data-word="${w}">${w}</button>`).join('')}</div>
-    <div style="flex:1"></div>
     <button class="btn-check" id="btn-check-wb" disabled>Controleer ✓</button>`;
 
   const ansEl=document.getElementById('wb-ans');
@@ -395,10 +391,9 @@ function rType(ex,body){
   body.innerHTML=`
     <div class="type-pill">⌨️ Actief ophalen</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Hazaragi woord voor:</p>
-    <div class="hz-card" style="margin-bottom:18px">
-      <span class="hz-nl" style="font-size:24px;font-weight:900;color:var(--ink)">${w.nl}</span>
+    <div class="hz-card hz-card-compact">
+      <span class="hz-nl" style="font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px">${w.nl}</span>
       <span class="hz-dutch">🗣️ ${toDutchPhonetic(w.tr)}</span>
-      <span class="hz-latin" style="margin-top:2px">${w.tr}</span>
     </div>
     <input class="t-inp" id="t-inp"
       inputmode="text"
@@ -408,10 +403,9 @@ function rType(ex,body){
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
-      placeholder="Typ in Hazaragi schrift...">
+      placeholder="Typ hier...">
     <div class="t-hint" id="t-hint"></div>
     <button class="hint-btn" id="hint-btn">💡 Toon antwoord</button>
-    <div style="flex:1"></div>
     <button class="btn-check" id="btn-check-type">Controleer ✓</button>`;
 
   const correct=w.hz;

@@ -202,7 +202,7 @@ body{font-family:'Nunito',sans-serif;background:#F5C6CC;display:flex;justify-con
 .w-tile.ans{background:var(--rose-xl);border-color:var(--rose);color:var(--rose-d);font-family:'Noto Naskh Arabic',serif}
 
 /* Typing */
-.t-inp{width:100%;border:2.5px solid var(--ink-xl);border-radius:var(--r-sm);padding:16px;font-size:32px;direction:rtl;text-align:right;outline:none;background:var(--white);color:var(--ink);font-family:'Noto Naskh Arabic',serif;font-weight:600;transition:all .2s;-webkit-appearance:none;line-height:1.5}
+.t-inp{width:100%;border:2.5px solid var(--ink-xl);border-radius:var(--r-sm);padding:14px 16px;font-size:24px;direction:rtl;text-align:right;outline:none;background:var(--white);color:var(--ink);font-family:'Noto Naskh Arabic',serif;font-weight:600;transition:all .2s;-webkit-appearance:none;line-height:1.5}
 .t-inp:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(240,108,120,.1)}
 .t-inp.ok{border-color:#6A8A40;background:#EEF5DC}
 .t-inp.ng{border-color:#e24b5a;background:#FFF0F2;animation:shake .32s ease}
@@ -210,7 +210,7 @@ body{font-family:'Nunito',sans-serif;background:#F5C6CC;display:flex;justify-con
 .t-hint.show{display:block}
 
 /* Check button */
-.btn-check{background:linear-gradient(135deg,var(--rose),var(--rose-d));color:#fff;border:none;border-radius:var(--r-sm);padding:17px;font-size:16px;font-weight:900;cursor:pointer;width:100%;box-shadow:var(--sh-rose);transition:all .2s;font-family:'Nunito',sans-serif;margin-top:auto;position:sticky;bottom:24px}
+.btn-check{background:linear-gradient(135deg,var(--rose),var(--rose-d));color:#fff;border:none;border-radius:var(--r-sm);padding:17px;font-size:16px;font-weight:900;cursor:pointer;width:100%;box-shadow:var(--sh-rose);transition:all .2s;font-family:'Nunito',sans-serif;margin-top:16px}
 .btn-check:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(240,108,120,.44)}
 .btn-check:disabled{background:var(--rose-xl);color:var(--rose);box-shadow:none;cursor:not-allowed}
 
