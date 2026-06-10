@@ -76,21 +76,11 @@ function _speakRoman(text){
 function speakHz(text){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
   window.speechSynthesis.cancel();
-
   const utt=new SpeechSynthesisUtterance(text);
-  utt.lang='fa'; // meest generiek — iOS pikt elke Perzische/Farsi stem op
+  utt.lang='fa';
   utt.rate=0.78;
   utt.pitch=1.0;
-
-  // Als Perzisch mislukt → romanisering
-  let spoken=false;
-  utt.onstart=()=>{ spoken=true; };
-  utt.onerror=()=>{ _speakRoman(text); };
-
-  // iOS vuurt soms geen onerror — timeout fallback na 3s
-  const guard=setTimeout(()=>{ if(!spoken) _speakRoman(text); }, 3000);
-  utt.onend=()=>clearTimeout(guard);
-
+  utt.onerror=()=>{};
   window.speechSynthesis.speak(utt);
 }
 
