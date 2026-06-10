@@ -115,7 +115,7 @@ function shareProgress(){
 // BOOT
 // ══════════════════════════════════════════════════════
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(()=>{});
 }
 load();
 applyMasteryDecay();

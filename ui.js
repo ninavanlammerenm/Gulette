@@ -392,6 +392,8 @@ function renderProfile(){
   updateRomanBtn();
   updateSoundBtn();
   updateFontBtns();
+  const _vEl=document.getElementById('app-version');
+  if(_vEl)_vEl.textContent='v17';
   const _wc=Object.keys(S.vocab).length;
   const _ap={'words10':[_wc,10],'words30':[_wc,30],'words60':[_wc,60],'words100':[_wc,100],'words200':[_wc,200],'words300':[_wc,300],
     'streak3':[S.streak,3],'streak7':[S.streak,7],'streak30':[S.streak,30],
