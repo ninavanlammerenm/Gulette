@@ -78,7 +78,7 @@ function speakHz(text){
   window.speechSynthesis.cancel();
 
   const utt=new SpeechSynthesisUtterance(text);
-  utt.lang='fa-IR'; // iOS gebruikt gedownloade Perzische stem automatisch
+  utt.lang='fa'; // meest generiek — iOS pikt elke Perzische/Farsi stem op
   utt.rate=0.78;
   utt.pitch=1.0;
 
