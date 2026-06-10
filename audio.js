@@ -26,7 +26,6 @@ function playTone(freq,dur,type='sine',vol=0.18){
 
 function sfxCorrect(){
   if(S.soundOn===false)return;
-  // vrolijk oplopend akkoord
   playTone(520,0.12,'sine',0.15);
   setTimeout(()=>playTone(660,0.12,'sine',0.15),80);
   setTimeout(()=>playTone(780,0.18,'sine',0.15),160);
@@ -34,7 +33,6 @@ function sfxCorrect(){
 
 function sfxWrong(){
   if(S.soundOn===false)return;
-  // zacht dalend signaal
   playTone(300,0.15,'sawtooth',0.08);
   setTimeout(()=>playTone(220,0.2,'sawtooth',0.08),100);
 }
@@ -49,37 +47,11 @@ function sfxFinish(){
 
 // ══════════════════════════════════════════════════════
 // TTS — Hazaragi uitspreken
+// Strategie: probeer altijd lang='fa' (iOS pikt gedownloade
+// Perzische stem automatisch op zonder getVoices() nodig).
+// Bij fout: spreek romanisering uit met standaardstem.
 // ══════════════════════════════════════════════════════
-let _ttsVoice=null;
-let _ttsReady=false;
-let _ttsGood=false; // heeft een Arabisch-capabele stem
 
-function _loadVoices(){
-  if(!('speechSynthesis' in window))return;
-  const vs=window.speechSynthesis.getVoices();
-  if(!vs.length)return;
-  _ttsReady=true;
-  // Prioriteit: fa-AF > fa > ar > ur (altijd opnieuw detecteren)
-  const good=
-    vs.find(v=>v.lang==='fa-AF')||
-    vs.find(v=>v.lang==='fa-IR')||
-    vs.find(v=>v.lang.startsWith('fa'))||
-    vs.find(v=>v.lang.startsWith('ar'))||
-    vs.find(v=>v.lang.startsWith('ur'));
-  if(good){
-    _ttsVoice=good;_ttsGood=true;
-  }else{
-    _ttsVoice=vs.find(v=>v.default)||vs[0]||null;
-    _ttsGood=false;
-  }
-}
-
-if('speechSynthesis' in window){
-  window.speechSynthesis.onvoiceschanged=_loadVoices;
-  _loadVoices();
-}
-
-// Zoek romanisering (tr) van een Arabisch woord op in de lesdata
 function _findRoman(hz){
   if(typeof CHAPTERS==='undefined')return null;
   for(const ch of CHAPTERS){
@@ -91,51 +63,48 @@ function _findRoman(hz){
   return null;
 }
 
+function _speakRoman(text){
+  const roman=_findRoman(text)||text;
+  window.speechSynthesis.cancel();
+  const utt=new SpeechSynthesisUtterance(roman);
+  utt.lang='nl-NL';
+  utt.rate=0.72;
+  utt.onerror=()=>{};
+  window.speechSynthesis.speak(utt);
+}
+
 function speakHz(text){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
-  if(!_ttsReady)_loadVoices();
-
-  let speak=text;
-  let lang=_ttsVoice?_ttsVoice.lang:'fa';
-
-  if(!_ttsGood){
-    // Geen Arabische stem — spreek de romanisering uit met beschikbare stem
-    const roman=_findRoman(text);
-    if(!roman)return; // kan niet zonder romanisering
-    speak=roman;
-    lang=_ttsVoice?_ttsVoice.lang:'nl';
-  }
-
   window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(speak);
-  if(_ttsVoice)utt.voice=_ttsVoice;
-  utt.lang=lang;
-  utt.rate=_ttsGood?0.78:0.72;
+
+  const utt=new SpeechSynthesisUtterance(text);
+  utt.lang='fa-IR'; // iOS gebruikt gedownloade Perzische stem automatisch
+  utt.rate=0.78;
   utt.pitch=1.0;
-  utt.onerror=()=>{};
+
+  // Als Perzisch mislukt → romanisering
+  let spoken=false;
+  utt.onstart=()=>{ spoken=true; };
+  utt.onerror=()=>{ _speakRoman(text); };
+
+  // iOS vuurt soms geen onerror — timeout fallback na 3s
+  const guard=setTimeout(()=>{ if(!spoken) _speakRoman(text); }, 3000);
+  utt.onend=()=>clearTimeout(guard);
+
   window.speechSynthesis.speak(utt);
 }
 
 function testAudio(){
   if(!('speechSynthesis' in window)){showToast('❌ Spraak niet beschikbaar');return;}
-  // Forceer herdetectie — wis gecachede stem
-  _ttsVoice=null;_ttsReady=false;_ttsGood=false;
-  _loadVoices();
-  if(!_ttsReady){showToast('❌ Geen stemmen gevonden');return;}
-  // Debug: toon ALLE stemmen zodat we de exacte taalcode zien
   const vs=window.speechSynthesis.getVoices();
-  const info=vs.map(v=>v.name.split(' ')[0]+'('+v.lang+')').join(' | ');
-  showToast('Stemmen: '+info);
-  if(_ttsGood){
-    showToast('✅ Actief: '+_ttsVoice.name+' ('+_ttsVoice.lang+')');
-    speakHz('سلام');
-  }else{
-    showToast('🔤 Geen fa/ar stem — romanisering via: '+(_ttsVoice?_ttsVoice.name:'geen'));
-    window.speechSynthesis.cancel();
-    const utt=new SpeechSynthesisUtterance('salam');
-    if(_ttsVoice)utt.voice=_ttsVoice;
-    utt.lang=_ttsVoice?_ttsVoice.lang:'nl';
-    utt.rate=0.72;
-    window.speechSynthesis.speak(utt);
+  const fa=vs.filter(v=>v.lang.startsWith('fa'));
+  const ar=vs.filter(v=>v.lang.startsWith('ar'));
+  if(fa.length){
+    showToast('✅ Farsi stemmen: '+fa.map(v=>v.name).join(', '));
+  } else if(ar.length){
+    showToast('🔤 Geen Farsi, wel Arabisch: '+ar.map(v=>v.name).join(', ')+' — probeert toch fa-IR');
+  } else {
+    showToast('🔤 Geen fa/ar stem gevonden — romanisering als fallback');
   }
+  speakHz('سلام');
 }
