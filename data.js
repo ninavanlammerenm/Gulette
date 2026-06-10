@@ -113,7 +113,7 @@ const CHAPTERS=[
         {hz:'خوش وقتم',tr:'khosh waqtam',nl:'Aangenaam kennis te maken',tip:'Bij een eerste ontmoeting'},
         {hz:'عفو',tr:'ofo',nl:'Graag gedaan / Je bent vergeven',tip:'Antwoord op "تشکر" of "معذرت"'},
         {hz:'خوب نیستم',tr:'khob nistom',nl:'Ik ben niet goed / Ik voel me niet goed',tip:'Eerlijk antwoord op "خوبی؟"'},
-        {hz:'ممنون',tr:'mamnoon',nl:'Bedankt (formeel)',tip:'Formeler dan "تشکر"'},
+        {hz:'خدا خیرت بده',tr:'khuda khayret bada',nl:'Hartelijk bedankt',tip:'Typisch Hazaragi/Afghaans: God vergelde het je — warmer dan "تشکر"'},
       ],
       sentences:[
         {hz:'سلام، خوبی؟',tr:'salaam, khobi?',nl:'Hallo, hoe gaat het?'},
@@ -657,7 +657,7 @@ const CHAPTERS=[
       words:[
         {hz:'مریض',tr:'mariz',nl:'Ziek',tip:''},
         {hz:'درد',tr:'dard',nl:'Pijn',tip:''},
-        {hz:'دکتر',tr:'doktor',nl:'Dokter',tip:''},
+        {hz:'داکتر',tr:'daaktar',nl:'Dokter',tip:'"داکتر" = typisch Hazaragi/Afghaanse uitspraak (niet Iraans "پزشک")'},
         {hz:'دوا',tr:'dawaa',nl:'Medicijn',tip:''},
         {hz:'تب',tr:'tab',nl:'Koorts',tip:''},
         {hz:'زکام',tr:'zakaam',nl:'Verkoudheid',tip:'Typisch Hazaragi woord'},
@@ -1259,9 +1259,9 @@ const CHAPTERS=[
 
     { id:'professions', title:'Beroepen', sub:'Dokter, leraar, ingenieur...', icon:'👨‍💼', xp:45,
       pronTips:['ع','خ'],
-      grammar:'"کار می‌کنم" = ik werk. Beroep + "هستم" = ik ben [beroep]. "دکتر هستم" = ik ben dokter.',
+      grammar:'"کار می‌کنم" = ik werk. Beroep + "هستم" = ik ben [beroep]. "داکتر هستم" = ik ben dokter.',
       words:[
-        {hz:'دکتر',tr:'doktor',nl:'Dokter',tip:''},
+        {hz:'داکتر',tr:'daaktar',nl:'Dokter',tip:'"داکتر" = Hazaragi/Afghaans (niet Iraans "پزشک")'},
         {hz:'معلم',tr:'mo\'alem',nl:'Leraar',tip:'"ع" = zachte keel-stop'},
         {hz:'مهندس',tr:'mohandes',nl:'Ingenieur',tip:''},
         {hz:'قاضی',tr:'qaazi',nl:'Rechter',tip:'"ق" = diepe keel-k'},
@@ -1274,7 +1274,7 @@ const CHAPTERS=[
         {hz:'دهقان',tr:'dehqaan',nl:'Boer',tip:'Traditioneel Hazara beroep'},
       ],
       sentences:[
-        {hz:'دکتر هستم، دَ شفاخانه کار می‌کنم',tr:'doktor hastom, da shafaakhaana kaar mi-konom',nl:'Ik ben dokter, ik werk in het ziekenhuis'},
+        {hz:'داکتر هستم، دَ شفاخانه کار می‌کنم',tr:'daaktar hastom, da shafaakhaana kaar mi-konom',nl:'Ik ben dokter, ik werk in het ziekenhuis'},
         {hz:'آرزومه معلم بشم',tr:'aarozomam mo\'alem besham',nl:'Mijn droom is om leraar te worden'},
         {hz:'باواکلانم دهقان بود',tr:'baawakalanam dehqaan bood',nl:'Mijn opa was boer'},
       ]
@@ -1296,7 +1296,7 @@ const CHAPTERS=[
         {hz:'رویا',tr:'roya',nl:'Droom (poëtisch)',tip:'Van "رؤیا" — mooie dromen'},
       ],
       sentences:[
-        {hz:'آرزومه دکتر بشم و مردم را کمک کنم',tr:'aarozomam doktor besham wa mardom ra kamak konam',nl:'Mijn droom is dokter te worden en mensen te helpen'},
+        {hz:'آرزومه داکتر بشم و مردم را کمک کنم',tr:'aarozomam daaktar besham wa mardom ra kamak konam',nl:'Mijn droom is dokter te worden en mensen te helpen'},
         {hz:'امید خودتو از دست نده',tr:'omid khodata az dast nada',nl:'Verlies je hoop niet'},
         {hz:'با تلاش همه چیز ممکن اَس',tr:'baa talash hama chiz momken as',nl:'Met inspanning is alles mogelijk'},
       ]
@@ -1419,7 +1419,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'کوه‌های هزارستان بلند اَن',tr:'koohaaay hazaaristaan boland an',nl:'De bergen van Hazarastan zijn hoog'},
-        {hz:'آب صاف دریا خوشگل اَس',tr:'aab saaf daryaa khoshgal as',nl:'Het heldere water van de rivier is mooi'},
+        {hz:'آب صاف دریا قشنگ اَس',tr:'aab saaf daryaa qashanq as',nl:'Het heldere water van de rivier is mooi'},
         {hz:'دشت پر از گل شده، بهار اَس',tr:'dasht por az gol shoda, bahaar as',nl:'De vlakte staat vol bloemen, het is lente'},
       ]
     },
@@ -2200,7 +2200,7 @@ const CHAPTERS=[
         {hz:'مرخص شدن',tr:'markhyas shodan',nl:'Ontslagen worden (ziekenhuis)',tip:''},
       ],
       sentences:[
-        {hz:'دکتر نسخه نوشت و آزمایش خواست',tr:'doktor neskha nawesht wa aazmaaesh khawast',nl:'De dokter schreef een recept en vroeg om een bloedonderzoek'},
+        {hz:'داکتر نسخه نوشت و آزمایش خواست',tr:'daaktar neskha nawesht wa aazmaaesh khawast',nl:'De dokter schreef een recept en vroeg om een bloedonderzoek'},
         {hz:'تبم سی و هشت اَس، حساسیت دارم',tr:'tabam si o hasht as, hassaasiyat darom',nl:'Mijn koorts is 38, ik heb een allergie'},
         {hz:'الحمدلله از شفاخانه مرخص شدم',tr:'alhamdolillah az shafaakhaana markhyas shodom',nl:'Alhamdulillah ben ik uit het ziekenhuis ontslagen'},
       ]
@@ -2445,7 +2445,7 @@ const CHAPTERS=[
       pronTips:['خ','ع'],
       grammar:'Voegwoorden verbinden zinnen. "اما" = maar, "چون" = omdat, "اگه" = als (voorwaarde), "وقتی" = wanneer.',
       words:[
-        {hz:'اما',tr:'amma',nl:'Maar',tip:'"می‌خوام اما نمی‌تونم" = ik wil maar kan niet'},
+        {hz:'اما',tr:'amma',nl:'Maar',tip:'"می‌خوام اما نمی‌تانم" = ik wil maar kan niet'},
         {hz:'چون',tr:'chon',nl:'Omdat',tip:'"نرفتم چون مریض بودم" = ging niet omdat ik ziek was'},
         {hz:'پس',tr:'pas',nl:'Dus / Dan',tip:'"پس بریم" = laten we dan gaan'},
         {hz:'هم',tr:'ham',nl:'Ook',tip:'"من هم اومدم" = ik ben ook gekomen'},
@@ -2574,10 +2574,10 @@ const CHAPTERS=[
         {hz:'پوهنتون',tr:'pohantoon',nl:'Universiteit',tip:'Afghaans woord — typisch Hazaragi gebruik'},
         {hz:'استاد',tr:'ostaad',nl:'Docent / Professor',tip:'Ook: meester, expert'},
         {hz:'فارغ‌التحصیل',tr:'faarigh-ottahsil',nl:'Afgestudeerd',tip:'"فارغ شدم" = ik ben afgestudeerd'},
-        {hz:'دانشجو',tr:'daaneshjo',nl:'Student',tip:''},
+        {hz:'محصل',tr:'mohassil',nl:'Student',tip:'"محصل" = Hazaragi/Afghaans voor universiteitsstudent — niet Iraans "دانشجو"'},
         {hz:'امتحان',tr:'emtahaan',nl:'Examen',tip:'"امتحان دادن" = examen doen'},
         {hz:'نمره',tr:'nomra',nl:'Cijfer',tip:'"نمره خوب گرفتم" = ik haalde een goed cijfer'},
-        {hz:'رشته',tr:'reshta',nl:'Studierichting',tip:'"رشته پزشکی" = geneeskunde'},
+        {hz:'رشته',tr:'reshta',nl:'Studierichting',tip:'"رشته طب" = geneeskunde — "طب" is Hazaragi/Afghaans (niet Iraans "پزشکی")'},
         {hz:'دیپلوم',tr:'diploma',nl:'Diploma',tip:''},
         {hz:'کتابخانه',tr:'ketaabkhaana',nl:'Bibliotheek',tip:''},
         {hz:'تحقیق',tr:'tahqiq',nl:'Onderzoek',tip:'"تحقیق کردن" = onderzoek doen'},
@@ -2585,7 +2585,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'در پوهنتون کابل درس می‌خونم',tr:'dar pohantoon kabol dars mi-khwoom',nl:'Ik studeer aan de universiteit van Kabul'},
         {hz:'امتحان سخت بود اما نمره خوب گرفتم',tr:'emtahaan sakht bood amma nomra khob geraftom',nl:'Het examen was moeilijk maar ik haalde een goed cijfer'},
-        {hz:'رشته‌ام پزشکی اَس',tr:'reshtam pezeshki as',nl:'Mijn studierichting is geneeskunde'},
+        {hz:'رشته‌ام طب اَس',tr:'reshtam tibb as',nl:'Mijn studierichting is geneeskunde'},
       ]
     },
 
@@ -2657,7 +2657,7 @@ const CHAPTERS=[
         {hz:'تپه',tr:'tapa',nl:'Heuvel',tip:''},
       ],
       sentences:[
-        {hz:'بند امیر زیباترین جای افغانستان اَس',tr:'band-e amir zibaatarin jaaye afghaanostaan as',nl:'Band-e Amir is de mooiste plek van Afghanistan'},
+        {hz:'بند امیر قشنگ‌ترین جای افغانستان اَس',tr:'band-e amir qashangtarin jaaye afghaanostaan as',nl:'Band-e Amir is de mooiste plek van Afghanistan'},
         {hz:'هزارجات سرزمین کوه‌ها و دره‌ها اَس',tr:'hazaarajaat sarzamin-e koohhaa wa darahaa as',nl:'Hazarajat is het land van bergen en valleien'},
         {hz:'تابستان به ییلاق می‌رفتیم',tr:'taabestaan ba yilaaq mi-raftim',nl:'In de zomer gingen we naar de bergweide'},
       ]
@@ -2679,7 +2679,7 @@ const CHAPTERS=[
         {hz:'یادگار',tr:'yaadgaar',nl:'Monument / Aandenken',tip:''},
       ],
       sentences:[
-        {hz:'مسجد کبود مزار شریف خیلی زیبا اَس',tr:'masjed-e kabood mazaar sharif kheli zibaa as',nl:'De Blauwe Moskee van Mazar-i-Sharif is heel mooi'},
+        {hz:'مسجد کبود مزار شریف خیلی قشنگ اَس',tr:'masjed-e kabood mazaar sharif kheli qashanq as',nl:'De Blauwe Moskee van Mazar-i-Sharif is heel mooi'},
         {hz:'بت‌های بامیان میراث جهانی بود',tr:'bot-haaye baamiaan miraas-e jahaaani bood',nl:'De Boeddhabeelden van Bamyan waren werelderfgoed'},
         {hz:'موزیم کابل تاریخ افغانستان را نگه می‌داره',tr:'moziom-e kabol taarikhe afghaanostaan ra negah mi-daara',nl:'Het museum van Kabul bewaart de geschiedenis van Afghanistan'},
       ]
@@ -2941,10 +2941,10 @@ const CHAPTERS=[
 
     { id:'mindset_feelings', title:'Positieve Gevoelens & Kracht', sub:'Blij, sterk, dankbaar...', icon:'🌟', xp:35,
       pronTips:['خ','ق'],
-      grammar:'"خوشحال" = blij (letterlijk: goed-toestand). "ممنون" = dankbaar/bedankt — formeler dan "تشکر". "قوی" = sterk — ook figuurlijk: een sterk geloof, een sterke persoon.',
+      grammar:'"خوشحال" = blij (letterlijk: goed-toestand). "شاکر" = dankbaar — Hazaragi/Afghaans woord voor dankbaarheid. "قوی" = sterk — ook figuurlijk: een sterk geloof, een sterke persoon.',
       words:[
         {hz:'خوشحال',tr:'khoshaal',nl:'Blij / Gelukkig',tip:'"خوشحال شدم" = ik werd blij'},
-        {hz:'ممنون',tr:'mamnoon',nl:'Dankbaar / Bedankt',tip:'Formeler dan "تشکر"'},
+        {hz:'شاکر',tr:'shaakir',nl:'Dankbaar',tip:'"شاکر هستم" = ik ben dankbaar — typisch Hazaragi/Afghaans'},
         {hz:'قوی',tr:'qaawi',nl:'Sterk',tip:'"قوی باش" = wees sterk'},
         {hz:'آرام',tr:'aaraam',nl:'Rustig / Kalm',tip:'"آرام باش" = wees kalm'},
         {hz:'راضی',tr:'raazi',nl:'Tevreden',tip:'"راضی هستم" = ik ben tevreden'},
@@ -2956,7 +2956,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'خوشحالم که دارم هزارگی یاد می‌گیرم',tr:'khoshaalim ka daaram hazaaragi yaad mi-giram',nl:'Ik ben blij dat ik Hazaragi aan het leren ben'},
-        {hz:'قوی باش، می‌تونی!',tr:'qaawi baash, mi-toni!',nl:'Wees sterk, je kunt het!'},
+        {hz:'قوی باش، می‌تانی!',tr:'qaawi baash, mi-taani!',nl:'Wees sterk, je kunt het!'},
         {hz:'از تلاشت افتخار می‌کنم',tr:'az talaashat eftekhar mi-konom',nl:'Ik ben trots op jouw inzet'},
       ]
     },
@@ -2967,7 +2967,7 @@ const CHAPTERS=[
       words:[
         {hz:'دست مریزاد',tr:'dast morizaad',nl:'Goed gedaan! (Hazaragi compliment)',tip:'Letterlijk: moge je hand niet moe worden'},
         {hz:'آفرین',tr:'aafarin',nl:'Bravo! / Goed zo!',tip:'Aanmoediging voor kinderen en volwassenen'},
-        {hz:'می‌تونی',tr:'mi-toni',nl:'Je kunt het',tip:'"می‌تونی!" = je kunt het!'},
+        {hz:'می‌تانی',tr:'mi-taani',nl:'Je kunt het',tip:'"می‌تانی!" = je kunt het! — typisch Hazaragi (niet Iraans "می‌تونی")'},
         {hz:'بیا',tr:'biyaa',nl:'Kom / Laten we',tip:'"بیا بریم" = kom laten we gaan'},
         {hz:'خوش بگذره',tr:'khosh bogzara',nl:'Veel plezier / Geniet ervan',tip:'Wenst iemand plezier'},
         {hz:'موفق باشی',tr:'mowafaq baashi',nl:'Veel succes',tip:'Veelgebruikte wens bij vertrek'},
@@ -3030,8 +3030,8 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'خانواده‌ام برام از همه چیز مهم‌تر اَس',tr:'khaanwaadaam baaram az hama chiz mohemtar as',nl:'Mijn familie is voor mij belangrijker dan alles'},
-        {hz:'از فداکاری مادرم ممنون هستم',tr:'az fedaakaari maadarom mamnoon hastom',nl:'Ik ben dankbaar voor de opoffering van mijn moeder'},
-        {hz:'پیوند ما را هیچ‌چیز نمی‌تونه بشکنه',tr:'peywand-e maa ra hich-chiz nami-tona beshkana',nl:'Niets kan onze band breken'},
+        {hz:'از فداکاری مادرم شاکر هستم',tr:'az fedaakaari maadarom shaakir hastom',nl:'Ik ben dankbaar voor de opoffering van mijn moeder'},
+        {hz:'پیوند ما را هیچ‌چیز نمی‌تانه بشکنه',tr:'peywand-e maa ra hich-chiz nami-taana beshkana',nl:'Niets kan onze band breken'},
       ]
     },
 
@@ -3721,7 +3721,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'کرایه تکسی چنده؟',tr:'karaaya taksi chanda?',nl:'Hoeveel kost de taxi?'},
         {hz:'در ایستگاه منتظر بس بودم',tr:'dar istaagaah montazer-e bas boodam',nl:'Ik wachtte bij de bushalte op de bus'},
-        {hz:'اینجا پیاده می‌شم، ممنون',tr:'injaa piyaada mi-shom, mamnoon',nl:'Ik stap hier uit, bedankt'},
+        {hz:'اینجا پیاده می‌شم، تشکر',tr:'injaa piyaada mi-shom, tashakur',nl:'Ik stap hier uit, bedankt'},
       ]
     },
 
@@ -3773,7 +3773,7 @@ const CHAPTERS=[
         {hz:'حساسیت',tr:'hassaasiyat',nl:'Allergie',tip:'"حساسیت دارم به..." = ik ben allergisch voor...'},
       ],
       sentences:[
-        {hz:'دکتر، شکمم درد می‌کنه',tr:'doktar, shekamam dard mi-kona',nl:'Dokter, mijn buik doet pijn'},
+        {hz:'داکتر، شکمم درد می‌کنه',tr:'daaktar, shekamam dard mi-kona',nl:'Dokter, mijn buik doet pijn'},
         {hz:'از دیشب تب دارم و سرفه می‌کنم',tr:'az doshab tab daaram wa sorfa mi-konam',nl:'Ik heb al vanaf gisternacht koorts en ik hoest'},
         {hz:'جای درد دقیقاً کجاست؟',tr:'jaaye dard daqiqan kojaast?',nl:'Waar precies doet het pijn?'},
       ]
@@ -3781,9 +3781,9 @@ const CHAPTERS=[
 
     { id:'doctor_medicines', title:'Medicijnen & Behandeling', sub:'Pillen, drankje, spuit, recept...', icon:'💊', xp:35,
       pronTips:['د','ت'],
-      grammar:'"دارو" = medicijn. "قرص" = pil. "نسخه" = recept. "دوز" = dosering. In Afghanistan zijn sommige medicijnen zonder recept beschikbaar — maar een arts raadplegen is altijd beter.',
+      grammar:'"دوا" = medicijn (Hazaragi/Afghaans woord — niet het Iraanse "دارو"). "قرص" = pil. "نسخه" = recept. "دوز" = dosering. In Afghanistan zijn sommige medicijnen zonder recept beschikbaar — maar een arts raadplegen is altijd beter.',
       words:[
-        {hz:'دارو',tr:'daaro',nl:'Medicijn',tip:'"دارو بخور" = neem je medicijn'},
+        {hz:'دوا',tr:'dawaa',nl:'Medicijn',tip:'"دوا بخور" = neem je medicijn — typisch Hazaragi/Afghaans (niet Iraans "دارو")'},
         {hz:'قرص',tr:'qors',nl:'Pil / Tablet',tip:'"قرص مسکن" = pijnstiller'},
         {hz:'شربت',tr:'sharbat',nl:'Drankje / Stroop',tip:'"شربت سرفه" = hoestdrank'},
         {hz:'آمپول',tr:'aampol',nl:'Injectie / Spuit',tip:'"آمپول زدن" = een injectie geven'},
@@ -3870,7 +3870,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'وای‌فای پسورد چیه؟',tr:'waay-faay paswerd chiya?',nl:'Wat is het wifi-wachtwoord?'},
-        {hz:'لایک کو و فالو کو، مرسی!',tr:'layk ko wa faaloo ko, mersi!',nl:'Geef een like en volg me, dank je!'},
+        {hz:'لایک کو و فالو کو، تشکر!',tr:'layk ko wa faaloo ko, tashakur!',nl:'Geef een like en volg me, bedankt!'},
         {hz:'اینترنت کُنده اَس، ویدیو بار نمی‌شه',tr:'internet konda as, widio baar nami-sha',nl:'Het internet is traag, de video laadt niet'},
       ]
     },
@@ -4116,7 +4116,7 @@ const CHAPTERS=[
         {hz:'هر چند',tr:'har chand',nl:'Hoewel / Al is het ook zo',tip:''},
         {hz:'چون',tr:'chon',nl:'Omdat',tip:'"چون خوب بودی" = omdat je goed was'},
         {hz:'پس',tr:'pas',nl:'Dus / Dan',tip:'"پس بیا" = dus kom dan'},
-        {hz:'ولی',tr:'wali',nl:'Maar / Echter',tip:'"می‌خوام ولی نمی‌تونم" = ik wil maar ik kan niet'},
+        {hz:'ولی',tr:'wali',nl:'Maar / Echter',tip:'"می‌خوام ولی نمی‌تانم" = ik wil maar ik kan niet'},
       ],
       sentences:[
         {hz:'اگر بیای، با هم می‌خوریم',tr:'agar biyaay, baa ham mi-khorim',nl:'Als je komt, eten we samen'},
