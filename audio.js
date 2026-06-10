@@ -59,15 +59,16 @@ function _loadVoices(){
   const vs=window.speechSynthesis.getVoices();
   if(!vs.length)return;
   _ttsReady=true;
+  // Prioriteit: fa-AF > fa > ar > ur (altijd opnieuw detecteren)
   const good=
     vs.find(v=>v.lang==='fa-AF')||
+    vs.find(v=>v.lang==='fa-IR')||
     vs.find(v=>v.lang.startsWith('fa'))||
     vs.find(v=>v.lang.startsWith('ar'))||
     vs.find(v=>v.lang.startsWith('ur'));
   if(good){
     _ttsVoice=good;_ttsGood=true;
   }else{
-    // Geen Arabisch-capabele stem — gebruik standaardstem (nl/whatever)
     _ttsVoice=vs.find(v=>v.default)||vs[0]||null;
     _ttsGood=false;
   }
@@ -117,14 +118,21 @@ function speakHz(text){
 
 function testAudio(){
   if(!('speechSynthesis' in window)){showToast('❌ Spraak niet beschikbaar');return;}
+  // Forceer herdetectie — wis gecachede stem
+  _ttsVoice=null;_ttsReady=false;_ttsGood=false;
   _loadVoices();
-  if(!_ttsReady){showToast('❌ Geen stemmen — probeer Chrome');return;}
+  if(!_ttsReady){showToast('❌ Geen stemmen gevonden');return;}
+  // Debug: toon gevonden fa/ar stemmen
+  const vs=window.speechSynthesis.getVoices();
+  const faV=vs.filter(v=>v.lang.startsWith('fa'));
+  const arV=vs.filter(v=>v.lang.startsWith('ar'));
+  if(faV.length) showToast('🇦🇫 Farsi: '+faV.map(v=>v.name+' ('+v.lang+')').join(', '));
+  else if(arV.length) showToast('🇸🇦 Alleen Arabisch: '+arV.map(v=>v.name).join(', '));
   if(_ttsGood){
-    showToast(`✅ ${_ttsVoice.name} (${_ttsVoice.lang})`);
+    showToast('✅ Actief: '+_ttsVoice.name+' ('+_ttsVoice.lang+')');
     speakHz('سلام');
   }else{
-    showToast(`🔤 Stem: ${_ttsVoice?_ttsVoice.name:'geen'} — spreekt romanisering uit`);
-    // Spreek "salam" direct uit als test
+    showToast('🔤 Geen fa/ar stem — romanisering via: '+(_ttsVoice?_ttsVoice.name:'geen'));
     window.speechSynthesis.cancel();
     const utt=new SpeechSynthesisUtterance('salam');
     if(_ttsVoice)utt.voice=_ttsVoice;
