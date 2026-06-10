@@ -53,6 +53,8 @@ function goHome(){
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   document.querySelector('.nb').classList.add('on');
   renderHome();
+  const firstActive=document.querySelector('.l-node.u');
+  if(firstActive)setTimeout(()=>firstActive.scrollIntoView({behavior:'smooth',block:'center'}),100);
 }
 
 // ══════════════════════════════════════════════════════
@@ -87,6 +89,11 @@ function renderHome(){
   document.getElementById('hdr-name').innerHTML='Salam, <em>'+S.name+'</em> 👋';
   document.getElementById('chip-streak').textContent=S.streak;
   document.getElementById('chip-xp').textContent=S.xp;
+  const shields=S.shields||0;
+  const shieldWrap=document.getElementById('chip-shield-wrap');
+  if(shieldWrap)shieldWrap.style.display=shields>0?'flex':'none';
+  const chipShields=document.getElementById('chip-shields');
+  if(chipShields)chipShields.textContent=shields;
   const lvl=Math.floor(S.xp/100)+1;
   const pct=S.xp%100;
   document.getElementById('xp-fill').style.width=pct+'%';
@@ -185,6 +192,8 @@ function renderHome(){
 // VOCAB SCREEN
 // ══════════════════════════════════════════════════════
 let wFilter='all';
+let _rvTimer=null;
+function renderVocabDebounced(){clearTimeout(_rvTimer);_rvTimer=setTimeout(renderVocab,150);}
 
 function filterW(f,btn){
   wFilter=f;document.querySelectorAll('.fc').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderVocab();
@@ -234,12 +243,10 @@ function renderVocab(){
     const accent=due&&m<2?'var(--rose-d)':m>=4?'var(--mint)':m>=2?'var(--lav)':'var(--gold)';
     // markeer lange klanken (dubbele klinkers) in de uitspraak
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
-    const dutch=toDutchPhonetic(v.tr);
     return `<div class="wc" data-hz="${hz}" style="border-left:4px solid ${accent}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
-        <div class="wc-dutch">🗣️ ${dutch}</div>
-        <div class="wc-pron">🔊 ${pron}</div>
+        <div class="wc-pron">🗣️ ${pron}</div>
         <div class="wc-nl">${v.nl||''}</div>
         <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
       </div>
@@ -263,7 +270,7 @@ function startQuickTest(){
     if(dueA!==dueB)return dueA-dueB;
     return (a.mastery||0)-(b.mastery||0);
   });
-  _qtWords=sorted.slice(0,5);
+  _qtWords=sorted.slice(0,10);
   _qtIdx=0;_qtScore=0;
   document.getElementById('qt-overlay').classList.add('open');
   renderQT();
@@ -382,6 +389,7 @@ function renderProfile(){
   renderChapterProgress();
   updateNotifBtn();
   updateRomanBtn();
+  updateSoundBtn();
   document.getElementById('a-list').innerHTML=ACHVS.map(a=>{
     const on=S.achv.includes(a.id);
     return `<div class="ac">
@@ -482,6 +490,23 @@ function updateRomanBtn(){
   btn.style.color = on ? '#fff' : 'var(--ink-m)';
 }
 
+function toggleSound(){
+  S.soundOn=S.soundOn===false?true:false;
+  save();
+  updateSoundBtn();
+}
+
+function updateSoundBtn(){
+  const btn=document.getElementById('sound-btn');
+  if(!btn)return;
+  const on=S.soundOn!==false;
+  btn.textContent=on?'🔊 Geluid: AAN':'🔇 Geluid: UIT';
+  btn.style.background=on
+    ?'linear-gradient(135deg,var(--sky),#2980b9)'
+    :'linear-gradient(135deg,var(--ink-xl),var(--ink-l))';
+  btn.style.color=on?'#fff':'var(--ink-m)';
+}
+
 // ══════════════════════════════════════════════════════
 // HOOFDSTUK-VOORTGANG
 // ══════════════════════════════════════════════════════
@@ -514,8 +539,9 @@ function renderDagwoord(){
   if(!el)return;
   const keys=Object.keys(S.vocab);
   if(keys.length===0){el.style.display='none';return;}
-  const dayIdx=Math.floor(Date.now()/86400000)%keys.length;
-  const hz=keys[dayIdx];
+  const sortedKeys=[...keys].sort();
+  const dayIdx=Math.floor(Date.now()/86400000)%sortedKeys.length;
+  const hz=sortedKeys[dayIdx];
   const v=S.vocab[hz];
   if(!v){el.style.display='none';return;}
   let tip='';
@@ -528,7 +554,7 @@ function renderDagwoord(){
   }
   el.style.display='block';
   document.getElementById('dw-body').innerHTML=`
-    <div class="dw-hz">${hz}</div>
+    <div class="dw-hz">${hz} <button class="spk-btn" style="font-size:14px;width:28px;height:28px;vertical-align:middle" onclick="speakHz('${hz}')">🔊</button></div>
     <div class="dw-tr">${v.tr||''}</div>
     <div class="dw-nl">= ${v.nl}</div>
     ${tip?`<div class="dw-tip">💡 ${tip}</div>`:''}`;
@@ -623,6 +649,7 @@ function showWordDetail(hz){
     openOvhDirect([{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
   });
   document.body.appendChild(bg);
+  speakHz(hz);
 }
 
 function showToast(msg){

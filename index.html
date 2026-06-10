@@ -57,6 +57,7 @@
       <div class="hdr-chips">
         <div class="chip">🔥 <span id="chip-streak">0</span></div>
         <div class="chip">⭐ <span id="chip-xp">0</span></div>
+        <div class="chip" id="chip-shield-wrap" style="display:none">🛡️ <span id="chip-shields">0</span></div>
       </div>
     </div>
     <div class="xp-bar-wrap">
@@ -113,7 +114,10 @@
       <div class="l-prog-track"><div class="l-prog-fill" id="l-prog" style="width:0%"></div></div>
       <div style="font-size:11px;font-weight:800;color:var(--ink-l);text-align:center" id="l-counter">1 / 1</div>
     </div>
+    <div style="display:flex;align-items:center;gap:6px">
+    <button class="btn-grammar" id="btn-grammar" style="display:none" onclick="showGrammarHint()">?</button>
     <div class="hearts" id="hearts">❤️❤️❤️</div>
+  </div>
   </div>
   <div class="combo-indicator" id="combo-indicator"></div>
   <div class="l-body" id="l-body"></div>
@@ -159,7 +163,7 @@
     </div>
     <div class="search-wrap">
       <span class="search-ico">🔍</span>
-      <input class="search-inp" id="vocab-search" type="text" placeholder="Zoek op woord of vertaling..." oninput="renderVocab()">
+      <input class="search-inp" id="vocab-search" type="text" placeholder="Zoek op woord of vertaling..." oninput="renderVocabDebounced()">
     </div>
     <div class="filter-row">
       <button class="fc on" onclick="filterW('all',this)">Alle</button>
@@ -193,6 +197,9 @@
     <div class="achvs-title">⚙️ Instellingen</div>
     <button id="roman-btn" onclick="toggleRoman()" style="width:100%;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:10px;transition:all .2s">
       🔤 Uitspraakschrift: AAN
+    </button>
+    <button id="sound-btn" onclick="toggleSound()" style="width:100%;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:10px;transition:all .2s;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff">
+      🔊 Geluid: AAN
     </button>
     <div class="achvs-title" style="margin-top:6px">🎯 Woordbeheersing</div>
     <div id="mastery-distrib" style="background:var(--white);border-radius:var(--r-sm);padding:16px;box-shadow:var(--sh);margin-bottom:20px"></div>

@@ -24,7 +24,8 @@ const EX_TYPE_LABELS={
   type:'⌨️ Typen',
   cloze:'🧩 Vul in',
   repeat:'🔁 Herhaling',
-  order:'🔀 Volgorde'
+  order:'🔀 Volgorde',
+  listen:'🎧 Luisteren'
 };
 
 function getLessonById(id){
@@ -38,6 +39,8 @@ function _launchLesson(){
   REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  const gramBtn=document.getElementById('btn-grammar');
+  if(gramBtn)gramBtn.style.display=CL&&CL.grammar?'flex':'none';
   showScreen('lesson');renderHearts();renderEx();
 }
 
@@ -55,9 +58,12 @@ function buildExercises(lesson){
 
   if(lesson.grammar) exs.push({type:'grammar',grammar:lesson.grammar,pronTips:lesson.pronTips||[]});
 
+  // Interleaved: intro direct gevolgd door eerste MC (testing effect)
   ws.slice(0,8).forEach(w=>{
     const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
     exs.push({type:'intro',w,ctxSentence});
+    const d=ws.filter(x=>x.hz!==w.hz);
+    if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
   if(ss.length>0)exs.push({type:'context',ss});
@@ -70,14 +76,15 @@ function buildExercises(lesson){
     }
   });
 
-  shuffle(ws).slice(0,5).forEach(w=>{
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
-  });
-
   shuffle(ws).slice(0,4).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
     if(d.length>=3)exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
+  });
+
+  // Luisteroefeningen — hoor het woord, kies de betekenis
+  shuffle(ws).slice(0,3).forEach(w=>{
+    const d=ws.filter(x=>x.hz!==w.hz);
+    if(d.length>=3)exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
   ss.slice(0,3).forEach(s=>exs.push({type:'wb',s}));
@@ -121,9 +128,14 @@ function buildReviewExercises(words){
       exs.push(mc_nl);
       if(!w.hz.includes('↔'))exs.push({type:'type',w:wd});
     } else if(mastery<=3){
-      exs.push(Math.random()>0.4 ? mc_hz : mc_nl);
+      const r=Math.random();
+      if(r>0.65) exs.push(mc_hz);
+      else if(r>0.3) exs.push(mc_nl);
+      else exs.push({type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])});
     } else {
-      exs.push(mc_hz);
+      exs.push(Math.random()>0.45
+        ? mc_hz
+        : {type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])});
     }
   });
 
@@ -177,6 +189,7 @@ function renderEx(){
   else if(ex.type==='wb')      rWB(ex,body);
   else if(ex.type==='type')    rType(ex,body);
   else if(ex.type==='order')   rOrder(ex,body);
+  else if(ex.type==='listen')  rListen(ex,body);
   else nextEx();
 }
 
@@ -195,6 +208,7 @@ function rIntro(ex,body){
     <div class="type-pill">📖 Nieuw woord</div>
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
+      <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
       <span class="hz-dutch">🗣️ ${dutch}</span>
       <span class="hz-nl">= ${w.nl}</span>
     </div>
@@ -204,6 +218,7 @@ function rIntro(ex,body){
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
   save();
+  speakHz(w.hz);
 }
 
 // ── FIX Bug 3: requeueWrong veilig ook buiten normale lessen ──
@@ -437,6 +452,7 @@ function rType(ex,body){
       inp.blur();
       inp.classList.add('ok');
       sfxCorrect();
+      setTimeout(()=>speakHz(correct),350);
       if(retryMode){
         CC++;LXP+=5;
         sparkles();
@@ -605,7 +621,6 @@ function chkOrder(correct,nl,tr){
     WC++;CC_COMBO=0;
     sfxWrong();
     loseHeart();
-    trackWrong(correct,nl,tr);
     showFB(false,'Niet helemaal!','Juist: '+tr,correct);
   }
 }
@@ -655,17 +670,19 @@ function finishLesson(){
   LXP+=bonusXP;
   S.xp+=LXP;
   logXP(LXP);
-  updStreak();checkAchv(WC===0&&CC>0);save();
+  updStreak();checkShieldAward();checkAchv(WC===0&&CC>0);save();
 
   document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` ✨+${bonusXP} bonus`:'');
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
   document.getElementById('r-str').textContent='🔥'+S.streak;
   document.getElementById('res-sub').textContent=CL.title+' voltooid! 🌸';
 
+  const _pm=['Foutloos! 🌟','Perfect! ✨','Absoluut geweldig! 🌟','Meesterlijk! 💎','Ongeslagen! 🏆'];
+  const _gm=['Geweldig! 🌸','Goed gedaan! 💪','Super! 🎀','Fantastisch! 🐇','Zo trots! 🌺'];
   if(WC===0&&CC>0){
-    document.querySelector('.res-ttl').textContent='Foutloos! 🌟';
+    document.querySelector('.res-ttl').textContent=_pm[~~(Math.random()*_pm.length)];
   }else{
-    document.querySelector('.res-ttl').textContent='Geweldig!';
+    document.querySelector('.res-ttl').textContent=_gm[~~(Math.random()*_gm.length)];
   }
 
   const wrongSec=document.getElementById('res-wrong-section');
@@ -692,6 +709,37 @@ function retryLessonWrong(){
   if(!WRONG_WORDS.length)return;
   const wordList=WRONG_WORDS.map(w=>({hz:w.hz,v:{nl:w.nl,tr:w.tr,mastery:0,nr:null},dir:'hz_nl'}));
   openOvhDirect(wordList);
+}
+
+function rListen(ex,body){
+  const w=ex.w;
+  const ltrs=['A','B','C','D'];
+  body.innerHTML=`
+    <div class="type-pill">🎧 Luisteroefening</div>
+    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Hazaragi woord hoor je?</p>
+    <button class="listen-play-btn" onclick="speakHz('${w.hz}')">🔊 Speel opnieuw af</button>
+    <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
+      <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr||''}">
+        <span class="ch-ltr">${ltrs[i]}</span>${c}
+      </button>`).join('')}</div>`;
+  speakHz(w.hz);
+}
+
+function showGrammarHint(){
+  if(!CL||!CL.grammar)return;
+  const bg=document.createElement('div');
+  bg.className='modal-bg';
+  const modal=document.createElement('div');
+  modal.className='modal';
+  modal.innerHTML=`
+    <div class="modal-drag"></div>
+    <div style="font-size:18px;font-weight:900;color:var(--ink);margin-bottom:12px">💡 Taalregel</div>
+    <div style="font-size:14px;font-weight:700;color:var(--ink-m);line-height:1.7">${CL.grammar}</div>
+    <button class="btn-check" style="position:static;margin-top:16px" id="grammar-close">Verder ✓</button>`;
+  bg.appendChild(modal);
+  bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
+  modal.querySelector('#grammar-close').addEventListener('click',()=>bg.remove());
+  document.body.appendChild(bg);
 }
 
 function startDailyReview(){

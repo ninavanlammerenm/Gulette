@@ -164,7 +164,8 @@ function _renderOvhMC(hz,v,dir){
       <button class="ch-btn${isRTL?' ch-rtl':''}" onclick="answerOvh(this,${i})">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}
-    </div>`;
+    </div>
+    <button class="wik-btn" onclick="dontKnowOvh()">Weet ik niet 🤷</button>`;
 
   if(_ovhTimer) _startOvhTimer(hz,v,correct,dir,10);
 }
@@ -316,6 +317,23 @@ function retryOvhErrors(){
 }
 
 // ══════════════════════════════════════════════════════
+// WEET IK NIET
+// ══════════════════════════════════════════════════════
+function dontKnowOvh(){
+  if(_ovhTimerID){clearInterval(_ovhTimerID);_ovhTimerID=null;}
+  const {hz,v,dir}=_ovhWords[_ovhIdx];
+  const correct=dir==='hz_nl'?v.nl:hz;
+  document.querySelectorAll('#ovh-body .ch-btn').forEach((b,i)=>{
+    b.disabled=true;
+    if(_ovhChoices[i]===correct)b.classList.add('ok');
+  });
+  document.querySelector('.wik-btn')?.remove();
+  _registerOvhError(hz,v,'—',correct,dir);
+  sfxWrong();
+  setTimeout(()=>{_ovhIdx++;renderOvh();},1200);
+}
+
+// ══════════════════════════════════════════════════════
 // RESULTATEN
 // ══════════════════════════════════════════════════════
 function renderOvhResult(){
@@ -333,6 +351,7 @@ function renderOvhResult(){
     S.xp+=xpEarned;
     logXP(xpEarned);
     updStreak();
+    checkShieldAward();
     checkAchv();
     save();
   }

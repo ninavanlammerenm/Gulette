@@ -74,14 +74,48 @@ function updStreak(){
   if(!S.weekActivity.includes(idx))S.weekActivity.push(idx);
   if(S.lastStudy===today)return;
   const yest=new Date(Date.now()-86400000).toDateString();
-  S.streak=S.lastStudy===yest?S.streak+1:1;
+  if(S.lastStudy===yest){
+    S.streak=S.streak+1;
+  } else if(S.lastStudy&&(S.shields||0)>0){
+    S.shields--;
+    showToast('🛡️ Streak-schild verbruikt — streak behouden!');
+  } else {
+    S.streak=1;
+  }
   S.lastStudy=today;
+}
+
+function checkShieldAward(){
+  if(S.streak>0&&S.streak%7===0){
+    if(S.shields===undefined)S.shields=0;
+    S.shields++;
+    save();
+    showToast(`🛡️ Streak-schild verdiend! Je hebt ${S.shields} schild${S.shields===1?'':'en'}`);
+  }
 }
 
 function getMonday(d){
   const day=d.getDay();
   const diff=d.getDate()-(day===0?6:day-1);
   return new Date(new Date(d).setDate(diff));
+}
+
+function applyMasteryDecay(){
+  const today=new Date().toISOString().slice(0,10);
+  if(S.lastDecayCheck===today)return;
+  S.lastDecayCheck=today;
+  const now=new Date();
+  let changed=false;
+  Object.values(S.vocab).forEach(v=>{
+    if(!v.nr||v.mastery<=1)return;
+    const overdueDays=(now-new Date(v.nr))/86400000;
+    if(overdueDays>30){
+      v.mastery=Math.max(0,v.mastery-1);
+      v.nr=now.toISOString();
+      changed=true;
+    }
+  });
+  if(changed)save();
 }
 
 function checkAchv(perfect=false){
@@ -96,12 +130,5 @@ function checkAchv(perfect=false){
     const ch=CHAPTERS.find(c=>c.id===id);
     if(ch&&ch.lessons.some(l=>S.done.includes(l.id)))add(id);
   };
-  ['ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10',
-   'ch0','ch11','ch12','ch13','ch14','ch15','ch16','ch17','ch18','ch19','ch20',
-   'ch21','ch22','ch23','ch24','ch25','ch26','ch27','ch28','ch29',
-   'ch_gram1','ch_gram2','ch_gram3','ch_gram4','ch_gram5',
-   'ch30','ch31','ch32','ch33','ch34','ch35','ch36',
-   'ch37','ch38','ch39','ch40','ch41',
-   'ch42','ch43','ch44','ch45','ch46',
-   'ch47','ch48','ch49','ch50','ch51','ch52'].forEach(checkChById);
+  CHAPTERS.forEach(ch=>checkChById(ch.id));
 }

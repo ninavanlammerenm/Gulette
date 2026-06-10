@@ -22,6 +22,7 @@ function playTone(freq,dur,type='sine',vol=0.18){
 }
 
 function sfxCorrect(){
+  if(S.soundOn===false)return;
   // vrolijk oplopend akkoord
   playTone(520,0.12,'sine',0.15);
   setTimeout(()=>playTone(660,0.12,'sine',0.15),80);
@@ -29,14 +30,29 @@ function sfxCorrect(){
 }
 
 function sfxWrong(){
+  if(S.soundOn===false)return;
   // zacht dalend signaal
   playTone(300,0.15,'sawtooth',0.08);
   setTimeout(()=>playTone(220,0.2,'sawtooth',0.08),100);
 }
 
 function sfxFinish(){
+  if(S.soundOn===false)return;
   [0,80,160,240,320].forEach((t,i)=>{
     const freqs=[440,550,660,770,880];
     setTimeout(()=>playTone(freqs[i],0.25,'sine',0.14),t);
   });
+}
+
+// ══════════════════════════════════════════════════════
+// TTS — Hazaragi uitspreken via Perzische stem
+// ══════════════════════════════════════════════════════
+function speakHz(text){
+  if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
+  window.speechSynthesis.cancel();
+  const utt=new SpeechSynthesisUtterance(text);
+  utt.lang='fa';
+  utt.rate=0.82;
+  utt.pitch=1.0;
+  window.speechSynthesis.speak(utt);
 }
