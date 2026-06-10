@@ -527,3 +527,32 @@ body.hide-roman .pron-latin{ display:none!important }
 .gram-item.open .gram-item-arrow{transform:rotate(90deg);color:var(--lav)}
 .gram-item-body{display:none;padding:0 16px 16px 50px;font-size:13px;font-weight:700;color:var(--ink-m);line-height:1.8;border-top:1px solid var(--bg)}
 .gram-item.open .gram-item-body{display:block}
+
+/* ── LETTERGROOTTE ── */
+.fs-row{display:flex;align-items:center;gap:8px;background:var(--white);border-radius:var(--r-sm);padding:12px 14px;box-shadow:var(--sh);margin-bottom:10px}
+.fs-row-lbl{flex:1;font-size:13px;font-weight:800;color:var(--ink)}
+.fs-btn{border:2px solid var(--ink-xl);background:var(--cream);border-radius:var(--r-xs);padding:6px 12px;font-family:'Nunito',sans-serif;font-weight:900;color:var(--ink-m);cursor:pointer;transition:all .18s;line-height:1}
+.fs-btn.on{background:var(--rose-d);border-color:var(--rose-d);color:#fff}
+
+/* Kleine tekst */
+body.font-small .hz-script{font-size:36px!important}
+body.font-small .hz-latin{font-size:13px!important}
+body.font-small .ch-btn{font-size:13px!important}
+body.font-small .wc-hz{font-size:26px!important}
+body.font-small .wc-nl{font-size:11px!important}
+body.font-small .wc-pron{font-size:11px!important}
+body.font-small .gram-item-title{font-size:13px!important}
+body.font-small .gram-item-body{font-size:11px!important}
+body.font-small .ovh-hz-word{font-size:38px!important}
+
+/* Grote tekst */
+body.font-large .hz-script{font-size:56px!important}
+body.font-large .hz-latin{font-size:20px!important}
+body.font-large .ch-btn{font-size:17px!important}
+body.font-large .wc-hz{font-size:40px!important}
+body.font-large .wc-nl{font-size:16px!important}
+body.font-large .wc-pron{font-size:16px!important}
+body.font-large .gram-item-title{font-size:18px!important}
+body.font-large .gram-item-body{font-size:16px!important}
+body.font-large .choices{gap:12px!important}
+body.font-large .ovh-hz-word{font-size:58px!important}

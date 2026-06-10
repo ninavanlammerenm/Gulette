@@ -391,6 +391,7 @@ function renderProfile(){
   updateNotifBtn();
   updateRomanBtn();
   updateSoundBtn();
+  updateFontBtns();
   const _wc=Object.keys(S.vocab).length;
   const _ap={'words10':[_wc,10],'words30':[_wc,30],'words60':[_wc,60],'words100':[_wc,100],'words200':[_wc,200],'words300':[_wc,300],
     'streak3':[S.streak,3],'streak7':[S.streak,7],'streak30':[S.streak,30],
@@ -707,4 +708,28 @@ function toggleGramItem(el){
   const isOpen=el.classList.contains('open');
   document.querySelectorAll('.gram-item.open').forEach(item=>item.classList.remove('open'));
   if(!isOpen)el.classList.add('open');
+}
+
+// ══════════════════════════════════════════════════════
+// LETTERGROOTTE
+// ══════════════════════════════════════════════════════
+function setFontSize(size){
+  localStorage.setItem('guletteFont',size);
+  applyFontSize();
+}
+
+function applyFontSize(){
+  const size=localStorage.getItem('guletteFont')||'normal';
+  document.body.classList.remove('font-small','font-large');
+  if(size==='small') document.body.classList.add('font-small');
+  if(size==='large') document.body.classList.add('font-large');
+  updateFontBtns();
+}
+
+function updateFontBtns(){
+  const size=localStorage.getItem('guletteFont')||'normal';
+  const sizes=['small','normal','large'];
+  document.querySelectorAll('.fs-btn').forEach((btn,i)=>{
+    btn.classList.toggle('on',size===sizes[i]);
+  });
 }

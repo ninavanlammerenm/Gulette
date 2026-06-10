@@ -4287,6 +4287,58 @@ const CHAPTERS=[
 
   ]},
 
+  { id:'ch_eten', label:'🍽️ Eten & Drinken · Hazaragi Keuken', color:'#e07040', lessons:[
+
+    { id:'eten_basis', title:'Eten & Drinken Basis', sub:'Naan, chai, gosht, kachaalo...', icon:'🍽️', xp:30,
+      pronTips:['آ','خ'],
+      grammar:'Eten in Hazaragi: خوردن = eten. Ik eet: می‌خورم (mi-khorom).\n\nHongerig: گشنه (goshna) — NIET گرسنه (Iraans!)\nWater: آو (ow) — NIET آب (Iraans!)\n\nAanbieden: بخور! = eet! · چای بخور = drink thee\nVragen: گشنه هستی؟ = ben je hongerig?',
+      words:[
+        {hz:'نان',tr:'naan',nl:'Brood / Eten',tip:'"نان خوردی؟" = heb je gegeten? (letterlijk: heb je brood gegeten?)'},
+        {hz:'چای',tr:'chaay',nl:'Thee',tip:'Hazara drinken altijd chai — groen of zwart met kardemon'},
+        {hz:'آو',tr:'ow',nl:'Water',tip:'Hazaragi: آو (ow) — Iraans zegt "آب" (aab) — wij zeggen آو!'},
+        {hz:'گوشت',tr:'gosht',nl:'Vlees',tip:'"گوشت گوسفند" = schapenvlees — meest gegeten vlees bij Hazara'},
+        {hz:'مرغ',tr:'murgh',nl:'Kip',tip:'"مرغ پختی؟" = heb je kip gekookt?'},
+        {hz:'کچالو',tr:'kachaalo',nl:'Aardappel',tip:'Echt Afghaans woord — in bijna elk Hazara gerecht'},
+        {hz:'برنج',tr:'berenj',nl:'Rijst (ongekookt)',tip:'"پلو" = bereide feestrijst met vlees en rozijnen'},
+        {hz:'شیر',tr:'sheer',nl:'Melk',tip:'"شیر چای" = thee met melk'},
+        {hz:'ماست',tr:'maast',nl:'Yoghurt',tip:'Basisvoedsel bij elke Hazara maaltijd'},
+        {hz:'تربوز',tr:'tarbuuz',nl:'Watermeloen',tip:'Afghaans: تربوز — Iraans zegt "هندوانه" (dat zeggen wij niet)'},
+        {hz:'انار',tr:'anaar',nl:'Granaatappel',tip:'Symbool van Afghanistan — zoet, zuur, prachtig'},
+        {hz:'گشنه',tr:'goshna',nl:'Hongerig',tip:'Hazaragi: گشنه (goshna) — NIET گرسنه (Iraans)'},
+      ],
+      sentences:[
+        {hz:'چای می‌خوری؟ یا آو؟',tr:'chaay mi-khori? ya ow?',nl:'Wil je thee? Of water?'},
+        {hz:'نان با ماست خوردم، خوش‌مزه بود',tr:'naan baa maast khordom, khosh-maza bood',nl:'Ik at brood met yoghurt, het was lekker'},
+        {hz:'مرغ پختم، بیا بخور',tr:'murgh pakhtom, bia bakhoor',nl:'Ik heb kip gemaakt, kom eten'},
+      ]
+    },
+
+    { id:'eten_smaak', title:'Smaken & Maaltijden', sub:'Lekker, zout, zoet, ontbijt...', icon:'😋', xp:25,
+      pronTips:['ش','ز'],
+      grammar:'Smaakwoorden in Hazaragi:\nخوش‌مزه (lekker) · بی‌مزه (flauw) · شور (gezouten) · شیرین (zoet) · تند (pittig)\n\nMaaltijden: صبحانه (ontbijt) · ناهار (lunch) · شام (avondeten)\n\nReacties: خوش‌مزه اَس! = het is lekker! · سیر شدم = ik ben vol · تشنه هستم = ik ben dorstig',
+      words:[
+        {hz:'خوش‌مزه',tr:'khosh-maza',nl:'Lekker / Smakelijk',tip:'"خوش‌مزه اَس!" = het is lekker!'},
+        {hz:'بی‌مزه',tr:'bi-maza',nl:'Flauw / Smakeloos',tip:'"این بی‌مزه اَس" = dit is smakeloos'},
+        {hz:'شور',tr:'shoor',nl:'Zout / Gezouten',tip:'"خیلی شور اَس" = het is te zout'},
+        {hz:'شیرین',tr:'sheerin',nl:'Zoet',tip:'"شیرینی" = snoep/gebak'},
+        {hz:'تند',tr:'tond',nl:'Pittig / Scherp',tip:'"تند اَس، آو می‌خوام" = het is pittig, ik wil water'},
+        {hz:'صبحانه',tr:'sobhaana',nl:'Ontbijt',tip:'"صبحانه خوردی؟" = heb je ontbeten?'},
+        {hz:'ناهار',tr:'naahaar',nl:'Lunch / Middageten',tip:'"وقت ناهار" = lunchtijd'},
+        {hz:'شام',tr:'shaam',nl:'Avondeten',tip:'"وقت شام" = eettijd (avond)'},
+        {hz:'تشنه',tr:'toshna',nl:'Dorstig',tip:'"تشنه هستم" = ik ben dorstig'},
+        {hz:'سیر',tr:'seer',nl:'Vol / Verzadigd',tip:'"سیر شدم، ممنون" = ik ben vol, dankjewel'},
+        {hz:'نمک',tr:'namak',nl:'Zout (het)',tip:'"نمک بده" = geef het zout'},
+        {hz:'پختم',tr:'pakhtom',nl:'Ik heb gekookt',tip:'"مرغ پختم" = ik heb kip gemaakt'},
+      ],
+      sentences:[
+        {hz:'این غذا خیلی خوش‌مزه اَس!',tr:'in ghazaa kheylee khosh-maza as!',nl:'Dit eten is heel erg lekker!'},
+        {hz:'سیر شدم، ممنون',tr:'seer shodom, mamnoon',nl:'Ik ben vol, dankjewel'},
+        {hz:'تشنه هستم، آو می‌خوام',tr:'toshna hastom, ow mi-khaam',nl:'Ik ben dorstig, ik wil water'},
+      ]
+    },
+
+  ]},
+
 ];
 
 // ══════════════════════════════════════════════════════
@@ -4365,4 +4417,5 @@ const ACHVS = [
   {id:'ch51',icon:'🎊',name:'Feesten & Vieringen',desc:'Hoofdstuk 51 gestart'},
   {id:'ch52',icon:'📖',name:'Grammatica 6',desc:'Vraagzinnen & tijdsuitdrukkingen geleerd'},
   {id:'ch_gram7',icon:'🔬',name:'Grammatica 7',desc:'Tijden & ezafe geleerd — bijna native!'},
+  {id:'ch_eten',icon:'🍽️',name:'Eten & Drinken',desc:'Hazaragi keukenwoorden geleerd!'},
 ];
