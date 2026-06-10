@@ -122,12 +122,10 @@ function testAudio(){
   _ttsVoice=null;_ttsReady=false;_ttsGood=false;
   _loadVoices();
   if(!_ttsReady){showToast('❌ Geen stemmen gevonden');return;}
-  // Debug: toon gevonden fa/ar stemmen
+  // Debug: toon ALLE stemmen zodat we de exacte taalcode zien
   const vs=window.speechSynthesis.getVoices();
-  const faV=vs.filter(v=>v.lang.startsWith('fa'));
-  const arV=vs.filter(v=>v.lang.startsWith('ar'));
-  if(faV.length) showToast('🇦🇫 Farsi: '+faV.map(v=>v.name+' ('+v.lang+')').join(', '));
-  else if(arV.length) showToast('🇸🇦 Alleen Arabisch: '+arV.map(v=>v.name).join(', '));
+  const info=vs.map(v=>v.name.split(' ')[0]+'('+v.lang+')').join(' | ');
+  showToast('Stemmen: '+info);
   if(_ttsGood){
     showToast('✅ Actief: '+_ttsVoice.name+' ('+_ttsVoice.lang+')');
     speakHz('سلام');
