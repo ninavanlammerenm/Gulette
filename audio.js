@@ -45,14 +45,55 @@ function sfxFinish(){
 }
 
 // ══════════════════════════════════════════════════════
-// TTS — Hazaragi uitspreken via Perzische stem
+// TTS — Hazaragi uitspreken
 // ══════════════════════════════════════════════════════
+let _ttsVoice=null;
+let _ttsReady=false;
+
+function _loadVoices(){
+  if(!('speechSynthesis' in window))return;
+  const vs=window.speechSynthesis.getVoices();
+  if(!vs.length)return;
+  _ttsReady=true;
+  // Zoek beste stem voor Arabisch schrift: fa > ar > ur > fallback
+  _ttsVoice=
+    vs.find(v=>v.lang==='fa-AF')||
+    vs.find(v=>v.lang.startsWith('fa'))||
+    vs.find(v=>v.lang.startsWith('ar'))||
+    vs.find(v=>v.lang.startsWith('ur'))||
+    vs.find(v=>v.default)||
+    vs[0]||null;
+}
+
+if('speechSynthesis' in window){
+  window.speechSynthesis.onvoiceschanged=_loadVoices;
+  _loadVoices();
+}
+
 function speakHz(text){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
+  // Voices kunnen nog niet geladen zijn — probeer opnieuw
+  if(!_ttsReady)_loadVoices();
   window.speechSynthesis.cancel();
   const utt=new SpeechSynthesisUtterance(text);
-  utt.lang='fa';
-  utt.rate=0.82;
+  if(_ttsVoice) utt.voice=_ttsVoice;
+  utt.lang=_ttsVoice?_ttsVoice.lang:'fa';
+  utt.rate=0.78;
   utt.pitch=1.0;
+  utt.onerror=()=>{};
   window.speechSynthesis.speak(utt);
+}
+
+function testAudio(){
+  if(!('speechSynthesis' in window)){
+    showToast('❌ Spraak niet beschikbaar in deze browser');return;
+  }
+  _loadVoices();
+  const vs=window.speechSynthesis.getVoices();
+  if(!vs.length){
+    showToast('❌ Geen stemmen gevonden — probeer Chrome');return;
+  }
+  const label=_ttsVoice?`✅ Stem: ${_ttsVoice.name} (${_ttsVoice.lang})`:'⚠️ Geen geschikte stem';
+  showToast(label);
+  speakHz('سلام');
 }

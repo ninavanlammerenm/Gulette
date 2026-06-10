@@ -198,9 +198,14 @@
     <button id="roman-btn" onclick="toggleRoman()" style="width:100%;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:10px;transition:all .2s">
       🔤 Uitspraakschrift: AAN
     </button>
-    <button id="sound-btn" onclick="toggleSound()" style="width:100%;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:10px;transition:all .2s;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff">
-      🔊 Geluid: AAN
-    </button>
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <button id="sound-btn" onclick="toggleSound()" style="flex:1;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff">
+        🔊 Geluid: AAN
+      </button>
+      <button onclick="testAudio()" style="border:none;border-radius:var(--r-sm);padding:14px 16px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;background:var(--white);color:var(--ink-m);box-shadow:var(--sh)" title="Test uitspraak">
+        🧪
+      </button>
+    </div>
     <div class="fs-row">
       <div class="fs-row-lbl">🔡 Lettergrootte</div>
       <button class="fs-btn" style="font-size:12px" onclick="setFontSize('small')">A</button>
