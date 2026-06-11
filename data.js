@@ -46,7 +46,7 @@ const CHAPTERS=[
         {hz:'ببخشید',tr:'bebakhshid',nl:'Pardon / Neem me niet kwalijk',tip:'Om aandacht vragen of verontschuldigen'},
         {hz:'معذرت',tr:'ma\'zerat',nl:'Sorry / Excuses',tip:'"معذرت می‌خوام" = het spijt me'},
         {hz:'خوش وقتم',tr:'khosh waqtam',nl:'Aangenaam kennis te maken',tip:'Bij een eerste ontmoeting'},
-        {hz:'عفو',tr:'ofo',nl:'Graag gedaan / Je bent vergeven',tip:'Antwoord op "تشکر" of "معذرت"'},
+        {hz:'قابل نداشت',tr:'qaabil nadaasht',nl:'Graag gedaan / Geen probleem',tip:'Hazaragi antwoord op "تشکر" — letterlijk: "het had geen waarde" (hoeft niet bedankt)'},
         {hz:'خوب نیستم',tr:'khob nistom',nl:'Ik ben niet goed / Ik voel me niet goed',tip:'Eerlijk antwoord op "خوبی؟"'},
         {hz:'خدا خیرت بده',tr:'khuda khayret bada',nl:'Hartelijk bedankt',tip:'Typisch Hazaragi/Afghaans: God vergelde het je — warmer dan "تشکر"'},
         {hz:'نامم',tr:'naamam',nl:'Mijn naam',tip:'"نام" + "-م" = bezit: mijn naam — essentieel om jezelf voor te stellen'},
@@ -166,7 +166,7 @@ const CHAPTERS=[
         {hz:'برنج',tr:'birinj',nl:'Rijst',tip:'Basis van قابلی — het nationale Afghaanse gerecht'},
         {hz:'میوه',tr:'mewa',nl:'Fruit',tip:'"میوه" in Hazaragi klinkt als "mewa" — korte e'},
         {hz:'خوشمزه',tr:'khoshmaza',nl:'Lekker',tip:'"خوش" = goed, "مزه" = smaak'},
-        {hz:'تشنه',tr:'tashna',nl:'Dorstig',tip:'"آو می‌خوام، تشنه‌ام" = ik wil water, ik heb dorst — merk "آو" (Hazaragi voor water)'},
+        {hz:'تشنه',tr:'toshna',nl:'Dorstig',tip:'"آو می‌خوام، تشنه‌ام" = ik wil water, ik heb dorst — merk "آو" (Hazaragi voor water)'},
         {hz:'گشنه',tr:'goshna',nl:'Hongerig',tip:'Hazaragi uitspraak van "گرسنه"'},
         {hz:'بولانی',tr:'bolaani',nl:'Bolani (gevulde pastei)',tip:'Traditioneel Hazara gerecht!'},
         {hz:'قروتی',tr:'qoroti',nl:'Gedroogde yoghurt',tip:'Typisch Hazara — in water opgelost gegeten'},
@@ -187,9 +187,9 @@ const CHAPTERS=[
         {hz:'اتاق',tr:'otaaq',nl:'Kamer',tip:'"ق" = diepe keel-k'},
         {hz:'آشپزخانه',tr:'aashpazkhana',nl:'Keuken',tip:'Letterlijk: "kookhuis"'},
         {hz:'دروازه',tr:'darwaaza',nl:'Deur (groot)',tip:'Hazaragi: "darwaaza"'},
-        {hz:'پنجره',tr:'panjara',nl:'Raam',tip:'Spreek uit als "pan-ja-ra"'},
+        {hz:'کلکین',tr:'kalkin',nl:'Raam',tip:'Hazaragi: "کلکین" — niet Iraans "پنجره"'},
         {hz:'تخت',tr:'takht',nl:'Bed',tip:'"روی تخت" = op bed; "تخت" ook voor troon of platform'},
-        {hz:'صندلی',tr:'sandali',nl:'Stoel',tip:'Van Arabisch "سندل" — zit meubilair'},
+        {hz:'چوکی',tr:'chawki',nl:'Stoel',tip:'Hazaragi/Afghaans: "چوکی" — niet Iraans "صندلی"'},
         {hz:'میز',tr:'mez',nl:'Tafel',tip:'"سر میز" = aan tafel — "سر" hier = bovenop/bij'},
         {hz:'حویلی',tr:'haweli',nl:'Binnenplaats / Erf',tip:'Typisch Afghaans/Hazara huis heeft een "حویلی"'},
         {hz:'بام',tr:'baam',nl:'Dak',tip:'Hazara-huizen hebben platte daken — sociaal treffpunt'},
@@ -211,7 +211,7 @@ const CHAPTERS=[
         {hz:'خر',tr:'khar',nl:'Ezel',tip:'Belangrijk werkanimal in Afghanistan'},
         {hz:'مرغ',tr:'morgh',nl:'Kip',tip:'"مرغ" = ook vogel in het algemeen — "مرغ پخته" = gekookte kip'},
         {hz:'سگ',tr:'sag',nl:'Hond',tip:'In Hazara/Afghaanse cultuur wordt hond als onrein beschouwd — "سگ!" als scheldwoord'},
-        {hz:'گربه',tr:'gorba',nl:'Kat',tip:'Hazaragi: "gorba" — kat is gerespecteerder dan hond in islamitische cultuur'},
+        {hz:'پشک',tr:'pishak',nl:'Kat',tip:'Hazaragi: "پشک" — niet Iraans "گربه"'},
         {hz:'پرنده',tr:'paranda',nl:'Vogel',tip:'"پرنده" = vliegend ding'},
       ],
       sentences:[
@@ -234,7 +234,7 @@ const CHAPTERS=[
         {hz:'عاشق',tr:'aasheq',nl:'Verliefd',tip:'"ع" = zachte keel-stop'},
         {hz:'دل‌تنگی',tr:'deltangi',nl:'Gemis / Verlangen',tip:'Prachtig woord: "nauw hart" — typisch Hazaragi uitdrukking'},
         {hz:'ترس',tr:'tars',nl:'Angst',tip:'"ترسیدم" = ik schrok / werd bang — verleden tijd'},
-        {hz:'عصبانی',tr:'asabaani',nl:'Boos',tip:'"عصبانی شدم" = ik werd boos — "نشو" = word niet boos'},
+        {hz:'خفا',tr:'khafaa',nl:'Boos',tip:'Hazaragi: "خفا" — "خفا شدم" = ik werd boos — "خفا نشو" = word niet boos'},
         {hz:'دوستت دارم',tr:'dostat darom',nl:'Ik hou van jou',tip:'Zeg ook tegen familie en vrienden!'},
         {hz:'دلم تنگته',tr:'delam tangta',nl:'Ik mis je',tip:'Hazaragi uitdrukking — letterlijk "mijn hart is nauw naar jou"'},
         {hz:'شرمنده',tr:'sharmanda',nl:'Beschaamd / Sorry',tip:'"شرم" = schaamte — zachter dan "معذرت"'},
@@ -372,7 +372,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'تو خیلی قشنگ هستی',tr:'tu khaili qashanq hasti',nl:'Jij bent heel mooi'},
         {hz:'آفرین! خوب کردی',tr:'aafarin! khob kardi',nl:'Goed zo! Je hebt het goed gedaan'},
-        {hz:'ماشاالله چقدر باهوشی',tr:'mashaallah chaqadr baahooshi',nl:'MashaAllah, wat ben jij slim'},
+        {hz:'ماشاالله چنده باهوشی',tr:'mashaallah chanda baahooshi',nl:'MashaAllah, wat ben jij slim'},
       ]
     },
 
@@ -385,12 +385,12 @@ const CHAPTERS=[
         {hz:'خوش‌تیپ',tr:'khosh-tip',nl:'Knap / Stijlvol',tip:'Van "tip" = Engels type — modern Hazaragi leenwoord'},
         {hz:'دل‌ربا',tr:'delrobaa',nl:'Betoverend',tip:'Letterlijk: "hart-steler"'},
         {hz:'یارم',tr:'yaaram',nl:'Mijn geliefde',tip:'"یار" = vriend/geliefde in Hazaragi poëzie — ook als los compliment gebruikt'},
-        {hz:'نمی‌تانم بی‌تو باشم',tr:'na-mi-taanom bi-tu baasham',nl:'Ik kan niet zonder jou',tip:'Hazaragi: "تانستن"'},
+        {hz:'نمی‌تانم بی‌تو باشم',tr:'na-mi-taanom bi-tu baashom',nl:'Ik kan niet zonder jou',tip:'Hazaragi: "تانستن"'},
         {hz:'رویا',tr:'roya',nl:'Droom / Lieveling',tip:'Zowel "droom" als vrouwennaam — "رویایم" = mijn droom'},
       ],
       sentences:[
         {hz:'یارم، دلم تنگته برات',tr:'yaaram, delam tangta baraat',nl:'Lieverd, ik mis je zo'},
-        {hz:'از وختی دیدمت دلم لرزید',tr:'az wakhti didamat delam larzid',nl:'Vanaf het moment dat ik je zag beefde mijn hart'},
+        {hz:'از وختی دیدمت دلم لرزید',tr:'az wakhti didomat delam larzid',nl:'Vanaf het moment dat ik je zag beefde mijn hart'},
       ]
     },
   ]},
@@ -434,7 +434,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'نوروز مبارک! سال نو خوش',tr:'nowroz mobaarak! saal no khosh',nl:'Gelukkig Nieuwjaar!'},
         {hz:'دستت درد نکنه، خیلی خوشمزه بود',tr:'dastat dard nakona, khaili khoshmaza bood',nl:'Dank je, het was heerlijk'},
-        {hz:'مهمان حبیب خداس',tr:'mehman habiib khodaast',nl:'Een gast is de geliefde van God'},
+        {hz:'مهمان حبیب خداس',tr:'mehman habiib khodaas',nl:'Een gast is de geliefde van God'},
       ]
     },
 
@@ -791,7 +791,7 @@ const CHAPTERS=[
       words:[
         {hz:'معذرت',tr:'ma\'zerat',nl:'Sorry / Excuus',tip:'"معذرت می‌خوام" = het spijt me — formeler dan "ببخشید"'},
         {hz:'ببخشید',tr:'bebakhshid',nl:'Pardon / Vergeef me',tip:'Van "بخشیدن" = vergeven — ook om aandacht te vragen'},
-        {hz:'عصبانی',tr:'asabaani',nl:'Boos',tip:'"عصبانی شدم" = ik werd boos — "نشو" = word niet boos'},
+        {hz:'خفا',tr:'khafaa',nl:'Boos',tip:'Hazaragi: "خفا" — "خفا شدم" = ik werd boos — "خفا نشو" = word niet boos'},
         {hz:'دعوا',tr:'da\'waa',nl:'Ruzie',tip:'"دعوا نکو" = maak geen ruzie — veelgehoorde aansporing'},
         {hz:'آشتی',tr:'aashti',nl:'Vrede / Verzoening',tip:'Kern van Hazara conflictoplossing'},
         {hz:'تقصیر',tr:'taqseer',nl:'Schuld',tip:'"تقصیر من نیس" = het is niet mijn schuld'},
@@ -802,7 +802,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'معذرت می‌خوام، اشتباه کردم',tr:'ma\'zerat mi-khom, eshtebaa kardom',nl:'Het spijt me, ik heb een fout gemaakt'},
-        {hz:'چرا عصبانی هستی؟ دعوا نکو',tr:'chera asabaani hasti? da\'waa nako',nl:'Waarom ben je boos? Maak geen ruzie'},
+        {hz:'چرا خفا هستی؟ دعوا نکو',tr:'chera khafaa hasti? da\'waa nako',nl:'Waarom ben je boos? Maak geen ruzie'},
         {hz:'آشتی کنیم، دوستای قدیمیم',tr:'aashti konim, dostaayi qadimim',nl:'Laten we vrede sluiten, we zijn oude vrienden'},
       ]
     },
@@ -842,7 +842,7 @@ const CHAPTERS=[
         {hz:'نوش جانت',tr:'nosh jaanat',nl:'Smakelijk / Geniet ervan',tip:''},
         {hz:'سر به سرم نهل',tr:'sar ba saram nahol',nl:'Doe niet moeilijk',tip:'Hazaragi: "نهل" = laat het (van هشتن) — Iraans zegt "نذار"'},
         {hz:'دلم می‌خواد',tr:'delam mekhad',nl:'Ik verlang ernaar',tip:''},
-        {hz:'مهمان حبیب خداس',tr:'mehman habiib khodaast',nl:'Een gast is de geliefde van God',tip:''},
+        {hz:'مهمان حبیب خداس',tr:'mehman habiib khodaas',nl:'Een gast is de geliefde van God',tip:''},
         {hz:'صبر تلخ اَس ولی میوه‌اش شیرین',tr:'sabr talkh as wali mewash shirin',nl:'Geduld is bitter maar de vrucht is zoet',tip:'Hazaragi: "اَس" ipv "است"'},
       ],
       sentences:[
@@ -950,7 +950,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'کجا می‌ری؟',tr:'koja me-ri?',nl:'Waar ga jij naartoe?'},
-        {hz:'چرا نمی‌آیی؟',tr:'chera nemi-aayi?',nl:'Waarom kom je niet?'},
+        {hz:'چرا نمی‌آی؟',tr:'chera nemi-aayi?',nl:'Waarom kom je niet?'},
         {hz:'چتور هستی، یارم؟',tr:'chetor hasti, yaaram?',nl:'Hoe gaat het, lieverd?'},
       ]
     },
@@ -997,7 +997,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'شفاخانه کجاس؟ مریض هستم',tr:'shafaakhaana kojas? mariz hastom',nl:'Waar is het ziekenhuis? Ik ben ziek'},
-        {hz:'دَ بانک باید بروم',tr:'da baank baayad beram',nl:'Ik moet naar de bank'},
+        {hz:'دَ بانک باید بروم',tr:'da baank baayad berom',nl:'Ik moet naar de bank'},
         {hz:'این سرک خیلی شلوغ اَس',tr:'ain sarak khaili shaloogh as',nl:'Deze straat is heel druk'},
       ]
     },
@@ -1153,7 +1153,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'من هزاره هستم و افتخار می‌کنم',tr:'ma hazaara hastom wa eftekhar mi-konom',nl:'Ik ben Hazara en ik ben er trots op'},
         {hz:'زبان مادریم را فراموش نمی‌کنم',tr:'zabaan maadaram ra faraamoosh na-mi-konom',nl:'Ik vergeet mijn moedertaal niet'},
-        {hz:'ریشه‌هامو قوی اَس، هر کجا باشم',tr:'rishahaamo qaawi as, har koja baasham',nl:'Mijn wortels zijn sterk, waar ik ook ben'},
+        {hz:'ریشه‌هامو قوی اَس، هر کجا باشم',tr:'rishahaamo qaawi as, har koja baashom',nl:'Mijn wortels zijn sterk, waar ik ook ben'},
       ]
     },
   ]},
@@ -1249,7 +1249,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'داکتر هستم، دَ شفاخانه کار می‌کنم',tr:'daaktar hastom, da shafaakhaana kaar mi-konom',nl:'Ik ben dokter, ik werk in het ziekenhuis'},
-        {hz:'آرزومه معلم بشم',tr:'aarozomam mo\'allem besham',nl:'Mijn droom is om leraar te worden'},
+        {hz:'آرزومه معلم بشم',tr:'aarozomam mo\'allem beshom',nl:'Mijn droom is om leraar te worden'},
         {hz:'باواکلانم دهقان بود',tr:'baawakalanam dehqaan bood',nl:'Mijn opa was boer'},
       ]
     },
@@ -1264,13 +1264,13 @@ const CHAPTERS=[
         {hz:'موفق',tr:'mowafaq',nl:'Succesvol',tip:''},
         {hz:'مشهور',tr:'mashhoor',nl:'Beroemd',tip:''},
         {hz:'ثروتمند',tr:'sarwatmand',nl:'Rijk',tip:''},
-        {hz:'می‌خوام بشم',tr:'mi-khom besham',nl:'Ik wil worden',tip:'Vaste uitdrukking voor ambities'},
+        {hz:'می‌خوام بشم',tr:'mi-khom beshom',nl:'Ik wil worden',tip:'Vaste uitdrukking voor ambities'},
         {hz:'تلاش',tr:'talash',nl:'Inspanning / Moeite',tip:'"تلاش کردن" = hard werken'},
         {hz:'پیشرفت',tr:'pisharaft',nl:'Vooruitgang / Succes',tip:''},
         {hz:'رویا',tr:'roya',nl:'Droom (poëtisch)',tip:'Van "رؤیا" — mooie dromen'},
       ],
       sentences:[
-        {hz:'آرزومه داکتر بشم و مردم را کمک کنم',tr:'aarozomam daaktar besham wa mardom ra kamak konam',nl:'Mijn droom is dokter te worden en mensen te helpen'},
+        {hz:'آرزومه داکتر بشم و مردم را کمک کنم',tr:'aarozomam daaktar beshom wa mardom ra kamak konom',nl:'Mijn droom is dokter te worden en mensen te helpen'},
         {hz:'امید خودتو از دست نده',tr:'omid khodata az dast nada',nl:'Verlies je hoop niet'},
         {hz:'با تلاش همه چیز ممکن اَس',tr:'baa talash hama chiz momken as',nl:'Met inspanning is alles mogelijk'},
       ]
@@ -1303,7 +1303,7 @@ const CHAPTERS=[
 
     { id:'gram3_sov', title:'Zinsbouw: S-O-W', sub:'Subject · Object · Werkwoord', icon:'📐', xp:30,
       pronTips:['ر'],
-      grammar:'In Hazaragi staat het werkwoord altijd aan het EINDE van de zin — anders dan in het Nederlands.\n\n"Ik eet brood" → من نان می‌خورم (letterlijk: ik brood eet)\n"Jij leest een boek" → تو کتاب می‌خوانی (letterlijk: jij boek leest)\n\nTijd en plaats komen vóór het werkwoord: "من دیروز مکتب رفتم" = ik gisteren school ging (ik ging gisteren naar school).\n\nHet object wordt soms gemarkeerd met "را" (ra): تو را دوست دارم = ik hou van jou.',
+      grammar:'In Hazaragi staat het werkwoord altijd aan het EINDE van de zin — anders dan in het Nederlands.\n\n"Ik eet brood" → من نان می‌خورم (letterlijk: ik brood eet)\n"Jij leest een boek" → تو کتاب می‌خونی (letterlijk: jij boek leest)\n\nTijd en plaats komen vóór het werkwoord: "من دیروز مکتب رفتم" = ik gisteren school ging (ik ging gisteren naar school).\n\nHet object wordt soms gemarkeerd met "را" (ra): تو را دوست دارم = ik hou van jou.',
       words:[
         {hz:'من نان می‌خورم',tr:'ma naan mi-khorom',nl:'Ik eet brood',tip:'S(من) + O(نان) + W(می‌خورم)'},
         {hz:'او کتاب می‌خواند',tr:'oo ketaab me-khwaand',nl:'Hij/zij leest een boek',tip:'S + O + W — werkwoord altijd last'},
@@ -1353,7 +1353,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'دَ مکتب می‌رم',tr:'da maktab mi-rom',nl:'Ik ga naar school',tip:'"دَ" = naar (Hazaragi)'},
         {hz:'از کجا آمدی؟',tr:'az koja aamadi?',nl:'Waar kom je vandaan?'},
-        {hz:'با تو می‌آیم، بدون تو نمی‌رم',tr:'baa tu mi-oom, bedoon tu na-mi-rom',nl:'Ik kom met jou, zonder jou ga ik niet'},
+        {hz:'با تو می‌آم، بدون تو نمی‌رم',tr:'baa tu mi-oom, bedoon tu na-mi-rom',nl:'Ik kom met jou, zonder jou ga ik niet'},
       ]
     },
   ]},
@@ -1387,13 +1387,13 @@ const CHAPTERS=[
         {hz:'دشت',tr:'dasht',nl:'Steppe / Vlakte',tip:'Typisch Hazara landschap tussen de bergen'},
         {hz:'درخت',tr:'darakht',nl:'Boom',tip:'"درخت کاری" = bomen planten'},
         {hz:'گل',tr:'gol',nl:'Bloem',tip:'"گل" = ook een vrouwennaam'},
-        {hz:'آب',tr:'aab',nl:'Water',tip:'Lange aa — "آب صاف" = helder water'},
+        {hz:'آو',tr:'aaw',nl:'Water',tip:'Hazaragi: "آو" — niet Iraans "آب"'},
         {hz:'زمین',tr:'zameen',nl:'Aarde / Grond',tip:'"زمین کشاورزی" = landbouwgrond'},
         {hz:'آسمان',tr:'aasmaan',nl:'Hemel / Lucht',tip:'Lange aa — "آسمان صاف" = heldere lucht'},
       ],
       sentences:[
         {hz:'کوه‌های هزارستان بلند اَن',tr:'koohaa-ye hazaaristaan boland an',nl:'De bergen van Hazarastan zijn hoog'},
-        {hz:'آب صاف دریا قشنگ اَس',tr:'aab saaf daryaa qashanq as',nl:'Het heldere water van de rivier is mooi'},
+        {hz:'آو صاف دریا قشنگ اَس',tr:'aaw saaf daryaa qashanq as',nl:'Het heldere water van de rivier is mooi'},
         {hz:'دشت پر از گل شده، بهار اَس',tr:'dasht por az gol shoda, bahaar as',nl:'De vlakte staat vol bloemen, het is lente'},
       ]
     },
@@ -1550,7 +1550,7 @@ const CHAPTERS=[
         {hz:'تخم‌مرغ',tr:'tokhm-morgh',nl:'Ei',tip:'Letterlijk "kippenei"'},
       ],
       sentences:[
-        {hz:'صبحانه نان و چای می‌خورم',tr:'sobhaana naan o chaay mi-khorom',nl:'\'s Ochtends eet ik brood en thee'},
+        {hz:'ناشتا نان و چای می‌خورم',tr:'naashta naan o chaay mi-khorom',nl:'\'s Ochtends eet ik brood en thee'},
         {hz:'گوشت و برنج غذای خوب اَس',tr:'gosht o berenj ghazaa-ye khob as',nl:'Vlees en rijst is goed eten'},
       ]
     },
@@ -1661,7 +1661,7 @@ const CHAPTERS=[
       grammar:'Hazaragi heeft geen aparte toekomsttijdsvorm. Je maakt toekomst door:\n\n① Tijdwoord + tegenwoordige tijd: فردا می‌رم = morgen ga ik (فردا = morgen maakt het toekomst)\n② می‌خوام + werkwoord: می‌خوام بیام = ik ga komen / ik wil komen\n\nایشالله erbij zetten maakt het ook duidelijk dat het nog moet gebeuren!',
       words:[
         {hz:'فردا می‌رم',tr:'farda mi-rom',nl:'Morgen ga ik',tip:'"فردا" maakt het toekomstig'},
-        {hz:'می‌خوام برم',tr:'mi-khom baram',nl:'Ik ga (straks)',tip:'Letterlijk "ik wil gaan"'},
+        {hz:'می‌خوام برم',tr:'mi-khom berom',nl:'Ik ga (straks)',tip:'Letterlijk "ik wil gaan"'},
         {hz:'زود می‌آم',tr:'zod mi-oom',nl:'Ik kom snel',tip:''},
         {hz:'بعداً می‌گم',tr:'baadan mi-gom',nl:'Ik zeg het later',tip:''},
         {hz:'ایشالله می‌شه',tr:'ishaallah mi-sha',nl:'Het zal lukken, inshallah',tip:'Positief toekomstdenken'},
@@ -1759,9 +1759,9 @@ const CHAPTERS=[
         {hz:'هفته دیگه',tr:'hafta diga',nl:'Volgende week',tip:''},
       ],
       sentences:[
-        {hz:'چارشنبه می‌آیم، آماده باش',tr:'chaarshanba mi-oom, aamaada baash',nl:'Woensdag kom ik, wees klaar'},
+        {hz:'چارشنبه می‌آم، آماده باش',tr:'chaarshanba mi-oom, aamaada baash',nl:'Woensdag kom ik, wees klaar'},
         {hz:'جمعه خانه هستم',tr:'jome khaana hastom',nl:'Vrijdag ben ik thuis'},
-        {hz:'هفته دیگه مسابقه داریم',tr:'hafta diga masaabeqa daarem',nl:'Volgende week hebben we een wedstrijd'},
+        {hz:'هفته دیگه مسابقه داریم',tr:'hafta diga masaabeqa daarim',nl:'Volgende week hebben we een wedstrijd'},
       ]
     },
 
@@ -1874,7 +1874,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'این اندازه‌ام درس نیس، بزرگتر داری؟',tr:'een andaazaam doros nis, bozoghtar daari?',nl:'Deze maat past niet, heb je iets groters?'},
-        {hz:'پرو کنم ببینم چتور اَس',tr:'paro konam bebinam chetor as',nl:'Laat me het passen om te zien hoe het zit'},
+        {hz:'پرو کنم ببینم چتور اَس',tr:'paro konom bebinom chetor as',nl:'Laat me het passen om te zien hoe het zit'},
         {hz:'این رنگ مد اَس؟',tr:'een rang mod as?',nl:'Is deze kleur in de mode?'},
       ]
     },
@@ -1889,17 +1889,17 @@ const CHAPTERS=[
         {hz:'هال',tr:'haal',nl:'Woonkamer',tip:'Leenwoord van "hall"'},
         {hz:'اتاق خواب',tr:'otaaq-khaab',nl:'Slaapkamer',tip:'"خواب" = slaap'},
         {hz:'حمام',tr:'hamaam',nl:'Badkamer',tip:''},
-        {hz:'دستشویی',tr:'dast-shoyi',nl:'Toilet / WC',tip:'Letterlijk "handenwasplaats"'},
+        {hz:'تشناب',tr:'tashnaab',nl:'Toilet / WC',tip:'Hazaragi/Afghaans: "تشناب" — niet Iraans "دستشویی"'},
         {hz:'آشپزخانه',tr:'aashpaz-khaana',nl:'Keuken',tip:'Letterlijk "kookhuis"'},
         {hz:'زیرزمین',tr:'zirzameen',nl:'Kelder',tip:'"زیر" = onder + "زمین" = grond'},
         {hz:'بالکن',tr:'baalkun',nl:'Balkon',tip:''},
         {hz:'پله',tr:'pala',nl:'Trap',tip:''},
-        {hz:'راهرو',tr:'raahro',nl:'Gang / Hal',tip:''},
+        {hz:'دهلیز',tr:'dahliiz',nl:'Gang / Hal',tip:'Hazaragi/Afghaans: "دهلیز" — niet Iraans "راهرو"'},
         {hz:'سقف',tr:'saqf',nl:'Plafond',tip:''},
       ],
       sentences:[
         {hz:'دَ اتاق خوابم هستم',tr:'da otaaq-khaabam hastom',nl:'Ik ben in mijn slaapkamer'},
-        {hz:'حمام خراب اَس، دستشویی کار می‌کنه',tr:'hamaam khraab as, dast-shoyi kaar me-kona',nl:'De badkamer is kapot, het toilet werkt'},
+        {hz:'حمام خراب اَس، تشناب کار می‌کنه',tr:'hamaam khraab as, tashnaab kaar me-kona',nl:'De badkamer is kapot, het toilet werkt'},
         {hz:'بالکنمو قشنگ اَس، شهر دیده می‌شه',tr:'baalkuanamo qashanq as, shahr dida mi-sha',nl:'Ons balkon is mooi, je ziet de stad'},
       ]
     },
@@ -1936,9 +1936,9 @@ const CHAPTERS=[
         {hz:'ظرف شستن',tr:'zarf shostan',nl:'Afwassen',tip:'"ظرف" = vaat'},
         {hz:'خرید کردن',tr:'kharid kardan',nl:'Boodschappen doen',tip:''},
         {hz:'مرتب کردن',tr:'moratab kardan',nl:'Opruimen',tip:''},
-        {hz:'آب دادن',tr:'aab daadan',nl:'Water geven (planten)',tip:''},
+        {hz:'آو دادن',tr:'aaw daadan',nl:'Water geven (planten)',tip:''},
         {hz:'کثیف',tr:'kasif',nl:'Vies / Vuil',tip:''},
-        {hz:'تمیز',tr:'tamiz',nl:'Schoon',tip:''},
+        {hz:'پاک',tr:'paak',nl:'Schoon',tip:'Hazaragi: "پاک" — niet Iraans "تمیز"'},
         {hz:'نظافت',tr:'nazaafat',nl:'Schoonmaak / Hygiëne',tip:''},
       ],
       sentences:[
@@ -2005,13 +2005,13 @@ const CHAPTERS=[
         {hz:'آلودگی',tr:'aaloodagi',nl:'Vervuiling',tip:''},
         {hz:'درخت کاری',tr:'darakht-kaaree',nl:'Bomen planten',tip:''},
         {hz:'محیط زیست',tr:'mohit-e-zist',nl:'Milieu',tip:'Letterlijk: "omgeving van leven"'},
-        {hz:'آب و هوا',tr:'aab-o-hawaa',nl:'Klimaat',tip:'"آب" = water + "هوا" = lucht'},
+        {hz:'آو و هوا',tr:'aaw-o-hawaa',nl:'Klimaat',tip:'"آو" = water + "هوا" = lucht — Hazaragi: آو ipv آب'},
         {hz:'طوفان',tr:'toofaan',nl:'Storm',tip:''},
         {hz:'گرد و خاک',tr:'gard-o-khaak',nl:'Stofstorm',tip:'Typisch voor Afghanistan'},
         {hz:'حفاظت از طبیعت',tr:'hefaazat az tabiaat',nl:'Natuur beschermen',tip:''},
       ],
       sentences:[
-        {hz:'امسال خشکسالی شد، زمین آب نداشت',tr:'emsaal khushksaalee shod, zameen aab nadaasht',nl:'Dit jaar was er droogte, het land had geen water'},
+        {hz:'امسال خشکسالی شد، زمین آو نداشت',tr:'emsaal khushksaalee shod, zameen aaw nadaasht',nl:'Dit jaar was er droogte, het land had geen water'},
         {hz:'باید از محیط زیست حفاظت کنیم',tr:'baayad az mohit-e-zist hefaazat konim',nl:'We moeten het milieu beschermen'},
         {hz:'طوفان آمد، همه دَ خانه موندن',tr:'toofaan aamad, hama da khaana moondan',nl:'De storm kwam, iedereen bleef thuis'},
       ]
@@ -2097,7 +2097,7 @@ const CHAPTERS=[
         {hz:'انگور',tr:'angoor',nl:'Druif',tip:'Afghanistan heeft de zoetste druiven ter wereld'},
         {hz:'زردآلو',tr:'zardaalo',nl:'Abrikoos',tip:'Typisch Afghaans — "gele pruim"'},
         {hz:'توت',tr:'toot',nl:'Moerbei',tip:'Typisch Afghaanse vrucht — gekookt en gedroogd'},
-        {hz:'هندوانه',tr:'hendowaana',nl:'Watermeloen',tip:'Groot en zoet in de zomer'},
+        {hz:'تربوز',tr:'tarbuuz',nl:'Watermeloen',tip:'Hazaragi/Afghaans: "تربوز" — niet Iraans "هندوانه"'},
         {hz:'خربزه',tr:'kharboza',nl:'Meloen',tip:'Kandahari meloenen zijn wereldberoemd'},
         {hz:'آلو',tr:'aalo',nl:'Pruim',tip:''},
         {hz:'سیب',tr:'seb',nl:'Appel',tip:''},
@@ -2197,7 +2197,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'تیمم برد، خیلی خوشحالیم!',tr:'teamam bord, khaili khoshaaolim!',nl:'Mijn team heeft gewonnen, we zijn heel blij!'},
-        {hz:'هر روز تمرین می‌کنم که قوی بشم',tr:'har roz tamrin mi-konom ke qaawi besham',nl:'Elke dag train ik om sterk te worden'},
+        {hz:'هر روز تمرین می‌کنم که قوی بشم',tr:'har roz tamrin mi-konom ke qaawi beshom',nl:'Elke dag train ik om sterk te worden'},
         {hz:'یک گل زد و قهرمان شد!',tr:'yak gol zad wa qahramaan shod!',nl:'Hij scoorde één doelpunt en werd kampioen!'},
       ]
     },
@@ -2282,7 +2282,7 @@ const CHAPTERS=[
         {hz:'کم ↔ زیاد',tr:'kam ↔ ziyaad',nl:'Weinig ↔ Veel',tip:''},
         {hz:'تنها ↔ با هم',tr:'tanhaa ↔ baa ham',nl:'Alleen ↔ Samen',tip:'"با هم" = letterlijk "met elkaar"'},
         {hz:'شاد ↔ غمگین',tr:'shaad ↔ ghamgeen',nl:'Blij ↔ Verdrietig',tip:''},
-        {hz:'درست ↔ اشتباه',tr:'doros ↔ eshtebaa',nl:'Juist ↔ Fout',tip:'Hazaragi: "doros" niet "dorost"'},
+        {hz:'درس ↔ اشتباه',tr:'doros ↔ eshtebaa',nl:'Juist ↔ Fout',tip:'Hazaragi: "doros" niet "dorost"'},
       ],
       sentences:[
         {hz:'همیشه راست بگوی، هیچ‌وقت دروغ نگو',tr:'hamisha raast bogoi, hichawaqt doroogh nago',nl:'Zeg altijd de waarheid, zeg nooit een leugen'},
@@ -2312,7 +2312,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'یک بشقاب قابلی و دو چای سبز می‌خوام',tr:'yak boshqaab qaaboli o do chaay sabz mi-khom',nl:'Ik wil één bord qaboli en twee groene theeën'},
         {hz:'خیلی خوشمزه بود، دستت درد نکنه',tr:'khaili khoshmaza bood, dastat dard nakona',nl:'Het was heel lekker, dank je voor de moeite'},
-        {hz:'حساب بیار، می‌خوام بروم',tr:'hesaab biaar, mi-khom baram',nl:'Breng de rekening, ik wil gaan'},
+        {hz:'حساب بیار، می‌خوام بروم',tr:'hesaab biaar, mi-khom berom',nl:'Breng de rekening, ik wil gaan'},
       ]
     },
 
@@ -2334,7 +2334,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'صفا آوردید، بفرمایین داخل، بنشینید',tr:'safaa aawordid, befarmaayin daakhel, benshinnid',nl:'Welkom, kom binnen, gaat u zitten'},
         {hz:'مزاحم نیستم؟ — نه جان، خوش آمدی!',tr:'mozaahem nistom? — na jaan, khosh aamadi!',nl:'Stoor ik niet? — Nee lieverd, welkom!'},
-        {hz:'وقتم تنگ اَس، باید برم — باز بیا!',tr:'waqtam tang as, baayad beram — baaz bia!',nl:'Ik moet gaan — Kom nog eens!'},
+        {hz:'وقتم تنگ اَس، باید برم — باز بیا!',tr:'waqtam tang as, baayad berom — baaz bia!',nl:'Ik moet gaan — Kom nog eens!'},
       ]
     },
 
@@ -2387,7 +2387,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'تو خیلی تند گپ می‌زنی، آسته‌تر بگوی',tr:'tu khaili tand gap mi-zani, asta-tar bogoi',nl:'Jij praat heel snel, spreek wat langzamer'},
         {hz:'من همیشه صبح زود بیدار می‌شم',tr:'ma hamisha sobh zud bediaar mi-shom',nl:'Ik word altijd vroeg in de ochtend wakker'},
-        {hz:'شاید فردا بیام، هنوز مطمئن نیستم',tr:'shaayad farda biyaam, hanoz motma\'en nistam',nl:'Misschien kom ik morgen, ik weet het nog niet zeker'},
+        {hz:'شاید فردا بیام، هنوز مطمئن نیستم',tr:'shaayad farda biyoom, hanoz motma\'en nistom',nl:'Misschien kom ik morgen, ik weet het nog niet zeker'},
       ]
     },
 
@@ -2431,7 +2431,7 @@ const CHAPTERS=[
         {hz:'بعد',tr:'ba\'d',nl:'Daarna / Nadat',tip:'"بعد از کار" = na het werk'},
       ],
       sentences:[
-        {hz:'می‌خوام بیام اما وقت ندارم',tr:'mi-khom biyaam amma waqt nadaaram',nl:'Ik wil komen maar ik heb geen tijd'},
+        {hz:'می‌خوام بیام اما وقت ندارم',tr:'mi-khom biyoom amma waqt nadarom',nl:'Ik wil komen maar ik heb geen tijd'},
         {hz:'اگه خسته هستی، استراحت کن',tr:'aga khasta hasti, estraahat kon',nl:'Als je moe bent, rust dan uit'},
         {hz:'وختی بچه بودم، هزارستان زندگی می‌کردم',tr:'wakhti bacha boodom, hazaarastaan zendagi mi-kardom',nl:'Toen ik klein was, woonde ik in Hazarajat'},
       ]
@@ -2462,7 +2462,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'اون آدم خیلی صادق و امین اَس',tr:'oon aadam kheli saadeq wa amin as',nl:'Die persoon is heel eerlijk en betrouwbaar'},
-        {hz:'مادرم خیلی مهربان و دلسوز اَس',tr:'maadarom kheli mehrabaan wa delsoz as',nl:'Mijn moeder is heel lief en meelevend'},
+        {hz:'مادرم خیلی مهربان و دلسوز اَس',tr:'maadaram kheli mehrabaan wa delsoz as',nl:'Mijn moeder is heel lief en meelevend'},
         {hz:'برای موفق شدن، باید کوشا بود',tr:'baraaye mowafeq shodan, baayad kosha bood',nl:'Om succesvol te zijn moet je ijverig zijn'},
       ]
     },
@@ -2477,7 +2477,7 @@ const CHAPTERS=[
         {hz:'بی‌وفا',tr:'bi-wafaa',nl:'Ontrouw',tip:'"بی-" voorvoegsel = zonder'},
         {hz:'خودخواه',tr:'khod-khaah',nl:'Egocentrisch',tip:'Letterlijk: degene die zichzelf wil'},
         {hz:'بی‌ادب',tr:'bi-adab',nl:'Onbeleefd',tip:''},
-        {hz:'عصبانی',tr:'asabaani',nl:'Opvliegend / Boos',tip:'"عصبانی شدن" = boos worden'},
+        {hz:'خفا',tr:'khafaa',nl:'Opvliegend / Boos',tip:'Hazaragi: "خفا شدن" = boos worden'},
         {hz:'لجباز',tr:'lajbaaz',nl:'Koppig / Eigenwijs',tip:''},
         {hz:'غرور',tr:'ghoroor',nl:'Arrogantie',tip:'"غرور داشتن" = arrogant zijn'},
         {hz:'بی‌مسئولیت',tr:'bi-mas\'ooliyat',nl:'Onverantwoordelijk',tip:''},
@@ -2557,7 +2557,7 @@ const CHAPTERS=[
         {hz:'تحقیق',tr:'tahqiq',nl:'Onderzoek',tip:'"تحقیق کردن" = onderzoek doen'},
       ],
       sentences:[
-        {hz:'در پوهنتون کابل درس می‌خونم',tr:'dar pohantoon kabol dars mi-khwoom',nl:'Ik studeer aan de universiteit van Kabul'},
+        {hz:'دَ پوهنتون کابل درس می‌خونم',tr:'da pohantoon kabol dars mi-khwoom',nl:'Ik studeer aan de universiteit van Kabul'},
         {hz:'امتحان سخت بود اما نمره خوب گرفتم',tr:'emtahaan sakht bood amma nomra khob geraftom',nl:'Het examen was moeilijk maar ik haalde een goed cijfer'},
         {hz:'رشته‌ام طب اَس',tr:'reshtam tibb as',nl:'Mijn studierichting is geneeskunde'},
       ]
@@ -2611,7 +2611,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'کابل پایتخت افغانستان اَس',tr:'kabol paayetakht afghaanostaan as',nl:'Kabul is de hoofdstad van Afghanistan'},
         {hz:'بامیان خانه اجدادی هزاره‌ها اَس',tr:'baamiaan khaana-ye ajdaadi hazaara-haa as',nl:'Bamyan is de voorouderlijke thuisbasis van de Hazara\'s'},
-        {hz:'آرزو دارم یک بار به مزار شریف بروم',tr:'aarezoo daaram yak baar ba mazaar sharif baravam',nl:'Ik wil ooit een keer naar Mazar-i-Sharif gaan'},
+        {hz:'آرزو دارم یک بار به مزار شریف بروم',tr:'aarezoo darom yak baar ba mazaar sharif berom',nl:'Ik wil ooit een keer naar Mazar-i-Sharif gaan'},
       ]
     },
 
@@ -2707,7 +2707,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'عروسی‌شان ماه آینده اَس',tr:'oroosishaan maah-e aaayanda as',nl:'Hun bruiloft is volgende maand'},
         {hz:'عروس خیلی قشنگ بود، ماشاالله',tr:'aros kheli qashang bood, mashaa-allaah',nl:'De bruid was heel mooi, mashallah'},
-        {hz:'دعوت عروسی گرفتم، خوشحال شدم',tr:'da\'wat-e oroosi gereftam, khoshaal shodam',nl:'Ik heb een bruiloftsuitnodiging gekregen, ik werd blij'},
+        {hz:'دعوت عروسی گرفتم، خوشحال شدم',tr:'da\'wat-e oroosi gereftom, khoshaal shodom',nl:'Ik heb een bruiloftsuitnodiging gekregen, ik werd blij'},
       ]
     },
 
@@ -2728,7 +2728,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'تسلیت می‌گم، خدا صبر بده',tr:'tasliyat mi-gom, khoda sabr beda',nl:'Mijn condoleances, moge God u geduld geven'},
-        {hz:'پدرم فوت کرد، خدا رحمتش کنه',tr:'padarom fowt kard, khoda rahmatash kona',nl:'Mijn vader is gestorven, moge God hem genadig zijn'},
+        {hz:'پدرم فوت کرد، خدا رحمتش کنه',tr:'padaram fowt kard, khoda rahmatash kona',nl:'Mijn vader is gestorven, moge God hem genadig zijn'},
         {hz:'فاتحه بخوانیم برای روح‌شان',tr:'faateha bekhwaanim baraaye rooheshaan',nl:'Laten we Al-Fatiha lezen voor hun ziel'},
       ]
     },
@@ -2831,9 +2831,9 @@ const CHAPTERS=[
         {hz:'بیمه',tr:'bima',nl:'Verzekering',tip:'"بیمه درمانی" = zorgverzekering'},
       ],
       sentences:[
-        {hz:'نسخه داکتر را دارم، دوا می‌خوام',tr:'noskha-ye daaktar ra daaram, dawaa mi-khom',nl:'Ik heb een recept van de dokter, ik wil medicijnen'},
+        {hz:'نسخه داکتر را دارم، دوا می‌خوام',tr:'noskha-ye daaktar ra darom, dawaa mi-khom',nl:'Ik heb een recept van de dokter, ik wil medicijnen'},
         {hz:'این قرص برای تب اَس؟',tr:'in qors baraaye tab as?',nl:'Is deze pil voor koorts?'},
-        {hz:'آلرژی به پنی‌سیلین دارم',tr:'aalarji ba penisilin daaram',nl:'Ik ben allergisch voor penicilline'},
+        {hz:'آلرژی به پنی‌سیلین دارم',tr:'aalarji ba penisilin darom',nl:'Ik ben allergisch voor penicilline'},
       ]
     },
 
@@ -2929,7 +2929,7 @@ const CHAPTERS=[
         {hz:'الهام',tr:'elhaam',nl:'Inspiratie',tip:''},
       ],
       sentences:[
-        {hz:'خوشحالم که دارم هزارگی یاد می‌گیرم',tr:'khoshaalim ka daaram hazaaragi yaad mi-girom',nl:'Ik ben blij dat ik Hazaragi aan het leren ben'},
+        {hz:'خوشحالم که دارم هزارگی یاد می‌گیرم',tr:'khoshaalim ka darom hazaaragi yaad mi-girom',nl:'Ik ben blij dat ik Hazaragi aan het leren ben'},
         {hz:'قوی باش، می‌تانی!',tr:'qaawi baash, mi-taani!',nl:'Wees sterk, je kunt het!'},
         {hz:'از تلاشت افتخار می‌کنم',tr:'az talaashat eftekhar mi-konom',nl:'Ik ben trots op jouw inzet'},
       ]
@@ -2969,7 +2969,7 @@ const CHAPTERS=[
       pronTips:['ع','خ'],
       grammar:'"دوستت دارم" = ik hou van jou (letterlijk: vriend-jou-ik-heb). Dit is de standaard manier om liefde/genegenheid uit te drukken in Hazaragi. "عاشق" = verliefd/verliefd zijn op iemand.',
       words:[
-        {hz:'دوستت دارم',tr:'dostat daaram',nl:'Ik hou van jou',tip:'De meest directe manier — gebruikt voor iedereen die je lief hebt'},
+        {hz:'دوستت دارم',tr:'dostat darom',nl:'Ik hou van jou',tip:'De meest directe manier — gebruikt voor iedereen die je lief hebt'},
         {hz:'عاشق',tr:'aasheq',nl:'Verliefd / Liefhebber',tip:'"عاشقت هستم" = ik ben verliefd op jou'},
         {hz:'دلتنگی',tr:'deltangi',nl:'Heimwee / Je missen',tip:'"دلتنگتم" = ik mis jou'},
         {hz:'محبت',tr:'mohabbat',nl:'Liefde / Genegenheid',tip:'Diepere liefde dan دوستی'},
@@ -2981,7 +2981,7 @@ const CHAPTERS=[
         {hz:'آرزو',tr:'aarezoo',nl:'Wens / Verlangen',tip:'"آرزویم داری" = jij bent mijn wens'},
       ],
       sentences:[
-        {hz:'دوستت دارم، همیشه یادت هستم',tr:'dostat daaram, hamisha yaadot hastom',nl:'Ik hou van jou, ik denk altijd aan jou'},
+        {hz:'دوستت دارم، همیشه یادت هستم',tr:'dostat darom, hamisha yaadot hastom',nl:'Ik hou van jou, ik denk altijd aan jou'},
         {hz:'دلتنگتم وختی نیستی',tr:'deltangatom wakhti nisti',nl:'Ik mis je wanneer je er niet bent'},
         {hz:'با هم بودن بهترین چیز اَس',tr:'baa ham boodan behtarin chiz as',nl:'Samen zijn is het beste'},
       ]
@@ -3004,7 +3004,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'خانواده‌ام برام از همه چیز مهم‌تر اَس',tr:'khaanwaadaam baaram az hama chiz mohemtar as',nl:'Mijn familie is voor mij belangrijker dan alles'},
-        {hz:'از فداکاری مادرم شاکر هستم',tr:'az fedaakaari maadarom shaakir hastom',nl:'Ik ben dankbaar voor de opoffering van mijn moeder'},
+        {hz:'از فداکاری مادرم شاکر هستم',tr:'az fedaakaari maadaram shaakir hastom',nl:'Ik ben dankbaar voor de opoffering van mijn moeder'},
         {hz:'پیوند ما را هیچ‌چیز نمی‌تانه بشکنه',tr:'peywand-e maa ra hich-chiz nami-taana beshkana',nl:'Niets kan onze band breken'},
       ]
     },
@@ -3025,7 +3025,7 @@ const CHAPTERS=[
         {hz:'تنها',tr:'tanhaa',nl:'Alleen / Eenzaam',tip:'"تنها نیستی" = je bent niet alleen'},
       ],
       sentences:[
-        {hz:'رفیق واقعی کنارت اَس در سختی',tr:'rafiq-e waaqe\'i kenaarot as dar sakhti',nl:'Een echte vriend staat naast jou in moeilijke tijden'},
+        {hz:'رفیق واقعی کنارت اَس دَ سختی',tr:'rafiq-e waaqe\'i kenaarot as da sakhti',nl:'Een echte vriend staat naast jou in moeilijke tijden'},
         {hz:'درد دلت را باهام بگوی',tr:'dard-e delat ra baahaam bogoi',nl:'Vertel mij wat je op je hart hebt'},
         {hz:'تنها نیستی، من اینجام',tr:'tanhaa nisti, man injaam',nl:'Je bent niet alleen, ik ben hier'},
       ]
@@ -3058,7 +3058,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'هر روز صبح می‌دوم، خیلی خوب اَس',tr:'har roz sobh mi-dawom, kheli khob as',nl:'Elke ochtend ren ik, het is heel goed'},
-        {hz:'فوتبال بازی کردن دوست دارم',tr:'footbaal baazi kardan dost daaram',nl:'Ik hou van voetbal spelen'},
+        {hz:'فوتبال بازی کردن دوست دارم',tr:'footbaal baazi kardan dost darom',nl:'Ik hou van voetbal spelen'},
         {hz:'تیم ما برنده شد، خوشحال شدیم',tr:'tim-e maa baranda shod, khoshaal shodim',nl:'Ons team won, we werden blij'},
       ]
     },
@@ -3080,7 +3080,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'نقاشی کردن آرامشم می‌ده',tr:'naqqaashi kardan aaraamasham mi-da',nl:'Tekenen geeft mij rust'},
-        {hz:'در وقت آزادم کتاب می‌خونم',tr:'dar waqt-e aazaadam ketaab mi-khwoom',nl:'In mijn vrije tijd lees ik'},
+        {hz:'دَ وقت آزادم کتاب می‌خونم',tr:'da waqt-e aazaadam ketaab mi-khwoom',nl:'In mijn vrije tijd lees ik'},
         {hz:'خواهرم خیاطی بلده، خیلی خوب می‌کنه',tr:'khaaharom khayaati balada, kheli khob mi-kona',nl:'Mijn zus kan naaien, ze doet het heel goed'},
       ]
     },
@@ -3101,7 +3101,7 @@ const CHAPTERS=[
         {hz:'خندیدن',tr:'khandidan',nl:'Lachen',tip:'"خیلی خندیدیم" = we lachten heel veel'},
       ],
       sentences:[
-        {hz:'جمعه مهمانی داریم، میای؟',tr:'jome mehmaanik daarem, miyaai?',nl:'Vrijdag hebben we een bijeenkomst, kom je?'},
+        {hz:'جمعه مهمانی داریم، میای؟',tr:'jome mehmaanik daarim, miyaai?',nl:'Vrijdag hebben we een bijeenkomst, kom je?'},
         {hz:'مهمان نعمت اَس — این رسم ماس',tr:'mehmaan ne\'mat as — in rasom maas',nl:'Een gast is een zegen — dat is onze traditie'},
         {hz:'با هم چای بخوریم و گپ بزنیم',tr:'baa ham chaai bekhorim wa gap bezanim',nl:'Laten we samen thee drinken en kletsen'},
       ]
@@ -3135,7 +3135,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'بسم الله، شروع می‌کنیم',tr:'bismillaah, shoroo mi-konim',nl:'In de naam van God, laten we beginnen'},
         {hz:'الحمدلله خوبم، تشکر که پرسیدی',tr:'alhamdolillaah khobom, tashakor ka porsidi',nl:'Alhamdulillah ik ben goed, bedankt dat je het vraagt'},
-        {hz:'ماشاالله، چقدر قشنگ اَس!',tr:'mashaaallah, cheqadar qashang as!',nl:'Mashallah, wat is het mooi!'},
+        {hz:'ماشاالله، چنده قشنگ اَس!',tr:'mashaaallah, chanda qashang as!',nl:'Mashallah, wat is het mooi!'},
       ]
     },
 
@@ -3200,17 +3200,17 @@ const CHAPTERS=[
         {hz:'ازوال',tr:'azawal',nl:'Opnieuw / Nog een keer',tip:'"ازوال بگوی" = zeg het opnieuw — Hazaragi ipv Iraans "دوباره"'},
         {hz:'آسته',tr:'asta',nl:'Langzaam',tip:'"آسته‌تر بگوی" = zeg het langzamer — Hazaragi: asta'},
         {hz:'بلند',tr:'boland',nl:'Harder / Luid',tip:'"بلندتر بگوی" = spreek harder'},
-        {hz:'نفامیدم',tr:'nafamidam',nl:'Ik begreep het niet',tip:'Eerlijk en beleefd zeggen'},
+        {hz:'نفامیدم',tr:'nafamidom',nl:'Ik begreep het niet',tip:'Eerlijk en beleefd zeggen'},
         {hz:'یعنی چی؟',tr:'yani chi?',nl:'Wat betekent dat?',tip:'Universele verduidelijkingsvraag'},
         {hz:'مطمئنی؟',tr:'motma\'eni?',nl:'Weet je het zeker?',tip:'Vriendelijk twijfelen'},
-        {hz:'درسته؟',tr:'dorosta?',nl:'Klopt dat? / Is dat juist?',tip:'Bevestiging vragen'},
+        {hz:'دروسه؟',tr:'dorosa?',nl:'Klopt dat? / Is dat juist?',tip:'Bevestiging vragen'},
         {hz:'یادم نیس',tr:'yaadamnis',nl:'Ik weet het niet meer',tip:'Hazaragi: "نیس" = niet'},
         {hz:'چتور می‌گن؟',tr:'chetor mi-gan?',nl:'Hoe zeggen ze dat?',tip:'Vragen hoe je iets zegt'},
         {hz:'به هزارگی چه می‌گن؟',tr:'ba hazaaragi cha mi-gan?',nl:'Hoe zeg je dat in Hazaragi?',tip:'Perfecte leervraag!'},
       ],
       sentences:[
         {hz:'ازوال بگوی، آسته‌تر',tr:'azawal bogoi, asta-tar',nl:'Zeg het opnieuw, langzamer'},
-        {hz:'نفامیدم، یعنی چی؟',tr:'nafamidam, yani chi?',nl:'Ik begreep het niet, wat betekent dat?'},
+        {hz:'نفامیدم، یعنی چی؟',tr:'nafamidom, yani chi?',nl:'Ik begreep het niet, wat betekent dat?'},
         {hz:'به هزارگی چتور می‌گن "bedankt"؟',tr:'ba hazaaragi chetor mi-gan "bedankt"?',nl:'Hoe zeg je "bedankt" in Hazaragi?'},
       ]
     },
@@ -3232,7 +3232,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'به نظرم خوبَم، موافقم',tr:'ba nazaram khobam, mowaafeqom',nl:'Naar mijn mening klopt het, ik ben het ermee eens'},
-        {hz:'شاید، ولی مطمئن نیستم',tr:'shaayad, wali motma\'en nistam',nl:'Misschien, maar ik ben er niet zeker van'},
+        {hz:'شاید، ولی مطمئن نیستم',tr:'shaayad, wali motma\'en nistom',nl:'Misschien, maar ik ben er niet zeker van'},
         {hz:'نه، اشتباه اَس — اینطور نیس',tr:'na, eshtbaah as — intoor nis',nl:'Nee, dat klopt niet — zo is het niet'},
       ]
     },
@@ -3248,14 +3248,14 @@ const CHAPTERS=[
         {hz:'چه بد!',tr:'cha bad!',nl:'Wat erg! / Wat jammer!',tip:'Medeleven of teleurstelling'},
         {hz:'باور نمی‌کنم',tr:'baawor nami-konom',nl:'Ik kan het niet geloven',tip:''},
         {hz:'خوشم می‌آد',tr:'khosham mi-aad',nl:'Ik vind het leuk / Ik hou ervan',tip:'"خوشم نمی‌آد" = ik hou er niet van'},
-        {hz:'ناراحت شدم',tr:'naaraahat shodam',nl:'Ik ben van streek geraakt',tip:'"ناراحت" = verdrietig / van streek'},
+        {hz:'ناراحت شدم',tr:'naaraahat shodom',nl:'Ik ben van streek geraakt',tip:'"ناراحت" = verdrietig / van streek'},
         {hz:'تعجب کردم',tr:'ta\'ajjob kardam',nl:'Ik was verbaasd',tip:'"تعجب آور اَس" = het is verbazingwekkend'},
         {hz:'خنده‌ام گرفت',tr:'khandaam gereft',nl:'Ik moest lachen',tip:'Letterlijk: het lachen pakte me'},
       ],
       sentences:[
         {hz:'وای، واقعاً؟ باور نمی‌کنم!',tr:'waay, waaqe\'an? baawor nami-konom!',nl:'Wauw, echt waar? Ik kan het niet geloven!'},
         {hz:'عالی اَس، خوشم آد!',tr:'aali as, khosham aad!',nl:'Geweldig, ik vind het leuk!'},
-        {hz:'چه بد، ناراحت شدم برات',tr:'cha bad, naaraahat shodam baraat',nl:'Wat erg, ik voel met je mee'},
+        {hz:'چه بد، ناراحت شدم برات',tr:'cha bad, naaraahat shodom baraat',nl:'Wat erg, ik voel met je mee'},
       ]
     },
 
@@ -3285,7 +3285,7 @@ const CHAPTERS=[
         {hz:'وزن',tr:'wazn',nl:'Gewicht',tip:'"وزن کن" = weeg het af'},
       ],
       sentences:[
-        {hz:'این چقدر اَس؟',tr:'in cheqadr as?',nl:'Hoeveel kost dit?'},
+        {hz:'این چنده اَس؟',tr:'in chanda as?',nl:'Hoeveel kost dit?'},
         {hz:'کمی تخفیف بده، خیلی گران اَس',tr:'kami takhfif beda, kheli garaan as',nl:'Geef wat korting, het is te duur'},
         {hz:'یک کیلو وزن کو، حساب می‌کنیم',tr:'yak kilo wazn ko, hesaab mi-konim',nl:'Weeg een kilo af, dan rekenen we af'},
       ]
@@ -3309,7 +3309,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'آخرین قیمت چنده؟ راست بگوی',tr:'aakherin qiymat chanda? raast bogoi',nl:'Wat is je laatste prijs? Zeg het eerlijk'},
         {hz:'نمی‌ارزه، جای دیگه می‌رم',tr:'nami-arza, jaaye diga mi-rom',nl:'Het is het niet waard, ik ga ergens anders heen'},
-        {hz:'قبول کردم، معامله شد!',tr:'qabol kardam, mo\'aamala shod!',nl:'Ik ga akkoord, we hebben een deal!'},
+        {hz:'قبول کردم، معامله شد!',tr:'qabol kardom, mo\'aamala shod!',nl:'Ik ga akkoord, we hebben een deal!'},
       ]
     },
 
@@ -3376,7 +3376,7 @@ const CHAPTERS=[
         {hz:'خشک',tr:'khoshk',nl:'Droog',tip:'"هوای خشک" = droog weer'},
         {hz:'رطوبت',tr:'ratobat',nl:'Vochtigheid',tip:'"رطوبت" — de "ط" klinkt als gewone "t" in Hazaragi'},
         {hz:'درجه',tr:'daraja',nl:'Graad (temperatuur)',tip:'"سی درجه" = 30 graden'},
-        {hz:'سایه',tr:'saaya',nl:'Schaduw',tip:'"در سایه بنشین" = ga in de schaduw zitten'},
+        {hz:'سایه',tr:'saaya',nl:'Schaduw',tip:'"دَ سایه بنشین" = ga in de schaduw zitten'},
         {hz:'چتر',tr:'chatar',nl:'Paraplu',tip:''},
         {hz:'کوت',tr:'kot',nl:'Jas / Overjas',tip:'"کوت بپوش" = trek een jas aan'},
         {hz:'دستکش',tr:'dastakesh',nl:'Handschoenen',tip:''},
@@ -3397,7 +3397,7 @@ const CHAPTERS=[
         {hz:'سیل',tr:'seyl',nl:'Overstroming',tip:'"سیل آمد" = er is een overstroming'},
         {hz:'زلزله',tr:'zelzela',nl:'Aardbeving',tip:'Afghanistan ligt seismisch actief gebied'},
         {hz:'بهمن',tr:'bahman',nl:'Lawine',tip:'Gevaar in Hazarajat in de winter'},
-        {hz:'آب و هوا',tr:'aab wa hawaa',nl:'Klimaat',tip:'Letterlijk: water en lucht'},
+        {hz:'آو و هوا',tr:'aaw wa hawaa',nl:'Klimaat',tip:'Hazaragi: آو (water) en هوا (lucht)'},
         {hz:'ارتفاع',tr:'ertafaa\'',nl:'Hoogte boven zeeniveau',tip:'Hazarajat gemiddeld 2500-3500m'},
         {hz:'فصل برداشت',tr:'fasl-e bardaasht',nl:'Oogstseizoen',tip:'Cruciaal voor boerengemeenschappen'},
         {hz:'چشمه',tr:'cheshma',nl:'Bron / Waterbron',tip:'Levensader in berggebieden'},
@@ -3406,7 +3406,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'امسال خشکسالی بده، آو کم اَس',tr:'emsal khoshksaali bada, aaw kam as',nl:'Dit jaar is er droogte, er is weinig water'},
-        {hz:'در زمستان از بهمن بترس، مراقب باش',tr:'dar zemestaan az bahman betars, muraaqeb baash',nl:'Wees in de winter bang voor lawines, wees voorzichtig'},
+        {hz:'دَ زمستان از بهمن بترس، مراقب باش',tr:'da zemestaan az bahman betars, muraaqeb baash',nl:'Wees in de winter bang voor lawines, wees voorzichtig'},
         {hz:'آو زندگی اَس، نگهش بدار',tr:'aaw zendagi as, negahash bedaar',nl:'Water is leven, zorg ervoor'},
       ]
     },
@@ -3438,7 +3438,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'بچه‌ها بازی می‌کنن، نگاشان کو',tr:'bacha-haa baazi mi-konan, negaashaan ko',nl:'De kinderen spelen, kijk naar ze'},
-        {hz:'گریه نکو، همه چیز درست می‌شه',tr:'gerya nako, hama chiz dorost mi-sha',nl:'Huil niet, alles komt goed'},
+        {hz:'گریه نکو، همه چیز درس می‌شه',tr:'gerya nako, hama chiz doros mi-sha',nl:'Huil niet, alles komt goed'},
         {hz:'برو مکتب، درس بخون',tr:'baro maktab, dars bekhoon',nl:'Ga naar school, ga studeren'},
       ]
     },
@@ -3484,7 +3484,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'معلم صنف را شروع کرد',tr:'mo\'allem sanf ra shoroo kard',nl:'De leraar begon de les'},
-        {hz:'سوال دارم، معلم صاحب',tr:'soaal daaram, mo\'allem-saaheb',nl:'Ik heb een vraag, meester/juffrouw'},
+        {hz:'سوال دارم، معلم صاحب',tr:'soaal darom, mo\'allem-saaheb',nl:'Ik heb een vraag, meester/juffrouw'},
         {hz:'زنگ خورد، وقت تنفس اَس',tr:'zang khoord, waqt-e tanafos as',nl:'De bel ging, het is pauzetijd'},
       ]
     },
@@ -3560,7 +3560,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'جنگ همه چیز را خراب می‌کنه',tr:'jang hama chiz ra kharaab mi-kona',nl:'Oorlog vernietigt alles'},
-        {hz:'دلم می‌خواد به وطنم برگردم',tr:'delam mi-khaad ba watanoom bargardoom',nl:'Ik wil terugkeren naar mijn vaderland'},
+        {hz:'دلم می‌خواد به وطنم برگردم',tr:'delam mi-khaad ba watanam bargardoom',nl:'Ik wil terugkeren naar mijn vaderland'},
         {hz:'امید به صلح هیچ‌وقت نمی‌میره',tr:'omid ba solh hich-waqt nami-mira',nl:'De hoop op vrede sterft nooit'},
       ]
     },
@@ -3579,7 +3579,7 @@ const CHAPTERS=[
       words:[
         {hz:'پختن',tr:'pokhtan',nl:'Koken / Bereiden',tip:'"پختم" = ik heb gekookt'},
         {hz:'سرخ کردن',tr:'sorkh kardan',nl:'Bakken in olie',tip:'"سرخ کو" = bak het'},
-        {hz:'آب‌پز کردن',tr:'aab-paz kardan',nl:'Koken in water',tip:''},
+        {hz:'آو‌پز کردن',tr:'aaw-paz kardan',nl:'Koken in water',tip:''},
         {hz:'دیگ',tr:'deg',nl:'Grote kookpot',tip:'Essentieel keukengereedschap'},
         {hz:'تابه',tr:'taawa',nl:'Koekenpan',tip:'Vlak — voor naan en boulani'},
         {hz:'کارد',tr:'kaard',nl:'Mes',tip:''},
@@ -3639,7 +3639,7 @@ const CHAPTERS=[
         {hz:'کچری',tr:'kachri',nl:'Kachri (eenpansgerecht)',tip:'Rijst en peulvruchten — eenvoudig en voedzaam'},
       ],
       sentences:[
-        {hz:'امشب قابلی داریم، بیا خانه ما',tr:'emshab qaaboli daarem, biyaa khaana maa',nl:'Vanavond hebben we qabuli, kom naar ons huis'},
+        {hz:'امشب قابلی داریم، بیا خانه ما',tr:'emshab qaaboli daarim, biyaa khaana maa',nl:'Vanavond hebben we qabuli, kom naar ons huis'},
         {hz:'مانتو خوشمزه‌ترین غذای افغانیه',tr:'maanto khoshmazatarin ghazaa-ye afghaanis',nl:'Manto is het lekkerste Afghaanse eten'},
         {hz:'نان تازه از تنور خوش‌بوی اَس',tr:'naan-e taaza az tanoor khoshbooy as',nl:'Vers brood uit de tandoor ruikt heerlijk'},
       ]
@@ -3694,7 +3694,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'کرایه تکسی چنده؟',tr:'karaaya taksi chanda?',nl:'Hoeveel kost de taxi?'},
-        {hz:'در ایستگاه منتظر بس بودم',tr:'dar istaagaah montazer-e bas boodam',nl:'Ik wachtte bij de bushalte op de bus'},
+        {hz:'دَ ایستگاه منتظر بس بودم',tr:'da istaagaah montazer-e bas boodom',nl:'Ik wachtte bij de bushalte op de bus'},
         {hz:'اینجا پیاده می‌شم، تشکر',tr:'injaa piyaada mi-shom, tashakur',nl:'Ik stap hier uit, bedankt'},
       ]
     },
@@ -3715,7 +3715,7 @@ const CHAPTERS=[
         {hz:'تنظیم',tr:'tanzim',nl:'Afstellen / Instellen',tip:''},
       ],
       sentences:[
-        {hz:'پنچر شدم، کمک کن',tr:'panchar shodam, komak kon',nl:'Ik heb een lekke band, help me'},
+        {hz:'پنچر شدم، کمک کن',tr:'panchar shodom, komak kon',nl:'Ik heb een lekke band, help me'},
         {hz:'بنزین تمام شد، نزدیک‌ترین پمپ کجاس؟',tr:'benzin tamaam shod, nazdiktarin pomp kojas?',nl:'De benzine is op, waar is het dichtstbijzijnde tankstation?'},
         {hz:'موتر خراب شده، مکانیک می‌خوام',tr:'motar kharaab shoda, mekanik mi-khom',nl:'De auto is kapot, ik heb een monteur nodig'},
       ]
@@ -3748,7 +3748,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'داکتر، شکمم درد می‌کنه',tr:'daaktar, shekamam dard mi-kona',nl:'Dokter, mijn buik doet pijn'},
-        {hz:'از دیشب تب دارم و سرفه می‌کنم',tr:'az doshab tab daaram wa sorfa mi-konom',nl:'Ik heb al vanaf gisternacht koorts en ik hoest'},
+        {hz:'از دیشب تب دارم و سرفه می‌کنم',tr:'az doshab tab darom wa sorfa mi-konom',nl:'Ik heb al vanaf gisternacht koorts en ik hoest'},
         {hz:'جای درد دقیقاً کجاس؟',tr:'jaaye dard daqiqan kojas?',nl:'Waar precies doet het pijn?'},
       ]
     },
@@ -3771,7 +3771,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'این نسخه را به فارمسی ببر',tr:'in noskha ra ba faarmasi bebor',nl:'Breng dit recept naar de apotheek'},
         {hz:'روزی سه بار، بعد از غذا بخور',tr:'rozi se baar, ba\'d az ghazaa bekhoor',nl:'Drie keer per dag, na het eten innemen'},
-        {hz:'به آنتی‌بیوتیک حساسیت دارم',tr:'ba anti-biyotik hassaasiyat daaram',nl:'Ik ben allergisch voor antibiotica'},
+        {hz:'به آنتی‌بیوتیک حساسیت دارم',tr:'ba anti-biyotik hassaasiyat darom',nl:'Ik ben allergisch voor antibiotica'},
       ]
     },
 
@@ -3788,10 +3788,10 @@ const CHAPTERS=[
         {hz:'خواب کافی',tr:'khwaab-e kaafi',nl:'Voldoende slaap',tip:''},
         {hz:'چکاپ',tr:'chekaap',nl:'Check-up',tip:'"چکاپ سالانه" = jaarlijkse check-up'},
         {hz:'سبزیجات',tr:'sabzijaat',nl:'Groenten',tip:'"بیشتر سبزیجات بخور" = eet meer groenten'},
-        {hz:'آب زیاد',tr:'aab-e ziyaad',nl:'Veel water drinken',tip:'Universeel gezondheidsadvies'},
+        {hz:'آو زیاد',tr:'aaw-e ziyaad',nl:'Veel water drinken',tip:'Universeel gezondheidsadvies'},
       ],
       sentences:[
-        {hz:'استراحت کو و آب زیاد بخور',tr:'esteraahat ko wa aab ziyaad bekhoor',nl:'Rust uit en drink veel water'},
+        {hz:'استراحت کو و آو زیاد بخور',tr:'esteraahat ko wa aaw ziyaad bekhoor',nl:'Rust uit en drink veel water'},
         {hz:'از غذای چرب پرهیز کو',tr:'az ghazaa-ye charb parhiz ko',nl:'Vermijd vet eten'},
         {hz:'هر روز نیم ساعت ورزش کو',tr:'har roz nim saa\'at warzesh ko',nl:'Doe elke dag een halfuur aan beweging'},
       ]
@@ -3867,7 +3867,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'موبایلم شارج نیس، شارجر می‌خوام',tr:'mobayelam shaarj nis, shaarjar mi-khom',nl:'Mijn telefoon is niet opgeladen, ik heb een lader nodig'},
         {hz:'لپ‌تاپ کار نمی‌کنه، خراب شده',tr:'lap-taap kaar nami-kona, kharaab shoda',nl:'De laptop werkt niet, hij is kapot'},
-        {hz:'حافظه پر اَس، باید چیز پاک کنم',tr:'haafeza por as, baayad chiz paak konam',nl:'De opslag is vol, ik moet iets verwijderen'},
+        {hz:'حافظه پر اَس، باید چیز پاک کنم',tr:'haafeza por as, baayad chiz paak konom',nl:'De opslag is vol, ik moet iets verwijderen'},
       ]
     },
 
@@ -3881,11 +3881,11 @@ const CHAPTERS=[
 
     { id:'morning_routine', title:'Ochtendrutine', sub:'Opstaan, douche, ontbijt...', icon:'🌅', xp:35,
       pronTips:['ب','ص'],
-      grammar:'"بیدار شدن" = wakker worden. "صبحانه" = ontbijt. Een Hazara ochtend begint vaak vroeg — gebed, groene thee en naan zijn de basis. "چای صبح" = de heilige ochtendthee.',
+      grammar:'"بیدار شدن" = wakker worden. "ناشتا" = ontbijt. Een Hazara ochtend begint vaak vroeg — gebed, groene thee en naan zijn de basis. "چای صبح" = de heilige ochtendthee.',
       words:[
         {hz:'بیدار شدن',tr:'bidaar shodan',nl:'Wakker worden',tip:'"بیدار شدم" = ik ben wakker geworden'},
         {hz:'دوش گرفتن',tr:'dosh gereftan',nl:'Douchen',tip:''},
-        {hz:'صبحانه',tr:'sobhaana',nl:'Ontbijt',tip:'"صبحانه خوردی؟" = heb je ontbeten?'},
+        {hz:'ناشتا',tr:'naashta',nl:'Ontbijt',tip:'Hazaragi/Afghaans: "ناشتا" — niet Iraans "صبحانه". "ناشتا خوردی؟" = heb je ontbeten?'},
         {hz:'چای صبح',tr:'chaay-e sobh',nl:'Ochtendthee',tip:'Ritueel begin van de Hazara dag'},
         {hz:'مسواک زدن',tr:'meswak zadan',nl:'Tanden poetsen',tip:''},
         {hz:'حاضر شدن',tr:'haazir shodan',nl:'Klaar maken',tip:'"حاضر شدم" = ik ben klaar'},
@@ -3897,9 +3897,9 @@ const CHAPTERS=[
         {hz:'عطر',tr:'etar',nl:'Parfum',tip:'"عطر زدن" = parfum opdoen'},
       ],
       sentences:[
-        {hz:'صبح بیدار شدم و چای خوردم',tr:'sobh bidaar shodam wa chaay khordam',nl:'Ochtends werd ik wakker en dronk thee'},
+        {hz:'صبح بیدار شدم و چای خوردم',tr:'sobh bidaar shodom wa chaay khordom',nl:'Ochtends werd ik wakker en dronk thee'},
         {hz:'دیر می‌شه، زود حاضر شو',tr:'deer mi-sha, zood haazir sho',nl:'We komen te laat, maak je snel klaar'},
-        {hz:'صبحانه نخوردم، گشنه‌ام',tr:'sobhaana nakhordam, goshnaam',nl:'Ik heb niet ontbeten, ik heb honger'},
+        {hz:'ناشتا نخوردم، گشنه‌ام',tr:'naashta nakhordom, goshnaam',nl:'Ik heb niet ontbeten, ik heb honger'},
       ]
     },
 
@@ -3919,9 +3919,9 @@ const CHAPTERS=[
         {hz:'برگشتن',tr:'bargashtan',nl:'Teruggaan',tip:'"به خانه برگشتم" = ik keerde terug naar huis'},
       ],
       sentences:[
-        {hz:'امروز کار زیاد داشتم، خسته شدم',tr:'emroz kaar ziyaad daashtem, khasta shodam',nl:'Vandaag had ik veel werk, ik ben moe geworden'},
-        {hz:'ناهار با همکارانم خوردم',tr:'naahaar baa ham-kaaraanam khordam',nl:'Ik at de lunch met mijn collega\'s'},
-        {hz:'جلسه مهم داریم، سر وقت باش',tr:'jalsa-ye mohemm daarem, sar-e waqt baash',nl:'We hebben een belangrijke vergadering, wees op tijd'},
+        {hz:'امروز کار زیاد داشتم، خسته شدم',tr:'emroz kaar ziyaad daashdom, khasta shodom',nl:'Vandaag had ik veel werk, ik ben moe geworden'},
+        {hz:'ناهار با همکارانم خوردم',tr:'naahaar baa ham-kaaraanam khordom',nl:'Ik at de lunch met mijn collega\'s'},
+        {hz:'جلسه مهم داریم، سر وقت باش',tr:'jalsa-ye mohemm daarim, sar-e waqt baash',nl:'We hebben een belangrijke vergadering, wees op tijd'},
       ]
     },
 
@@ -3941,9 +3941,9 @@ const CHAPTERS=[
         {hz:'رویا',tr:'roya',nl:'Droom',tip:'"خواب خوب ببینی" = mooie dromen'},
       ],
       sentences:[
-        {hz:'شام خوردیم و تلویزیون دیدیم',tr:'shaam khordem wa telewiziyon dedem',nl:'We aten en keken televisie'},
+        {hz:'شام خوردیم و تلویزیون دیدیم',tr:'shaam khordim wa telewiziyon dedim',nl:'We aten en keken televisie'},
         {hz:'شب بخیر، خواب خوش',tr:'shab bakheer, khwaab-e khosh',nl:'Goedenacht, slaap lekker'},
-        {hz:'فردا زود بیدار شو، کار داریم',tr:'fardaa zood bidaar sho, kaar daarem',nl:'Word morgen vroeg wakker, we hebben werk'},
+        {hz:'فردا زود بیدار شو، کار داریم',tr:'fardaa zood bidaar sho, kaar daarim',nl:'Word morgen vroeg wakker, we hebben werk'},
       ]
     },
 
@@ -3967,12 +3967,12 @@ const CHAPTERS=[
         {hz:'دید و بازدید',tr:'deed wa baazdeed',nl:'Familiebezoeken uitwisselen',tip:'Traditie: iedereen bezoeken'},
         {hz:'عیدی',tr:'eidi',nl:'Feestcadeautje',tip:'Geld of cadeau voor kinderen'},
         {hz:'مبارک باد',tr:'mobaarak baad',nl:'Gefeliciteerd! / Gelukkig!',tip:'Felicitaties bij alle feesten'},
-        {hz:'تعطیل',tr:'ta\'til',nl:'Vrije dag / Vakantie',tip:'"تعطیل هستیم" = we zijn vrij'},
+        {hz:'رخصتی',tr:'rakhsati',nl:'Vrije dag / Vakantie',tip:'Hazaragi/Afghaans: "رخصتی" — niet Iraans "تعطیل". "رخصتی هستیم" = we zijn vrij'},
         {hz:'بزم',tr:'bazm',nl:'Feestbijeenkomst',tip:'Muziek, eten, dans — samen'},
       ],
       sentences:[
         {hz:'نوروز مبارک، سال نو خوش',tr:'norooz mobaarak, saal-e nao khosh',nl:'Gelukkig Norooz, een goed nieuwjaar'},
-        {hz:'دید و بازدید رفتیم، عیدی گرفتیم',tr:'deed wa baazdeed raftim, eidi gereftem',nl:'We gingen op bezoek en kregen geschenkjes'},
+        {hz:'دید و بازدید رفتیم، عیدی گرفتیم',tr:'deed wa baazdeed raftim, eidi gereftim',nl:'We gingen op bezoek en kregen geschenkjes'},
         {hz:'بهار آمد، طبیعت سبز شد',tr:'bahaar aamad, tabee\'at sabz shod',nl:'De lente is gekomen, de natuur is groen geworden'},
       ]
     },
@@ -3994,8 +3994,8 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'عید مبارک، سالم و شاد باشی',tr:'eid mobaarak, saalam wa shaad baashi',nl:'Gelukkig Eid, wees gezond en blij'},
-        {hz:'نماز عید خواندیم، بعد دید و بازدید رفتیم',tr:'namaaz-e eid khaandem, ba\'d deed wa baazdeed raftim',nl:'We deden het Eid-gebed, daarna gingen we op bezoek'},
-        {hz:'در رمضان روزه گرفتم، سخت بود ولی خوب',tr:'dar ramazaan roza gereftem, sakht bood wali khob',nl:'Ik vastte in de Ramadan, het was zwaar maar goed'},
+        {hz:'نماز عید خواندیم، بعد دید و بازدید رفتیم',tr:'namaaz-e eid khaandim, ba\'d deed wa baazdeed raftim',nl:'We deden het Eid-gebed, daarna gingen we op bezoek'},
+        {hz:'دَ رمضان روزه گرفتم، سخت بود ولی خوب',tr:'da ramazaan roza gereftom, sakht bood wali khob',nl:'Ik vastte in de Ramadan, het was zwaar maar goed'},
       ]
     },
 
@@ -4031,7 +4031,7 @@ const CHAPTERS=[
 
     { id:'gram6_questions', title:'Vraagwoorden (verdieping)', sub:'Wie, wat, waar, wanneer, hoe...', icon:'❓', xp:45,
       pronTips:['ک','چ'],
-      grammar:'Verdieping vraagwoorden:\nکجا (waar) · چی (wat) · کی (wie) · کِی (wanneer) · چرا (waarom) · چتور (hoe) · چقدر (hoeveel) · کدام (welke)\n\nSamengestelde vragen:\nاز کجا (van waar) · با کی (met wie) · برای کی (voor wie) · چه وقت (hoe laat)\n\nHazaragi zegt چتور — nooit چطور (dat is Iraans). Vraagwoord staat vooraan, werkwoord achteraan.',
+      grammar:'Verdieping vraagwoorden:\nکجا (waar) · چی (wat) · کی (wie) · کِی (wanneer) · چرا (waarom) · چتور (hoe) · چنده (hoeveel) · کدام (welke)\n\nSamengestelde vragen:\nاز کجا (van waar) · با کی (met wie) · برای کی (voor wie) · چه وقت (hoe laat)\n\nHazaragi zegt چتور (niet چطور) en چنده (niet چقدر) — die zijn Iraans. Vraagwoord staat vooraan, werkwoord achteraan.',
       words:[
         {hz:'کجا',tr:'koja',nl:'Waar',tip:'"کجا هستی؟" = waar ben je?'},
         {hz:'کِی',tr:'kay',nl:'Wanneer',tip:'"کِی می‌آی؟" = wanneer kom je?'},
@@ -4039,7 +4039,7 @@ const CHAPTERS=[
         {hz:'چی',tr:'chi',nl:'Wat',tip:'"چی گفتی؟" = wat zei je?'},
         {hz:'چرا',tr:'chera',nl:'Waarom',tip:'"چرا نیامدی؟" = waarom ben je niet gekomen?'},
         {hz:'چتور',tr:'chetor',nl:'Hoe (Hazaragi)',tip:'Hazaragi: "چتور" — Dari/Iraans zegt "چطور", wij NIET'},
-        {hz:'چقدر',tr:'cheqadr',nl:'Hoeveel',tip:'"چقدر اَس؟" = hoeveel kost het?'},
+        {hz:'چنده',tr:'chanda',nl:'Hoeveel',tip:'Hazaragi: "چنده" — niet Iraans "چقدر". "چنده اَس؟" = hoeveel kost het?'},
         {hz:'کدام',tr:'kodaam',nl:'Welke',tip:'"کدام یکی؟" = welke (van de twee)?'},
         {hz:'از کجا',tr:'az koja',nl:'Waarvan daan',tip:'"از کجا آمدی؟" = waar kom je vandaan?'},
         {hz:'با کی',tr:'baa ki',nl:'Met wie',tip:'"با کی رفتی؟" = met wie ben je gegaan?'},
@@ -4049,7 +4049,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'کجا می‌ری؟ با کی؟',tr:'koja mi-ri? baa ki?',nl:'Waar ga je heen? Met wie?'},
         {hz:'چرا دیر آمدی؟ کِی بیرون شدی؟',tr:'chera deer aamadi? kay biron shodi?',nl:'Waarom ben je laat? Wanneer ben je weggegaan?'},
-        {hz:'کدام را می‌خوای؟ چقدر می‌دی؟',tr:'kodaam ra mi-khaay? cheqadr mi-di?',nl:'Welke wil je? Hoeveel geef je?'},
+        {hz:'کدام را می‌خوای؟ چنده می‌دی؟',tr:'kodaam ra mi-khaay? chanda mi-di?',nl:'Welke wil je? Hoeveel geef je?'},
       ]
     },
 
@@ -4073,7 +4073,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'هنوز نیامده، منتظریم',tr:'hanoz nayaamada, montazerim',nl:'Hij is nog niet gekomen, we wachten'},
         {hz:'همیشه دیر می‌آی، هیچ‌وقت سر وقت نیستی',tr:'hamesha deer mi-aay, hich-waqt sar-e waqt nisti',nl:'Je komt altijd te laat, je bent nooit op tijd'},
-        {hz:'بالاخره فامیدم، گاهی اشتباه می‌کنم',tr:'baalakhera fahmidam, gaahi eshtbaah mi-konom',nl:'Eindelijk begrijp ik het, soms maak ik fouten'},
+        {hz:'بالاخره فامیدم، گاهی اشتباه می‌کنم',tr:'baalakhera fahmidom, gaahi eshtbaah mi-konom',nl:'Eindelijk begrijp ik het, soms maak ik fouten'},
       ]
     },
 
@@ -4095,7 +4095,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'اگر بیای، با هم می‌خوریم',tr:'agar biyaay, baa ham mi-khorim',nl:'Als je komt, eten we samen'},
         {hz:'چون دیر آمدی، ناهار تمام شد',tr:'chon deer aamadi, naahaar tamaam shod',nl:'Omdat je te laat kwam, was de lunch op'},
-        {hz:'با اینکه سخت بود، بالاخره تمام کردم',tr:'baa inke sakht bood, baalakhera tamaam kardam',nl:'Hoewel het moeilijk was, heb ik het uiteindelijk afgemaakt'},
+        {hz:'با اینکه سخت بود، بالاخره تمام کردم',tr:'baa inke sakht bood, baalakhera tamaam kardom',nl:'Hoewel het moeilijk was, heb ik het uiteindelijk afgemaakt'},
       ]
     },
 
@@ -4189,13 +4189,13 @@ const CHAPTERS=[
         {hz:'که',tr:'ka',nl:'Dat / Die / Wat',tip:'"که" verbindt twee zinnen — uitgesproken als "ka"'},
         {hz:'می‌فامم که',tr:'mi-famom ka',nl:'Ik weet dat',tip:'Veelgebruikte combinatie — leer als één blok'},
         {hz:'فکر می‌کنم که',tr:'fekr mi-konom ka',nl:'Ik denk dat',tip:'"فکر" = gedachte/mening'},
-        {hz:'می‌گویم که',tr:'mi-gom ka',nl:'Ik zeg dat',tip:''},
+        {hz:'می‌گم که',tr:'mi-gom ka',nl:'Ik zeg dat',tip:''},
         {hz:'کسی که',tr:'kasi ka',nl:'De persoon die',tip:'"کسی" = iemand'},
         {hz:'چیزی که',tr:'chizi ka',nl:'Iets dat',tip:'"چیزی" = iets'},
         {hz:'وختی که',tr:'wakhti ka',nl:'Op het moment dat',tip:'"وختی" = Hazaragi voor "wanneer"'},
       ],
       sentences:[
-        {hz:'می‌فامم که فردا می‌آیی',tr:'mi-famom ka farda mi-aayi',nl:'Ik weet dat je morgen komt'},
+        {hz:'می‌فامم که فردا می‌آی',tr:'mi-famom ka farda mi-aayi',nl:'Ik weet dat je morgen komt'},
         {hz:'فکر می‌کنم که خوبَم',tr:'fekr mi-konom ka khobam',nl:'Ik denk dat het klopt'},
         {hz:'مردی که آمد دوستم اَس',tr:'mardi ka aamad dostam as',nl:'De man die gekomen is is mijn vriend'},
       ]
@@ -4249,25 +4249,25 @@ const CHAPTERS=[
 
     { id:'eten_smaak', title:'Smaken & Maaltijden', sub:'Lekker, zout, zoet, ontbijt...', icon:'😋', xp:25,
       pronTips:['ش','ز'],
-      grammar:'Smaakwoorden in Hazaragi:\nخوش‌مزه (lekker) · بی‌مزه (flauw) · شور (gezouten) · شیرین (zoet) · تند (pittig)\n\nMaaltijden: صبحانه (ontbijt) · ناهار (lunch) · شام (avondeten)\n\nReacties: خوش‌مزه اَس! = het is lekker! · سیر شدم = ik ben vol · تشنه هستم = ik ben dorstig',
+      grammar:'Smaakwoorden in Hazaragi:\nخوش‌مزه (lekker) · بی‌مزه (flauw) · شور (gezouten) · شیرین (zoet) · تند (pittig)\n\nMaaltijden: ناشتا (ontbijt) · ناهار (lunch) · شام (avondeten)\n\nReacties: خوش‌مزه اَس! = het is lekker! · سیر شدم = ik ben vol · تشنه اَستم = ik ben dorstig',
       words:[
         {hz:'خوش‌مزه',tr:'khosh-maza',nl:'Lekker / Smakelijk',tip:'"خوش‌مزه اَس!" = het is lekker!'},
         {hz:'بی‌مزه',tr:'bi-maza',nl:'Flauw / Smakeloos',tip:'"این بی‌مزه اَس" = dit is smakeloos'},
         {hz:'شور',tr:'shoor',nl:'Zout / Gezouten',tip:'"خیلی شور اَس" = het is te zout'},
         {hz:'شیرین',tr:'sheerin',nl:'Zoet',tip:'"شیرینی" = snoep/gebak'},
         {hz:'تند',tr:'tond',nl:'Pittig / Scherp',tip:'"تند اَس، آو می‌خوام" = het is pittig, ik wil water'},
-        {hz:'صبحانه',tr:'sobhaana',nl:'Ontbijt',tip:'"صبحانه خوردی؟" = heb je ontbeten?'},
+        {hz:'ناشتا',tr:'naashta',nl:'Ontbijt',tip:'Hazaragi/Afghaans: "ناشتا" — "ناشتا خوردی؟" = heb je ontbeten?'},
         {hz:'ناهار',tr:'naahaar',nl:'Lunch / Middageten',tip:'"وقت ناهار" = lunchtijd'},
         {hz:'شام',tr:'shaam',nl:'Avondeten',tip:'"وقت شام" = eettijd (avond)'},
         {hz:'تشنه',tr:'toshna',nl:'Dorstig',tip:'"تشنه هستم" = ik ben dorstig'},
-        {hz:'سیر',tr:'seer',nl:'Vol / Verzadigd',tip:'"سیر شدم، ممنون" = ik ben vol, dankjewel'},
+        {hz:'سیر',tr:'seer',nl:'Vol / Verzadigd',tip:'"سیر شدم، تشکر" = ik ben vol, dankjewel'},
         {hz:'نمک',tr:'namak',nl:'Zout (het)',tip:'"نمک بده" = geef het zout'},
         {hz:'پختم',tr:'pakhtom',nl:'Ik heb gekookt',tip:'"مرغ پختم" = ik heb kip gemaakt'},
       ],
       sentences:[
         {hz:'این غذا خیلی خوش‌مزه اَس!',tr:'in ghazaa kheylee khosh-maza as!',nl:'Dit eten is heel erg lekker!'},
-        {hz:'سیر شدم، ممنون',tr:'seer shodom, mamnoon',nl:'Ik ben vol, dankjewel'},
-        {hz:'تشنه هستم، آو می‌خوام',tr:'toshna hastom, ow mi-khaam',nl:'Ik ben dorstig, ik wil water'},
+        {hz:'سیر شدم، تشکر',tr:'seer shodom, tashakor',nl:'Ik ben vol, dankjewel'},
+        {hz:'تشنه هستم، آو می‌خوام',tr:'toshna hastom, aaw mi-khom',nl:'Ik ben dorstig, ik wil water'},
       ]
     },
 

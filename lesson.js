@@ -269,8 +269,6 @@ function rIntro(ex,body){
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
   save();
   speakHz(w.hz);
-  clearTimeout(_introTimeout);
-  _introTimeout=setTimeout(()=>{if(!WAITING)nextEx();},2500);
 }
 
 function rPhaseBreak(ex,body){
@@ -279,9 +277,8 @@ function rPhaseBreak(ex,body){
       <div class="phase-break-ico">🧠</div>
       <div class="phase-break-title">Goed gedaan!</div>
       <div class="phase-break-msg">${ex.msg}</div>
-    </div>`;
-  clearTimeout(_introTimeout);
-  _introTimeout=setTimeout(()=>{if(!WAITING)nextEx();},1400);
+    </div>
+    <button class="btn-check" onclick="nextEx()">Verder →</button>`;
 }
 
 // ── FIX Bug 3: requeueWrong veilig ook buiten normale lessen ──
@@ -629,10 +626,6 @@ function showFB(ok,title,hint,hzText){
   document.getElementById('fb-sub').textContent=hint;
   document.getElementById('fb-hz').textContent=hzText||'';
   WAITING=true;
-  if(ok){
-    clearTimeout(_autoAdvanceTimeout);
-    _autoAdvanceTimeout=setTimeout(()=>{if(WAITING)nextEx();},1100);
-  }
 }
 function hideFB(){clearTimeout(_autoAdvanceTimeout);clearTimeout(_introTimeout);document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
 function nextEx(){clearTimeout(_autoAdvanceTimeout);clearTimeout(_introTimeout);EI++;WAITING=false;renderEx();}
