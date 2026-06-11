@@ -4,9 +4,22 @@
 let S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},achv:[],weekActivity:[],goal:10,xpLog:{},lessonRound:{}};
 
 // ══════════════════════════════════════════════════════
-// UITSPRAAKSCHRIFT — geeft de romanisering ongewijzigd terug
+// UITSPRAAKSCHRIFT — romanisering → leesbaar voor Nederlandstaligen
 // ══════════════════════════════════════════════════════
-const toDutchPhonetic = tr => tr || '';
+function toDutchPhonetic(tr){
+  if(!tr)return '';
+  return tr
+    .replace(/kh/gi,'gh')   // خ — keelklank (Nederlands G)
+    .replace(/sh/gi,'sj')   // ش — Nederlands sj
+    .replace(/zh/gi,'zj')   // ژ — Nederlands zj
+    .replace(/ch/gi,'tsj')  // چ — Nederlands tsj
+    .replace(/oo/g,'oe')    // lange o — Nederlands oe
+    .replace(/ee/g,'ie')    // lange e — Nederlands ie
+    .replace(/ay/gi,'ei')   // tweeklank
+    .replace(/ai/gi,'ei')   // tweeklank
+    .replace(/ow/gi,'aw')   // tweeklank
+    .replace(/q/gi,'k');    // ق — Nederlands k
+}
 
 const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
@@ -113,17 +126,17 @@ function applyMasteryDecay(){
   if(S.lastDecayCheck===today)return;
   S.lastDecayCheck=today;
   const now=new Date();
-  let changed=false;
   Object.values(S.vocab).forEach(v=>{
     if(!v.nr||v.mastery<=1)return;
     const overdueDays=(now-new Date(v.nr))/86400000;
-    if(overdueDays>30){
-      v.mastery=Math.max(0,v.mastery-1);
+    if(overdueDays>14){
+      // Extra stap bij lang verwaarloosd (45+ dagen)
+      const steps=overdueDays>45?2:1;
+      v.mastery=Math.max(0,v.mastery-steps);
       v.nr=now.toISOString();
-      changed=true;
     }
   });
-  if(changed)save();
+  save(); // altijd opslaan zodat lastDecayCheck gepersisteerd wordt
 }
 
 function checkAchv(perfect=false){}
