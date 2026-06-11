@@ -7,6 +7,7 @@ let WRONG_WORDS=[],WRONG_SET=new Set();
 let CC_COMBO=0;
 let _comboTimeout=null;
 let _activeObserver=null;
+let _autoAdvanceTimeout=null;
 
 function trackWrong(hz,nl,tr){
   if(WRONG_SET.has(hz))return;
@@ -47,61 +48,57 @@ function _launchLesson(){
 function startLesson(id){
   CL=getLessonById(id);
   if(!CL)return;
+  if(!S.lessonRound)S.lessonRound={};
+  const pageSize=5;
+  const round=S.lessonRound[id]||0;
+  if(round*pageSize>=CL.words.length){S.lessonRound[id]=0;save();}
   EXS=buildExercises(CL);
   _launchLesson();
 }
 
 function buildExercises(lesson){
   const exs=[];
-  const ws=[...lesson.words];
+  const allWords=[...lesson.words];
+  const round=(S.lessonRound&&S.lessonRound[lesson.id])||0;
+  const pageSize=5;
+  const start=round*pageSize;
+  const ws=allWords.slice(start,start+pageSize);
   const ss=lesson.sentences||[];
 
+  // Fase 0: Taalregel
   if(lesson.grammar) exs.push({type:'grammar',grammar:lesson.grammar,pronTips:lesson.pronTips||[]});
 
-  // Interleaved: intro direct gevolgd door eerste MC (testing effect)
-  ws.slice(0,8).forEach(w=>{
+  // Fase 1: Kennismaking — eerst alle nieuwe woorden zien, zonder direct testen
+  ws.forEach(w=>{
     const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
     exs.push({type:'intro',w,ctxSentence});
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
-  if(ss.length>0)exs.push({type:'context',ss});
+  // Fase 2: Herkenning — betekenis kiezen (in willekeurige volgorde)
+  shuffle([...ws]).forEach(w=>{
+    const d=ws.filter(x=>x.hz!==w.hz);
+    if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+  });
 
-  ss.forEach(s=>{
+  // Brug: context zin
+  if(ss.length>0) exs.push({type:'context',ss});
+
+  // Fase 3: Verdieping — Hazaragi kiezen of luisteren (3 woorden, afgewisseld)
+  shuffle([...ws]).slice(0,3).forEach(w=>{
+    const d=ws.filter(x=>x.hz!==w.hz);
+    if(d.length<3) return;
+    if(Math.random()>0.5)
+      exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
+    else
+      exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+  });
+
+  // Cloze — invullen in zin (max 2)
+  shuffle([...ss].filter(s=>ws.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
     const match=ws.find(w=>s.hz.includes(w.hz));
-    if(match){
-      const d=ws.filter(x=>x.hz!==match.hz);
-      if(d.length>=3)exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
-    }
-  });
-
-  shuffle(ws).slice(0,4).forEach(w=>{
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length>=3)exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
-  });
-
-  // Luisteroefeningen — hoor het woord, kies de betekenis
-  shuffle(ws).slice(0,3).forEach(w=>{
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length>=3)exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
-  });
-
-  ss.slice(0,3).forEach(s=>exs.push({type:'wb',s}));
-
-  const orderable=ss.filter(s=>s.hz.split(' ').filter(Boolean).length>=3);
-  shuffle(orderable).slice(0,2).forEach(s=>{
-    const correctWords=s.hz.split(' ').filter(Boolean);
-    const distractors=shuffle(ws.map(w=>w.hz).filter(w=>!correctWords.includes(w))).slice(0,2);
-    exs.push({type:'order',s,distractors});
-  });
-
-  const typeable=ws.filter(w=>!w.hz.includes('↔'));
-  shuffle(typeable).slice(0,3).forEach(w=>exs.push({type:'type',w}));
-
-  shuffle(ws).slice(0,4).forEach(w=>{
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length>=3)exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+    if(!match) return;
+    const d=ws.filter(x=>x.hz!==match.hz);
+    if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
   });
 
   return exs;
@@ -565,9 +562,13 @@ function showFB(ok,title,hint,hzText){
   document.getElementById('fb-sub').textContent=hint;
   document.getElementById('fb-hz').textContent=hzText||'';
   WAITING=true;
+  if(ok){
+    clearTimeout(_autoAdvanceTimeout);
+    _autoAdvanceTimeout=setTimeout(()=>{if(WAITING)nextEx();},1100);
+  }
 }
-function hideFB(){document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
-function nextEx(){EI++;WAITING=false;renderEx();}
+function hideFB(){clearTimeout(_autoAdvanceTimeout);document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
+function nextEx(){clearTimeout(_autoAdvanceTimeout);EI++;WAITING=false;renderEx();}
 
 function rOrder(ex,body){
   const s=ex.s;
@@ -661,6 +662,19 @@ function leaveLesson(){
 
 function finishLesson(){
   if(!CL.id.startsWith('_')&&!S.done.includes(CL.id))S.done.push(CL.id);
+
+  // Volgende batch bijhouden (lesson rounds)
+  let nextBatchMsg='';
+  if(!CL.id.startsWith('_')){
+    if(!S.lessonRound)S.lessonRound={};
+    const prevRound=S.lessonRound[CL.id]||0;
+    S.lessonRound[CL.id]=prevRound+1;
+    const totalWords=CL.words.length;
+    const covered=Math.min((prevRound+1)*5,totalWords);
+    const remaining=totalWords-covered;
+    if(remaining>0) nextBatchMsg=`📖 Nog ${remaining} woorden te ontdekken — speel opnieuw!`;
+  }
+
   const bonusXP=HEARTS===3?5:0;
   LXP+=bonusXP;
   S.xp+=LXP;
@@ -671,6 +685,8 @@ function finishLesson(){
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
   document.getElementById('r-str').textContent='🔥'+S.streak;
   document.getElementById('res-sub').textContent=CL.title+' voltooid! 🌸';
+  const nextBatchEl=document.getElementById('res-next-batch');
+  if(nextBatchEl)nextBatchEl.textContent=nextBatchMsg;
 
   const _pm=['Foutloos! 🌟','Perfect! ✨','Absoluut geweldig! 🌟','Meesterlijk! 💎','Ongeslagen! 🏆'];
   const _gm=['Geweldig! 🌸','Goed gedaan! 💪','Super! 🎀','Fantastisch! 🐇','Zo trots! 🌺'];

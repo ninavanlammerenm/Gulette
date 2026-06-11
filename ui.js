@@ -394,20 +394,6 @@ function renderProfile(){
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
   if(_vEl)_vEl.textContent='v25';
-  const _wc=Object.keys(S.vocab).length;
-  const _ap={'words10':[_wc,10],'words30':[_wc,30],'words60':[_wc,60],'words100':[_wc,100],'words200':[_wc,200],'words300':[_wc,300],
-    'streak3':[S.streak,3],'streak7':[S.streak,7],'streak30':[S.streak,30],
-    'xp100':[S.xp,100],'xp500':[S.xp,500],'xp1000':[S.xp,1000],'xp2000':[S.xp,2000]};
-  document.getElementById('a-list').innerHTML=ACHVS.map(a=>{
-    const on=S.achv.includes(a.id);
-    const prog=!on&&_ap[a.id];
-    const progHTML=prog?`<div style="font-size:11px;font-weight:800;color:var(--lav);margin-top:3px">${Math.min(prog[0],prog[1])} / ${prog[1]}</div>`:'';
-    return `<div class="ac">
-      <div class="ac-ico${on?' on':''}">${a.icon}</div>
-      <div><div class="ac-name" style="color:${on?'var(--ink)':'var(--ink-l)'}">${a.name}</div><div class="ac-desc">${a.desc}</div>${progHTML}</div>
-      ${on?'<div class="ac-chk">✓</div>':''}
-    </div>`;
-  }).join('');
 }
 
 // ══════════════════════════════════════════════════════
