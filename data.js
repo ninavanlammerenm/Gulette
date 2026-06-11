@@ -1086,7 +1086,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'خبرهای امروز چیس؟',tr:'khabarhaaye emroz chis?',nl:'Wat is het nieuws van vandaag?'},
-        {hz:'ایشالله صلح می‌آید',tr:'ishaallah solh me-aayd',nl:'Inshallah komt de vrede'},
+        {hz:'ایشالله صلح می‌آد',tr:'ishaallah solh mi-aad',nl:'Inshallah komt de vrede'},
         {hz:'حق آزادی برای همه اَس',tr:'haq aazaadi baraayi hama as',nl:'Het recht op vrijheid is voor iedereen'},
       ]
     },
@@ -1581,7 +1581,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'مادرم خوب آشپزی می‌کنه',tr:'maadaram khob aashpazee me-kona',nl:'Mijn moeder kookt goed'},
-        {hz:'گوشت را سرختم، بعد سبزی افزودم',tr:'gosht ra sorkhti, ba\'d sabzee afzodom',nl:'Ik bakte het vlees, daarna voegde ik groente toe'},
+        {hz:'گوشت را سرختم، بعد سبزی افزودم',tr:'gosht ra sorkhtom, ba\'d sabzee afzodom',nl:'Ik bakte het vlees, daarna voegde ik groente toe'},
       ]
     },
   ]},
@@ -1598,7 +1598,7 @@ const CHAPTERS=[
         {hz:'آرام',tr:'aaraam',nl:'Rustig / Kalm',tip:'Lange aa'},
       ],
       sentences:[
-        {hz:'وختی خانواده‌ام را می‌بینم خوشحالم',tr:'wakhti khaanawaadam ra mi-binom khoshaalim',nl:'Als ik mijn familie zie ben ik blij'},
+        {hz:'وختی خانواده‌ام را می‌بینم خوشحالم',tr:'wakhti khaanawaadam ra mi-binom khoshaalom',nl:'Als ik mijn familie zie ben ik blij'},
         {hz:'دلتنگ وطنم استم',tr:'deltang-e watnam astom',nl:'Ik mis mijn thuisland'},
       ]
     },
@@ -2929,7 +2929,7 @@ const CHAPTERS=[
         {hz:'الهام',tr:'elhaam',nl:'Inspiratie',tip:''},
       ],
       sentences:[
-        {hz:'خوشحالم که دارم هزارگی یاد می‌گیرم',tr:'khoshaalim ka darom hazaaragi yaad mi-girom',nl:'Ik ben blij dat ik Hazaragi aan het leren ben'},
+        {hz:'خوشحالم که دارم هزارگی یاد می‌گیرم',tr:'khoshaalom ka darom hazaaragi yaad mi-girom',nl:'Ik ben blij dat ik Hazaragi aan het leren ben'},
         {hz:'قوی باش، می‌تانی!',tr:'qaawi baash, mi-taani!',nl:'Wees sterk, je kunt het!'},
         {hz:'از تلاشت افتخار می‌کنم',tr:'az talaashat eftekhar mi-konom',nl:'Ik ben trots op jouw inzet'},
       ]
