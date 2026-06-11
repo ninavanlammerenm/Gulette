@@ -447,10 +447,29 @@ body{font-family:'Nunito',sans-serif;background:#F5C6CC;display:flex;justify-con
 /* ── ROMANISERING TOGGLE ── */
 body.hide-roman .hz-latin,
 body.hide-roman .hz-roman,
+body.hide-roman .hz-dutch,
 body.hide-roman .ovh-latin,
 body.hide-roman .wc-pron,
 body.hide-roman .ctx-tr,
 body.hide-roman .pron-latin{ display:none!important }
+
+/* ── TAP-TO-REVEAL ── */
+.rr-txt{display:none}
+.rr-open .rr-txt{display:inline}
+.rr-btn{
+  background:var(--rose-xl);
+  border:1.5px solid var(--rose-l);
+  border-radius:20px;
+  padding:2px 10px;
+  font-size:12px;
+  color:var(--rose-d);
+  cursor:pointer;
+  font-family:'Nunito',sans-serif;
+  font-weight:900;
+  vertical-align:middle;
+  transition:background .15s;
+}
+.rr-btn:active{background:var(--rose-l)}
 
 /* ── NEDERLANDSE UITSPRAAKGIDS ── */
 .hz-dutch{font-size:21px;font-weight:900;color:var(--rose-d);display:block;margin:6px 0 2px;letter-spacing:.5px;font-family:'Nunito',sans-serif}

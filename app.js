@@ -121,6 +121,7 @@ load();
 applyMasteryDecay();
 if(S.showRoman===false) document.body.classList.add('hide-roman');
 applyFontSize();
+setupRomanReveal();
 try{
   if(S.name){
     document.getElementById('bnav').style.display='flex';

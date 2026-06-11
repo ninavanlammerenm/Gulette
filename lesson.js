@@ -80,9 +80,6 @@ function buildExercises(lesson){
     if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
-  // Brug: context zin
-  if(ss.length>0) exs.push({type:'context',ss});
-
   // Fase 3: Verdieping — Hazaragi kiezen of luisteren (3 woorden, afgewisseld)
   shuffle([...ws]).slice(0,3).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
@@ -93,13 +90,17 @@ function buildExercises(lesson){
       exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
-  // Cloze — invullen in zin (max 2)
-  shuffle([...ss].filter(s=>ws.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
-    const match=ws.find(w=>s.hz.includes(w.hz));
-    if(!match) return;
-    const d=ws.filter(x=>x.hz!==match.hz);
-    if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
-  });
+  // Zinsoefeningen pas na 3 voltooide lessen — geleidelijke opbouw
+  const doneLessons=S.done.length;
+  if(doneLessons>=3){
+    if(ss.length>0) exs.push({type:'context',ss});
+    shuffle([...ss].filter(s=>ws.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
+      const match=ws.find(w=>s.hz.includes(w.hz));
+      if(!match) return;
+      const d=ws.filter(x=>x.hz!==match.hz);
+      if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
+    });
+  }
 
   return exs;
 }

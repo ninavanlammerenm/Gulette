@@ -479,7 +479,7 @@ function updateRomanBtn(){
   const btn = document.getElementById('roman-btn');
   if(!btn) return;
   const on = S.showRoman !== false;
-  btn.textContent = on ? '🔤 Uitspraakschrift: AAN' : '🔤 Uitspraakschrift: UIT';
+  btn.textContent = on ? '🔤 Uitspraak: tap om te zien 👁' : '🔤 Uitspraak: volledig verborgen';
   btn.style.background = on
     ? 'linear-gradient(135deg,var(--rose),var(--rose-d))'
     : 'linear-gradient(135deg,var(--ink-xl),var(--ink-l))';
@@ -720,4 +720,34 @@ function updateFontBtns(){
   document.querySelectorAll('.fs-btn').forEach((btn,i)=>{
     btn.classList.toggle('on',size===sizes[i]);
   });
+}
+
+// ══════════════════════════════════════════════════════
+// TAP-TO-REVEAL ROMANISERING
+// ══════════════════════════════════════════════════════
+function setupRomanReveal(){
+  const SEL='.hz-dutch,.hz-roman,.hz-latin,.ctx-tr,.wc-pron,.dw-tr,.wd-tr';
+  function wrap(el){
+    if(el.dataset.rr||!el.textContent.trim())return;
+    el.dataset.rr='1';
+    const inner=el.innerHTML;
+    el.innerHTML='';
+    const btn=document.createElement('button');
+    btn.className='rr-btn';
+    btn.textContent='👁 uitspraak';
+    const txt=document.createElement('span');
+    txt.className='rr-txt';
+    txt.innerHTML=inner;
+    btn.addEventListener('click',e=>{e.stopPropagation();el.classList.add('rr-open');btn.remove();});
+    el.appendChild(btn);
+    el.appendChild(txt);
+  }
+  function scan(node){
+    if(node.nodeType!==1)return;
+    if(node.matches&&node.matches(SEL))wrap(node);
+    if(node.querySelectorAll)node.querySelectorAll(SEL).forEach(wrap);
+  }
+  new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(scan)))
+    .observe(document.body,{childList:true,subtree:true});
+  document.querySelectorAll(SEL).forEach(wrap);
 }
