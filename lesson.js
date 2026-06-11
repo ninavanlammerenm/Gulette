@@ -8,6 +8,7 @@ let CC_COMBO=0;
 let _comboTimeout=null;
 let _activeObserver=null;
 let _autoAdvanceTimeout=null;
+let _introTimeout=null;
 
 function trackWrong(hz,nl,tr){
   if(WRONG_SET.has(hz))return;
@@ -18,6 +19,7 @@ function trackWrong(hz,nl,tr){
 const EX_TYPE_LABELS={
   grammar:'📚 Les uitleg',
   intro:'📖 Nieuw woord',
+  phase_break:'',
   context:'🔍 Patroon',
   mc_nl:'🎯 Betekenis',
   mc_hz:'🔤 Hazaragi',
@@ -58,7 +60,10 @@ function startLesson(id){
 
 function buildExercises(lesson){
   const exs=[];
-  const allWords=[...lesson.words];
+  const doneLessons=S.done.length;
+
+  // Moeilijkheid: kortere woorden (makkelijker) eerst binnen elke batch
+  const allWords=[...lesson.words].sort((a,b)=>a.hz.length-b.hz.length);
   const round=(S.lessonRound&&S.lessonRound[lesson.id])||0;
   const pageSize=5;
   const start=round*pageSize;
@@ -68,37 +73,64 @@ function buildExercises(lesson){
   // Fase 0: Taalregel
   if(lesson.grammar) exs.push({type:'grammar',grammar:lesson.grammar,pronTips:lesson.pronTips||[]});
 
-  // Fase 1: Kennismaking — eerst alle nieuwe woorden zien, zonder direct testen
+  // Fase 1: Kennismaking — alle woorden eerst zien, zonder testen
   ws.forEach(w=>{
     const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
     exs.push({type:'intro',w,ctxSentence});
   });
 
-  // Fase 2: Herkenning — betekenis kiezen (in willekeurige volgorde)
+  // Faseovergang: van zien naar oefenen
+  exs.push({type:'phase_break',msg:'Je hebt alle woorden gezien — nu ga je ze oefenen!'});
+
+  // Fase 2: Herkenning — betekenis kiezen (altijd beschikbaar)
   shuffle([...ws]).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
     if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
-  // Fase 3: Verdieping — Hazaragi kiezen of luisteren (3 woorden, afgewisseld)
+  // Fase 3: Hazaragi herkennen — altijd, maar moeilijkheid schaalt met lessen
+  // Vroege lessen: distractors met sterk verschillende lengte (makkelijker te onderscheiden)
+  // Latere lessen: distractors met vergelijkbare lengte (moeilijker)
   shuffle([...ws]).slice(0,3).forEach(w=>{
     const d=ws.filter(x=>x.hz!==w.hz);
     if(d.length<3) return;
-    if(Math.random()>0.5)
-      exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
-    else
-      exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+    const dist=_pickDistractors(w.hz,d,3,doneLessons);
+    exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...dist.map(x=>x.hz)])});
   });
 
-  // Zinsoefeningen pas na 3 voltooide lessen — geleidelijke opbouw
-  const doneLessons=S.done.length;
+  // Luisteren — vanaf 3 lessen
   if(doneLessons>=3){
+    shuffle([...ws]).slice(0,2).forEach(w=>{
+      const d=ws.filter(x=>x.hz!==w.hz);
+      if(d.length<3)return;
+      exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+    });
+  }
+
+  // Fase 4: Zinsoefeningen — vanaf 5 lessen
+  if(doneLessons>=5){
     if(ss.length>0) exs.push({type:'context',ss});
     shuffle([...ss].filter(s=>ws.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
       const match=ws.find(w=>s.hz.includes(w.hz));
       if(!match) return;
       const d=ws.filter(x=>x.hz!==match.hz);
       if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
+    });
+  }
+
+  // Interleaving: 2 eerder geleerde woorden mixen voor beter langetermijngeheugen
+  const knownHzSet=new Set(ws.map(w=>w.hz));
+  const knownPool=Object.entries(S.vocab)
+    .filter(([hz])=>!knownHzSet.has(hz))
+    .map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||'',mastery:v.mastery||0}));
+  if(knownPool.length>=4){
+    shuffle(knownPool).slice(0,2).forEach(w=>{
+      const d=knownPool.filter(x=>x.hz!==w.hz);
+      if(d.length<3)return;
+      const useHz=w.mastery>=2;
+      exs.push(useHz
+        ?{type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)]),interleaved:true}
+        :{type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),interleaved:true});
     });
   }
 
@@ -142,6 +174,24 @@ function buildReviewExercises(words){
 
 const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
 
+const _ENC=['💪 Goed geprobeerd!','🧠 Je hersenen leren!','🌸 Bijna goed!','✨ Elke fout is een les!','🐰 Heel dichtbij!','💡 Nu onthoud je het!'];
+function _encourageMsg(){return _ENC[~~(Math.random()*_ENC.length)];}
+function _getWordTip(hz){
+  if(!CL||!CL.words)return'';
+  const w=CL.words.find(x=>x.hz===hz);
+  return(w&&w.tip&&w.tip.length<60)?w.tip:'';
+}
+
+// Kies distractors op basis van moeilijkheid: easy = meest verschillende lengte, hard = meest gelijkende lengte
+function _pickDistractors(correctHz,pool,count,difficulty){
+  const sorted=[...pool].sort((a,b)=>
+    difficulty<3
+      ?Math.abs(b.hz.length-correctHz.length)-Math.abs(a.hz.length-correctHz.length)
+      :Math.abs(a.hz.length-correctHz.length)-Math.abs(b.hz.length-correctHz.length)
+  );
+  return shuffle(sorted.slice(0,count+1)).slice(0,count);
+}
+
 function rGrammar(ex,body){
   const pronHTML=(ex.pronTips||[]).map(char=>{
     const t=PRONUN_TIPS[char];
@@ -153,13 +203,15 @@ function rGrammar(ex,body){
   }).filter(Boolean).join('');
 
   body.innerHTML=`
-    <div class="type-pill">📚 Les uitleg</div>
-    <div class="grammar-card">
-      <div class="grammar-title">💡 Taalregel van deze les</div>
+    <div class="type-pill">💡 Wist je dat...</div>
+    <div class="grammar-card grammar-card-soft">
       <div class="grammar-text">${ex.grammar}</div>
     </div>
-    ${pronHTML?`<p style="font-size:12px;font-weight:900;color:var(--ink-l);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px">🔊 Uitspraaktips</p><div class="pron-tips-list">${pronHTML}</div>`:''}
-    <button class="btn-check" onclick="nextEx()">Start de les! 🌸</button>`;
+    ${pronHTML?`<div class="pron-tips-list">${pronHTML}</div>`:''}
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn-check" style="flex:1" onclick="nextEx()">Begin! 🌸</button>
+      <button class="btn-skip" onclick="nextEx()">Sla over →</button>
+    </div>`;
 }
 
 function renderEx(){
@@ -168,7 +220,7 @@ function renderEx(){
   document.getElementById('l-prog').style.width=pct+'%';
 
   const ex=EXS[EI];
-  const typeLabel=ex.requeued?EX_TYPE_LABELS.repeat:(EX_TYPE_LABELS[ex.type]||'');
+  const typeLabel=ex.requeued?EX_TYPE_LABELS.repeat:ex.interleaved?'🔁 Herhaling':(EX_TYPE_LABELS[ex.type]||'');
   document.getElementById('l-counter').textContent=`${typeLabel}  ${EI+1}/${EXS.length}`;
 
   hideFB();
@@ -186,7 +238,8 @@ function renderEx(){
   else if(ex.type==='wb')      rWB(ex,body);
   else if(ex.type==='type')    rType(ex,body);
   else if(ex.type==='order')   rOrder(ex,body);
-  else if(ex.type==='listen')  rListen(ex,body);
+  else if(ex.type==='listen')     rListen(ex,body);
+  else if(ex.type==='phase_break') rPhaseBreak(ex,body);
   else nextEx();
 }
 
@@ -195,7 +248,7 @@ function rIntro(ex,body){
   const pron=(w.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
   const s=ex.ctxSentence;
   const ctxHTML=s?`
-    <div class="ctx-mini">
+    <div class="ctx-mini intro-fade-in-2">
       <div class="ctx-mini-hz">${s.hz.replace(w.hz,`<mark>${w.hz}</mark>`)}</div>
       <div class="hz-roman" style="font-size:13px;font-weight:800;color:var(--rose-d);font-style:italic;margin:3px 0 2px">🗣️ ${toDutchPhonetic(s.tr)}</div>
       <div class="ctx-mini-nl">"${s.nl}"</div>
@@ -206,15 +259,29 @@ function rIntro(ex,body){
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
-      <span class="hz-dutch">🗣️ ${dutch}</span>
       <span class="hz-nl">= ${w.nl}</span>
+      <span class="hz-dutch intro-fade-in-1">🗣️ ${dutch}</span>
     </div>
-    ${w.tip?`<div class="word-tip-card">💡 ${w.tip}</div>`:''}
+    ${w.tip?`<div class="word-tip-card intro-fade-in-2">💡 ${w.tip}</div>`:''}
     ${ctxHTML}
+    <div class="intro-auto-bar" id="intro-bar"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
   save();
   speakHz(w.hz);
+  clearTimeout(_introTimeout);
+  _introTimeout=setTimeout(()=>{if(!WAITING)nextEx();},2500);
+}
+
+function rPhaseBreak(ex,body){
+  body.innerHTML=`
+    <div class="phase-break-card">
+      <div class="phase-break-ico">🧠</div>
+      <div class="phase-break-title">Goed gedaan!</div>
+      <div class="phase-break-msg">${ex.msg}</div>
+    </div>`;
+  clearTimeout(_introTimeout);
+  _introTimeout=setTimeout(()=>{if(!WAITING)nextEx();},1400);
 }
 
 // ── FIX Bug 3: requeueWrong veilig ook buiten normale lessen ──
@@ -377,8 +444,7 @@ function chkWB(correct,nl,tr){
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
-    loseHeart();
-    showFB(false,'Niet helemaal!','Juist: '+tr,correct);
+    showFB(false,_encourageMsg(),'Juist: '+tr,correct);
   }
 }
 
@@ -459,7 +525,6 @@ function rType(ex,body){
       if(!retryMode){
         WC++;CC_COMBO=0;
         sfxWrong();
-        loseHeart();
         updMastery(correct,false);
         requeueWrong(correct);
         trackWrong(correct,w.nl,w.tr);
@@ -516,14 +581,14 @@ function chkMC(btn,chosen,correct,hz,tr){
     CC_COMBO=0;
     btn.classList.add('ng');WC++;
     sfxWrong();
-    loseHeart();
     // Gebruik data-correct om de juiste knop te vinden — robuust en betrouwbaar
     document.querySelectorAll('.ch-btn').forEach(b=>{
       if(b.dataset.chosen===correct)b.classList.add('ok');
     });
     const requeued=requeueWrong(hz);
     trackWrong(hz,correct,tr);
-    showFB(false,'Bijna!',`${hz} = ${correct}${requeued?' · 🔁 Komt later terug':''}`,hz);
+    const _tip1=_getWordTip(hz);
+    showFB(false,_encourageMsg(),_tip1?`💡 ${_tip1}`:`${hz} = ${correct}${requeued?' · 🔁 Komt later terug':''}`,hz);
     updMastery(hz,false);
   }
 }
@@ -543,14 +608,15 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     CC_COMBO=0;
     btn.classList.add('ng');WC++;
     sfxWrong();
-    loseHeart();
     // FIX Bug 1: gebruik data-correct ipv fragiele querySelector op geneste spans
     document.querySelectorAll('.ch-btn').forEach(b=>{
       if(b.dataset.chosen===correct)b.classList.add('ok');
     });
     const requeued=requeueWrong(correct);
     trackWrong(correct,nl,tr);
-    showFB(false,'Bijna!',`Juist: ${correct} (${tr})${requeued?' · 🔁 Komt later terug':''}`,correct);
+    const _tip2=_getWordTip(correct);
+    const _pron=tr?` · 🗣️ ${toDutchPhonetic(tr)}`:'';
+    showFB(false,_encourageMsg(),_tip2?`💡 ${_tip2}`:`Juist: ${correct}${_pron}${requeued?' · 🔁 Komt later terug':''}`,correct);
     updMastery(correct,false);
   }
 }
@@ -568,8 +634,8 @@ function showFB(ok,title,hint,hzText){
     _autoAdvanceTimeout=setTimeout(()=>{if(WAITING)nextEx();},1100);
   }
 }
-function hideFB(){clearTimeout(_autoAdvanceTimeout);document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
-function nextEx(){clearTimeout(_autoAdvanceTimeout);EI++;WAITING=false;renderEx();}
+function hideFB(){clearTimeout(_autoAdvanceTimeout);clearTimeout(_introTimeout);document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
+function nextEx(){clearTimeout(_autoAdvanceTimeout);clearTimeout(_introTimeout);EI++;WAITING=false;renderEx();}
 
 function rOrder(ex,body){
   const s=ex.s;
@@ -614,8 +680,7 @@ function chkOrder(correct,nl,tr){
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
-    loseHeart();
-    showFB(false,'Niet helemaal!','Juist: '+tr,correct);
+    showFB(false,_encourageMsg(),'Juist: '+tr,correct);
   }
 }
 
@@ -676,7 +741,7 @@ function finishLesson(){
     if(remaining>0) nextBatchMsg=`📖 Nog ${remaining} woorden te ontdekken — speel opnieuw!`;
   }
 
-  const bonusXP=HEARTS===3?5:0;
+  const bonusXP=WC===0?5:0;
   LXP+=bonusXP;
   S.xp+=LXP;
   logXP(LXP);

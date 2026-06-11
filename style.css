@@ -43,6 +43,7 @@ body{font-family:'Nunito',sans-serif;background:#F5C6CC;display:flex;justify-con
 .ob-tagline{font-size:15px;color:var(--ink-m);font-weight:600;line-height:1.6;margin-bottom:28px;max-width:270px}
 .ob-card{background:var(--white);border-radius:var(--r);padding:22px 20px;width:100%;box-shadow:var(--sh-m);margin-bottom:14px;text-align:left}
 .ob-label{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.ob-mode-hint{font-size:11px;font-weight:700;color:var(--ink-m);margin-top:10px;text-align:center;line-height:1.5;padding:0 4px}
 .name-inp{width:100%;border:2.5px solid var(--rose-l);border-radius:var(--r-sm);padding:14px 16px;font-size:16px;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--rose-xl);outline:none;transition:all .2s;font-weight:700}
 .name-inp:focus{border-color:var(--rose);background:#fff;box-shadow:0 0 0 4px rgba(240,108,120,.12)}
 .goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -119,6 +120,9 @@ body{font-family:'Nunito',sans-serif;background:#F5C6CC;display:flex;justify-con
 .n-lbl{font-size:8px;font-weight:900;color:#fff;text-align:center;line-height:1.25;margin-top:1px;pointer-events:none;max-width:70px;padding:0 4px}
 .l-node.lk .n-lbl{color:var(--ink-l)}
 .n-done-badge{position:absolute;top:-2px;right:-2px;width:20px;height:20px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.n-dur{font-size:8px;font-weight:800;color:rgba(255,255,255,.75);margin-top:1px;pointer-events:none}
+.l-node.lk .n-dur{color:var(--ink-l)}
+.n-more{font-size:8px;font-weight:900;color:var(--rose-d);background:var(--white);border-radius:8px;padding:1px 5px;margin-top:2px;pointer-events:none}
 .n-tooltip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;border-radius:10px;padding:7px 12px;font-size:12px;font-weight:700;white-space:nowrap;z-index:20;pointer-events:none;opacity:0;transition:opacity .15s}
 .n-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink)}
 .l-node:hover .n-tooltip{opacity:1}
@@ -478,6 +482,23 @@ body.hide-roman .pron-latin{ display:none!important }
 
 /* ── GRAMMATICA KAART ── */
 .grammar-card{background:linear-gradient(135deg,#F6F3DC,#FDFAEC);border:2px solid rgba(142,154,90,.3);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.grammar-card-soft{background:var(--rose-xl);border:1.5px solid var(--rose-l);font-size:15px;font-weight:700;color:var(--ink-m);line-height:1.7}
+.btn-skip{background:var(--ink-xl);color:var(--ink-m);border:none;border-radius:var(--r-sm);padding:16px 18px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;white-space:nowrap}
+
+/* ── INTRO AUTO-ADVANCE BALK ── */
+.intro-auto-bar{height:3px;background:var(--rose-l);border-radius:2px;margin-bottom:10px;animation:shrink-bar 2.5s linear forwards}
+@keyframes shrink-bar{from{width:100%}to{width:0%}}
+
+/* ── INTRO PROGRESSIEVE ONTHULLING ── */
+.intro-fade-in-1{opacity:0;animation:introFadeIn .4s ease .8s forwards}
+.intro-fade-in-2{opacity:0;animation:introFadeIn .4s ease 1.4s forwards}
+@keyframes introFadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── FASEOVERGANG ── */
+.phase-break-card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;flex:1}
+.phase-break-ico{font-size:56px;margin-bottom:16px}
+.phase-break-title{font-size:24px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.phase-break-msg{font-size:15px;font-weight:700;color:var(--ink-m);line-height:1.6}
 .grammar-title{font-size:13px;font-weight:900;color:var(--gold-d);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
 .grammar-text{font-size:14px;font-weight:700;color:var(--ink-m);line-height:1.65}
 /* ── UITSPRAAKTIPS ── */

@@ -62,6 +62,7 @@ function goHome(){
 // ONBOARDING
 // ══════════════════════════════════════════════════════
 let selGoalVal=10;
+let selLearnModeVal='tap';
 
 function chkName(){
   const v=document.getElementById('name-inp').value.trim();
@@ -74,11 +75,23 @@ function selGoal(btn,v){
   selGoalVal=v;
 }
 
+function selLearnMode(btn,mode){
+  document.querySelectorAll('#ob-mode-tap,#ob-mode-hide').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  selLearnModeVal=mode;
+  const el=document.getElementById('ob-mode-hint');
+  if(el)el.textContent=mode==='hide'
+    ?'Uitspraak volledig verborgen — meest effectief voor schrift leren!'
+    :'Uitspraak is verborgen — je kunt hem zien door erop te tikken.';
+}
+
 function startApp(){
   S.name=document.getElementById('name-inp').value.trim();
   S.goal=selGoalVal;
+  S.showRoman=selLearnModeVal!=='hide';
   if(!S.weekActivity)S.weekActivity=[];
   save();
+  document.body.classList.toggle('hide-roman',!S.showRoman);
   document.getElementById('bnav').style.display='flex';
   goHome();
 }
@@ -174,13 +187,26 @@ function renderHome(){
       row.className='l-row '+aligns[li%6];
       const cls=done?'d':(locked?'lk':'u');
       const nodeClick=locked?`showToast('Voltooi eerst de vorige les! 🔒')`:`startLesson('${lesson.id}')`;
-      const tooltipTxt=locked?'🔒 Vergrendeld — voltooi de vorige les':`${lesson.title} · +${lesson.xp} XP`;
       const nodeIcon=locked?'🔒':lesson.icon;
+
+      // Lesduur: ~15s per oefening, 5 woorden → ~16 oefeningen → ~4 min
+      const wordCount=(lesson.words||[]).length;
+      const batchWords=Math.min(wordCount,5);
+      const durMin=Math.max(2,Math.round(batchWords*16/60));
+      const durLabel=locked?'':`<div class="n-dur">~${durMin} min</div>`;
+
+      // Resterende woorden (batches)
+      const round=(S.lessonRound&&S.lessonRound[lesson.id])||0;
+      const covered=Math.min(round*5,wordCount);
+      const remaining=wordCount-covered;
+      const moreLabel=done&&remaining>0?`<div class="n-more">+${remaining} woorden</div>`:'';
+
       row.innerHTML=`<div class="l-node ${cls}" onclick="${nodeClick}" data-id="${lesson.id}">
-        <div class="n-tooltip">${tooltipTxt}</div>
         <div class="n-ico">${nodeIcon}</div>
         <div class="n-lbl">${lesson.title}</div>
-        ${done?'<div class="n-done-badge">✓</div>':''}
+        ${durLabel}
+        ${moreLabel}
+        ${done&&remaining===0?'<div class="n-done-badge">✓</div>':''}
       </div>`;
       path.appendChild(row);
     });

@@ -43,6 +43,14 @@
       <button class="goal-opt" onclick="selGoal(this,20)">20 min<br><small>Intensief</small></button>
     </div>
   </div>
+  <div class="ob-card">
+    <div class="ob-label">🔤 Uitspraakweergave</div>
+    <div class="goal-grid">
+      <button class="goal-opt sel" id="ob-mode-tap" onclick="selLearnMode(this,'tap')">👁 Tap om te zien<br><small>Verborgen — tik om te onthullen</small></button>
+      <button class="goal-opt" id="ob-mode-hide" onclick="selLearnMode(this,'hide')">🙈 Volledig verbergen<br><small>Geen uitsprakehulp</small></button>
+    </div>
+    <div class="ob-mode-hint" id="ob-mode-hint">Uitspraak is verborgen — je kunt hem zien door erop te tikken.</div>
+  </div>
   <button class="btn-start" id="btn-start" disabled onclick="startApp()">Begin met leren 🌸</button>
 </div>
 
@@ -116,7 +124,6 @@
     </div>
     <div style="display:flex;align-items:center;gap:6px">
     <button class="btn-grammar" id="btn-grammar" style="display:none" onclick="showGrammarHint()">?</button>
-    <div class="hearts" id="hearts">❤️❤️❤️</div>
   </div>
   </div>
   <div class="combo-indicator" id="combo-indicator"></div>
