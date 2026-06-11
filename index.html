@@ -196,9 +196,15 @@
   </div>
   <div class="achvs-sec">
     <div class="achvs-title">⚙️ Instellingen</div>
-    <button id="roman-btn" onclick="toggleRoman()" style="width:100%;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;margin-bottom:10px;transition:all .2s">
-      🔤 Uitspraakschrift: AAN
-    </button>
+    <div style="font-size:12px;font-weight:800;color:var(--ink-m);margin-bottom:6px">🔤 Uitspraak</div>
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <button id="roman-btn-tap" onclick="setRomanMode('tap')" style="flex:1;border:none;border-radius:var(--r-sm);padding:12px 8px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s">
+        👁 Tap om te zien
+      </button>
+      <button id="roman-btn-hide" onclick="setRomanMode('hide')" style="flex:1;border:none;border-radius:var(--r-sm);padding:12px 8px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s">
+        🙈 Volledig verborgen
+      </button>
+    </div>
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <button id="sound-btn" onclick="toggleSound()" style="flex:1;border:none;border-radius:var(--r-sm);padding:14px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s;background:linear-gradient(135deg,var(--sky),#2980b9);color:#fff">
         🔊 Geluid: AAN

@@ -468,22 +468,24 @@ function sparkles(){
 // ══════════════════════════════════════════════════════
 // ROMANISERING TOGGLE
 // ══════════════════════════════════════════════════════
-function toggleRoman(){
-  S.showRoman = S.showRoman === false ? true : false;
+function setRomanMode(mode){
+  S.showRoman = mode === 'hide' ? false : true;
   save();
   document.body.classList.toggle('hide-roman', S.showRoman === false);
   updateRomanBtn();
 }
 
+function toggleRoman(){ setRomanMode(S.showRoman===false?'tap':'hide'); }
+
 function updateRomanBtn(){
-  const btn = document.getElementById('roman-btn');
-  if(!btn) return;
-  const on = S.showRoman !== false;
-  btn.textContent = on ? '🔤 Uitspraak: tap om te zien 👁' : '🔤 Uitspraak: volledig verborgen';
-  btn.style.background = on
-    ? 'linear-gradient(135deg,var(--rose),var(--rose-d))'
-    : 'linear-gradient(135deg,var(--ink-xl),var(--ink-l))';
-  btn.style.color = on ? '#fff' : 'var(--ink-m)';
+  const tap = document.getElementById('roman-btn-tap');
+  const hide = document.getElementById('roman-btn-hide');
+  if(!tap||!hide) return;
+  const hidden = S.showRoman === false;
+  tap.style.background  = !hidden ? 'linear-gradient(135deg,var(--rose),var(--rose-d))' : 'var(--ink-xl)';
+  tap.style.color       = !hidden ? '#fff' : 'var(--ink-m)';
+  hide.style.background = hidden  ? 'linear-gradient(135deg,var(--ink),#333)' : 'var(--ink-xl)';
+  hide.style.color      = hidden  ? '#fff' : 'var(--ink-m)';
 }
 
 function toggleSound(){
