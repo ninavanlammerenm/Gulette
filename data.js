@@ -161,7 +161,7 @@ const CHAPTERS=[
       words:[
         {hz:'چای',tr:'chaai',nl:'Thee',tip:'Altijd met gast serveren — cultureel essentieel!'},
         {hz:'نان',tr:'naan',nl:'Brood',tip:'Plat brood, basisvoedsel'},
-        {hz:'آو',tr:'aaw',nl:'Water',tip:'Hazaragi: "آو" (aaw)'},
+        {hz:'آو',tr:'ab',nl:'Water',tip:'Hazaragi: "آو" (ab)'},
         {hz:'گوشت',tr:'gosht',nl:'Vlees',tip:'"گوشت گوسفند" = schapenvlees — meest gegeten vlees bij Hazara'},
         {hz:'برنج',tr:'birinj',nl:'Rijst',tip:'Basis van قابلی — het nationale Afghaanse gerecht'},
         {hz:'میوه',tr:'mewa',nl:'Fruit',tip:'"میوه" in Hazaragi klinkt als "mewa" — korte e'},
@@ -587,7 +587,7 @@ const CHAPTERS=[
       words:[
         {hz:'مکتب',tr:'maktab',nl:'School',tip:'Hazaragi/Afghaans woord voor school — van Arabisch "کتب" = schriften'},
         {hz:'معلم',tr:'mo\'alem',nl:'Leraar',tip:'"ع" = zachte keel-stop — van Arabisch "علم" = kennis'},
-        {hz:'شاگرد',tr:'shaagerd',nl:'Leerling',tip:'Typisch Hazaragi woord voor leerling/leerling'},
+        {hz:'شاگرد',tr:'shaagerd',nl:'Leerling',tip:'Typisch Hazaragi woord voor leerling/student'},
         {hz:'کتاب',tr:'ketaab',nl:'Boek',tip:'"کتاب خواندن" = boek lezen EN studeren'},
         {hz:'درس',tr:'dars',nl:'Les / Huiswerk',tip:'"درس خواندن" = studeren — letterlijk "les lezen"'},
         {hz:'امتحان',tr:'emtehaan',nl:'Toets / Examen',tip:'"امتحان دادن" = examen doen — letterlijk "examen geven"'},
@@ -4229,7 +4229,7 @@ const CHAPTERS=[
       words:[
         {hz:'نان',tr:'naan',nl:'Brood / Eten',tip:'"نان خوردی؟" = heb je gegeten? (letterlijk: heb je brood gegeten?)'},
         {hz:'چای',tr:'chaay',nl:'Thee',tip:'Hazara drinken altijd chai — groen of zwart met kardemon'},
-        {hz:'آو',tr:'ow',nl:'Water',tip:'Hazaragi: آو (ow) — Iraans zegt "آب" (aab) — wij zeggen آو!'},
+        {hz:'آو',tr:'ab',nl:'Water',tip:'Hazaragi: آو (ab) — Iraans zegt "آب" (aab) — wij zeggen آو!'},
         {hz:'گوشت',tr:'gosht',nl:'Vlees',tip:'"گوشت گوسفند" = schapenvlees — meest gegeten vlees bij Hazara'},
         {hz:'مرغ',tr:'murgh',nl:'Kip',tip:'"مرغ پختی؟" = heb je kip gekookt?'},
         {hz:'کچالو',tr:'kachaalo',nl:'Aardappel',tip:'Echt Afghaans woord — in bijna elk Hazara gerecht'},
