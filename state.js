@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════════════
-let S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},achv:[],weekActivity:[],goal:10,xpLog:{},lessonRound:{}};
+let S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},weekActivity:[],goal:10,xpLog:{}};
 
 // ══════════════════════════════════════════════════════
 // UITSPRAAKSCHRIFT — romanisering → leesbaar voor Nederlandstaligen
@@ -139,4 +139,3 @@ function applyMasteryDecay(){
   save(); // altijd opslaan zodat lastDecayCheck gepersisteerd wordt
 }
 
-function checkAchv(perfect=false){}

@@ -89,14 +89,24 @@ function buildExercises(lesson){
     // Oude woorden: moeilijkheid stijgt per ronde
     if(prevSeen.length>=2){
       if(batchNum===1){
-        // Ronde 2 → mc_hz voor eerder geziene woorden
+        // Ronde 2 → mc_hz + listen voor eerder geziene woorden
         shuffle([...prevSeen]).slice(0,3).forEach(w=>{
           const d=seenWords.filter(x=>x.hz!==w.hz);
           if(d.length<3)return;
           exs.push({type:'mc_hz',w,choices:shuffle([w.hz,..._pickDistractors(w.hz,d,3,doneLessons).map(x=>x.hz)])});
         });
+        shuffle([...prevSeen]).slice(0,2).forEach(w=>{
+          const d=seenWords.filter(x=>x.hz!==w.hz);
+          if(d.length<3)return;
+          exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+        });
       } else if(batchNum>=2){
-        // Ronde 3+ → mc_hz + typen voor eerder geziene woorden
+        // Ronde 3+ → listen + mc_hz + typen voor eerder geziene woorden
+        shuffle([...prevSeen]).slice(0,2).forEach(w=>{
+          const d=seenWords.filter(x=>x.hz!==w.hz);
+          if(d.length<3)return;
+          exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+        });
         shuffle([...prevSeen]).slice(0,3).forEach(w=>{
           const d=seenWords.filter(x=>x.hz!==w.hz);
           if(d.length<3)return;
@@ -162,9 +172,8 @@ function buildExercises(lesson){
 
 function buildReviewExercises(words){
   const exs=[];
-  // Gebruik volledige vocab als distractorpool — bij kleine sessies anders altijd dezelfde afleiders
   const fullPool=Object.entries(S.vocab).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''}));
-  const pool=fullPool.length>=4 ? fullPool : words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
+  const pool=fullPool.length>=4?fullPool:words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
 
   shuffle(words).forEach(w=>{
     const distractors=pool.filter(x=>x.hz!==w.hz);
@@ -173,22 +182,27 @@ function buildReviewExercises(words){
     const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
     const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])};
     const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...shuffle(distractors).slice(0,3).map(x=>x.hz)])};
+    const listen={type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])};
 
     if(mastery===0){
+      // Nog nooit gezien: intro tonen, dan mc_nl
       exs.push({type:'intro',w:wd,ctxSentence:null});
       exs.push(mc_nl);
-    } else if(mastery<=2){
+    } else if(mastery===1){
+      // Pril geleerd: betekenis + typen om te verankeren
       exs.push(mc_nl);
-      if(!w.hz.includes('↔'))exs.push({type:'type',w:wd});
-    } else if(mastery<=3){
-      const r=Math.random();
-      if(r>0.65) exs.push(mc_hz);
-      else if(r>0.3) exs.push(mc_nl);
-      else exs.push({type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])});
+      exs.push({type:'type',w:wd});
+    } else if(mastery===2){
+      // Beetje bekend: Hazaragi herkennen + typen
+      exs.push(mc_hz);
+      exs.push({type:'type',w:wd});
+    } else if(mastery===3){
+      // Redelijk bekend: luisteren + Hazaragi herkennen
+      exs.push(listen);
+      exs.push(mc_hz);
     } else {
-      exs.push(Math.random()>0.45
-        ? mc_hz
-        : {type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])});
+      // Goed bekend (4-5): luisteren of Hazaragi, hoogste moeilijkheid
+      exs.push(Math.random()>0.5?listen:mc_hz);
     }
   });
 
@@ -304,23 +318,21 @@ function rPhaseBreak(ex,body){
     <button class="btn-check" onclick="nextEx()">Verder →</button>`;
 }
 
-// ── FIX Bug 3: requeueWrong veilig ook buiten normale lessen ──
-// Werkt nu ook in review-modus: CL.words wordt alleen gebruikt als het beschikbaar is.
 function requeueWrong(hz){
   if(REQUEUED.has(hz)) return false;
   REQUEUED.add(hz);
-  // In review-modus heeft CL geen volledige woordenlijst — gebruik dan S.vocab als fallback
   const wordSource=(CL&&CL.words&&CL.words.length>0)?CL.words:Object.entries(S.vocab).map(([h,v])=>({hz:h,...v}));
   const w=wordSource.find(x=>x.hz===hz);
   if(!w) return false;
   const d=wordSource.filter(x=>x.hz!==hz);
   if(d.length<3) return false;
-  EXS.push({
-    type:'mc_nl',
-    w:{hz:w.hz,nl:w.nl,tr:w.tr||''},
-    choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),
-    requeued:true
-  });
+  const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
+  // Wissel tussen mc_nl en listen — niet altijd hetzelfde
+  const useListen=Math.random()>0.5;
+  EXS.push(useListen
+    ?{type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),requeued:true}
+    :{type:'mc_nl',w:wd,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),requeued:true}
+  );
   return true;
 }
 
@@ -749,7 +761,7 @@ function finishLesson(){
   LXP+=bonusXP;
   S.xp+=LXP;
   logXP(LXP);
-  updStreak();checkShieldAward();checkAchv(WC===0&&CC>0);save();
+  updStreak();checkShieldAward();save();
 
   document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` ✨+${bonusXP} bonus`:'');
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);

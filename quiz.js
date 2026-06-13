@@ -352,7 +352,6 @@ function renderOvhResult(){
     logXP(xpEarned);
     updStreak();
     checkShieldAward();
-    checkAchv();
     save();
   }
 

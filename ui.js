@@ -189,17 +189,12 @@ function renderHome(){
       const nodeClick=locked?`showToast('Voltooi eerst de vorige les! 🔒')`:`startLesson('${lesson.id}')`;
       const nodeIcon=locked?'🔒':lesson.icon;
 
-      // Lesduur: ~15s per oefening, 5 woorden → ~16 oefeningen → ~4 min
+      // Lesduur: ~12s per oefening, schatting op basis van woordenaantal
       const wordCount=(lesson.words||[]).length;
-      const batchWords=Math.min(wordCount,5);
-      const durMin=Math.max(2,Math.round(batchWords*16/60));
+      const estExercises=wordCount*2+8;
+      const durMin=Math.max(3,Math.round(estExercises*12/60));
       const durLabel=locked?'':`<div class="n-dur">~${durMin} min</div>`;
-
-      // Resterende woorden (batches)
-      const round=(S.lessonRound&&S.lessonRound[lesson.id])||0;
-      const covered=Math.min(round*5,wordCount);
-      const remaining=wordCount-covered;
-      const moreLabel=done&&remaining>0?`<div class="n-more">+${remaining} woorden</div>`:'';
+      const moreLabel='';
 
       row.innerHTML=`<div class="l-node ${cls}" onclick="${nodeClick}" data-id="${lesson.id}">
         <div class="n-ico">${nodeIcon}</div>
@@ -453,7 +448,7 @@ function importData(event){
 function resetData(){
   if(!confirm('Weet je ZEKER dat je alle voortgang wilt verwijderen? Dit kan niet ongedaan worden gemaakt.'))return;
   localStorage.removeItem('gulette_v3');
-  S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},achv:[],weekActivity:[],goal:10,xpLog:{},showRoman:true};
+  S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},weekActivity:[],goal:10,xpLog:{},showRoman:true};
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('name-inp').value='';
