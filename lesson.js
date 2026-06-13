@@ -57,7 +57,6 @@ function startLesson(id){
 function buildExercises(lesson){
   const exs=[];
   const doneLessons=S.done.length;
-
   const allWords=[...lesson.words].sort((a,b)=>a.hz.length-b.hz.length);
   const ss=lesson.sentences||[];
   const BATCH=4;
@@ -65,61 +64,82 @@ function buildExercises(lesson){
   // Taalregel
   if(lesson.grammar) exs.push({type:'grammar',grammar:lesson.grammar,pronTips:lesson.pronTips||[]});
 
-  // Memrise-stijl: leer batch → oefen alles gezien → volgende batch → oefen alles gezien → ...
+  // ── Memrise-stijl: intro batch → oefen met oplopende moeilijkheid per ronde ──
   const seenWords=[];
   for(let i=0;i<allWords.length;i+=BATCH){
     const batch=allWords.slice(i,i+BATCH);
+    const prevSeen=[...seenWords];
+    const batchNum=Math.floor(i/BATCH);
 
-    // Intro voor elk nieuw woord in deze batch
+    // Intro nieuwe woorden
     batch.forEach(w=>{
       const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
       exs.push({type:'intro',w,ctxSentence});
     });
-
     seenWords.push(...batch);
 
-    // Oefenvragen over ALLE tot nu toe geziene woorden door elkaar
     exs.push({type:'phase_break',msg:`Oefen de ${seenWords.length} woorden die je hebt gezien!`});
-    if(seenWords.length>=2){
-      shuffle([...seenWords]).forEach(w=>{
-        const d=seenWords.filter(x=>x.hz!==w.hz);
-        if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
-      });
+
+    // Nieuwe woorden: mc_nl (eerste blootstelling)
+    shuffle([...batch]).forEach(w=>{
+      const d=seenWords.filter(x=>x.hz!==w.hz);
+      if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+    });
+
+    // Oude woorden: moeilijkheid stijgt per ronde
+    if(prevSeen.length>=2){
+      if(batchNum===1){
+        // Ronde 2 → mc_hz voor eerder geziene woorden
+        shuffle([...prevSeen]).slice(0,3).forEach(w=>{
+          const d=seenWords.filter(x=>x.hz!==w.hz);
+          if(d.length<3)return;
+          exs.push({type:'mc_hz',w,choices:shuffle([w.hz,..._pickDistractors(w.hz,d,3,doneLessons).map(x=>x.hz)])});
+        });
+      } else if(batchNum>=2){
+        // Ronde 3+ → mc_hz + typen voor eerder geziene woorden
+        shuffle([...prevSeen]).slice(0,3).forEach(w=>{
+          const d=seenWords.filter(x=>x.hz!==w.hz);
+          if(d.length<3)return;
+          exs.push({type:'mc_hz',w,choices:shuffle([w.hz,..._pickDistractors(w.hz,d,3,doneLessons).map(x=>x.hz)])});
+        });
+        shuffle([...prevSeen]).slice(0,2).forEach(w=>exs.push({type:'type',w}));
+      }
     }
   }
 
-  // Eindsfase: Hazaragi herkennen
-  shuffle([...allWords]).slice(0,Math.min(5,allWords.length)).forEach(w=>{
+  // ── Eindsfase: alle oefentypes, oplopende moeilijkheid ──
+
+  // Luisteren: hoor het woord, kies de betekenis
+  shuffle([...allWords]).slice(0,3).forEach(w=>{
     const d=allWords.filter(x=>x.hz!==w.hz);
     if(d.length<3)return;
-    const dist=_pickDistractors(w.hz,d,3,doneLessons);
-    exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...dist.map(x=>x.hz)])});
+    exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
   });
 
-  // Eindsfase: Schrijven
-  shuffle([...allWords]).slice(0,Math.min(3,allWords.length)).forEach(w=>{
-    exs.push({type:'type',w});
-  });
+  // Zinsoefeningen (alleen als de les sentences heeft)
+  if(ss.length>0){
+    exs.push({type:'context',ss});
 
-  // Luisteren — vanaf 3 lessen
-  if(doneLessons>=3){
-    shuffle([...allWords]).slice(0,2).forEach(w=>{
-      const d=allWords.filter(x=>x.hz!==w.hz);
-      if(d.length<3)return;
-      exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
-    });
-  }
-
-  // Zinsoefeningen — vanaf 5 lessen
-  if(doneLessons>=5){
-    if(ss.length>0) exs.push({type:'context',ss});
+    // Cloze: vul het ontbrekende woord in
     shuffle([...ss].filter(s=>allWords.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
       const match=allWords.find(w=>s.hz.includes(w.hz));
       if(!match)return;
       const d=allWords.filter(x=>x.hz!==match.hz);
       if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
     });
+
+    // WB: sleep woordtegels om de zin te bouwen
+    shuffle([...ss]).slice(0,2).forEach(s=>exs.push({type:'wb',s}));
+
+    // Order: zet woorden in juiste volgorde (met lokaaswoorden)
+    shuffle([...ss]).slice(0,2).forEach(s=>{
+      const distractors=shuffle(allWords.map(w=>w.hz).filter(hz=>!s.hz.includes(hz))).slice(0,2);
+      exs.push({type:'order',s,distractors});
+    });
   }
+
+  // Schrijven: typ het Hazaragi woord
+  shuffle([...allWords]).slice(0,3).forEach(w=>exs.push({type:'type',w}));
 
   // Interleaving: eerder geleerde woorden mixen
   const knownHzSet=new Set(allWords.map(w=>w.hz));
