@@ -50,10 +50,6 @@ function _launchLesson(){
 function startLesson(id){
   CL=getLessonById(id);
   if(!CL)return;
-  if(!S.lessonRound)S.lessonRound={};
-  const pageSize=5;
-  const round=S.lessonRound[id]||0;
-  if(round*pageSize>=CL.words.length){S.lessonRound[id]=0;save();}
   EXS=buildExercises(CL);
   _launchLesson();
 }
@@ -62,64 +58,71 @@ function buildExercises(lesson){
   const exs=[];
   const doneLessons=S.done.length;
 
-  // Moeilijkheid: kortere woorden (makkelijker) eerst binnen elke batch
   const allWords=[...lesson.words].sort((a,b)=>a.hz.length-b.hz.length);
-  const round=(S.lessonRound&&S.lessonRound[lesson.id])||0;
-  const pageSize=5;
-  const start=round*pageSize;
-  const ws=allWords.slice(start,start+pageSize);
   const ss=lesson.sentences||[];
+  const BATCH=4;
 
-  // Fase 0: Taalregel
+  // Taalregel
   if(lesson.grammar) exs.push({type:'grammar',grammar:lesson.grammar,pronTips:lesson.pronTips||[]});
 
-  // Fase 1: Kennismaking — alle woorden eerst zien, zonder testen
-  ws.forEach(w=>{
-    const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
-    exs.push({type:'intro',w,ctxSentence});
-  });
+  // Memrise-stijl: leer batch → oefen alles gezien → volgende batch → oefen alles gezien → ...
+  const seenWords=[];
+  for(let i=0;i<allWords.length;i+=BATCH){
+    const batch=allWords.slice(i,i+BATCH);
 
-  // Faseovergang: van zien naar oefenen
-  exs.push({type:'phase_break',msg:'Je hebt alle woorden gezien — nu ga je ze oefenen!'});
+    // Intro voor elk nieuw woord in deze batch
+    batch.forEach(w=>{
+      const ctxSentence=ss.find(s=>s.hz.includes(w.hz))||null;
+      exs.push({type:'intro',w,ctxSentence});
+    });
 
-  // Fase 2: Herkenning — betekenis kiezen (altijd beschikbaar)
-  shuffle([...ws]).forEach(w=>{
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
-  });
+    seenWords.push(...batch);
 
-  // Fase 3: Hazaragi herkennen — altijd, maar moeilijkheid schaalt met lessen
-  // Vroege lessen: distractors met sterk verschillende lengte (makkelijker te onderscheiden)
-  // Latere lessen: distractors met vergelijkbare lengte (moeilijker)
-  shuffle([...ws]).slice(0,3).forEach(w=>{
-    const d=ws.filter(x=>x.hz!==w.hz);
-    if(d.length<3) return;
+    // Oefenvragen over ALLE tot nu toe geziene woorden door elkaar
+    exs.push({type:'phase_break',msg:`Oefen de ${seenWords.length} woorden die je hebt gezien!`});
+    if(seenWords.length>=2){
+      shuffle([...seenWords]).forEach(w=>{
+        const d=seenWords.filter(x=>x.hz!==w.hz);
+        if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+      });
+    }
+  }
+
+  // Eindsfase: Hazaragi herkennen
+  shuffle([...allWords]).slice(0,Math.min(5,allWords.length)).forEach(w=>{
+    const d=allWords.filter(x=>x.hz!==w.hz);
+    if(d.length<3)return;
     const dist=_pickDistractors(w.hz,d,3,doneLessons);
     exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...dist.map(x=>x.hz)])});
   });
 
+  // Eindsfase: Schrijven
+  shuffle([...allWords]).slice(0,Math.min(3,allWords.length)).forEach(w=>{
+    exs.push({type:'type',w});
+  });
+
   // Luisteren — vanaf 3 lessen
   if(doneLessons>=3){
-    shuffle([...ws]).slice(0,2).forEach(w=>{
-      const d=ws.filter(x=>x.hz!==w.hz);
+    shuffle([...allWords]).slice(0,2).forEach(w=>{
+      const d=allWords.filter(x=>x.hz!==w.hz);
       if(d.length<3)return;
       exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
     });
   }
 
-  // Fase 4: Zinsoefeningen — vanaf 5 lessen
+  // Zinsoefeningen — vanaf 5 lessen
   if(doneLessons>=5){
     if(ss.length>0) exs.push({type:'context',ss});
-    shuffle([...ss].filter(s=>ws.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
-      const match=ws.find(w=>s.hz.includes(w.hz));
-      if(!match) return;
-      const d=ws.filter(x=>x.hz!==match.hz);
+    shuffle([...ss].filter(s=>allWords.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
+      const match=allWords.find(w=>s.hz.includes(w.hz));
+      if(!match)return;
+      const d=allWords.filter(x=>x.hz!==match.hz);
       if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
     });
   }
 
-  // Interleaving: 2 eerder geleerde woorden mixen voor beter langetermijngeheugen
-  const knownHzSet=new Set(ws.map(w=>w.hz));
+  // Interleaving: eerder geleerde woorden mixen
+  const knownHzSet=new Set(allWords.map(w=>w.hz));
   const knownPool=Object.entries(S.vocab)
     .filter(([hz])=>!knownHzSet.has(hz))
     .map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||'',mastery:v.mastery||0}));
@@ -722,18 +725,6 @@ function leaveLesson(){
 function finishLesson(){
   if(!CL.id.startsWith('_')&&!S.done.includes(CL.id))S.done.push(CL.id);
 
-  // Volgende batch bijhouden (lesson rounds)
-  let nextBatchMsg='';
-  if(!CL.id.startsWith('_')){
-    if(!S.lessonRound)S.lessonRound={};
-    const prevRound=S.lessonRound[CL.id]||0;
-    S.lessonRound[CL.id]=prevRound+1;
-    const totalWords=CL.words.length;
-    const covered=Math.min((prevRound+1)*5,totalWords);
-    const remaining=totalWords-covered;
-    if(remaining>0) nextBatchMsg=`📖 Nog ${remaining} woorden te ontdekken — speel opnieuw!`;
-  }
-
   const bonusXP=WC===0?5:0;
   LXP+=bonusXP;
   S.xp+=LXP;
@@ -744,9 +735,6 @@ function finishLesson(){
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
   document.getElementById('r-str').textContent='🔥'+S.streak;
   document.getElementById('res-sub').textContent=CL.title+' voltooid! 🌸';
-  const nextBatchEl=document.getElementById('res-next-batch');
-  if(nextBatchEl)nextBatchEl.textContent=nextBatchMsg;
-
   const _pm=['Foutloos! 🌟','Perfect! ✨','Absoluut geweldig! 🌟','Meesterlijk! 💎','Ongeslagen! 🏆'];
   const _gm=['Geweldig! 🌸','Goed gedaan! 💪','Super! 🎀','Fantastisch! 🐇','Zo trots! 🌺'];
   if(WC===0&&CC>0){
