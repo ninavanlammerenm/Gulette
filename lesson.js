@@ -38,13 +38,13 @@ function getLessonById(id){
 
 function _launchLesson(){
   if(_activeObserver){_activeObserver.disconnect();_activeObserver=null;}
-  EI=CC=WC=LXP=CC_COMBO=0;HEARTS=3;WAITING=false;
+  EI=CC=WC=LXP=CC_COMBO=0;WAITING=false;
   REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   const gramBtn=document.getElementById('btn-grammar');
   if(gramBtn)gramBtn.style.display=CL&&CL.grammar?'flex':'none';
-  showScreen('lesson');renderHearts();renderEx();
+  showScreen('lesson');renderEx();
 }
 
 function startLesson(id){

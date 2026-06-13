@@ -1,34 +1,3 @@
-// ══════════════════════════════════════════════════════
-// HEARTS
-// ══════════════════════════════════════════════════════
-let HEARTS=3;
-
-function renderHearts(){
-  const el=document.getElementById('hearts');
-  if(!el)return;
-  el.innerHTML='';
-  for(let i=0;i<3;i++){
-    const span=document.createElement('span');
-    span.style.cssText='transition:all .3s;display:inline-block';
-    span.textContent=i<HEARTS?'❤️':'🖤';
-    if(i>=HEARTS){span.style.opacity='0.35';span.style.filter='grayscale(1)';}
-    el.appendChild(span);
-  }
-}
-
-function loseHeart(){
-  if(HEARTS<=0)return;
-  HEARTS--;
-  renderHearts();
-  // schud-animatie op hartjes
-  const el=document.getElementById('hearts');
-  if(el){
-    el.style.animation='none';
-    requestAnimationFrame(()=>{
-      el.style.animation='shake .32s ease';
-    });
-  }
-}
 
 // ══════════════════════════════════════════════════════
 // NAV
