@@ -650,7 +650,7 @@ body.font-large .ovh-hz-word{font-size:58px!important}
 .vk-key.vk-space{max-width:none;flex:4}
 
 /* ── DESKTOP-WEERGAVE (muis + groot scherm, geen touch) ── */
-@media (hover:hover) and (pointer:fine) and (min-width:700px){
+@media (hover:hover) and (pointer:fine) and (min-width:600px){
   :root{--app-max-w:620px}
   body{background:linear-gradient(155deg,#F5C6CC 0%,#F0D890 100%)}
   #app{border-radius:var(--r);margin:16px 0;box-shadow:0 24px 64px rgba(61,28,36,.25);height:calc(100vh - 32px);height:calc(100dvh - 32px)}
