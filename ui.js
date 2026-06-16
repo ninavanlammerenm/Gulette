@@ -194,7 +194,7 @@ function startWeakWordsDrill(){
   const weakWords=Object.entries(S.vocab).filter(([,v])=>(v.errors||0)>=2).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0)).slice(0,20);
   if(weakWords.length<4){showToast('Nog niet genoeg fouten-woorden! Maak meer oefeningen 💪');return;}
   const wordList=weakWords.map(([hz,v])=>({hz,v,dir:Math.random()>.5?'hz_nl':'nl_hz'}));
-  startOvhoring(0,wordList);
+  openOvhDirect(wordList);
 }
 
 function renderVocab(){
@@ -381,6 +381,7 @@ function renderProfile(){
   updateNotifBtn();
   updateRomanBtn();
   updateSoundBtn();
+  updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
   if(_vEl)_vEl.textContent='v25';
@@ -494,6 +495,23 @@ function updateSoundBtn(){
     ?'linear-gradient(135deg,var(--sky),#2980b9)'
     :'linear-gradient(135deg,var(--ink-xl),var(--ink-l))';
   btn.style.color=on?'#fff':'var(--ink-m)';
+}
+
+function toggleSkipListening(){
+  S.skipListening=S.skipListening===true?false:true;
+  save();
+  updateSkipListeningBtn();
+}
+
+function updateSkipListeningBtn(){
+  const btn=document.getElementById('listen-skip-btn');
+  if(!btn)return;
+  const skip=S.skipListening===true;
+  btn.textContent=skip?'🔇 Luisteroefeningen: UIT (je leest het woord)':'🎧 Luisteroefeningen: AAN';
+  btn.style.background=skip
+    ?'linear-gradient(135deg,var(--ink-xl),var(--ink-l))'
+    :'linear-gradient(135deg,var(--sky),#2980b9)';
+  btn.style.color=skip?'var(--ink-m)':'#fff';
 }
 
 // ══════════════════════════════════════════════════════

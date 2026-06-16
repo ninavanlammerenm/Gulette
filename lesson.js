@@ -805,6 +805,22 @@ function retryLessonWrong(){
 function rListen(ex,body){
   const w=ex.w;
   const ltrs=['A','B','C','D'];
+
+  // Geen Hazaragi-stem op dit apparaat? Lees het woord i.p.v. luisteren.
+  if(S.skipListening===true){
+    body.innerHTML=`
+      <div class="type-pill">📖 Leesoefening</div>
+      <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:16px">Wat betekent dit woord?</p>
+      <div class="hz-card hz-card-compact">
+        <span class="hz-script">${w.hz}</span>
+      </div>
+      <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
+        <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr||''}">
+          <span class="ch-ltr">${ltrs[i]}</span>${c}
+        </button>`).join('')}</div>`;
+    return;
+  }
+
   body.innerHTML=`
     <div class="type-pill">🎧 Luisteroefening</div>
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Hazaragi woord hoor je?</p>
