@@ -193,6 +193,7 @@ function _renderOvhType(hz,v){
     <button class="btn-check" id="ovh-type-check" style="position:static">Controleer ✓</button>`;
 
   const inp=document.getElementById('ovh-t-inp');
+  attachVirtualKeyboard(inp);
   const hintEl=document.getElementById('ovh-t-hint');
   const hintBtn=document.getElementById('ovh-hint-btn');
   const checkBtn=document.getElementById('ovh-type-check');

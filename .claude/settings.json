@@ -2,7 +2,19 @@
   "permissions": {
     "allow": [
       "Bash(node -e \"const fs=require\\('fs'\\); const l=fs.readFileSync\\('c:/Users/ninav/Gulette/data.js','utf8'\\).split\\('\\\\n'\\)[2997]; console.log\\(l.trim\\(\\)\\);\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(node -c app.js)",
+      "Bash(node -c ui.js)",
+      "Bash(node -c lesson.js)",
+      "Bash(node -c quiz.js)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(nohup npx --yes http-server -p 8099 -c-1)",
+      "Bash(disown)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8099/index.html)",
+      "Read(//tmp/**)",
+      "Bash(node -e \"require.resolve\\('playwright'\\)\")",
+      "Bash(npm install *)",
+      "Bash(node .verify_kb.js)"
     ]
   }
 }

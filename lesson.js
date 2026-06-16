@@ -506,6 +506,7 @@ function rType(ex,body){
 
   const correct=w.hz;
   const inp=document.getElementById('t-inp');
+  attachVirtualKeyboard(inp);
   const hintBtn=document.getElementById('hint-btn');
   const hintEl=document.getElementById('t-hint');
   const checkBtn=document.getElementById('btn-check-type');

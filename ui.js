@@ -434,7 +434,8 @@ function resetData(){
 function confetti(){
   const cols=['#F06C78','#F9C3Cb','#F6E7B8','#8E9A5A','#e24b5a','#fff','#FADADD'];
   const wrap=document.getElementById('cfwrap');
-  wrap.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:500;overflow:hidden;max-width:430px;left:50%;transform:translateX(-50%)';
+  const appW=document.getElementById('app').getBoundingClientRect().width;
+  wrap.style.cssText=`position:fixed;inset:0;pointer-events:none;z-index:500;overflow:hidden;max-width:${appW}px;left:50%;transform:translateX(-50%)`;
   for(let i=0;i<55;i++)setTimeout(()=>{
     const p=document.createElement('div');p.className='cf';
     p.style.cssText=`left:${Math.random()*100}%;background:${cols[~~(Math.random()*cols.length)]};animation-duration:${.7+Math.random()*.8}s;animation-delay:${Math.random()*.4}s;border-radius:${Math.random()>.5?'50%':'3px'};width:${6+~~(Math.random()*8)}px;height:${6+~~(Math.random()*8)}px;`;
@@ -444,7 +445,7 @@ function confetti(){
 
 function sparkles(){
   const emos=['🍓','✨','🌸','💕','🍓','🌿'];
-  const maxW=Math.min(window.innerWidth,430);
+  const maxW=document.getElementById('app').getBoundingClientRect().width;
   for(let i=0;i<3;i++)setTimeout(()=>{
     const el=document.createElement('div');el.className='sparkle';
     el.textContent=emos[~~(Math.random()*emos.length)];
@@ -742,4 +743,55 @@ function setupRomanReveal(){
   new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(scan)))
     .observe(document.body,{childList:true,subtree:true});
   document.querySelectorAll(SEL).forEach(wrap);
+}
+
+// ══════════════════════════════════════════════════════
+// SCHERMTOETSENBORD (Hazaragi-schrift) — alleen op desktop,
+// nooit op telefoon/tablet (die hebben hun eigen schrift-IME)
+// ══════════════════════════════════════════════════════
+const KB_ROWS=[
+  ['ض','ص','ث','ق','ف','غ','ع','ه','خ','ح','ج','چ'],
+  ['ش','س','ی','ب','ل','ا','ت','ن','م','ک','گ'],
+  ['ظ','ط','ز','ر','ذ','د','پ','و','ژ','ء']
+];
+
+function isDesktopKeyboardEnv(){
+  return window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+}
+
+function attachVirtualKeyboard(inp){
+  if(!inp||!isDesktopKeyboardEnv())return null;
+  const kb=document.createElement('div');
+  kb.className='virt-kb';
+  kb.innerHTML=KB_ROWS.map(row=>
+    `<div class="vk-row">${row.map(ch=>`<button type="button" class="vk-key" data-ch="${ch}">${ch}</button>`).join('')}</div>`
+  ).join('')+`
+    <div class="vk-row">
+      <button type="button" class="vk-key vk-wide" data-act="back">⌫</button>
+      <button type="button" class="vk-key vk-space" data-act="space">spatie</button>
+      <button type="button" class="vk-key vk-wide" data-act="clear">✕</button>
+    </div>`;
+  kb.addEventListener('mousedown', e=>{
+    const btn=e.target.closest('.vk-key');
+    if(!btn)return;
+    e.preventDefault(); // voorkomt focusverlies op het typveld
+    const start=inp.selectionStart??inp.value.length;
+    const end=inp.selectionEnd??inp.value.length;
+    if(btn.dataset.act==='back'){
+      const from=start===end?Math.max(start-1,0):start;
+      inp.value=inp.value.slice(0,from)+inp.value.slice(end);
+      inp.setSelectionRange(from,from);
+    }else if(btn.dataset.act==='clear'){
+      inp.value='';
+      inp.setSelectionRange(0,0);
+    }else{
+      const ch=btn.dataset.act==='space'?' ':btn.dataset.ch;
+      inp.value=inp.value.slice(0,start)+ch+inp.value.slice(end);
+      inp.setSelectionRange(start+ch.length,start+ch.length);
+    }
+    inp.dispatchEvent(new Event('input',{bubbles:true}));
+    inp.focus();
+  });
+  inp.insertAdjacentElement('afterend',kb);
+  return kb;
 }
