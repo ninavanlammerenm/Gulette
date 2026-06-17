@@ -1638,14 +1638,14 @@ const CHAPTERS=[
 
     { id:'gram4_modal', title:'Modale werkwoorden', sub:'Kunnen, moeten, mogen...', icon:'⚙️', xp:35,
       pronTips:['ت'],
-      grammar:'De drie belangrijkste modale werkwoorden:\n\nمی‌تانم (mi-taanom) = ik kan — dit is typisch Hazaragi (niet می‌توانم).\nVervoeging: mi-taanom · mi-taani · me-taana · me-taanim · me-taanin · me-taanan\n\nباید (baayad) = moet — dit verandert nooit! Gewoon باید + werkwoord.\nباید بری = je moet gaan · نباید بری = je mag niet gaan\n\nمی‌خوام (mi-khom) = ik wil / ik ga — ook als toekomsttijd.',
+      grammar:'De drie belangrijkste modale werkwoorden:\n\nمی‌تانم (mi-taanom) = ik kan — dit is typisch Hazaragi (niet می‌توانم).\nVervoeging: mi-taanom · mi-taani · mi-taana · mi-taanim · mi-taanin · mi-taanan\n\nباید (baayad) = moet — dit verandert nooit! Gewoon باید + werkwoord.\nباید بری = je moet gaan · نباید بری = je mag niet gaan\n\nمی‌خوام (mi-khom) = ik wil / ik ga — ook als toekomsttijd.',
       words:[
         {hz:'باید',tr:'baayad',nl:'Moet / Dient te',tip:'"باید بری" = je moet gaan'},
         {hz:'نباید',tr:'nabaayad',nl:'Mag niet / Moet niet',tip:''},
         {hz:'می‌تانم',tr:'mi-taanom',nl:'Ik kan (Hazaragi)',tip:'Typisch Hazaragi werkwoord'},
         {hz:'نمی‌تانم',tr:'na-mi-taanom',nl:'Ik kan niet',tip:''},
         {hz:'می‌تانی',tr:'mi-taani',nl:'Jij kan',tip:''},
-        {hz:'می‌تانه',tr:'me-taana',nl:'Hij/Zij kan',tip:''},
+        {hz:'می‌تانه',tr:'mi-taana',nl:'Hij/Zij kan',tip:''},
         {hz:'می‌خوام',tr:'mi-khom',nl:'Ik wil',tip:''},
         {hz:'نمی‌خوام',tr:'na-mi-khom',nl:'Ik wil niet',tip:''},
       ],

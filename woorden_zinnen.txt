@@ -1424,7 +1424,7 @@ Woorden:
 می‌تانم  |  mi-taanom  |  Ik kan (Hazaragi)
 نمی‌تانم  |  na-mi-taanom  |  Ik kan niet
 می‌تانی  |  mi-taani  |  Jij kan
-می‌تانه  |  me-taana  |  Hij/Zij kan
+می‌تانه  |  mi-taana  |  Hij/Zij kan
 می‌خوام  |  mi-khom  |  Ik wil
 نمی‌خوام  |  na-mi-khom  |  Ik wil niet
 
