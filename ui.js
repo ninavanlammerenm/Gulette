@@ -165,12 +165,13 @@ function renderHome(){
       const durLabel=locked?'':`<div class="n-dur">~${durMin} min</div>`;
       const moreLabel='';
 
+      const allMastered=(lesson.words||[]).length>0&&(lesson.words||[]).every(w=>(S.vocab[w.hz]?.mastery||0)>=3);
       row.innerHTML=`<div class="l-node ${cls}" onclick="${nodeClick}" data-id="${lesson.id}">
         <div class="n-ico">${nodeIcon}</div>
         <div class="n-lbl">${lesson.title}</div>
         ${durLabel}
         ${moreLabel}
-        ${done&&remaining===0?'<div class="n-done-badge">✓</div>':''}
+        ${done&&allMastered?'<div class="n-done-badge">✓</div>':''}
       </div>`;
       path.appendChild(row);
     });
@@ -474,10 +475,12 @@ function updateRomanBtn(){
   const hide = document.getElementById('roman-btn-hide');
   if(!tap||!hide) return;
   const hidden = S.showRoman === false;
-  tap.style.background  = !hidden ? 'linear-gradient(135deg,var(--rose),var(--rose-d))' : 'var(--ink-xl)';
-  tap.style.color       = !hidden ? '#fff' : 'var(--ink-m)';
-  hide.style.background = hidden  ? 'linear-gradient(135deg,var(--ink),#333)' : 'var(--ink-xl)';
-  hide.style.color      = hidden  ? '#fff' : 'var(--ink-m)';
+  tap.classList.toggle('active', !hidden);
+  hide.classList.toggle('active', hidden);
+  tap.style.background = '';
+  tap.style.color = '';
+  hide.style.background = '';
+  hide.style.color = '';
 }
 
 function toggleSound(){
@@ -491,10 +494,9 @@ function updateSoundBtn(){
   if(!btn)return;
   const on=S.soundOn!==false;
   btn.textContent=on?'🔊 Geluid: AAN':'🔇 Geluid: UIT';
-  btn.style.background=on
-    ?'linear-gradient(135deg,var(--sky),#2980b9)'
-    :'linear-gradient(135deg,var(--ink-xl),var(--ink-l))';
-  btn.style.color=on?'#fff':'var(--ink-m)';
+  btn.classList.toggle('prof-btn-blue',on);
+  if(!on){btn.style.background='linear-gradient(150deg,var(--ink-xl),var(--ink-l))';btn.style.color='var(--ink-m)';}
+  else{btn.style.background='';btn.style.color='';}
 }
 
 function toggleSkipListening(){
@@ -508,10 +510,9 @@ function updateSkipListeningBtn(){
   if(!btn)return;
   const skip=S.skipListening===true;
   btn.textContent=skip?'🔇 Luisteroefeningen: UIT (je leest het woord)':'🎧 Luisteroefeningen: AAN';
-  btn.style.background=skip
-    ?'linear-gradient(135deg,var(--ink-xl),var(--ink-l))'
-    :'linear-gradient(135deg,var(--sky),#2980b9)';
-  btn.style.color=skip?'var(--ink-m)':'#fff';
+  btn.classList.toggle('prof-btn-blue',!skip);
+  if(skip){btn.style.background='linear-gradient(150deg,var(--ink-xl),var(--ink-l))';btn.style.color='var(--ink-m)';}
+  else{btn.style.background='';btn.style.color='';}
 }
 
 // ══════════════════════════════════════════════════════
