@@ -52,28 +52,6 @@ function sfxFinish(){
 // Bij fout: spreek romanisering uit met standaardstem.
 // ══════════════════════════════════════════════════════
 
-function _findRoman(hz){
-  if(typeof CHAPTERS==='undefined')return null;
-  for(const ch of CHAPTERS){
-    for(const l of ch.lessons||[]){
-      const w=(l.words||[]).find(x=>x.hz===hz);
-      if(w&&w.tr)return w.tr;
-    }
-  }
-  return null;
-}
-
-function _speakRoman(text){
-  const roman=_findRoman(text)||text;
-  const dutch=toDutchPhonetic(roman);
-  window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(dutch);
-  utt.lang='nl-NL';
-  utt.rate=0.72;
-  utt.onerror=()=>{};
-  window.speechSynthesis.speak(utt);
-}
-
 function speakHz(text){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
   window.speechSynthesis.cancel();
@@ -81,7 +59,6 @@ function speakHz(text){
   utt.lang='fa';
   utt.rate=0.78;
   utt.pitch=1.0;
-  utt.onerror=(e)=>{ if(e.error!=='interrupted')_speakRoman(text); };
   window.speechSynthesis.speak(utt);
 }
 
@@ -89,14 +66,11 @@ function testAudio(){
   if(!('speechSynthesis' in window)){showToast('❌ Spraak niet beschikbaar op dit apparaat');return;}
   const vs=window.speechSynthesis.getVoices();
   const fa=vs.filter(v=>v.lang.startsWith('fa'));
-  const nl=vs.filter(v=>v.lang.startsWith('nl'));
   let msg;
   if(fa.length){
     msg='🔊 Modus: Hazaragi (fa) — '+fa[0].name;
-  } else if(nl.length){
-    msg='🔤 Modus: fonetisch (nl) — geen Farsi stem, uitspraakschrift wordt ingelezen';
   } else {
-    msg='⚠️ Geen geschikte stem gevonden — spraak werkt mogelijk niet';
+    msg='⚠️ Geen Farsi stem gevonden — installeer een Farsi stemenpakket voor spraak';
   }
   showToast(msg);
   speakHz('سلام');

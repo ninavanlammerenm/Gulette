@@ -628,7 +628,7 @@ function showWordDetail(hz){
     <div class="modal-drag"></div>
     <div class="wd-card">
       <div class="wd-hz">${hz}</div>
-      <div class="wd-tr">🗣️ ${toDutchPhonetic(v.tr)}</div>
+      <div class="wd-tr">${v.tr||''}</div>
       <div class="wd-nl">= ${v.nl}</div>
     </div>
     <div class="wd-stats">

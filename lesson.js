@@ -287,17 +287,16 @@ function rIntro(ex,body){
   const ctxHTML=s?`
     <div class="ctx-mini intro-fade-in-2">
       <div class="ctx-mini-hz">${s.hz.replace(w.hz,`<mark>${w.hz}</mark>`)}</div>
-      <div class="hz-roman" style="font-size:13px;font-weight:800;color:var(--rose-d);font-style:italic;margin:3px 0 2px">🗣️ ${toDutchPhonetic(s.tr)}</div>
+      <div class="hz-roman" style="font-size:13px;font-weight:800;color:var(--rose-d);font-style:italic;margin:3px 0 2px">${s.tr||''}</div>
       <div class="ctx-mini-nl">"${s.nl}"</div>
     </div>`:'';
-  const dutch=toDutchPhonetic(w.tr);
   body.innerHTML=`
     <div class="type-pill">📖 Nieuw woord</div>
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
       <span class="hz-nl">= ${w.nl}</span>
-      <span class="hz-dutch intro-fade-in-1">🗣️ ${dutch}</span>
+      <span class="hz-dutch intro-fade-in-1">${w.tr||''}</span>
     </div>
     ${w.tip?`<div class="word-tip-card intro-fade-in-2">💡 ${w.tip}</div>`:''}
     ${ctxHTML}
@@ -388,7 +387,7 @@ function rMC_nl(ex,body){
     <div class="type-pill">🎯 Wat betekent dit?</div>
     <div class="hz-card hz-card-compact">
       <span class="hz-script">${w.hz}</span>
-      <span class="hz-dutch">🗣️ ${toDutchPhonetic(w.tr)}</span>
+      <span class="hz-dutch">${w.tr||''}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
@@ -489,7 +488,7 @@ function rType(ex,body){
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Hazaragi woord voor:</p>
     <div class="hz-card hz-card-compact">
       <span class="hz-nl" style="font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px">${w.nl}</span>
-      <span class="hz-dutch">🗣️ ${toDutchPhonetic(w.tr)}</span>
+      <span class="hz-dutch">${w.tr||''}</span>
     </div>
     <input class="t-inp" id="t-inp"
       inputmode="text"
@@ -648,7 +647,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     const requeued=requeueWrong(correct);
     trackWrong(correct,nl,tr);
     const _tip2=_getWordTip(correct);
-    const _pron=tr?` · 🗣️ ${toDutchPhonetic(tr)}`:'';
+    const _pron=tr?` · ${tr}`:'';
     showFB(false,_encourageMsg(),_tip2?`💡 ${_tip2}`:`Juist: ${correct}${_pron}${requeued?' · 🔁 Komt later terug':''}`,correct);
     updMastery(correct,false);
   }

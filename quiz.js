@@ -111,13 +111,12 @@ function renderOvh(){
 // INTRODUCTIEKAART — nieuw woord tonen vóór de vraag
 // ══════════════════════════════════════════════════════
 function _renderOvhIntro(hz,v){
-  const dutch=toDutchPhonetic(v.tr);
   document.getElementById('ovh-body').innerHTML=`
     <div class="type-pill">📖 Nieuw woord</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Leer dit woord:</p>
     <div class="hz-card">
       <span class="hz-script">${hz}</span>
-      <span class="hz-dutch">🗣️ ${dutch}</span>
+      <span class="hz-dutch">${v.tr||''}</span>
       <span class="hz-nl">= ${v.nl}</span>
     </div>
     ${v.tr?`<div class="word-tip-card">🔊 <strong>${v.tr}</strong></div>`:''}
@@ -140,10 +139,9 @@ function _renderOvhMC(hz,v,dir){
 
   if(dir==='hz_nl'){
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
-    const dutch=toDutchPhonetic(v.tr);
     prompt=`<div class="ovh-hz-word">${hz}</div>
-             <div class="ovh-dutch">🗣️ ${dutch}</div>
-             <div class="ovh-latin">🔊 ${pron}</div>`;
+             <div class="ovh-dutch">${v.tr||''}</div>
+             <div class="ovh-latin">${pron}</div>`;
     correct=v.nl;
     const dist=shuffle(allWords.filter(([h])=>h!==hz)).slice(0,3).map(([,d])=>d.nl);
     _ovhChoices=shuffle([correct,...dist]);
@@ -174,7 +172,6 @@ function _renderOvhMC(hz,v,dir){
 // TYPOEFENING IN DE OVERHORING
 // ══════════════════════════════════════════════════════
 function _renderOvhType(hz,v){
-  const dutch=toDutchPhonetic(v.tr);
   const timerHTML=_ovhTimer?`<div class="ovh-timer" id="ovh-timer">15</div>`:'';
   document.getElementById('ovh-body').innerHTML=`
     ${timerHTML}
@@ -182,7 +179,7 @@ function _renderOvhType(hz,v){
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Hazaragi woord voor:</p>
     <div class="hz-card" style="margin-bottom:16px">
       <span class="hz-nl" style="font-size:22px;font-weight:900;color:var(--ink)">${v.nl}</span>
-      <span class="hz-dutch">🗣️ ${dutch}</span>
+      <span class="hz-dutch">${v.tr||''}</span>
     </div>
     <input class="t-inp" id="ovh-t-inp" inputmode="text" lang="fa" dir="rtl"
       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
