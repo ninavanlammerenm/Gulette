@@ -24,7 +24,12 @@ function playTone(freq,dur,type='sine',vol=0.18){
   else _play();
 }
 
+function haptic(pattern){
+  if(navigator.vibrate) navigator.vibrate(pattern);
+}
+
 function sfxCorrect(){
+  haptic(50);
   if(S.soundOn===false)return;
   playTone(520,0.12,'sine',0.15);
   setTimeout(()=>playTone(660,0.12,'sine',0.15),80);
@@ -32,6 +37,7 @@ function sfxCorrect(){
 }
 
 function sfxWrong(){
+  haptic([40,30,80]);
   if(S.soundOn===false)return;
   playTone(300,0.15,'sawtooth',0.08);
   setTimeout(()=>playTone(220,0.2,'sawtooth',0.08),100);
@@ -52,12 +58,12 @@ function sfxFinish(){
 // Bij fout: spreek romanisering uit met standaardstem.
 // ══════════════════════════════════════════════════════
 
-function speakHz(text){
+function speakHz(text, slow){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
   window.speechSynthesis.cancel();
   const utt=new SpeechSynthesisUtterance(text);
   utt.lang='fa';
-  utt.rate=0.78;
+  utt.rate=slow ? 0.5 : 0.78;
   utt.pitch=1.0;
   window.speechSynthesis.speak(utt);
 }

@@ -26,9 +26,18 @@ document.addEventListener('touchend',e=>{
   navTo(_NAV[next],document.querySelectorAll('.nb')[next]);
 },{passive:true});
 
-// ── Toetsenbordsnelkoppelingen voor meerkeuze (1-4 of A-D) ──
+// ── Toetsenbordsnelkoppelingen voor meerkeuze (1-4 of A-D) + Enter/Spatie voor verder ──
 document.addEventListener('keydown', function(e){
   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+  // Enter of Spatie → "Verder" knop in feedback-balk
+  if(e.key==='Enter'||e.key===' '){
+    const fb=document.getElementById('fb-bar');
+    if(fb&&!fb.classList.contains('hide')){
+      e.preventDefault();
+      nextEx();
+      return;
+    }
+  }
   const map={'1':0,'2':1,'3':2,'4':3,'a':0,'b':1,'c':2,'d':3};
   const idx=map[e.key.toLowerCase()];
   if(idx===undefined)return;
@@ -101,14 +110,66 @@ function shareProgress(){
   const wc=Object.keys(S.vocab).length;
   const today=new Date().toISOString().slice(0,10);
   const todayXP=(S.xpLog&&S.xpLog[today])||0;
-  const text=`Ik heb vandaag +${todayXP} XP verdiend in Gulette! 🐇\nIk ken nu ${wc} Hazaragi woorden.\n\n#Gulette #Hazaragi`;
-  if(navigator.share){
-    navigator.share({title:'Gulette 🐇',text}).catch(()=>{});
-  }else{
-    navigator.clipboard?.writeText(text)
-      .then(()=>showToast('📋 Gekopieerd! Plak het in WhatsApp 💚'))
-      .catch(()=>showToast('❌ Klembord niet beschikbaar'));
+  const lvl=getLevel(S.xp);
+  const cefrBadge=S.testResults?Object.entries(S.testResults).filter(([,r])=>r.passed).map(([l])=>l).pop():null;
+
+  // Canvas-afbeelding genereren
+  const c=document.createElement('canvas');
+  c.width=600;c.height=340;
+  const ctx=c.getContext('2d');
+  // Achtergrond gradient
+  const grad=ctx.createLinearGradient(0,0,600,340);
+  grad.addColorStop(0,'#FADADD');grad.addColorStop(0.5,'#FFF0F2');grad.addColorStop(1,'#F6F3DC');
+  ctx.fillStyle=grad;
+  ctx.beginPath();
+  ctx.roundRect(0,0,600,340,20);
+  ctx.fill();
+  // Titel
+  ctx.fillStyle='#3D1C24';ctx.font='bold 32px sans-serif';
+  ctx.fillText('Gulette 🐇',30,50);
+  ctx.fillStyle='#7A4A55';ctx.font='600 16px sans-serif';
+  ctx.fillText(`${S.name} leert Hazaragi!`,30,78);
+  // Stats
+  ctx.fillStyle='#e24b5a';ctx.font='bold 52px sans-serif';
+  ctx.fillText(`${wc}`,30,148);
+  ctx.fillStyle='#3D1C24';ctx.font='bold 18px sans-serif';
+  ctx.fillText('woorden geleerd',30,172);
+
+  ctx.fillStyle='#e24b5a';ctx.font='bold 52px sans-serif';
+  ctx.fillText(`${S.streak}`,220,148);
+  ctx.fillStyle='#3D1C24';ctx.font='bold 18px sans-serif';
+  ctx.fillText('🔥 dag streak',220,172);
+
+  ctx.fillStyle='#e24b5a';ctx.font='bold 52px sans-serif';
+  ctx.fillText(`${lvl}`,420,148);
+  ctx.fillStyle='#3D1C24';ctx.font='bold 18px sans-serif';
+  ctx.fillText('level',420,172);
+
+  if(cefrBadge){
+    ctx.fillStyle='#7c3aed';ctx.font='bold 22px sans-serif';
+    ctx.fillText(`🎓 Niveau: ${cefrBadge}`,30,220);
   }
+  ctx.fillStyle='#C4A0A8';ctx.font='600 14px sans-serif';
+  ctx.fillText(`+${todayXP} XP vandaag · ${S.xp} XP totaal`,30,cefrBadge?254:220);
+  ctx.fillText('#Gulette #Hazaragi',30,310);
+
+  c.toBlob(blob=>{
+    if(!blob)return;
+    if(navigator.share&&navigator.canShare){
+      const file=new File([blob],'gulette-voortgang.png',{type:'image/png'});
+      const data={files:[file],title:'Gulette 🐇',text:`Ik ken nu ${wc} Hazaragi woorden! 🐇`};
+      if(navigator.canShare(data)){
+        navigator.share(data).catch(()=>{});
+        return;
+      }
+    }
+    // Fallback: download
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download='gulette-voortgang.png';a.click();
+    URL.revokeObjectURL(url);
+    showToast('📸 Afbeelding opgeslagen! Deel het op Instagram/WhatsApp');
+  },'image/png');
 }
 
 // ══════════════════════════════════════════════════════
@@ -117,10 +178,21 @@ function shareProgress(){
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(()=>{});
 }
+
+// ── Offline-indicator ──
+function _updateOnlineStatus(){
+  const el=document.getElementById('offline-bar');
+  if(!el)return;
+  el.style.display=navigator.onLine?'none':'flex';
+}
+window.addEventListener('online',_updateOnlineStatus);
+window.addEventListener('offline',_updateOnlineStatus);
+setTimeout(_updateOnlineStatus,500);
 load();
 applyMasteryDecay();
 if(S.showRoman===false) document.body.classList.add('hide-roman');
 applyFontSize();
+applyDarkMode();
 setupRomanReveal();
 try{
   if(S.name){

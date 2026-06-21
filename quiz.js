@@ -116,12 +116,14 @@ function _renderOvhIntro(hz,v){
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Leer dit woord:</p>
     <div class="hz-card">
       <span class="hz-script">${hz}</span>
+      <button class="spk-btn" onclick="speakHz('${hz}')">🔊</button>
       <span class="hz-dutch">${v.tr||''}</span>
       <span class="hz-nl">= ${v.nl}</span>
     </div>
     ${v.tr?`<div class="word-tip-card">🔊 <strong>${v.tr}</strong></div>`:''}
     <div style="flex:1"></div>
     <button class="btn-check" style="position:static" id="ovh-intro-next">Ik heb het! Stel me een vraag 🌸</button>`;
+  speakHz(hz);
   document.getElementById('ovh-intro-next').addEventListener('click',()=>{
     // Zet naar MC voor hetzelfde woord (hz→nl voor nieuw woord)
     _ovhWords[_ovhIdx]={..._ovhWords[_ovhIdx], qtype:'mc', dir:'hz_nl'};
@@ -140,13 +142,15 @@ function _renderOvhMC(hz,v,dir){
   if(dir==='hz_nl'){
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
     prompt=`<div class="ovh-hz-word">${hz}</div>
+             <button class="spk-btn" onclick="speakHz('${hz}')" style="margin:4px auto">🔊</button>
              <div class="ovh-dutch">${v.tr||''}</div>
              <div class="ovh-latin">${pron}</div>`;
     correct=v.nl;
     const dist=shuffle(allWords.filter(([h])=>h!==hz)).slice(0,3).map(([,d])=>d.nl);
     _ovhChoices=shuffle([correct,...dist]);
   } else {
-    prompt=`<div class="ovh-nl-word">${v.nl}</div>`;
+    prompt=`<div class="ovh-nl-word">${v.nl}</div>
+             <div class="ovh-latin" style="margin-top:4px">${v.tr||''}</div>`;
     correct=hz;
     const dist=shuffle(allWords.filter(([h])=>h!==hz)).slice(0,3).map(([h])=>h);
     _ovhChoices=shuffle([correct,...dist]);
@@ -222,15 +226,16 @@ function _renderOvhType(hz,v){
     if(normAr(val)===normAr(hz)){
       inp.classList.add('ok');
       sfxCorrect();
+      speakHz(hz);
       if(!peeked){
         _ovhScore++;
         updMastery(hz, true);
       }
-      // peeked=true: updMastery al aangeroepen bij _registerOvhError — niet nogmaals aanroepen
       save();
       setTimeout(()=>{_ovhIdx++;renderOvh();}, 600);
     } else {
       sfxWrong();
+      speakHz(hz);
       if(!peeked) _registerOvhError(hz,v,val,hz,'nl_hz');
       inp.classList.add('ng');
       setTimeout(()=>{ inp.classList.remove('ng'); showAnswer(); }, 600);
@@ -289,6 +294,7 @@ function answerOvh(btn, idx){
     _registerOvhError(hz,v,chosen,correct,dir);
     sfxWrong();
   }
+  speakHz(hz);
   save();
   setTimeout(()=>{_ovhIdx++;renderOvh();}, ok?700:1300);
 }
@@ -298,6 +304,7 @@ function answerOvh(btn, idx){
 // ══════════════════════════════════════════════════════
 function _registerOvhError(hz,v,chosen,correct,dir){
   if(!S.vocab[hz]) S.vocab[hz]={nl:v.nl,tr:v.tr||'',mastery:0,nr:null,errors:0};
+  if(dir==='nl_hz' && chosen!=='—') trackConfusion(hz, chosen);
   S.vocab[hz].errors=(S.vocab[hz].errors||0)+1;
   updMastery(hz, false);
   _ovhErrors.push({hz,v,chosen,correct,dir});
@@ -328,6 +335,7 @@ function dontKnowOvh(){
   document.querySelector('.wik-btn')?.remove();
   _registerOvhError(hz,v,'—',correct,dir);
   sfxWrong();
+  speakHz(hz);
   setTimeout(()=>{_ovhIdx++;renderOvh();},1200);
 }
 
@@ -380,4 +388,102 @@ function renderOvhResult(){
       </div>
       ${errHTML}
     </div>`;
+}
+
+// ══════════════════════════════════════════════════════
+// SNELHEIDSRONDE — 60 seconden, zoveel mogelijk goed
+// ══════════════════════════════════════════════════════
+let _speedScore=0, _speedTimer=null, _speedSec=60, _speedActive=false;
+
+function startSpeedRound(){
+  const words=Object.entries(S.vocab);
+  if(words.length<8){showToast('Leer eerst meer woorden! Minimaal 8 nodig.');return;}
+  _speedScore=0;_speedSec=60;_speedActive=true;
+  document.getElementById('ovh-overlay').classList.add('open');
+  document.getElementById('ovh-setup').style.display='none';
+  document.getElementById('ovh-quiz').style.display='flex';
+  _speedTimer=setInterval(()=>{
+    _speedSec--;
+    const el=document.getElementById('speed-clock');
+    if(el){
+      el.textContent=_speedSec;
+      if(_speedSec<=10) el.style.color='var(--rose-d)';
+    }
+    if(_speedSec<=0){
+      clearInterval(_speedTimer);_speedTimer=null;_speedActive=false;
+      renderSpeedResult();
+    }
+  },1000);
+  renderSpeedQ();
+}
+
+function renderSpeedQ(){
+  if(!_speedActive)return;
+  const words=Object.entries(S.vocab);
+  const [hz,v]=words[Math.floor(Math.random()*words.length)];
+  const dists=shuffle(words.filter(([h])=>h!==hz)).slice(0,3).map(([,d])=>d.nl);
+  const choices=shuffle([v.nl,...dists]);
+  const ltrs=['A','B','C','D'];
+  const body=document.getElementById('ovh-body');
+  document.getElementById('ovh-prog').style.width=`${Math.round((60-_speedSec)/60*100)}%`;
+  document.getElementById('ovh-counter').textContent=`⚡ ${_speedScore}`;
+  body.innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div class="type-pill">⚡ Snelheidsronde</div>
+      <div class="ovh-timer" id="speed-clock" style="font-size:28px;margin:0">${_speedSec}</div>
+    </div>
+    <div class="ovh-prompt" style="padding:16px">
+      <div class="ovh-hz-word" style="font-size:40px">${hz}</div>
+      <div class="ovh-dutch" style="font-size:14px">${v.tr||''}</div>
+    </div>
+    <div class="choices">${choices.map((c,i)=>`
+      <button class="ch-btn" onclick="answerSpeed(this,'${c.replace(/'/g,"\\'")}','${v.nl.replace(/'/g,"\\'")}','${hz}')">
+        <span class="ch-ltr">${ltrs[i]}</span>${c}
+      </button>`).join('')}</div>`;
+  speakHz(hz);
+}
+
+function answerSpeed(btn,chosen,correct,hz){
+  if(!_speedActive)return;
+  document.querySelectorAll('#ovh-body .ch-btn').forEach(b=>b.disabled=true);
+  if(chosen===correct){
+    btn.classList.add('ok');
+    _speedScore++;
+    sfxCorrect();
+    updMastery(hz,true);
+  } else {
+    btn.classList.add('ng');
+    sfxWrong();
+    updMastery(hz,false);
+  }
+  setTimeout(renderSpeedQ, chosen===correct?400:800);
+}
+
+function renderSpeedResult(){
+  const body=document.getElementById('ovh-body');
+  const best=S.speedBest||0;
+  const isNew=_speedScore>best;
+  if(isNew){S.speedBest=_speedScore;save();}
+  const xp=Math.round(_speedScore*2);
+  if(xp>0){S.xp+=xp;logXP(xp);updStreak();save();}
+  document.getElementById('ovh-prog').style.width='100%';
+  document.getElementById('ovh-counter').textContent='Klaar!';
+  body.innerHTML=`
+    <div class="ovh-result">
+      <div class="ovh-res-emoji">${isNew?'🏆':'⚡'}</div>
+      <div class="ovh-res-score">${_speedScore}</div>
+      <div class="ovh-res-pct">${isNew?'NIEUW RECORD!':'woorden in 60 seconden'}</div>
+      <div class="ovh-res-msg">Record: ${Math.max(_speedScore,best)} · +${xp} XP</div>
+      <div class="ovh-res-btns">
+        <button class="btn-check" style="position:static" onclick="closeOvhoring();startSpeedRound()">🔄 Opnieuw</button>
+        <button class="btn-check" style="position:static;background:var(--ink)" onclick="closeOvhoring()">Klaar ✓</button>
+      </div>
+    </div>`;
+  if(isNew) sfxFinish();
+}
+
+function closeSpeedRound(){
+  if(_speedTimer){clearInterval(_speedTimer);_speedTimer=null;}
+  _speedActive=false;
+  closeOvhoring();
 }

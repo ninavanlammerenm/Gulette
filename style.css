@@ -445,6 +445,9 @@ body{font-family:'Nunito',sans-serif;background:#F5C6CC;display:flex;justify-con
 /* ── UITSPRAAK SPEAKER KNOP ── */
 .spk-btn{background:var(--rose-xl);border:1.5px solid var(--rose-l);border-radius:50%;width:38px;height:38px;font-size:17px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;margin:6px auto 2px;transition:all .18s;flex-shrink:0}
 .spk-btn:active{transform:scale(.88);background:var(--rose-l)}
+.wc-spk{width:32px;height:32px;font-size:14px;margin:0}
+.wc-pin{background:none;border:none;font-size:18px;cursor:pointer;padding:4px;color:var(--gold-d);flex-shrink:0;transition:transform .15s}
+.wc-pin:active{transform:scale(1.3)}
 
 /* ── WEET IK NIET KNOP ── */
 .wik-btn{width:100%;padding:11px;background:transparent;border:1.5px solid var(--ink-xl);border-radius:var(--r-sm);font-size:13px;font-weight:800;color:var(--ink-l);cursor:pointer;font-family:'Nunito',sans-serif;margin-top:8px;transition:all .18s}
@@ -666,6 +669,49 @@ body.font-large .ovh-hz-word{font-size:58px!important}
 .vk-key:active{transform:scale(.92)}
 .vk-key.vk-wide{max-width:60px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800}
 .vk-key.vk-space{max-width:none;flex:4}
+
+/* ── DARK MODE ── */
+body.dark-mode{background:#1a1a2e}
+body.dark-mode #app{background:#1a1a2e}
+body.dark-mode .screen{background:#1a1a2e}
+body.dark-mode #screen-home{background:#1a1a2e}
+body.dark-mode #screen-review{background:#1a1a2e}
+body.dark-mode #screen-profile{background:#1a1a2e}
+body.dark-mode{--cream:#1a1a2e;--white:#252540;--ink:#f0e6e8;--ink-m:#c4a0a8;--ink-l:#6a5060;--ink-xl:#352838;--rose-xl:#352030;--rose-l:#5a2838;--mint-l:#1a2a1a;--gold-l:#2a2818;--lav-l:#2a2035;--lav-xl:#201828}
+body.dark-mode .hdr{background:linear-gradient(160deg,#2a1828 0%,#201828 50%,#252520 100%)}
+body.dark-mode .rev-hdr{background:linear-gradient(135deg,#2a1828,#201828)}
+body.dark-mode .prof-hdr{background:linear-gradient(160deg,#2a1828,#201828,#252520)}
+body.dark-mode .bnav{background:rgba(26,26,46,.97);border-top-color:rgba(240,108,120,.1)}
+body.dark-mode .chip{background:rgba(37,37,64,.9);border-color:rgba(240,108,120,.15)}
+body.dark-mode .hz-card{background:linear-gradient(145deg,#352030,#2a1828);border-color:#5a2838}
+body.dark-mode .ch-btn{background:#252540;border-color:#352838;color:var(--ink)}
+body.dark-mode .ch-btn:hover:not(:disabled){background:#352838;border-color:var(--rose)}
+body.dark-mode .wc{background:#252540;border-color:rgba(240,108,120,.08)}
+body.dark-mode .modal{background:#252540}
+body.dark-mode .stat-card{background:#252540;border-color:rgba(240,108,120,.06)}
+body.dark-mode .ob-card{background:#252540}
+body.dark-mode .name-inp{background:#352030;border-color:#5a2838;color:var(--ink)}
+body.dark-mode .name-inp:focus{background:#352838}
+body.dark-mode .t-inp{background:#252540;border-color:#352838;color:var(--ink)}
+body.dark-mode .t-inp:focus{border-color:var(--rose)}
+body.dark-mode .ovh-overlay,.ovh-overlay{background:var(--cream)}
+body.dark-mode .qt-overlay{background:var(--cream)}
+body.dark-mode .l-topbar{background:rgba(37,37,64,.97)}
+body.dark-mode .fb-bar.ok{background:#1a2a1a;border-top-color:rgba(106,138,64,.4)}
+body.dark-mode .fb-bar.ng{background:#2a1520;border-top-color:rgba(226,75,90,.3)}
+body.dark-mode .grammar-card{background:linear-gradient(135deg,#2a2818,#252520);border-color:rgba(142,154,90,.2)}
+body.dark-mode .search-wrap{background:#252540}
+body.dark-mode .search-inp{color:var(--ink)}
+body.dark-mode .gram-item{background:#252540;border-color:rgba(240,108,120,.06)}
+body.dark-mode #screen-onboarding{background:linear-gradient(160deg,#2a1828 0%,#201828 50%,#252520 100%)}
+body.dark-mode #screen-result{background:linear-gradient(160deg,#2a1828 0%,#201828 50%,#252520 100%)}
+body.dark-mode .xp-track{background:rgba(255,255,255,.08)}
+body.dark-mode .w-tile{background:#252540;border-color:#352838;color:var(--ink)}
+body.dark-mode .wb-answer{background:#252540;border-color:#5a2838}
+body.dark-mode .wb-bank{background:#352030;border-color:#5a2838}
+body.dark-mode .ovh-banner{background:linear-gradient(150deg,#352030,#2a1828);border-color:rgba(240,108,120,.15)}
+body.dark-mode .rev-banner{background:linear-gradient(150deg,#5a2838,#4a1828)}
+body.dark-mode .dagwoord-card{background:linear-gradient(135deg,#252520,#2a1828);border-color:rgba(240,108,120,.15)}
 
 /* ── DESKTOP-WEERGAVE (muis + groot scherm, geen touch) ── */
 @media (hover:hover) and (pointer:fine) and (min-width:600px){

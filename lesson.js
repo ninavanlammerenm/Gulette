@@ -387,12 +387,14 @@ function rMC_nl(ex,body){
     <div class="type-pill">🎯 Wat betekent dit?</div>
     <div class="hz-card hz-card-compact">
       <span class="hz-script">${w.hz}</span>
+      <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
       <span class="hz-dutch">${w.tr||''}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}</div>`;
+  speakHz(w.hz);
 }
 
 function rMC_hz(ex,body){
@@ -620,7 +622,8 @@ function chkMC(btn,chosen,correct,hz,tr){
     const requeued=requeueWrong(hz);
     trackWrong(hz,correct,tr);
     const _tip1=_getWordTip(hz);
-    showFB(false,_encourageMsg(),_tip1?`💡 ${_tip1}`:`${hz} = ${correct}${requeued?' · 🔁 Komt later terug':''}`,hz);
+    const _smart1=getSmartHint(hz);
+    showFB(false,_encourageMsg(),_smart1||(_tip1?`💡 ${_tip1}`:`${hz} = ${correct}${requeued?' · 🔁 Komt later terug':''}`),hz);
     updMastery(hz,false);
   }
 }
@@ -646,9 +649,11 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     });
     const requeued=requeueWrong(correct);
     trackWrong(correct,nl,tr);
+    trackConfusion(correct, chosen);
     const _tip2=_getWordTip(correct);
+    const _smart=getSmartHint(correct);
     const _pron=tr?` · ${tr}`:'';
-    showFB(false,_encourageMsg(),_tip2?`💡 ${_tip2}`:`Juist: ${correct}${_pron}${requeued?' · 🔁 Komt later terug':''}`,correct);
+    showFB(false,_encourageMsg(),_smart||(_tip2?`💡 ${_tip2}`:`Juist: ${correct}${_pron}${requeued?' · 🔁 Komt later terug':''}`),correct);
     updMastery(correct,false);
   }
 }
@@ -659,7 +664,15 @@ function showFB(ok,title,hint,hzText){
   document.getElementById('fb-ico').textContent=ok?'🎀':'🐰';
   document.getElementById('fb-ttl').textContent=title;
   document.getElementById('fb-sub').textContent=hint;
-  document.getElementById('fb-hz').textContent=hzText||'';
+  const hzEl=document.getElementById('fb-hz');
+  if(hzText){
+    const voc=S.vocab[hzText];
+    const tr=voc&&voc.tr?` — ${voc.tr}`:'';
+    hzEl.textContent=hzText+tr;
+    speakHz(hzText);
+  } else {
+    hzEl.textContent='';
+  }
   WAITING=true;
 }
 function hideFB(){clearTimeout(_autoAdvanceTimeout);clearTimeout(_introTimeout);document.getElementById('fb-bar').className='fb-bar hide';WAITING=false;}
@@ -812,6 +825,8 @@ function rListen(ex,body){
       <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:16px">Wat betekent dit woord?</p>
       <div class="hz-card hz-card-compact">
         <span class="hz-script">${w.hz}</span>
+        <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
+        <span class="hz-dutch">${w.tr||''}</span>
       </div>
       <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
         <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr||''}">

@@ -16,9 +16,10 @@
 <body>
 <div id="app">
 
-<!-- CONFETTI & TOAST -->
+<!-- CONFETTI & TOAST & OFFLINE -->
 <div id="cfwrap"></div>
 <div id="toast"></div>
+<div id="offline-bar" style="display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--app-max-w);background:#FEF3C7;color:#92400e;font-size:12px;font-weight:800;text-align:center;padding:6px 12px;z-index:999;border-bottom:1.5px solid rgba(217,119,6,.3)">📡 Offline — je kunt gewoon verder leren!</div>
 
 <!-- ═══════════════════ ONBOARDING ═══════════════════ -->
 <div id="screen-onboarding" class="screen">
@@ -47,7 +48,7 @@
     <div class="ob-label">🔤 Uitspraakweergave</div>
     <div class="goal-grid">
       <button class="goal-opt sel" id="ob-mode-tap" onclick="selLearnMode(this,'tap')">👁 Tap om te zien<br><small>Verborgen — tik om te onthullen</small></button>
-      <button class="goal-opt" id="ob-mode-hide" onclick="selLearnMode(this,'hide')">🙈 Volledig verbergen<br><small>Geen uitsprakehulp</small></button>
+      <button class="goal-opt" id="ob-mode-hide" onclick="selLearnMode(this,'hide')">🙈 Volledig verbergen<br><small>Geen uitspraakhulp</small></button>
     </div>
     <div class="ob-mode-hint" id="ob-mode-hint">Uitspraak is verborgen — je kunt hem zien door erop te tikken.</div>
   </div>
@@ -96,6 +97,15 @@
     <div class="rb-arr">›</div>
   </div>
 
+  <div class="ovh-banner" id="speed-banner" style="display:none;background:linear-gradient(135deg,#FEE2E2,#FECACA);border-color:rgba(239,68,68,.25)" onclick="startSpeedRound()">
+    <div class="rb-ico">⚡</div>
+    <div class="rb-txt">
+      <h3 style="color:var(--ink)">Snelheidsronde</h3>
+      <p id="speed-banner-txt" style="color:var(--ink-m)">60 seconden — zoveel mogelijk goed!</p>
+    </div>
+    <div class="rb-arr" style="color:#dc2626">›</div>
+  </div>
+
   <div class="ovh-banner" id="weak-banner" style="display:none;background:linear-gradient(135deg,#FFF5D6,#FFE8C8);border-color:rgba(255,190,61,.35)" onclick="startWeakWordsDrill()">
     <div class="rb-ico">⚠️</div>
     <div class="rb-txt">
@@ -103,6 +113,15 @@
       <p id="weak-banner-txt" style="color:var(--ink-m)">...</p>
     </div>
     <div class="rb-arr" style="color:var(--gold-d)">›</div>
+  </div>
+
+  <div class="ovh-banner" id="confusion-banner" style="display:none;background:linear-gradient(135deg,#EDE9FE,#DDD6FE);border-color:rgba(139,92,246,.25)" onclick="startConfusionDrill()">
+    <div class="rb-ico">🔀</div>
+    <div class="rb-txt">
+      <h3 style="color:var(--ink)">Verwarrende woorden</h3>
+      <p id="confusion-banner-txt" style="color:var(--ink-m)">...</p>
+    </div>
+    <div class="rb-arr" style="color:#7c3aed">›</div>
   </div>
 
   <div class="dagwoord-card" id="dagwoord-card" style="display:none">
@@ -179,6 +198,7 @@
       <button class="fc" onclick="filterW('learning',this)">Leren</button>
       <button class="fc" onclick="filterW('mastered',this)">Beheerst</button>
       <button class="fc" onclick="filterW('fouten',this)">❌ Fouten</button>
+      <button class="fc" onclick="filterW('pinned',this)">★ Favorieten</button>
     </div>
   </div>
   <div class="w-list" id="w-list"></div>
@@ -203,6 +223,11 @@
   </div>
   <div class="achvs-sec">
     <div class="achvs-title">⚙️ Instellingen</div>
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <button id="darkmode-btn" onclick="toggleDarkMode()" class="prof-btn prof-btn-blue" style="flex:1">
+        🌙 Dark mode: UIT
+      </button>
+    </div>
     <div style="font-size:12px;font-weight:800;color:var(--ink-m);margin-bottom:6px">🔤 Uitspraak</div>
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <button id="roman-btn-tap" onclick="setRomanMode('tap')" class="prof-roman-btn" style="flex:1">
@@ -262,6 +287,7 @@
         <h2>📖 Grammatica</h2>
         <p id="gram-sub">Alle taalregels op een rij</p>
       </div>
+      <button class="btn-quiz" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)" onclick="openVerbDrill()">🔄 Vervoegen</button>
     </div>
   </div>
   <div id="grammar-library-list" style="padding:0 16px 16px"></div>
@@ -315,6 +341,22 @@
   </div>
 </div>
 
+<!-- ═══════════════════ NIVEAUTOETS ═══════════════════ -->
+<div class="ovh-overlay" id="test-overlay">
+  <div class="ovh-topbar">
+    <button class="btn-x" onclick="closeTest()">✕</button>
+    <div class="qt-prog-track"><div class="qt-prog-fill" id="test-prog" style="width:0%"></div></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="ovh-timer" id="test-timer" style="font-size:16px;margin:0;display:inline">--:--</div>
+      <div class="ovh-counter" id="test-counter"></div>
+    </div>
+  </div>
+  <div class="ovh-setup" id="test-setup"></div>
+  <div class="ovh-quiz" id="test-quiz" style="display:none">
+    <div class="ovh-body" id="test-body"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════ QUICK TEST ═══════════════════ -->
 <div class="qt-overlay" id="qt-overlay">
   <div class="qt-inner">
@@ -328,12 +370,13 @@
 </div>
 
 <!-- Scripts: data → audio → state → ui → lesson → app (boot) -->
-<script src="data.js"></script>
-<script src="audio.js"></script>
-<script src="state.js"></script>
-<script src="ui.js"></script>
-<script src="lesson.js"></script>
-<script src="quiz.js"></script>
-<script src="app.js"></script>
+<script defer src="data.js"></script>
+<script defer src="audio.js"></script>
+<script defer src="state.js"></script>
+<script defer src="ui.js"></script>
+<script defer src="lesson.js"></script>
+<script defer src="quiz.js"></script>
+<script defer src="test.js"></script>
+<script defer src="app.js"></script>
 </body>
 </html>

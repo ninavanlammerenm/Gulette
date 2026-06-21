@@ -69,7 +69,8 @@ function startApp(){
 // HOME
 // ══════════════════════════════════════════════════════
 function renderHome(){
-  document.getElementById('hdr-name').innerHTML='Salam, <em>'+S.name+'</em> 👋';
+  const _n=document.createElement('span');_n.textContent=S.name;
+  document.getElementById('hdr-name').innerHTML='Salam, <em>'+_n.innerHTML+'</em> 👋';
   document.getElementById('chip-streak').textContent=S.streak;
   document.getElementById('chip-xp').textContent=S.xp;
   const shields=S.shields||0;
@@ -129,7 +130,28 @@ function renderHome(){
     }
   }
 
+  // Speed round banner
+  const speedBanner=document.getElementById('speed-banner');
+  if(speedBanner){
+    speedBanner.style.display=total>=8?'flex':'none';
+    if(S.speedBest) document.getElementById('speed-banner-txt').textContent=`60 sec — record: ${S.speedBest} woorden!`;
+  }
+
+  // Confusion pairs banner
+  const confPairs=getConfusedPairs(3);
+  const confBanner=document.getElementById('confusion-banner');
+  if(confBanner){
+    if(confPairs.length>=1){
+      confBanner.style.display='flex';
+      const top=confPairs.slice(0,2).map(p=>`${p.w1} ↔ ${p.w2}`).join(', ');
+      document.getElementById('confusion-banner-txt').textContent=`${confPairs.length} paar${confPairs.length===1?'':'en'} — bijv. ${top}`;
+    } else {
+      confBanner.style.display='none';
+    }
+  }
+
   renderDagwoord();
+  if(typeof renderTestBanner==='function') renderTestBanner();
 
   // Chapters / lesson path
   const cw=document.getElementById('chapters-wrap');
@@ -198,6 +220,34 @@ function startWeakWordsDrill(){
   openOvhDirect(wordList);
 }
 
+function findLessonForWord(hz){
+  for(const ch of CHAPTERS)
+    for(const l of ch.lessons)
+      if((l.words||[]).some(w=>w.hz===hz)) return l.id;
+  return null;
+}
+
+function togglePin(hz){
+  if(!S.vocab[hz])return;
+  S.vocab[hz].pinned=!S.vocab[hz].pinned;
+  save();
+  renderVocab();
+}
+
+function startConfusionDrill(){
+  const pairs=getConfusedPairs(2);
+  if(pairs.length<1){showToast('Nog geen verwarrende woordenparen gedetecteerd!');return;}
+  const wordList=[];
+  pairs.slice(0,10).forEach(p=>{
+    if(S.vocab[p.w1]) wordList.push({hz:p.w1,v:S.vocab[p.w1],dir:'hz_nl'});
+    if(S.vocab[p.w2]) wordList.push({hz:p.w2,v:S.vocab[p.w2],dir:'hz_nl'});
+    if(S.vocab[p.w1]) wordList.push({hz:p.w1,v:S.vocab[p.w1],dir:'nl_hz'});
+    if(S.vocab[p.w2]) wordList.push({hz:p.w2,v:S.vocab[p.w2],dir:'nl_hz'});
+  });
+  if(wordList.length<4){showToast('Te weinig woorden voor een oefening');return;}
+  openOvhDirect(wordList.slice(0,20));
+}
+
 function renderVocab(){
   const search=(document.getElementById('vocab-search')?.value||'').toLowerCase().trim();
   const ents=Object.entries(S.vocab);
@@ -207,6 +257,7 @@ function renderVocab(){
   else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.mastery||0)>=3);
   else if(wFilter==='due')      list=ents.filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
   else if(wFilter==='fouten')   list=ents.filter(([,v])=>(v.errors||0)>=1).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0));
+  else if(wFilter==='pinned')   list=ents.filter(([,v])=>v.pinned);
 
   if(search) list=list.filter(([hz,v])=>
     hz.includes(search)||
@@ -235,6 +286,7 @@ function renderVocab(){
     const accent=due&&m<2?'var(--rose-d)':m>=4?'var(--mint)':m>=2?'var(--lav)':'var(--gold)';
     // markeer lange klanken (dubbele klinkers) in de uitspraak
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
+    const pinned=v.pinned?'★':'☆';
     return `<div class="wc" data-hz="${hz}" style="border-left:4px solid ${accent}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
@@ -242,6 +294,8 @@ function renderVocab(){
         <div class="wc-nl">${v.nl||''}</div>
         <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
       </div>
+      <button class="spk-btn wc-spk" onclick="event.stopPropagation();speakHz('${hz}')">🔊</button>
+      <button class="wc-pin" onclick="event.stopPropagation();togglePin('${hz}')">${pinned}</button>
       <div class="m-pips">${pips}</div>
     </div>`;
   }).join('');
@@ -295,21 +349,25 @@ function renderQT(){
     <div class="type-pill">⚡ Vraag ${_qtIdx+1} van ${_qtWords.length}</div>
     <div class="hz-card" style="margin-bottom:20px">
       <span class="hz-script">${hz}</span>
-      <span class="hz-latin">${v.tr||''}</span>
+      <button class="spk-btn" onclick="speakHz('${hz}')">🔊</button>
+      <span class="hz-dutch">${v.tr||''}</span>
     </div>
     <div class="choices">${_qtChoices.map((c,i)=>`
       <button class="ch-btn" onclick="answerQT(this,${i})">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}</div>`;
+  speakHz(hz);
 }
 
 function answerQT(btn,idx){
   const chosen=_qtChoices[idx];
+  const [hz]=_qtWords[_qtIdx];
   const correct=_qtWords[_qtIdx][1].nl;
   document.querySelectorAll('#qt-body .ch-btn').forEach(b=>b.disabled=true);
   if(chosen===correct){
     btn.classList.add('ok');_qtScore++;
     sfxCorrect();
+    speakHz(hz);
     setTimeout(()=>{_qtIdx++;renderQT();},700);
   }else{
     btn.classList.add('ng');
@@ -317,6 +375,7 @@ function answerQT(btn,idx){
       if(_qtChoices[i]===correct)b.classList.add('ok');
     });
     sfxWrong();
+    speakHz(hz);
     setTimeout(()=>{_qtIdx++;renderQT();},1200);
   }
 }
@@ -371,7 +430,8 @@ function renderProfile(){
   document.getElementById('p-name').textContent=S.name;
   const lvl=getLevel(S.xp);
   const titles=['Beginner 🌱','Leerling 📖','Gevorderd 🌸','Expert 💎','Meester ✨','Hazaragi-liefhebber 🏔️'];
-  document.getElementById('p-lvl').textContent=`Level ${lvl} · ${titles[Math.min(lvl-1,5)]}`;
+  const cefrBadge = S.testResults ? Object.entries(S.testResults).filter(([,r])=>r.passed).map(([l])=>l).pop() : null;
+  document.getElementById('p-lvl').textContent=`Level ${lvl} · ${titles[Math.min(lvl-1,5)]}${cefrBadge?' · 🎓 '+cefrBadge:''}`;
   document.getElementById('p-xp').textContent=S.xp;
   document.getElementById('p-str').textContent=S.streak;
   document.getElementById('p-wds').textContent=Object.keys(S.vocab).length;
@@ -382,6 +442,7 @@ function renderProfile(){
   updateNotifBtn();
   updateRomanBtn();
   updateSoundBtn();
+  updateDarkModeBtn();
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
@@ -481,6 +542,25 @@ function updateRomanBtn(){
   tap.style.color = '';
   hide.style.background = '';
   hide.style.color = '';
+}
+
+function toggleDarkMode(){
+  S.darkMode=!S.darkMode;
+  save();
+  applyDarkMode();
+  updateDarkModeBtn();
+}
+
+function applyDarkMode(){
+  document.body.classList.toggle('dark-mode', !!S.darkMode);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', S.darkMode?'#1a1a2e':'#FF6B9D');
+}
+
+function updateDarkModeBtn(){
+  const btn=document.getElementById('darkmode-btn');
+  if(!btn)return;
+  const on=!!S.darkMode;
+  btn.textContent=on?'☀️ Dark mode: AAN':'🌙 Dark mode: UIT';
 }
 
 function toggleSound(){
@@ -628,6 +708,7 @@ function showWordDetail(hz){
     <div class="modal-drag"></div>
     <div class="wd-card">
       <div class="wd-hz">${hz}</div>
+      <button class="spk-btn" style="margin:4px auto" onclick="speakHz('${hz}')">🔊</button>
       <div class="wd-tr">${v.tr||''}</div>
       <div class="wd-nl">= ${v.nl}</div>
     </div>
@@ -647,11 +728,19 @@ function showWordDetail(hz){
     </div>
     <div style="display:flex;gap:8px;margin-top:4px">
       <button class="btn-check" style="position:static;flex:1" id="wd-drill">⚡ Oefen nu</button>
+      <button class="btn-check" style="position:static;flex:1;background:linear-gradient(135deg,var(--lav-l),var(--lav));color:var(--ink)" id="wd-lesson">📖 Les</button>
       <button class="btn-check" style="position:static;flex:1;background:var(--ink-xl);color:var(--ink)" id="wd-close">Sluiten</button>
-    </div>`;
+    </div>
+    <button class="spk-btn" style="margin-top:8px;width:100%;border-radius:var(--r-xs);height:auto;padding:10px;font-size:13px;font-family:'Nunito',sans-serif;font-weight:800" onclick="speakHz('${hz}',true)">🐢 Langzaam afspelen</button>`;
   bg.appendChild(modal);
   bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
   modal.querySelector('#wd-close').addEventListener('click',()=>bg.remove());
+  modal.querySelector('#wd-lesson').addEventListener('click',()=>{
+    bg.remove();
+    const lesId=findLessonForWord(hz);
+    if(lesId){startLesson(lesId);}
+    else showToast('Woord niet gevonden in een les');
+  });
   modal.querySelector('#wd-drill').addEventListener('click',()=>{
     bg.remove();
     openOvhDirect([{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
@@ -663,6 +752,97 @@ function showWordDetail(hz){
 function showToast(msg){
   const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+// ══════════════════════════════════════════════════════
+// WERKWOORD-VERVOEGER
+// ══════════════════════════════════════════════════════
+const VERBS=[
+  {inf:'رفتن', tr:'raftan', nl:'gaan', stem:'ر', forms:['می‌رم','می‌ری','می‌ره','می‌ریم','می‌رین','می‌رن']},
+  {inf:'خوردن', tr:'khordan', nl:'eten', stem:'خور', forms:['می‌خورم','می‌خوری','می‌خوره','می‌خوریم','می‌خورین','می‌خورن']},
+  {inf:'آمدن', tr:'aamadan', nl:'komen', stem:'آ', forms:['میایم','میایی','میایه','میاییم','میایین','میاین']},
+  {inf:'دیدن', tr:'didan', nl:'zien', stem:'بین', forms:['می‌بینم','می‌بینی','می‌بینه','می‌بینیم','می‌بینین','می‌بینن']},
+  {inf:'گفتن', tr:'goftan', nl:'zeggen', stem:'گ', forms:['می‌گم','می‌گی','می‌گه','می‌گیم','می‌گین','می‌گن']},
+  {inf:'کدن', tr:'kadan', nl:'doen/maken', stem:'کن', forms:['می‌کنم','می‌کنی','می‌کنه','می‌کنیم','می‌کنین','می‌کنن']},
+  {inf:'بودن', tr:'budan', nl:'zijn', stem:'باش', forms:['استم','استی','اس','استیم','استین','استن']},
+  {inf:'داشتن', tr:'daashtan', nl:'hebben', stem:'دار', forms:['دارم','داری','داره','داریم','دارین','دارن']},
+  {inf:'خواستن', tr:'khaastan', nl:'willen', stem:'خوا', forms:['می‌خوایم','می‌خوایی','می‌خوایه','می‌خواییم','می‌خوایین','می‌خواین']},
+  {inf:'فامیدن', tr:'famidan', nl:'begrijpen', stem:'فام', forms:['می‌فامم','می‌فامی','می‌فامه','می‌فامیم','می‌فامین','می‌فامن']},
+  {inf:'تانستن', tr:'taanestan', nl:'kunnen', stem:'تان', forms:['می‌تانم','می‌تانی','می‌تانه','می‌تانیم','می‌تانین','می‌تانن']},
+  {inf:'دونستن', tr:'donestan', nl:'weten', stem:'دون', forms:['می‌دونم','می‌دونی','می‌دونه','می‌دونیم','می‌دونین','می‌دونن']},
+];
+const VERB_PERSONS=['ik (ma)','jij (tu)','hij/zij (oo)','wij (mo)','jullie (shoma)','zij mv (ana)'];
+
+function openVerbDrill(){
+  document.getElementById('ovh-overlay').classList.add('open');
+  document.getElementById('ovh-setup').style.display='none';
+  document.getElementById('ovh-quiz').style.display='flex';
+  _verbIdx=0;_verbScore=0;_verbTotal=12;
+  renderVerbQ();
+}
+let _verbIdx=0,_verbScore=0,_verbTotal=12;
+
+function renderVerbQ(){
+  if(_verbIdx>=_verbTotal){renderVerbResult();return;}
+  const verb=VERBS[Math.floor(Math.random()*VERBS.length)];
+  const personIdx=Math.floor(Math.random()*6);
+  const correct=verb.forms[personIdx];
+  const dists=shuffle(VERBS.filter(v=>v.inf!==verb.inf)).slice(0,2).map(v=>v.forms[personIdx]);
+  const wrongPerson=verb.forms[(personIdx+Math.ceil(Math.random()*5))%6];
+  const choices=shuffle([correct,...dists,wrongPerson]).slice(0,4);
+  const ltrs=['A','B','C','D'];
+
+  const body=document.getElementById('ovh-body');
+  document.getElementById('ovh-prog').style.width=Math.round(_verbIdx/_verbTotal*100)+'%';
+  document.getElementById('ovh-counter').textContent=`${_verbIdx+1}/${_verbTotal}`;
+  body.innerHTML=`
+    <div class="type-pill">🔄 Werkwoord vervoegen</div>
+    <div style="background:linear-gradient(135deg,var(--rose-xl),#FFF8F9);border:2px solid var(--rose-l);border-radius:var(--r);padding:18px;text-align:center;margin-bottom:16px">
+      <div style="font-family:'Noto Naskh Arabic',serif;font-size:28px;color:var(--ink);direction:rtl;margin-bottom:4px">${verb.inf}</div>
+      <div style="font-size:14px;font-weight:800;color:var(--rose);font-style:italic">${verb.tr} — ${verb.nl}</div>
+    </div>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">
+      Hoe zeg je "<strong>${verb.nl}</strong>" voor <strong>${VERB_PERSONS[personIdx]}</strong>?
+    </p>
+    <div class="choices">${choices.map((c,i)=>`
+      <button class="ch-btn ch-rtl" onclick="answerVerb(this,'${c}','${correct}','${verb.inf}')">
+        <span class="ch-ltr">${ltrs[i]}</span>${c}
+      </button>`).join('')}</div>`;
+}
+
+function answerVerb(btn,chosen,correct,inf){
+  document.querySelectorAll('#ovh-body .ch-btn').forEach(b=>b.disabled=true);
+  if(chosen===correct){
+    btn.classList.add('ok');_verbScore++;sfxCorrect();
+  } else {
+    btn.classList.add('ng');sfxWrong();
+    document.querySelectorAll('#ovh-body .ch-btn').forEach(b=>{
+      if(b.textContent.trim()===correct) b.classList.add('ok');
+    });
+  }
+  speakHz(correct);
+  setTimeout(()=>{_verbIdx++;renderVerbQ();}, chosen===correct?700:1300);
+}
+
+function renderVerbResult(){
+  const pct=Math.round(_verbScore/_verbTotal*100);
+  const xp=Math.round(_verbScore*3);
+  if(xp>0){S.xp+=xp;logXP(xp);save();}
+  const body=document.getElementById('ovh-body');
+  document.getElementById('ovh-prog').style.width='100%';
+  document.getElementById('ovh-counter').textContent='Klaar!';
+  body.innerHTML=`
+    <div class="ovh-result">
+      <div class="ovh-res-emoji">${pct>=80?'🌟':pct>=50?'🌸':'💪'}</div>
+      <div class="ovh-res-score">${_verbScore}<span>/${_verbTotal}</span></div>
+      <div class="ovh-res-pct">${pct}% correct</div>
+      <div class="ovh-res-msg">${pct>=80?'Goed vervoegd!':'Blijf oefenen met werkwoorden!'}</div>
+      ${xp>0?`<div style="font-size:14px;font-weight:900;color:var(--rose-d);margin:6px 0">⭐ +${xp} XP</div>`:''}
+      <div class="ovh-res-btns">
+        <button class="btn-check" style="position:static" onclick="openVerbDrill()">🔄 Opnieuw</button>
+        <button class="btn-check" style="position:static;background:var(--ink)" onclick="closeOvhoring()">Klaar ✓</button>
+      </div>
+    </div>`;
 }
 
 // ══════════════════════════════════════════════════════

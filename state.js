@@ -51,33 +51,79 @@ function logXP(amount){
 function updMastery(hz, ok){
   if(!S.vocab[hz])return;
   const v=S.vocab[hz];
-  // Initialiseer SM-2 velden als ze nog niet bestaan
   if(!v.ease) v.ease=2.5;
   if(v.consec===undefined) v.consec=0;
 
   if(ok){
     v.mastery=Math.min(5,(v.mastery||0)+1);
     v.consec++;
-    // Ease factor groeit langzaam bij herhaalde correcte antwoorden
     v.ease=Math.min(3.2, v.ease+0.05);
-    // Basisintervals in dagen per mastery-niveau
     const base=[1,3,7,14,30];
     let d=base[Math.min(v.mastery-1,4)];
-    // Na 3+ opeenvolgende successen: stretch het interval met ease factor
     if(v.consec>=3) d=Math.round(d*v.ease);
     v.nr=new Date(Date.now()+Math.max(1,d)*86400000).toISOString();
   } else {
     const prev=v.mastery||0;
     v.mastery=Math.max(0,prev-1);
     v.consec=0;
-    // Ease factor daalt bij fouten
     v.ease=Math.max(1.3, v.ease-0.2);
     v.errors=(v.errors||0)+1;
-    // Laag mastery: 10 minuten herhaling. Hoger mastery: 1 uur.
     const delay=prev<=1 ? 10*60*1000 : 60*60*1000;
     v.nr=new Date(Date.now()+delay).toISOString();
   }
   save();
+}
+
+// ══════════════════════════════════════════════════════
+// VERWARRINGS-DETECTIE
+// Track welke woorden de gebruiker door elkaar haalt
+// ══════════════════════════════════════════════════════
+function trackConfusion(targetHz, chosenHz){
+  if(!targetHz||!chosenHz||targetHz===chosenHz)return;
+  if(!S.confusions) S.confusions={};
+  const key=targetHz<chosenHz?targetHz+'|'+chosenHz:chosenHz+'|'+targetHz;
+  S.confusions[key]=(S.confusions[key]||0)+1;
+  save();
+}
+
+function getConfusedPairs(minCount){
+  if(!S.confusions) return [];
+  return Object.entries(S.confusions)
+    .filter(([,c])=>c>=(minCount||3))
+    .sort(([,a],[,b])=>b-a)
+    .map(([key,count])=>{
+      const [w1,w2]=key.split('|');
+      return {w1, w2, count, v1:S.vocab[w1], v2:S.vocab[w2]};
+    })
+    .filter(p=>p.v1&&p.v2);
+}
+
+// ══════════════════════════════════════════════════════
+// EZELSBRUGGETJES — automatisch genereren bij 3+ fouten
+// ══════════════════════════════════════════════════════
+function getSmartHint(hz){
+  const v=S.vocab[hz];
+  if(!v||!v.tr) return null;
+  if((v.errors||0)<3) return null;
+
+  // Zoek gelijkende woorden die verwarring veroorzaken
+  const confused = getConfusedPairs(2).filter(p=>p.w1===hz||p.w2===hz);
+  if(confused.length>0){
+    const pair=confused[0];
+    const other=pair.w1===hz?pair.w2:pair.w1;
+    const otherV=S.vocab[other];
+    if(otherV){
+      return `Let op: "${hz}" (${v.tr}) = ${v.nl} ≠ "${other}" (${otherV.tr}) = ${otherV.nl}`;
+    }
+  }
+
+  // Anders: focus op een opvallend kenmerk
+  const tr=v.tr;
+  if(tr.includes('aa')) return `Denk aan de lange "aa"-klank in "${tr}" → ${v.nl}`;
+  if(tr.includes('kh')) return `De "kh" in "${tr}" = keelklank (G) → ${v.nl}`;
+  if(tr.includes('sh')) return `"sh" in "${tr}" = sj-klank → ${v.nl}`;
+  if(hz.length<=3) return `Kort woord! "${hz}" (${tr}) = ${v.nl}`;
+  return `${v.errors}x fout — focus: "${tr}" = ${v.nl}`;
 }
 
 // ══════════════════════════════════════════════════════
