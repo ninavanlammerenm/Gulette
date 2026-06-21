@@ -55,6 +55,8 @@ const CHAPTERS=[
         {hz:'سلام، خوبی؟',tr:'salaam, khobi?',nl:'Hallo, hoe gaat het?'},
         {hz:'تشکر، خوبم',tr:'tashakor, khobom',nl:'Dank je, ik ben goed'},
         {hz:'نام‌م گل اَس',tr:'naamam gol as',nl:'Mijn naam is Gol',tip:'Hazaragi: "اَس" = is (niet "است")'},
+        {hz:'ببخشید، خوب نیستم',tr:'bebakhshid, khob nistom',nl:'Sorry, ik voel me niet goed'},
+        {hz:'خدا خیرت بده، تشکر',tr:'khuda khayret bada, tashakor',nl:'God vergelde het je, bedankt'},
       ]
     },
 
@@ -81,6 +83,8 @@ const CHAPTERS=[
         {hz:'صبح بخیر، خوش آمدید!',tr:'sobh bakhair, khosh aamadid!',nl:'Goedemorgen, welkom!'},
         {hz:'بفرمایین، چای بیارم؟',tr:'befarmaayin, chaay biyaarom?',nl:'Kom binnen, zal ik thee brengen?'},
         {hz:'مشکلی نیس، باز می‌بینیم',tr:'moshkeli nis, baaz me-binim',nl:'Geen probleem, tot ziens'},
+        {hz:'مراقب باش، شب بخیر',tr:'muraaqeb baash, shab bakhair',nl:'Pas op jezelf, goedenacht'},
+        {hz:'زود باش، دیر شده',tr:'zud baash, der shoda',nl:'Schiet op, het is laat geworden'},
       ]
     },
 
@@ -152,6 +156,8 @@ const CHAPTERS=[
         {hz:'مادرم خیلی مهربان اَس',tr:'maadaram khaili mehrabaan as',nl:'Mijn moeder is erg lief'},
         {hz:'برارم ده سال داره',tr:'baraaram da saal daara',nl:'Mijn broer is tien jaar',tip:'"داره" = heeft (Hazaragi)'},
         {hz:'باواکلانم قصه می‌گفت',tr:'baawakalanam qessa megoft',nl:'Mijn opa vertelde verhalen'},
+        {hz:'خواهرم دَ مکتب درس می‌خوانه',tr:'khwaahoram da maktab dars mi-khwaana',nl:'Mijn zus studeert op school'},
+        {hz:'خانواده مو کلان اَس',tr:'khaanwaada-ye mo kalaan as',nl:'Onze familie is groot'},
       ]
     },
 
@@ -217,6 +223,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'صد گوسفند داریم',tr:'sad gosfand darim',nl:'We hebben honderd schapen'},
         {hz:'اسپش خیلی تند می‌ره',tr:'aspash khaili tond meré',nl:'Zijn paard gaat heel snel'},
+        {hz:'پشک شیر می‌خوره',tr:'pishak shir mi-khora',nl:'De kat drinkt melk'},
+        {hz:'مرغ‌ها هر روز تخم میته',tr:'murghaa har rooz tukhm meeta',nl:'De kippen leggen elke dag eieren'},
+        {hz:'سگ دَ دروازه پهره می‌ده',tr:'sag da darwaaza pahra mi-da',nl:'De hond bewaakt bij de deur'},
       ]
     },
   ]},
@@ -391,6 +400,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'یارم، دلم تنگته برات',tr:'yaaram, delam tangta baraat',nl:'Lieverd, ik mis je zo'},
         {hz:'از وختی دیدمت دلم لرزید',tr:'az wakhti didomat delam larzid',nl:'Vanaf het moment dat ik je zag beefde mijn hart'},
+        {hz:'تو خوش‌تیپ‌ترین آدم استی',tr:'tu khosh-tip-tareen aadam asti',nl:'Jij bent de knapste persoon'},
+        {hz:'هر شب رویای ته می‌بینم',tr:'har shab royaay-e ta mi-binom',nl:'Elke nacht droom ik van jou'},
+        {hz:'نمی‌تانم بی‌تو زندگی کنم',tr:'na-mi-taanom bi-tu zendagi konom',nl:'Ik kan niet zonder jou leven'},
       ]
     },
   ]},
@@ -666,6 +678,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'کوه‌های هزاراجات خیلی قشنگ اَس',tr:'koohhaaye hazaarajaat khaili qashanq as',nl:'De bergen van Hazarajat zijn heel mooi'},
         {hz:'شب ستاره‌ها قشنگن',tr:'shab setaarahaa qashanghan',nl:'\'s Nachts zijn de sterren mooi'},
+        {hz:'دریا از کوه جاری اَس',tr:'daryaa az kooh jaari as',nl:'De rivier stroomt van de berg'},
+        {hz:'درخت‌ها دَ بهار گل می‌ده',tr:'darakhthaa da bahaar gol mi-da',nl:'De bomen bloeien in de lente'},
+        {hz:'زمین بعد از بارون سبز می‌شه',tr:'zameen ba\'d az baaroon sabz mi-sha',nl:'De grond wordt groen na de regen'},
       ]
     },
   ]},
@@ -1552,6 +1567,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'ناشتا نان و چای می‌خورم',tr:'naashta naan o chaay mi-khorom',nl:'\'s Ochtends eet ik brood en thee'},
         {hz:'گوشت و برنج غذای خوب اَس',tr:'gosht o berenj ghazaa-ye khob as',nl:'Vlees en rijst is goed eten'},
+        {hz:'تخم‌مرغ و نان ناشتای خوب اَس',tr:'tukhm-morgh o naan naashta-ye khob as',nl:'Eieren en brood is een goed ontbijt'},
+        {hz:'سبزی تازه از بازار خریدم',tr:'sabzee taaza az baazaar kharidom',nl:'Ik kocht verse groente van de markt'},
+        {hz:'میوه شیرین دَ تابستان خوب اَس',tr:'mewa sheerin da taabestaan khob as',nl:'Zoet fruit is lekker in de zomer'},
       ]
     },
     { id:'food_taste', title:'Smaken & Smaak', icon:'👅', xp:18, words:[
@@ -1567,6 +1585,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'این قورمه خوش‌مزه اَس',tr:'een qorma khosh-maza as',nl:'Deze stoofschotel is lekker'},
         {hz:'چای گرم می‌خوام',tr:'chaay garm mi-khom',nl:'Ik wil warme thee'},
+        {hz:'مرچ تند اَس، آو بیار',tr:'morch tond as, aaw biyaar',nl:'De peper is pittig, breng water'},
+        {hz:'این شیرینی خیلی شیرین اَس',tr:'een sheerini khaili sheerin as',nl:'Dit snoep is heel zoet'},
+        {hz:'ترشی ترش اَس ولی خوش‌مزه',tr:'torshi torsh as wali khosh-maza',nl:'De augurk is zuur maar lekker'},
       ]
     },
     { id:'food_cooking', title:'Koken & Keuken', icon:'👨‍🍳', xp:18, words:[
@@ -1582,6 +1603,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'مادرم خوب آشپزی می‌کنه',tr:'maadaram khob aashpazee me-kona',nl:'Mijn moeder kookt goed'},
         {hz:'گوشت را سرختم، بعد سبزی افزودم',tr:'gosht ra sorkhtom, ba\'d sabzee afzodom',nl:'Ik bakte het vlees, daarna voegde ik groente toe'},
+        {hz:'کارد ره بیار، سبزی ره می‌بُرم',tr:'kaard ra biyaar, sabzee ra mi-burom',nl:'Breng het mes, ik snijd de groente'},
+        {hz:'دیگ ره سر بار بان',tr:'deeg ra sar-e baar baan',nl:'Zet de pan op het vuur'},
+        {hz:'بشقاب‌ها ره بشور لطفاً',tr:'boshqaabhaa ra boshor lotfan',nl:'Was de borden af alsjeblieft'},
       ]
     },
   ]},
@@ -1600,6 +1624,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'وختی خانواده‌ام را می‌بینم خوشحالم',tr:'wakhti khaanawaadam ra mi-binom khoshhaalom',nl:'Als ik mijn familie zie ben ik blij'},
         {hz:'دلتنگ وطنم استم',tr:'deltang-e watnam astom',nl:'Ik mis mijn thuisland'},
+        {hz:'چرا غمگینی؟ چی شده؟',tr:'cheraa ghamgeeni? chi shoda?',nl:'Waarom ben je verdrietig? Wat is er gebeurd?'},
+        {hz:'نترس، مو باتو استیم',tr:'natars, mo baatu astim',nl:'Wees niet bang, wij zijn bij je'},
+        {hz:'آرام باش، مشکلی نیس',tr:'aaraam baash, moshkeli nis',nl:'Wees rustig, er is geen probleem'},
       ]
     },
     { id:'emotions_thinking', title:'Gedachten & Ideeën', icon:'🧠', xp:18, words:[
@@ -1615,6 +1642,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'فکر می‌کنم خوبَم',tr:'fekr mi-konom khobam',nl:'Ik denk dat het correct is'},
         {hz:'امیدم اَس که موفق می‌شم',tr:'omidam as ke mawaffaq mi-shom',nl:'Ik hoop dat ik succesvol word'},
+        {hz:'یاد گرفتن هزارگی مهم اَس',tr:'yaad gereftan hazaaragi mohem as',nl:'Hazaragi leren is belangrijk'},
+        {hz:'خیالم خوب نیس امروز',tr:'khayaalom khob nis emrooz',nl:'Ik voel me niet goed vandaag'},
+        {hz:'باور دارم که موفق می‌شی',tr:'baawer daarem ke mawaffaq mi-shi',nl:'Ik geloof dat jij succesvol wordt'},
       ]
     },
     { id:'emotions_character', title:'Karakter & Relaties', icon:'🤝', xp:18, words:[
@@ -1630,6 +1660,9 @@ const CHAPTERS=[
       sentences:[
         {hz:'دوستم مهربان و امین اَس',tr:'dostam mehrabaan o amin as',nl:'Mijn vriend is vriendelijk en eerlijk'},
         {hz:'احترام مهم‌ترین چیز اَس',tr:'ehtaraam mohimtareen cheez as',nl:'Respect is het belangrijkste ding'},
+        {hz:'شجاع باش، نترس',tr:'shojaa\' baash, natars',nl:'Wees dapper, wees niet bang'},
+        {hz:'اعتماد خپکی ساخته می‌شه',tr:'e\'temaad khapki saakhta mi-sha',nl:'Vertrouwen wordt langzaam opgebouwd'},
+        {hz:'دشمن ره دوست ساختن بهتر اَس',tr:'doshman ra dost saakhtan behtar as',nl:'Van een vijand een vriend maken is beter'},
       ]
     },
   ]},
