@@ -165,11 +165,9 @@ function renderHome(){
       row.className='l-row';
       const cls=done?'d':(locked?'lk':'u');
       const nodeClick=locked?`showToast('Voltooi eerst de vorige les! 🔒')`:`startLesson('${lesson.id}')`;
-      const nodeIcon=locked?'🔒':lesson.icon;
-      const allMastered=(lesson.words||[]).length>0&&(lesson.words||[]).every(w=>(S.vocab[w.hz]?.mastery||0)>=3);
+      const nodeIcon=done?'✓':(locked?'🔒':lesson.icon);
       row.innerHTML=`<div class="l-node ${cls}" onclick="${nodeClick}" data-id="${lesson.id}">
-        <div class="n-ico">${nodeIcon}</div>
-        ${done&&allMastered?'<div class="n-done-badge">✓</div>':''}
+        <div class="n-ico" ${done?'style="color:#fff;font-size:24px;font-weight:900"':''}>${nodeIcon}</div>
       </div>`;
       path.appendChild(row);
     });

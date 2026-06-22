@@ -4,9 +4,10 @@
 .screen, .l-body, .ovh-body, .qt-body, .modal, .w-list, .filter-row { touch-action: pan-y; }
 
 :root{
-  /* 🌷 Fawn · Wheat · Misty Rose · Salmon Pink · Bole */
+  /* 🌷 Salmon · Misty Rose · Fawn · Wheat · Bole */
   --rose:#F28AA1;--rose-d:#D4607A;--rose-l:#FAD6D3;--rose-xl:#FDEEF1;
-  --peach:#E7AE75;--gold:#E7AE75;--gold-d:#C4883A;--gold-l:#F6DFB3;
+  --gold:#E7AE75;--gold-d:#C4883A;--gold-l:#F6DFB3;
+  --peach:#E7AE75;
   --mint:#8AAF7A;--mint-l:#EEF5E8;
   --lav:#C4937E;--lav-l:#F0E8E4;--lav-xl:#F5F0EE;
   --cream:#FFFAF7;--white:#FFFFFF;
@@ -68,9 +69,9 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 
 /* ── HOME ── */
 #screen-home{background:var(--cream);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
-.hdr{padding:max(env(safe-area-inset-top,20px),20px) 22px 18px;background:#FFFAF7;position:relative;flex-shrink:0}
-.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
-.hdr-greet{font-size:10.5px;color:var(--ink-l);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:4px}
+.hdr{padding:max(env(safe-area-inset-top,20px),20px) 22px 10px;background:var(--cream);position:relative;flex-shrink:0}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.hdr-greet{font-size:10px;color:var(--ink-l);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:3px}
 .hdr-name{font-size:26px;font-weight:900;color:var(--ink);letter-spacing:-.3px}
 .hdr-name em{color:var(--rose);font-style:normal}
 .hdr-chips{display:flex;gap:7px}
@@ -82,13 +83,13 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .xp-meta{display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:var(--ink-l)}
 
 /* Week dots */
-.week-row{display:flex;align-items:center;gap:10px;margin-top:14px}
-.week-dots{display:flex;gap:5px;align-items:center}
-.week-dot{width:28px;height:8px;border-radius:50px;background:rgba(131,81,62,.15);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.week-row{display:flex;align-items:center;gap:8px;margin-top:10px}
+.week-dots{display:flex;gap:4px;align-items:center}
+.week-dot{width:18px;height:6px;border-radius:50px;background:var(--ink-xl);transition:all .3s ease}
 .week-dot.active{background:#F28AA1}
-.week-dot.today{background:#F28AA1;box-shadow:0 0 0 3px rgba(242,138,161,.3)}
-.week-dot.active.today{background:#F28AA1;box-shadow:0 0 0 3px rgba(242,138,161,.3)}
-.week-lbl{font-size:11px;font-weight:800;color:var(--ink-l);white-space:nowrap}
+.week-dot.today{background:#F28AA1}
+.week-dot.active.today{background:#F28AA1}
+.week-lbl{font-size:10px;font-weight:800;color:var(--ink-l);white-space:nowrap}
 
 /* Review hero card */
 .review-hero{
@@ -133,14 +134,13 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .l-row{display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .l-row.lft,.l-row.rgt{justify-content:center;padding:0}
 .l-node{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease;position:relative;border:3px solid transparent;flex-shrink:0;user-select:none}
-.l-node.u{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:rgba(255,255,255,.5)}
+.l-node.u{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:rgba(255,255,255,.4);box-shadow:none}
 .l-node.u:active{transform:scale(.95)}
-.l-node.d{background:linear-gradient(145deg,#E7AE75,#C4883A);border-color:rgba(255,255,255,.5)}
+.l-node.d{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:rgba(255,255,255,.4);box-shadow:none}
 .l-node.lk{background:var(--rose-l);border:1.5px dashed #D4B8A8;opacity:.6}
 .n-ico{font-size:20px;pointer-events:none}
 .n-lbl{display:none}
 .l-node.lk .n-lbl{display:none}
-.n-done-badge{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;box-shadow:var(--sh-xs)}
 .n-dur{display:none}
 .l-node.lk .n-dur{display:none}
 .n-more{display:none}
@@ -549,16 +549,6 @@ body.hide-roman .pron-latin{ display:none!important }
 .res-wrong-hz{font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;color:var(--ink);min-width:56px;text-align:right;flex-shrink:0;line-height:1.5}
 .res-wrong-nl{font-size:14px;font-weight:800;color:var(--ink-m)}
 
-/* ── DAGWOORD CARD ── */
-.dagwoord-card{background:var(--rose-xl);border:1px solid var(--ink-xl);border-radius:var(--r);padding:20px 22px;box-shadow:var(--sh);margin:0 20px 16px;cursor:default}
-.dw-head{font-size:11px;font-weight:900;color:var(--rose-d);text-transform:uppercase;letter-spacing:.7px;margin-bottom:12px}
-.dw-hz{font-family:'Noto Naskh Arabic',serif;font-size:38px;direction:rtl;color:var(--ink);text-align:center;line-height:1.5;margin-bottom:4px}
-.dw-tr{font-size:15px;font-weight:800;color:var(--rose-d);text-align:center;letter-spacing:.3px;font-family:'Nunito',sans-serif;margin-bottom:2px}
-.dw-nl{font-size:16px;font-weight:900;color:var(--ink);text-align:center;margin-bottom:8px}
-.dw-tip{background:rgba(231,174,117,.1);border-radius:var(--r-xs);padding:8px 12px;font-size:12px;font-weight:700;color:var(--gold-d);margin-top:4px;line-height:1.5}
-.dw-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--ink-xl)}
-.dw-pips{gap:5px;flex-direction:row}
-.dw-due{font-size:11px;font-weight:900;color:var(--rose);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 
 /* ── COMBO INDICATOR ── */
 .combo-indicator{position:fixed;top:88px;left:50%;transform:translateX(-50%) translateY(-12px);background:linear-gradient(145deg,#F28AA1,#D4607A);color:#fff;padding:7px 18px;border-radius:50px;font-size:15px;font-weight:900;font-family:'Nunito',sans-serif;box-shadow:var(--sh-m);opacity:0;pointer-events:none;white-space:nowrap;z-index:200;transition:opacity .25s,transform .25s}
