@@ -22,8 +22,14 @@ function openOvhSetup(){
   document.getElementById('ovh-total-lbl').textContent=total+' woorden beschikbaar';
   document.querySelectorAll('.ovh-size-btn').forEach(b=>{
     const n=+b.dataset.n;
-    b.disabled=total<n;
-    b.querySelector('.ovh-size-sub').textContent=total<n?'Niet genoeg':b.dataset.sub;
+    const isAll=n>=9999;
+    b.disabled=!isAll&&total<n;
+    if(isAll){
+      b.querySelector('.ovh-size-n').textContent=total;
+      b.querySelector('.ovh-size-sub').textContent=b.dataset.sub;
+    } else {
+      b.querySelector('.ovh-size-sub').textContent=total<n?'Niet genoeg':b.dataset.sub;
+    }
   });
   _ovhTimer=false;
   const tb=document.getElementById('ovh-timer-toggle');
@@ -111,19 +117,20 @@ function renderOvh(){
 // INTRODUCTIEKAART — nieuw woord tonen vóór de vraag
 // ══════════════════════════════════════════════════════
 function _renderOvhIntro(hz,v){
+  const _esc=s=>(s||'').replace(/'/g,"\\'");
   document.getElementById('ovh-body').innerHTML=`
     <div class="type-pill">📖 Nieuw woord</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Leer dit woord:</p>
     <div class="hz-card">
       <span class="hz-script">${hz}</span>
-      <button class="spk-btn" onclick="speakHz('${hz}')">🔊</button>
+      <button class="spk-btn" onclick="speakHz('${hz}','${_esc(v.tr)}')">🔊</button>
       <span class="hz-dutch">${v.tr||''}</span>
       <span class="hz-nl">= ${v.nl}</span>
     </div>
     ${v.tr?`<div class="word-tip-card">🔊 <strong>${v.tr}</strong></div>`:''}
     <div style="flex:1"></div>
     <button class="btn-check" style="position:static" id="ovh-intro-next">Ik heb het! Stel me een vraag 🌸</button>`;
-  speakHz(hz);
+  speakHz(hz,v.tr);
   document.getElementById('ovh-intro-next').addEventListener('click',()=>{
     // Zet naar MC voor hetzelfde woord (hz→nl voor nieuw woord)
     _ovhWords[_ovhIdx]={..._ovhWords[_ovhIdx], qtype:'mc', dir:'hz_nl'};
@@ -137,12 +144,13 @@ function _renderOvhIntro(hz,v){
 function _renderOvhMC(hz,v,dir){
   const allWords=Object.entries(S.vocab);
   const ltrs=['A','B','C','D'];
+  const _esc=s=>(s||'').replace(/'/g,"\\'");
   let prompt, correct;
 
   if(dir==='hz_nl'){
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
     prompt=`<div class="ovh-hz-word">${hz}</div>
-             <button class="spk-btn" onclick="speakHz('${hz}')" style="margin:4px auto">🔊</button>
+             <button class="spk-btn" onclick="speakHz('${hz}','${_esc(v.tr)}')" style="margin:4px auto">🔊</button>
              <div class="ovh-dutch">${v.tr||''}</div>
              <div class="ovh-latin">${pron}</div>`;
     correct=v.nl;
@@ -226,7 +234,7 @@ function _renderOvhType(hz,v){
     if(normAr(val)===normAr(hz)){
       inp.classList.add('ok');
       sfxCorrect();
-      speakHz(hz);
+      speakHz(hz,v.tr);
       if(!peeked){
         _ovhScore++;
         updMastery(hz, true);
@@ -235,7 +243,7 @@ function _renderOvhType(hz,v){
       setTimeout(()=>{_ovhIdx++;renderOvh();}, 600);
     } else {
       sfxWrong();
-      speakHz(hz);
+      speakHz(hz,v.tr);
       if(!peeked) _registerOvhError(hz,v,val,hz,'nl_hz');
       inp.classList.add('ng');
       setTimeout(()=>{ inp.classList.remove('ng'); showAnswer(); }, 600);
@@ -294,7 +302,7 @@ function answerOvh(btn, idx){
     _registerOvhError(hz,v,chosen,correct,dir);
     sfxWrong();
   }
-  speakHz(hz);
+  speakHz(hz,v.tr);
   save();
   setTimeout(()=>{_ovhIdx++;renderOvh();}, ok?700:1300);
 }
@@ -335,7 +343,7 @@ function dontKnowOvh(){
   document.querySelector('.wik-btn')?.remove();
   _registerOvhError(hz,v,'—',correct,dir);
   sfxWrong();
-  speakHz(hz);
+  speakHz(hz,v.tr);
   setTimeout(()=>{_ovhIdx++;renderOvh();},1200);
 }
 
@@ -440,7 +448,6 @@ function renderSpeedQ(){
       <button class="ch-btn" onclick="answerSpeed(this,'${c.replace(/'/g,"\\'")}','${v.nl.replace(/'/g,"\\'")}','${hz}')">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}</div>`;
-  speakHz(hz);
 }
 
 function answerSpeed(btn,chosen,correct,hz){

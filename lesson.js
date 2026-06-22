@@ -290,11 +290,12 @@ function rIntro(ex,body){
       <div class="hz-roman" style="font-size:13px;font-weight:800;color:var(--rose-d);font-style:italic;margin:3px 0 2px">${s.tr||''}</div>
       <div class="ctx-mini-nl">"${s.nl}"</div>
     </div>`:'';
+  const _esc=s=>(s||'').replace(/'/g,"\\'");
   body.innerHTML=`
     <div class="type-pill">📖 Nieuw woord</div>
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
-      <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
+      <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
       <span class="hz-nl">= ${w.nl}</span>
       <span class="hz-dutch intro-fade-in-1">${w.tr||''}</span>
     </div>
@@ -304,7 +305,7 @@ function rIntro(ex,body){
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,nr:null};
   save();
-  speakHz(w.hz);
+  speakHz(w.hz,w.tr);
 }
 
 function rPhaseBreak(ex,body){
@@ -383,18 +384,18 @@ function getPronTip(hz){
 function rMC_nl(ex,body){
   const w=ex.w;
   const ltrs=['A','B','C','D'];
+  const _esc=s=>(s||'').replace(/'/g,"\\'");
   body.innerHTML=`
     <div class="type-pill">🎯 Wat betekent dit?</div>
     <div class="hz-card hz-card-compact">
       <span class="hz-script">${w.hz}</span>
-      <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
+      <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
       <span class="hz-dutch">${w.tr||''}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}</div>`;
-  speakHz(w.hz);
 }
 
 function rMC_hz(ex,body){
@@ -547,7 +548,7 @@ function rType(ex,body){
       inp.blur();
       inp.classList.add('ok');
       sfxCorrect();
-      setTimeout(()=>speakHz(correct),350);
+      setTimeout(()=>speakHz(correct,w.tr),350);
       if(retryMode){
         CC++;LXP+=5;
         sparkles();
@@ -672,9 +673,9 @@ function showFB(ok,title,hint,hzText){
   const hzEl=document.getElementById('fb-hz');
   if(hzText){
     const voc=S.vocab[hzText];
-    const tr=voc&&voc.tr?` — ${voc.tr}`:'';
-    hzEl.textContent=hzText+tr;
-    speakHz(hzText);
+    const tr=voc&&voc.tr?voc.tr:'';
+    hzEl.textContent=hzText+(tr?' — '+tr:'');
+    speakHz(hzText,tr);
   } else {
     hzEl.textContent='';
   }
@@ -791,13 +792,19 @@ function finishLesson(){
   document.getElementById('r-str').textContent='🔥'+S.streak;
   document.getElementById('res-sub').textContent=CL.title+' voltooid! 🌸';
   const _pm=['Foutloos! 🌟','Perfect! ✨','Absoluut geweldig! 🌟','Meesterlijk! 💎','Ongeslagen! 🏆'];
-  const _gm=['Geweldig! 🌸','Goed gedaan! 💪','Super! 🎀','Fantastisch! 🐇','Zo trots! 🌺'];
+  const _gm=['Zo trots! 🍀','Super gedaan! 💪','Fantastisch! 🐇','Heel goed! 🌺'];
+  const _ok=['Goed gedaan! 🌸','Niet slecht! 💪','Blijf oefenen! 🎀'];
   const mascotEl=document.querySelector('.res-mas');
+  const total=CC+WC;
+  const pct=total>0?Math.round(CC/total*100):0;
   if(WC===0&&CC>0){
     document.querySelector('.res-ttl').textContent=_pm[~~(Math.random()*_pm.length)];
     if(mascotEl) mascotEl.textContent='🌟';
-  }else{
+  }else if(pct>=80){
     document.querySelector('.res-ttl').textContent=_gm[~~(Math.random()*_gm.length)];
+    if(mascotEl) mascotEl.textContent='🎉';
+  }else{
+    document.querySelector('.res-ttl').textContent=_ok[~~(Math.random()*_ok.length)];
     if(mascotEl) mascotEl.textContent='🐇';
   }
 
@@ -833,6 +840,7 @@ function retryLessonWrong(){
 function rListen(ex,body){
   const w=ex.w;
   const ltrs=['A','B','C','D'];
+  const _esc=s=>(s||'').replace(/'/g,"\\'");
 
   // Geen Hazaragi-stem op dit apparaat? Lees het woord i.p.v. luisteren.
   if(S.skipListening===true){
@@ -841,7 +849,7 @@ function rListen(ex,body){
       <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:16px">Wat betekent dit woord?</p>
       <div class="hz-card hz-card-compact">
         <span class="hz-script">${w.hz}</span>
-        <button class="spk-btn" onclick="speakHz('${w.hz}')">🔊</button>
+        <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
         <span class="hz-dutch">${w.tr||''}</span>
       </div>
       <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
@@ -854,12 +862,12 @@ function rListen(ex,body){
   body.innerHTML=`
     <div class="type-pill">🎧 Luisteroefening</div>
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Hazaragi woord hoor je?</p>
-    <button class="listen-play-btn" onclick="speakHz('${w.hz}')">🔊 Speel opnieuw af</button>
+    <button class="listen-play-btn" onclick="speakHz('${w.hz}','${(w.tr||'').replace(/'/g,"\\'")}')">🔊 Speel opnieuw af</button>
     <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr||''}">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}</div>`;
-  speakHz(w.hz);
+  speakHz(w.hz,w.tr);
 }
 
 function showGrammarHint(){

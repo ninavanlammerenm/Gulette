@@ -4258,7 +4258,7 @@ const CHAPTERS=[
 
     { id:'eten_basis', title:'Eten & Drinken Basis', sub:'Naan, chai, gosht, kachaalo...', icon:'🍽️', xp:30,
       pronTips:['آ','خ'],
-      grammar:'Eten in Hazaragi: خوردن = eten. Ik eet: می‌خورم (mi-khorom).\n\nHongerig: گشنه (goshna) — NIET گرسنه (Iraans!)\nWater: آو (ow) — NIET آب (Iraans!)\n\nAanbieden: بخور! = eet! · چای بخور = drink thee\nVragen: گشنه هستی؟ = ben je hongerig?',
+      grammar:'Eten in Hazaragi: خوردن = eten. Ik eet: می‌خورم (mi-khorom).\n\nHongerig: گشنه (goshna) — NIET گرسنه (Iraans!)\nWater: آو (aaw) — NIET آب (Iraans!)\n\nAanbieden: بخور! = eet! · چای بخور = drink thee\nVragen: گشنه هستی؟ = ben je hongerig?',
       words:[
         {hz:'نان',tr:'naan',nl:'Brood / Eten',tip:'"نان خوردی؟" = heb je gegeten? (letterlijk: heb je brood gegeten?)'},
         {hz:'چای',tr:'chaay',nl:'Thee',tip:'Hazara drinken altijd chai — groen of zwart met kardemon'},
@@ -4274,7 +4274,7 @@ const CHAPTERS=[
         {hz:'گشنه',tr:'goshna',nl:'Hongerig',tip:'Hazaragi: گشنه (goshna) — NIET گرسنه (Iraans)'},
       ],
       sentences:[
-        {hz:'چای می‌خوری؟ یا آو؟',tr:'chaay mi-khori? ya ow?',nl:'Wil je thee? Of water?'},
+        {hz:'چای می‌خوری؟ یا آو؟',tr:'chaay mi-khori? ya aaw?',nl:'Wil je thee? Of water?'},
         {hz:'نان با ماست خوردم، خوش‌مزه بود',tr:'naan baa maast khordom, khosh-maza bood',nl:'Ik at brood met yoghurt, het was lekker'},
         {hz:'مرغ پختم، بیا بخور',tr:'murgh pakhtom, bia bakhoor',nl:'Ik heb kip gemaakt, kom eten'},
       ]

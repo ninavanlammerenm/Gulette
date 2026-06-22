@@ -58,12 +58,32 @@ function sfxFinish(){
 // Bij fout: spreek romanisering uit met standaardstem.
 // ══════════════════════════════════════════════════════
 
-function speakHz(text, slow){
+const TTS_CORRECTIONS={'آو':'او','آش':'اش'};
+const TTS_FALLBACK_WORDS=new Set(['آو','آش']);
+
+function speakHz(text, trOrSlow, slow){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
   window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(text);
+  let tr=null;
+  if(typeof trOrSlow==='string') tr=trOrSlow;
+  else if(typeof trOrSlow==='boolean') slow=trOrSlow;
+
+  if(TTS_FALLBACK_WORDS.has(text)&&tr){
+    const utt=new SpeechSynthesisUtterance(tr);
+    utt.lang='nl';
+    utt.rate=slow?0.5:0.82;
+    utt.pitch=1.0;
+    window.speechSynthesis.speak(utt);
+    return;
+  }
+
+  let corrected=text;
+  for(const [from,to] of Object.entries(TTS_CORRECTIONS)){
+    corrected=corrected.split(from).join(to);
+  }
+  const utt=new SpeechSynthesisUtterance(corrected);
   utt.lang='fa';
-  utt.rate=slow ? 0.5 : 0.78;
+  utt.rate=slow?0.5:0.78;
   utt.pitch=1.0;
   window.speechSynthesis.speak(utt);
 }

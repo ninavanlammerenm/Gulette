@@ -294,7 +294,7 @@ function renderVocab(){
         <div class="wc-nl">${v.nl||''}</div>
         <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
       </div>
-      <button class="spk-btn wc-spk" onclick="event.stopPropagation();speakHz('${hz}')">🔊</button>
+      <button class="spk-btn wc-spk" onclick="event.stopPropagation();speakHz('${hz}','${(v.tr||'').replace(/'/g,"\\'")}')">🔊</button>
       <button class="wc-pin" onclick="event.stopPropagation();togglePin('${hz}')">${pinned}</button>
       <div class="m-pips">${pips}</div>
     </div>`;
@@ -345,29 +345,29 @@ function renderQT(){
   const distractors=shuffle(allWords.filter(([h])=>h!==hz));
   _qtChoices=shuffle([v.nl,...distractors.slice(0,3).map(([,d])=>d.nl)]);
   const ltrs=['A','B','C','D'];
+  const _esc=s=>(s||'').replace(/'/g,"\\'");
   document.getElementById('qt-body').innerHTML=`
     <div class="type-pill">⚡ Vraag ${_qtIdx+1} van ${_qtWords.length}</div>
     <div class="hz-card" style="margin-bottom:20px">
       <span class="hz-script">${hz}</span>
-      <button class="spk-btn" onclick="speakHz('${hz}')">🔊</button>
+      <button class="spk-btn" onclick="speakHz('${hz}','${_esc(v.tr)}')">🔊</button>
       <span class="hz-dutch">${v.tr||''}</span>
     </div>
     <div class="choices">${_qtChoices.map((c,i)=>`
       <button class="ch-btn" onclick="answerQT(this,${i})">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}</div>`;
-  speakHz(hz);
 }
 
 function answerQT(btn,idx){
   const chosen=_qtChoices[idx];
-  const [hz]=_qtWords[_qtIdx];
-  const correct=_qtWords[_qtIdx][1].nl;
+  const [hz,v]=_qtWords[_qtIdx];
+  const correct=v.nl;
   document.querySelectorAll('#qt-body .ch-btn').forEach(b=>b.disabled=true);
   if(chosen===correct){
     btn.classList.add('ok');_qtScore++;
     sfxCorrect();
-    speakHz(hz);
+    speakHz(hz,v.tr);
     setTimeout(()=>{_qtIdx++;renderQT();},700);
   }else{
     btn.classList.add('ng');
@@ -375,7 +375,7 @@ function answerQT(btn,idx){
       if(_qtChoices[i]===correct)b.classList.add('ok');
     });
     sfxWrong();
-    speakHz(hz);
+    speakHz(hz,v.tr);
     setTimeout(()=>{_qtIdx++;renderQT();},1200);
   }
 }
@@ -642,7 +642,7 @@ function renderDagwoord(){
   }
   el.style.display='block';
   document.getElementById('dw-body').innerHTML=`
-    <div class="dw-hz">${hz} <button class="spk-btn" style="font-size:14px;width:28px;height:28px;vertical-align:middle" onclick="speakHz('${hz}')">🔊</button></div>
+    <div class="dw-hz">${hz} <button class="spk-btn" style="font-size:14px;width:28px;height:28px;vertical-align:middle" onclick="speakHz('${hz}','${(v.tr||'').replace(/'/g,"\\'")}')">🔊</button></div>
     <div class="dw-tr">${v.tr||''}</div>
     <div class="dw-nl">= ${v.nl}</div>
     ${tip?`<div class="dw-tip">💡 ${tip}</div>`:''}`;
@@ -704,11 +704,12 @@ function showWordDetail(hz){
   bg.className='modal-bg';
   const modal=document.createElement('div');
   modal.className='modal';
+  const _esc=s=>(s||'').replace(/'/g,"\\'");
   modal.innerHTML=`
     <div class="modal-drag"></div>
     <div class="wd-card">
       <div class="wd-hz">${hz}</div>
-      <button class="spk-btn" style="margin:4px auto" onclick="speakHz('${hz}')">🔊</button>
+      <button class="spk-btn" style="margin:4px auto" onclick="speakHz('${hz}','${_esc(v.tr)}')">🔊</button>
       <div class="wd-tr">${v.tr||''}</div>
       <div class="wd-nl">= ${v.nl}</div>
     </div>
@@ -731,7 +732,7 @@ function showWordDetail(hz){
       <button class="btn-check" style="position:static;flex:1;background:linear-gradient(135deg,var(--lav-l),var(--lav));color:var(--ink)" id="wd-lesson">📖 Les</button>
       <button class="btn-check" style="position:static;flex:1;background:var(--ink-xl);color:var(--ink)" id="wd-close">Sluiten</button>
     </div>
-    <button class="spk-btn" style="margin-top:8px;width:100%;border-radius:var(--r-xs);height:auto;padding:10px;font-size:13px;font-family:'Nunito',sans-serif;font-weight:800" onclick="speakHz('${hz}',true)">🐢 Langzaam afspelen</button>`;
+    <button class="spk-btn" style="margin-top:8px;width:100%;border-radius:var(--r-xs);height:auto;padding:10px;font-size:13px;font-family:'Nunito',sans-serif;font-weight:800" onclick="speakHz('${hz}','${_esc(v.tr)}',true)">🐢 Langzaam afspelen</button>`;
   bg.appendChild(modal);
   bg.addEventListener('click',e=>{if(e.target===bg)bg.remove();});
   modal.querySelector('#wd-close').addEventListener('click',()=>bg.remove());
@@ -746,7 +747,7 @@ function showWordDetail(hz){
     openOvhDirect([{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
   });
   document.body.appendChild(bg);
-  speakHz(hz);
+  speakHz(hz,v.tr);
 }
 
 function showToast(msg){
