@@ -92,7 +92,7 @@ body{font-family:'Nunito',sans-serif;background:#E8D4CC;display:flex;justify-con
 .review-hero{
   display:flex;flex-direction:column;align-items:flex-start;
   margin:8px 18px 20px;
-  background:linear-gradient(135deg,#D4807E,#C46E6C,#AA5A58);
+  background:linear-gradient(150deg,#EC9C9D,#D4807E);
   border-radius:22px;
   padding:24px 24px 22px;
   cursor:pointer;
@@ -102,7 +102,7 @@ body{font-family:'Nunito',sans-serif;background:#E8D4CC;display:flex;justify-con
   overflow:hidden;
 }
 .review-hero:active{transform:scale(.98)}
-.review-hero.done{background:linear-gradient(135deg,#8E9A5A,#7A8848,#667438);box-shadow:0 8px 32px rgba(100,140,60,.18)}
+.review-hero.done{background:linear-gradient(150deg,#A8B878,#8E9A5A);box-shadow:0 8px 32px rgba(100,140,60,.18)}
 .rh-deco{position:absolute;bottom:20px;right:20px;font-size:56px;opacity:.2;pointer-events:none}
 .rh-title{font-size:11px;font-weight:900;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
 .rh-count{font-size:64px;font-weight:900;color:#fff;line-height:1;margin-bottom:2px}
@@ -132,9 +132,9 @@ body{font-family:'Nunito',sans-serif;background:#E8D4CC;display:flex;justify-con
 .l-row{display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .l-row.lft,.l-row.rgt{justify-content:center;padding:0}
 .l-node{width:48px;height:48px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;position:relative;border:3px solid transparent;flex-shrink:0;user-select:none}
-.l-node.u{background:linear-gradient(145deg,#EC9C9D,#D4807E);border-color:rgba(255,255,255,.5);box-shadow:0 3px 10px rgba(212,128,126,.25)}
+.l-node.u{background:#EC9C9D;border-color:rgba(255,255,255,.5);box-shadow:0 3px 10px rgba(212,128,126,.25)}
 .l-node.u:active{transform:scale(.88)}
-.l-node.d{background:linear-gradient(145deg,#B8C080,#8E9A5A);border-color:rgba(255,255,255,.5);box-shadow:0 3px 10px rgba(142,154,90,.22)}
+.l-node.d{background:#8E9A5A;border-color:rgba(255,255,255,.5);box-shadow:0 3px 10px rgba(142,154,90,.22)}
 .l-node.lk{background:transparent;border:2px dashed var(--rose-l);opacity:.4}
 .n-ico{font-size:20px;pointer-events:none}
 .n-lbl{display:none}
