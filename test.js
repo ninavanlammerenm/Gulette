@@ -213,7 +213,7 @@ function renderTestBanner(){
         <h3 style="color:var(--ink)">Niveautoets ${t.label}</h3>
         <p style="color:var(--ink-m)">Klaar om getoetst te worden! ${t.questions} vragen · ${t.timeMinutes} min</p>
       </div>
-      <div class="rb-arr" style="color:#7c3aed">›</div>`;
+      <div class="rb-arr" style="color:#F28AA1">›</div>`;
     banner.style.display = 'flex';
   } else if(cooldown){
     banner.className = 'ovh-banner';
@@ -281,7 +281,7 @@ function openTestSetup(level){
           Als je zakt moet je 3 dagen wachten voordat je het opnieuw mag proberen.
         </div>
       </div>
-      <button class="btn-check" style="position:static;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#6d28d9)" onclick="startCefrTest('${level}')">
+      <button class="btn-check" style="position:static;margin-top:8px;background:linear-gradient(135deg,#F28AA1,#6d28d9)" onclick="startCefrTest('${level}')">
         Start toets 🎓
       </button>
       <button class="btn-skip" style="margin-top:4px" onclick="closeTest()">Annuleren</button>
@@ -758,7 +758,7 @@ function finishTest(){
       <div style="font-size:14px;font-weight:900;color:#065f46">Niveau ${t.label} behaald!</div>
       <div style="font-size:12px;font-weight:700;color:#047857;margin-top:2px">Dit staat nu in je profiel.</div>
     </div>`:''}
-    <button class="btn-check" style="position:static;background:linear-gradient(135deg,#7c3aed,#6d28d9)" onclick="closeTest();goHome()">
+    <button class="btn-check" style="position:static;background:linear-gradient(135deg,#F28AA1,#6d28d9)" onclick="closeTest();goHome()">
       ${passed?'Terug naar huis 🌸':'Terug — blijf oefenen 💪'}
     </button>`;
 
