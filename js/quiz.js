@@ -50,17 +50,17 @@ function toggleOvhTimer(btn){
 // ══════════════════════════════════════════════════════
 // HELPERS — richting & type op basis van mastery
 // ══════════════════════════════════════════════════════
-function _ovhDir(mastery){
-  if(mastery<=1) return 'hz_nl';
-  if(mastery>=4) return Math.random()>0.35?'nl_hz':'hz_nl';
+function _ovhDir(lvl){
+  if(lvl<=2) return 'hz_nl';
+  if(lvl>=4) return Math.random()>0.35?'nl_hz':'hz_nl';
   return Math.random()>0.5?'hz_nl':'nl_hz';
 }
 
-function _ovhQtype(hz, mastery){
+function _ovhQtype(hz, lvl){
   if(hz.includes('↔')) return 'mc';
-  if(mastery===0)       return 'intro';
-  // mastery 1-2: 50% kans op typoefening — consistent met dagelijkse herhaling
-  if(mastery<=2&&Math.random()>0.5) return 'type';
+  if(lvl===1) return 'intro';
+  if(lvl>=3) return 'type';
+  if(lvl===2&&Math.random()>0.5) return 'type';
   return 'mc';
 }
 
@@ -83,10 +83,10 @@ function startOvhoring(n, wordList){
       const dA=!a.nr||new Date(a.nr)<=new Date()?0:1;
       const dB=!b.nr||new Date(b.nr)<=new Date()?0:1;
       if(dA!==dB)return dA-dB;
-      return (a.mastery||0)-(b.mastery||0);
+      return (a.masteryLevel||1)-(b.masteryLevel||1);
     });
     _ovhWords=shuffle(sorted.slice(0,pool)).map(([hz,v])=>{
-      const m=v.mastery||0;
+      const m=v.masteryLevel||1;
       return {hz, v, dir:_ovhDir(m), qtype:_ovhQtype(hz,m)};
     });
   }
@@ -226,7 +226,7 @@ function _renderOvhType(hz,v){
   if(_ovhTimer) _startOvhTimer(hz,v,hz,'nl_hz',15);
 
   hintBtn.addEventListener('click', ()=>{
-    if(!peeked) _registerOvhError(hz,v,'💡',hz,'nl_hz');
+    if(!peeked) _registerOvhError(hz,v,'💡',hz,'nl_hz','hint');
     showAnswer();
   });
 
@@ -241,13 +241,13 @@ function _renderOvhType(hz,v){
       if(!peeked){
         _ovhScore++;
       }
-      updMastery(hz, true);
+      updMastery(hz, true, 'type');
       save();
       setTimeout(()=>{_ovhIdx++;renderOvh();}, 600);
     } else {
       sfxWrong();
       speakHz(hz,v.tr);
-      if(!peeked) _registerOvhError(hz,v,val,hz,'nl_hz');
+      if(!peeked) _registerOvhError(hz,v,val,hz,'nl_hz','type');
       inp.classList.add('ng');
       setTimeout(()=>{ inp.classList.remove('ng'); showAnswer(); }, 600);
     }
@@ -296,13 +296,13 @@ function answerOvh(btn, idx){
     btn.classList.add('ok');
     _ovhScore++;
     sfxCorrect();
-    updMastery(hz, true);
+    updMastery(hz, true, 'mc');
   } else {
     btn.classList.add('ng');
     document.querySelectorAll('#ovh-body .ch-btn').forEach((b,i)=>{
       if(_ovhChoices[i]===correct) b.classList.add('ok');
     });
-    _registerOvhError(hz,v,chosen,correct,dir);
+    _registerOvhError(hz,v,chosen,correct,dir,'mc');
     sfxWrong();
   }
   speakHz(hz,v.tr);
@@ -313,11 +313,11 @@ function answerOvh(btn, idx){
 // ══════════════════════════════════════════════════════
 // FOUT REGISTREREN
 // ══════════════════════════════════════════════════════
-function _registerOvhError(hz,v,chosen,correct,dir){
-  if(!S.vocab[hz]) S.vocab[hz]={nl:v.nl,tr:v.tr||'',mastery:0,nr:null,errors:0};
+function _registerOvhError(hz,v,chosen,correct,dir,exType){
+  if(!S.vocab[hz]) S.vocab[hz]={nl:v.nl,tr:v.tr||'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   if(dir==='nl_hz' && chosen!=='—') trackConfusion(hz, chosen);
   S.vocab[hz].errors=(S.vocab[hz].errors||0)+1;
-  updMastery(hz, false);
+  updMastery(hz, false, exType||'mc');
   _ovhErrors.push({hz,v,chosen,correct,dir});
 }
 
@@ -460,11 +460,11 @@ function answerSpeed(btn,chosen,correct,hz){
     btn.classList.add('ok');
     _speedScore++;
     sfxCorrect();
-    updMastery(hz,true);
+    updMastery(hz,true,'mc');
   } else {
     btn.classList.add('ng');
     sfxWrong();
-    updMastery(hz,false);
+    updMastery(hz,false,'mc');
   }
   setTimeout(renderSpeedQ, chosen===correct?400:800);
 }

@@ -23,7 +23,7 @@ function toDutchPhonetic(tr){
 
 const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
-const isDue=v=>!v.nr||new Date(v.nr)<=new Date();
+const isDue=v=>(v.masteryLevel||1)<5&&(!v.nr||new Date(v.nr)<=new Date());
 
 // XP → level (exponentieel: level n kost 100n XP, totaal = 50·n·(n-1))
 function getLevel(xp){return Math.floor((1+Math.sqrt(1+(xp||0)/12.5))/2);}
@@ -36,9 +36,9 @@ function getLevelPct(xp){
 let sciIdx=0;
 
 // ══════════════════════════════════════════════════════
-// SPACED REPETITION — SM-2 variant met ease factor
-// Mastery 0–5, intervals groeien exponentieel bij consistent goed presteren.
-// Fout → consec reset, ease daalt, snelle herhaling (10 min of 1 uur).
+// SPACED REPETITION — 5-niveaus mastery systeem
+// 1=Gezien, 2=Herkend, 3=Begrijpt, 4=Beheerst, 5=Gemeisterd
+// MCQ/WB tellen alleen voor 1→2; typen is de weg naar 3-5.
 // ══════════════════════════════════════════════════════
 function logXP(amount){
   if(!amount||amount<=0)return;
@@ -48,29 +48,68 @@ function logXP(amount){
   save();
 }
 
-function updMastery(hz, ok){
+function _computeNaturalLevel(v){
+  const tc=v.typeCorrect||0;
+  const tl=v.typeLast5||[];
+  const mc=v.mcCorrect||0;
+  const fs=v.firstSeen?new Date(v.firstSeen):null;
+  const daysSeen=fs?((Date.now()-fs)/86400000):0;
+
+  if(tc>=5 && tl.length>=3 && tl.slice(-3).every(Boolean) && daysSeen>=7) return 5;
+  if(tc>=3 && tl.length>=3 && tl.filter(x=>!x).length<=1) return 4;
+  if(tc>=1) return 3;
+  if(mc>=2) return 2;
+  return 1;
+}
+
+function updMastery(hz, ok, exType){
   if(!S.vocab[hz])return;
   const v=S.vocab[hz];
+  if(!v.firstSeen) v.firstSeen=new Date().toISOString();
   if(!v.ease) v.ease=2.5;
   if(v.consec===undefined) v.consec=0;
 
+  const isType=exType==='type';
+  const isHint=exType==='hint';
+  const isMc=['mc','mc_nl','mc_hz','wb','listen','cloze','order'].includes(exType);
+
   if(ok){
-    v.mastery=Math.min(5,(v.mastery||0)+1);
     v.consec++;
-    v.ease=Math.min(3.2, v.ease+0.05);
-    const base=[1,3,7,14,30];
-    let d=base[Math.min(v.mastery-1,4)];
-    if(v.consec>=3) d=Math.round(d*v.ease);
-    v.nr=new Date(Date.now()+Math.max(1,d)*86400000).toISOString();
+    v.ease=Math.min(3.2,v.ease+0.05);
+    if(isType){
+      v.typeCorrect=(v.typeCorrect||0)+1;
+      v.typeLast5=[...(v.typeLast5||[]),true].slice(-5);
+    }
+    if(isMc) v.mcCorrect=(v.mcCorrect||0)+1;
+    const natural=_computeNaturalLevel(v);
+    v.masteryLevel=Math.max(v.masteryLevel||1,natural);
   } else {
-    const prev=v.mastery||0;
-    v.mastery=Math.max(0,prev-1);
     v.consec=0;
-    v.ease=Math.max(1.3, v.ease-0.2);
+    v.ease=Math.max(1.3,v.ease-0.2);
     v.errors=(v.errors||0)+1;
-    const delay=prev<=1 ? 10*60*1000 : 60*60*1000;
+    if(isType||isHint){
+      if(isType) v.typeLast5=[...(v.typeLast5||[]),false].slice(-5);
+      v.masteryLevel=Math.max(1,(v.masteryLevel||1)-1);
+    }
+    if(isMc){
+      const natural=_computeNaturalLevel(v);
+      v.masteryLevel=Math.min(v.masteryLevel||1,natural);
+    }
+  }
+
+  const lvl=v.masteryLevel||1;
+  if(ok){
+    const base=[0,0.007,1,3,14];
+    let d=base[Math.min(lvl-1,4)];
+    if(v.consec>=3) d=Math.round(d*v.ease);
+    v.nr=new Date(Date.now()+Math.max(0.007,d)*86400000).toISOString();
+  } else {
+    const delay=lvl<=2?10*60*1000:60*60*1000;
     v.nr=new Date(Date.now()+delay).toISOString();
   }
+
+  // compat: sync old field for any code still reading it
+  v.mastery=Math.max(0,lvl-1);
   save();
 }
 
@@ -167,21 +206,36 @@ function getMonday(d){
   return new Date(new Date(d).setDate(diff));
 }
 
+function migrateVocab(){
+  let changed=false;
+  Object.values(S.vocab).forEach(v=>{
+    if(v.masteryLevel!==undefined) return;
+    changed=true;
+    const old=v.mastery||0;
+    v.masteryLevel=Math.max(1,Math.min(5,old+1));
+    if(!v.firstSeen) v.firstSeen=new Date(Date.now()-30*86400000).toISOString();
+    if(!v.typeCorrect) v.typeCorrect=old>=2?old-1:0;
+    if(!v.typeLast5) v.typeLast5=v.typeCorrect>0?Array(Math.min(v.typeCorrect,5)).fill(true):[];
+    if(!v.mcCorrect) v.mcCorrect=old>=1?2:0;
+  });
+  if(changed) save();
+}
+
 function applyMasteryDecay(){
   const today=new Date().toISOString().slice(0,10);
   if(S.lastDecayCheck===today)return;
   S.lastDecayCheck=today;
   const now=new Date();
   Object.values(S.vocab).forEach(v=>{
-    if(!v.nr||v.mastery<=1)return;
+    if(!v.nr||(v.masteryLevel||1)<=1)return;
     const overdueDays=(now-new Date(v.nr))/86400000;
     if(overdueDays>14){
-      // Extra stap bij lang verwaarloosd (45+ dagen)
       const steps=overdueDays>45?2:1;
-      v.mastery=Math.max(0,v.mastery-steps);
+      v.masteryLevel=Math.max(1,(v.masteryLevel||1)-steps);
+      v.mastery=Math.max(0,v.masteryLevel-1);
       v.nr=now.toISOString();
     }
   });
-  save(); // altijd opslaan zodat lastDecayCheck gepersisteerd wordt
+  save();
 }
 

@@ -246,9 +246,9 @@ function renderVocab(){
   const ents=Object.entries(S.vocab);
   document.getElementById('rev-sub').textContent=ents.length+' woorden geleerd';
   let list=ents;
-  if(wFilter==='learning') list=ents.filter(([,v])=>(v.mastery||0)>0&&(v.mastery||0)<3);
-  else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.mastery||0)>=3);
-  else if(wFilter==='due')      list=ents.filter(([,v])=>!v.nr||new Date(v.nr)<=new Date());
+  if(wFilter==='learning') list=ents.filter(([,v])=>(v.masteryLevel||1)>=2&&(v.masteryLevel||1)<=3);
+  else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.masteryLevel||1)>=4);
+  else if(wFilter==='due')      list=ents.filter(([,v])=>isDue(v));
   else if(wFilter==='fouten')   list=ents.filter(([,v])=>(v.errors||0)>=1).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0));
   else if(wFilter==='pinned')   list=ents.filter(([,v])=>v.pinned);
 
@@ -263,7 +263,7 @@ function renderVocab(){
     const dueA=!a.nr||new Date(a.nr)<=new Date()?0:1;
     const dueB=!b.nr||new Date(b.nr)<=new Date()?0:1;
     if(dueA!==dueB)return dueA-dueB;
-    return (a.mastery||0)-(b.mastery||0);
+    return (a.masteryLevel||1)-(b.masteryLevel||1);
   });
 
   const el=document.getElementById('w-list');
@@ -280,11 +280,11 @@ function renderVocab(){
     return;
   }
   el.innerHTML=list.map(([hz,v])=>{
-    const m=Math.round(v.mastery||0);
+    const m=v.masteryLevel||1;
     const pips=masteryPips(m);
     const due=isDue(v);
     const nxt=v.nr?timeUntil(v.nr):'Nu';
-    const accent=due&&m<2?'#F28AA1':m>=4?'#83513E':m>=2?'#E7AE75':'#FAD6D3';
+    const accent=m>=5?'#83513E':m>=4?'#8AAF7A':m>=3?'#E7AE75':due?'#F28AA1':'#FAD6D3';
     // markeer lange klanken (dubbele klinkers) in de uitspraak
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
     const pinned=v.pinned?'★':'☆';
@@ -315,7 +315,7 @@ function startQuickTest(){
     const dueA=!a.nr||new Date(a.nr)<=new Date()?0:1;
     const dueB=!b.nr||new Date(b.nr)<=new Date()?0:1;
     if(dueA!==dueB)return dueA-dueB;
-    return (a.mastery||0)-(b.mastery||0);
+    return (a.masteryLevel||1)-(b.masteryLevel||1);
   });
   _qtWords=sorted.slice(0,10);
   _qtIdx=0;_qtScore=0;
@@ -390,7 +390,7 @@ function timeUntil(iso){
 }
 
 function masteryPips(m){
-  return [0,1,2,3,4].map(i=>`<div class="pip ${i<m?(m>=4?'gold':(m>=3?'green':'on')):''}"></div>`).join('');
+  return [1,2,3,4,5].map(i=>`<div class="pip ${i<=m?(m>=5?'gold':(m>=4?'green':'on')):''}"></div>`).join('');
 }
 
 // ══════════════════════════════════════════════════════
@@ -631,22 +631,23 @@ function renderDagwoord(){}
 function renderMasteryDistrib(){
   const el=document.getElementById('mastery-distrib');
   if(!el)return;
-  const counts=[0,0,0,0,0,0];
+  const counts=[0,0,0,0,0];
   let dueNow=0,dueTomorrow=0,dueWeek=0;
   const now=new Date();
   const tomorrow=new Date(now.getTime()+86400000);
   const inWeek=new Date(now.getTime()+7*86400000);
   Object.values(S.vocab).forEach(v=>{
-    counts[Math.min(v.mastery||0,5)]++;
-    if(!v.nr||new Date(v.nr)<=now) dueNow++;
-    else if(new Date(v.nr)<=tomorrow) dueTomorrow++;
-    else if(new Date(v.nr)<=inWeek) dueWeek++;
+    const lvl=Math.min(v.masteryLevel||1,5);
+    counts[lvl-1]++;
+    if(lvl<5&&(!v.nr||new Date(v.nr)<=now)) dueNow++;
+    else if(lvl<5&&v.nr&&new Date(v.nr)<=tomorrow) dueTomorrow++;
+    else if(lvl<5&&v.nr&&new Date(v.nr)<=inWeek) dueWeek++;
   });
   const total=counts.reduce((a,b)=>a+b,0);
   if(!total){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--ink-l);font-weight:700">Nog geen woorden geleerd 🌱</div>';return;}
   const max=Math.max(...counts,1);
-  const labels=['Nieuw','Basis','Leerling','Gevorderd','Expert','Meester'];
-  const colors=['#F0E8E4','#F6DFB3','#E7AE75','#F28AA1','#D4607A','#83513E'];
+  const labels=['Gezien','Herkend','Begrijpt','Beheerst','Gemeisterd'];
+  const colors=['#F0E8E4','#F6DFB3','#E7AE75','#8AAF7A','#83513E'];
   el.innerHTML=`
     <div class="mastery-bars">${counts.map((c,i)=>`
       <div class="mastery-bar-row">
@@ -668,8 +669,8 @@ function renderMasteryDistrib(){
 // ══════════════════════════════════════════════════════
 function showWordDetail(hz){
   const v=S.vocab[hz];if(!v)return;
-  const m=v.mastery||0;
-  const masteryNames=['Onbekend','Beginner','Leerling','Gevorderd','Expert','Meester'];
+  const m=v.masteryLevel||1;
+  const masteryNames=['','Gezien','Herkend','Begrijpt','Beheerst','Gemeisterd'];
   const due=isDue(v);
   const nxt=v.nr?timeUntil(v.nr):'Nu';
   const bg=document.createElement('div');
