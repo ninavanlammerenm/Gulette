@@ -124,27 +124,25 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 /* Home section title */
 .home-section-title{font-size:11px;font-weight:900;color:var(--ink-l);text-transform:uppercase;letter-spacing:1.5px;padding:4px 22px 12px}
 
-/* Lesson path — card style */
-.lessons-section{padding:0 18px}
-.ch-block{margin-bottom:12px;background:var(--white);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh);border:1px solid var(--ink-xl)}
-.ch-label{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:1.3px;color:var(--ink-l);margin-bottom:14px;padding-left:2px;display:flex;align-items:center;justify-content:space-between}
-.ch-prog{font-size:11px;font-weight:800;color:var(--rose-d);background:var(--rose-xl);border-radius:50px;padding:3px 10px;text-transform:none;letter-spacing:0}
-.l-path{display:flex;flex-direction:row;gap:8px;padding-top:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
-.l-path::-webkit-scrollbar{display:none}
-.l-row{display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.l-row.lft,.l-row.rgt{justify-content:center;padding:0}
-.l-node{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease;position:relative;border:3px solid transparent;flex-shrink:0;user-select:none}
-.l-node.u{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:rgba(255,255,255,.4);box-shadow:none}
-.l-node.u:active{transform:scale(.95)}
-.l-node.d{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:rgba(255,255,255,.4);box-shadow:none}
-.l-node.lk{background:var(--rose-l);border:1.5px dashed #D4B8A8;opacity:.6}
-.n-ico{font-size:20px;pointer-events:none}
-.n-lbl{display:none}
-.l-node.lk .n-lbl{display:none}
-.n-dur{display:none}
-.l-node.lk .n-dur{display:none}
-.n-more{display:none}
-.n-tooltip{display:none}
+/* Chapter cards */
+.lessons-section{padding:0}
+.ch-card{background:#fff;border-radius:18px;border:1px solid var(--ink-xl);padding:14px 16px;margin:0 14px 10px;box-shadow:0 2px 8px rgba(131,81,62,.06)}
+.ch-card-top{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ch-card-icon{font-size:15px}
+.ch-card-title{font-size:13px;font-weight:900;color:var(--ink);flex:1}
+.ch-card-badge{background:var(--rose-xl);border-radius:50px;padding:2px 8px;font-size:10px;font-weight:800;color:var(--rose-d)}
+.ch-lessons-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ch-lessons-row::-webkit-scrollbar{display:none}
+.les-card{flex-shrink:0;width:72px;background:var(--cream);border-radius:14px;border:1.5px solid var(--ink-xl);padding:8px 6px;text-align:center;position:relative;cursor:pointer;transition:transform .15s ease}
+.les-card:active{transform:scale(.95)}
+.les-card.done{background:var(--rose-xl);border-color:var(--rose-l)}
+.les-card.active{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:transparent;box-shadow:0 4px 14px rgba(242,138,161,.35)}
+.les-card.locked{opacity:.5;cursor:default}
+.les-check{position:absolute;top:4px;right:4px;width:14px;height:14px;background:var(--rose);border-radius:50%;font-size:8px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.les-icon{font-size:20px;margin-bottom:4px}
+.les-name{font-size:9px;font-weight:800;color:var(--ink-m);line-height:1.2}
+.les-card.active .les-name{color:rgba(255,255,255,.9)}
+.les-card.done .les-name{color:var(--rose-d)}
 
 /* ── LESSON ── */
 #screen-lesson{background:var(--cream);display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;}
@@ -566,11 +564,6 @@ body.hide-roman .pron-latin{ display:none!important }
 .mastery-due-n{font-size:22px;font-weight:900;color:var(--rose-d);line-height:1}
 .mastery-due-l{font-size:10px;font-weight:800;color:var(--ink-l);text-transform:uppercase;letter-spacing:.4px}
 
-/* ── CHAPTER REVIEW BUTTON ── */
-.ch-label-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
-.ch-label-txt{font-size:16px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap;letter-spacing:-.1px}
-.ch-rev-btn{background:var(--rose-xl);color:var(--rose-d);border:none;border-radius:50px;padding:5px 12px;font-size:12px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;flex-shrink:0;transition:all .18s}
-.ch-rev-btn:hover{background:var(--rose-l)}
 
 /* ── WORD DETAIL MODAL ── */
 .wd-card{background:var(--rose-xl);border-radius:var(--r-sm);padding:18px;text-align:center;margin-bottom:14px}
@@ -650,7 +643,6 @@ body.font-large .ovh-hz-word{font-size:58px!important}
 .wc{padding:16px}
 .wc-hz{font-size:34px}
 .gram-item-hdr{padding:16px}
-.l-node{width:72px;height:72px}
 .l-topbar{padding-top:max(calc(env(safe-area-inset-top,44px) + 8px),52px)}
 .ovh-sizes{max-width:100%}
 .ovh-size-btn{padding:14px 8px}
@@ -717,6 +709,6 @@ body.dark-mode .drill-card{background:#352820;border-color:#4A3028}
   .hz-script{font-size:50px}
   .choices{gap:11px}
   .ch-btn:hover:not(:disabled){transform:translateX(4px)}
-  .l-node:hover{transform:scale(1.08)}
+  .les-card:hover{transform:scale(1.03)}
   .wc:hover{transform:translateY(-1px);box-shadow:var(--sh-m)}
 }

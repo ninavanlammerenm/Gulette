@@ -139,40 +139,44 @@ function renderHome(){
       <div class="rh-btn">Kom later terug 🐇</div>`;
   }
 
-  // Chapters / lesson path — card layout
+  // Chapters — lesson cards
   const cw=document.getElementById('chapters-wrap');
   cw.innerHTML='';
   CHAPTERS.forEach((ch,ci)=>{
-    const block=document.createElement('div');
-    block.className='ch-block';
     const totalWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).length,0);
     const learnedWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).filter(w=>S.vocab[w.hz]).length,0);
-    const chProg=totalWords>0?`<span class="ch-prog">${learnedWords}/${totalWords}</span>`:'';
     const chIcon=ch.label.match(/\p{Emoji_Presentation}/u)?.[0]||'📖';
     const chTitle=ch.label.replace(/\p{Emoji_Presentation}/gu,'').trim();
-    const anyDone=ch.lessons.some(l=>S.done.includes(l.id));
-    const revBtn=anyDone?`<button class="ch-rev-btn" onclick="event.stopPropagation();startChapterReview('${ch.id}')">🔁</button>`:'';
-    block.innerHTML=`<div class="ch-label-row"><span class="ch-label-txt">${chIcon} H${ci+1} · ${chTitle} ${chProg}</span>${revBtn}</div>`;
-    const path=document.createElement('div');
-    path.className='l-path';
 
+    let lessonsHTML='';
+    let foundActive=false;
     ch.lessons.forEach((lesson,li)=>{
       const done=S.done.includes(lesson.id);
       const prevDone=li===0?true:S.done.includes(ch.lessons[li-1].id);
       const chPrevDone=ci===0?true:CHAPTERS[ci-1].lessons.some(l=>S.done.includes(l.id));
       const locked=!prevDone||!chPrevDone;
-      const row=document.createElement('div');
-      row.className='l-row';
-      const cls=done?'d':(locked?'lk':'u');
-      const nodeClick=locked?`showToast('Voltooi eerst de vorige les! 🔒')`:`startLesson('${lesson.id}')`;
-      const nodeIcon=done?'✓':(locked?'🔒':lesson.icon);
-      row.innerHTML=`<div class="l-node ${cls}" onclick="${nodeClick}" data-id="${lesson.id}">
-        <div class="n-ico" ${done?'style="color:#fff;font-size:24px;font-weight:900"':''}>${nodeIcon}</div>
+      const active=!done&&!locked&&!foundActive;
+      if(active) foundActive=true;
+      const state=done?'done':(active?'active':'locked');
+      const click=locked?`showToast('Voltooi eerst de vorige les! 🔒')`:`startLesson('${lesson.id}')`;
+      const icon=locked?'🔒':lesson.icon;
+      lessonsHTML+=`<div class="les-card ${state}" onclick="${click}">
+        ${done?'<div class="les-check">✓</div>':''}
+        <div class="les-icon">${icon}</div>
+        <div class="les-name">${lesson.title}</div>
       </div>`;
-      path.appendChild(row);
     });
-    block.appendChild(path);
-    cw.appendChild(block);
+
+    const card=document.createElement('div');
+    card.className='ch-card';
+    card.innerHTML=`
+      <div class="ch-card-top">
+        <span class="ch-card-icon">${chIcon}</span>
+        <span class="ch-card-title">H${ci+1} · ${chTitle}</span>
+        ${totalWords>0?`<span class="ch-card-badge">${learnedWords}/${totalWords}</span>`:''}
+      </div>
+      <div class="ch-lessons-row">${lessonsHTML}</div>`;
+    cw.appendChild(card);
   });
 }
 
