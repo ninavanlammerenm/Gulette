@@ -406,7 +406,7 @@ function renderXPGraph(){
     const x=pad+i*(barW+gap);
     const barH=Math.max(4,Math.round((d.xp/maxXP)*(H-28)));
     const y=H-14-barH;
-    const fill=d.isToday?'var(--rose)':d.xp>0?'var(--lav)':'var(--ink-xl)';
+    const fill=d.isToday?'#F28AA1':d.xp>0?'#F28AA1':'#F0E8E4';
     return `<g>
       <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="6" fill="${fill}"/>
       ${d.xp>0?`<text x="${x+barW/2}" y="${y-4}" text-anchor="middle" font-size="9" font-weight="900" fill="var(--ink-m)">${d.xp}</text>`:''}
@@ -568,7 +568,7 @@ function updateSoundBtn(){
   const on=S.soundOn!==false;
   btn.textContent=on?'🔊 Geluid: AAN':'🔇 Geluid: UIT';
   btn.classList.toggle('prof-btn-blue',on);
-  if(!on){btn.style.background='linear-gradient(150deg,var(--ink-xl),var(--ink-l))';btn.style.color='var(--ink-m)';}
+  if(!on){btn.style.background='var(--ink-xl)';btn.style.color='var(--ink-m)';}
   else{btn.style.background='';btn.style.color='';}
 }
 
@@ -584,7 +584,7 @@ function updateSkipListeningBtn(){
   const skip=S.skipListening===true;
   btn.textContent=skip?'🔇 Luisteroefeningen: UIT (je leest het woord)':'🎧 Luisteroefeningen: AAN';
   btn.classList.toggle('prof-btn-blue',!skip);
-  if(skip){btn.style.background='linear-gradient(150deg,var(--ink-xl),var(--ink-l))';btn.style.color='var(--ink-m)';}
+  if(skip){btn.style.background='var(--ink-xl)';btn.style.color='var(--ink-m)';}
   else{btn.style.background='';btn.style.color='';}
 }
 

@@ -96,7 +96,7 @@ function testAudio(){
   if(fa.length){
     msg='🔊 Modus: Hazaragi (fa) — '+fa[0].name;
   } else {
-    msg='⚠️ Geen Farsi stem gevonden — installeer een Farsi stemenpakket voor spraak';
+    msg='⚠️ Geen Perzische stem gevonden — installeer een Perzische stemenpakket voor spraak';
   }
   showToast(msg);
   speakHz('سلام');

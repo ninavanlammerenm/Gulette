@@ -1,8 +1,8 @@
-const CACHE = 'gulette-v44';
+const CACHE = 'gulette-v45';
 const LOCAL = [
   './',
   './index.html',
-  './style.css?v=44',
+  './style.css?v=45',
   './app.js',
   './audio.js',
   './data.js',
