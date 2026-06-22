@@ -478,6 +478,11 @@ function chkWB(correct,nl,tr){
     WC++;CC_COMBO=0;
     sfxWrong();
     showFB(false,_encourageMsg(),'Juist: '+tr,correct);
+    const words=correct.split(' ').filter(Boolean);
+    words.forEach(hz=>{
+      const v=S.vocab[hz];
+      if(v) trackWrong(hz,v.nl,v.tr);
+    });
   }
 }
 
@@ -722,6 +727,11 @@ function chkOrder(correct,nl,tr){
     WC++;CC_COMBO=0;
     sfxWrong();
     showFB(false,_encourageMsg(),'Juist: '+tr,correct);
+    const words=correct.split(' ').filter(Boolean);
+    words.forEach(hz=>{
+      const v=S.vocab[hz];
+      if(v) trackWrong(hz,v.nl,v.tr);
+    });
   }
 }
 
@@ -782,10 +792,13 @@ function finishLesson(){
   document.getElementById('res-sub').textContent=CL.title+' voltooid! 🌸';
   const _pm=['Foutloos! 🌟','Perfect! ✨','Absoluut geweldig! 🌟','Meesterlijk! 💎','Ongeslagen! 🏆'];
   const _gm=['Geweldig! 🌸','Goed gedaan! 💪','Super! 🎀','Fantastisch! 🐇','Zo trots! 🌺'];
+  const mascotEl=document.querySelector('.res-mas');
   if(WC===0&&CC>0){
     document.querySelector('.res-ttl').textContent=_pm[~~(Math.random()*_pm.length)];
+    if(mascotEl) mascotEl.textContent='🌟';
   }else{
     document.querySelector('.res-ttl').textContent=_gm[~~(Math.random()*_gm.length)];
+    if(mascotEl) mascotEl.textContent='🐇';
   }
 
   const wrongSec=document.getElementById('res-wrong-section');
@@ -796,7 +809,10 @@ function finishLesson(){
       wrongList.innerHTML=WRONG_WORDS.map(w=>`
         <div class="res-wrong-row">
           <div class="res-wrong-hz">${w.hz}</div>
-          <div class="res-wrong-nl">${w.nl}</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div class="res-wrong-nl">${w.nl}</div>
+            ${w.tr?`<div style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic">${w.tr}</div>`:''}
+          </div>
         </div>`).join('');
     }else{
       wrongSec.style.display='none';
