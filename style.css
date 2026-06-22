@@ -306,12 +306,12 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 
 /* ── PROFILE ── */
 #screen-profile{background:var(--cream)}
-.prof-hdr{background:linear-gradient(160deg,#FDEEF1 0%,#FFFAF7 60%,#F6DFB3 100%);padding:max(52px,env(safe-area-inset-top,52px)) 20px 26px;text-align:center;position:sticky;top:0;z-index:10;overflow:hidden}
+.prof-hdr{background:var(--cream);padding:max(52px,env(safe-area-inset-top,52px)) 20px 18px;text-align:center}
 .prof-hdr::after{display:none}
-.prof-av{width:80px;height:80px;background:linear-gradient(145deg,#F28AA1,#D4607A);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:42px;margin:0 auto 14px;box-shadow:var(--sh-m);border:3px solid rgba(255,255,255,.6)}
+.prof-av{display:none}
 .prof-name{font-size:22px;font-weight:900;color:var(--ink)}
 .prof-lvl{font-size:13px;font-weight:700;color:var(--rose-d);margin-top:3px}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;margin-top:-4px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px}
 .stat-card{background:#fff;border-radius:16px;padding:18px 14px;box-shadow:0 2px 8px rgba(131,81,62,.06);text-align:center;border:1px solid #F0E8E4}
 .stat-n{font-size:30px;font-weight:900;color:#F28AA1}
 .stat-l{font-size:11px;font-weight:800;color:#C4937E;text-transform:uppercase;letter-spacing:.3px;margin-top:3px}
