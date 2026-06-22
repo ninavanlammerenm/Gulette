@@ -103,41 +103,41 @@ function renderHome(){
   });
   document.getElementById('sc-sub').textContent=`${activeDays} van 7`;
 
-  // Review hero card
+  // Review hero card — full innerHTML render for reliability
   const allVocab=Object.values(S.vocab);
   const due=allVocab.filter(v=>isDue(v)).length;
   const total=Object.keys(S.vocab).length;
   const hero=document.getElementById('review-hero');
-  const rhCount=document.getElementById('rh-count');
-  const rhLabel=document.getElementById('rh-label');
-  const rhSub=document.getElementById('rh-sub');
-  const rhBtn=document.getElementById('rh-btn');
   if(due>0){
-    hero.classList.remove('done');
+    hero.className='review-hero';
     hero.onclick=()=>startDailyReview();
-    rhCount.textContent=due;
-    rhLabel.textContent='woorden klaar 🌸';
-    rhSub.textContent='Dagelijkse herhaling';
-    rhBtn.textContent='Begin herhaling →';
+    hero.innerHTML=`
+      <div class="rh-deco">🐇</div>
+      <div class="rh-count">${due}</div>
+      <div class="rh-label">woorden klaar 🌸</div>
+      <div class="rh-sub">Dagelijkse herhaling</div>
+      <div class="rh-btn">Begin herhaling →</div>`;
   }else if(total===0){
-    hero.classList.remove('done');
-    rhCount.textContent='0';
-    rhLabel.textContent='Start een les!';
-    rhSub.textContent='Leer je eerste woorden';
-    rhBtn.textContent='Bekijk lessen ↓';
+    hero.className='review-hero';
     hero.onclick=()=>{const el=document.getElementById('chapters-wrap');if(el)el.scrollIntoView({behavior:'smooth'});};
+    hero.innerHTML=`
+      <div class="rh-deco">🐇</div>
+      <div class="rh-count" style="font-size:36px">Welkom!</div>
+      <div class="rh-label">Begin je eerste les</div>
+      <div class="rh-sub">Leer je eerste Hazaragi woorden</div>
+      <div class="rh-btn">Bekijk lessen ↓</div>`;
   }else{
-    hero.classList.add('done');
-    rhCount.textContent='Klaar! ✓';
-    rhLabel.textContent='Alles bijgewerkt';
+    hero.className='review-hero done';
     const nextDue=allVocab.filter(v=>v.nr).map(v=>new Date(v.nr)).sort((a,b)=>a-b)[0];
     const eta=nextDue?timeUntil(nextDue.toISOString()):'later';
-    rhSub.textContent=`Volgende review over ${eta}`;
-    rhBtn.textContent='Kom later terug 🐇';
     hero.onclick=()=>showToast('Geen reviews nu — goed gedaan! 🌸');
+    hero.innerHTML=`
+      <div class="rh-deco">🐇</div>
+      <div class="rh-count" style="font-size:32px">Alles bijgewerkt ✓</div>
+      <div class="rh-label">Goed bezig!</div>
+      <div class="rh-sub">Volgende review over ${eta}</div>
+      <div class="rh-btn">Kom later terug 🐇</div>`;
   }
-
-  if(typeof renderTestBanner==='function') renderTestBanner();
 
   // Chapters / lesson path
   const cw=document.getElementById('chapters-wrap');
