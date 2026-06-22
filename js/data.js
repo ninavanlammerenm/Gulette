@@ -369,7 +369,7 @@ const CHAPTERS=[
       pronTips:['ق','خ'],
       grammar:'"آفرین" (aafarin) is de meest gewaardeerde aanmoediging — zeg het veel!',
       words:[
-        {hz:'گوشکیل',tr:'goshkil',nl:'Mooi',tip:'"ق" = diepe keel-k'},
+        {hz:'گوشکیل',tr:'goshkil',nl:'Mooi/Knap',tip:'Hazaragi-specifieke vorm — "گوشکیل" ipv Farsi "قشنگ"'},
         {hz:'آفرین',tr:'aafarin',nl:'Goed zo! Bravo!',tip:'Gebruik het veel!'},
         {hz:'ماشاالله',tr:'mashaallah',nl:'MashaAllah',tip:'Zeg bij bewondering'},
         {hz:'مهربان',tr:'mehrabaan',nl:'Lief / Vriendelijk',tip:'"خیلی مهربان اَس" = hij/zij is heel lief — het hoogste compliment in Hazaragi cultuur'},
