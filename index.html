@@ -79,57 +79,15 @@
     </div>
   </div>
 
-  <div class="rev-banner" onclick="startDailyReview()">
-    <div class="rb-ico">🔁</div>
-    <div class="rb-txt">
-      <h3>Dagelijkse herhaling</h3>
-      <p id="rev-count-txt">Laden...</p>
-    </div>
-    <div class="rb-arr">›</div>
+  <div class="review-hero" id="review-hero" onclick="startDailyReview()">
+    <div class="rh-deco">🐇</div>
+    <div class="rh-count" id="rh-count">0</div>
+    <div class="rh-label" id="rh-label">woorden klaar</div>
+    <div class="rh-sub" id="rh-sub">Dagelijkse herhaling</div>
+    <div class="rh-btn" id="rh-btn">Begin herhaling →</div>
   </div>
 
-  <div class="ovh-banner" onclick="openOvhSetup()">
-    <div class="rb-ico">📝</div>
-    <div class="rb-txt">
-      <h3>Overhoring</h3>
-      <p>Test jezelf zonder les — kies hoeveel vragen</p>
-    </div>
-    <div class="rb-arr">›</div>
-  </div>
-
-  <div class="ovh-banner" id="speed-banner" style="display:none;background:linear-gradient(135deg,#FEE2E2,#FECACA);border-color:rgba(239,68,68,.25)" onclick="startSpeedRound()">
-    <div class="rb-ico">⚡</div>
-    <div class="rb-txt">
-      <h3 style="color:var(--ink)">Snelheidsronde</h3>
-      <p id="speed-banner-txt" style="color:var(--ink-m)">60 seconden — zoveel mogelijk goed!</p>
-    </div>
-    <div class="rb-arr" style="color:#dc2626">›</div>
-  </div>
-
-  <div class="ovh-banner" id="weak-banner" style="display:none;background:linear-gradient(135deg,#FFF5D6,#FFE8C8);border-color:rgba(255,190,61,.35)" onclick="startWeakWordsDrill()">
-    <div class="rb-ico">⚠️</div>
-    <div class="rb-txt">
-      <h3 style="color:var(--ink)">Zwakke woorden oefenen</h3>
-      <p id="weak-banner-txt" style="color:var(--ink-m)">...</p>
-    </div>
-    <div class="rb-arr" style="color:var(--gold-d)">›</div>
-  </div>
-
-  <div class="ovh-banner" id="confusion-banner" style="display:none;background:linear-gradient(135deg,#EDE9FE,#DDD6FE);border-color:rgba(139,92,246,.25)" onclick="startConfusionDrill()">
-    <div class="rb-ico">🔀</div>
-    <div class="rb-txt">
-      <h3 style="color:var(--ink)">Verwarrende woorden</h3>
-      <p id="confusion-banner-txt" style="color:var(--ink-m)">...</p>
-    </div>
-    <div class="rb-arr" style="color:#7c3aed">›</div>
-  </div>
-
-  <div class="dagwoord-card" id="dagwoord-card" style="display:none">
-    <div class="dw-head">📖 Woord van de dag</div>
-    <div id="dw-body"></div>
-    <div class="dw-foot" id="dw-foot"></div>
-  </div>
-
+  <div class="home-section-title">📖 Lessen</div>
   <div class="lessons-section" id="chapters-wrap"></div>
 </div>
 
@@ -183,14 +141,15 @@
   <div class="rev-hdr">
     <div class="rev-hdr-top">
       <div>
-        <h2>📚 Mijn woordenlijst</h2>
+        <h2>📚 Mijn woorden</h2>
         <p id="rev-sub">0 woorden geleerd</p>
       </div>
-      <button class="btn-quiz" onclick="startQuickTest()">⚡ Test jezelf</button>
+      <button class="btn-quiz" onclick="startQuickTest()">⚡ Test</button>
     </div>
+    <div id="drill-cards" class="drill-cards"></div>
     <div class="search-wrap">
       <span class="search-ico">🔍</span>
-      <input class="search-inp" id="vocab-search" type="text" placeholder="Zoek op woord of vertaling..." oninput="renderVocabDebounced()">
+      <input class="search-inp" id="vocab-search" type="text" placeholder="Zoek woord of vertaling..." oninput="renderVocabDebounced()">
     </div>
     <div class="filter-row">
       <button class="fc on" onclick="filterW('all',this)">Alle</button>

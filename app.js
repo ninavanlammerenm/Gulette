@@ -189,6 +189,19 @@ window.addEventListener('online',_updateOnlineStatus);
 window.addEventListener('offline',_updateOnlineStatus);
 setTimeout(_updateOnlineStatus,500);
 load();
+// Week activity reset: clear dots every Monday (new calendar week)
+(function(){
+  const now=new Date();
+  const day=now.getDay();
+  const mon=new Date(now);
+  mon.setDate(now.getDate()-(day===0?6:day-1));
+  const weekStart=mon.toISOString().slice(0,10);
+  if(S.weekStart!==weekStart){
+    S.weekActivity=[];
+    S.weekStart=weekStart;
+    save();
+  }
+})();
 applyMasteryDecay();
 if(S.showRoman===false) document.body.classList.add('hide-roman');
 applyFontSize();

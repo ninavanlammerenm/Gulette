@@ -70,7 +70,7 @@ function startApp(){
 // ══════════════════════════════════════════════════════
 function renderHome(){
   const _n=document.createElement('span');_n.textContent=S.name;
-  document.getElementById('hdr-name').innerHTML='Salam, <em>'+_n.innerHTML+'</em> 👋';
+  document.getElementById('hdr-name').innerHTML='Salam, <em>'+_n.innerHTML+'</em> 🐇';
   document.getElementById('chip-streak').textContent=S.streak;
   document.getElementById('chip-xp').textContent=S.xp;
   const shields=S.shields||0;
@@ -103,54 +103,40 @@ function renderHome(){
   });
   document.getElementById('sc-sub').textContent=`${activeDays} van 7`;
 
-  // Due count
+  // Review hero card
   const allVocab=Object.values(S.vocab);
   const due=allVocab.filter(v=>isDue(v)).length;
   const total=Object.keys(S.vocab).length;
+  const hero=document.getElementById('review-hero');
+  const rhCount=document.getElementById('rh-count');
+  const rhLabel=document.getElementById('rh-label');
+  const rhSub=document.getElementById('rh-sub');
+  const rhBtn=document.getElementById('rh-btn');
   if(due>0){
-    document.getElementById('rev-count-txt').textContent=`${due} van ${total} woorden klaar voor herhaling! 🌸`;
+    hero.classList.remove('done');
+    hero.onclick=()=>startDailyReview();
+    rhCount.textContent=due;
+    rhLabel.textContent='woorden klaar 🌸';
+    rhSub.textContent='Dagelijkse herhaling';
+    rhBtn.textContent='Begin herhaling →';
   }else if(total===0){
-    document.getElementById('rev-count-txt').textContent='Start een les om woorden te leren 🌸';
+    hero.classList.remove('done');
+    rhCount.textContent='0';
+    rhLabel.textContent='Start een les!';
+    rhSub.textContent='Leer je eerste woorden';
+    rhBtn.textContent='Bekijk lessen ↓';
+    hero.onclick=()=>{const el=document.getElementById('chapters-wrap');if(el)el.scrollIntoView({behavior:'smooth'});};
   }else{
+    hero.classList.add('done');
+    rhCount.textContent='Klaar! ✓';
+    rhLabel.textContent='Alles bijgewerkt';
     const nextDue=allVocab.filter(v=>v.nr).map(v=>new Date(v.nr)).sort((a,b)=>a-b)[0];
-    const eta=nextDue?timeUntil(nextDue.toISOString()):'?';
-    document.getElementById('rev-count-txt').textContent=`Alles herhaald! Volgende review over ${eta} ✅`;
+    const eta=nextDue?timeUntil(nextDue.toISOString()):'later';
+    rhSub.textContent=`Volgende review over ${eta}`;
+    rhBtn.textContent='Kom later terug 🐇';
+    hero.onclick=()=>showToast('Geen reviews nu — goed gedaan! 🌸');
   }
 
-  // Zwakke woorden banner
-  const weakWords=Object.entries(S.vocab).filter(([,v])=>(v.errors||0)>=2).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0));
-  const wb=document.getElementById('weak-banner');
-  if(wb){
-    if(weakWords.length>=4){
-      wb.style.display='flex';
-      const top=weakWords.slice(0,3).map(([hz])=>hz).join('  ');
-      document.getElementById('weak-banner-txt').textContent=`${weakWords.length} woorden — bijv. ${top}`;
-    }else{
-      wb.style.display='none';
-    }
-  }
-
-  // Speed round banner
-  const speedBanner=document.getElementById('speed-banner');
-  if(speedBanner){
-    speedBanner.style.display=total>=8?'flex':'none';
-    if(S.speedBest) document.getElementById('speed-banner-txt').textContent=`60 sec — record: ${S.speedBest} woorden!`;
-  }
-
-  // Confusion pairs banner
-  const confPairs=getConfusedPairs(3);
-  const confBanner=document.getElementById('confusion-banner');
-  if(confBanner){
-    if(confPairs.length>=1){
-      confBanner.style.display='flex';
-      const top=confPairs.slice(0,2).map(p=>`${p.w1} ↔ ${p.w2}`).join(', ');
-      document.getElementById('confusion-banner-txt').textContent=`${confPairs.length} paar${confPairs.length===1?'':'en'} — bijv. ${top}`;
-    } else {
-      confBanner.style.display='none';
-    }
-  }
-
-  renderDagwoord();
   if(typeof renderTestBanner==='function') renderTestBanner();
 
   // Chapters / lesson path
@@ -248,7 +234,22 @@ function startConfusionDrill(){
   openOvhDirect(wordList.slice(0,20));
 }
 
+function renderDrillCards(){
+  const el=document.getElementById('drill-cards');
+  if(!el)return;
+  const total=Object.keys(S.vocab).length;
+  const weakCount=Object.values(S.vocab).filter(v=>(v.errors||0)>=2).length;
+  const confCount=getConfusedPairs(3).length;
+  let html='';
+  html+=`<button class="drill-card" onclick="openOvhSetup()"><span class="drill-card-ico">📝</span><div><div class="drill-card-lbl">Overhoring</div><div class="drill-card-sub">${total} woorden</div></div></button>`;
+  if(total>=8) html+=`<button class="drill-card" onclick="startSpeedRound()"><span class="drill-card-ico">⚡</span><div><div class="drill-card-lbl">Snelronde</div><div class="drill-card-sub">60 sec${S.speedBest?' · record '+S.speedBest:''}</div></div></button>`;
+  if(weakCount>=4) html+=`<button class="drill-card" onclick="startWeakWordsDrill()"><span class="drill-card-ico">⚠️</span><div><div class="drill-card-lbl">Zwakke woorden</div><div class="drill-card-sub">${weakCount} woorden</div></div></button>`;
+  if(confCount>=1) html+=`<button class="drill-card" onclick="startConfusionDrill()"><span class="drill-card-ico">🔀</span><div><div class="drill-card-lbl">Verwarring</div><div class="drill-card-sub">${confCount} paren</div></div></button>`;
+  el.innerHTML=html;
+}
+
 function renderVocab(){
+  renderDrillCards();
   const search=(document.getElementById('vocab-search')?.value||'').toLowerCase().trim();
   const ents=Object.entries(S.vocab);
   document.getElementById('rev-sub').textContent=ents.length+' woorden geleerd';
@@ -622,36 +623,7 @@ function renderChapterProgress(){
 // ══════════════════════════════════════════════════════
 // DAGWOORD
 // ══════════════════════════════════════════════════════
-function renderDagwoord(){
-  const el=document.getElementById('dagwoord-card');
-  if(!el)return;
-  const keys=Object.keys(S.vocab);
-  if(keys.length===0){el.style.display='none';return;}
-  const sortedKeys=[...keys].sort();
-  const dayIdx=Math.floor(Date.now()/86400000)%sortedKeys.length;
-  const hz=sortedKeys[dayIdx];
-  const v=S.vocab[hz];
-  if(!v){el.style.display='none';return;}
-  let tip='';
-  for(const ch of CHAPTERS){
-    for(const l of ch.lessons){
-      const w=(l.words||[]).find(x=>x.hz===hz);
-      if(w&&w.tip){tip=w.tip;break;}
-    }
-    if(tip)break;
-  }
-  el.style.display='block';
-  document.getElementById('dw-body').innerHTML=`
-    <div class="dw-hz">${hz} <button class="spk-btn" style="font-size:14px;width:28px;height:28px;vertical-align:middle" onclick="speakHz('${hz}','${(v.tr||'').replace(/'/g,"\\'")}')">🔊</button></div>
-    <div class="dw-tr">${v.tr||''}</div>
-    <div class="dw-nl">= ${v.nl}</div>
-    ${tip?`<div class="dw-tip">💡 ${tip}</div>`:''}`;
-  const foot=document.getElementById('dw-foot');
-  if(foot){
-    const m=v.mastery||0;
-    foot.innerHTML=`<div class="m-pips dw-pips">${masteryPips(m)}</div><div class="dw-due" onclick="event.stopPropagation();showWordDetail('${hz}')">Bekijk details ›</div>`;
-  }
-}
+function renderDagwoord(){}
 
 // ══════════════════════════════════════════════════════
 // MASTERY DISTRIBUTIE
