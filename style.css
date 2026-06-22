@@ -22,7 +22,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
 html{height:100%;height:-webkit-fill-available}
 html,body{overscroll-behavior:none;overflow:hidden;overflow-x:hidden;}
-body{font-family:'Nunito',sans-serif;background:#FAD6D3;display:flex;justify-content:center;align-items:flex-start;height:100%;min-height:-webkit-fill-available;overflow-x:hidden;width:100%}
+body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-content:center;align-items:flex-start;height:100%;min-height:-webkit-fill-available;overflow-x:hidden;width:100%}
 #app{width:100%;max-width:var(--app-max-w);height:100vh;height:100dvh;background:var(--cream);position:relative;overflow:hidden;display:flex;flex-direction:column}
 
 /* SCREENS */
@@ -71,8 +71,8 @@ body{font-family:'Nunito',sans-serif;background:#FAD6D3;display:flex;justify-con
 .hdr{padding:max(env(safe-area-inset-top,20px),20px) 22px 18px;background:linear-gradient(160deg,#FDEEF1 0%,#FFFAF7 55%,#F6DFB3 100%);position:relative;flex-shrink:0}
 .hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
 .hdr-greet{font-size:10.5px;color:var(--ink-l);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:4px}
-.hdr-name{font-size:26px;font-weight:900;color:var(--rose);letter-spacing:-.3px}
-.hdr-name em{color:var(--ink);font-style:normal}
+.hdr-name{font-size:26px;font-weight:900;color:var(--ink);letter-spacing:-.3px}
+.hdr-name em{color:var(--rose);font-style:normal}
 .hdr-chips{display:flex;gap:7px}
 .chip{background:var(--white);border-radius:50px;padding:7px 13px;font-size:12px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:5px;box-shadow:var(--sh-xs);border:1px solid var(--ink-xl)}
 .xp-bar-wrap{margin-bottom:2px}
@@ -84,10 +84,10 @@ body{font-family:'Nunito',sans-serif;background:#FAD6D3;display:flex;justify-con
 /* Week dots */
 .week-row{display:flex;align-items:center;gap:10px;margin-top:14px}
 .week-dots{display:flex;gap:5px;align-items:center}
-.week-dot{width:28px;height:8px;border-radius:50px;background:var(--ink-xl);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
-.week-dot.active{background:var(--rose);box-shadow:0 1px 4px rgba(242,138,161,.3)}
-.week-dot.today{outline:2px solid var(--rose-l);outline-offset:2px}
-.week-dot.active.today{background:var(--rose-d);outline-color:var(--rose);box-shadow:0 2px 8px rgba(242,138,161,.4)}
+.week-dot{width:28px;height:8px;border-radius:50px;background:rgba(131,81,62,.15);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.week-dot.active{background:#F28AA1}
+.week-dot.today{background:#F28AA1;box-shadow:0 0 0 3px rgba(242,138,161,.3)}
+.week-dot.active.today{background:#F28AA1;box-shadow:0 0 0 3px rgba(242,138,161,.3)}
 .week-lbl{font-size:11px;font-weight:800;color:var(--ink-l);white-space:nowrap}
 
 /* Review hero card */
@@ -132,11 +132,11 @@ body{font-family:'Nunito',sans-serif;background:#FAD6D3;display:flex;justify-con
 .l-path::-webkit-scrollbar{display:none}
 .l-row{display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .l-row.lft,.l-row.rgt{justify-content:center;padding:0}
-.l-node{width:48px;height:48px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;position:relative;border:3px solid transparent;flex-shrink:0;user-select:none}
-.l-node.u{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:rgba(255,255,255,.5);box-shadow:var(--sh-m)}
-.l-node.u:active{transform:scale(.88)}
-.l-node.d{background:linear-gradient(145deg,#8AAF7A,#5A8A50);border-color:rgba(255,255,255,.5);box-shadow:var(--sh-xs)}
-.l-node.lk{background:var(--rose-l);border:1.5px dashed #D4B8A8;opacity:.5}
+.l-node{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;position:relative;border:3px solid transparent;flex-shrink:0;user-select:none}
+.l-node.u{background:linear-gradient(145deg,#F28AA1,#D4607A);border-color:rgba(255,255,255,.5);box-shadow:0 6px 20px rgba(242,138,161,.45)}
+.l-node.u:active{transform:scale(.95)}
+.l-node.d{background:linear-gradient(145deg,#8AAF7A,#5A8A50);border-color:rgba(255,255,255,.5);box-shadow:0 4px 12px rgba(138,175,122,.4)}
+.l-node.lk{background:var(--rose-l);border:1.5px dashed #D4B8A8;opacity:.6;box-shadow:none}
 .n-ico{font-size:20px;pointer-events:none}
 .n-lbl{display:none}
 .l-node.lk .n-lbl{display:none}
@@ -660,7 +660,7 @@ body.font-large .ovh-hz-word{font-size:58px!important}
 .wc{padding:16px}
 .wc-hz{font-size:34px}
 .gram-item-hdr{padding:16px}
-.l-node{width:48px;height:48px}
+.l-node{width:72px;height:72px}
 .l-topbar{padding-top:max(calc(env(safe-area-inset-top,44px) + 8px),52px)}
 .ovh-sizes{max-width:100%}
 .ovh-size-btn{padding:14px 8px}
@@ -722,7 +722,7 @@ body.dark-mode .drill-card{background:#352820;border-color:#4A3028}
 /* ── DESKTOP-WEERGAVE ── */
 @media (hover:hover) and (pointer:fine) and (min-width:600px){
   :root{--app-max-w:620px}
-  body{background:linear-gradient(155deg,#FAD6D3 0%,#F6DFB3 100%)}
+  body{background:#FFFAF7}
   #app{border-radius:var(--r);margin:16px 0;box-shadow:var(--sh-lg);height:calc(100vh - 32px);height:calc(100dvh - 32px)}
   .hz-script{font-size:50px}
   .choices{gap:11px}
