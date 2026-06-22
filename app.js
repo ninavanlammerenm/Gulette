@@ -117,39 +117,39 @@ function shareProgress(){
   const c=document.createElement('canvas');
   c.width=600;c.height=340;
   const ctx=c.getContext('2d');
-  // Achtergrond gradient
+  // Achtergrond
   const grad=ctx.createLinearGradient(0,0,600,340);
-  grad.addColorStop(0,'#FADADD');grad.addColorStop(0.5,'#FFF0F2');grad.addColorStop(1,'#F6F3DC');
+  grad.addColorStop(0,'#FDEEF1');grad.addColorStop(0.5,'#FFFAF7');grad.addColorStop(1,'#F6DFB3');
   ctx.fillStyle=grad;
   ctx.beginPath();
   ctx.roundRect(0,0,600,340,20);
   ctx.fill();
   // Titel
-  ctx.fillStyle='#3D1C24';ctx.font='bold 32px sans-serif';
+  ctx.fillStyle='#83513E';ctx.font='bold 32px sans-serif';
   ctx.fillText('Gulette 🐇',30,50);
-  ctx.fillStyle='#7A4A55';ctx.font='600 16px sans-serif';
+  ctx.fillStyle='#C4937E';ctx.font='600 16px sans-serif';
   ctx.fillText(`${S.name} leert Hazaragi!`,30,78);
   // Stats
-  ctx.fillStyle='#e24b5a';ctx.font='bold 52px sans-serif';
+  ctx.fillStyle='#F28AA1';ctx.font='bold 52px sans-serif';
   ctx.fillText(`${wc}`,30,148);
-  ctx.fillStyle='#3D1C24';ctx.font='bold 18px sans-serif';
+  ctx.fillStyle='#83513E';ctx.font='bold 18px sans-serif';
   ctx.fillText('woorden geleerd',30,172);
 
-  ctx.fillStyle='#e24b5a';ctx.font='bold 52px sans-serif';
+  ctx.fillStyle='#F28AA1';ctx.font='bold 52px sans-serif';
   ctx.fillText(`${S.streak}`,220,148);
-  ctx.fillStyle='#3D1C24';ctx.font='bold 18px sans-serif';
+  ctx.fillStyle='#83513E';ctx.font='bold 18px sans-serif';
   ctx.fillText('🔥 dag streak',220,172);
 
-  ctx.fillStyle='#e24b5a';ctx.font='bold 52px sans-serif';
+  ctx.fillStyle='#F28AA1';ctx.font='bold 52px sans-serif';
   ctx.fillText(`${lvl}`,420,148);
-  ctx.fillStyle='#3D1C24';ctx.font='bold 18px sans-serif';
+  ctx.fillStyle='#83513E';ctx.font='bold 18px sans-serif';
   ctx.fillText('level',420,172);
 
   if(cefrBadge){
-    ctx.fillStyle='#7c3aed';ctx.font='bold 22px sans-serif';
+    ctx.fillStyle='#E7AE75';ctx.font='bold 22px sans-serif';
     ctx.fillText(`🎓 Niveau: ${cefrBadge}`,30,220);
   }
-  ctx.fillStyle='#C4A0A8';ctx.font='600 14px sans-serif';
+  ctx.fillStyle='#D4B8A8';ctx.font='600 14px sans-serif';
   ctx.fillText(`+${todayXP} XP vandaag · ${S.xp} XP totaal`,30,cefrBadge?254:220);
   ctx.fillText('#Gulette #Hazaragi',30,310);
 

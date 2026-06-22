@@ -267,6 +267,14 @@ function renderVocab(){
   });
 
   const el=document.getElementById('w-list');
+  if(!ents.length){
+    el.innerHTML=`<div style="text-align:center;padding:48px 24px">
+      <div style="font-size:48px;margin-bottom:12px">🐇</div>
+      <div style="font-size:16px;font-weight:900;color:var(--ink);margin-bottom:6px">Nog geen woorden geleerd</div>
+      <div style="font-size:13px;font-weight:700;color:var(--ink-l);line-height:1.6">Start een les op het thuisscherm om je eerste Hazaragi woorden te leren!</div>
+    </div>`;
+    return;
+  }
   if(!list.length){
     el.innerHTML='<div style="text-align:center;color:var(--ink-l);padding:44px 20px;font-weight:700;line-height:2">Geen woorden gevonden 🌸<br><small>Probeer een andere zoekterm.</small></div>';
     return;
@@ -276,7 +284,7 @@ function renderVocab(){
     const pips=masteryPips(m);
     const due=isDue(v);
     const nxt=v.nr?timeUntil(v.nr):'Nu';
-    const accent=due&&m<2?'var(--rose-d)':m>=4?'var(--mint)':m>=2?'var(--lav)':'var(--gold)';
+    const accent=due&&m<2?'#F28AA1':m>=4?'#83513E':m>=2?'#E7AE75':'#FAD6D3';
     // markeer lange klanken (dubbele klinkers) in de uitspraak
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
     const pinned=v.pinned?'★':'☆';
@@ -406,7 +414,7 @@ function renderXPGraph(){
     const x=pad+i*(barW+gap);
     const barH=Math.max(4,Math.round((d.xp/maxXP)*(H-28)));
     const y=H-14-barH;
-    const fill=d.isToday?'#F28AA1':d.xp>0?'#F28AA1':'#F0E8E4';
+    const fill=d.isToday?'#F28AA1':d.xp>0?'#FAD6D3':'#F0E8E4';
     return `<g>
       <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="6" fill="${fill}"/>
       ${d.xp>0?`<text x="${x+barW/2}" y="${y-4}" text-anchor="middle" font-size="9" font-weight="900" fill="var(--ink-m)">${d.xp}</text>`:''}
@@ -599,7 +607,7 @@ function renderChapterProgress(){
     if(totalW === 0) return '';
     const learnedW = ch.lessons.reduce((s,l)=>s+(l.words||[]).filter(w=>S.vocab[w.hz]).length,0);
     const pct = Math.round(learnedW/totalW*100);
-    const color = pct>=80?'var(--mint)':pct>=40?'var(--rose)':'var(--rose-l)';
+    const color = pct>=80?'#83513E':pct>=40?'#F28AA1':'#FAD6D3';
     return `<div style="margin-bottom:10px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
         <div style="font-size:12px;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%">${ch.label}</div>
@@ -638,7 +646,7 @@ function renderMasteryDistrib(){
   if(!total){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--ink-l);font-weight:700">Nog geen woorden geleerd 🌱</div>';return;}
   const max=Math.max(...counts,1);
   const labels=['Nieuw','Basis','Leerling','Gevorderd','Expert','Meester'];
-  const colors=['var(--ink-l)','var(--peach)','var(--gold)','var(--rose)','var(--mint)','var(--lav)'];
+  const colors=['#F0E8E4','#F6DFB3','#E7AE75','#F28AA1','#D4607A','#83513E'];
   el.innerHTML=`
     <div class="mastery-bars">${counts.map((c,i)=>`
       <div class="mastery-bar-row">
