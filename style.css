@@ -643,6 +643,34 @@ body.hide-roman .pron-latin{ display:none!important }
 .gl-fb-ok{background:#EEF5E8;color:#5A7A4A;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:800;line-height:1.5}
 .gl-fb-ng{background:#FFF0F2;color:#8B2030;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:800;line-height:1.5}
 
+/* Conjugate rows */
+.gl-conj-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.gl-conj-person{font-family:'Noto Naskh Arabic',serif;font-size:18px;font-weight:700;color:var(--ink);min-width:36px;direction:rtl}
+.gl-conj-arrow{color:var(--ink-l);font-weight:900;font-size:14px}
+.gl-conj-opts{display:flex;gap:6px;flex-wrap:wrap}
+
+/* Transform rows */
+.gl-tf-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.gl-tf-given{font-family:'Noto Naskh Arabic',serif;font-size:18px;font-weight:700;color:var(--ink);direction:rtl;min-width:60px}
+.gl-tf-input{font-family:'Noto Naskh Arabic',serif;font-size:18px;font-weight:700;color:var(--ink);direction:rtl;border:1.5px solid var(--ink-xl);border-radius:10px;padding:8px 12px;background:var(--white);outline:none;width:120px;transition:all .2s}
+.gl-tf-input:focus{border-color:var(--rose)}
+.gl-tf-check{background:var(--rose);color:#fff;border:none;border-radius:8px;width:36px;height:36px;font-size:16px;font-weight:900;cursor:pointer;flex-shrink:0}
+
+/* Match columns */
+.gl-match-wrap{display:flex;gap:12px;margin-top:8px}
+.gl-match-col{display:flex;flex-direction:column;gap:6px;flex:1}
+.gl-match-btn{background:var(--white);border:1.5px solid var(--ink-xl);border-radius:12px;padding:10px 12px;font-size:14px;font-weight:800;color:var(--ink);cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif;text-align:center}
+.gl-match-l{font-family:'Noto Naskh Arabic',serif;font-size:18px;direction:rtl}
+.gl-match-btn.gl-match-active{border-color:var(--rose);background:var(--rose-xl)}
+.gl-match-btn.gl-correct{border-color:#8AAF7A;background:#EEF5E8;opacity:.7;color:#5A7A4A}
+.gl-match-btn.gl-wrong{border-color:#E05060;background:#FFF0F2}
+
+/* Suffix rows */
+.gl-suffix-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.gl-suffix-word{font-family:'Noto Naskh Arabic',serif;font-size:20px;font-weight:700;color:var(--ink);direction:rtl}
+.gl-suffix-slot{color:var(--rose);font-weight:900;border-bottom:2px solid var(--rose-l);padding:0 2px;margin:0 2px;transition:all .3s}
+.gl-suffix-owner{font-size:12px;font-weight:700;color:var(--ink-m);min-width:60px}
+
 /* Grammar mini exercises */
 .gram-ex{margin-top:14px;padding-top:14px;border-top:1px solid var(--ink-xl)}
 .gram-ex-title{font-size:10px;font-weight:900;color:var(--rose-d);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
