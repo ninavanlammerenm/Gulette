@@ -257,8 +257,6 @@ function renderEx(){
   document.getElementById('l-prog').style.width=pct+'%';
 
   const ex=EXS[EI];
-  const typeLabel=ex.requeued?EX_TYPE_LABELS.repeat:ex.interleaved?'🔁 Herhaling':(EX_TYPE_LABELS[ex.type]||'');
-  document.getElementById('l-counter').textContent=`${typeLabel}  ${EI+1}/${EXS.length}`;
 
   hideFB();
   const body=document.getElementById('l-body');
