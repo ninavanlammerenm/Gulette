@@ -103,7 +103,7 @@ function renderHome(){
   });
   document.getElementById('sc-sub').textContent=`${activeDays} van 7`;
 
-  // Review hero card — full innerHTML render for reliability
+  // Review hero card
   const allVocab=Object.values(S.vocab);
   const due=allVocab.filter(v=>isDue(v)).length;
   const total=Object.keys(S.vocab).length;
@@ -113,18 +113,18 @@ function renderHome(){
     hero.onclick=()=>startDailyReview();
     hero.innerHTML=`
       <div class="rh-deco">🐇</div>
+      <div class="rh-title">Dagelijkse herhaling</div>
       <div class="rh-count">${due}</div>
-      <div class="rh-label">woorden klaar 🌸</div>
-      <div class="rh-sub">Dagelijkse herhaling</div>
+      <div class="rh-label">woorden wachten op je</div>
       <div class="rh-btn">Begin herhaling →</div>`;
   }else if(total===0){
     hero.className='review-hero';
     hero.onclick=()=>{const el=document.getElementById('chapters-wrap');if(el)el.scrollIntoView({behavior:'smooth'});};
     hero.innerHTML=`
       <div class="rh-deco">🐇</div>
-      <div class="rh-count" style="font-size:36px">Welkom!</div>
-      <div class="rh-label">Begin je eerste les</div>
-      <div class="rh-sub">Leer je eerste Hazaragi woorden</div>
+      <div class="rh-title">Welkom bij Gulette</div>
+      <div class="rh-count" style="font-size:36px">🌸</div>
+      <div class="rh-label">Begin je eerste les hieronder</div>
       <div class="rh-btn">Bekijk lessen ↓</div>`;
   }else{
     hero.className='review-hero done';
@@ -133,13 +133,13 @@ function renderHome(){
     hero.onclick=()=>showToast('Geen reviews nu — goed gedaan! 🌸');
     hero.innerHTML=`
       <div class="rh-deco">🐇</div>
-      <div class="rh-count" style="font-size:32px">Alles bijgewerkt ✓</div>
-      <div class="rh-label">Goed bezig!</div>
-      <div class="rh-sub">Volgende review over ${eta}</div>
+      <div class="rh-title">Alles bijgewerkt</div>
+      <div class="rh-count" style="font-size:28px">✓</div>
+      <div class="rh-label">Volgende review over ${eta}</div>
       <div class="rh-btn">Kom later terug 🐇</div>`;
   }
 
-  // Chapters / lesson path
+  // Chapters / lesson path — card layout
   const cw=document.getElementById('chapters-wrap');
   cw.innerHTML='';
   CHAPTERS.forEach((ch,ci)=>{
@@ -147,10 +147,12 @@ function renderHome(){
     block.className='ch-block';
     const totalWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).length,0);
     const learnedWords=ch.lessons.reduce((s,l)=>s+(l.words||[]).filter(w=>S.vocab[w.hz]).length,0);
-    const chProg=totalWords>0?`<span class="ch-prog">${learnedWords}/${totalWords} woorden</span>`:'';
+    const chProg=totalWords>0?`<span class="ch-prog">${learnedWords}/${totalWords}</span>`:'';
+    const chIcon=ch.label.match(/\p{Emoji_Presentation}/u)?.[0]||'📖';
+    const chTitle=ch.label.replace(/\p{Emoji_Presentation}/gu,'').trim();
     const anyDone=ch.lessons.some(l=>S.done.includes(l.id));
-    const revBtn=anyDone?`<button class="ch-rev-btn" title="Herhaal hoofdstuk" onclick="event.stopPropagation();startChapterReview('${ch.id}')">🔁</button>`:'';
-    block.innerHTML=`<div class="ch-label-row"><span class="ch-label-txt">${ch.label}${chProg}</span>${revBtn}</div>`;
+    const revBtn=anyDone?`<button class="ch-rev-btn" onclick="event.stopPropagation();startChapterReview('${ch.id}')">🔁</button>`:'';
+    block.innerHTML=`<div class="ch-label-row"><span class="ch-label-txt">${chIcon} H${ci+1} · ${chTitle} ${chProg}</span>${revBtn}</div>`;
     const path=document.createElement('div');
     path.className='l-path';
 
@@ -159,26 +161,14 @@ function renderHome(){
       const prevDone=li===0?true:S.done.includes(ch.lessons[li-1].id);
       const chPrevDone=ci===0?true:CHAPTERS[ci-1].lessons.some(l=>S.done.includes(l.id));
       const locked=!prevDone||!chPrevDone;
-      const aligns=['center','lft','rgt','center','lft','rgt'];
       const row=document.createElement('div');
-      row.className='l-row '+aligns[li%6];
+      row.className='l-row';
       const cls=done?'d':(locked?'lk':'u');
       const nodeClick=locked?`showToast('Voltooi eerst de vorige les! 🔒')`:`startLesson('${lesson.id}')`;
       const nodeIcon=locked?'🔒':lesson.icon;
-
-      // Lesduur: ~12s per oefening, schatting op basis van woordenaantal
-      const wordCount=(lesson.words||[]).length;
-      const estExercises=wordCount*2+8;
-      const durMin=Math.max(3,Math.round(estExercises*12/60));
-      const durLabel=locked?'':`<div class="n-dur">~${durMin} min</div>`;
-      const moreLabel='';
-
       const allMastered=(lesson.words||[]).length>0&&(lesson.words||[]).every(w=>(S.vocab[w.hz]?.mastery||0)>=3);
       row.innerHTML=`<div class="l-node ${cls}" onclick="${nodeClick}" data-id="${lesson.id}">
         <div class="n-ico">${nodeIcon}</div>
-        <div class="n-lbl">${lesson.title}</div>
-        ${durLabel}
-        ${moreLabel}
         ${done&&allMastered?'<div class="n-done-badge">✓</div>':''}
       </div>`;
       path.appendChild(row);
