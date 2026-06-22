@@ -544,7 +544,7 @@ function toggleDarkMode(){
 
 function applyDarkMode(){
   document.body.classList.toggle('dark-mode', !!S.darkMode);
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', S.darkMode?'#1C1814':'#F28AA1');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', S.darkMode?'#2A1F1A':'#FDEEF1');
 }
 
 function updateDarkModeBtn(){
