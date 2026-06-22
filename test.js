@@ -281,7 +281,7 @@ function openTestSetup(level){
           Als je zakt moet je 3 dagen wachten voordat je het opnieuw mag proberen.
         </div>
       </div>
-      <button class="btn-check" style="position:static;margin-top:8px;background:linear-gradient(135deg,#F28AA1,#6d28d9)" onclick="startCefrTest('${level}')">
+      <button class="btn-check" style="position:static;margin-top:8px;background:linear-gradient(135deg,#F28AA1,#D4607A)" onclick="startCefrTest('${level}')">
         Start toets 🎓
       </button>
       <button class="btn-skip" style="margin-top:4px" onclick="closeTest()">Annuleren</button>
@@ -758,7 +758,7 @@ function finishTest(){
       <div style="font-size:14px;font-weight:900;color:#065f46">Niveau ${t.label} behaald!</div>
       <div style="font-size:12px;font-weight:700;color:#047857;margin-top:2px">Dit staat nu in je profiel.</div>
     </div>`:''}
-    <button class="btn-check" style="position:static;background:linear-gradient(135deg,#F28AA1,#6d28d9)" onclick="closeTest();goHome()">
+    <button class="btn-check" style="position:static;background:linear-gradient(135deg,#F28AA1,#D4607A)" onclick="closeTest();goHome()">
       ${passed?'Terug naar huis 🌸':'Terug — blijf oefenen 💪'}
     </button>`;
 
