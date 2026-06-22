@@ -585,6 +585,8 @@ body.hide-roman .pron-latin{ display:none!important }
 .gram-ch-label{font-size:11px;font-weight:900;color:var(--ink-l);text-transform:uppercase;letter-spacing:1.4px;padding:0 2px 10px}
 .gram-item{background:var(--white);border-radius:16px;margin-bottom:8px;box-shadow:0 2px 8px rgba(131,81,62,.06);overflow:hidden;transition:box-shadow .2s;border:1px solid var(--ink-xl)}
 .gram-item.open{box-shadow:var(--sh);border-color:var(--rose-l)}
+.gram-item.gram-done{border-left:3px solid #8AAF7A}
+.gram-item.gram-done .gram-item-title{color:#5A7A4A}
 .gram-item-hdr{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
 .gram-item-ico{font-size:20px;flex-shrink:0}
 .gram-item-info{flex:1;min-width:0}
@@ -671,21 +673,6 @@ body.hide-roman .pron-latin{ display:none!important }
 .gl-suffix-slot{color:var(--rose);font-weight:900;border-bottom:2px solid var(--rose-l);padding:0 2px;margin:0 2px;transition:all .3s}
 .gl-suffix-owner{font-size:12px;font-weight:700;color:var(--ink-m);min-width:60px}
 
-/* Grammar mini exercises */
-.gram-ex{margin-top:14px;padding-top:14px;border-top:1px solid var(--ink-xl)}
-.gram-ex-title{font-size:10px;font-weight:900;color:var(--rose-d);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
-.gram-ex-q{background:var(--rose-xl);border-radius:12px;padding:12px 14px;margin-bottom:8px}
-.gram-ex-sentence{font-family:'Noto Naskh Arabic',serif;font-size:20px;direction:rtl;text-align:right;color:var(--ink);line-height:1.6;margin-bottom:8px}
-.gram-ex-opts{display:flex;gap:6px;flex-wrap:wrap}
-.gram-ex-opt{background:var(--white);border:1.5px solid var(--ink-xl);border-radius:10px;padding:6px 14px;font-family:'Noto Naskh Arabic',serif;font-size:16px;color:var(--ink);cursor:pointer;transition:all .15s;direction:rtl}
-.gram-ex-opt:hover{border-color:var(--rose);background:var(--rose-xl)}
-.gram-ex-opt.correct{background:#EEF5E8;border-color:#8AAF7A;color:#5A7A4A}
-.gram-ex-opt.wrong{background:#FFF0F2;border-color:#E05060;color:#8B2030}
-.gram-ex-opt:disabled{opacity:.6;cursor:default}
-.gram-ex-fb{font-size:12px;font-weight:800;margin-top:6px;padding:6px 10px;border-radius:8px;display:none}
-.gram-ex-fb.show{display:block}
-.gram-ex-fb.ok{background:#EEF5E8;color:#5A7A4A}
-.gram-ex-fb.ng{background:#FFF0F2;color:#8B2030}
 
 /* ── PROFIEL ROMAN KNOPPEN ── */
 .prof-roman-btn{border:1px solid var(--ink-xl);border-radius:var(--r-sm);padding:12px 8px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .22s;background:var(--cream);color:var(--ink-m)}

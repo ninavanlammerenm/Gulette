@@ -1,8 +1,8 @@
-const CACHE = 'gulette-v50';
+const CACHE = 'gulette-v51';
 const LOCAL = [
   './',
   './index.html',
-  './style.css?v=50',
+  './style.css',
   './app.js',
   './audio.js',
   './data.js',
@@ -32,7 +32,6 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.origin === location.origin) {
-    // Network-first voor eigen bestanden — updates worden altijd opgepikt
     e.respondWith(
       fetch(e.request)
         .then(res => {
@@ -45,7 +44,6 @@ self.addEventListener('fetch', e => {
         .catch(() => caches.match(e.request))
     );
   } else {
-    // Cache-first voor externe bronnen (fonts) — zelden gewijzigd
     e.respondWith(
       caches.match(e.request).then(r =>
         r || fetch(e.request).then(res => {

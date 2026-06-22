@@ -354,16 +354,15 @@ function _renderConjugate(step,body){
     <button class="btn-check gl-next-btn" style="position:static;margin-top:12px;display:none" id="gl-next" onclick="nextGrammarStep()">Verder →</button>`;
   body.innerHTML=html;
 }
-let _conjDone=0,_conjTotal=0;
 function _checkConj(btn,chosen,correct,qid){
   const row=document.getElementById(qid);
   row.querySelectorAll('.gl-fill-opt').forEach(b=>b.disabled=true);
   if(chosen===correct) btn.classList.add('gl-correct');
   else{btn.classList.add('gl-wrong');row.querySelectorAll('.gl-fill-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('gl-correct');});}
   const step=_GSteps[_GI];
-  const allRows=step.items.length;
-  const answered=document.querySelectorAll('.gl-conj-row .gl-fill-opt:disabled').length/3;
-  if(answered>=allRows) document.getElementById('gl-next').style.display='block';
+  const rows=document.querySelectorAll('.gl-conj-row');
+  const answered=[...rows].filter(r=>r.querySelector('.gl-fill-opt:disabled')).length;
+  if(answered>=step.items.length) document.getElementById('gl-next').style.display='block';
 }
 
 // ── TRANSFORM: verander een woord/zin ──
@@ -392,7 +391,8 @@ function _checkTransform(qid,correct,hint){
   if(!val)return;
   inp.disabled=true;
   row.querySelector('.gl-tf-check').disabled=true;
-  if(val===correct||val.replace(/[‌\s]/g,'')=== correct.replace(/[‌\s]/g,'')){
+  const norm=s=>s.replace(/[‌\s‌]/g,'').replace(/[يیى]/g,'ی').replace(/[كک]/g,'ک').replace(/[ًٌٍَُِّْ]/g,'');
+  if(norm(val)===norm(correct)){
     inp.style.borderColor='#8AAF7A';inp.style.background='#EEF5E8';
   }else{
     inp.style.borderColor='#E05060';inp.style.background='#FFF0F2';
@@ -474,8 +474,9 @@ function _checkSuffix(btn,chosen,correct,qid,result){
   if(chosen===correct){btn.classList.add('gl-correct');slot.textContent=correct;slot.style.color='#8AAF7A';}
   else{btn.classList.add('gl-wrong');row.querySelectorAll('.gl-fill-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('gl-correct');});slot.textContent=correct;slot.style.color='#E05060';}
   const step=_GSteps[_GI];
-  const allDone=document.querySelectorAll('.gl-suffix-row .gl-fill-opt:disabled').length;
-  if(allDone>=step.items.length*step.items[0].options.length) document.getElementById('gl-next').style.display='block';
+  const rows=document.querySelectorAll('.gl-suffix-row');
+  const answered=[...rows].filter(r=>r.querySelector('.gl-fill-opt:disabled')).length;
+  if(answered>=step.items.length) document.getElementById('gl-next').style.display='block';
 }
 
 // ── FILLBLANK ──
@@ -566,6 +567,8 @@ function _checkBuild(correct){
 
 // ── FINISH ──
 function finishGrammarLesson(){
+  if(!S.gramDone) S.gramDone=[];
+  if(_GL&&_GL.id&&!S.gramDone.includes(_GL.id)){S.gramDone.push(_GL.id);save();}
   const body=document.getElementById('gl-body');
   document.getElementById('gl-prog').style.width='100%';
   document.getElementById('gl-counter').textContent='Klaar!';

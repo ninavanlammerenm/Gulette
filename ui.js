@@ -439,7 +439,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v25';
+  if(_vEl)_vEl.textContent='v51 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
@@ -833,14 +833,15 @@ function renderGrammarLibrary(){
       <div class="gram-ch-label">${chTitle}</div>
       ${lessons.map(l=>{
         const hasEx=typeof GRAM_EX!=='undefined'&&GRAM_EX[l.id];
-        return`<div class="gram-item">
+        const done=(S.gramDone||[]).includes(l.id);
+        return`<div class="gram-item${done?' gram-done':''}">
           <div class="gram-item-hdr" onclick="toggleGramItem(this.parentElement)">
             <span class="gram-item-ico">${l.icon||'📖'}</span>
             <div class="gram-item-info">
-              <div class="gram-item-title">${l.title}</div>
+              <div class="gram-item-title">${done?'✓ ':''}${l.title}</div>
               <div class="gram-item-sub">${l.sub||''}</div>
             </div>
-            ${hasEx?`<button class="gram-start-btn" onclick="event.stopPropagation();openGrammarLesson('${l.id}')">Start les →</button>`
+            ${hasEx?`<button class="gram-start-btn" onclick="event.stopPropagation();openGrammarLesson('${l.id}')">${done?'Opnieuw':'Start les →'}</button>`
                    :`<span class="gram-item-arrow">›</span>`}
           </div>
           <div class="gram-item-body">${l.grammar.replace(/\n/g,'<br>')}</div>
@@ -849,7 +850,8 @@ function renderGrammarLibrary(){
     </div>`;
   });
 
-  document.getElementById('gram-sub').textContent=`${totalLessons} taalregels`;
+  const gramDone=(S.gramDone||[]).length;
+  document.getElementById('gram-sub').textContent=gramDone>0?`${gramDone} van ${totalLessons} voltooid`:`${totalLessons} taalregels`;
   container.innerHTML=html;
 }
 
