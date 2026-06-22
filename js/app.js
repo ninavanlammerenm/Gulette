@@ -74,7 +74,7 @@ function scheduleReminder(){
   setTimeout(()=>{
     if(S.lastStudy!==new Date().toDateString()){
       new Notification('Gulette 🐇',{
-        body:`Salam ${S.name}! Vergeet je dagelijkse Hazaragi les niet 🌸`,
+        body:`Salam ${S.name}! Vergeet je dagelijkse Afghaanse les niet 🌸`,
         tag:'gulette-reminder'
       });
     }
@@ -128,7 +128,7 @@ function shareProgress(){
   ctx.fillStyle='#83513E';ctx.font='bold 32px sans-serif';
   ctx.fillText('Gulette 🐇',30,50);
   ctx.fillStyle='#C4937E';ctx.font='600 16px sans-serif';
-  ctx.fillText(`${S.name} leert Hazaragi!`,30,78);
+  ctx.fillText(`${S.name} leert Afghaans!`,30,78);
   // Stats
   ctx.fillStyle='#F28AA1';ctx.font='bold 52px sans-serif';
   ctx.fillText(`${wc}`,30,148);
@@ -151,13 +151,13 @@ function shareProgress(){
   }
   ctx.fillStyle='#D4B8A8';ctx.font='600 14px sans-serif';
   ctx.fillText(`+${todayXP} XP vandaag · ${S.xp} XP totaal`,30,cefrBadge?254:220);
-  ctx.fillText('#Gulette #Hazaragi',30,310);
+  ctx.fillText('#Gulette #Afghaans',30,310);
 
   c.toBlob(blob=>{
     if(!blob)return;
     if(navigator.share&&navigator.canShare){
       const file=new File([blob],'gulette-voortgang.png',{type:'image/png'});
-      const data={files:[file],title:'Gulette 🐇',text:`Ik ken nu ${wc} Hazaragi woorden! 🐇`};
+      const data={files:[file],title:'Gulette 🐇',text:`Ik ken nu ${wc} Afghaanse woorden! 🐇`};
       if(navigator.canShare(data)){
         navigator.share(data).catch(()=>{});
         return;

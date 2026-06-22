@@ -94,7 +94,7 @@ function testAudio(){
   const fa=vs.filter(v=>v.lang.startsWith('fa'));
   let msg;
   if(fa.length){
-    msg='🔊 Modus: Hazaragi (fa) — '+fa[0].name;
+    msg='🔊 Modus: Afghaans (fa) — '+fa[0].name;
   } else {
     msg='⚠️ Geen Perzische stem gevonden — installeer een Perzische stemenpakket voor spraak';
   }

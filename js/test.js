@@ -14,8 +14,8 @@ const CEFR_TESTS = {
     requiredLessons: ['greet1','greet2','numbers','family','food','emotions'],
     chapters: ['ch1','ch2','ch3','ch4','ch5','ch_gram1'],
     skills: [
-      {type:'vocab_hz_nl', weight:5, label:'Woordenschat: Hazaragi → Nederlands'},
-      {type:'vocab_nl_hz', weight:4, label:'Woordenschat: Nederlands → Hazaragi'},
+      {type:'vocab_hz_nl', weight:5, label:'Woordenschat: Afghaans → Nederlands'},
+      {type:'vocab_nl_hz', weight:4, label:'Woordenschat: Nederlands → Afghaans'},
       {type:'grammar_cloze', weight:4, label:'Grammatica: invullen'},
       {type:'listening', weight:3, label:'Luistervaardigheid'},
       {type:'sentence_order', weight:3, label:'Zinsbouw'},
@@ -33,8 +33,8 @@ const CEFR_TESTS = {
     requiredLessons: ['stories','opinions','gram2_heden','gram2_negatie','transport','health'],
     chapters: ['ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch_gram1','ch_gram2'],
     skills: [
-      {type:'vocab_hz_nl', weight:5, label:'Woordenschat: Hazaragi → Nederlands'},
-      {type:'vocab_nl_hz', weight:5, label:'Woordenschat: Nederlands → Hazaragi'},
+      {type:'vocab_hz_nl', weight:5, label:'Woordenschat: Afghaans → Nederlands'},
+      {type:'vocab_nl_hz', weight:5, label:'Woordenschat: Nederlands → Afghaans'},
       {type:'grammar_cloze', weight:5, label:'Grammatica: invullen'},
       {type:'listening', weight:3, label:'Luistervaardigheid'},
       {type:'sentence_order', weight:4, label:'Zinsbouw'},
@@ -52,8 +52,8 @@ const CEFR_TESTS = {
     requiredLessons: ['gram3_sov','gram3_verleden','fluent_expressions','hazara_identity'],
     chapters: null, // alle hoofdstukken
     skills: [
-      {type:'vocab_hz_nl', weight:5, label:'Woordenschat: Hazaragi → Nederlands'},
-      {type:'vocab_nl_hz', weight:5, label:'Woordenschat: Nederlands → Hazaragi'},
+      {type:'vocab_hz_nl', weight:5, label:'Woordenschat: Afghaans → Nederlands'},
+      {type:'vocab_nl_hz', weight:5, label:'Woordenschat: Nederlands → Afghaans'},
       {type:'grammar_cloze', weight:6, label:'Grammatica: invullen'},
       {type:'listening', weight:4, label:'Luistervaardigheid'},
       {type:'sentence_order', weight:5, label:'Zinsbouw'},
@@ -84,7 +84,7 @@ const SITUATIONAL_QS = {
     {q:'Iemand vraagt waar je vandaan komt. Wat zeg je?', correct:'از افغانستان استم', opts:['خوبم','تشکر','بله']},
   ],
   B1: [
-    {q:'Je wilt een Hazaragi spreekwoord gebruiken over geduld.', correct:'صبر تلخ اس ولی ثمر شیرین داره', opts:['خوب اس','تشکر','سلام']},
+    {q:'Je wilt een Afghaans spreekwoord gebruiken over geduld.', correct:'صبر تلخ اس ولی ثمر شیرین داره', opts:['خوب اس','تشکر','سلام']},
     {q:'Je wilt zeggen: "Als ik geld had, ging ik op reis."', correct:'اگه پیسه می‌داشتم سفر می‌رفتم', opts:['پیسه دارم','سفر خوب اس','می‌خوایم برم']},
     {q:'Je wilt iemand\'s karakter beschrijven als geduldig.', correct:'صبور اس', opts:['خفا اس','خوش اس','کلان اس']},
     {q:'Je wilt vertellen over Nowruz.', correct:'نوروز سال نو اس', opts:['نوروز خداحافظ','نوروز نه','نوروز ببخشید']},
@@ -388,7 +388,7 @@ function generateQuestion(type, words, sentences, level, existing){
       return {
         type:'mc', skill:'vocab_nl_hz', targetWord:w.hz,
         prompt: w.nl, promptType:'nl',
-        question: 'Hoe zeg je dit in Hazaragi?',
+        question: 'Hoe zeg je dit in het Afghaans?',
         correct: w.hz,
         choices: shuffle([w.hz, ...dists]),
         tr: w.tr, rtl: true

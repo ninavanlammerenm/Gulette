@@ -203,7 +203,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'خانمو دو اتاق داره',tr:'khaanamao do otaaq daara',nl:'Ons huis heeft twee kamers'},
         {hz:'دروازه باز اَس',tr:'darwaaza baaz as',nl:'De deur is open'},
-        {hz:'حویلی قشنگ اَس',tr:'haweli qashanq as',nl:'De binnenplaats is mooi'},
+        {hz:'حویلی گوشکیل اَس',tr:'haweli goshkil as',nl:'De binnenplaats is mooi'},
       ]
     },
 
@@ -316,7 +316,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'سرم درد می‌کنه',tr:'saram dard me-kona',nl:'Mijn hoofd doet pijn'},
-        {hz:'چشمانت قشنگ اَس',tr:'chashmaanat qashanq as',nl:'Jouw ogen zijn mooi'},
+        {hz:'چشمانت گوشکیل اَس',tr:'chashmaanat goshkil as',nl:'Jouw ogen zijn mooi'},
         {hz:'دلم درد می‌کنه',tr:'delam dard me-kona',nl:'Mijn hart doet pijn'},
       ]
     },
@@ -369,7 +369,7 @@ const CHAPTERS=[
       pronTips:['ق','خ'],
       grammar:'"آفرین" (aafarin) is de meest gewaardeerde aanmoediging — zeg het veel!',
       words:[
-        {hz:'قشنگ',tr:'qashanq',nl:'Mooi',tip:'"ق" = diepe keel-k'},
+        {hz:'گوشکیل',tr:'goshkil',nl:'Mooi',tip:'"ق" = diepe keel-k'},
         {hz:'آفرین',tr:'aafarin',nl:'Goed zo! Bravo!',tip:'Gebruik het veel!'},
         {hz:'ماشاالله',tr:'mashaallah',nl:'MashaAllah',tip:'Zeg bij bewondering'},
         {hz:'مهربان',tr:'mehrabaan',nl:'Lief / Vriendelijk',tip:'"خیلی مهربان اَس" = hij/zij is heel lief — het hoogste compliment in Hazaragi cultuur'},
@@ -379,7 +379,7 @@ const CHAPTERS=[
         {hz:'عالی',tr:'aali',nl:'Geweldig / Uitstekend',tip:'"عالی!" = geweldig! — krachtige goedkeuring, universeel gebruikt'},
       ],
       sentences:[
-        {hz:'تو خیلی قشنگ هستی',tr:'tu khaili qashanq hasti',nl:'Jij bent heel mooi'},
+        {hz:'تو خیلی گوشکیل هستی',tr:'tu khaili goshkil hasti',nl:'Jij bent heel mooi'},
         {hz:'آفرین! خوب کردی',tr:'aafarin! khob kardi',nl:'Goed zo! Je hebt het goed gedaan'},
         {hz:'ماشاالله چنده باهوشی',tr:'mashaallah chanda baahoshi',nl:'MashaAllah, wat ben jij slim'},
       ]
@@ -676,8 +676,8 @@ const CHAPTERS=[
         {hz:'زمین',tr:'zamin',nl:'Aarde / Grond',tip:'"زمین کشاورزی" = landbouwgrond — vitaal voor de Hazara'},
       ],
       sentences:[
-        {hz:'کوه‌های هزاراجات خیلی قشنگ اَس',tr:'koohhaaye hazaarajaat khaili qashanq as',nl:'De bergen van Hazarajat zijn heel mooi'},
-        {hz:'شب ستاره‌ها قشنگن',tr:'shab setaarahaa qashanghan',nl:'\'s Nachts zijn de sterren mooi'},
+        {hz:'کوه‌های هزاراجات خیلی گوشکیل اَس',tr:'koohhaaye hazaarajaat khaili goshkil as',nl:'De bergen van Hazarajat zijn heel mooi'},
+        {hz:'شب ستاره‌ها گوشکیلن',tr:'shab setaarahaa goshkilan',nl:'\'s Nachts zijn de sterren mooi'},
         {hz:'دریا از کوه جاری اَس',tr:'daryaa az kooh jaari as',nl:'De rivier stroomt van de berg'},
         {hz:'درخت‌ها دَ بهار گل می‌ده',tr:'darakhthaa da bahaar gol mi-da',nl:'De bomen bloeien in de lente'},
         {hz:'زمین بعد از بارون سبز می‌شه',tr:'zameen ba\'d az baaroon sabz mi-sha',nl:'De grond wordt groen na de regen'},
@@ -744,12 +744,12 @@ const CHAPTERS=[
         {hz:'بیدار',tr:'bidaar',nl:'Wakker',tip:'"بیدار شدن" = wakker worden — "بیدارم" = ik ben wakker'},
         {hz:'کابوس',tr:'kaabus',nl:'Nachtmerrie',tip:'"کابوس دیدم" = ik had een nachtmerrie'},
         {hz:'خوابم برد',tr:'khwaabam bord',nl:'Ik viel in slaap',tip:'Letterlijk: "slaap nam me mee"'},
-        {hz:'خواب قشنگ',tr:'khwaab qashanq',nl:'Mooie droom',tip:'"خواب قشنگ ببینی" = zoete dromen — afscheidsgroet voor de nacht'},
+        {hz:'خواب گوشکیل',tr:'khwaab goshkil',nl:'Mooie droom',tip:'"خواب گوشکیل ببینی" = zoete dromen — afscheidsgroet voor de nacht'},
       ],
       sentences:[
-        {hz:'دیشب خواب قشنگ دیدم',tr:'dishab khwaab qashanq didom',nl:'Gisteravond had ik een mooie droom'},
-        {hz:'ستاره‌ها امشب خیلی قشنگن',tr:'setaarahaa emshab khaili qashanghan',nl:'De sterren zijn vanavond heel mooi'},
-        {hz:'خواب قشنگ ببینی، شب بخیر',tr:'khwaab qashanq bebini, shab bakhair',nl:'Zoete dromen, goedenacht'},
+        {hz:'دیشب خواب گوشکیل دیدم',tr:'dishab khwaab goshkil didom',nl:'Gisteravond had ik een mooie droom'},
+        {hz:'ستاره‌ها امشب خیلی گوشکیلن',tr:'setaarahaa emshab khaili goshkilan',nl:'De sterren zijn vanavond heel mooi'},
+        {hz:'خواب گوشکیل ببینی، شب بخیر',tr:'khwaab goshkil bebini, shab bakhair',nl:'Zoete dromen, goedenacht'},
       ]
     },
   ]},
@@ -762,10 +762,10 @@ const CHAPTERS=[
       words:[
         {hz:'جشن',tr:'jashn',nl:'Feest / Viering',tip:'"جشن گرفتن" = een feest vieren — ook: "جشن تولد" = verjaardagsfeest'},
         {hz:'رقص',tr:'raqs',nl:'Dans',tip:'"رقص کردن" = dansen — verplicht bij elke Hazara bruiloft!'},
-        {hz:'آهنگ',tr:'aahang',nl:'Lied / Muziek',tip:'"آهنگ قشنگ" = mooi liedje — "آهنگ" ook voor melodie'},
+        {hz:'آهنگ',tr:'aahang',nl:'Lied / Muziek',tip:'"آهنگ گوشکیل" = mooi liedje — "آهنگ" ook voor melodie'},
         {hz:'غزل',tr:'ghazal',nl:'Ghazal (poëtisch lied)',tip:'Klassieke Perzische dichtvorm — vaak over liefde en verlangen'},
         {hz:'دایره',tr:'daayera',nl:'Tamboerijn',tip:'HET Hazara instrument!'},
-        {hz:'صدا',tr:'sadaa',nl:'Stem / Geluid',tip:'"صدای قشنگ" = mooie stem — "صدات قطع می‌شه" = je valt weg (telefoon)'},
+        {hz:'صدا',tr:'sadaa',nl:'Stem / Geluid',tip:'"صدای گوشکیل" = mooie stem — "صدات قطع می‌شه" = je valt weg (telefoon)'},
         {hz:'شادی',tr:'shaadi',nl:'Vreugde / Geluk',tip:'"شادی کردن" = vreugde uitdrukken — niet verwarren met "عروسی"'},
         {hz:'مهمانی کردن',tr:'mehmaani kardan',nl:'Een feest geven',tip:'"مهمانی دادن" ook gebruikt — gasten thuis ontvangen'},
         {hz:'سرود',tr:'sorood',nl:'Lied / Hymne',tip:'"سرود خواندن" = een lied zingen — formeler dan "آهنگ"'},
@@ -773,7 +773,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'عروسی بود، همه رقص کردن',tr:'arosi bood, hama raqs karden',nl:'Het was een bruiloft, iedereen danste'},
-        {hz:'آهنگت خیلی قشنگه، ازوال بزن',tr:'aahangat khaili qashangha, azawal bezan',nl:'Jouw liedje is heel mooi, speel het nog eens'},
+        {hz:'آهنگت خیلی گوشکیله، ازوال بزن',tr:'aahangat khaili goshkila, azawal bezan',nl:'Jouw liedje is heel mooi, speel het nog eens'},
         {hz:'شادی کو! امشب جشن داریم',tr:'shaadi ko! emshab jashn daarim',nl:'Wees blij! Vanavond hebben we een feest'},
       ]
     },
@@ -1034,7 +1034,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'آپارتمانم دَ طبقه سوم اَس',tr:'aapaartemaanam da tabqa sowm as',nl:'Mijn appartement is op de derde verdieping'},
         {hz:'همسایمو خیلی خوب هستن',tr:'hamsaayamo khaili khob hastan',nl:'Onze buren zijn heel goed'},
-        {hz:'شهر امشب خیلی قشنگ اَس',tr:'shahr emshab khaili qashanq as',nl:'De stad is vanavond heel mooi'},
+        {hz:'شهر امشب خیلی گوشکیل اَس',tr:'shahr emshab khaili goshkil as',nl:'De stad is vanavond heel mooi'},
       ]
     },
   ]},
@@ -1078,7 +1078,7 @@ const CHAPTERS=[
         {hz:'استوری',tr:'estori',nl:'Story',tip:'Instagram/WhatsApp story'},
       ],
       sentences:[
-        {hz:'عکست قشنگ اَس، لایک کردم',tr:'aksat qashanq as, layk kardom',nl:'Jouw foto is mooi, ik heb geliket'},
+        {hz:'عکست گوشکیل اَس، لایک کردم',tr:'aksat goshkil as, layk kardom',nl:'Jouw foto is mooi, ik heb geliket'},
         {hz:'پیام بده وختی رسیدی',tr:'payaam bede wakhti rasidi',nl:'Stuur een bericht als je bent aangekomen'},
         {hz:'این ویدیو را شیر کو',tr:'ain widyo ra sher ko',nl:'Deel deze video'},
       ]
@@ -1408,7 +1408,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'کوه‌های هزارستان بلند اَن',tr:'koohaa-ye hazaaristaan boland an',nl:'De bergen van Hazarastan zijn hoog'},
-        {hz:'آو صاف دریا قشنگ اَس',tr:'aaw saaf daryaa qashanq as',nl:'Het heldere water van de rivier is mooi'},
+        {hz:'آو صاف دریا گوشکیل اَس',tr:'aaw saaf daryaa goshkil as',nl:'Het heldere water van de rivier is mooi'},
         {hz:'دشت پر از گل شده، بهار اَس',tr:'dasht por az gol shoda, bahaar as',nl:'De vlakte staat vol bloemen, het is lente'},
       ]
     },
@@ -1862,7 +1862,7 @@ const CHAPTERS=[
         {hz:'درآوردن',tr:'dar-aawordan',nl:'Uitdoen / Uittrekken',tip:''},
       ],
       sentences:[
-        {hz:'لباست قشنگ اَس، کجا خریدی؟',tr:'lebaasat qashanq as, koja kharidi?',nl:'Je kleding is mooi, waar heb je het gekocht?'},
+        {hz:'لباست گوشکیل اَس، کجا خریدی؟',tr:'lebaasat goshkil as, koja kharidi?',nl:'Je kleding is mooi, waar heb je het gekocht?'},
         {hz:'هوا سرد اَس، کت بپوش',tr:'hawaa sard as, kat beposh',nl:'Het is koud, trek je jas aan'},
         {hz:'کفشم تنگ اَس، درد می‌کنه',tr:'kafasham tang as, dard me-kona',nl:'Mijn schoen is strak, het doet pijn'},
       ]
@@ -1885,7 +1885,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'برارم قد بلند و لاغر اَس',tr:'baraaram qad boland o laaghar as',nl:'Mijn broer is lang en slank'},
-        {hz:'مویت خیلی قشنگ اَس',tr:'mooyat khaili qashanq as',nl:'Je haar is heel mooi'},
+        {hz:'مویت خیلی گوشکیل اَس',tr:'mooyat khaili goshkil as',nl:'Je haar is heel mooi'},
         {hz:'او پیر نیس، هنوز جوان اَس',tr:'oo peer nis, hanoz jawaan as',nl:'Hij/zij is niet oud, nog steeds jong'},
       ]
     },
@@ -1933,7 +1933,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'دَ اتاق خوابم هستم',tr:'da otaaq-khwaabam hastom',nl:'Ik ben in mijn slaapkamer'},
         {hz:'حمام خراب اَس، تشناب کار می‌کنه',tr:'hamaam khraab as, tashnaab kaar me-kona',nl:'De badkamer is kapot, het toilet werkt'},
-        {hz:'بالکنمو قشنگ اَس، شهر دیده می‌شه',tr:'baalkuanamo qashanq as, shahr dida mi-sha',nl:'Ons balkon is mooi, je ziet de stad'},
+        {hz:'بالکنمو گوشکیل اَس، شهر دیده می‌شه',tr:'baalkuanamo goshkil as, shahr dida mi-sha',nl:'Ons balkon is mooi, je ziet de stad'},
       ]
     },
 
@@ -2664,7 +2664,7 @@ const CHAPTERS=[
         {hz:'تپه',tr:'tapa',nl:'Heuvel',tip:''},
       ],
       sentences:[
-        {hz:'بند امیر قشنگ‌ترین جای افغانستان اَس',tr:'band-e amir qashangtarin jaaye afghaanestaan as',nl:'Band-e Amir is de mooiste plek van Afghanistan'},
+        {hz:'بند امیر گوشکیل‌ترین جای افغانستان اَس',tr:'band-e amir goshkiltarin jaaye afghaanestaan as',nl:'Band-e Amir is de mooiste plek van Afghanistan'},
         {hz:'هزارجات سرزمین کوه‌ها و دره‌ها اَس',tr:'hazaarajaat sarzamin-e koohhaa wa darahaa as',nl:'Hazarajat is het land van bergen en valleien'},
         {hz:'تابستان به ییلاق می‌رفتیم',tr:'taabestaan ba yilaaq mi-raftim',nl:'In de zomer gingen we naar de bergweide'},
       ]
@@ -2686,7 +2686,7 @@ const CHAPTERS=[
         {hz:'یادگار',tr:'yaadgaar',nl:'Monument / Aandenken',tip:''},
       ],
       sentences:[
-        {hz:'مسجد کبود مزار شریف خیلی قشنگ اَس',tr:'masjed-e kabood mazaar sharif kheli qashanq as',nl:'De Blauwe Moskee van Mazar-i-Sharif is heel mooi'},
+        {hz:'مسجد کبود مزار شریف خیلی گوشکیل اَس',tr:'masjed-e kabood mazaar sharif kheli goshkil as',nl:'De Blauwe Moskee van Mazar-i-Sharif is heel mooi'},
         {hz:'بت‌های بامیان میراث جهانی بود',tr:'bot-haaye baamiaan miraas-e jahaaani bood',nl:'De Boeddhabeelden van Bamyan waren werelderfgoed'},
         {hz:'موزیم کابل تاریخ افغانستان را نگه می‌داره',tr:'moziom-e kabol taarikhe afghaanestaan ra negah mi-daara',nl:'Het museum van Kabul bewaart de geschiedenis van Afghanistan'},
       ]
@@ -2717,7 +2717,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'بچه‌ات به دنیا اومد، مبارک باشه!',tr:'bachaat ba donyaa oomad, mobaarak baasha!',nl:'Je kind is geboren, van harte gefeliciteerd!'},
-        {hz:'ماشاالله، خیلی قشنگ اَس!',tr:'mashaallah, kheli qashang as!',nl:'Mashallah, wat is het mooi!'},
+        {hz:'ماشاالله، خیلی گوشکیل اَس!',tr:'mashaallah, kheli goshkil as!',nl:'Mashallah, wat is het mooi!'},
         {hz:'چه اسمی رویش هشتین؟',tr:'cha esmi rowesh hashtin?',nl:'Welke naam hebben jullie hem/haar gegeven?'},
       ]
     },
@@ -2739,7 +2739,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'عروسی‌شان ماه آینده اَس',tr:'arosishaan maah-e aaayanda as',nl:'Hun bruiloft is volgende maand'},
-        {hz:'عروس خیلی قشنگ بود، ماشاالله',tr:'aros kheli qashang bood, mashaallah',nl:'De bruid was heel mooi, mashallah'},
+        {hz:'عروس خیلی گوشکیل بود، ماشاالله',tr:'aros kheli goshkil bood, mashaallah',nl:'De bruid was heel mooi, mashallah'},
         {hz:'دعوت عروسی گرفتم، خوشحال شدم',tr:'da\'wat-e arosi gereftom, khoshhaal shodom',nl:'Ik heb een bruiloftsuitnodiging gekregen, ik werd blij'},
       ]
     },
@@ -3168,7 +3168,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'بسم الله، شروع می‌کنیم',tr:'bismillaah, shoroo mi-konim',nl:'In de naam van God, laten we beginnen'},
         {hz:'الحمدلله خوبم، تشکر که پرسیدی',tr:'alhamdolillah khobom, tashakor ka porsidi',nl:'Alhamdulillah ik ben goed, bedankt dat je het vraagt'},
-        {hz:'ماشاالله، چنده قشنگ اَس!',tr:'mashaallah, chanda qashang as!',nl:'Mashallah, wat is het mooi!'},
+        {hz:'ماشاالله، چنده گوشکیل اَس!',tr:'mashaallah, chanda goshkil as!',nl:'Mashallah, wat is het mooi!'},
       ]
     },
 
@@ -4165,7 +4165,7 @@ const CHAPTERS=[
         {hz:'خوب',tr:'khob',nl:'Goed',tip:'"بهتر" = beter — onregelmatig!'},
         {hz:'بد',tr:'bad',nl:'Slecht',tip:'"بدتر" = slechter'},
         {hz:'تازه',tr:'taaza',nl:'Vers / Nieuw',tip:'"نان تازه" = vers brood'},
-        {hz:'قشنگ',tr:'qashanq',nl:'Mooi',tip:'Hazaragi/Afghaans woord voor mooi'},
+        {hz:'گوشکیل',tr:'goshkil',nl:'Mooi',tip:'Hazaragi/Afghaans woord voor mooi'},
         {hz:'پیر',tr:'peer',nl:'Oud (persoon)',tip:'"آدم پیر" = oude persoon'},
         {hz:'جوان',tr:'jawaan',nl:'Jong',tip:'"جوانتر" = jonger'},
         {hz:'بزرگتر',tr:'bozorgtar',nl:'Groter',tip:'"-تر" toevoegen aan bijv.nw.'},

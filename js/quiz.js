@@ -188,14 +188,14 @@ function _renderOvhType(hz,v){
   document.getElementById('ovh-body').innerHTML=`
     ${timerHTML}
     <div class="type-pill">⌨️ Actief ophalen</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Hazaragi woord voor:</p>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Afghaanse woord voor:</p>
     <div class="hz-card" style="margin-bottom:16px">
       <span class="hz-nl" style="font-size:22px;font-weight:900;color:var(--ink)">${v.nl}</span>
       <span class="hz-dutch">${v.tr||''}</span>
     </div>
     <input class="t-inp" id="ovh-t-inp" inputmode="text" lang="fa" dir="rtl"
       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-      placeholder="Typ in Hazaragi schrift...">
+      placeholder="Typ in Afghaans schrift...">
     <div class="t-hint" id="ovh-t-hint"></div>
     <button class="hint-btn" id="ovh-hint-btn">💡 Toon antwoord</button>
     <div style="flex:1"></div>

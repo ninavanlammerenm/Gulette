@@ -22,7 +22,7 @@ const EX_TYPE_LABELS={
   phase_break:'',
   context:'🔍 Patroon',
   mc_nl:'🎯 Betekenis',
-  mc_hz:'🔤 Hazaragi',
+  mc_hz:'🔤 Afghaans',
   wb:'🧩 Zin',
   type:'⌨️ Typen',
   cloze:'🧩 Vul in',
@@ -341,9 +341,9 @@ function rContext(ex,body){
   const s=ss[Math.floor(Math.random()*ss.length)];
   body.innerHTML=`
     <div class="type-pill">🔍 Zie het patroon</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Lees de zin en ontdek de Hazaragi patronen:</p>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Lees de zin en ontdek de Afghaanse patronen:</p>
     <div class="ctx-card">
-      <div class="ctx-title">🌐 Hazaragi zin</div>
+      <div class="ctx-title">🌐 Afghaanse zin</div>
       <div class="ctx-sentence">${s.hz}</div>
       <div class="ctx-tr">${s.tr}</div>
       <div class="ctx-nl">"${s.nl}"</div>
@@ -408,8 +408,8 @@ function rMC_hz(ex,body){
     return S.vocab[hz]?.tr||'';
   };
   body.innerHTML=`
-    <div class="type-pill">🔤 Kies Hazaragi</div>
-    <p style="font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk Hazaragi woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
+    <div class="type-pill">🔤 Kies Afghaans</div>
+    <p style="font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk Afghaans woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_hz" data-chosen="${c}" data-correct="${w.hz}" data-nl="${w.nl}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>
@@ -428,7 +428,7 @@ function rWB(ex,body){
 
   body.innerHTML=`
     <div class="type-pill">🧩 Zin samenstellen</div>
-    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:14px">Zet de Hazaragi woorden in volgorde:</p>
+    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:14px">Zet de Afghaanse woorden in volgorde:</p>
     <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px">
       <div style="font-size:14px;font-weight:700;color:var(--ink-m)">"${s.nl}"</div>
       <div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
@@ -493,7 +493,7 @@ function rType(ex,body){
 
   body.innerHTML=`
     <div class="type-pill">⌨️ Actief ophalen</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Hazaragi woord voor:</p>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Afghaanse woord voor:</p>
     <div class="hz-card hz-card-compact">
       <span class="hz-nl" style="font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px">${w.nl}</span>
       <span class="hz-dutch">${w.tr||''}</span>
@@ -693,7 +693,7 @@ function rOrder(ex,body){
 
   body.innerHTML=`
     <div class="type-pill">🔀 Zinsvolgorde</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Vertaal naar Hazaragi:</p>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Vertaal naar Afghaans:</p>
     <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;border:1.5px solid var(--rose-l)">
       <div style="font-size:16px;font-weight:700;color:var(--ink)">"${s.nl}"</div>
       <div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
@@ -861,7 +861,7 @@ function rListen(ex,body){
 
   body.innerHTML=`
     <div class="type-pill">🎧 Luisteroefening</div>
-    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Hazaragi woord hoor je?</p>
+    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Afghaans woord hoor je?</p>
     <button class="listen-play-btn" onclick="speakHz('${w.hz}','${(w.tr||'').replace(/'/g,"\\'")}')">🔊 Speel opnieuw af</button>
     <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr||''}">

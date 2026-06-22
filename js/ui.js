@@ -271,7 +271,7 @@ function renderVocab(){
     el.innerHTML=`<div style="text-align:center;padding:48px 24px">
       <div style="font-size:48px;margin-bottom:12px">🐇</div>
       <div style="font-size:16px;font-weight:900;color:var(--ink);margin-bottom:6px">Nog geen woorden geleerd</div>
-      <div style="font-size:13px;font-weight:700;color:var(--ink-l);line-height:1.6">Start een les op het thuisscherm om je eerste Hazaragi woorden te leren!</div>
+      <div style="font-size:13px;font-weight:700;color:var(--ink-l);line-height:1.6">Start een les op het thuisscherm om je eerste Afghaanse woorden te leren!</div>
     </div>`;
     return;
   }
@@ -430,7 +430,7 @@ function renderXPGraph(){
 function renderProfile(){
   document.getElementById('p-name').textContent=S.name;
   const lvl=getLevel(S.xp);
-  const titles=['Beginner 🌱','Leerling 📖','Gevorderd 🌸','Expert 💎','Meester ✨','Hazaragi-liefhebber 🏔️'];
+  const titles=['Beginner 🌱','Leerling 📖','Gevorderd 🌸','Expert 💎','Meester ✨','Afghaans-liefhebber 🏔️'];
   const cefrBadge = S.testResults ? Object.entries(S.testResults).filter(([,r])=>r.passed).map(([l])=>l).pop() : null;
   document.getElementById('p-lvl').textContent=`Level ${lvl} · ${titles[Math.min(lvl-1,5)]}${cefrBadge?' · 🎓 '+cefrBadge:''}`;
   document.getElementById('p-xp').textContent=S.xp;
