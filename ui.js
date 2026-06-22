@@ -813,60 +813,6 @@ function renderVerbResult(){
 // ══════════════════════════════════════════════════════
 // GRAMMAR LIBRARY
 // ══════════════════════════════════════════════════════
-const GRAM_EXERCISES={
-  'gram1_pronouns':[
-    {sentence:'___ هزاره هستم',blank:'___',answer:'من',opts:['من','تو','او'],hint:'ma = ik'},
-    {sentence:'___ کجا هستی؟',blank:'___',answer:'تو',opts:['من','تو','مو'],hint:'tu = jij'},
-    {sentence:'___ با هم می‌ریم',blank:'___',answer:'مو',opts:['او','مو','تو'],hint:'mah = wij'},
-  ],
-  'gram1_zijn':[
-    {sentence:'هوا گرم ___',blank:'___',answer:'اَس',opts:['اَس','هستم','نیستم'],hint:'as = is'},
-    {sentence:'من خوب ___',blank:'___',answer:'هستم',opts:['هستم','هستی','اَس'],hint:'hastom = ik ben'},
-    {sentence:'مشکلی ___!',blank:'___',answer:'نیس',opts:['نیس','هستم','اَس'],hint:'nis = is niet'},
-  ],
-  'gram1_bezit':[
-    {sentence:'نام___ گل اَس',blank:'___',answer:'م',opts:['م','ت','ش'],hint:'-m = mijn'},
-    {sentence:'مادر___ مهربان اَس',blank:'___',answer:'ش',opts:['م','ت','ش'],hint:'-sh = zijn/haar'},
-  ],
-  'gram1_meervoud':[
-    {sentence:'کتاب___ کجاس؟',blank:'___',answer:'ها',opts:['ها','ان','من'],hint:'-haa = meervoud'},
-    {sentence:'بچه___ بازی می‌کنن',blank:'___',answer:'ها',opts:['ها','ش','م'],hint:'-haa voor meervoud'},
-  ],
-};
-
-function _renderGramEx(lessonId){
-  const exs=GRAM_EXERCISES[lessonId];
-  if(!exs||!exs.length)return'';
-  const eid=lessonId+'_'+Math.random().toString(36).slice(2,6);
-  return`<div class="gram-ex">
-    <div class="gram-ex-title">✏️ Oefen</div>
-    ${exs.map((ex,i)=>{
-      const qid=eid+'_'+i;
-      return`<div class="gram-ex-q" id="${qid}">
-        <div class="gram-ex-sentence">${ex.sentence}</div>
-        <div class="gram-ex-opts">${ex.opts.map(o=>
-          `<button class="gram-ex-opt" onclick="checkGramEx(this,'${o}','${ex.answer}','${qid}','${ex.hint}')">${o}</button>`
-        ).join('')}</div>
-        <div class="gram-ex-fb" id="${qid}_fb"></div>
-      </div>`;
-    }).join('')}
-  </div>`;
-}
-
-function checkGramEx(btn,chosen,answer,qid,hint){
-  const q=document.getElementById(qid);
-  if(!q)return;
-  q.querySelectorAll('.gram-ex-opt').forEach(b=>{b.disabled=true;});
-  const fb=document.getElementById(qid+'_fb');
-  if(chosen===answer){
-    btn.classList.add('correct');
-    if(fb){fb.textContent='✓ Goed! — '+hint;fb.className='gram-ex-fb show ok';}
-  }else{
-    btn.classList.add('wrong');
-    q.querySelectorAll('.gram-ex-opt').forEach(b=>{if(b.textContent===answer)b.classList.add('correct');});
-    if(fb){fb.textContent='✗ Het was: '+answer+' — '+hint;fb.className='gram-ex-fb show ng';}
-  }
-}
 
 function renderGrammarLibrary(){
   const container=document.getElementById('grammar-library-list');
@@ -882,26 +828,24 @@ function renderGrammarLibrary(){
     const lessons=(ch.lessons||[]).filter(l=>l.grammar);
     if(!lessons.length)return;
     totalLessons+=lessons.length;
-    const chIcon=ch.label.match(/\p{Emoji_Presentation}/u)?.[0]||'📖';
     const chTitle=ch.label.replace(/\p{Emoji_Presentation}/gu,'').trim();
     html+=`<div class="gram-chapter">
       <div class="gram-ch-label">${chTitle}</div>
-      ${lessons.map(l=>`
-        <div class="gram-item" onclick="toggleGramItem(this)">
-          <div class="gram-item-hdr">
+      ${lessons.map(l=>{
+        const hasEx=typeof GRAM_EX!=='undefined'&&GRAM_EX[l.id];
+        return`<div class="gram-item">
+          <div class="gram-item-hdr" onclick="toggleGramItem(this.parentElement)">
             <span class="gram-item-ico">${l.icon||'📖'}</span>
             <div class="gram-item-info">
               <div class="gram-item-title">${l.title}</div>
               <div class="gram-item-sub">${l.sub||''}</div>
             </div>
-            <span class="gram-item-arrow">›</span>
+            ${hasEx?`<button class="gram-start-btn" onclick="event.stopPropagation();openGrammarLesson('${l.id}')">Start les →</button>`
+                   :`<span class="gram-item-arrow">›</span>`}
           </div>
-          <div class="gram-item-body">
-            ${l.grammar.replace(/\n/g,'<br>')}
-            ${_renderGramEx(l.id)}
-          </div>
-        </div>
-      `).join('')}
+          <div class="gram-item-body">${l.grammar.replace(/\n/g,'<br>')}</div>
+        </div>`;
+      }).join('')}
     </div>`;
   });
 
@@ -910,7 +854,7 @@ function renderGrammarLibrary(){
 }
 
 function toggleGramItem(el){
-  if(event&&event.target&&event.target.closest('.gram-ex-opt'))return;
+  if(event&&event.target&&event.target.closest('.gram-start-btn'))return;
   const isOpen=el.classList.contains('open');
   document.querySelectorAll('.gram-item.open').forEach(item=>item.classList.remove('open'));
   if(!isOpen)el.classList.add('open');

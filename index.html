@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#FDEEF1">
 <title>Gulette 🐇</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=47">
+<link rel="stylesheet" href="style.css?v=48">
 </head>
 <body>
 <div id="app">
@@ -252,6 +252,16 @@
   <div id="grammar-library-list" style="padding:0 14px 16px"></div>
 </div>
 
+<!-- ═══════════════════ GRAMMAR LESSON ═══════════════════ -->
+<div id="screen-grammar-lesson" class="screen" style="padding-bottom:0">
+  <div class="gl-topbar">
+    <button class="btn-x" onclick="leaveGrammarLesson()">✕</button>
+    <div class="gl-prog-track"><div class="gl-prog-fill" id="gl-prog" style="width:0%"></div></div>
+    <div class="gl-counter" id="gl-counter">Stap 1 van 1</div>
+  </div>
+  <div class="gl-body" id="gl-body"></div>
+</div>
+
 <!-- ═══════════════════ NAV ═══════════════════ -->
 <div class="bnav" id="bnav" style="display:none">
   <button class="nb on" onclick="navTo('home',this)"><div class="ni">🏠</div><div class="nl">Thuis</div></button>
@@ -336,6 +346,7 @@
 <script defer src="lesson.js"></script>
 <script defer src="quiz.js"></script>
 <script defer src="test.js"></script>
+<script defer src="grammarlesson.js"></script>
 <script defer src="app.js"></script>
 </body>
 </html>

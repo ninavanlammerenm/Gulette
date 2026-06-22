@@ -592,8 +592,56 @@ body.hide-roman .pron-latin{ display:none!important }
 .gram-item-sub{font-size:11px;font-weight:700;color:var(--ink-m);margin-top:2px}
 .gram-item-arrow{font-size:20px;color:var(--ink-l);transition:transform .25s;flex-shrink:0}
 .gram-item.open .gram-item-arrow{transform:rotate(90deg);color:var(--rose)}
+.gram-start-btn{background:var(--rose-xl);color:var(--rose-d);border:1.5px solid var(--rose-l);border-radius:10px;padding:6px 12px;font-size:11px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.gram-start-btn:active{transform:scale(.95)}
 .gram-item-body{display:none;padding:12px 16px 16px;font-size:13px;font-weight:700;color:var(--ink-m);line-height:1.8;border-top:1px solid var(--ink-xl)}
 .gram-item.open .gram-item-body{display:block}
+
+/* ── GRAMMAR LESSON SCREEN ── */
+#screen-grammar-lesson{background:var(--cream);display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+.gl-topbar{padding:calc(env(safe-area-inset-top,44px) + 8px) 18px 14px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--ink-xl);flex-shrink:0}
+.gl-prog-track{flex:1;height:7px;background:var(--ink-xl);border-radius:50px;overflow:hidden}
+.gl-prog-fill{height:100%;background:linear-gradient(90deg,#FAD6D3,#F28AA1);border-radius:50px;transition:width .5s cubic-bezier(.34,1.56,.64,1)}
+.gl-counter{font-size:11px;font-weight:900;color:var(--ink-l);white-space:nowrap}
+.gl-body{flex:1;padding:20px 18px 40px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+
+.gl-card{background:var(--white);border-radius:18px;border:1px solid var(--ink-xl);padding:20px;box-shadow:0 2px 8px rgba(131,81,62,.06)}
+.gl-phase-tag{font-size:10px;font-weight:900;color:var(--rose-d);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px}
+.gl-rule-title{font-size:20px;font-weight:900;color:var(--ink);margin-bottom:12px}
+.gl-explain-text{font-size:14px;font-weight:700;color:var(--ink-m);line-height:1.7;margin-bottom:16px}
+.gl-example{background:var(--rose-xl);border-radius:14px;padding:16px;text-align:center}
+.gl-example-hz{font-family:'Noto Naskh Arabic',serif;font-size:28px;direction:rtl;color:var(--ink);line-height:1.6;margin-bottom:4px}
+.gl-example-tr{font-size:13px;font-weight:700;color:var(--rose);font-style:italic;margin-bottom:2px}
+.gl-example-nl{font-size:13px;font-weight:700;color:var(--ink-m)}
+
+.gl-question{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:16px;line-height:1.4}
+.gl-choices{display:flex;flex-direction:column;gap:8px}
+.gl-choice{background:var(--white);border:1px solid var(--ink-xl);border-left:3px solid var(--ink-xl);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif;text-align:left;width:100%;font-size:15px;font-weight:700;color:var(--ink);box-shadow:var(--sh-xs)}
+.gl-choice:hover:not(:disabled){border-left-color:var(--rose);background:var(--rose-xl)}
+.gl-choice.gl-correct{border-left-color:#8AAF7A;background:#EEF5E8;color:var(--ink)}
+.gl-choice.gl-wrong{border-left-color:#E05060;background:#FFF0F2;color:#8B2030}
+
+.gl-fill-sentence{font-family:'Noto Naskh Arabic',serif;font-size:26px;direction:rtl;text-align:center;color:var(--ink);line-height:1.6;margin-bottom:16px;padding:16px;background:var(--rose-xl);border-radius:14px}
+.gl-fill-hz{direction:rtl}
+.gl-fill-blank{display:inline-block;min-width:40px;border-bottom:3px solid var(--rose);color:var(--rose-d);font-weight:900;padding:0 4px;transition:all .3s}
+.gl-fill-blank.gl-filled{border-bottom-color:#8AAF7A;color:#8AAF7A}
+.gl-fill-opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.gl-fill-opt{background:var(--white);border:1.5px solid var(--ink-xl);border-radius:12px;padding:10px 20px;font-family:'Noto Naskh Arabic',serif;font-size:20px;color:var(--ink);cursor:pointer;transition:all .15s;direction:rtl}
+.gl-fill-opt:hover:not(:disabled){border-color:var(--rose);background:var(--rose-xl)}
+.gl-fill-opt.gl-correct{background:#EEF5E8;border-color:#8AAF7A;color:#5A7A4A}
+.gl-fill-opt.gl-wrong{background:#FFF0F2;border-color:#E05060;color:#8B2030}
+
+.gl-build-prompt{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px;line-height:1.4}
+.gl-build-answer{min-height:52px;border:1.5px solid var(--ink-xl);border-radius:14px;padding:10px;background:var(--white);margin-bottom:10px;display:flex;flex-wrap:wrap;gap:6px;direction:rtl;align-content:flex-start}
+.gl-build-bank{display:flex;flex-wrap:wrap;gap:6px;direction:rtl;margin-bottom:12px}
+.gl-build-tile{background:var(--white);border:1.5px solid var(--ink-l);border-radius:10px;padding:8px 14px;font-family:'Noto Naskh Arabic',serif;font-size:18px;font-weight:800;color:var(--ink);cursor:pointer;transition:all .15s;direction:rtl}
+.gl-build-tile:hover:not(:disabled){border-color:var(--rose);background:var(--rose-xl)}
+.gl-build-tile.placed{opacity:.3;pointer-events:none}
+.gl-build-tile.gl-build-placed{background:var(--rose-xl);border-color:var(--rose);color:var(--rose-d)}
+
+.gl-fb{margin-top:12px}
+.gl-fb-ok{background:#EEF5E8;color:#5A7A4A;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:800;line-height:1.5}
+.gl-fb-ng{background:#FFF0F2;color:#8B2030;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:800;line-height:1.5}
 
 /* Grammar mini exercises */
 .gram-ex{margin-top:14px;padding-top:14px;border-top:1px solid var(--ink-xl)}
