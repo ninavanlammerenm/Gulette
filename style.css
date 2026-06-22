@@ -730,8 +730,9 @@ body.dark-mode .xp-track{background:rgba(255,255,255,.08)}
 body.dark-mode .w-tile{background:#252540;border-color:#352838;color:var(--ink)}
 body.dark-mode .wb-answer{background:#252540;border-color:#5a2838}
 body.dark-mode .wb-bank{background:#352030;border-color:#5a2838}
-body.dark-mode .review-hero{background:linear-gradient(145deg,#352030,#2a1828)}
-body.dark-mode .review-hero.done{background:linear-gradient(145deg,#1a2a1a,#202818)}
+body.dark-mode .review-hero{background:linear-gradient(135deg,#6a2838,#4a1828)}
+body.dark-mode .review-hero.done{background:linear-gradient(135deg,#2a4020,#1a3018)}
+body.dark-mode .ch-block{background:#252540;border-color:rgba(240,108,120,.06)}
 body.dark-mode .drill-card{background:#252540}
 
 /* ── DESKTOP-WEERGAVE (muis + groot scherm, geen touch) ── */
