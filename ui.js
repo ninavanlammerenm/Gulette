@@ -486,7 +486,7 @@ function resetData(){
 // FX
 // ══════════════════════════════════════════════════════
 function confetti(){
-  const cols=['#F06C78','#F9C3Cb','#F6E7B8','#8E9A5A','#e24b5a','#fff','#FADADD'];
+  const cols=['#F28AA1','#FAD6D3','#F6DFB3','#E7AE75','#D4607A','#fff','#FDEEF1'];
   const wrap=document.getElementById('cfwrap');
   const appW=document.getElementById('app').getBoundingClientRect().width;
   wrap.style.cssText=`position:fixed;inset:0;pointer-events:none;z-index:500;overflow:hidden;max-width:${appW}px;left:50%;transform:translateX(-50%)`;
@@ -760,7 +760,7 @@ function renderVerbQ(){
   document.getElementById('ovh-counter').textContent=`${_verbIdx+1}/${_verbTotal}`;
   body.innerHTML=`
     <div class="type-pill">🔄 Werkwoord vervoegen</div>
-    <div style="background:linear-gradient(135deg,var(--rose-xl),#FFF8F9);border:2px solid var(--rose-l);border-radius:var(--r);padding:18px;text-align:center;margin-bottom:16px">
+    <div style="background:var(--rose-xl);border:1px solid var(--ink-xl);border-radius:var(--r);padding:18px;text-align:center;margin-bottom:16px">
       <div style="font-family:'Noto Naskh Arabic',serif;font-size:28px;color:var(--ink);direction:rtl;margin-bottom:4px">${verb.inf}</div>
       <div style="font-size:14px;font-weight:800;color:var(--rose);font-style:italic">${verb.tr} — ${verb.nl}</div>
     </div>

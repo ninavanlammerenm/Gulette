@@ -19,7 +19,7 @@
 <!-- CONFETTI & TOAST & OFFLINE -->
 <div id="cfwrap"></div>
 <div id="toast"></div>
-<div id="offline-bar" style="display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--app-max-w);background:#FEF3C7;color:#92400e;font-size:12px;font-weight:800;text-align:center;padding:6px 12px;z-index:999;border-bottom:1.5px solid rgba(217,119,6,.3)">📡 Offline — je kunt gewoon verder leren!</div>
+<div id="offline-bar" style="display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:var(--app-max-w);background:var(--gold-l);color:var(--ink);font-size:12px;font-weight:800;text-align:center;padding:6px 12px;z-index:999;border-bottom:1.5px solid var(--ink-xl)">📡 Offline — je kunt gewoon verder leren!</div>
 
 <!-- ═══════════════════ ONBOARDING ═══════════════════ -->
 <div id="screen-onboarding" class="screen">
@@ -130,10 +130,10 @@
   <div id="res-wrong-section" class="res-wrong-section" style="display:none">
     <div class="res-wrong-title">❌ Fout gegaan</div>
     <div id="res-wrong-list" class="res-wrong-list"></div>
-    <button class="btn-home" style="background:linear-gradient(135deg,var(--peach),#e07040);margin-bottom:10px" onclick="retryLessonWrong()">🔁 Oefen deze woorden opnieuw</button>
+    <button class="btn-home" style="background:var(--gold);margin-bottom:10px" onclick="retryLessonWrong()">🔁 Oefen deze woorden opnieuw</button>
   </div>
   <button class="btn-home" onclick="goHome()">Terug naar huis 🌸</button>
-  <button class="btn-home" style="background:linear-gradient(135deg,#25D366,#128C7E);margin-top:10px" onclick="shareProgress()">📤 Deel je voortgang</button>
+  <button class="btn-home" style="background:var(--mint);margin-top:10px" onclick="shareProgress()">📤 Deel je voortgang</button>
 </div>
 
 <!-- ═══════════════════ VOCAB ═══════════════════ -->
@@ -200,7 +200,7 @@
       <button id="sound-btn" onclick="toggleSound()" class="prof-btn prof-btn-blue" style="flex:1">
         🔊 Geluid: AAN
       </button>
-      <button onclick="testAudio()" style="border:none;border-radius:var(--r-sm);padding:14px 16px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;background:var(--white);color:var(--ink-m);box-shadow:var(--sh);border:1px solid rgba(61,28,36,.06)" title="Test uitspraak">
+      <button onclick="testAudio()" style="border:none;border-radius:var(--r-sm);padding:14px 16px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;background:var(--white);color:var(--ink-m);box-shadow:var(--sh);border:1px solid var(--ink-xl)" title="Test uitspraak">
         🧪
       </button>
     </div>
@@ -234,7 +234,7 @@
     <button onclick="resetData()" class="prof-btn prof-btn-red" style="font-size:15px;margin-bottom:20px">
       🧨 Reset alle voortgang
     </button>
-    <div id="app-version" style="text-align:center;color:#aaa;font-size:11px;margin-top:16px;padding-bottom:8px"></div>
+    <div id="app-version" style="text-align:center;color:var(--ink-l);font-size:11px;margin-top:16px;padding-bottom:8px"></div>
   </div>
 </div>
 
@@ -246,7 +246,7 @@
         <h2>📖 Grammatica</h2>
         <p id="gram-sub">Alle taalregels op een rij</p>
       </div>
-      <button class="btn-quiz" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)" onclick="openVerbDrill()">🔄 Vervoegen</button>
+      <button class="btn-quiz" style="background:var(--ink)" onclick="openVerbDrill()">🔄 Vervoegen</button>
     </div>
   </div>
   <div id="grammar-library-list" style="padding:0 16px 16px"></div>
