@@ -512,7 +512,7 @@ body.hide-roman .pron-latin{ display:none!important }
 .ovh-dutch{font-size:22px;font-weight:900;color:var(--rose-d);text-align:center;letter-spacing:.5px}
 
 /* ── GRAMMATICA KAART ── */
-.grammar-card{background:linear-gradient(135deg,#F6DFB3,#FDFAEC);border:2px solid rgba(142,154,90,.3);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.grammar-card{background:linear-gradient(135deg,#F6DFB3,#FDF0EF);border:2px solid rgba(142,154,90,.3);border-radius:var(--r);padding:18px;margin-bottom:14px}
 .grammar-card-soft{background:var(--rose-xl);border:1.5px solid var(--rose-l);font-size:15px;font-weight:700;color:var(--ink-m);line-height:1.7}
 .btn-skip{background:var(--ink-xl);color:var(--ink-m);border:none;border-radius:var(--r-sm);padding:16px 18px;font-size:14px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;white-space:nowrap}
 
