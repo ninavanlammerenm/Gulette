@@ -225,7 +225,10 @@ function _renderOvhType(hz,v){
 
   if(_ovhTimer) _startOvhTimer(hz,v,hz,'nl_hz',15);
 
-  hintBtn.addEventListener('click', showAnswer);
+  hintBtn.addEventListener('click', ()=>{
+    if(!peeked) _registerOvhError(hz,v,'💡',hz,'nl_hz');
+    showAnswer();
+  });
 
   function doCheck(){
     const val=inp.value.trim();
@@ -237,8 +240,8 @@ function _renderOvhType(hz,v){
       speakHz(hz,v.tr);
       if(!peeked){
         _ovhScore++;
-        updMastery(hz, true);
       }
+      updMastery(hz, true);
       save();
       setTimeout(()=>{_ovhIdx++;renderOvh();}, 600);
     } else {

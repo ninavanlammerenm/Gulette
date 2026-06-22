@@ -16,20 +16,6 @@ function trackWrong(hz,nl,tr){
   WRONG_WORDS.push({hz,nl,tr:tr||''});
 }
 
-const EX_TYPE_LABELS={
-  grammar:'📚 Les uitleg',
-  intro:'📖 Nieuw woord',
-  phase_break:'',
-  context:'🔍 Patroon',
-  mc_nl:'🎯 Betekenis',
-  mc_hz:'🔤 Afghaans',
-  wb:'🧩 Zin',
-  type:'⌨️ Typen',
-  cloze:'🧩 Vul in',
-  repeat:'🔁 Herhaling',
-  order:'🔀 Volgorde',
-  listen:'🎧 Luisteren'
-};
 
 function getLessonById(id){
   for(const ch of CHAPTERS)for(const l of ch.lessons)if(l.id===id)return l;
@@ -533,6 +519,10 @@ function rType(ex,body){
     inp.focus();
     hintBtn.disabled=true;
     hintBtn.textContent='✓ Bekijk het antwoord hierboven';
+    WC++;CC_COMBO=0;
+    updMastery(correct,false);
+    requeueWrong(correct);
+    trackWrong(correct,w.nl,w.tr);
     retryMode=true;
     checkBtn.textContent='Schrijf het over ✍️';
     checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
@@ -548,7 +538,8 @@ function rType(ex,body){
       sfxCorrect();
       setTimeout(()=>speakHz(correct,w.tr),350);
       if(retryMode){
-        CC++;LXP+=5;
+        LXP+=3;
+        updMastery(correct,true);
         sparkles();
         showFB(true,'✅ Overgetypt! Goed gedaan!',w.nl,correct);
       } else {

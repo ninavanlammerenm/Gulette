@@ -230,8 +230,8 @@ const GRAM_EX={
   // ─── BIJVOEGLIJKE NAAMWOORDEN: volgorde oefenen ───
   'gram7_adj':{exercises:[
     {type:'explain',text:'Bijv.nw. staat ACHTER het zelfst.nw.: خانه بزرگ = groot huis (niet "بزرگ خانه").',example:{hz:'خانه بزرگ می‌خوام',tr:'khaana bozorg mi-khom',nl:'Ik wil een groot huis'},highlight:'بزرگ'},
-    {type:'recognition',question:'Welke woordvolgorde is correct Hazaragi?',correct:'خانه بزرگ',wrong:['بزرگ خانه','بزرگ اَس خانه'],explanation:'Bijv.nw. staat NA het zelfst.nw.'},
-    {type:'recognition',question:'Hoe zeg je "vers brood" in Hazaragi?',correct:'نان تازه',wrong:['تازه نان','تازه اَس نان'],explanation:'Bijv.nw. (تازه) NA het naamwoord (نان)'},
+    {type:'recognition',question:'Welke woordvolgorde is correct Afghaans?',correct:'خانه بزرگ',wrong:['بزرگ خانه','بزرگ اَس خانه'],explanation:'Bijv.nw. staat NA het zelfst.nw.'},
+    {type:'recognition',question:'Hoe zeg je "vers brood" in het Afghaans?',correct:'نان تازه',wrong:['تازه نان','تازه اَس نان'],explanation:'Bijv.nw. (تازه) NA het naamwoord (نان)'},
     {type:'build',nl:'Het beste eten is manto',words:['اَس','بهترین','مانتو','غذا'],correct:'بهترین غذا مانتو اَس'},
   ]},
 
