@@ -236,6 +236,9 @@ function migrateVocabKeys(){
     'باوا':'پدر',
     'باواکلان':'پدرکلان',
     'بابا':'پدر',
+    'آو':'آب',
+    'آفتاب':'خورشید',
+    'باز می‌بینیم':'بعداً می‌بینمت',
   };
   let changed=false;
   for(const [oldHz,newHz] of Object.entries(VOCAB_MIGRATIONS)){

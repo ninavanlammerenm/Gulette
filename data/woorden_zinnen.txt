@@ -35,7 +35,7 @@ Woorden:
 خوش آمدید  |  khosh aamadid  |  Welkom (formeel)
 بفرمایین  |  befarmaayin  |  Alsjeblieft / Kom binnen
 مشکلی نیس  |  moshkeli nis  |  Geen probleem
-باز می‌بینیم  |  baaz me-binim  |  Tot ziens
+بعداً می‌بینمت  |  badan mibinamet  |  Tot ziens
 چتوری؟  |  chetoori?  |  Hoe is het? (informeel)
 ایشالله  |  ishaallah  |  Hopelijk / Inshallah
 قابلی نداره  |  qaabeli naadaara  |  Graag gedaan / Het stelt niets voor
@@ -48,7 +48,7 @@ Woorden:
 Zinnen:
 صبح بخیر، خوش آمدید!  |  sobh bakhair, khosh aamadid!  |  Goedemorgen, welkom!
 بفرمایین، چای بیارم؟  |  befarmaayin, chaay biyaarom?  |  Kom binnen, zal ik thee brengen?
-مشکلی نیس، باز می‌بینیم  |  moshkeli nis, baaz me-binim  |  Geen probleem, tot ziens
+مشکلی نیس، بعداً می‌بینمت  |  moshkeli nis, badan mibinamet  |  Geen probleem, tot ziens
 
 ## Cijfers 1–10 — Tellen in Hazaragi
 
@@ -95,13 +95,13 @@ Zinnen:
 
 Woorden:
 مادر  |  maadar  |  Moeder
-باوا  |  baawaa  |  Vader
+پدر  |  pedar  |  Vader
 برار  |  baraar  |  Broer
 خواهر  |  khwahar  |  Zus
 بچه  |  bacha  |  Kind
 دوست  |  dost  |  Vriend/Vriendin
 مادرکلان  |  maadarkalan  |  Oma
-باواکلان  |  baawakalan  |  Opa
+پدرکلان  |  pedarkalan  |  Opa
 عمه  |  ama  |  Tante (vaders zus)
 خاله  |  khaala  |  Tante (moeders zus)
 کاکا  |  kaakaa  |  Oom (vaders broer)
@@ -110,14 +110,14 @@ Woorden:
 Zinnen:
 مادرم خیلی مهربان اَس  |  maadaram khaili mehrabaan as  |  Mijn moeder is erg lief
 برارم ده سال داره  |  baraaram da saal daara  |  Mijn broer is tien jaar
-باواکلانم قصه می‌گفت  |  baawakalanam qessa megoft  |  Mijn opa vertelde verhalen
+پدرکلانم قصه می‌گفت  |  pedarkalanam qessa megoft  |  Mijn opa vertelde verhalen
 
 ## Eten & Drinken — Chai, naan, bolani...
 
 Woorden:
 چای  |  chaay  |  Thee
 نان  |  naan  |  Brood
-آو  |  aaw  |  Water
+آب  |  aab  |  Water
 گوشت  |  gosht  |  Vlees
 برنج  |  berenj  |  Rijst
 میوه  |  mewa  |  Fruit
@@ -218,7 +218,7 @@ Woorden:
 سرد  |  sard  |  Koud
 باران  |  baaraan  |  Regen
 برف  |  barf  |  Sneeuw
-آفتاب  |  aaftaab  |  Zon
+خورشید  |  khoshid  |  Zon
 زمستان  |  zemestaan  |  Winter
 تابستان  |  taabestaan  |  Zomer
 بهار  |  bahaar  |  Lente
@@ -1059,7 +1059,7 @@ Woorden:
 Zinnen:
 داکتر هستم، دَ شفاخانه کار می‌کنم  |  daaktar hastom, da shafaakhaana kaar mi-konom  |  Ik ben dokter, ik werk in het ziekenhuis
 آرزومه معلم بشم  |  aarozomam mo'allem beshom  |  Mijn droom is om leraar te worden
-باواکلانم دهقان بود  |  baawakalanam dehqaan bood  |  Mijn opa was boer
+پدرکلانم دهقان بود  |  pedarkalanam dehqaan bood  |  Mijn opa was boer
 
 ## Dromen & Ambities — Willen worden, hopen, plannen...
 
@@ -1161,7 +1161,7 @@ Woorden:
 زمستان  |  zemestaan  |  Winter
 باران  |  baaraan  |  Regen
 برف  |  barf  |  Sneeuw
-آفتاب  |  aaftaab  |  Zon
+خورشید  |  khoshid  |  Zon
 هوا  |  hawaa  |  Weer / Lucht
 
 Zinnen:
@@ -1177,13 +1177,13 @@ Woorden:
 دشت  |  dasht  |  Steppe / Vlakte
 درخت  |  darakht  |  Boom
 گل  |  gol  |  Bloem
-آو  |  aaw  |  Water
+آب  |  aab  |  Water
 زمین  |  zamin  |  Aarde / Grond
 آسمان  |  aasmaan  |  Hemel / Lucht
 
 Zinnen:
 کوه‌های هزارستان بلند اَن  |  koohaa-ye hazaaristaan boland an  |  De bergen van Hazarastan zijn hoog
-آو صاف دریا قشنگ اَس  |  aaw saaf daryaa qashanq as  |  Het heldere water van de rivier is mooi
+آب صاف دریا قشنگ اَس  |  aab saaf daryaa qashanq as  |  Het heldere water van de rivier is mooi
 دشت پر از گل شده، بهار اَس  |  dasht por az gol shoda, bahaar as  |  De vlakte staat vol bloemen, het is lente
 
 ## Dieren — Paard, koe, kat, vis, konijn...
@@ -1255,7 +1255,7 @@ Woorden:
 Zinnen:
 هشت ساعت خواب مهم اَس  |  hasht saa'at khwaab mohim as  |  Acht uur slaap is belangrijk
 روزانه ورزش کو، صحی می‌مانی  |  rozaana warzesh ko, sehhee me-maani  |  Sport dagelijks, dan blijf je gezond
-آو زیاد بنوش، قوت می‌گیری  |  aaw ziyaad benoosh, qowwat me-giri  |  Drink veel water, je krijgt energie
+آب زیاد بنوش، قوت می‌گیری  |  aab ziyaad benoosh, qowwat me-giri  |  Drink veel water, je krijgt energie
 
 
 # 🎭 Hoofdstuk 18 · Cultuur & Tradities
@@ -1666,7 +1666,7 @@ Woorden:
 Zinnen:
 دَ صوفه بنشین، چای می‌آرم  |  da sofa benshin, chaay mi-aarom  |  Ga op de bank zitten, ik breng thee
 قالینمو خیلی کهنه شده  |  qaaleenamo khaili kohna shoda  |  Ons vloerkleed is erg oud geworden
-پرده را ببند، آفتاب می‌زنه  |  parda ra baband, aaftaab me-zana  |  Sluit het gordijn, de zon schijnt
+پرده را ببند، خورشید می‌زنه  |  parda ra baband, khoshid me-zana  |  Sluit het gordijn, de zon schijnt
 
 ## Huishoudelijke taken — Schoonmaken, wassen, koken...
 
@@ -1677,7 +1677,7 @@ Woorden:
 ظرف شستن  |  zarf shostan  |  Afwassen
 خرید کردن  |  kharid kardan  |  Boodschappen doen
 مرتب کردن  |  moratab kardan  |  Opruimen
-آو دادن  |  aaw daadan  |  Water geven (planten)
+آب دادن  |  aab daadan  |  Water geven (planten)
 کثیف  |  kasif  |  Vies / Vuil
 پاک  |  paak  |  Schoon
 نظافت  |  nazaafat  |  Schoonmaak / Hygiëne
@@ -1705,7 +1705,7 @@ Woorden:
 محصول  |  mahsool  |  Oogst / Gewas
 
 Zinnen:
-باواکلانم هر سال گندم می‌کشت  |  baawakalanam har saal gandam me-kasht  |  Mijn opa verbouwde elk jaar tarwe
+پدرکلانم هر سال گندم می‌کشت  |  pedarkalanam har saal gandam me-kasht  |  Mijn opa verbouwde elk jaar tarwe
 امسال محصول خوب بود  |  emsaal mahsool khob bood  |  Dit jaar was de oogst goed
 انگورهای افغانستان شیرین‌ترین اَن  |  angoorhaayi afghaanestaan shirintareen an  |  Afghaanse druiven zijn de zoetste
 
@@ -1737,13 +1737,13 @@ Woorden:
 آلودگی  |  aaloodagi  |  Vervuiling
 درخت کاری  |  darakht-kaaree  |  Bomen planten
 محیط زیست  |  mohit-e-zist  |  Milieu
-آو و هوا  |  aaw-o-hawaa  |  Klimaat
+آب و هوا  |  aab-o-hawaa  |  Klimaat
 طوفان  |  toofaan  |  Storm
 گرد و خاک  |  gard-o-khaak  |  Stofstorm
 حفاظت از طبیعت  |  hefaazat az tabiaat  |  Natuur beschermen
 
 Zinnen:
-امسال خشکسالی شد، زمین آو نداشت  |  emsaal khoshksaali shod, zamin aaw nadaasht  |  Dit jaar was er droogte, het land had geen water
+امسال خشکسالی شد، زمین آب نداشت  |  emsaal khoshksaali shod, zamin aab nadaasht  |  Dit jaar was er droogte, het land had geen water
 باید از محیط زیست حفاظت کنیم  |  baayad az mohit-e-zist hefaazat konim  |  We moeten het milieu beschermen
 طوفان آمد، همه دَ خانه موندن  |  toofaan aamad, hama da khaana moondan  |  De storm kwam, iedereen bleef thuis
 
@@ -2355,7 +2355,7 @@ Zinnen:
 ## Spreekwoorden: Natuur — Wijsheid uit bergen, water, seizoenen...
 
 Woorden:
-آو رو سنگ اَس  |  aaw ro sang as  |  Water gaat over steen (volharding)
+آب رو سنگ اَس  |  aab ro sang as  |  Water gaat over steen (volharding)
 کوه به کوه نمی‌رسه  |  kooh ba kooh nami-resa  |  Berg naar berg komt niet (mensen wel)
 خار خار را می‌شناسه  |  khaar khaar ra mi-shenasa  |  Doorn kent doorn (gelijken begrijpen elkaar)
 باد می‌آید، ریشه می‌ماند  |  baad mi-aayad, risha mi-maana  |  Wind komt en gaat, wortels blijven
@@ -2846,7 +2846,7 @@ Zinnen:
 
 Woorden:
 هوا  |  hawaa  |  Weer / Lucht
-آفتاب  |  aaftaab  |  Zon / Zonlicht
+خورشید  |  khoshid  |  Zon / Zonlicht
 باران  |  baaraan  |  Regen
 برف  |  barf  |  Sneeuw
 باد  |  baad  |  Wind
@@ -2859,7 +2859,7 @@ Woorden:
 خنک  |  khonak  |  Koel / Aangenaam fris
 
 Zinnen:
-هوا امروز آفتابی اَس، بریم بیرون  |  hawaa emroz aaftaabi as, barim biron  |  Het is vandaag zonnig, laten we naar buiten gaan
+هوا امروز خورشیدی اَس، بریم بیرون  |  hawaa emroz khoshidi as, barim biron  |  Het is vandaag zonnig, laten we naar buiten gaan
 باران می‌باره، چتر بیار  |  baaraan mi-baara, chatar biyaar  |  Het regent, neem een paraplu mee
 هوا خیلی سرد اَس، لباس گرم بپوش  |  hawaa kheli sard as, lebaas-e garm bepoosh  |  Het is heel koud, trek warme kleren aan
 
@@ -2880,7 +2880,7 @@ Woorden:
 Zinnen:
 بیرون خیلی سرد اَس، کوت بپوش  |  biron kheli sard as, kot bepoosh  |  Buiten is het heel koud, trek een jas aan
 جاده یخ زده، آسته بران  |  jaada yakh zada, asta beraan  |  De weg is bevroren, rij langzaam
-گرمای آفتاب خوب اَس برای استخوان  |  garmaa-ye aaftaab khob as baraaye ostakhwaan  |  De warmte van de zon is goed voor de botten
+گرمای خورشید خوب اَس برای استخوان  |  garmaa-ye khoshid khob as baraaye ostakhwaan  |  De warmte van de zon is goed voor de botten
 
 ## Klimaat & Natuur van Afghanistan — Droogte, overstromingen, bergen...
 
@@ -2889,17 +2889,17 @@ Woorden:
 سیل  |  seyl  |  Overstroming
 زلزله  |  zalzala  |  Aardbeving
 بهمن  |  bahman  |  Lawine
-آو و هوا  |  aaw wa hawaa  |  Klimaat
+آب و هوا  |  aab wa hawaa  |  Klimaat
 ارتفاع  |  ertafaa'  |  Hoogte boven zeeniveau
 فصل برداشت  |  fasl-e bardaasht  |  Oogstseizoen
 چشمه  |  cheshma  |  Bron / Waterbron
-آو  |  aaw  |  Water (Hazaragi)
+آب  |  aab  |  Water
 طوفان خاک  |  toofaan-e khaak  |  Zandstorm
 
 Zinnen:
-امسال خشکسالی بده، آو کم اَس  |  emsal khoshksaali bada, aaw kam as  |  Dit jaar is er droogte, er is weinig water
+امسال خشکسالی بده، آب کم اَس  |  emsal khoshksaali bada, aab kam as  |  Dit jaar is er droogte, er is weinig water
 دَ زمستان از بهمن بترس، مراقب باش  |  da zemestaan az bahman betars, muraaqeb baash  |  Wees in de winter bang voor lawines, wees voorzichtig
-آو زندگی اَس، نگهش بدار  |  aaw zendagi as, negahash bedaar  |  Water is leven, zorg ervoor
+آب زندگی اَس، نگهش بدار  |  aab zendagi as, negahash bedaar  |  Water is leven, zorg ervoor
 
 
 # 👶 Hoofdstuk 44 · Kinderen & Opvoeding
@@ -3035,7 +3035,7 @@ Zinnen:
 Woorden:
 پختن  |  pokhtan  |  Koken / Bereiden
 سرخ کردن  |  sorkh kardan  |  Bakken in olie
-آو‌پز کردن  |  aaw-paz kardan  |  Koken in water
+آب‌پز کردن  |  aab-paz kardan  |  Koken in water
 دیگ  |  deg  |  Grote kookpot
 تابه  |  taawa  |  Koekenpan
 کارد  |  kaard  |  Mes
@@ -3210,10 +3210,10 @@ Woorden:
 خواب کافی  |  khwaab-e kaafi  |  Voldoende slaap
 چکاپ  |  chekaap  |  Check-up
 سبزیجات  |  sabzijaat  |  Groenten
-آو زیاد  |  aaw-e ziyaad  |  Veel water drinken
+آب زیاد  |  aab-e ziyaad  |  Veel water drinken
 
 Zinnen:
-استراحت کو و آو زیاد بخور  |  esteraahat ko wa aaw ziyaad bekhoor  |  Rust uit en drink veel water
+استراحت کو و آب زیاد بخور  |  esteraahat ko wa aab ziyaad bekhoor  |  Rust uit en drink veel water
 از غذای چرب پرهیز کو  |  az ghazaa-ye charb parhiz ko  |  Vermijd vet eten
 هر روز نیم ساعت ورزش کو  |  har roz nim saa'at warzesh ko  |  Doe elke dag een halfuur aan beweging
 
@@ -3572,7 +3572,7 @@ Zinnen:
 Woorden:
 نان  |  naan  |  Brood / Eten
 چای  |  chaay  |  Thee
-آو  |  aaw  |  Water
+آب  |  aab  |  Water
 گوشت  |  gosht  |  Vlees
 مرغ  |  murgh  |  Kip
 کچالو  |  kachaalo  |  Aardappel
@@ -3584,7 +3584,7 @@ Woorden:
 گشنه  |  goshna  |  Hongerig
 
 Zinnen:
-چای می‌خوری؟ یا آو؟  |  chaay mi-khori? ya ow?  |  Wil je thee? Of water?
+چای می‌خوری؟ یا آب؟  |  chaay mi-khori? ya aab?  |  Wil je thee? Of water?
 نان با ماست خوردم، خوش‌مزه بود  |  naan baa maast khordom, khosh-maza bood  |  Ik at brood met yoghurt, het was lekker
 مرغ پختم، بیا بخور  |  murgh pakhtom, bia bakhoor  |  Ik heb kip gemaakt, kom eten
 
@@ -3607,5 +3607,5 @@ Woorden:
 Zinnen:
 این غذا خیلی خوش‌مزه اَس!  |  in ghazaa kheylee khosh-maza as!  |  Dit eten is heel erg lekker!
 سیر شدم، تشکر  |  seer shodom, tashakor  |  Ik ben vol, dankjewel
-تشنه هستم، آو می‌خوام  |  toshna hastom, aaw mi-khom  |  Ik ben dorstig, ik wil water
+تشنه هستم، آب می‌خوام  |  toshna hastom, aab mi-khom  |  Ik ben dorstig, ik wil water
 
