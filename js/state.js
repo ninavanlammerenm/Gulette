@@ -259,6 +259,24 @@ function migrateVocabKeys(){
   if(changed) save();
 }
 
+function syncVocabDefinitions(){
+  let changed=false;
+  CHAPTERS.forEach(ch=>{
+    ch.lessons.forEach(l=>{
+      (l.words||[]).forEach(w=>{
+        const v=S.vocab[w.hz];
+        if(!v)return;
+        if(v.nl!==w.nl||v.tr!==(w.tr||'')){
+          v.nl=w.nl;
+          v.tr=w.tr||'';
+          changed=true;
+        }
+      });
+    });
+  });
+  if(changed) save();
+}
+
 function applyMasteryDecay(){
   const today=new Date().toISOString().slice(0,10);
   if(S.lastDecayCheck===today)return;
