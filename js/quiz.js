@@ -39,6 +39,7 @@ function openOvhSetup(){
 function closeOvhoring(){
   if(_ovhTimerID){clearInterval(_ovhTimerID);_ovhTimerID=null;}
   document.getElementById('ovh-overlay').classList.remove('open');
+  if(typeof renderHome==='function') renderHome();
 }
 
 function toggleOvhTimer(btn){
@@ -78,10 +79,10 @@ function startOvhoring(n, wordList){
   } else {
     const words=Object.entries(S.vocab);
     const pool=Math.min(n>=9999?words.length:n, words.length);
-    // Sorteer: review-klaar eerst, daarna lage mastery
+    // Sorteer: review-klaar eerst, daarna lage mastery (mastery 5 komt ook mee als due)
     const sorted=[...words].sort(([,a],[,b])=>{
-      const dA=!a.nr||new Date(a.nr)<=new Date()?0:1;
-      const dB=!b.nr||new Date(b.nr)<=new Date()?0:1;
+      const dA=isDue(a)?0:1;
+      const dB=isDue(b)?0:1;
       if(dA!==dB)return dA-dB;
       return (a.masteryLevel||1)-(b.masteryLevel||1);
     });

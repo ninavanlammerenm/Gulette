@@ -23,7 +23,7 @@ function toDutchPhonetic(tr){
 
 const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
-const isDue=v=>(v.masteryLevel||1)<5&&(!v.nr||new Date(v.nr)<=new Date());
+const isDue=v=>!v.nr||new Date(v.nr)<=new Date();
 
 // XP → level (exponentieel: level n kost 100n XP, totaal = 50·n·(n-1))
 function getLevel(xp){return Math.floor((1+Math.sqrt(1+(xp||0)/12.5))/2);}
@@ -99,11 +99,17 @@ function updMastery(hz, ok, exType){
 
   const lvl=v.masteryLevel||1;
   if(ok){
-    const base=[0,0.007,1,3,14];
-    let d=base[Math.min(lvl-1,4)];
-    if(v.consec>=3) d=Math.round(d*v.ease);
-    v.nr=new Date(Date.now()+Math.max(0.007,d)*86400000).toISOString();
+    if(lvl>=5){
+      v.masteryLevel=5;
+      v.nr=new Date(Date.now()+30*86400000).toISOString();
+    } else {
+      const base=[0,0.007,1,3,14];
+      let d=base[Math.min(lvl-1,4)];
+      if(v.consec>=3) d=Math.round(d*v.ease);
+      v.nr=new Date(Date.now()+Math.max(0.007,d)*86400000).toISOString();
+    }
   } else {
+    if(lvl>=5) v.masteryLevel=4;
     const delay=lvl<=2?10*60*1000:60*60*1000;
     v.nr=new Date(Date.now()+delay).toISOString();
   }
@@ -203,7 +209,9 @@ function checkShieldAward(){
 function getMonday(d){
   const day=d.getDay();
   const diff=d.getDate()-(day===0?6:day-1);
-  return new Date(new Date(d).setDate(diff));
+  const m=new Date(new Date(d).setDate(diff));
+  m.setHours(0,0,0,0);
+  return m;
 }
 
 function migrateVocab(){

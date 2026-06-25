@@ -58,7 +58,7 @@ function sfxFinish(){
 // Bij fout: spreek romanisering uit met standaardstem.
 // ══════════════════════════════════════════════════════
 
-const TTS_CORRECTIONS={'آو':'او','آش':'اش'};
+const TTS_CORRECTIONS={'آو':'او','آش':'اش','چتوری':'چه‌طوری'};
 const TTS_FALLBACK_WORDS=new Set(['آو','آش']);
 
 function speakHz(text, trOrSlow, slow){

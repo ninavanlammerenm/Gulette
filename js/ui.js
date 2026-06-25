@@ -139,6 +139,9 @@ function renderHome(){
       <div class="rh-btn">Kom later terug 🐇</div>`;
   }
 
+  // CEFR niveautoets banner
+  if(typeof renderTestBanner==='function') renderTestBanner();
+
   // Chapters — lesson cards
   const cw=document.getElementById('chapters-wrap');
   cw.innerHTML='';
@@ -639,9 +642,9 @@ function renderMasteryDistrib(){
   Object.values(S.vocab).forEach(v=>{
     const lvl=Math.min(v.masteryLevel||1,5);
     counts[lvl-1]++;
-    if(lvl<5&&(!v.nr||new Date(v.nr)<=now)) dueNow++;
-    else if(lvl<5&&v.nr&&new Date(v.nr)<=tomorrow) dueTomorrow++;
-    else if(lvl<5&&v.nr&&new Date(v.nr)<=inWeek) dueWeek++;
+    if(!v.nr||new Date(v.nr)<=now) dueNow++;
+    else if(v.nr&&new Date(v.nr)<=tomorrow) dueTomorrow++;
+    else if(v.nr&&new Date(v.nr)<=inWeek) dueWeek++;
   });
   const total=counts.reduce((a,b)=>a+b,0);
   if(!total){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--ink-l);font-weight:700">Nog geen woorden geleerd 🌱</div>';return;}

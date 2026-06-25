@@ -9,6 +9,7 @@ let _comboTimeout=null;
 let _activeObserver=null;
 let _autoAdvanceTimeout=null;
 let _introTimeout=null;
+let _clozeSentenceHz=null;
 
 function trackWrong(hz,nl,tr){
   if(WRONG_SET.has(hz))return;
@@ -161,7 +162,7 @@ function buildReviewExercises(words){
   const fullPool=Object.entries(S.vocab).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''}));
   const pool=fullPool.length>=4?fullPool:words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
 
-  shuffle(words.filter(w=>(w.masteryLevel||1)<5)).forEach(w=>{
+  shuffle([...words]).forEach(w=>{
     const distractors=pool.filter(x=>x.hz!==w.hz);
     if(distractors.length<3)return;
     const lvl=w.masteryLevel||1;
@@ -238,6 +239,7 @@ function renderEx(){
   const ex=EXS[EI];
 
   hideFB();
+  _clozeSentenceHz=null;
   const body=document.getElementById('l-body');
   body.innerHTML='';
   body.scrollTop=0;
@@ -330,6 +332,7 @@ function rContext(ex,body){
 
 function rCloze(ex,body){
   const {s,w,choices}=ex;
+  _clozeSentenceHz=s.hz;
   const ltrs=['A','B','C','D'];
   const blankedHz=s.hz.replace(w.hz,'<span class="cloze-blank">___</span>');
   body.innerHTML=`
@@ -450,6 +453,7 @@ function chkWB(correct,nl,tr){
     CC_COMBO++;
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
+    setTimeout(()=>speakHz(correct),300);
     showFB(true,'🎀 Correct!',nl,'');
     sparkles();
   }else{
@@ -572,6 +576,7 @@ function rType(ex,body){
 
 // ── FIX Bug 4: normAr — voeg ك vs ک normalisatie toe ──
 const normAr=s=>s
+  .replace(/[‌‍]/g,'')
   .replace(/[ًٌٍَُِّْ]/g,'')
   .replace(/[آأإا]/g,'ا')
   .replace(/[يیى]/g,'ی')
@@ -618,12 +623,15 @@ function chkMC(btn,chosen,correct,hz,tr){
 function chkMC_hz(btn,chosen,correct,nl,tr){
   if(WAITING)return;WAITING=true;
   document.querySelectorAll('.ch-btn').forEach(b=>b.disabled=true);
+  const clozeSent=_clozeSentenceHz;
+  _clozeSentenceHz=null;
   if(chosen===correct){
     btn.classList.add('ok');CC++;LXP+=5;
     CC_COMBO++;
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
-    showFB(true,'🌸 Goed!',nl,correct);
+    if(clozeSent) setTimeout(()=>speakHz(clozeSent),300);
+    showFB(true,'🌸 Goed!',nl,clozeSent?'':correct);
     sparkles();
     updMastery(correct,true,'mc');
   }else{
@@ -702,6 +710,7 @@ function chkOrder(correct,nl,tr){
     CC_COMBO++;
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
+    setTimeout(()=>speakHz(correct),300);
     showFB(true,'🔀 Perfect! Juiste volgorde!',nl,'');
     sparkles();
   }else{
@@ -868,7 +877,7 @@ function showGrammarHint(){
 }
 
 function startDailyReview(){
-  const allEntries=Object.entries(S.vocab).filter(([,v])=>(v.masteryLevel||1)<5);
+  const allEntries=Object.entries(S.vocab);
   const due=allEntries.filter(([,v])=>isDue(v));
   if(due.length===0){showToast('Geen reviews nu! Kom later terug 🌸');return;}
 
