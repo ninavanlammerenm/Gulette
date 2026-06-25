@@ -229,6 +229,36 @@ function migrateVocab(){
   if(changed) save();
 }
 
+function migrateVocabKeys(){
+  const VOCAB_MIGRATIONS={
+    'صورتی':'گلابی',
+    'مانده':'خسته',
+    'باوا':'پدر',
+    'باواکلان':'پدرکلان',
+    'بابا':'پدر',
+  };
+  let changed=false;
+  for(const [oldHz,newHz] of Object.entries(VOCAB_MIGRATIONS)){
+    if(!S.vocab[oldHz]) continue;
+    if(S.vocab[newHz]){
+      const oldLvl=S.vocab[oldHz].masteryLevel||1;
+      const newLvl=S.vocab[newHz].masteryLevel||1;
+      if(oldLvl>newLvl){
+        S.vocab[newHz]=S.vocab[oldHz];
+        console.log(`[Gulette migratie] ${oldHz} → ${newHz} (mastery ${oldLvl} overgenomen, was ${newLvl})`);
+      } else {
+        console.log(`[Gulette migratie] ${oldHz} verwijderd (${newHz} had al mastery ${newLvl})`);
+      }
+    } else {
+      S.vocab[newHz]=S.vocab[oldHz];
+      console.log(`[Gulette migratie] ${oldHz} → ${newHz} (voortgang behouden)`);
+    }
+    delete S.vocab[oldHz];
+    changed=true;
+  }
+  if(changed) save();
+}
+
 function applyMasteryDecay(){
   const today=new Date().toISOString().slice(0,10);
   if(S.lastDecayCheck===today)return;

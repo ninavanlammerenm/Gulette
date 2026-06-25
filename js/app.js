@@ -203,6 +203,7 @@ load();
   }
 })();
 migrateVocab();
+migrateVocabKeys();
 applyMasteryDecay();
 if(S.showRoman===false) document.body.classList.add('hide-roman');
 applyFontSize();

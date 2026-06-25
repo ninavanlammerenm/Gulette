@@ -137,16 +137,16 @@ const CHAPTERS=[
 
     { id:'family', title:'Familie', sub:'Mama, papa, broer...', icon:'👨‍👩‍👧', xp:20,
       pronTips:['ر','خ'],
-      grammar:'Hazaragi gebruikt "باوا" (baawaa) voor vader — een Mongolisch leenwoord!',
+      grammar:'In Hazaragi zeg je "پدر" (pedar) voor vader.',
       words:[
         {hz:'مادر',tr:'maadar',nl:'Moeder',tip:'Formeel — liefkoosnaam: "مادرجان" of "ننه" (nana)'},
-        {hz:'باوا',tr:'baawaa',nl:'Vader',tip:'Hazaragi/Mongools leenwoord'},
+        {hz:'پدر',tr:'pedar',nl:'Vader',tip:'"پدرجان" = lieve vader'},
         {hz:'برار',tr:'baraar',nl:'Broer',tip:'Typisch Hazaragi'},
         {hz:'خواهر',tr:'khwahar',nl:'Zus',tip:'"خ" = zachte keel-g'},
         {hz:'بچه',tr:'bacha',nl:'Kind',tip:'Geliefd woord — ook als liefkoosnaam'},
         {hz:'دوست',tr:'dost',nl:'Vriend/Vriendin',tip:'"دوستت دارم" = ik hou van jou — zeg je ook gewoon tegen goede vrienden'},
         {hz:'مادرکلان',tr:'maadarkalan',nl:'Oma',tip:'Hazaragi: "kalan" = groot (Mongools: "katan")'},
-        {hz:'باواکلان',tr:'baawakalan',nl:'Opa',tip:'Letterlijk: "grote vader" — typisch Hazaragi'},
+        {hz:'پدرکلان',tr:'pedarkalan',nl:'Opa',tip:'Letterlijk: "grote vader"'},
         {hz:'عمه',tr:'ama',nl:'Tante (vaders zus)',tip:'Vaders kant van de familie — "عمه جان" = lieve tante'},
         {hz:'خاله',tr:'khaala',nl:'Tante (moeders zus)',tip:'Moeders kant — "خاله‌ام" = mijn tante; een warm woord in Hazaragi families'},
         {hz:'کاکا',tr:'kaakaa',nl:'Oom (vaders broer)',tip:'Mongools leenwoord in Hazaragi'},
@@ -3482,7 +3482,7 @@ const CHAPTERS=[
       words:[
         {hz:'جان',tr:'jaan',nl:'Lieverd / Schat (aanspreking)',tip:'"پسرم جان" = mijn lieve jongen'},
         {hz:'مامان',tr:'maamaan',nl:'Mama',tip:''},
-        {hz:'بابا',tr:'baabaa',nl:'Papa',tip:''},
+        {hz:'پدر',tr:'pedar',nl:'Papa',tip:'"پدرجان" = lieve papa'},
         {hz:'آفرین',tr:'aafarin',nl:'Bravo / Goed zo',tip:'Aanmoediging voor kinderen én volwassenen'},
         {hz:'نه بکو',tr:'na bako',nl:'Doe dat niet',tip:'"نه" + werkwoord = verbod'},
         {hz:'احتیاط',tr:'ehtiyaat',nl:'Voorzichtigheid',tip:'"احتیاط کو" = wees voorzichtig'},
