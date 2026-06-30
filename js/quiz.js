@@ -369,7 +369,6 @@ function renderOvhResult(){
     S.xp+=xpEarned;
     logXP(xpEarned);
     updStreak();
-    checkShieldAward();
     save();
   }
 

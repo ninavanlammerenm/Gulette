@@ -188,23 +188,12 @@ function updStreak(){
   const yest=new Date(Date.now()-86400000).toDateString();
   if(S.lastStudy===yest){
     S.streak=S.streak+1;
-  } else if(S.lastStudy&&(S.shields||0)>0){
-    S.shields--;
-    showToast('🛡️ Streak-schild verbruikt — streak behouden!');
   } else {
     S.streak=1;
   }
   S.lastStudy=today;
 }
 
-function checkShieldAward(){
-  if(S.streak>0&&S.streak%7===0){
-    if(S.shields===undefined)S.shields=0;
-    S.shields++;
-    save();
-    showToast(`🛡️ Streak-schild verdiend! Je hebt ${S.shields} schild${S.shields===1?'':'en'}`);
-  }
-}
 
 function getMonday(d){
   const day=d.getDay();

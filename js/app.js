@@ -3,7 +3,7 @@
 // ══════════════════════════════════════════════════════
 // ── Swipe-navigatie tussen tabs ──
 let _txStart=0,_tyStart=0;
-const _NAV=['home','review','profile'];
+const _NAV=['home','review','reading','grammar','profile'];
 document.addEventListener('touchstart',e=>{
   _txStart=e.touches[0].clientX;
   _tyStart=e.touches[0].clientY;

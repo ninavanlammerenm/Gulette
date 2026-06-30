@@ -87,8 +87,8 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .week-dots{display:flex;gap:4px;align-items:center}
 .week-dot{width:18px;height:6px;border-radius:50px;background:var(--ink-xl);transition:all .3s ease}
 .week-dot.active{background:#F28AA1}
-.week-dot.today{background:#F28AA1}
-.week-dot.active.today{background:#F28AA1}
+.week-dot.today{background:transparent;border:2px solid #F28AA1;height:6px}
+.week-dot.active.today{background:#F28AA1;border:none}
 .week-lbl{font-size:10px;font-weight:800;color:var(--ink-l);white-space:nowrap}
 
 /* Review hero card */
@@ -547,6 +547,39 @@ body.hide-roman .pron-latin{ display:none!important }
 .res-wrong-hz{font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;color:var(--ink);min-width:56px;text-align:right;flex-shrink:0;line-height:1.5}
 .res-wrong-nl{font-size:14px;font-weight:800;color:var(--ink-m)}
 
+
+/* ── LEZEN ── */
+#screen-reading{background:var(--cream)}
+.rd-hdr{padding:max(env(safe-area-inset-top,20px),20px) 22px 14px;background:var(--cream);flex-shrink:0}
+.rd-hdr-title{font-size:24px;font-weight:900;color:var(--ink);margin-bottom:2px}
+.rd-hdr-sub{font-size:12px;font-weight:700;color:var(--ink-m)}
+#rd-list-view{flex-direction:column;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#rd-reader-view{flex-direction:column;flex:1;display:none}
+.rd-reader-hdr{display:flex;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top,20px) + 8px) 18px 14px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--ink-xl);flex-shrink:0}
+.rd-reader-hdr-title{font-family:'Noto Naskh Arabic',serif;font-size:16px;font-weight:700;color:var(--ink);flex:1;text-align:center;direction:rtl}
+#rd-reader-body{flex:1;overflow-y:auto;padding:16px 18px 32px;-webkit-overflow-scrolling:touch}
+.rd-card{display:flex;align-items:center;gap:14px;background:var(--white);border-radius:var(--r);padding:16px 18px;margin:0 16px 12px;box-shadow:var(--sh);border:1px solid var(--ink-xl);cursor:pointer;transition:transform .15s}
+.rd-card:active{transform:scale(.98)}
+.rd-card-done{border-color:var(--rose-l);background:var(--rose-xl)}
+.rd-card-icon{font-size:32px;flex-shrink:0}
+.rd-card-body{flex:1}
+.rd-card-title{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:2px}
+.rd-card-meta{font-size:11px;font-weight:700;color:var(--ink-l);margin-top:4px}
+.rd-card-arr{font-size:18px;font-weight:900;color:var(--rose);flex-shrink:0}
+.rd-card-done .rd-card-arr{color:var(--mint)}
+.rd-sent{background:var(--white);border-radius:var(--r-sm);padding:16px 18px;margin-bottom:12px;box-shadow:var(--sh-xs);border:1px solid var(--ink-xl)}
+.rd-hz-line{font-family:'Noto Naskh Arabic',serif;font-size:22px;font-weight:600;direction:rtl;text-align:right;color:var(--ink);line-height:1.8;margin-bottom:6px}
+.rd-word{cursor:pointer;border-radius:6px;padding:1px 3px;transition:background .15s;display:inline}
+.rd-word:active{background:var(--rose-l)}
+.rd-tr-line{font-size:13px;font-weight:600;color:var(--rose-d);font-style:italic;margin-bottom:8px;line-height:1.5}
+.rd-nl-wrap{display:flex;flex-direction:column;gap:6px}
+.rd-nl-btn{background:var(--rose-xl);border:1px solid var(--rose-l);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:900;color:var(--rose-d);cursor:pointer;font-family:'Nunito',sans-serif;align-self:flex-start;transition:background .15s}
+.rd-nl-btn:active{background:var(--rose-l)}
+.rd-nl-text{font-size:14px;font-weight:700;color:var(--ink-m);line-height:1.55;padding:8px 10px;background:var(--cream);border-radius:var(--r-xs);border-left:3px solid var(--rose)}
+.rd-tip{position:absolute;background:var(--ink);color:#fff;border-radius:var(--r-sm);padding:8px 14px;min-width:120px;max-width:200px;text-align:center;z-index:500;display:none;pointer-events:none;box-shadow:var(--sh-m)}
+.rd-tip-nl{font-size:14px;font-weight:900;margin-bottom:2px}
+.rd-tip-tr{font-size:11px;font-weight:600;opacity:.75;font-style:italic}
+.rd-tip::after{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom:none;border-top-color:var(--ink)}
 
 /* ── COMBO INDICATOR ── */
 .combo-indicator{position:fixed;top:88px;left:50%;transform:translateX(-50%) translateY(-12px);background:linear-gradient(145deg,#F28AA1,#D4607A);color:#fff;padding:7px 18px;border-radius:50px;font-size:15px;font-weight:900;font-family:'Nunito',sans-serif;box-shadow:var(--sh-m);opacity:0;pointer-events:none;white-space:nowrap;z-index:200;transition:opacity .25s,transform .25s}

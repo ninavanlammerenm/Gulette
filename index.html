@@ -66,7 +66,6 @@
       <div class="hdr-chips">
         <div class="chip">🔥 <span id="chip-streak">0</span></div>
         <div class="chip">⭐ <span id="chip-xp">0</span></div>
-        <div class="chip" id="chip-shield-wrap" style="display:none">🛡️ <span id="chip-shields">0</span></div>
       </div>
     </div>
     <div class="xp-bar-wrap">
@@ -237,6 +236,25 @@
   </div>
 </div>
 
+<!-- ═══════════════════ LEZEN ═══════════════════ -->
+<div id="screen-reading" class="screen">
+  <div class="rd-hdr">
+    <div class="rd-hdr-title">📖 Lezen</div>
+    <div class="rd-hdr-sub">Tap een woord om de betekenis te zien</div>
+  </div>
+  <div id="rd-list-view" style="display:flex;flex-direction:column;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:16px">
+    <div id="rd-list"></div>
+  </div>
+  <div id="rd-reader-view" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+    <div class="rd-reader-hdr">
+      <button class="btn-x" onclick="closeStory()">✕</button>
+      <div class="rd-reader-hdr-title" id="rd-reader-title"></div>
+      <div style="width:44px"></div>
+    </div>
+    <div id="rd-reader-body"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════ GRAMMAR LIBRARY ═══════════════════ -->
 <div id="screen-grammar" class="screen">
   <div class="gram-hdr">
@@ -265,7 +283,8 @@
 <div class="bnav" id="bnav" style="display:none">
   <button class="nb on" onclick="navTo('home',this)"><div class="ni">🏠</div><div class="nl">Thuis</div></button>
   <button class="nb" onclick="navTo('review',this)"><div class="ni">📚</div><div class="nl">Woorden</div></button>
-  <button class="nb" onclick="navTo('grammar',this)"><div class="ni">📖</div><div class="nl">Grammatica</div></button>
+  <button class="nb" onclick="navTo('reading',this)"><div class="ni">📖</div><div class="nl">Lezen</div></button>
+  <button class="nb" onclick="navTo('grammar',this)"><div class="ni">📕</div><div class="nl">Grammatica</div></button>
   <button class="nb" onclick="navTo('profile',this)"><div class="ni">👤</div><div class="nl">Profiel</div></button>
 </div>
 
@@ -346,6 +365,7 @@
 <script defer src="js/quiz.js"></script>
 <script defer src="js/test.js"></script>
 <script defer src="js/grammarlesson.js"></script>
+<script defer src="js/reading.js"></script>
 <script defer src="js/app.js"></script>
 </body>
 </html>

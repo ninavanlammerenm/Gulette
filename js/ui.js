@@ -15,6 +15,7 @@ function navTo(id, btn) {
   if(id==='profile') renderProfile();
   if(id==='home')    renderHome();
   if(id==='grammar') renderGrammarLibrary();
+  if(id==='reading') renderReadingList();
 }
 
 function goHome(){
@@ -73,11 +74,6 @@ function renderHome(){
   document.getElementById('hdr-name').innerHTML='Salam, <em>'+_n.innerHTML+'</em> 🐇';
   document.getElementById('chip-streak').textContent=S.streak;
   document.getElementById('chip-xp').textContent=S.xp;
-  const shields=S.shields||0;
-  const shieldWrap=document.getElementById('chip-shield-wrap');
-  if(shieldWrap)shieldWrap.style.display=shields>0?'flex':'none';
-  const chipShields=document.getElementById('chip-shields');
-  if(chipShields)chipShields.textContent=shields;
   const lvl=getLevel(S.xp);
   const pct=getLevelPct(S.xp);
   document.getElementById('xp-fill').style.width=pct+'%';

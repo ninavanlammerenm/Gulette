@@ -774,7 +774,7 @@ function finishLesson(){
   LXP+=bonusXP;
   S.xp+=LXP;
   logXP(LXP);
-  updStreak();checkShieldAward();save();
+  updStreak();save();
 
   document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` ✨+${bonusXP} bonus`:'');
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
