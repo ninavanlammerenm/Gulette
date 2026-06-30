@@ -225,6 +225,9 @@ function migrateVocabKeys(){
     'باوا':'پدر',
     'باواکلان':'پدرکلان',
     'بابا':'پدر',
+    'آو':'آب',
+    'آفتاب':'خورشید',
+    'باز می‌بینیم':'بعداً می‌بینمت',
   };
   let changed=false;
   for(const [oldHz,newHz] of Object.entries(VOCAB_MIGRATIONS)){
@@ -245,6 +248,24 @@ function migrateVocabKeys(){
     delete S.vocab[oldHz];
     changed=true;
   }
+  if(changed) save();
+}
+
+function syncVocabDefinitions(){
+  let changed=false;
+  CHAPTERS.forEach(ch=>{
+    ch.lessons.forEach(l=>{
+      (l.words||[]).forEach(w=>{
+        const v=S.vocab[w.hz];
+        if(!v)return;
+        if(v.nl!==w.nl||v.tr!==(w.tr||'')){
+          v.nl=w.nl;
+          v.tr=w.tr||'';
+          changed=true;
+        }
+      });
+    });
+  });
   if(changed) save();
 }
 
