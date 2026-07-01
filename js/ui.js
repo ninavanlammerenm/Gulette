@@ -601,11 +601,19 @@ function updateSkipListeningBtn(){
 function renderChapterProgress(){
   const el = document.getElementById('ch-progress-list');
   if(!el) return;
-  el.innerHTML = CHAPTERS.map(ch=>{
+  const rows = CHAPTERS.map((ch,i)=>{
     const totalW = ch.lessons.reduce((s,l)=>s+(l.words||[]).length,0);
-    if(totalW === 0) return '';
+    if(totalW === 0) return null;
     const learnedW = ch.lessons.reduce((s,l)=>s+(l.words||[]).filter(w=>S.vocab[w.hz]).length,0);
-    const pct = Math.round(learnedW/totalW*100);
+    if(learnedW === 0) return null;
+    return {ch, totalW, learnedW, pct: Math.round(learnedW/totalW*100), order: i};
+  }).filter(Boolean).sort((a,b)=>a.order-b.order);
+
+  if(!rows.length){
+    el.innerHTML='<div style="text-align:center;padding:12px;color:var(--ink-l);font-weight:700;font-size:13px">Nog geen hoofdstukken gestart 🌱</div>';
+    return;
+  }
+  el.innerHTML = rows.map(({ch,totalW,learnedW,pct})=>{
     const color = pct>=80?'#83513E':pct>=40?'#F28AA1':'#FAD6D3';
     return `<div style="margin-bottom:10px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
