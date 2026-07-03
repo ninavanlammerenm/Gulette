@@ -6,7 +6,7 @@ Een Progressive Web App (PWA) om Hazaragi te leren, met een Nederlandstalige int
 
 ## Wat is Gulette?
 
-Gulette is een interactieve taalapp om Hazaragi te leren vanuit het Nederlands. De app werkt volledig offline in de browser en slaat je voortgang lokaal op. Er zijn meer dan 52 hoofdstukken met honderden woorden, zinnen en grammaticaoefeningen.
+Gulette is een interactieve taalapp om Hazaragi te leren vanuit het Nederlands. De app werkt volledig offline in de browser en slaat je voortgang lokaal o.p. Er zijn meer dan 52 hoofdstukken met honderden woorden, zinnen en grammaticaoefeningen.
 
 ---
 
