@@ -21,7 +21,10 @@ function toDutchPhonetic(tr){
     .replace(/q/gi,'k');    // ق — Nederlands k
 }
 
-const save=()=>localStorage.setItem('gulette_v3',JSON.stringify(S));
+const save=()=>{
+  try{localStorage.setItem('gulette_v3',JSON.stringify(S));}
+  catch(e){if(typeof showToast==='function')showToast('⚠️ Opslaan mislukt — controleer opslagruimte');}
+};
 const load=()=>{try{const d=localStorage.getItem('gulette_v3');if(d)S=JSON.parse(d);}catch(e){}};
 const isDue=v=>!v.nr||new Date(v.nr)<=new Date();
 
