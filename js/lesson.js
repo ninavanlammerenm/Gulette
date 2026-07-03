@@ -448,6 +448,7 @@ function ordMove(tile,word){tileMove(tile,word,'ord-ans');}
 function chkWB(correct,nl,tr){
   const tiles=document.getElementById('wb-ans').querySelectorAll('.ans');
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
+  const words=correct.split(' ').filter(Boolean);
   if(ans===correct){
     CC++;LXP+=8;
     CC_COMBO++;
@@ -456,14 +457,15 @@ function chkWB(correct,nl,tr){
     setTimeout(()=>speakHz(correct),300);
     showFB(true,'🎀 Correct!',nl,'');
     sparkles();
+    words.forEach(hz=>updMastery(hz,true,'mc'));
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
     showFB(false,_encourageMsg(),'Juist: '+tr,correct);
-    const words=correct.split(' ').filter(Boolean);
     words.forEach(hz=>{
       const v=S.vocab[hz];
       if(v) trackWrong(hz,v.nl,v.tr);
+      updMastery(hz,false,'mc');
     });
   }
 }
@@ -705,6 +707,7 @@ function rOrder(ex,body){
 function chkOrder(correct,nl,tr){
   const tiles=document.getElementById('ord-ans').querySelectorAll('.ans');
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
+  const words=correct.split(' ').filter(Boolean);
   if(ans===correct){
     CC++;LXP+=10;
     CC_COMBO++;
@@ -713,14 +716,15 @@ function chkOrder(correct,nl,tr){
     setTimeout(()=>speakHz(correct),300);
     showFB(true,'🔀 Perfect! Juiste volgorde!',nl,'');
     sparkles();
+    words.forEach(hz=>updMastery(hz,true,'mc'));
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
     showFB(false,_encourageMsg(),'Juist: '+tr,correct);
-    const words=correct.split(' ').filter(Boolean);
     words.forEach(hz=>{
       const v=S.vocab[hz];
       if(v) trackWrong(hz,v.nl,v.tr);
+      updMastery(hz,false,'mc');
     });
   }
 }
