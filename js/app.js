@@ -176,7 +176,23 @@ function shareProgress(){
 // BOOT
 // ══════════════════════════════════════════════════════
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(()=>{});
+  let _swReloading=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(_swReloading)return;
+    _swReloading=true;
+    location.reload();
+  });
+  navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>{
+    if(!reg)return;
+    // Check meteen en telkens als de app weer in beeld komt of online gaat —
+    // zo pikt de app updates zelf op zonder dat iemand cache hoeft te wissen.
+    reg.update().catch(()=>{});
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible')reg.update().catch(()=>{});
+    });
+    window.addEventListener('online',()=>reg.update().catch(()=>{}));
+    setInterval(()=>reg.update().catch(()=>{}),5*60*1000);
+  }).catch(()=>{});
 }
 
 // ── Offline-indicator ──
