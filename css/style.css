@@ -385,7 +385,7 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .ovh-counter{font-size:12px;font-weight:900;color:var(--ink-l);white-space:nowrap;min-width:48px;text-align:right}
 
 /* Setup scherm */
-.ovh-setup{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:6px;text-align:center}
+.ovh-setup{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:6px;text-align:center}
 .ovh-setup-ico{font-size:64px;margin-bottom:8px}
 .ovh-setup-ttl{font-size:28px;font-weight:900;color:var(--ink)}
 .ovh-setup-sub{font-size:14px;font-weight:600;color:var(--ink-m);margin-bottom:24px}
