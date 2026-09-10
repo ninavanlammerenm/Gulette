@@ -261,16 +261,16 @@ function openTestSetup(level){
     <div class="ovh-setup-sub">${t.desc}</div>
     <div style="width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px">
       <div style="background:var(--white);border-radius:var(--r-sm);padding:16px;box-shadow:var(--sh);text-align:left">
-        <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px">📋 Toetsinfo</div>
+        <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px">Toetsinfo</div>
         <div style="font-size:12px;font-weight:700;color:var(--ink-m);line-height:2">
           ⏱ Tijd: <strong>${t.timeMinutes} minuten</strong><br>
-          📝 Vragen: <strong>${t.questions}</strong><br>
+          Vragen: <strong>${t.questions}</strong><br>
           ✅ Slagingsgrens: <strong>${t.passPercent}%</strong> (${Math.ceil(t.questions * t.passPercent/100)} van ${t.questions})<br>
           🔒 Bij niet halen: <strong>3 dagen wachten</strong>
         </div>
       </div>
       <div style="background:var(--white);border-radius:var(--r-sm);padding:16px;box-shadow:var(--sh);text-align:left">
-        <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:8px">🎯 Getoetste vaardigheden</div>
+        <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:8px">Getoetste vaardigheden</div>
         <div style="font-size:12px;font-weight:700;color:var(--ink-m);line-height:2">
           ${t.skills.map(s=>`• ${s.label}`).join('<br>')}
         </div>
@@ -282,7 +282,7 @@ function openTestSetup(level){
         </div>
       </div>
       <button class="btn-check" style="position:static;margin-top:8px;background:linear-gradient(135deg,#F28AA1,#D4607A)" onclick="startCefrTest('${level}')">
-        Start toets 🎓
+        Start toets
       </button>
       <button class="btn-skip" style="margin-top:4px" onclick="closeTest()">Annuleren</button>
     </div>`;
@@ -509,7 +509,7 @@ function renderTestQuestion(){
   switch(q.type){
     case 'mc':
       body.innerHTML = `
-        <div class="type-pill">${q.skill==='vocab_hz_nl'?'🎯 Woordenschat':'🔤 Vertaling'}</div>
+        <div class="type-pill">${q.skill==='vocab_hz_nl'?'Woordenschat':'Vertaling'}</div>
         <p style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:14px">${q.question}</p>
         <div class="hz-card hz-card-compact" style="margin-bottom:16px">
           ${q.promptType==='hz'?`
@@ -526,7 +526,7 @@ function renderTestQuestion(){
 
     case 'cloze':
       body.innerHTML = `
-        <div class="type-pill">📝 Grammatica</div>
+        <div class="type-pill">Grammatica</div>
         <p style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:8px">Vul het ontbrekende woord in:</p>
         <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:16px;margin-bottom:6px;border:1.5px solid var(--rose-l)">
           <div style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;text-align:right;color:var(--ink);line-height:1.8">${q.sentence.replace('___','<span style="border-bottom:3px solid var(--rose);padding:0 8px;color:var(--rose-d)">___</span>')}</div>
@@ -540,7 +540,7 @@ function renderTestQuestion(){
 
     case 'listen':
       body.innerHTML = `
-        <div class="type-pill">🎧 Luisteren</div>
+        <div class="type-pill">Luisteren</div>
         <p style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:16px">Welk woord hoor je?</p>
         <button class="listen-play-btn" onclick="speakHz('${q.hz}')">🔊 Speel af</button>
         <div class="choices" style="margin-top:16px">${q.choices.map((c,i)=>`
@@ -552,7 +552,7 @@ function renderTestQuestion(){
 
     case 'order': {
       body.innerHTML = `
-        <div class="type-pill">🔀 Zinsbouw</div>
+        <div class="type-pill">Zinsbouw</div>
         <p style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:8px">Zet de woorden in de juiste volgorde:</p>
         <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:12px 16px;margin-bottom:14px;border:1.5px solid var(--rose-l)">
           <div style="font-size:14px;font-weight:700;color:var(--ink-m)">"${q.nl}"</div>
@@ -567,7 +567,7 @@ function renderTestQuestion(){
 
     case 'situational':
       body.innerHTML = `
-        <div class="type-pill">💬 Situatie</div>
+        <div class="type-pill">Situatie</div>
         <div style="background:linear-gradient(135deg,#EDE9FE,#DDD6FE);border:2px solid rgba(139,92,246,.25);border-radius:var(--r);padding:18px;margin-bottom:16px">
           <div style="font-size:15px;font-weight:800;color:var(--ink);line-height:1.6">${q.question}</div>
         </div>
@@ -580,7 +580,7 @@ function renderTestQuestion(){
 
     case 'reading':
       body.innerHTML = `
-        <div class="type-pill">📖 Leesbegrip</div>
+        <div class="type-pill">Leesbegrip</div>
         <div style="background:var(--white);border:2px solid var(--ink-xl);border-radius:var(--r);padding:16px;margin-bottom:6px">
           <div style="font-family:'Noto Naskh Arabic',serif;font-size:18px;direction:rtl;text-align:right;color:var(--ink);line-height:2">${q.passage}</div>
         </div>
@@ -736,10 +736,10 @@ function finishTest(){
       <div style="font-size:13px;font-weight:700;color:var(--ink-m);margin-bottom:4px">
         ${score} van ${total} goed · Tijd: ${min}:${sec.toString().padStart(2,'0')}
       </div>
-      ${passed?`<div style="font-size:14px;font-weight:800;color:var(--mint);margin-top:4px">+${level==='A1'?50:level==='A2'?100:200} XP verdiend! 🌟</div>`:''}
+      ${passed?`<div style="font-size:14px;font-weight:800;color:var(--mint);margin-top:4px">+${level==='A1'?50:level==='A2'?100:200} XP verdiend!</div>`:''}
     </div>
     <div style="background:var(--white);border-radius:var(--r-sm);padding:16px;box-shadow:var(--sh);margin-bottom:14px">
-      <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px">📊 Score per vaardigheid</div>
+      <div style="font-size:13px;font-weight:900;color:var(--ink);margin-bottom:10px">Score per vaardigheid</div>
       <div class="mastery-bars">${skillHTML}</div>
     </div>
     ${!passed && weakSkills.length>0 ? `
@@ -759,7 +759,7 @@ function finishTest(){
       <div style="font-size:12px;font-weight:700;color:#047857;margin-top:2px">Dit staat nu in je profiel.</div>
     </div>`:''}
     <button class="btn-check" style="position:static;background:linear-gradient(135deg,#F28AA1,#D4607A)" onclick="closeTest();goHome()">
-      ${passed?'Terug naar huis 🌸':'Terug — blijf oefenen 💪'}
+      ${passed?'Terug naar huis':'Terug — blijf oefenen'}
     </button>`;
 
   if(passed) sfxFinish();

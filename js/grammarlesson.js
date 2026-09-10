@@ -316,7 +316,7 @@ function _renderExplain(step,body){
   const hzHTML=ex.hz.replace(step.highlight,`<span style="color:#F28AA1;font-weight:900">${step.highlight}</span>`);
   body.innerHTML=`
     <div class="gl-card">
-      <div class="gl-phase-tag">📖 Uitleg</div>
+      <div class="gl-phase-tag">Uitleg</div>
       <div class="gl-rule-title">${_GL.title}</div>
       <div class="gl-explain-text">${step.text}</div>
       <div class="gl-example">
@@ -331,7 +331,7 @@ function _renderExplain(step,body){
 // ── CONJUGATE: vervoeg een werkwoord ──
 function _renderConjugate(step,body){
   let html=`<div class="gl-card">
-    <div class="gl-phase-tag">🔄 Vervoegen</div>
+    <div class="gl-phase-tag">Vervoegen</div>
     <div class="gl-question">${step.instruction}</div>
     <div style="font-size:13px;font-weight:700;color:var(--ink-m);margin-bottom:14px">${step.verb}</div>`;
   step.items.forEach((item,i)=>{
@@ -362,7 +362,7 @@ function _checkConj(btn,chosen,correct,qid){
 // ── TRANSFORM: verander een woord/zin ──
 function _renderTransform(step,body){
   let html=`<div class="gl-card">
-    <div class="gl-phase-tag">🔄 Omvormen</div>
+    <div class="gl-phase-tag">Omvormen</div>
     <div class="gl-question">${step.instruction}</div>`;
   step.items.forEach((item,i)=>{
     const qid='tf_'+i;
@@ -407,7 +407,7 @@ function _renderMatch(step,body){
   const rights=shuffle(pairs.map(p=>p.right));
   body.innerHTML=`
     <div class="gl-card">
-      <div class="gl-phase-tag">🔗 Koppelen</div>
+      <div class="gl-phase-tag">Koppelen</div>
       <div class="gl-question">${step.instruction}</div>
       <div class="gl-match-wrap">
         <div class="gl-match-col" id="gl-match-left">${lefts.map(l=>
@@ -445,7 +445,7 @@ function _matchSelect(btn,side,value){
 // ── SUFFIX: plak een uitgang aan een woord ──
 function _renderSuffix(step,body){
   let html=`<div class="gl-card">
-    <div class="gl-phase-tag">✂️ Uitgang plakken</div>
+    <div class="gl-phase-tag">Uitgang plakken</div>
     <div class="gl-question">${step.instruction}</div>`;
   step.items.forEach((item,i)=>{
     const qid='sfx_'+i;
@@ -478,7 +478,7 @@ function _renderFillblank(step,body){
   const opts=shuffle([...step.options]);
   body.innerHTML=`
     <div class="gl-card">
-      <div class="gl-phase-tag">✏️ Invullen</div>
+      <div class="gl-phase-tag">Invullen</div>
       ${step.instruction?`<div class="gl-question">${step.instruction}</div>`:''}
       <div class="gl-fill-sentence" id="gl-fill-sent">
         <span class="gl-fill-hz">${step.before}</span>
@@ -506,7 +506,7 @@ function _renderRecognition(step,body){
   const opts=shuffle([step.correct,...step.wrong]);
   body.innerHTML=`
     <div class="gl-card">
-      <div class="gl-phase-tag">🎯 Herkennen</div>
+      <div class="gl-phase-tag">Herkennen</div>
       <div class="gl-question">${step.question}</div>
       <div class="gl-choices">${opts.map(o=>`
         <button class="gl-choice" onclick="_checkRecognition(this,'${o.replace(/'/g,"\\'")}','${step.correct.replace(/'/g,"\\'")}','${step.explanation.replace(/'/g,"\\'")}')">
@@ -530,7 +530,7 @@ function _renderBuild(step,body){
   const words=shuffle([...step.words]);
   body.innerHTML=`
     <div class="gl-card">
-      <div class="gl-phase-tag">🧩 Bouwen</div>
+      <div class="gl-phase-tag">Bouwen</div>
       <div class="gl-build-prompt">Vertaal: "${step.nl}"</div>
       <div class="gl-build-answer" id="gl-build-ans"></div>
       <div class="gl-build-bank" id="gl-build-bank">${words.map(w=>

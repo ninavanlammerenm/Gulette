@@ -78,7 +78,7 @@ function startApp(){
 // ══════════════════════════════════════════════════════
 function renderHome(){
   const _n=document.createElement('span');_n.textContent=S.name;
-  document.getElementById('hdr-name').innerHTML='Salam, <em>'+_n.innerHTML+'</em> 🐇';
+  document.getElementById('hdr-name').innerHTML='Salam, <em>'+_n.innerHTML+'</em>';
   document.getElementById('chip-streak').textContent=S.streak;
   document.getElementById('chip-xp').textContent=S.xp;
   const lvl=getLevel(S.xp);
@@ -133,13 +133,13 @@ function renderHome(){
     hero.className='review-hero done';
     const nextDue=allVocab.filter(v=>v.nr).map(v=>new Date(v.nr)).sort((a,b)=>a-b)[0];
     const eta=nextDue?timeUntil(nextDue.toISOString()):'later';
-    hero.onclick=()=>showToast('Geen reviews nu — goed gedaan! 🌸');
+    hero.onclick=()=>showToast('Geen reviews nu — goed gedaan!');
     hero.innerHTML=`
       <div class="rh-deco">🐇</div>
       <div class="rh-title">Alles bijgewerkt</div>
       <div class="rh-count" style="font-size:28px">✓</div>
       <div class="rh-label">Volgende review over ${eta}</div>
-      <div class="rh-btn">Kom later terug 🐇</div>`;
+      <div class="rh-btn">Kom later terug</div>`;
   }
 
   // CEFR niveautoets banner
@@ -199,7 +199,7 @@ function filterW(f,btn){
 
 function startWeakWordsDrill(){
   const weakWords=Object.entries(S.vocab).filter(([,v])=>(v.errors||0)>=2).sort(([,a],[,b])=>(b.errors||0)-(a.errors||0)).slice(0,20);
-  if(weakWords.length<4){showToast('Nog niet genoeg fouten-woorden! Maak meer oefeningen 💪');return;}
+  if(weakWords.length<4){showToast('Nog niet genoeg fouten-woorden! Maak meer oefeningen.');return;}
   const wordList=weakWords.map(([hz,v])=>({hz,v,dir:Math.random()>.5?'hz_nl':'nl_hz'}));
   openOvhDirect(wordList);
 }
@@ -282,7 +282,7 @@ function renderVocab(){
     return;
   }
   if(!list.length){
-    el.innerHTML='<div style="text-align:center;color:var(--ink-l);padding:44px 20px;font-weight:700;line-height:2">Geen woorden gevonden 🌸<br><small>Probeer een andere zoekterm.</small></div>';
+    el.innerHTML='<div style="text-align:center;color:var(--ink-l);padding:44px 20px;font-weight:700;line-height:2">Geen woorden gevonden<br><small>Probeer een andere zoekterm.</small></div>';
     return;
   }
   el.innerHTML=list.map(([hz,v])=>{
@@ -297,9 +297,9 @@ function renderVocab(){
     return `<div class="wc" data-hz="${hz}" style="border-left:4px solid ${accent}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
-        <div class="wc-pron">🗣️ ${pron}</div>
+        <div class="wc-pron">${pron}</div>
         <div class="wc-nl">${v.nl||''}${tagBadgeHTML(v.tag)}</div>
-        <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
+        <div class="wc-next">${due?'Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
       </div>
       <button class="spk-btn wc-spk" onclick="event.stopPropagation();speakHz('${hz}','${(v.tr||'').replace(/'/g,"\\'")}')">🔊</button>
       <button class="wc-pin" onclick="event.stopPropagation();togglePin('${hz}')">${pinned}</button>
@@ -315,7 +315,7 @@ let _qtWords=[],_qtIdx=0,_qtScore=0,_qtChoices=[];
 
 function startQuickTest(){
   const words=Object.entries(S.vocab);
-  if(words.length<4){showToast('Leer eerst meer woorden! 📚');return;}
+  if(words.length<4){showToast('Leer eerst meer woorden!');return;}
   // Prioriteer laag mastery en review-klaar
   const sorted=[...words].sort(([,a],[,b])=>{
     const dueA=!a.nr||new Date(a.nr)<=new Date()?0:1;
@@ -354,7 +354,7 @@ function renderQT(){
   const ltrs=['A','B','C','D'];
   const _esc=s=>(s||'').replace(/'/g,"\\'");
   document.getElementById('qt-body').innerHTML=`
-    <div class="type-pill">⚡ Vraag ${_qtIdx+1} van ${_qtWords.length}</div>
+    <div class="type-pill">Vraag ${_qtIdx+1} van ${_qtWords.length}</div>
     <div class="hz-card" style="margin-bottom:20px">
       <span class="hz-script">${hz}</span>
       <button class="spk-btn" onclick="speakHz('${hz}','${_esc(v.tr)}')">🔊</button>
@@ -436,9 +436,9 @@ function renderXPGraph(){
 function renderProfile(){
   document.getElementById('p-name').textContent=S.name;
   const lvl=getLevel(S.xp);
-  const titles=['Beginner 🌱','Leerling 📖','Gevorderd 🌸','Expert 💎','Meester ✨','Afghaans-liefhebber 🏔️'];
+  const titles=['Beginner','Leerling','Gevorderd','Expert','Meester','Afghaans-liefhebber'];
   const cefrBadge = S.testResults ? Object.entries(S.testResults).filter(([,r])=>r.passed).map(([l])=>l).pop() : null;
-  document.getElementById('p-lvl').textContent=`Level ${lvl} · ${titles[Math.min(lvl-1,5)]}${cefrBadge?' · 🎓 '+cefrBadge:''}`;
+  document.getElementById('p-lvl').textContent=`Level ${lvl} · ${titles[Math.min(lvl-1,5)]}${cefrBadge?' · '+cefrBadge:''}`;
   document.getElementById('p-xp').textContent=S.xp;
   document.getElementById('p-str').textContent=S.streak;
   document.getElementById('p-wds').textContent=Object.keys(S.vocab).length;
@@ -465,7 +465,7 @@ function exportData(){
   const a=document.createElement('a');
   a.href=url;a.download=`gulette-voortgang-${new Date().toISOString().slice(0,10)}.json`;
   a.click();URL.revokeObjectURL(url);
-  showToast('📤 Voortgang geëxporteerd!');
+  showToast('Voortgang geëxporteerd!');
 }
 
 function importData(event){
@@ -476,7 +476,7 @@ function importData(event){
       const imported=JSON.parse(e.target.result);
       if(!imported.name||imported.xp===undefined){showToast('❌ Ongeldig bestand!');return;}
       if(confirm(`Voortgang van ${imported.name} laden? Je huidige voortgang wordt overschreven.`)){
-        S=imported;save();renderProfile();showToast('📥 Voortgang geladen! 🌸');
+        S=imported;save();renderProfile();showToast('Voortgang geladen!');
       }
     }catch(err){showToast('❌ Bestand kon niet worden gelezen');}
   };
@@ -514,7 +514,7 @@ function confetti(){
 }
 
 function sparkles(){
-  const emos=['🍓','✨','🌸','💕','🍓','🌿'];
+  const emos=['✨'];
   const maxW=document.getElementById('app').getBoundingClientRect().width;
   for(let i=0;i<3;i++)setTimeout(()=>{
     const el=document.createElement('div');el.className='sparkle';
@@ -596,7 +596,7 @@ function updateSkipListeningBtn(){
   const btn=document.getElementById('listen-skip-btn');
   if(!btn)return;
   const skip=S.skipListening===true;
-  btn.textContent=skip?'🔇 Luisteroefeningen: UIT (je leest het woord)':'🎧 Luisteroefeningen: AAN';
+  btn.textContent=skip?'🔇 Luisteroefeningen: UIT (je leest het woord)':'Luisteroefeningen: AAN';
   btn.classList.toggle('prof-btn-blue',!skip);
   if(skip){btn.style.background='var(--ink-xl)';btn.style.color='var(--ink-m)';}
   else{btn.style.background='';btn.style.color='';}
@@ -617,7 +617,7 @@ function renderChapterProgress(){
   }).filter(Boolean).sort((a,b)=>a.order-b.order);
 
   if(!rows.length){
-    el.innerHTML='<div style="text-align:center;padding:12px;color:var(--ink-l);font-weight:700;font-size:13px">Nog geen hoofdstukken gestart 🌱</div>';
+    el.innerHTML='<div style="text-align:center;padding:12px;color:var(--ink-l);font-weight:700;font-size:13px">Nog geen hoofdstukken gestart</div>';
     return;
   }
   el.innerHTML = rows.map(({ch,totalW,learnedW,pct})=>{
@@ -658,7 +658,7 @@ function renderMasteryDistrib(){
     else if(v.nr&&new Date(v.nr)<=inWeek) dueWeek++;
   });
   const total=counts.reduce((a,b)=>a+b,0);
-  if(!total){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--ink-l);font-weight:700">Nog geen woorden geleerd 🌱</div>';return;}
+  if(!total){el.innerHTML='<div style="text-align:center;padding:16px;color:var(--ink-l);font-weight:700">Nog geen woorden geleerd</div>';return;}
   const max=Math.max(...counts,1);
   const labels=['Gezien','Herkend','Begrijpt','Beheerst','Gemeisterd'];
   const colors=['#F0E8E4','#F6DFB3','#E7AE75','#8AAF7A','#83513E'];
@@ -715,8 +715,8 @@ function showWordDetail(hz){
       </div>`:''}
     </div>
     <div style="display:flex;gap:8px;margin-top:4px">
-      <button class="btn-check" style="position:static;flex:1" id="wd-drill">⚡ Oefen nu</button>
-      <button class="btn-check" style="position:static;flex:1;background:linear-gradient(135deg,var(--lav-l),var(--lav));color:var(--ink)" id="wd-lesson">📖 Les</button>
+      <button class="btn-check" style="position:static;flex:1" id="wd-drill">Oefen nu</button>
+      <button class="btn-check" style="position:static;flex:1;background:linear-gradient(135deg,var(--lav-l),var(--lav));color:var(--ink)" id="wd-lesson">Les</button>
       <button class="btn-check" style="position:static;flex:1;background:var(--ink-xl);color:var(--ink)" id="wd-close">Sluiten</button>
     </div>
     <button class="spk-btn" style="margin-top:8px;width:100%;border-radius:var(--r-xs);height:auto;padding:10px;font-size:13px;font-family:'Nunito',sans-serif;font-weight:800" onclick="speakHz('${hz}','${_esc(v.tr)}',true)">🐢 Langzaam afspelen</button>`;
@@ -784,7 +784,7 @@ function renderVerbQ(){
   document.getElementById('ovh-prog').style.width=Math.round(_verbIdx/_verbTotal*100)+'%';
   document.getElementById('ovh-counter').textContent=`${_verbIdx+1}/${_verbTotal}`;
   body.innerHTML=`
-    <div class="type-pill">🔄 Werkwoord vervoegen</div>
+    <div class="type-pill">Werkwoord vervoegen</div>
     <div style="background:var(--rose-xl);border:1px solid var(--ink-xl);border-radius:var(--r);padding:18px;text-align:center;margin-bottom:16px">
       <div style="font-family:'Noto Naskh Arabic',serif;font-size:28px;color:var(--ink);direction:rtl;margin-bottom:4px">${verb.inf}</div>
       <div style="font-size:14px;font-weight:800;color:var(--rose);font-style:italic">${verb.tr} — ${verb.nl}</div>
@@ -827,7 +827,7 @@ function renderVerbResult(){
       <div class="ovh-res-msg">${pct>=80?'Goed vervoegd!':'Blijf oefenen met werkwoorden!'}</div>
       ${xp>0?`<div style="font-size:14px;font-weight:900;color:var(--rose-d);margin:6px 0">⭐ +${xp} XP</div>`:''}
       <div class="ovh-res-btns">
-        <button class="btn-check" style="position:static" onclick="openVerbDrill()">🔄 Opnieuw</button>
+        <button class="btn-check" style="position:static" onclick="openVerbDrill()">Opnieuw</button>
         <button class="btn-check" style="position:static;background:var(--ink)" onclick="closeOvhoring()">Klaar ✓</button>
       </div>
     </div>`;

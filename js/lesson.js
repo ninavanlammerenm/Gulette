@@ -191,7 +191,7 @@ function buildReviewExercises(words){
 
 const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
 
-const _ENC=['💪 Goed geprobeerd!','🧠 Je hersenen leren!','🌸 Bijna goed!','✨ Elke fout is een les!','🐰 Heel dichtbij!','💡 Nu onthoud je het!'];
+const _ENC=['Goed geprobeerd!','Je hersenen leren!','Bijna goed!','Elke fout is een les!','Heel dichtbij!','💡 Nu onthoud je het!'];
 function _encourageMsg(){return _ENC[~~(Math.random()*_ENC.length)];}
 function _getWordTip(hz){
   if(!CL||!CL.words)return'';
@@ -226,7 +226,7 @@ function rGrammar(ex,body){
     </div>
     ${pronHTML?`<div class="pron-tips-list">${pronHTML}</div>`:''}
     <div style="display:flex;gap:10px;margin-top:4px">
-      <button class="btn-check" style="flex:1" onclick="nextEx()">Begin! 🌸</button>
+      <button class="btn-check" style="flex:1" onclick="nextEx()">Begin!</button>
       <button class="btn-skip" onclick="nextEx()">Sla over →</button>
     </div>`;
 }
@@ -271,7 +271,7 @@ function rIntro(ex,body){
     </div>`:'';
   const _esc=s=>(s||'').replace(/'/g,"\\'");
   body.innerHTML=`
-    <div class="type-pill">📖 Nieuw woord</div>
+    <div class="type-pill">Nieuw woord</div>
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
@@ -281,7 +281,7 @@ function rIntro(ex,body){
     ${w.tip?`<div class="word-tip-card intro-fade-in-2">💡 ${w.tip}</div>`:''}
     ${ctxHTML}
     <div class="intro-auto-bar" id="intro-bar"></div>
-    <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
+    <button class="btn-check" onclick="nextEx()">Begrepen!</button>`;
   if(!S.vocab[w.hz])S.vocab[w.hz]={id:w.id,nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   save();
   speakHz(w.hz,w.tr);
@@ -322,7 +322,7 @@ function rContext(ex,body){
     <div class="type-pill">🔍 Zie het patroon</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Lees de zin en ontdek de Afghaanse patronen:</p>
     <div class="ctx-card">
-      <div class="ctx-title">🌐 Afghaanse zin</div>
+      <div class="ctx-title">Afghaanse zin</div>
       <div class="ctx-sentence">${s.hz}</div>
       <div class="ctx-tr">${s.tr}</div>
       <div class="ctx-nl">"${s.nl}"</div>
@@ -336,7 +336,7 @@ function rCloze(ex,body){
   const ltrs=['A','B','C','D'];
   const blankedHz=s.hz.replace(w.hz,'<span class="cloze-blank">___</span>');
   body.innerHTML=`
-    <div class="type-pill">🧩 Vul de zin aan</div>
+    <div class="type-pill">Vul de zin aan</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk woord past in de zin?</p>
     <div class="ctx-card" style="margin-bottom:20px">
       <div class="ctx-sentence">${blankedHz}</div>
@@ -366,7 +366,7 @@ function rMC_nl(ex,body){
   const ltrs=['A','B','C','D'];
   const _esc=s=>(s||'').replace(/'/g,"\\'");
   body.innerHTML=`
-    <div class="type-pill">🎯 Wat betekent dit?</div>
+    <div class="type-pill">Wat betekent dit?</div>
     <div class="hz-card hz-card-compact">
       <span class="hz-script">${w.hz}</span>
       <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
@@ -388,7 +388,7 @@ function rMC_hz(ex,body){
     return S.vocab[hz]?.tr||'';
   };
   body.innerHTML=`
-    <div class="type-pill">🔤 Kies Afghaans</div>
+    <div class="type-pill">Kies Afghaans</div>
     <p style="font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk Afghaans woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_hz" data-chosen="${c}" data-correct="${w.hz}" data-nl="${w.nl}" data-tr="${w.tr}">
@@ -407,7 +407,7 @@ function rWB(ex,body){
   const correct=words.join(' ');
 
   body.innerHTML=`
-    <div class="type-pill">🧩 Zin samenstellen</div>
+    <div class="type-pill">Zin samenstellen</div>
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:14px">Zet de Afghaanse woorden in volgorde:</p>
     <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px">
       <div style="font-size:14px;font-weight:700;color:var(--ink-m)">"${s.nl}"</div>
@@ -455,7 +455,7 @@ function chkWB(correct,nl,tr){
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
     setTimeout(()=>speakHz(correct),300);
-    showFB(true,'🎀 Correct!',nl,'');
+    showFB(true,'Correct!',nl,'');
     sparkles();
     words.forEach(hz=>updMastery(hz,true,'mc'));
   }else{
@@ -503,7 +503,7 @@ function rType(ex,body){
 
   function showCorrectAnswer(){
     hintEl.innerHTML=`
-      <div style="font-size:12px;font-weight:800;color:var(--rose-d);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">✍️ Schrijf dit over:</div>
+      <div style="font-size:12px;font-weight:800;color:var(--rose-d);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Schrijf dit over:</div>
       <div style="font-family:'Noto Naskh Arabic',serif;font-size:42px;direction:rtl;text-align:center;color:var(--ink);line-height:1.6;font-weight:700;background:var(--rose-xl);border-radius:var(--r-sm);padding:12px">${correct}</div>`;
     hintEl.classList.add('show');
   }
@@ -523,7 +523,7 @@ function rType(ex,body){
     requeueWrong(correct);
     trackWrong(correct,w.nl,w.tr);
     retryMode=true;
-    checkBtn.textContent='Schrijf het over ✍️';
+    checkBtn.textContent='Schrijf het over';
     checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
   });
 
@@ -545,7 +545,7 @@ function rType(ex,body){
         CC++;LXP+=10;
         CC_COMBO++;
         if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
-        showFB(true,'✨ Uitstekend!',w.nl,correct);
+        showFB(true,'Uitstekend!',w.nl,correct);
         sparkles();
         updMastery(correct,true,'type');
       }
@@ -563,7 +563,7 @@ function rType(ex,body){
       sfxWrong();
       showCorrectAnswer();
       hintBtn.style.display='none';
-      checkBtn.textContent='Schrijf het over ✍️';
+      checkBtn.textContent='Schrijf het over';
       checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
       setTimeout(()=>{
         inp.value='';
@@ -603,7 +603,7 @@ function chkMC(btn,chosen,correct,hz,tr){
     CC_COMBO++;
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
-    showFB(true,'🌸 Goed!',correct,hz);
+    showFB(true,'Goed!',correct,hz);
     sparkles();
     updMastery(hz,true,'mc');
   }else{
@@ -617,7 +617,7 @@ function chkMC(btn,chosen,correct,hz,tr){
     trackWrong(hz,correct,tr);
     const _tip1=_getWordTip(hz);
     const _smart1=getSmartHint(hz);
-    showFB(false,_encourageMsg(),_smart1||(_tip1?`💡 ${_tip1}`:`${hz} = ${correct}${requeued?' · 🔁 Komt later terug':''}`),hz);
+    showFB(false,_encourageMsg(),_smart1||(_tip1?`💡 ${_tip1}`:`${hz} = ${correct}${requeued?' · Komt later terug':''}`),hz);
     updMastery(hz,false,'mc');
   }
 }
@@ -633,7 +633,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
     if(clozeSent) setTimeout(()=>speakHz(clozeSent),300);
-    showFB(true,'🌸 Goed!',nl,clozeSent?'':correct);
+    showFB(true,'Goed!',nl,clozeSent?'':correct);
     sparkles();
     updMastery(correct,true,'mc');
   }else{
@@ -649,7 +649,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     const _tip2=_getWordTip(correct);
     const _smart=getSmartHint(correct);
     const _pron=tr?` · ${tr}`:'';
-    showFB(false,_encourageMsg(),_smart||(_tip2?`💡 ${_tip2}`:`Juist: ${correct}${_pron}${requeued?' · 🔁 Komt later terug':''}`),correct);
+    showFB(false,_encourageMsg(),_smart||(_tip2?`💡 ${_tip2}`:`Juist: ${correct}${_pron}${requeued?' · Komt later terug':''}`),correct);
     updMastery(correct,false,'mc');
   }
 }
@@ -682,7 +682,7 @@ function rOrder(ex,body){
   const correct=correctWords.join(' ');
 
   body.innerHTML=`
-    <div class="type-pill">🔀 Zinsvolgorde</div>
+    <div class="type-pill">Zinsvolgorde</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Vertaal naar Afghaans:</p>
     <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;border:1.5px solid var(--rose-l)">
       <div style="font-size:16px;font-weight:700;color:var(--ink)">"${s.nl}"</div>
@@ -714,7 +714,7 @@ function chkOrder(correct,nl,tr){
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
     setTimeout(()=>speakHz(correct),300);
-    showFB(true,'🔀 Perfect! Juiste volgorde!',nl,'');
+    showFB(true,'Perfect! Juiste volgorde!',nl,'');
     sparkles();
     words.forEach(hz=>updMastery(hz,true,'mc'));
   }else{
@@ -735,7 +735,7 @@ function startChapterReview(chId){
   const learnedWords=ch.lessons.flatMap(l=>(l.words||[]).filter(w=>S.vocab[w.hz]).map(w=>({
     hz:w.hz,nl:w.nl,tr:w.tr||'',masteryLevel:S.vocab[w.hz]?.masteryLevel||1
   })));
-  if(learnedWords.length<4){showToast('Leer eerst meer woorden in dit hoofdstuk! 📚');return;}
+  if(learnedWords.length<4){showToast('Leer eerst meer woorden in dit hoofdstuk!');return;}
   const label=ch.label.replace(/[^\p{L}\p{N}\s·]/gu,'').trim()||ch.id;
   CL={
     id:'_chrev_'+chId,
@@ -755,10 +755,10 @@ function leaveLesson(){
   modal.className='modal';
   modal.innerHTML=`
     <div class="modal-drag"></div>
-    <div style="font-size:18px;font-weight:900;color:var(--ink);margin-bottom:8px">Les verlaten? 🎀</div>
+    <div style="font-size:18px;font-weight:900;color:var(--ink);margin-bottom:8px">Les verlaten?</div>
     <div style="font-size:14px;font-weight:600;color:var(--ink-m);margin-bottom:24px">Je voortgang in deze les gaat verloren.</div>
     <div style="display:flex;gap:10px">
-      <button id="modal-stay" style="flex:1;background:linear-gradient(135deg,var(--rose),var(--rose-d));color:#fff;border:none;border-radius:var(--r-sm);padding:17px;font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer">Doorgaan 💪</button>
+      <button id="modal-stay" style="flex:1;background:linear-gradient(135deg,var(--rose),var(--rose-d));color:#fff;border:none;border-radius:var(--r-sm);padding:17px;font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer">Doorgaan</button>
       <button id="modal-leave" style="flex:1;background:var(--rose-xl);color:var(--rose-d);border:2px solid var(--rose-l);border-radius:var(--r-sm);padding:17px;font-size:15px;font-weight:900;font-family:Nunito,sans-serif;cursor:pointer">Verlaten</button>
     </div>`;
   bg.appendChild(modal);
@@ -780,13 +780,13 @@ function finishLesson(){
   logXP(LXP);
   updStreak();save();
 
-  document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` ✨+${bonusXP} bonus`:'');
+  document.getElementById('r-xp').textContent='+'+LXP+(bonusXP?` +${bonusXP} bonus`:'');
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
   document.getElementById('r-str').textContent='🔥'+S.streak;
-  document.getElementById('res-sub').textContent=CL.title+' voltooid! 🌸';
-  const _pm=['Foutloos! 🌟','Perfect! ✨','Absoluut geweldig! 🌟','Meesterlijk! 💎','Ongeslagen! 🏆'];
-  const _gm=['Zo trots! 🍀','Super gedaan! 💪','Fantastisch! 🐇','Heel goed! 🌺'];
-  const _ok=['Goed gedaan! 🌸','Niet slecht! 💪','Blijf oefenen! 🎀'];
+  document.getElementById('res-sub').textContent=CL.title+' voltooid!';
+  const _pm=['Foutloos!','Perfect!','Absoluut geweldig!','Meesterlijk!','Ongeslagen! 🏆'];
+  const _gm=['Zo trots!','Super gedaan!','Fantastisch!','Heel goed!'];
+  const _ok=['Goed gedaan!','Niet slecht!','Blijf oefenen!'];
   const mascotEl=document.querySelector('.res-mas');
   const total=CC+WC;
   const pct=total>0?Math.round(CC/total*100):0;
@@ -838,7 +838,7 @@ function rListen(ex,body){
   // Geen Hazaragi-stem op dit apparaat? Lees het woord i.p.v. luisteren.
   if(S.skipListening===true){
     body.innerHTML=`
-      <div class="type-pill">📖 Leesoefening</div>
+      <div class="type-pill">Leesoefening</div>
       <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:16px">Wat betekent dit woord?</p>
       <div class="hz-card hz-card-compact">
         <span class="hz-script">${w.hz}</span>
@@ -853,7 +853,7 @@ function rListen(ex,body){
   }
 
   body.innerHTML=`
-    <div class="type-pill">🎧 Luisteroefening</div>
+    <div class="type-pill">Luisteroefening</div>
     <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Afghaans woord hoor je?</p>
     <button class="listen-play-btn" onclick="speakHz('${w.hz}','${(w.tr||'').replace(/'/g,"\\'")}')">🔊 Speel opnieuw af</button>
     <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
@@ -883,7 +883,7 @@ function showGrammarHint(){
 function startDailyReview(){
   const allEntries=Object.entries(S.vocab);
   const due=allEntries.filter(([,v])=>isDue(v));
-  if(due.length===0){showToast('Geen reviews nu! Kom later terug 🌸');return;}
+  if(due.length===0){showToast('Geen reviews nu! Kom later terug.');return;}
 
   const dueSlice=shuffle(due).slice(0,25);
   const dueHzSet=new Set(dueSlice.map(([hz])=>hz));

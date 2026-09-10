@@ -15,7 +15,7 @@ let _ovhTimer=false, _ovhTimerID=null, _ovhTimerSec=0;
 // ══════════════════════════════════════════════════════
 function openOvhSetup(){
   const total=Object.keys(S.vocab).length;
-  if(total<4){showToast('Leer eerst meer woorden! Voltooi een les. 📚');return;}
+  if(total<4){showToast('Leer eerst meer woorden! Voltooi een les.');return;}
   document.getElementById('ovh-setup').style.display='flex';
   document.getElementById('ovh-quiz').style.display='none';
   document.getElementById('ovh-overlay').classList.add('open');
@@ -120,7 +120,7 @@ function renderOvh(){
 function _renderOvhIntro(hz,v){
   const _esc=s=>(s||'').replace(/'/g,"\\'");
   document.getElementById('ovh-body').innerHTML=`
-    <div class="type-pill">📖 Nieuw woord</div>
+    <div class="type-pill">Nieuw woord</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Leer dit woord:</p>
     <div class="hz-card">
       <span class="hz-script">${hz}</span>
@@ -130,7 +130,7 @@ function _renderOvhIntro(hz,v){
     </div>
     ${v.tr?`<div class="word-tip-card">🔊 <strong>${v.tr}</strong></div>`:''}
     <div style="flex:1"></div>
-    <button class="btn-check" style="position:static" id="ovh-intro-next">Ik heb het! Stel me een vraag 🌸</button>`;
+    <button class="btn-check" style="position:static" id="ovh-intro-next">Ik heb het! Stel me een vraag</button>`;
   speakHz(hz,v.tr);
   document.getElementById('ovh-intro-next').addEventListener('click',()=>{
     // Zet naar MC voor hetzelfde woord (hz→nl voor nieuw woord)
@@ -169,14 +169,14 @@ function _renderOvhMC(hz,v,dir){
   const timerHTML=_ovhTimer?`<div class="ovh-timer" id="ovh-timer">10</div>`:'';
   document.getElementById('ovh-body').innerHTML=`
     ${timerHTML}
-    <div class="type-pill">${dir==='hz_nl'?'🎯 Wat betekent dit?':'🔤 Hoe schrijf je dit?'}</div>
+    <div class="type-pill">${dir==='hz_nl'?'Wat betekent dit?':'Hoe schrijf je dit?'}</div>
     <div class="ovh-prompt">${prompt}</div>
     <div class="choices">${_ovhChoices.map((c,i)=>`
       <button class="ch-btn${isRTL?' ch-rtl':''}" onclick="answerOvh(this,${i})">
         <span class="ch-ltr">${ltrs[i]}</span>${c}
       </button>`).join('')}
     </div>
-    <button class="wik-btn" onclick="dontKnowOvh()">Weet ik niet 🤷</button>`;
+    <button class="wik-btn" onclick="dontKnowOvh()">Weet ik niet</button>`;
 
   if(_ovhTimer) _startOvhTimer(hz,v,correct,dir,10);
 }
@@ -215,11 +215,11 @@ function _renderOvhType(hz,v){
     if(timerEl)timerEl.style.display='none';
     peeked=true;
     hintEl.innerHTML=`
-      <div style="font-size:11px;font-weight:800;color:var(--rose-d);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">✍️ Schrijf dit over:</div>
+      <div style="font-size:11px;font-weight:800;color:var(--rose-d);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Schrijf dit over:</div>
       <div style="font-family:'Noto Naskh Arabic',serif;font-size:36px;direction:rtl;text-align:center;color:var(--ink);font-weight:700;background:var(--rose-xl);border-radius:var(--r-sm);padding:12px">${hz}</div>`;
     hintEl.classList.add('show');
     hintBtn.disabled=true;
-    checkBtn.textContent='Schrijf het over ✍️';
+    checkBtn.textContent='Schrijf het over';
     checkBtn.style.background='linear-gradient(135deg,var(--peach),#e07040)';
     inp.value=''; inp.focus();
   }
@@ -383,7 +383,7 @@ function renderOvhResult(){
             <span class="ovh-err-ng">✗ ${chosen}</span>
           </div>
         </div>`).join('')}
-    </div>`:'<div class="ovh-perfect">🎀 Geen fouten — perfect!</div>';
+    </div>`:'<div class="ovh-perfect">Geen fouten — perfect!</div>';
 
   document.getElementById('ovh-body').innerHTML=`
     <div class="ovh-result">
@@ -393,8 +393,8 @@ function renderOvhResult(){
       <div class="ovh-res-msg">${msg}</div>
       ${xpEarned>0?`<div style="font-size:16px;font-weight:900;color:var(--rose-d);margin:6px 0 10px">⭐ +${xpEarned} XP verdiend!</div>`:''}
       <div class="ovh-res-btns">
-        <button class="btn-check" style="position:static" onclick="startOvhoring(${total})">🔄 Opnieuw</button>
-        ${_ovhErrors.length?`<button class="btn-check" style="position:static;background:linear-gradient(135deg,var(--peach),#e07040)" onclick="retryOvhErrors()">🔁 Fouten (${_ovhErrors.length})</button>`:''}
+        <button class="btn-check" style="position:static" onclick="startOvhoring(${total})">Opnieuw</button>
+        ${_ovhErrors.length?`<button class="btn-check" style="position:static;background:linear-gradient(135deg,var(--peach),#e07040)" onclick="retryOvhErrors()">Fouten (${_ovhErrors.length})</button>`:''}
         <button class="btn-check" style="position:static;background:var(--ink)" onclick="closeOvhoring()">Klaar ✓</button>
       </div>
       ${errHTML}
@@ -440,7 +440,7 @@ function renderSpeedQ(){
   document.getElementById('ovh-counter').textContent=`⚡ ${_speedScore}`;
   body.innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div class="type-pill">⚡ Snelheidsronde</div>
+      <div class="type-pill">Snelheidsronde</div>
       <div class="ovh-timer" id="speed-clock" style="font-size:28px;margin:0">${_speedSec}</div>
     </div>
     <div class="ovh-prompt" style="padding:16px">
@@ -485,7 +485,7 @@ function renderSpeedResult(){
       <div class="ovh-res-pct">${isNew?'NIEUW RECORD!':'woorden in 60 seconden'}</div>
       <div class="ovh-res-msg">Record: ${Math.max(_speedScore,best)} · +${xp} XP</div>
       <div class="ovh-res-btns">
-        <button class="btn-check" style="position:static" onclick="closeOvhoring();startSpeedRound()">🔄 Opnieuw</button>
+        <button class="btn-check" style="position:static" onclick="closeOvhoring();startSpeedRound()">Opnieuw</button>
         <button class="btn-check" style="position:static;background:var(--ink)" onclick="closeOvhoring()">Klaar ✓</button>
       </div>
     </div>`;

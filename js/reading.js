@@ -278,7 +278,7 @@ function openStory(id) {
     nlWrap.className = 'rd-nl-wrap';
     const nlBtn = document.createElement('button');
     nlBtn.className = 'rd-nl-btn';
-    nlBtn.textContent = '🇳🇱 Vertaling';
+    nlBtn.textContent = 'Vertaling';
     const nlText = document.createElement('div');
     nlText.className = 'rd-nl-text';
     nlText.style.display = 'none';
@@ -286,7 +286,7 @@ function openStory(id) {
     nlBtn.onclick = () => {
       const hidden = nlText.style.display === 'none';
       nlText.style.display = hidden ? 'block' : 'none';
-      nlBtn.textContent = hidden ? '🇳🇱 Verberg' : '🇳🇱 Vertaling';
+      nlBtn.textContent = hidden ? 'Verberg' : 'Vertaling';
     };
     nlWrap.appendChild(nlBtn);
     nlWrap.appendChild(nlText);

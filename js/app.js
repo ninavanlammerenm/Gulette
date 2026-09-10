@@ -73,8 +73,8 @@ function scheduleReminder(){
   if(ms<=0)return;
   setTimeout(()=>{
     if(S.lastStudy!==new Date().toDateString()){
-      new Notification('Gulette 🐇',{
-        body:`Salam ${S.name}! Vergeet je dagelijkse Afghaanse les niet 🌸`,
+      new Notification('Gulette',{
+        body:`Salam ${S.name}! Vergeet je dagelijkse Afghaanse les niet.`,
         tag:'gulette-reminder'
       });
     }
@@ -85,7 +85,7 @@ function toggleNotifications(){
   if(!('Notification' in window)){showToast('Notificaties worden niet ondersteund op dit apparaat');return;}
   if(Notification.permission==='granted'){showToast('Herinneringen zijn al ingeschakeld ✅');return;}
   Notification.requestPermission().then(p=>{
-    if(p==='granted'){showToast('🔔 Herinnering ingeschakeld!');scheduleReminder();}
+    if(p==='granted'){showToast('Herinnering ingeschakeld!');scheduleReminder();}
     else showToast('Geweigerd — pas dit aan in je browserinstellingen.');
     updateNotifBtn();
   });
@@ -95,10 +95,10 @@ function updateNotifBtn(){
   const btn=document.getElementById('notif-btn');
   if(!btn||!('Notification' in window))return;
   if(Notification.permission==='granted'){
-    btn.textContent='🔔 Herinnering ingeschakeld ✓';
+    btn.textContent='Herinnering ingeschakeld ✓';
     btn.style.opacity='0.55';btn.style.cursor='default';
   }else{
-    btn.textContent='🔔 Dagelijkse herinnering inschakelen';
+    btn.textContent='Dagelijkse herinnering inschakelen';
     btn.style.opacity='1';btn.style.cursor='pointer';
   }
 }
@@ -147,7 +147,7 @@ function shareProgress(){
 
   if(cefrBadge){
     ctx.fillStyle='#E7AE75';ctx.font='bold 22px sans-serif';
-    ctx.fillText(`🎓 Niveau: ${cefrBadge}`,30,220);
+    ctx.fillText(`Niveau: ${cefrBadge}`,30,220);
   }
   ctx.fillStyle='#D4B8A8';ctx.font='600 14px sans-serif';
   ctx.fillText(`+${todayXP} XP vandaag · ${S.xp} XP totaal`,30,cefrBadge?254:220);
@@ -157,7 +157,7 @@ function shareProgress(){
     if(!blob)return;
     if(navigator.share&&navigator.canShare){
       const file=new File([blob],'gulette-voortgang.png',{type:'image/png'});
-      const data={files:[file],title:'Gulette 🐇',text:`Ik ken nu ${wc} Afghaanse woorden! 🐇`};
+      const data={files:[file],title:'Gulette',text:`Ik ken nu ${wc} Afghaanse woorden!`};
       if(navigator.canShare(data)){
         navigator.share(data).catch(()=>{});
         return;
@@ -168,7 +168,7 @@ function shareProgress(){
     const a=document.createElement('a');
     a.href=url;a.download='gulette-voortgang.png';a.click();
     URL.revokeObjectURL(url);
-    showToast('📸 Afbeelding opgeslagen! Deel het op Instagram/WhatsApp');
+    showToast('Afbeelding opgeslagen! Deel het op Instagram/WhatsApp');
   },'image/png');
 }
 
