@@ -95,21 +95,21 @@ const SITUATIONAL_QS = {
 const READING_PASSAGES = {
   A1: [
     {
-      passage: 'سلام، نامم فاطمه اس. ما دَ کابل زندگی می‌کنم. خانواده‌م کلان اس — سه برادر و دو خواهر دارم.',
+      passage: 'سلام، نام من فاطمه اَس. من دَ کابل زندگی می‌کنم. خانواده من کلان اَس — سه برادر و دو خواهر دارم.',
       passageTr: 'Hallo, mijn naam is Fatima. Ik woon in Kabul. Mijn familie is groot — ik heb drie broers en twee zussen.',
       q: 'Hoeveel broers heeft Fatima?',
       correct: 'Drie',
       opts: ['Twee','Vier','Vijf']
     },
     {
-      passage: 'امروز هوا گرم اس. ما آو می‌خورم و دَ سایه می‌شینم.',
+      passage: 'امروز هوا گرم اس. من آو می‌خورم و دَ سایه می‌شینم.',
       passageTr: 'Vandaag is het weer warm. Ik drink water en zit in de schaduw.',
       q: 'Wat is het weer vandaag?',
       correct: 'Warm',
       opts: ['Koud','Regenachtig','Bewolkt']
     },
     {
-      passage: 'مادرم هر روز ناشتا درست می‌کنه. نان تازه و چای سبز.',
+      passage: 'مادر من هر روز ناشتا درست می‌کنه. نان تازه و چای سبز.',
       passageTr: 'Mijn moeder maakt elke dag ontbijt. Vers brood en groene thee.',
       q: 'Wat maakt de moeder voor ontbijt?',
       correct: 'Brood en thee',

@@ -33,14 +33,11 @@ const GRAM_EX={
 
   // ─── BEZIT: plak de juiste bezitsuitgang ───
   'gram1_bezit':{exercises:[
-    {type:'explain',text:'Bezit maak je door een uitgang te plakken: -م (mijn), -ت (jouw), -ش (zijn/haar).',example:{hz:'نامم گل اَس',tr:'naamam gol as',nl:'Mijn naam is Gol'},highlight:'م'},
-    {type:'suffix',instruction:'Plak de juiste bezitsuitgang aan het woord',items:[
-      {word:'نام',owner:'mijn',correct:'م',options:['م','ت','ش'],result:'نامم'},
-      {word:'نام',owner:'jouw',correct:'ت',options:['م','ت','ش'],result:'نامت'},
-      {word:'نام',owner:'zijn/haar',correct:'ش',options:['م','ت','ش'],result:'نامش'},
-      {word:'مادر',owner:'mijn',correct:'م',options:['م','ت','ش'],result:'مادرم'},
-      {word:'کتاب',owner:'zijn/haar',correct:'ش',options:['م','ت','ش'],result:'کتابش'},
-    ]},
+    {type:'explain',text:'Bezit maak je NIET met een uitgang (zoals in het Iraans Farsi), maar door het voornaamwoord achter het woord te zetten: نام + من = نام من.',example:{hz:'نام من گل اَس',tr:'naam-e ma gol as',nl:'Mijn naam is Gol'},highlight:'من'},
+    {type:'fillblank',instruction:'Vul het juiste voornaamwoord in: "mijn naam"',before:'نام',blank:'من',after:'',options:['من','تو','او'],explanation:'"نام" + "من" = نام من (mijn naam)'},
+    {type:'fillblank',instruction:'Vul het juiste voornaamwoord in: "jouw naam"',before:'نام',blank:'تو',after:'',options:['من','تو','او'],explanation:'"نام" + "تو" = نام تو (jouw naam)'},
+    {type:'fillblank',instruction:'Vul het juiste voornaamwoord in: "zijn/haar boek"',before:'کتاب',blank:'او',after:'',options:['من','تو','او'],explanation:'"کتاب" + "او" = کتاب او (zijn/haar boek)'},
+    {type:'build',nl:'Mijn moeder is erg lief',words:['اَس','مادر','خیلی','مهربان','من'],correct:'مادر من خیلی مهربان اَس'},
   ]},
 
   // ─── MEERVOUD: maak enkelvoud → meervoud ───
@@ -52,10 +49,7 @@ const GRAM_EX={
       {given:'خانه',answer:'خانه‌ها',hint:'خانه + ها = خانه‌ها (huizen)'},
       {given:'دوست',answer:'دوست‌ها',hint:'دوست + ها = دوست‌ها (vrienden)'},
     ]},
-    {type:'suffix',instruction:'Maak meervoud + bezit: "-هایم" = mijn (meervoud)',items:[
-      {word:'کتاب‌',owner:'mijn (mv)',correct:'هایم',options:['ها','هایم','هایت'],result:'کتاب‌هایم'},
-      {word:'دوست‌',owner:'mijn (mv)',correct:'هایم',options:['ها','هایم','هایش'],result:'دوست‌هایم'},
-    ]},
+    {type:'fillblank',instruction:'Meervoud + bezit: vul het juiste voornaamwoord in',before:'کتاب‌های',blank:'من',after:'',options:['من','تو','او'],explanation:'"کتاب‌های" + "من" = کتاب‌های من (mijn boeken) — geen "-هایم" nodig'},
   ]},
 
   // ─── TEGENWOORDIGE TIJD: vervoeg werkwoorden ───
@@ -222,8 +216,8 @@ const GRAM_EX={
 
   // ─── EZAFE: combineer woorden met de koppel-e ───
   'gram7_ezafe':{exercises:[
-    {type:'explain',text:'Ezafe: "-e" koppelklank. خانه‌ی ما = ons huis. Bijv.nw. staat ACHTER het naamwoord.',example:{hz:'خانه‌ی ما بزرگ اَس',tr:'khaana-ye mah bozorg as',nl:'Ons huis is groot'},highlight:'ی'},
-    {type:'build',nl:'Ons huis is groot',words:['اَس','خانه‌ی','بزرگ','ما'],correct:'خانه‌ی ما بزرگ اَس'},
+    {type:'explain',text:'Ezafe: "-e" koppelklank. خانه‌ی مو = ons huis. Bijv.nw. staat ACHTER het naamwoord.',example:{hz:'خانه‌ی مو بزرگ اَس',tr:'khaana-ye mah bozorg as',nl:'Ons huis is groot'},highlight:'ی'},
+    {type:'build',nl:'Ons huis is groot',words:['اَس','خانه‌ی','بزرگ','مو'],correct:'خانه‌ی مو بزرگ اَس'},
     {type:'build',nl:'Breng warme thee',words:['بیار','چای','گرم'],correct:'چای گرم بیار'},
   ]},
 
