@@ -261,9 +261,10 @@ function syncVocabDefinitions(){
       (l.words||[]).forEach(w=>{
         const v=S.vocab[w.hz];
         if(!v)return;
-        if(v.nl!==w.nl||v.tr!==(w.tr||'')){
+        if(v.nl!==w.nl||v.tr!==(w.tr||'')||v.tag!==(w.tag||'')){
           v.nl=w.nl;
           v.tr=w.tr||'';
+          v.tag=w.tag||'';
           changed=true;
         }
       });

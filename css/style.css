@@ -165,6 +165,9 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .hz-script{font-family:'Noto Naskh Arabic',serif;font-size:44px;font-weight:700;color:var(--ink);direction:rtl;line-height:1.5;display:block;margin-bottom:8px;letter-spacing:.5px}
 .hz-latin{font-size:16px;font-weight:700;color:var(--rose);font-style:italic;display:block;margin-bottom:5px}
 .hz-nl{font-size:14px;font-weight:700;color:var(--ink-m);display:block}
+.word-tag-badge{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.02em;padding:2px 6px;border-radius:6px;margin-left:6px;vertical-align:middle}
+.word-tag-badge.tag-vt{background:var(--gold-l);color:var(--gold-d)}
+.word-tag-badge.tag-mv{background:var(--mint-l);color:var(--mint)}
 
 /* Context card */
 .ctx-card{background:var(--gold-l);border:1px solid var(--ink-xl);border-radius:var(--r-sm);padding:16px 18px;margin-bottom:16px}

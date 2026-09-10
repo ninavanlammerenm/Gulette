@@ -1,5 +1,12 @@
 
 // ══════════════════════════════════════════════════════
+// WOORD-TAGS (VT = verleden tijd, MV = meervoud)
+// ══════════════════════════════════════════════════════
+function tagBadgeHTML(tag){
+  return tag ? ` <span class="word-tag-badge tag-${tag.toLowerCase()}">${tag}</span>` : '';
+}
+
+// ══════════════════════════════════════════════════════
 // NAV
 // ══════════════════════════════════════════════════════
 const showScreen = id => {
@@ -291,7 +298,7 @@ function renderVocab(){
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
         <div class="wc-pron">🗣️ ${pron}</div>
-        <div class="wc-nl">${v.nl||''}</div>
+        <div class="wc-nl">${v.nl||''}${tagBadgeHTML(v.tag)}</div>
         <div class="wc-next">${due?'🔔 Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
       </div>
       <button class="spk-btn wc-spk" onclick="event.stopPropagation();speakHz('${hz}','${(v.tr||'').replace(/'/g,"\\'")}')">🔊</button>
@@ -691,7 +698,7 @@ function showWordDetail(hz){
       <div class="wd-hz">${hz}</div>
       <button class="spk-btn" style="margin:4px auto" onclick="speakHz('${hz}','${_esc(v.tr)}')">🔊</button>
       <div class="wd-tr">${v.tr||''}</div>
-      <div class="wd-nl">= ${v.nl}</div>
+      <div class="wd-nl">= ${v.nl}${tagBadgeHTML(v.tag)}</div>
     </div>
     <div class="wd-stats">
       <div class="wd-stat-box">

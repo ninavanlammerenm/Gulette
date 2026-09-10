@@ -275,14 +275,14 @@ function rIntro(ex,body){
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
-      <span class="hz-nl">= ${w.nl}</span>
+      <span class="hz-nl">= ${w.nl}${tagBadgeHTML(w.tag)}</span>
       <span class="hz-dutch intro-fade-in-1">${w.tr||''}</span>
     </div>
     ${w.tip?`<div class="word-tip-card intro-fade-in-2">💡 ${w.tip}</div>`:''}
     ${ctxHTML}
     <div class="intro-auto-bar" id="intro-bar"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
-  if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   save();
   speakHz(w.hz,w.tr);
 }
@@ -478,7 +478,7 @@ function rType(ex,body){
     <div class="type-pill">⌨️ Actief ophalen</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Afghaanse woord voor:</p>
     <div class="hz-card hz-card-compact">
-      <span class="hz-nl" style="font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px">${w.nl}</span>
+      <span class="hz-nl" style="font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px">${w.nl}${tagBadgeHTML(w.tag)}</span>
       <span class="hz-dutch">${w.tr||''}</span>
     </div>
     <input class="t-inp" id="t-inp"
