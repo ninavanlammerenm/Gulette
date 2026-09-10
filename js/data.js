@@ -201,7 +201,7 @@ const CHAPTERS=[
         {hz:'بام',tr:'baam',nl:'Dak',tip:'Hazara-huizen hebben platte daken — sociaal treffpunt'},
       ],
       sentences:[
-        {hz:'خانه مو دو اتاق داره',tr:'khaana-ye mah do otaaq daara',nl:'Ons huis heeft twee kamers'},
+        {hz:'خانه مو دو اتاق داره',tr:'khaana-ye mo do otaaq daara',nl:'Ons huis heeft twee kamers'},
         {hz:'دروازه باز اَس',tr:'darwaaza baaz as',nl:'De deur is open'},
         {hz:'حویلی گوشکیل اَس',tr:'haweli goshkil as',nl:'De binnenplaats is mooi'},
       ]
@@ -474,19 +474,19 @@ const CHAPTERS=[
 
     { id:'gram1_pronouns', title:'Voornaamwoorden', sub:'Ik, jij, hij, wij...', icon:'🧑', xp:20,
       pronTips:['خ'],
-      grammar:'De 6 voornaamwoorden in Hazaragi:\nمن = ma (ik) · تو = tu (jij) · او = oo (hij/zij) · مو = mah (wij) · شما = shoma (jullie/u) · آنا = ana (zij)\n\nLet op: او spreek je uit als "oo" (lange oo). Er is geen verschil tussen hij en zij.\n\nDeze voornaamwoorden bepalen ook de werkwoordsuitgang: ma → -om, tu → -i, oo → -a, mah → -im, shoma → -in, ana → -an.',
+      grammar:'De 6 voornaamwoorden in Hazaragi:\nمن = ma (ik) · تو = tu (jij) · او = oo (hij/zij) · مو = mo (wij) · شما = shoma (jullie/u) · آنا = ana (zij)\n\nLet op: او spreek je uit als "oo" (lange oo). Er is geen verschil tussen hij en zij.\n\nDeze voornaamwoorden bepalen ook de werkwoordsuitgang: ma → -om, tu → -i, oo → -a, mo → -im, shoma → -in, ana → -an.',
       words:[
         {hz:'من',tr:'ma',nl:'Ik',tip:'Hazaragi: "ma" — kort a'},
         {hz:'تو',tr:'tu',nl:'Jij',tip:'Hazaragi: "tu" — NIET Iraans "to"'},
         {hz:'او',tr:'oo',nl:'Hij / Zij',tip:'Uitspraak: "oo" (lange oo-klank) — Hazaragi maakt geen onderscheid tussen hij en zij'},
-        {hz:'مو',tr:'mah',nl:'Wij',tip:'Typisch Hazaragi — NIET Iraans "ما"'},
+        {hz:'مو',tr:'mo',nl:'Wij',tip:'Typisch Hazaragi — NIET Iraans "ما"'},
         {hz:'شما',tr:'shoma',nl:'Jullie / U',tip:'Ook beleefd enkelvoud — voor respect naar ouderen'},
         {hz:'آنا',tr:'ana',nl:'Zij (meervoud)',tip:'Hazaragi: "آنا" — NIET Iraans "آنها" of formeel "ایشان"',tag:'MV'},
       ],
       sentences:[
         {hz:'من هزاره هستم',tr:'ma hazaara hastom',nl:'Ik ben Hazara'},
         {hz:'تو کجا هستی؟',tr:'tu koja hasti?',nl:'Waar ben jij?'},
-        {hz:'مو با هم می‌ریم',tr:'mah baa ham me-rim',nl:'Wij gaan samen',tip:'"مو" = mah (wij) — typisch Hazaragi'},
+        {hz:'مو با هم می‌ریم',tr:'mo baa ham me-rim',nl:'Wij gaan samen',tip:'"مو" = mo (wij) — typisch Hazaragi'},
       ]
     },
 
@@ -516,7 +516,7 @@ const CHAPTERS=[
         {hz:'نام من',tr:'naam-e ma',nl:'Mijn naam',tip:'"نام" + "من" — ezafe: naam-e ma'},
         {hz:'نام تو',tr:'naam-e tu',nl:'Jouw naam',tip:'"نام" + "تو" — ezafe: naam-e tu'},
         {hz:'نام او',tr:'naam-e oo',nl:'Zijn/haar naam',tip:'"نام" + "او" — ezafe: naam-e oo'},
-        {hz:'خانه مو',tr:'khaana-ye mah',nl:'Ons huis',tip:'"خانه" + "مو" (mah) — typisch Hazaragi, niet het Iraanse "ما"'},
+        {hz:'خانه مو',tr:'khaana-ye mo',nl:'Ons huis',tip:'"خانه" + "مو" (mo) — typisch Hazaragi, niet het Iraanse "ما"'},
         {hz:'مادر من',tr:'maadar-e ma',nl:'Mijn moeder',tip:'"مادر من" — de gangbare bezitsvorm in gesproken Hazaragi'},
         {hz:'دوست تو',tr:'dost-e tu',nl:'Jouw vriend',tip:'"دوست" + "تو" — let op: "دوستت دارم" (ik hou van jou) is een vaste uitdrukking en blijft ongewijzigd'},
         {hz:'کتاب او',tr:'ketaab-e oo',nl:'Zijn/haar boek',tip:'"کتاب او کجاس؟" = waar is zijn/haar boek?'},
@@ -1033,7 +1033,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'آپارتمان من دَ طبقه سوم اَس',tr:'aapaartemaan-e ma da tabqa sowm as',nl:'Mijn appartement is op de derde verdieping'},
-        {hz:'همسایه‌های مو خیلی خوب هستن',tr:'hamsaaya-haaye mah khaili khob hastan',nl:'Onze buren zijn heel goed'},
+        {hz:'همسایه‌های مو خیلی خوب هستن',tr:'hamsaaya-haaye mo khaili khob hastan',nl:'Onze buren zijn heel goed'},
         {hz:'شهر امشب خیلی گوشکیل اَس',tr:'shahr emshab khaili goshkil as',nl:'De stad is vanavond heel mooi'},
       ]
     },
@@ -1146,7 +1146,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'مو باید به هم کمک کنیم',tr:'mo baayad ba ham kamak konim',nl:'Wij moeten elkaar helpen'},
-        {hz:'همبستگی مو قوی‌تر اَس از هر چیز',tr:'hambastagi-ye mah qawitaar as az har chiz',nl:'Onze solidariteit is sterker dan alles'},
+        {hz:'همبستگی مو قوی‌تر اَس از هر چیز',tr:'hambastagi-ye mo qawitaar as az har chiz',nl:'Onze solidariteit is sterker dan alles'},
         {hz:'احترام به بزرگان واجب اَس',tr:'ehtaraam ba bozorgaan waajeb as',nl:'Respect voor ouderen is verplicht'},
       ]
     },
@@ -1546,7 +1546,7 @@ const CHAPTERS=[
         {hz:'نمک',tr:'namak',nl:'Zout',tip:''},
       ],
       sentences:[
-        {hz:'مادر من قورمه پختی، لذیذ بود',tr:'maadar-e ma qorma pakhti, lazeez bood',nl:'Mijn moeder maakte stoofschotel, het was heerlijk'},
+        {hz:'مادر من قورمه پخت، لذیذ بود',tr:'maadar-e ma qorma pokht, lazeez bood',nl:'Mijn moeder maakte stoofschotel, het was heerlijk'},
         {hz:'اشک غذای مخصوص هزاره اَس',tr:'ashak ghazaa-ye makhsos-e hazaara as',nl:'Ashak is een speciaal Hazara gerecht'},
         {hz:'امروز بولانی پختم، بیا بخور',tr:'emroz bolaani pakhtom, bia bakhoor',nl:'Vandaag heb ik bolani gemaakt, kom eten'},
       ]
@@ -1933,7 +1933,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'دَ اتاق خواب من هستم',tr:'da otaaq-khwaab-e ma hastom',nl:'Ik ben in mijn slaapkamer'},
         {hz:'حمام خراب اَس، تشناب کار می‌کنه',tr:'hamaam khraab as, tashnaab kaar me-kona',nl:'De badkamer is kapot, het toilet werkt'},
-        {hz:'بالکن مو گوشکیل اَس، شهر دیده می‌شه',tr:'baalkon-e mah goshkil as, shahr dida me-sha',nl:'Ons balkon is mooi, je ziet de stad'},
+        {hz:'بالکن مو گوشکیل اَس، شهر دیده می‌شه',tr:'baalkon-e mo goshkil as, shahr dida me-sha',nl:'Ons balkon is mooi, je ziet de stad'},
       ]
     },
 
@@ -1954,7 +1954,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'دَ صوفه بنشین، چای می‌آرم',tr:'da sofa benshin, chaay me-aarom',nl:'Ga op de bank zitten, ik breng thee'},
-        {hz:'قالین مو خیلی کهنه شده',tr:'qaalin-e mah khaili kohna shoda',nl:'Ons vloerkleed is erg oud geworden'},
+        {hz:'قالین مو خیلی کهنه شده',tr:'qaalin-e mo khaili kohna shoda',nl:'Ons vloerkleed is erg oud geworden'},
         {hz:'پرده را ببند، خورشید می‌زنه',tr:'parda ra baband, khoshid me-zana',nl:'Sluit het gordijn, de zon schijnt'},
       ]
     },
@@ -3038,7 +3038,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'خانواده من برام از همه چیز مهم‌تر اَس',tr:'khaanwaada-ye ma baaram az hama chiz mohemtar as',nl:'Mijn familie is voor mij belangrijker dan alles'},
         {hz:'از فداکاری مادر من شاکر هستم',tr:'az fedaakaari-ye maadar-e ma shaakir hastom',nl:'Ik ben dankbaar voor de opoffering van mijn moeder'},
-        {hz:'پیوند مو را هیچ‌چیز نمی‌تانه بشکنه',tr:'peywand-e mah ra hich-chiz name-taana beshkana',nl:'Niets kan onze band breken'},
+        {hz:'پیوند مو را هیچ‌چیز نمی‌تانه بشکنه',tr:'peywand-e mo ra hich-chiz name-taana beshkana',nl:'Niets kan onze band breken'},
       ]
     },
 
@@ -3092,7 +3092,7 @@ const CHAPTERS=[
       sentences:[
         {hz:'هر روز صبح می‌دوم، خیلی خوب اَس',tr:'har roz sobh me-dawom, kheli khob as',nl:'Elke ochtend ren ik, het is heel goed'},
         {hz:'فوتبال بازی کردن دوست دارم',tr:'footbaal baazi kardan dost darom',nl:'Ik hou van voetbal spelen'},
-        {hz:'تیم مو برنده شد، خوشحال شدیم',tr:'tim-e mah baranda shod, khoshhaal shodim',nl:'Ons team won, we werden blij'},
+        {hz:'تیم مو برنده شد، خوشحال شدیم',tr:'tim-e mo baranda shod, khoshhaal shodim',nl:'Ons team won, we werden blij'},
       ]
     },
 
@@ -3135,7 +3135,7 @@ const CHAPTERS=[
       ],
       sentences:[
         {hz:'جمعه مهمانی داریم، میای؟',tr:'jome mehmaani daarim, miyaai?',nl:'Vrijdag hebben we een bijeenkomst, kom je?'},
-        {hz:'مهمان نعمت اَس — این رسم موس',tr:'mehmaan ne\'mat as — in rasm-e mahas',nl:'Een gast is een zegen — dat is onze traditie'},
+        {hz:'مهمان نعمت اَس — این رسم موس',tr:'mehmaan ne\'mat as — in rasm-e mos',nl:'Een gast is een zegen — dat is onze traditie'},
         {hz:'با هم چای بخوریم و گپ بزنیم',tr:'baa ham chaay bekhorim wa gap bezanim',nl:'Laten we samen thee drinken en kletsen'},
       ]
     },
@@ -3672,7 +3672,7 @@ const CHAPTERS=[
         {hz:'کچری',tr:'kachri',nl:'Kachri (eenpansgerecht)',tip:'Rijst en peulvruchten — eenvoudig en voedzaam'},
       ],
       sentences:[
-        {hz:'امشب قابلی داریم، بیا خانه مو',tr:'emshab qaaboli daarim, biya khaana-ye mah',nl:'Vanavond hebben we qabuli, kom naar ons huis'},
+        {hz:'امشب قابلی داریم، بیا خانه مو',tr:'emshab qaaboli daarim, biya khaana-ye mo',nl:'Vanavond hebben we qabuli, kom naar ons huis'},
         {hz:'مانتو خوشمزه‌ترین غذای افغانیه',tr:'maanto khoshmazatarin ghazaa-ye afghaanis',nl:'Manto is het lekkerste Afghaanse eten'},
         {hz:'نان تازه از تنور خوش‌بوی اَس',tr:'naan-e taaza az tanoor khoshbooy as',nl:'Vers brood uit de tandoor ruikt heerlijk'},
       ]
@@ -4140,7 +4140,7 @@ const CHAPTERS=[
       pronTips:['ه','ی'],
       grammar:'Ezafe is een klein koppelklankie ("-e" of "-ye") dat twee woorden verbindt.\n\nVoor bezit: خانه‌ی مو (ons huis) · نام پدر (naam van vader)\nVoor bijv. naamwoorden: پسر بزرگ (de grote jongen)\n\nLet op: in Hazaragi staat het bijvoeglijk naamwoord ACHTER het zelfstandig naamwoord, en de bezitter staat ook ACHTER het bezit. Andersom dan in het Nederlands!',
       words:[
-        {hz:'خانه‌ی مو',tr:'khaana-ye mah',nl:'Ons huis',tip:'"خانه" + ezafe "-ye" + "مو" — analytische bezitsvorm, typisch Hazaragi (niet het Iraanse "ما")'},
+        {hz:'خانه‌ی مو',tr:'khaana-ye mo',nl:'Ons huis',tip:'"خانه" + ezafe "-ye" + "مو" — analytische bezitsvorm, typisch Hazaragi (niet het Iraanse "ما")'},
         {hz:'خانه‌ی تو',tr:'khaana-ye tu',nl:'Jouw huis',tip:'"تو" = tu (NIET "to"!)'},
         {hz:'پسر بزرگ',tr:'pesar-e bozorg',nl:'De grote jongen',tip:'Bijv.nw. staat NA het zelfstandig naamwoord'},
         {hz:'کتاب خوب',tr:'ketaab-e khob',nl:'Het goede boek',tip:'"خوب" staat achter "کتاب"'},
@@ -4150,7 +4150,7 @@ const CHAPTERS=[
         {hz:'چای گرم',tr:'chaay-e garm',nl:'Warme thee',tip:'"گرم" staat NA "چای"'},
       ],
       sentences:[
-        {hz:'خانه‌ی مو بزرگ اَس',tr:'khaana-ye mah bozorg as',nl:'Ons huis is groot'},
+        {hz:'خانه‌ی مو بزرگ اَس',tr:'khaana-ye mo bozorg as',nl:'Ons huis is groot'},
         {hz:'دوست خوب داشتن مهم اَس',tr:'dost-e khob daashtan mohim as',nl:'Een goede vriend hebben is belangrijk'},
         {hz:'چای گرم بیار',tr:'chaay-e garm biaar',nl:'Breng warme thee'},
       ]
@@ -4201,12 +4201,12 @@ const CHAPTERS=[
       pronTips:['ه'],
       grammar:'Voltooid tegenwoordige tijd: voor iets dat al klaar is en nog relevant is.\n\nPatroon: verleden stam + "-ه" + bezitssuffix:\nرفته‌ام (raftaam) = ik ben gegaan · رفته‌ای = jij bent gegaan · رفته = hij/zij is gegaan\n\nIn Hazaragi spreektaal klinkt "رفته‌ام" als "raftaam" — de grens met رفتم (ik ging) is smal, context bepaalt.\nOntkenning: نرفته‌ام = ik ben niet gegaan.',
       words:[
-        {hz:'رفته‌ام',tr:'raftaam',nl:'Ik ben gegaan',tip:'رفت + "-ه" + "-ام" → voltooide handeling'},
-        {hz:'خورده‌ام',tr:'khordaam',nl:'Ik heb gegeten',tip:'"خورد" + "-ه" + "-ام"'},
-        {hz:'دیده‌ام',tr:'didaam',nl:'Ik heb gezien',tip:'"دید" + "-ه" + "-ام"'},
-        {hz:'گفته‌ام',tr:'goftaam',nl:'Ik heb gezegd',tip:'"گفت" + "-ه" + "-ام"'},
-        {hz:'آمده‌ام',tr:'aamdaam',nl:'Ik ben gekomen',tip:'"آمد" + "-ه" + "-ام"'},
-        {hz:'نرفته‌ام',tr:'na-raftaam',nl:'Ik ben niet gegaan',tip:'"نه" + verleden stam = negatie VTT'},
+        {hz:'رفته‌ام',tr:'raftaam',nl:'Ik ben gegaan',tip:'رفت + "-ه" + "-ام" → voltooide handeling',tag:'VTT'},
+        {hz:'خورده‌ام',tr:'khordaam',nl:'Ik heb gegeten',tip:'"خورد" + "-ه" + "-ام"',tag:'VTT'},
+        {hz:'دیده‌ام',tr:'didaam',nl:'Ik heb gezien',tip:'"دید" + "-ه" + "-ام"',tag:'VTT'},
+        {hz:'گفته‌ام',tr:'goftaam',nl:'Ik heb gezegd',tip:'"گفت" + "-ه" + "-ام"',tag:'VTT'},
+        {hz:'آمده‌ام',tr:'aamdaam',nl:'Ik ben gekomen',tip:'"آمد" + "-ه" + "-ام"',tag:'VTT'},
+        {hz:'نرفته‌ام',tr:'na-raftaam',nl:'Ik ben niet gegaan',tip:'"نه" + verleden stam = negatie VTT',tag:'VTT'},
       ],
       sentences:[
         {hz:'نان خورده‌ام، سیر هستم',tr:'naan khordaam, seer hastom',nl:'Ik heb brood gegeten, ik ben vol'},
@@ -4241,14 +4241,14 @@ const CHAPTERS=[
         {hz:'مال من',tr:'maal-e ma',nl:'Van mij',tip:'"این مال من اَس" = dit is van mij'},
         {hz:'مال تو',tr:'maal-e tu',nl:'Van jou',tip:'"تو" = tu — NIET "to"!'},
         {hz:'مال او',tr:'maal-e oo',nl:'Van hem/haar',tip:'"oo" = lange oo-klank'},
-        {hz:'مال مو',tr:'maal-e mah',nl:'Van ons',tip:'Hazaragi: "مو" (mah) voor wij — niet het Iraanse "ما"'},
+        {hz:'مال مو',tr:'maal-e mo',nl:'Van ons',tip:'Hazaragi: "مو" (mo) voor wij — niet het Iraanse "ما"'},
         {hz:'مال شما',tr:'maal-e shoma',nl:'Van jullie',tip:'Ook beleefd enkelvoud'},
         {hz:'مال کی؟',tr:'maal-e ki?',nl:'Van wie?',tip:'"مال کی اَس؟" = van wie is het?'},
       ],
       sentences:[
         {hz:'این مال من اَس، نه مال تو',tr:'ain maal-e ma as, na maal-e tu',nl:'Dit is van mij, niet van jou'},
         {hz:'مال کی اَس این کتاب؟',tr:'maal-e ki as ain ketaab?',nl:'Van wie is dit boek?'},
-        {hz:'مال موس، با هم کار می‌کنیم',tr:'maal-e mahas, baa ham kaar me-konim',nl:'Het is van ons, we werken samen'},
+        {hz:'مال موس، با هم کار می‌کنیم',tr:'maal-e mos, baa ham kaar me-konim',nl:'Het is van ons, we werken samen'},
       ]
     },
 

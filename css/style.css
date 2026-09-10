@@ -168,6 +168,7 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .word-tag-badge{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.02em;padding:2px 6px;border-radius:6px;margin-left:6px;vertical-align:middle}
 .word-tag-badge.tag-vt{background:var(--gold-l);color:var(--gold-d)}
 .word-tag-badge.tag-mv{background:var(--mint-l);color:var(--mint)}
+.word-tag-badge.tag-vtt{background:var(--lav-l);color:var(--lav)}
 
 /* Context card */
 .ctx-card{background:var(--gold-l);border:1px solid var(--ink-xl);border-radius:var(--r-sm);padding:16px 18px;margin-bottom:16px}

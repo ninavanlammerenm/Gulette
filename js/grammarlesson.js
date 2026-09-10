@@ -7,11 +7,11 @@ const GRAM_EX={
   // ─── VOORNAAMWOORDEN: koppel persoon ↔ voornaamwoord ───
   'gram1_pronouns':{exercises:[
     {type:'explain',text:'Hazaragi heeft 6 voornaamwoorden. Elk bepaalt de werkwoorduitgang.',example:{hz:'من هزاره هستم',tr:'ma hazaara hastom',nl:'Ik ben Hazara'},highlight:'من'},
-    {type:'explain',text:'"مو" (mah) = wij — typisch Hazaragi! Iraans zegt "ما".',example:{hz:'مو با هم می‌ریم',tr:'mah baa ham me-rim',nl:'Wij gaan samen'},highlight:'مو'},
+    {type:'explain',text:'"مو" (mo) = wij — typisch Hazaragi! Iraans zegt "ما".',example:{hz:'مو با هم می‌ریم',tr:'mo baa ham me-rim',nl:'Wij gaan samen'},highlight:'مو'},
     {type:'match',instruction:'Koppel elk voornaamwoord aan de juiste persoon',pairs:[
       {left:'من',right:'ik'},{left:'تو',right:'jij'},{left:'او',right:'hij/zij'},{left:'مو',right:'wij'},{left:'شما',right:'jullie'},{left:'آنا',right:'zij (mv)'}
     ]},
-    {type:'fillblank',instruction:'Vul het juiste voornaamwoord in',before:'',blank:'مو',after:'با هم می‌ریم',options:['من','مو','شما'],explanation:'"مو" (mah) = wij — typisch Hazaragi'},
+    {type:'fillblank',instruction:'Vul het juiste voornaamwoord in',before:'',blank:'مو',after:'با هم می‌ریم',options:['من','مو','شما'],explanation:'"مو" (mo) = wij — typisch Hazaragi'},
     {type:'fillblank',instruction:'Wie spreekt hier?',before:'',blank:'تو',after:'کجا هستی؟',options:['من','تو','او'],explanation:'"تو" (tu) = jij'},
   ]},
 
@@ -216,7 +216,7 @@ const GRAM_EX={
 
   // ─── EZAFE: combineer woorden met de koppel-e ───
   'gram7_ezafe':{exercises:[
-    {type:'explain',text:'Ezafe: "-e" koppelklank. خانه‌ی مو = ons huis. Bijv.nw. staat ACHTER het naamwoord.',example:{hz:'خانه‌ی مو بزرگ اَس',tr:'khaana-ye mah bozorg as',nl:'Ons huis is groot'},highlight:'ی'},
+    {type:'explain',text:'Ezafe: "-e" koppelklank. خانه‌ی مو = ons huis. Bijv.nw. staat ACHTER het naamwoord.',example:{hz:'خانه‌ی مو بزرگ اَس',tr:'khaana-ye mo bozorg as',nl:'Ons huis is groot'},highlight:'ی'},
     {type:'build',nl:'Ons huis is groot',words:['اَس','خانه‌ی','بزرگ','مو'],correct:'خانه‌ی مو بزرگ اَس'},
     {type:'build',nl:'Breng warme thee',words:['بیار','چای','گرم'],correct:'چای گرم بیار'},
   ]},
