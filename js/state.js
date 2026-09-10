@@ -353,6 +353,40 @@ function migrateVocabKeys(){
   if(changed) save();
 }
 
+// Elk woord in data.js heeft een stabiel `id` (bijv. 'ch1_greet1_w0') dat NOOIT
+// verandert, ook al wordt de Hazaragi-tekst zelf later verbeterd/herschreven.
+// Deze functie herkent zo'n tekstwijziging automatisch via dat id en hernoemt
+// de S.vocab-sleutel, zodat mastery/voortgang behouden blijft — zonder dat er
+// ooit nog handmatig een entry aan VOCAB_MIGRATIONS toegevoegd hoeft te worden.
+function migrateVocabByIds(){
+  const idToHz={};
+  CHAPTERS.forEach(ch=>ch.lessons.forEach(l=>(l.words||[]).forEach(w=>{
+    if(w.id) idToHz[w.id]=w.hz;
+  })));
+  let changed=false;
+  for(const [hz,v] of Object.entries(S.vocab)){
+    if(!v.id) continue;
+    const currentHz=idToHz[v.id];
+    if(!currentHz||currentHz===hz) continue;
+    if(S.vocab[currentHz]){
+      const oldLvl=v.masteryLevel||1;
+      const newLvl=S.vocab[currentHz].masteryLevel||1;
+      if(oldLvl>newLvl){
+        S.vocab[currentHz]=v;
+        console.log(`[Gulette migratie] ${hz} → ${currentHz} (mastery ${oldLvl} overgenomen via id, was ${newLvl})`);
+      } else {
+        console.log(`[Gulette migratie] ${hz} verwijderd (${currentHz} had al mastery ${newLvl})`);
+      }
+    } else {
+      S.vocab[currentHz]=v;
+      console.log(`[Gulette migratie] ${hz} → ${currentHz} (voortgang behouden via id)`);
+    }
+    delete S.vocab[hz];
+    changed=true;
+  }
+  if(changed) save();
+}
+
 function syncVocabDefinitions(){
   let changed=false;
   CHAPTERS.forEach(ch=>{
@@ -360,10 +394,11 @@ function syncVocabDefinitions(){
       (l.words||[]).forEach(w=>{
         const v=S.vocab[w.hz];
         if(!v)return;
-        if(v.nl!==w.nl||v.tr!==(w.tr||'')||v.tag!==(w.tag||'')){
+        if(v.nl!==w.nl||v.tr!==(w.tr||'')||v.tag!==(w.tag||'')||v.id!==w.id){
           v.nl=w.nl;
           v.tr=w.tr||'';
           v.tag=w.tag||'';
+          v.id=w.id;
           changed=true;
         }
       });

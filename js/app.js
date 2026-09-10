@@ -220,6 +220,7 @@ load();
 })();
 migrateVocab();
 migrateVocabKeys();
+migrateVocabByIds();
 syncVocabDefinitions();
 applyMasteryDecay();
 if(S.showRoman===false) document.body.classList.add('hide-roman');

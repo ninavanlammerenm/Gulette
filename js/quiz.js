@@ -315,7 +315,7 @@ function answerOvh(btn, idx){
 // FOUT REGISTREREN
 // ══════════════════════════════════════════════════════
 function _registerOvhError(hz,v,chosen,correct,dir,exType){
-  if(!S.vocab[hz]) S.vocab[hz]={nl:v.nl,tr:v.tr||'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  if(!S.vocab[hz]) S.vocab[hz]={id:v.id,nl:v.nl,tr:v.tr||'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   if(dir==='nl_hz' && chosen!=='—') trackConfusion(hz, chosen);
   S.vocab[hz].errors=(S.vocab[hz].errors||0)+1;
   updMastery(hz, false, exType||'mc');

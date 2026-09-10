@@ -282,7 +282,7 @@ function rIntro(ex,body){
     ${ctxHTML}
     <div class="intro-auto-bar" id="intro-bar"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen! 🌸</button>`;
-  if(!S.vocab[w.hz])S.vocab[w.hz]={nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  if(!S.vocab[w.hz])S.vocab[w.hz]={id:w.id,nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   save();
   speakHz(w.hz,w.tr);
 }
