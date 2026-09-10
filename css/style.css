@@ -568,6 +568,7 @@ body.hide-roman .pron-latin{ display:none!important }
 .rd-card-arr{font-size:18px;font-weight:900;color:var(--rose);flex-shrink:0}
 .rd-card-done .rd-card-arr{color:var(--mint)}
 .rd-sent{background:var(--white);border-radius:var(--r-sm);padding:16px 18px;margin-bottom:12px;box-shadow:var(--sh-xs);border:1px solid var(--ink-xl)}
+.rd-speaker{font-size:11px;font-weight:900;color:var(--rose);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
 .rd-hz-line{font-family:'Noto Naskh Arabic',serif;font-size:22px;font-weight:600;direction:rtl;text-align:right;color:var(--ink);line-height:1.8;margin-bottom:6px}
 .rd-word{cursor:pointer;border-radius:6px;padding:1px 3px;transition:background .15s;display:inline}
 .rd-word:active{background:var(--rose-l)}

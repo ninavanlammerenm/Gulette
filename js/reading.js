@@ -7,40 +7,40 @@ const STORIES = [
     id: 'story_salam',
     icon: '👋',
     title: 'سلام',
-    titleNl: 'Begroeting',
+    titleNl: 'Een nieuwe vriendin',
     level: 1,
     levelLabel: '⭐ Makkelijk',
     sentences: [
-      { words: [
-        {hz:'سلام!',tr:'Salam!',nl:'Hallo!'},
+      { speaker: 'Nina', nl: 'Hallo! Ik ben Nina.', words: [
+        {hz:'سلام!',tr:'Salam!',nl:'hallo!'},
         {hz:'مه',tr:'ma',nl:'ik'},
         {hz:'نینا',tr:'Nina',nl:'Nina'},
         {hz:'اَم.',tr:'am.',nl:'ben.'},
       ]},
-      { words: [
+      { speaker: 'Nina', nl: 'Wie ben jij?', words: [
         {hz:'تو',tr:'tu',nl:'jij'},
         {hz:'کی',tr:'ki',nl:'wie'},
-        {hz:'اَس؟',tr:'as?',nl:'ben/is?'},
+        {hz:'اَس؟',tr:'as?',nl:'ben?'},
       ]},
-      { words: [
+      { speaker: 'Sara', nl: 'Ik ben Sara.', words: [
         {hz:'مه',tr:'ma',nl:'ik'},
         {hz:'سارا',tr:'Saara',nl:'Sara'},
         {hz:'اَم.',tr:'am.',nl:'ben.'},
       ]},
-      { words: [
+      { speaker: 'Nina', nl: 'Wat leuk dat ik je heb ontmoet!', words: [
         {hz:'خوشحال',tr:'khoshhaal',nl:'blij'},
         {hz:'اَم',tr:'am',nl:'ben'},
         {hz:'که',tr:'ke',nl:'dat'},
         {hz:'تو',tr:'tu',nl:'jou'},
         {hz:'دیدم!',tr:'didom!',nl:'ik zag!'},
       ]},
-      { words: [
+      { speaker: 'Nina', nl: 'Waar kom jij vandaan?', words: [
         {hz:'تو',tr:'tu',nl:'jij'},
         {hz:'اَز',tr:'az',nl:'van/uit'},
         {hz:'کجا',tr:'koja',nl:'waar'},
         {hz:'اَس؟',tr:'as?',nl:'kom jij?'},
       ]},
-      { words: [
+      { speaker: 'Sara', nl: 'Ik kom uit Kabul.', words: [
         {hz:'مه',tr:'ma',nl:'ik'},
         {hz:'اَز',tr:'az',nl:'uit'},
         {hz:'کابل',tr:'Kaabul',nl:'Kabul'},
@@ -52,48 +52,54 @@ const STORIES = [
     id: 'story_khana',
     icon: '🏠',
     title: 'خانه',
-    titleNl: 'Thuis',
+    titleNl: 'Een avond thuis',
     level: 1,
     levelLabel: '⭐ Makkelijk',
     sentences: [
-      { words: [
+      { nl: 'Mijn huis is mooi.', words: [
         {hz:'خانه',tr:'khana',nl:'huis'},
         {hz:'مه',tr:'ma',nl:'mijn'},
         {hz:'قشنگ',tr:'qashanq',nl:'mooi'},
         {hz:'اَس.',tr:'as.',nl:'is.'},
       ]},
-      { words: [
-        {hz:'دَ',tr:'da',nl:'in/thuis'},
-        {hz:'خانه',tr:'khana',nl:'huis'},
+      { nl: 'Mijn moeder is thuis.', words: [
         {hz:'مادر',tr:'maadar',nl:'moeder'},
         {hz:'مه',tr:'ma',nl:'mijn'},
+        {hz:'دَ',tr:'da',nl:'in/thuis'},
+        {hz:'خانه',tr:'khana',nl:'huis'},
         {hz:'اَس.',tr:'as.',nl:'is.'},
       ]},
-      { words: [
+      { nl: 'Ze kookt het eten.', words: [
         {hz:'مادر',tr:'maadar',nl:'moeder'},
         {hz:'مه',tr:'ma',nl:'mijn'},
         {hz:'غذا',tr:'ghaza',nl:'eten'},
         {hz:'می‌پَزه.',tr:'mi-paza.',nl:'kookt.'},
       ]},
-      { words: [
+      { nl: 'Mijn vader is nog aan het werk.', words: [
         {hz:'پدر',tr:'padar',nl:'vader'},
         {hz:'مه',tr:'ma',nl:'mijn'},
         {hz:'دَ',tr:'da',nl:'op/bij'},
         {hz:'کار',tr:'kaar',nl:'werk'},
         {hz:'اَس.',tr:'as.',nl:'is.'},
       ]},
-      { words: [
-        {hz:'برادر',tr:'baraadar',nl:'broer'},
+      { nl: 'Daarna kwam mijn vader thuis.', words: [
+        {hz:'بعد',tr:"ba'd",nl:'daarna'},
+        {hz:'پدر',tr:'padar',nl:'vader'},
         {hz:'مه',tr:'ma',nl:'mijn'},
-        {hz:'کوچک',tr:'kuchak',nl:'klein'},
-        {hz:'اَس.',tr:'as.',nl:'is.'},
+        {hz:'آمد.',tr:'aamad.',nl:'kwam.'},
       ]},
-      { words: [
-        {hz:'مه',tr:'ma',nl:'ik'},
-        {hz:'خانه',tr:'khana',nl:'thuis'},
-        {hz:'را',tr:'ra',nl:'(object)'},
-        {hz:'دوست',tr:'dost',nl:'graag'},
-        {hz:'دارم.',tr:'daaram.',nl:'vind.'},
+      { nl: 'We aten samen.', words: [
+        {hz:'مو',tr:'mo',nl:'wij'},
+        {hz:'باهم',tr:'baaham',nl:'samen'},
+        {hz:'شام',tr:'shaam',nl:'avondeten'},
+        {hz:'خوردیم.',tr:'khordim.',nl:'aten.'},
+      ]},
+      { nl: 'Samen zijn is het beste.', words: [
+        {hz:'با هم',tr:'baa ham',nl:'samen'},
+        {hz:'بودن',tr:'boodan',nl:'zijn'},
+        {hz:'بهترین',tr:'behtarin',nl:'beste'},
+        {hz:'چیز',tr:'chiz',nl:'ding'},
+        {hz:'اَس.',tr:'as.',nl:'is.'},
       ]},
     ]
   },
@@ -105,38 +111,38 @@ const STORIES = [
     level: 2,
     levelLabel: '⭐⭐ Normaal',
     sentences: [
-      { words: [
+      { nl: "'s Ochtends ging ik naar de markt.", words: [
         {hz:'صبح',tr:'sobh',nl:'ochtend'},
         {hz:'مه',tr:'ma',nl:'ik'},
         {hz:'دَ',tr:'da',nl:'naar'},
         {hz:'بازار',tr:'baazaar',nl:'markt'},
         {hz:'رفتم.',tr:'raftam.',nl:'ging.'},
       ]},
-      { words: [
+      { nl: 'De markt was druk.', words: [
         {hz:'بازار',tr:'baazaar',nl:'markt'},
         {hz:'شلوغ',tr:'shaluq',nl:'druk/vol'},
         {hz:'بود.',tr:'bud.',nl:'was.'},
       ]},
-      { words: [
+      { nl: 'Een winkelier verkocht brood.', words: [
         {hz:'یک',tr:'yak',nl:'een'},
         {hz:'دکاندار',tr:'dokaandaar',nl:'winkelier'},
         {hz:'نان',tr:'naan',nl:'brood'},
         {hz:'می‌فروخت.',tr:'mi-frokht.',nl:'verkocht.'},
       ]},
-      { words: [
+      { nl: 'Ik vroeg: "Hoeveel kost één brood?"', words: [
         {hz:'مه',tr:'ma',nl:'ik'},
         {hz:'پرسیدم:',tr:'porsiidom:',nl:'vroeg:'},
         {hz:'"یک',tr:'"yak',nl:'"een'},
         {hz:'نان',tr:'naan',nl:'brood'},
         {hz:'چنده؟"',tr:'chanda?"',nl:'hoeveel?"'},
       ]},
-      { words: [
+      { nl: 'Hij zei: "Tien afghani."', words: [
         {hz:'او',tr:'oo',nl:'hij'},
         {hz:'گفت:',tr:'guft:',nl:'zei:'},
         {hz:'"ده',tr:'"dah',nl:'"tien'},
         {hz:'افغانی."',tr:'Afghaani."',nl:'afghani."'},
       ]},
-      { words: [
+      { nl: 'Ik kocht het brood en werd blij.', words: [
         {hz:'مه',tr:'ma',nl:'ik'},
         {hz:'نان',tr:'naan',nl:'brood'},
         {hz:'خریدم',tr:'kharidom',nl:'kocht'},
@@ -154,38 +160,38 @@ const STORIES = [
     level: 2,
     levelLabel: '⭐⭐ Normaal',
     sentences: [
-      { words: [
+      { nl: "'s Ochtends werd ik vroeg wakker.", words: [
         {hz:'صبح',tr:'sobh',nl:'ochtend'},
         {hz:'زود',tr:'zud',nl:'vroeg'},
         {hz:'مه',tr:'ma',nl:'ik'},
         {hz:'بیدار',tr:'bidaar',nl:'wakker'},
         {hz:'شدم.',tr:'shodom.',nl:'werd.'},
       ]},
-      { words: [
+      { nl: 'Ik dronk water en at ontbijt.', words: [
         {hz:'آو',tr:'aaw',nl:'water'},
         {hz:'خوردم',tr:'khordom',nl:'dronk'},
         {hz:'و',tr:'o',nl:'en'},
         {hz:'ناشتا',tr:'naashta',nl:'ontbijt'},
         {hz:'خوردم.',tr:'khordom.',nl:'at.'},
       ]},
-      { words: [
+      { nl: 'Daarna ging ik naar school.', words: [
         {hz:'بعد',tr:"ba'd",nl:'daarna'},
         {hz:'دَ',tr:'da',nl:'naar'},
         {hz:'مکتب',tr:'maktab',nl:'school'},
         {hz:'رفتم.',tr:'raftam.',nl:'ging.'},
       ]},
-      { words: [
+      { nl: 'Mijn vrienden zagen mij.', words: [
         {hz:'دوستانم',tr:'doostaana-am',nl:'mijn vrienden'},
         {hz:'مه',tr:'ma',nl:'mij'},
         {hz:'دیدن.',tr:'didan.',nl:'zagen.'},
       ]},
-      { words: [
+      { nl: 'We speelden samen.', words: [
         {hz:'مو',tr:'mo',nl:'wij'},
         {hz:'باهم',tr:'baakham',nl:'samen'},
         {hz:'بازی',tr:'baazi',nl:'spelletje'},
         {hz:'کردیم.',tr:'kardiim.',nl:'speelden.'},
       ]},
-      { words: [
+      { nl: 'Het was een goede dag.', words: [
         {hz:'روز',tr:'roz',nl:'dag'},
         {hz:'خوب',tr:'khub',nl:'goed'},
         {hz:'بود.',tr:'bud.',nl:'was.'},
@@ -240,6 +246,14 @@ function openStory(id) {
     const sentEl = document.createElement('div');
     sentEl.className = 'rd-sent';
 
+    // Spreker (bij dialogen)
+    if (sentence.speaker) {
+      const spEl = document.createElement('div');
+      spEl.className = 'rd-speaker';
+      spEl.textContent = sentence.speaker;
+      sentEl.appendChild(spEl);
+    }
+
     // Hazaragi (RTL) – elke woord apart tappable
     const hzLine = document.createElement('div');
     hzLine.className = 'rd-hz-line';
@@ -268,12 +282,7 @@ function openStory(id) {
     const nlText = document.createElement('div');
     nlText.className = 'rd-nl-text';
     nlText.style.display = 'none';
-    nlText.textContent = sentence.words
-      .map(w => w.nl)
-      .join(' ')
-      .replace(/\(object\)/g, '')
-      .replace(/  +/g, ' ')
-      .trim();
+    nlText.textContent = sentence.nl;
     nlBtn.onclick = () => {
       const hidden = nlText.style.display === 'none';
       nlText.style.display = hidden ? 'block' : 'none';
