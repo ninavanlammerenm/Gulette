@@ -3,24 +3,6 @@
 // ══════════════════════════════════════════════════════
 let S={name:'',xp:0,streak:0,lastStudy:null,done:[],vocab:{},weekActivity:[],goal:10,xpLog:{}};
 
-// ══════════════════════════════════════════════════════
-// UITSPRAAKSCHRIFT — romanisering → leesbaar voor Nederlandstaligen
-// ══════════════════════════════════════════════════════
-function toDutchPhonetic(tr){
-  if(!tr)return '';
-  return tr
-    .replace(/kh/gi,'gh')   // خ — keelklank (Nederlands G)
-    .replace(/sh/gi,'sj')   // ش — Nederlands sj
-    .replace(/zh/gi,'zj')   // ژ — Nederlands zj
-    .replace(/ch/gi,'tsj')  // چ — Nederlands tsj
-    .replace(/oo/g,'oe')    // lange o — Nederlands oe
-    .replace(/ee/g,'ie')    // lange e — Nederlands ie
-    .replace(/ay/gi,'ei')   // tweeklank
-    .replace(/ai/gi,'ei')   // tweeklank
-    .replace(/ow/gi,'aw')   // tweeklank
-    .replace(/q/gi,'k');    // ق — Nederlands k
-}
-
 const save=()=>{
   try{localStorage.setItem('gulette_v3',JSON.stringify(S));}
   catch(e){if(typeof showToast==='function')showToast('⚠️ Opslaan mislukt — controleer opslagruimte');}
@@ -63,6 +45,17 @@ function _computeNaturalLevel(v){
   if(tc>=1) return 3;
   if(mc>=2) return 2;
   return 1;
+}
+
+// Zinsoefeningen splitsen op spaties; Hazaragi-leestekens (، ؟ ! .) plakken
+// vaak vast aan het vorige woord. Val terug op de tekst zonder leesteken
+// zodat mastery-tracking niet stil faalt — maar alleen als het woord zelf
+// (zoals "خوبی؟") niet al exact met leesteken in S.vocab staat.
+function resolveVocabKey(token){
+  if(S.vocab[token]) return token;
+  const stripped=token.replace(/^[،؟!.,؛:"«»'']+|[،؟!.,؛:"«»'']+$/g,'');
+  if(stripped!==token && S.vocab[stripped]) return stripped;
+  return token;
 }
 
 function updMastery(hz, ok, exType){

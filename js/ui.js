@@ -144,6 +144,7 @@ function renderHome(){
 
   // CEFR niveautoets banner
   if(typeof renderTestBanner==='function') renderTestBanner();
+  renderDagwoord();
 
   // Chapters — lesson cards
   const cw=document.getElementById('chapters-wrap');
@@ -179,6 +180,7 @@ function renderHome(){
       <div class="ch-card-top">
         <span class="ch-card-icon">${chIcon}</span>
         <span class="ch-card-title">H${ci+1} · ${chTitle}</span>
+        ${learnedWords>=4?`<button class="ch-card-review" onclick="startChapterReview('${ch.id}')" title="Herhaal woorden uit dit hoofdstuk">🔁</button>`:''}
         ${totalWords>0?`<span class="ch-card-badge">${learnedWords}/${totalWords}</span>`:''}
       </div>
       <div class="ch-lessons-row">${lessonsHTML}</div>`;
@@ -453,7 +455,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v64 · Sakura';
+  if(_vEl)_vEl.textContent='v65 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
@@ -535,8 +537,6 @@ function setRomanMode(mode){
   document.body.classList.toggle('hide-roman', S.showRoman === false);
   updateRomanBtn();
 }
-
-function toggleRoman(){ setRomanMode(S.showRoman===false?'tap':'hide'); }
 
 function updateRomanBtn(){
   const tap = document.getElementById('roman-btn-tap');
@@ -635,9 +635,37 @@ function renderChapterProgress(){
 }
 
 // ══════════════════════════════════════════════════════
-// DAGWOORD
+// DAGWOORD — elke dag hetzelfde woord voor iedereen (datum als seed),
+// bij voorkeur uit al geleerde woorden zodat het ook echt herhaling is.
 // ══════════════════════════════════════════════════════
-function renderDagwoord(){}
+function _dagwoordPick(){
+  const all=[];
+  CHAPTERS.forEach(ch=>ch.lessons.forEach(l=>(l.words||[]).forEach(w=>all.push(w))));
+  if(!all.length)return null;
+  const known=all.filter(w=>S.vocab[w.hz]);
+  const pool=known.length>=5?known:all;
+  const dayNum=Math.floor(Date.now()/86400000);
+  return pool[dayNum%pool.length];
+}
+
+function renderDagwoord(){
+  const el=document.getElementById('dagwoord-card');
+  if(!el)return;
+  const w=_dagwoordPick();
+  if(!w){el.className='';el.innerHTML='';return;}
+  const known=!!S.vocab[w.hz];
+  el.className='dw-card';
+  el.innerHTML=`
+    <div class="dw-emoji">🌞</div>
+    <div class="dw-text">
+      <div class="dw-lbl">Woord van de dag</div>
+      <div class="dw-hz">${w.hz}</div>
+      ${w.tr?`<div class="dw-tr">${w.tr}</div>`:''}
+      <div class="dw-nl">${w.nl}</div>
+      ${w.tip?`<div class="dw-tip">${w.tip}</div>`:''}
+    </div>
+    ${known?'':`<div class="dw-badge">nog niet geleerd</div>`}`;
+}
 
 // ══════════════════════════════════════════════════════
 // MASTERY DISTRIBUTIE

@@ -434,13 +434,6 @@ function rCloze(ex,body){
     </div>`;
 }
 
-function getPronTip(hz){
-  for(const [char,data] of Object.entries(PRONUN_TIPS)){
-    if(hz.includes(char))return `De letter <strong>${char}</strong> (${data.latin}): ${data.tip}`;
-  }
-  return null;
-}
-
 function rMC_nl(ex,body){
   const w=ex.w;
   const ltrs=['A','B','C','D'];
@@ -528,7 +521,7 @@ function ordMove(tile,word){tileMove(tile,word,'ord-ans');}
 function chkWB(correct,nl,tr){
   const tiles=document.getElementById('wb-ans').querySelectorAll('.ans');
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
-  const words=correct.split(' ').filter(Boolean);
+  const words=correct.split(' ').filter(Boolean).map(resolveVocabKey);
   if(ans===correct){
     CC++;LXP+=8;
     CC_COMBO++;
@@ -787,7 +780,7 @@ function rOrder(ex,body){
 function chkSentenceMC(btn,chosen,correct,hz,tr){
   if(WAITING)return;WAITING=true;
   document.querySelectorAll('.ch-btn').forEach(b=>b.disabled=true);
-  const words=hz.split(' ').filter(Boolean);
+  const words=hz.split(' ').filter(Boolean).map(resolveVocabKey);
   if(chosen===correct){
     btn.classList.add('ok');CC++;LXP+=6;
     CC_COMBO++;
@@ -816,7 +809,7 @@ function chkSentenceMC(btn,chosen,correct,hz,tr){
 function chkOrder(correct,nl,tr){
   const tiles=document.getElementById('ord-ans').querySelectorAll('.ans');
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
-  const words=correct.split(' ').filter(Boolean);
+  const words=correct.split(' ').filter(Boolean).map(resolveVocabKey);
   if(ans===correct){
     CC++;LXP+=10;
     CC_COMBO++;

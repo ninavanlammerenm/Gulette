@@ -219,16 +219,16 @@ load();
     save();
   }
 })();
-migrateVocab();
-migrateVocabKeys();
-migrateVocabByIds();
-syncVocabDefinitions();
-applyMasteryDecay();
-if(S.showRoman===false) document.body.classList.add('hide-roman');
-applyFontSize();
-applyDarkMode();
-setupRomanReveal();
 try{
+  migrateVocab();
+  migrateVocabKeys();
+  migrateVocabByIds();
+  syncVocabDefinitions();
+  applyMasteryDecay();
+  if(S.showRoman===false) document.body.classList.add('hide-roman');
+  applyFontSize();
+  applyDarkMode();
+  setupRomanReveal();
   if(S.name){
     document.getElementById('bnav').style.display='flex';
     renderHome();

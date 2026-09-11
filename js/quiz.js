@@ -38,6 +38,8 @@ function openOvhSetup(){
 
 function closeOvhoring(){
   if(_ovhTimerID){clearInterval(_ovhTimerID);_ovhTimerID=null;}
+  if(_speedTimer){clearInterval(_speedTimer);_speedTimer=null;}
+  _speedActive=false;
   document.getElementById('ovh-overlay').classList.remove('open');
   if(typeof renderHome==='function') renderHome();
 }
@@ -490,10 +492,4 @@ function renderSpeedResult(){
       </div>
     </div>`;
   if(isNew) sfxFinish();
-}
-
-function closeSpeedRound(){
-  if(_speedTimer){clearInterval(_speedTimer);_speedTimer=null;}
-  _speedActive=false;
-  closeOvhoring();
 }
