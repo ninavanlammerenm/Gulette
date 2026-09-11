@@ -117,8 +117,16 @@ function buildExercises(lesson){
   if(ss.length>0){
     exs.push({type:'context',ss});
 
+    // Begrijp de zin: actieve controle op de zin die net getoond is
+    const sentPool=allSentencesPool();
+    shuffle([...ss]).slice(0,2).forEach(s=>{
+      const d=sentPool.filter(x=>x.nl!==s.nl);
+      if(d.length<3)return;
+      exs.push({type:'sentence_mc',s,choices:shuffle([s.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+    });
+
     // Cloze: vul het ontbrekende woord in
-    shuffle([...ss].filter(s=>allWords.some(w=>s.hz.includes(w.hz)))).slice(0,2).forEach(s=>{
+    shuffle([...ss].filter(s=>allWords.some(w=>s.hz.includes(w.hz)))).slice(0,3).forEach(s=>{
       const match=allWords.find(w=>s.hz.includes(w.hz));
       if(!match)return;
       const d=allWords.filter(x=>x.hz!==match.hz);
@@ -126,10 +134,10 @@ function buildExercises(lesson){
     });
 
     // WB: sleep woordtegels om de zin te bouwen
-    shuffle([...ss]).slice(0,2).forEach(s=>exs.push({type:'wb',s}));
+    shuffle([...ss]).slice(0,3).forEach(s=>exs.push({type:'wb',s}));
 
     // Order: zet woorden in juiste volgorde (met lokaaswoorden)
-    shuffle([...ss]).slice(0,2).forEach(s=>{
+    shuffle([...ss]).slice(0,3).forEach(s=>{
       const distractors=shuffle(allWords.map(w=>w.hz).filter(hz=>!s.hz.includes(hz))).slice(0,2);
       exs.push({type:'order',s,distractors});
     });
@@ -157,10 +165,42 @@ function buildExercises(lesson){
   return exs;
 }
 
+// Alle zinnen uit alle hoofdstukken, één keer opgebouwd — voor lokaas-zinnen bij sentence_mc.
+let _ALL_SENTENCES=null;
+function allSentencesPool(){
+  if(_ALL_SENTENCES) return _ALL_SENTENCES;
+  const seen=new Set();
+  _ALL_SENTENCES=[];
+  CHAPTERS.forEach(ch=>ch.lessons.forEach(l=>(l.sentences||[]).forEach(s=>{
+    if(seen.has(s.hz))return;
+    seen.add(s.hz);
+    _ALL_SENTENCES.push(s);
+  })));
+  return _ALL_SENTENCES;
+}
+
+// Index: woord-hz → zinnen waar dat woord in voorkomt — voor zinsherhaling tijdens reviews.
+let _SENT_BY_WORD=null;
+function sentencesForWord(hz){
+  if(!_SENT_BY_WORD){
+    _SENT_BY_WORD={};
+    CHAPTERS.forEach(ch=>ch.lessons.forEach(l=>{
+      (l.sentences||[]).forEach(s=>{
+        (l.words||[]).forEach(w=>{
+          if(s.hz.includes(w.hz)) (_SENT_BY_WORD[w.hz]=_SENT_BY_WORD[w.hz]||[]).push(s);
+        });
+      });
+    }));
+  }
+  return _SENT_BY_WORD[hz]||[];
+}
+
 function buildReviewExercises(words){
   const exs=[];
   const fullPool=Object.entries(S.vocab).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''}));
   const pool=fullPool.length>=4?fullPool:words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
+  const sentPool=allSentencesPool();
+  let sentBudget=8; // niet elke review-woord krijgt een zin, anders wordt de sessie te lang
 
   shuffle([...words]).forEach(w=>{
     const distractors=pool.filter(x=>x.hz!==w.hz);
@@ -183,6 +223,24 @@ function buildReviewExercises(words){
     } else {
       exs.push(listen);
       exs.push({type:'type',w:wd});
+    }
+
+    // Zinsherhaling: laat bekende woorden ook in een hele zin terugkomen, niet alleen los
+    if(sentBudget>0){
+      const matches=sentencesForWord(w.hz);
+      if(matches.length){
+        const s=matches[Math.floor(Math.random()*matches.length)];
+        if(lvl>=4){
+          const wordDistractors=shuffle(distractors.map(x=>x.hz).filter(hz=>!s.hz.includes(hz))).slice(0,2);
+          exs.push({type:'order',s,distractors:wordDistractors});
+        } else if(lvl===3){
+          exs.push({type:'cloze',s,w:wd,choices:shuffle([w.hz,...shuffle(distractors).slice(0,3).map(x=>x.hz)])});
+        } else {
+          const d=sentPool.filter(x=>x.nl!==s.nl);
+          if(d.length>=3) exs.push({type:'sentence_mc',s,choices:shuffle([s.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+        }
+        sentBudget--;
+      }
     }
   });
 
@@ -252,6 +310,7 @@ function renderEx(){
   if(ex.type==='grammar')  rGrammar(ex,body);
   else if(ex.type==='intro')    rIntro(ex,body);
   else if(ex.type==='context') rContext(ex,body);
+  else if(ex.type==='sentence_mc') rSentenceMC(ex,body);
   else if(ex.type==='cloze')   rCloze(ex,body);
   else if(ex.type==='mc_nl')   rMC_nl(ex,body);
   else if(ex.type==='mc_hz')   rMC_hz(ex,body);
@@ -332,6 +391,23 @@ function rContext(ex,body){
       <div class="ctx-nl">"${s.nl}"</div>
     </div>
     <button class="btn-check" onclick="nextEx()">Ik snap het! ✓</button>`;
+}
+
+function rSentenceMC(ex,body){
+  const {s,choices}=ex;
+  const ltrs=['A','B','C','D'];
+  body.innerHTML=`
+    <div class="type-pill">🧩 Begrijp de zin</div>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Wat betekent deze zin?</p>
+    <div class="ctx-card" style="margin-bottom:20px">
+      <div class="ctx-sentence">${s.hz}</div>
+      <div class="ctx-tr">${s.tr||''}</div>
+    </div>
+    <div class="choices">${choices.map((c,i)=>`
+      <button class="ch-btn" data-action="sentence_mc" data-chosen="${c}" data-correct="${s.nl}" data-hz="${s.hz}" data-tr="${s.tr||''}">
+        <span class="ch-ltr">${ltrs[i]}</span>${c}
+      </button>`).join('')}</div>`;
+  speakHz(s.hz,s.tr);
 }
 
 function rCloze(ex,body){
@@ -706,6 +782,35 @@ function rOrder(ex,body){
   });
   _activeObserver.observe(ansEl,{childList:true});
   document.getElementById('btn-check-ord').addEventListener('click',()=>{_activeObserver.disconnect();_activeObserver=null;chkOrder(correct,s.nl,s.tr);});
+}
+
+function chkSentenceMC(btn,chosen,correct,hz,tr){
+  if(WAITING)return;WAITING=true;
+  document.querySelectorAll('.ch-btn').forEach(b=>b.disabled=true);
+  const words=hz.split(' ').filter(Boolean);
+  if(chosen===correct){
+    btn.classList.add('ok');CC++;LXP+=6;
+    CC_COMBO++;
+    if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
+    sfxCorrect();
+    setTimeout(()=>speakHz(hz),300);
+    showFB(true,'Goed!',correct,'');
+    sparkles();
+    words.forEach(w=>updMastery(w,true,'cloze'));
+  }else{
+    CC_COMBO=0;
+    btn.classList.add('ng');WC++;
+    sfxWrong();
+    document.querySelectorAll('.ch-btn').forEach(b=>{
+      if(b.dataset.chosen===correct)b.classList.add('ok');
+    });
+    showFB(false,_encourageMsg(),'Juist: '+tr,hz);
+    words.forEach(w=>{
+      const v=S.vocab[w];
+      if(v) trackWrong(w,v.nl,v.tr);
+      updMastery(w,false,'cloze');
+    });
+  }
 }
 
 function chkOrder(correct,nl,tr){

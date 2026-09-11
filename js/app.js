@@ -54,6 +54,7 @@ document.addEventListener('click', function(e){
   if(action === 'ordmove') ordMove(tile, tile.dataset.word);
   if(action === 'mc_nl')   chkMC(tile,    tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
   if(action === 'mc_hz')   chkMC_hz(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.nl, tile.dataset.tr);
+  if(action === 'sentence_mc') chkSentenceMC(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
 
   const wc = e.target.closest('.wc[data-hz]');
   if(wc) showWordDetail(wc.dataset.hz);
