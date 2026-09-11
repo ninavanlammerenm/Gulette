@@ -43,7 +43,6 @@ Open dan `http://localhost:8080` in de browser.
 | Streak | Dagelijkse studiestreak bijhouden |
 | Achievements | 30+ te ontgrendelen prestaties |
 | Combo-multiplier | Bonuspunten bij 3+ opeenvolgende goede antwoorden |
-| Dagwoord | Elke dag een nieuw woord op het thuisscherm |
 | Herhaling per hoofdstuk | 🔁-knop per hoofdstuk voor gerichte review |
 | Mastery-grafiek | Overzicht van woordbeheersing per niveau (0–5) |
 | Woord-detailmodal | Tik een woord aan voor mastery, volgende herhaling en oefenknop |

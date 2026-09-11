@@ -144,7 +144,6 @@ function renderHome(){
 
   // CEFR niveautoets banner
   if(typeof renderTestBanner==='function') renderTestBanner();
-  renderDagwoord();
 
   // Chapters — lesson cards
   const cw=document.getElementById('chapters-wrap');
@@ -455,7 +454,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v65 · Sakura';
+  if(_vEl)_vEl.textContent='v66 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
@@ -632,39 +631,6 @@ function renderChapterProgress(){
       </div>
     </div>`;
   }).join('');
-}
-
-// ══════════════════════════════════════════════════════
-// DAGWOORD — elke dag hetzelfde woord voor iedereen (datum als seed),
-// bij voorkeur uit al geleerde woorden zodat het ook echt herhaling is.
-// ══════════════════════════════════════════════════════
-function _dagwoordPick(){
-  const all=[];
-  CHAPTERS.forEach(ch=>ch.lessons.forEach(l=>(l.words||[]).forEach(w=>all.push(w))));
-  if(!all.length)return null;
-  const known=all.filter(w=>S.vocab[w.hz]);
-  const pool=known.length>=5?known:all;
-  const dayNum=Math.floor(Date.now()/86400000);
-  return pool[dayNum%pool.length];
-}
-
-function renderDagwoord(){
-  const el=document.getElementById('dagwoord-card');
-  if(!el)return;
-  const w=_dagwoordPick();
-  if(!w){el.className='';el.innerHTML='';return;}
-  const known=!!S.vocab[w.hz];
-  el.className='dw-card';
-  el.innerHTML=`
-    <div class="dw-emoji">🌞</div>
-    <div class="dw-text">
-      <div class="dw-lbl">Woord van de dag</div>
-      <div class="dw-hz">${w.hz}</div>
-      ${w.tr?`<div class="dw-tr">${w.tr}</div>`:''}
-      <div class="dw-nl">${w.nl}</div>
-      ${w.tip?`<div class="dw-tip">${w.tip}</div>`:''}
-    </div>
-    ${known?'':`<div class="dw-badge">nog niet geleerd</div>`}`;
 }
 
 // ══════════════════════════════════════════════════════
@@ -941,7 +907,7 @@ function updateFontBtns(){
 // TAP-TO-REVEAL ROMANISERING
 // ══════════════════════════════════════════════════════
 function setupRomanReveal(){
-  const SEL='.hz-dutch,.hz-roman,.hz-latin,.ctx-tr,.wc-pron,.dw-tr,.wd-tr';
+  const SEL='.hz-dutch,.hz-roman,.hz-latin,.ctx-tr,.wc-pron,.wd-tr';
   function wrap(el){
     if(el.dataset.rr||!el.textContent.trim())return;
     el.dataset.rr='1';
