@@ -145,6 +145,7 @@ const READING_PASSAGES = {
 
 let _testState = null;
 let _testTimerID = null;
+let _testAnswering = false;
 
 function getTestAvailability(){
   const wordCount = Object.keys(S.vocab).length;
@@ -493,6 +494,7 @@ function updateTestTimer(){
 
 function renderTestQuestion(){
   if(!_testState) return;
+  _testAnswering = false;
   const {questions, current, level} = _testState;
   const t = CEFR_TESTS[level];
   const total = questions.length;
@@ -598,7 +600,8 @@ function renderTestQuestion(){
 // ANTWOORDEN
 // ══════════════════════════════════════════════════════
 function answerTest(btn, idx){
-  if(!_testState) return;
+  if(!_testState || _testAnswering) return;
+  _testAnswering = true;
   const q = _testState.questions[_testState.current];
   const chosen = q.choices[idx];
   const ok = chosen === q.correct;
@@ -646,12 +649,15 @@ function testOrdMove(tile, word){
 }
 
 function checkTestOrder(){
-  if(!_testState) return;
+  if(!_testState || _testAnswering) return;
+  _testAnswering = true;
   const q = _testState.questions[_testState.current];
   const tiles = document.getElementById('test-ord-ans').querySelectorAll('.ans');
   const ans = Array.from(tiles).map(t => t.dataset.word).join(' ');
   const correct = q.correctOrder.join(' ');
   const ok = ans === correct;
+  document.getElementById('test-ord-check').disabled = true;
+  document.querySelectorAll('#test-ord-bnk .w-tile, #test-ord-ans .w-tile').forEach(t=>t.disabled=true);
 
   if(ok){
     _testState.score++;

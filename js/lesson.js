@@ -519,6 +519,7 @@ function wbMove(tile,word){tileMove(tile,word,'wb-ans');}
 function ordMove(tile,word){tileMove(tile,word,'ord-ans');}
 
 function chkWB(correct,nl,tr){
+  if(WAITING)return;WAITING=true;
   const tiles=document.getElementById('wb-ans').querySelectorAll('.ans');
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
   const words=correct.split(' ').filter(Boolean).map(resolveVocabKey);
@@ -546,6 +547,7 @@ function chkWB(correct,nl,tr){
 function rType(ex,body){
   const w=ex.w;
   let retryMode=false;
+  let checking=false;
 
   body.innerHTML=`
     <div class="type-pill">⌨️ Actief ophalen</div>
@@ -601,8 +603,10 @@ function rType(ex,body){
   });
 
   function doCheckType(){
+    if(checking)return;
     const val=inp.value.trim();
     if(!val){ inp.focus(); return; }
+    checking=true;
 
     if(normAr(val)===normAr(correct)){
       inp.blur();
@@ -642,6 +646,7 @@ function rType(ex,body){
         inp.value='';
         inp.classList.remove('ng');
         inp.focus();
+        checking=false;
       },700);
     }
   }
@@ -809,6 +814,7 @@ function chkSentenceMC(btn,chosen,correct,hz,tr){
 }
 
 function chkOrder(correct,nl,tr){
+  if(WAITING)return;WAITING=true;
   const tiles=document.getElementById('ord-ans').querySelectorAll('.ans');
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
   const words=correct.split(' ').filter(Boolean).map(resolveVocabKey);
