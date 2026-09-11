@@ -169,6 +169,7 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .word-tag-badge.tag-vt{background:var(--gold-l);color:var(--gold-d)}
 .word-tag-badge.tag-mv{background:var(--mint-l);color:var(--mint)}
 .word-tag-badge.tag-vtt{background:var(--lav-l);color:var(--lav)}
+.word-tag-badge.tag-tt{background:var(--rose-xl);color:var(--rose-d)}
 
 /* Context card */
 .ctx-card{background:var(--gold-l);border:1px solid var(--ink-xl);border-radius:var(--r-sm);padding:16px 18px;margin-bottom:16px}

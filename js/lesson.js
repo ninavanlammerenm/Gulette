@@ -198,6 +198,10 @@ function _getWordTip(hz){
   const w=CL.words.find(x=>x.hz===hz);
   return(w&&w.tip&&w.tip.length<60)?w.tip:'';
 }
+// Reviewsessies bouwen woordobjecten zonder 'tag' — val terug op S.vocab.
+function wordTag(w){
+  return w.tag||(S.vocab[w.hz]&&S.vocab[w.hz].tag)||'';
+}
 
 // Kies distractors op basis van moeilijkheid: easy = meest verschillende lengte, hard = meest gelijkende lengte
 function _pickDistractors(correctHz,pool,count,difficulty){
@@ -275,7 +279,7 @@ function rIntro(ex,body){
     <div class="hz-card">
       <span class="hz-script">${w.hz}</span>
       <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
-      <span class="hz-nl">= ${w.nl}${tagBadgeHTML(w.tag)}</span>
+      <span class="hz-nl">= ${w.nl}${tagBadgeHTML(wordTag(w))}</span>
       <span class="hz-dutch intro-fade-in-1">${w.tr||''}</span>
     </div>
     ${w.tip?`<div class="word-tip-card intro-fade-in-2">💡 ${w.tip}</div>`:''}
@@ -337,7 +341,7 @@ function rCloze(ex,body){
   const blankedHz=s.hz.replace(w.hz,'<span class="cloze-blank">___</span>');
   body.innerHTML=`
     <div class="type-pill">Vul de zin aan</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk woord past in de zin?</p>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk woord past in de zin?${tagBadgeHTML(wordTag(w))}</p>
     <div class="ctx-card" style="margin-bottom:20px">
       <div class="ctx-sentence">${blankedHz}</div>
       <div class="ctx-tr">${s.tr.replace(w.tr,'___')}</div>
@@ -370,7 +374,7 @@ function rMC_nl(ex,body){
     <div class="hz-card hz-card-compact">
       <span class="hz-script">${w.hz}</span>
       <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
-      <span class="hz-dutch">${w.tr||''}</span>
+      <span class="hz-dutch">${w.tr||''}${tagBadgeHTML(wordTag(w))}</span>
     </div>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr}">
@@ -389,7 +393,7 @@ function rMC_hz(ex,body){
   };
   body.innerHTML=`
     <div class="type-pill">Kies Afghaans</div>
-    <p style="font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk Afghaans woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?</p>
+    <p style="font-size:16px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk Afghaans woord betekent <em style="color:var(--rose)">"${w.nl}"</em>?${tagBadgeHTML(wordTag(w))}</p>
     <div class="choices">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_hz" data-chosen="${c}" data-correct="${w.hz}" data-nl="${w.nl}" data-tr="${w.tr}">
         <span class="ch-ltr">${ltrs[i]}</span>
@@ -478,7 +482,7 @@ function rType(ex,body){
     <div class="type-pill">⌨️ Actief ophalen</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:16px">Typ het Afghaanse woord voor:</p>
     <div class="hz-card hz-card-compact">
-      <span class="hz-nl" style="font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px">${w.nl}${tagBadgeHTML(w.tag)}</span>
+      <span class="hz-nl" style="font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px">${w.nl}${tagBadgeHTML(wordTag(w))}</span>
       <span class="hz-dutch">${w.tr||''}</span>
     </div>
     <input class="t-inp" id="t-inp"
@@ -843,7 +847,7 @@ function rListen(ex,body){
       <div class="hz-card hz-card-compact">
         <span class="hz-script">${w.hz}</span>
         <button class="spk-btn" onclick="speakHz('${w.hz}','${_esc(w.tr)}')">🔊</button>
-        <span class="hz-dutch">${w.tr||''}</span>
+        <span class="hz-dutch">${w.tr||''}${tagBadgeHTML(wordTag(w))}</span>
       </div>
       <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
         <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr||''}">
@@ -854,7 +858,7 @@ function rListen(ex,body){
 
   body.innerHTML=`
     <div class="type-pill">Luisteroefening</div>
-    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Afghaans woord hoor je?</p>
+    <p style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:20px">Welk Afghaans woord hoor je?${tagBadgeHTML(wordTag(w))}</p>
     <button class="listen-play-btn" onclick="speakHz('${w.hz}','${(w.tr||'').replace(/'/g,"\\'")}')">🔊 Speel opnieuw af</button>
     <div class="choices" style="margin-top:16px">${ex.choices.map((c,i)=>`
       <button class="ch-btn" data-action="mc_nl" data-chosen="${c}" data-correct="${w.nl}" data-hz="${w.hz}" data-tr="${w.tr||''}">
