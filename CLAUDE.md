@@ -14,6 +14,7 @@ Wanneer een woord (bijv. een woord-ID, sleutel, of naam zoals "namam" -> "name m
 De app is een PWA met een service worker (`sw.js`) die alle bestanden cachet voor offline gebruik. Bij ELKE wijziging aan `js/`, `css/` of `index.html` moet de `CACHE`-versie in `sw.js` opgehoogd worden (bijv. `gulette-v60` → `gulette-v61`), anders wordt de wijziging niet als "nieuwe versie" herkend.
 - `js/app.js` bevat een zelf-updatend mechanisme: de app checkt actief op nieuwe versies (bij openen, in beeld komen, elke 5 min) en herlaadt zichzelf automatisch zodra de `CACHE`-versie verandert. Dit mechanisme zelf niet weghalen of uitschakelen.
 - Vergeet nooit de cache-versie te bumpen na een wijziging — zonder die bump denkt de service worker dat er niets veranderd is en blijft de oude versie actief staan, zelfs met het auto-update-mechanisme.
+- Op het profielscherm staat ook een zichtbaar versielabel, hardcoded in `js/ui.js` (`_vEl.textContent='vNN · Sakura'`). Dit nummer wordt NIET automatisch afgeleid van `sw.js` — bump het bij elke `CACHE`-bump mee naar hetzelfde nummer, anders loopt het zichtbare versienummer in de app achter en klopt het niet meer met wat er echt draait.
 
 ## Taal — Hazaragi, geen Iraans Farsi
 
