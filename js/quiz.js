@@ -318,7 +318,10 @@ function answerOvh(btn, idx){
 // ══════════════════════════════════════════════════════
 function _registerOvhError(hz,v,chosen,correct,dir,exType){
   if(!S.vocab[hz]) S.vocab[hz]={id:v.id,nl:v.nl,tr:v.tr||'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
-  if(dir==='nl_hz' && chosen!=='—') trackConfusion(hz, chosen);
+  if(chosen!=='—'){
+    if(dir==='nl_hz') trackConfusion(hz, chosen);
+    else { const _chosenHz=hzForNl(chosen); if(_chosenHz) trackConfusion(hz,_chosenHz); }
+  }
   S.vocab[hz].errors=(S.vocab[hz].errors||0)+1;
   updMastery(hz, false, exType||'mc');
   _ovhErrors.push({hz,v,chosen,correct,dir});
@@ -466,6 +469,8 @@ function answerSpeed(btn,chosen,correct,hz){
   } else {
     btn.classList.add('ng');
     sfxWrong();
+    const _chosenHz=hzForNl(chosen);
+    if(_chosenHz) trackConfusion(hz,_chosenHz);
     updMastery(hz,false,'mc');
   }
   setTimeout(renderSpeedQ, chosen===correct?400:800);

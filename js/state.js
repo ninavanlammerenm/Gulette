@@ -67,11 +67,11 @@ function updMastery(hz, ok, exType){
 
   const isType=exType==='type';
   const isHint=exType==='hint';
-  const isMc=['mc','mc_nl','mc_hz','wb','listen','cloze','order'].includes(exType);
+  const isMc=['mc','mc_nl','mc_hz','wb','listen','order','sentence_mc'].includes(exType);
 
   if(ok){
     v.consec++;
-    v.ease=Math.min(3.2,v.ease+0.05);
+    v.ease=Math.min(3.2,v.ease+0.08);
     if(isType){
       v.typeCorrect=(v.typeCorrect||0)+1;
       v.typeLast5=[...(v.typeLast5||[]),true].slice(-5);
@@ -79,9 +79,12 @@ function updMastery(hz, ok, exType){
     if(isMc) v.mcCorrect=(v.mcCorrect||0)+1;
     const natural=_computeNaturalLevel(v);
     v.masteryLevel=Math.max(v.masteryLevel||1,natural);
+    // Woorden die stevig staan (mastery 4+) verliezen geleidelijk hun
+    // "zwak"-stempel i.p.v. voor altijd te blijven meetellen in errors.
+    if(v.masteryLevel>=4 && v.errors>0) v.errors--;
   } else {
     v.consec=0;
-    v.ease=Math.max(1.3,v.ease-0.2);
+    v.ease=Math.max(1.3,v.ease-0.25);
     v.errors=(v.errors||0)+1;
     if(isType||isHint){
       if(isType) v.typeLast5=[...(v.typeLast5||[]),false].slice(-5);
@@ -97,15 +100,17 @@ function updMastery(hz, ok, exType){
   if(ok){
     if(lvl>=5){
       v.masteryLevel=5;
-      v.nr=new Date(Date.now()+30*86400000).toISOString();
+      // Interval blijft groeien zolang je op niveau 5 blijft scoren, i.p.v.
+      // voor altijd op 30 dagen vast te blijven staan (max 180 dagen).
+      v.matureInterval=v.matureInterval?Math.min(180,Math.round(v.matureInterval*v.ease)):30;
+      v.nr=new Date(Date.now()+v.matureInterval*86400000).toISOString();
     } else {
       const base=[0,0.007,1,3,14];
-      let d=base[Math.min(lvl-1,4)];
-      if(v.consec>=3) d=Math.round(d*v.ease);
+      const d=base[Math.min(lvl-1,4)]*(v.ease/2.5);
       v.nr=new Date(Date.now()+Math.max(0.007,d)*86400000).toISOString();
     }
   } else {
-    if(lvl>=5) v.masteryLevel=4;
+    if(lvl>=5){ v.masteryLevel=4; v.matureInterval=0; }
     const delay=lvl<=2?10*60*1000:60*60*1000;
     v.nr=new Date(Date.now()+delay).toISOString();
   }
@@ -113,6 +118,16 @@ function updMastery(hz, ok, exType){
   // compat: sync old field for any code still reading it
   v.mastery=Math.max(0,lvl-1);
   save();
+}
+
+// Beste-poging: vind de Hazaragi-sleutel van het woord waarvan de Nederlandse
+// betekenis exact overeenkomt — gebruikt om verwarring te loggen bij
+// oefeningen waar de keuzeopties Nederlandse vertalingen zijn (niet de
+// Hazaragi-woorden zelf), zoals mc_nl en de Snelronde.
+function hzForNl(nlText){
+  if(!nlText)return null;
+  const found=Object.entries(S.vocab).find(([,v])=>v.nl===nlText);
+  return found?found[0]:null;
 }
 
 // ══════════════════════════════════════════════════════
@@ -400,6 +415,16 @@ function syncVocabDefinitions(){
   if(changed) save();
 }
 
+// Het geplande interval van een woord (bij benadering) — gebruikt om verval
+// te laten meeschalen met hoe stevig een woord al stond, i.p.v. iedereen na
+// exact 14 dagen even hard te straffen.
+function _lastIntervalDays(v){
+  const lvl=v.masteryLevel||1;
+  if(lvl>=5) return v.matureInterval||30;
+  const base=[0,0.007,1,3,14];
+  return Math.max(0.007, base[Math.min(lvl-1,4)]*((v.ease||2.5)/2.5));
+}
+
 function applyMasteryDecay(){
   const today=new Date().toISOString().slice(0,10);
   if(S.lastDecayCheck===today)return;
@@ -408,10 +433,12 @@ function applyMasteryDecay(){
   Object.values(S.vocab).forEach(v=>{
     if(!v.nr||(v.masteryLevel||1)<=1)return;
     const overdueDays=(now-new Date(v.nr))/86400000;
-    if(overdueDays>14){
-      const steps=overdueDays>45?2:1;
+    const threshold=Math.max(14,_lastIntervalDays(v)*1.5);
+    if(overdueDays>threshold){
+      const steps=overdueDays>threshold*3?2:1;
       v.masteryLevel=Math.max(1,(v.masteryLevel||1)-steps);
       v.mastery=Math.max(0,v.masteryLevel-1);
+      if(v.masteryLevel<5) v.matureInterval=0;
       v.nr=now.toISOString();
     }
   });

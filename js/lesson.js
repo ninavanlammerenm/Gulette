@@ -530,7 +530,7 @@ function chkWB(correct,nl,tr){
     setTimeout(()=>speakHz(correct),300);
     showFB(true,'Correct!',nl,'');
     sparkles();
-    words.forEach(hz=>updMastery(hz,true,'mc'));
+    words.forEach(hz=>updMastery(hz,true,'wb'));
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
@@ -538,7 +538,7 @@ function chkWB(correct,nl,tr){
     words.forEach(hz=>{
       const v=S.vocab[hz];
       if(v) trackWrong(hz,v.nl,v.tr);
-      updMastery(hz,false,'mc');
+      updMastery(hz,false,'wb');
     });
   }
 }
@@ -688,6 +688,8 @@ function chkMC(btn,chosen,correct,hz,tr){
     });
     const requeued=requeueWrong(hz);
     trackWrong(hz,correct,tr);
+    const _chosenHz=hzForNl(chosen);
+    if(_chosenHz) trackConfusion(hz,_chosenHz);
     const _tip1=_getWordTip(hz);
     const _smart1=getSmartHint(hz);
     showFB(false,_encourageMsg(),_smart1||(_tip1?`💡 ${_tip1}`:`${hz} = ${correct}${requeued?' · Komt later terug':''}`),hz);
@@ -789,7 +791,7 @@ function chkSentenceMC(btn,chosen,correct,hz,tr){
     setTimeout(()=>speakHz(hz),300);
     showFB(true,'Goed!',correct,'');
     sparkles();
-    words.forEach(w=>updMastery(w,true,'cloze'));
+    words.forEach(w=>updMastery(w,true,'sentence_mc'));
   }else{
     CC_COMBO=0;
     btn.classList.add('ng');WC++;
@@ -801,7 +803,7 @@ function chkSentenceMC(btn,chosen,correct,hz,tr){
     words.forEach(w=>{
       const v=S.vocab[w];
       if(v) trackWrong(w,v.nl,v.tr);
-      updMastery(w,false,'cloze');
+      updMastery(w,false,'sentence_mc');
     });
   }
 }
@@ -818,7 +820,7 @@ function chkOrder(correct,nl,tr){
     setTimeout(()=>speakHz(correct),300);
     showFB(true,'Perfect! Juiste volgorde!',nl,'');
     sparkles();
-    words.forEach(hz=>updMastery(hz,true,'mc'));
+    words.forEach(hz=>updMastery(hz,true,'order'));
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
@@ -826,7 +828,7 @@ function chkOrder(correct,nl,tr){
     words.forEach(hz=>{
       const v=S.vocab[hz];
       if(v) trackWrong(hz,v.nl,v.tr);
-      updMastery(hz,false,'mc');
+      updMastery(hz,false,'order');
     });
   }
 }
