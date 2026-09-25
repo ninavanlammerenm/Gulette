@@ -19,6 +19,26 @@ function _bjDate(iso){
   const d=new Date(iso+'T12:00:00');
   return isNaN(d)?iso:d.toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'});
 }
+// Schrift in de Bijles-tab: 'both' (Dari + Latijns), 'dari' of 'roman'
+function _bjScript(){ return ['dari','roman','both'].includes(S.bjScript)?S.bjScript:'both'; }
+function bjSetScript(m){ S.bjScript=m; save(); renderBijles(); }
+function _bjScriptBar(){
+  const m=_bjScript();
+  const b=(k,l)=>`<button class="fc${m===k?' on':''}" onclick="bjSetScript('${k}')">${l}</button>`;
+  return `<div class="bj-script-bar"><span class="bj-script-lbl">Schrift</span>${b('dari','دری Dari')}${b('roman','Roman')}${b('both','Beide')}</div>`;
+}
+// Hoofdtekst + onderregel van een item, afhankelijk van de schriftkeuze
+function _bjItemText(it){
+  const m=_bjScript();
+  if(m==='roman') return {main:'',sub:`<div class="bj-item-rm">${_bjEsc(it.tr||it.hz)}</div>`};
+  if(m==='dari') return {main:`<div class="bj-item-hz">${_bjEsc(it.hz)}</div>`,sub:it.tr?`<div class="wc-pron">${_bjEsc(it.tr)}</div>`:''};
+  return {main:`<div class="bj-item-hz">${_bjEsc(it.hz)}</div>`,sub:it.tr?`<div class="bj-roman">${_bjEsc(it.tr)}</div>`:''};
+}
+function _bjPreview(l){
+  const roman=_bjScript()==='roman';
+  return `<div class="${roman?'bj-card-rm':'bj-card-hz'}">${l.items.slice(0,4).map(i=>_bjEsc(roman?(i.tr||i.hz):i.hz)).join(' · ')}</div>`;
+}
+
 function _bjFind(id){ return _bjList().find(l=>l.id===id); }
 function _bjAllItems(){ return _bjList().flatMap(l=>l.items); }
 
@@ -126,12 +146,12 @@ function renderBijles(){
       <div class="rh-label">${due===1?'woord wacht':'woorden wachten'} op je</div>
       <div class="rh-btn">${due?'Begin herhaling →':'Alles herhaald ✓'}</div>
     </div>`:'';
-  wrap.innerHTML=hero+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
+  wrap.innerHTML=_bjScriptBar()+hero+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
     list.map(l=>`<div class="bj-card" onclick="bjOpenLesson('${l.id}')">
       <div class="bj-card-body">
         <div class="bj-card-ttl">${_bjEsc(l.title||'Bijles')}</div>
         <div class="bj-card-meta">${_bjDate(l.date)} · ${l.items.length} ${l.items.length===1?'item':'items'}${l.notes?' · aantekeningen':''}</div>
-        ${l.items.length?`<div class="bj-card-hz">${l.items.slice(0,4).map(i=>_bjEsc(i.hz)).join(' · ')}</div>`:''}
+        ${l.items.length?_bjPreview(l):''}
       </div>
       <div class="bj-card-arr">→</div>
     </div>`).join('');
@@ -160,10 +180,11 @@ function renderBijlesDetail(){
     const sec=it.section||'';
     const head=sec!==lastSec&&sec?`<div class="gram-ch-label" style="padding:10px 2px 2px">${_bjEsc(sec)}</div>`:'';
     lastSec=sec;
-    return head+`<div class="bj-item" onclick="bjEditItem('${l.id}','${it.id}')">
-      <div class="bj-item-hz">${_bjEsc(it.hz)}</div>
+    const tx=_bjItemText(it);
+    return head+`<div class="bj-item${_bjScript()==='roman'?' bj-item-roman':''}" onclick="bjEditItem('${l.id}','${it.id}')">
+      ${tx.main}
       <div class="bj-item-info">
-        ${it.tr?`<div class="wc-pron">${_bjEsc(it.tr)}</div>`:''}
+        ${tx.sub}
         <div class="wc-nl">${_bjEsc(it.nl)}</div>
         ${it.note?`<div class="bj-item-note">${_bjEsc(it.note)}</div>`:''}
       </div>
@@ -177,6 +198,7 @@ function renderBijlesDetail(){
       <div class="bj-detail-ttl">${_bjEsc(l.title||'Bijles')}</div>
       <button class="gram-verb-btn" onclick="bjEditLesson('${l.id}')">Bewerk</button>
     </div>
+    ${_bjScriptBar()}
     ${l.notes?`<div class="bj-notes"><div class="bj-notes-lbl">Aantekeningen</div>${_bjEsc(l.notes).replace(/\n/g,'<br>')}</div>`:''}
     <div style="display:flex;gap:8px;margin-bottom:14px">
       <button class="btn-home" style="flex:1" onclick="bjEditItem('${l.id}')">+ Woord of zin</button>

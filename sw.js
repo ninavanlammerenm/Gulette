@@ -1,4 +1,4 @@
-const CACHE = 'gulette-v70';
+const CACHE = 'gulette-v71';
 const LOCAL = [
   './',
   './index.html',
