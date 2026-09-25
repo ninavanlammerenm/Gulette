@@ -782,6 +782,34 @@ body.font-large .ovh-hz-word{font-size:58px!important}
 .vk-key.vk-space{max-width:none;flex:4}
 
 /* ── DARK MODE ── */
+/* ── BIJLES ── */
+#screen-bijles{background:var(--cream)}
+.bj-empty{text-align:center;padding:28px 12px 22px}
+.bj-empty-ttl{font-size:16px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.bj-empty-sub{font-size:13px;font-weight:700;color:var(--ink-l);line-height:1.6}
+.bj-card{background:var(--white);border:1px solid var(--ink-xl);border-radius:var(--r-sm);box-shadow:var(--sh);padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:9px;cursor:pointer;transition:transform .15s}
+.bj-card:active{transform:scale(.99)}
+.bj-card-body{flex:1;min-width:0}
+.bj-card-ttl{font-size:15px;font-weight:900;color:var(--ink)}
+.bj-card-meta{font-size:11.5px;font-weight:700;color:var(--ink-m);margin-top:2px}
+.bj-card-hz{font-family:'Noto Naskh Arabic',serif;direction:rtl;font-size:16px;color:var(--ink-m);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bj-card-arr{font-size:18px;color:var(--ink-l);flex-shrink:0}
+.bj-detail-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.bj-detail-ttl{flex:1;min-width:0;font-size:18px;font-weight:900;color:var(--ink);overflow-wrap:anywhere}
+.bj-notes{background:var(--white);border:1px solid var(--ink-xl);border-left:4px solid var(--gold,#E7AE75);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:14px;font-size:13.5px;font-weight:700;color:var(--ink-m);line-height:1.65;overflow-wrap:anywhere}
+.bj-notes-lbl{font-size:10.5px;font-weight:900;color:var(--ink-l);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.bj-items{display:flex;flex-direction:column;gap:9px}
+.bj-item{background:var(--white);border:1px solid var(--ink-xl);border-radius:var(--r-sm);box-shadow:var(--sh);padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.bj-item-hz{font-family:'Noto Naskh Arabic',serif;font-size:24px;font-weight:700;direction:rtl;color:var(--ink);max-width:45%;text-align:right;line-height:1.5;overflow-wrap:anywhere}
+.bj-item-info{flex:1;min-width:0;overflow-wrap:anywhere}
+.bj-item-note{font-size:11.5px;font-weight:700;color:var(--ink-l);margin-top:3px;font-style:italic}
+.bj-modal-ttl{font-size:18px;font-weight:900;color:var(--ink);margin-bottom:10px}
+.bj-lbl{display:block;font-size:12px;font-weight:800;color:var(--ink-m);margin:12px 0 5px}
+.bj-lbl small{font-weight:700;color:var(--ink-l)}
+.bj-hz-inp{font-family:'Noto Naskh Arabic',serif;font-size:20px;text-align:right}
+.bj-ta{resize:vertical;min-height:90px;line-height:1.5;font-size:14px}
+.bj-hint{font-size:11.5px;font-weight:700;color:var(--ink-l);text-align:center;margin-top:10px}
+
 body.dark-mode{background:#2A1F1A}
 body.dark-mode #app{background:#2A1F1A}
 body.dark-mode .screen{background:#2A1F1A}

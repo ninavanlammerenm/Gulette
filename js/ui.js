@@ -23,6 +23,7 @@ function navTo(id, btn) {
   if(id==='home')    renderHome();
   if(id==='grammar') renderGrammarLibrary();
   if(id==='reading') renderReadingList();
+  if(id==='bijles')  renderBijles();
 }
 
 function goHome(){
@@ -454,7 +455,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v68 · Sakura';
+  if(_vEl)_vEl.textContent='v69 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════

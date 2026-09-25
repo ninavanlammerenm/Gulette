@@ -236,6 +236,20 @@
   </div>
 </div>
 
+<!-- ═══════════════════ BIJLES ═══════════════════ -->
+<div id="screen-bijles" class="screen">
+  <div class="gram-hdr">
+    <div class="gram-hdr-top">
+      <div>
+        <h2 style="font-size:22px;font-weight:900;color:var(--ink)">Bijles</h2>
+        <p id="bj-sub" style="font-size:12px;font-weight:600;color:var(--ink-m);margin-top:3px">Alles wat je op bijles leert</p>
+      </div>
+      <button class="gram-verb-btn" id="bj-practice-all" onclick="bjPractice()">Oefen alles</button>
+    </div>
+  </div>
+  <div id="bj-content" style="padding:0 16px 20px"></div>
+</div>
+
 <!-- ═══════════════════ LEZEN ═══════════════════ -->
 <div id="screen-reading" class="screen">
   <div class="rd-hdr">
@@ -283,6 +297,7 @@
 <div class="bnav" id="bnav" style="display:none">
   <button class="nb on" onclick="navTo('home',this)"><div class="ni">🏠</div><div class="nl">Thuis</div></button>
   <button class="nb" onclick="navTo('review',this)"><div class="ni">📚</div><div class="nl">Woorden</div></button>
+  <button class="nb" onclick="navTo('bijles',this)"><div class="ni">📝</div><div class="nl">Bijles</div></button>
   <button class="nb" onclick="navTo('reading',this)"><div class="ni">📖</div><div class="nl">Lezen</div></button>
   <button class="nb" onclick="navTo('grammar',this)"><div class="ni">📕</div><div class="nl">Grammatica</div></button>
   <button class="nb" onclick="navTo('profile',this)"><div class="ni">👤</div><div class="nl">Profiel</div></button>
@@ -366,6 +381,7 @@
 <script defer src="js/test.js"></script>
 <script defer src="js/grammarlesson.js"></script>
 <script defer src="js/reading.js"></script>
+<script defer src="js/bijles.js"></script>
 <script defer src="js/app.js"></script>
 </body>
 </html>
