@@ -63,6 +63,7 @@ const TTS_FALLBACK_WORDS=new Set(['آو','آش']);
 
 function speakHz(text, trOrSlow, slow){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
+  if(typeof bjKey==='function') text=bjKey(text);
   window.speechSynthesis.cancel();
   let tr=null;
   if(typeof trOrSlow==='string') tr=trOrSlow;

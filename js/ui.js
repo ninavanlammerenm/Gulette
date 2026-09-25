@@ -16,6 +16,7 @@ const showScreen = id => {
 
 function navTo(id, btn) {
   _BJ_HZ=new Set();
+  _BJ_ALIAS={};document.body.classList.remove('bj-roman-ex');
   showScreen(id);
   document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
@@ -29,6 +30,7 @@ function navTo(id, btn) {
 
 function goHome(){
   _BJ_HZ=new Set();
+  _BJ_ALIAS={};document.body.classList.remove('bj-roman-ex');
   showScreen('home');
   document.getElementById('bnav').style.display='flex';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -466,7 +468,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v72 · Sakura';
+  if(_vEl)_vEl.textContent='v73 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
@@ -962,7 +964,7 @@ function isDesktopKeyboardEnv(){
 }
 
 function attachVirtualKeyboard(inp){
-  if(!inp||!isDesktopKeyboardEnv())return null;
+  if(!inp||!isDesktopKeyboardEnv()||document.body.classList.contains('bj-roman-ex'))return null;
   const kb=document.createElement('div');
   kb.className='virt-kb';
   kb.innerHTML=KB_ROWS.map(row=>

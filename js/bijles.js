@@ -153,6 +153,13 @@ function renderBijles(){
     <div class="bj-daily-row">
       <span>Ook in de dagelijkse herhaling</span>
       <button class="fc${bjInDaily()?' on':''}" onclick="bjToggleDaily()">${bjInDaily()?'Aan':'Uit'}</button>
+    </div>
+    <div class="bj-daily-row">
+      <span>Oefenen in</span>
+      <span style="display:flex;gap:6px">
+        <button class="fc${_bjPracticeScript()==='dari'?' on':''}" onclick="bjSetPracticeScript('dari')">دری Dari</button>
+        <button class="fc${_bjPracticeScript()==='roman'?' on':''}" onclick="bjSetPracticeScript('roman')">Roman</button>
+      </span>
     </div>`:'';
   wrap.innerHTML=_bjScriptBar()+hero+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
     list.map(l=>`<div class="bj-card" onclick="bjOpenLesson('${l.id}')">
@@ -316,9 +323,10 @@ function bjEditItem(lessonId,itemId){
 }
 
 // ── Oefenen & herhalen (alleen bijleswoorden, eigen voortgang) ──
-function _bjBuildExercises(words){
+function _bjBuildExercises(words,show){
   const st=_bjStore();
-  let pool=Object.entries(st).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''}));
+  show=show||(hz=>hz);
+  let pool=Object.entries(st).map(([hz,v])=>({hz:show(hz),nl:v.nl,tr:show(hz)===hz?(v.tr||''):''}));
   // Te weinig bijleswoorden voor 4 keuzes? Vul alleen de foute opties aan met lesswoorden.
   if(pool.length<4) pool=pool.concat(Object.entries(S.vocab).filter(([hz])=>!st[hz]).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''})));
   const r1=[],r2=[];
@@ -339,11 +347,25 @@ function _bjBuildExercises(words){
   return [...r1,...shuffle(r2)];
 }
 
+// Oefenen in 'dari' (Dari-schrift + uitspraak) of 'roman' (alleen Latijnse letters)
+function _bjPracticeScript(){ return S.bjPracticeScript==='roman'?'roman':'dari'; }
+function bjSetPracticeScript(m){ S.bjPracticeScript=m; save(); renderBijles(); }
+
 function bjStartSession(hzList,title){
   const st=_bjStore();
-  const words=hzList.filter(hz=>st[hz]).map(hz=>({hz,nl:st[hz].nl,tr:st[hz].tr||'',masteryLevel:st[hz].masteryLevel||1}));
+  const roman=_bjPracticeScript()==='roman';
+  // Roman: toon de uitspraak als 'woord'; alias koppelt die terug aan de echte sleutel
+  const alias={}, toRm={};
+  if(roman){
+    Object.entries(st).forEach(([hz,v])=>{
+      const r=(v.tr||'').trim();
+      if(r&&!alias[r]&&!st[r]){ alias[r]=hz; toRm[hz]=r; }
+    });
+  }
+  const show=hz=>toRm[hz]||hz;
+  const words=hzList.filter(hz=>st[hz]).map(hz=>({hz:show(hz),nl:st[hz].nl,tr:toRm[hz]?'':(st[hz].tr||''),masteryLevel:st[hz].masteryLevel||1}));
   if(!words.length){showToast('Nog niets om te oefenen');return;}
-  const exs=_bjBuildExercises(words);
+  const exs=_bjBuildExercises(words,show);
   if(!exs.length){showToast('Voeg minstens 4 woorden toe om te kunnen oefenen');return;}
   CL={
     id:'_bijles',
@@ -351,7 +373,9 @@ function bjStartSession(hzList,title){
     xp:Math.min(60,words.length*2),
     words:words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),
     sentences:[],
-    _bjHz:new Set(words.map(w=>w.hz))
+    _bjHz:new Set(hzList.filter(hz=>st[hz])),
+    _bjAlias:alias,
+    _bjRoman:roman
   };
   EXS=exs;
   _launchLesson();

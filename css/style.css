@@ -814,6 +814,10 @@ body.font-large .ovh-hz-word{font-size:58px!important}
 .bj-item-rm{font-size:17px;font-weight:900;color:var(--ink);overflow-wrap:anywhere;line-height:1.35;margin-bottom:2px}
 .bj-card-rm{font-size:13px;font-weight:800;color:var(--ink-m);font-style:italic;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bj-daily-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-4px 0 14px;padding:10px 14px;background:var(--white);border:1px solid var(--ink-xl);border-radius:var(--r-sm);font-size:13px;font-weight:800;color:var(--ink-m)}
+body.bj-roman-ex .hz-script,body.bj-roman-ex .t-inp,body.bj-roman-ex .fb-hz,body.bj-roman-ex .res-wrong-hz,body.bj-roman-ex .ovh-hz-word,body.bj-roman-ex .ch-rtl,body.bj-roman-ex .ovh-err-hz,body.bj-roman-ex #l-body [style*="direction:rtl"],body.bj-roman-ex #ovh-body [style*="direction:rtl"]{direction:ltr!important;font-family:'Nunito',sans-serif!important;text-align:inherit}
+body.bj-roman-ex .hz-script{font-size:30px;font-weight:900;text-align:center;overflow-wrap:anywhere;line-height:1.3}
+body.bj-roman-ex .t-inp{font-size:18px;text-align:left}
+body.bj-roman-ex #l-body [style*="font-size:42px"]{font-size:24px!important}
 .bj-hint{font-size:11.5px;font-weight:700;color:var(--ink-l);text-align:center;margin-top:10px}
 
 body.dark-mode{background:#2A1F1A}

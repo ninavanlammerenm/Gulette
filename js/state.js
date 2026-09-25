@@ -25,7 +25,12 @@ let sciIdx=0;
 let _BJ_HZ=new Set();
 // Doen bijleswoorden mee in de dagelijkse herhaling? Standaard niet (los).
 function bjInDaily(){ return S.bjInDaily===true; }
+// Bij oefenen in Roman is de getoonde tekst Latijns; _BJ_ALIAS vertaalt die
+// terug naar de echte sleutel in S.bvocab (voor voortgang en uitspraak).
+let _BJ_ALIAS={};
+function bjKey(hz){ return _BJ_ALIAS[hz]||hz; }
 function vocabOf(hz){
+  hz=bjKey(hz);
   if(_BJ_HZ.has(hz)){ if(!S.bvocab) S.bvocab={}; return S.bvocab; }
   return S.vocab;
 }
@@ -69,6 +74,7 @@ function resolveVocabKey(token){
 }
 
 function updMastery(hz, ok, exType){
+  hz=bjKey(hz);
   const store=vocabOf(hz);
   if(!store[hz])return;
   const v=store[hz];

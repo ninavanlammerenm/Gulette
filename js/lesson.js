@@ -28,6 +28,8 @@ function _launchLesson(){
   EI=CC=WC=LXP=CC_COMBO=0;WAITING=false;
   REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
   _BJ_HZ=(CL&&CL._bjHz)||new Set();
+  _BJ_ALIAS=(CL&&CL._bjAlias)||{};
+  document.body.classList.toggle('bj-roman-ex',!!(CL&&CL._bjRoman));
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   const gramBtn=document.getElementById('btn-grammar');
@@ -346,7 +348,7 @@ function rIntro(ex,body){
     ${ctxHTML}
     <div class="intro-auto-bar" id="intro-bar"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen!</button>`;
-  if(!_BJ_HZ.has(w.hz)&&!S.vocab[w.hz])S.vocab[w.hz]={id:w.id,nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  if(!_BJ_HZ.has(bjKey(w.hz))&&!S.vocab[w.hz])S.vocab[w.hz]={id:w.id,nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   save();
   speakHz(w.hz,w.tr);
 }
@@ -609,7 +611,8 @@ function rType(ex,body){
     if(!val){ inp.focus(); return; }
     checking=true;
 
-    if(normAr(val)===normAr(correct)){
+    const _nm=CL&&CL._bjRoman?normRm:normAr;
+    if(_nm(val)===_nm(correct)){
       inp.blur();
       inp.classList.add('ok');
       sfxCorrect();
@@ -656,6 +659,9 @@ function rType(ex,body){
 }
 
 // ── FIX Bug 4: normAr — voeg ك vs ک normalisatie toe ──
+// Roman (Latijns) vergelijken: hoofdletters, streepjes, leestekens, spaties en
+// dubbele letters (aa/a, kk/k) tellen niet als fout
+const normRm=s=>s.toLowerCase().replace(/\([^)]*\)/g,'').replace(/[^a-z]/g,'').replace(/(.)\1+/g,'$1');
 const normAr=s=>s
   .replace(/[‌‍]/g,'')
   .replace(/[ًٌٍَُِّْ]/g,'')
@@ -743,8 +749,8 @@ function showFB(ok,title,hint,hzText){
   document.getElementById('fb-sub').textContent=hint;
   const hzEl=document.getElementById('fb-hz');
   if(hzText){
-    const voc=vocabOf(hzText)[hzText];
-    const tr=voc&&voc.tr?voc.tr:'';
+    const voc=vocabOf(hzText)[bjKey(hzText)];
+    const tr=voc&&voc.tr&&!(CL&&CL._bjRoman)?voc.tr:'';
     hzEl.textContent=hzText+(tr?' — '+tr:'');
     speakHz(hzText,tr);
   } else {

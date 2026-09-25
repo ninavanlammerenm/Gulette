@@ -317,12 +317,13 @@ function answerOvh(btn, idx){
 // FOUT REGISTREREN
 // ══════════════════════════════════════════════════════
 function _registerOvhError(hz,v,chosen,correct,dir,exType){
-  if(!S.vocab[hz]) S.vocab[hz]={id:v.id,nl:v.nl,tr:v.tr||'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  const _k=bjKey(hz), _st=vocabOf(hz);
+  if(!_st[_k]) _st[_k]={id:v.id,nl:v.nl,tr:v.tr||'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   if(chosen!=='—'){
     if(dir==='nl_hz') trackConfusion(hz, chosen);
     else { const _chosenHz=hzForNl(chosen); if(_chosenHz) trackConfusion(hz,_chosenHz); }
   }
-  S.vocab[hz].errors=(S.vocab[hz].errors||0)+1;
+  _st[_k].errors=(_st[_k].errors||0)+1;
   updMastery(hz, false, exType||'mc');
   _ovhErrors.push({hz,v,chosen,correct,dir});
 }
