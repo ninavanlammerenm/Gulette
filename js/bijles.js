@@ -21,6 +21,10 @@ function _bjDate(iso){
 }
 // Schrift in de Bijles-tab: 'both' (Dari + Latijns), 'dari' of 'roman'
 function _bjScript(){ return ['dari','roman','both'].includes(S.bjScript)?S.bjScript:'both'; }
+function bjToggleDaily(){
+  S.bjInDaily=!bjInDaily(); save(); renderBijles();
+  showToast(bjInDaily()?'Bijleswoorden doen nu ook mee in de dagelijkse herhaling':'Dagelijkse herhaling en bijles-herhaling zijn nu los');
+}
 function bjSetScript(m){ S.bjScript=m; save(); renderBijles(); }
 function _bjScriptBar(){
   const m=_bjScript();
@@ -145,6 +149,10 @@ function renderBijles(){
       <div class="rh-count">${due}</div>
       <div class="rh-label">${due===1?'woord wacht':'woorden wachten'} op je</div>
       <div class="rh-btn">${due?'Begin herhaling →':'Alles herhaald ✓'}</div>
+    </div>
+    <div class="bj-daily-row">
+      <span>Ook in de dagelijkse herhaling</span>
+      <button class="fc${bjInDaily()?' on':''}" onclick="bjToggleDaily()">${bjInDaily()?'Aan':'Uit'}</button>
     </div>`:'';
   wrap.innerHTML=_bjScriptBar()+hero+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
     list.map(l=>`<div class="bj-card" onclick="bjOpenLesson('${l.id}')">

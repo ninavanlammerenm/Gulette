@@ -23,6 +23,8 @@ let sciIdx=0;
 // Bijleswoorden hebben hun eigen opslag (S.bvocab), los van de lessen.
 // _BJ_HZ = de woorden in de huidige sessie die uit de bijles komen.
 let _BJ_HZ=new Set();
+// Doen bijleswoorden mee in de dagelijkse herhaling? Standaard niet (los).
+function bjInDaily(){ return S.bjInDaily===true; }
 function vocabOf(hz){
   if(_BJ_HZ.has(hz)){ if(!S.bvocab) S.bvocab={}; return S.bvocab; }
   return S.vocab;

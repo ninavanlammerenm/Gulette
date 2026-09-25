@@ -994,7 +994,7 @@ function showGrammarHint(){
 function startDailyReview(){
   const allEntries=Object.entries(S.vocab);
   const due=allEntries.filter(([,v])=>isDue(v));
-  const bjDueN=Object.values(S.bvocab||{}).filter(isDue).length;
+  const bjDueN=bjInDaily()?Object.values(S.bvocab||{}).filter(isDue).length:0;
   if(due.length===0&&bjDueN===0){showToast('Geen reviews nu! Kom later terug.');return;}
 
   const dueSlice=shuffle(due).slice(0,25);
@@ -1013,7 +1013,7 @@ function startDailyReview(){
   }));
   // Bijleswoorden die klaar staan doen mee (eigen voortgang in S.bvocab)
   const inReview=new Set(reviewWords.map(w=>w.hz));
-  const bjDue=Object.entries(S.bvocab||{}).filter(([hz,v])=>isDue(v)&&!inReview.has(hz));
+  const bjDue=bjInDaily()?Object.entries(S.bvocab||{}).filter(([hz,v])=>isDue(v)&&!inReview.has(hz)):[];
   const bjHz=new Set();
   shuffle(bjDue).slice(0,10).forEach(([hz,v])=>{
     bjHz.add(hz);
