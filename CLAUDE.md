@@ -19,3 +19,7 @@ De app is een PWA met een service worker (`sw.js`) die alle bestanden cachet voo
 ## Taal — Hazaragi, geen Iraans Farsi
 
 Zie het geheugenbestand over Hazaragi vs. Iraans Farsi (verplichte woordenlijst, voornaamwoorden, bezitsvorm). Controleer bij elke nieuwe/aangepaste Hazaragi-zin dat het echt Hazaragi Afghaans is, nooit Iraans/Perzisch Farsi.
+
+## Altijd naar main pushen
+
+De app draait live vanaf `main`. Zet daarom ELKE wijziging ook direct in `main` (na het committen op de werkbranch: `git push origin HEAD:main`, of eerst `main` binnenhalen/mergen als die verder is). Wijzigingen die alleen op een werkbranch staan, komen niet in de app van de gebruiker. Dit is expliciet door de gebruiker gevraagd.
