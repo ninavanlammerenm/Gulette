@@ -27,6 +27,7 @@ function _launchLesson(){
   if(_activeObserver){_activeObserver.disconnect();_activeObserver=null;}
   EI=CC=WC=LXP=CC_COMBO=0;WAITING=false;
   REQUEUED=new Set();WRONG_WORDS=[];WRONG_SET=new Set();
+  _BJ_HZ=(CL&&CL._bjHz)||new Set();
   document.getElementById('bnav').style.display='none';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   const gramBtn=document.getElementById('btn-grammar');
@@ -195,7 +196,7 @@ function sentencesForWord(hz){
   return _SENT_BY_WORD[hz]||[];
 }
 
-function buildReviewExercises(words){
+function buildReviewExercises(words,noSentHz){
   const exs=[];
   const fullPool=Object.entries(S.vocab).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''}));
   const pool=fullPool.length>=4?fullPool:words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr||''}));
@@ -226,7 +227,7 @@ function buildReviewExercises(words){
     }
 
     // Zinsherhaling: laat bekende woorden ook in een hele zin terugkomen, niet alleen los
-    if(sentBudget>0){
+    if(sentBudget>0&&!(noSentHz&&noSentHz.has(w.hz))){
       const matches=sentencesForWord(w.hz);
       if(matches.length){
         const s=matches[Math.floor(Math.random()*matches.length)];
@@ -345,7 +346,7 @@ function rIntro(ex,body){
     ${ctxHTML}
     <div class="intro-auto-bar" id="intro-bar"></div>
     <button class="btn-check" onclick="nextEx()">Begrepen!</button>`;
-  if(!S.vocab[w.hz])S.vocab[w.hz]={id:w.id,nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  if(!_BJ_HZ.has(w.hz)&&!S.vocab[w.hz])S.vocab[w.hz]={id:w.id,nl:w.nl,tr:w.tr,tag:w.tag||'',mastery:0,masteryLevel:1,nr:null,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
   save();
   speakHz(w.hz,w.tr);
 }
@@ -742,7 +743,7 @@ function showFB(ok,title,hint,hzText){
   document.getElementById('fb-sub').textContent=hint;
   const hzEl=document.getElementById('fb-hz');
   if(hzText){
-    const voc=S.vocab[hzText];
+    const voc=vocabOf(hzText)[hzText];
     const tr=voc&&voc.tr?voc.tr:'';
     hzEl.textContent=hzText+(tr?' — '+tr:'');
     speakHz(hzText,tr);
@@ -993,7 +994,8 @@ function showGrammarHint(){
 function startDailyReview(){
   const allEntries=Object.entries(S.vocab);
   const due=allEntries.filter(([,v])=>isDue(v));
-  if(due.length===0){showToast('Geen reviews nu! Kom later terug.');return;}
+  const bjDueN=Object.values(S.bvocab||{}).filter(isDue).length;
+  if(due.length===0&&bjDueN===0){showToast('Geen reviews nu! Kom later terug.');return;}
 
   const dueSlice=shuffle(due).slice(0,25);
   const dueHzSet=new Set(dueSlice.map(([hz])=>hz));
@@ -1009,14 +1011,23 @@ function startDailyReview(){
   const reviewWords=pool.map(([hz,v])=>({
     hz, nl:v.nl, tr:v.tr||'', masteryLevel:v.masteryLevel||1
   }));
+  // Bijleswoorden die klaar staan doen mee (eigen voortgang in S.bvocab)
+  const inReview=new Set(reviewWords.map(w=>w.hz));
+  const bjDue=Object.entries(S.bvocab||{}).filter(([hz,v])=>isDue(v)&&!inReview.has(hz));
+  const bjHz=new Set();
+  shuffle(bjDue).slice(0,10).forEach(([hz,v])=>{
+    bjHz.add(hz);
+    reviewWords.push({hz,nl:v.nl,tr:v.tr||'',masteryLevel:v.masteryLevel||1});
+  });
 
   CL={
     id:'_rev',
     title:'Dagelijkse herhaling',
     xp:Math.min(60,reviewWords.length*2),
     words:reviewWords.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),
-    sentences:[]
+    sentences:[],
+    _bjHz:bjHz
   };
-  EXS=buildReviewExercises(reviewWords);
+  EXS=buildReviewExercises(reviewWords,bjHz);
   _launchLesson();
 }

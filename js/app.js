@@ -57,7 +57,7 @@ document.addEventListener('click', function(e){
   if(action === 'sentence_mc') chkSentenceMC(tile, tile.dataset.chosen, tile.dataset.correct, tile.dataset.hz, tile.dataset.tr);
 
   const wc = e.target.closest('.wc[data-hz]');
-  if(wc) showWordDetail(wc.dataset.hz);
+  if(wc) showWordDetail(wc.dataset.hz, wc.dataset.bj==='1');
 });
 
 // ══════════════════════════════════════════════════════
@@ -224,6 +224,7 @@ try{
   migrateVocabKeys();
   migrateVocabByIds();
   syncVocabDefinitions();
+  seedBijles();
   applyMasteryDecay();
   if(S.showRoman===false) document.body.classList.add('hide-roman');
   applyFontSize();

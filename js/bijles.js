@@ -1,12 +1,15 @@
 // ══════════════════════════════════════════════════════
 // BIJLES — eigen woorden/zinnen + aantekeningen per bijles
-// S.bijles = [{id, date, title, notes, items:[{id, hz, tr, nl, note}]}]
-// Elk item komt ook in S.vocab (id 'bijles_<itemId>'), zodat het meedoet
-// met Mijn woorden en de dagelijkse herhaling.
+// S.bijles = [{id, date, title, notes, items:[{id, section, hz, tr, nl, note}]}]
+// Bijleswoorden staan LOS van de lessen: eigen voortgang in S.bvocab
+// (sleutel = Hazaragi-tekst). Ze doen wel mee in de dagelijkse herhaling,
+// en hebben daarnaast een eigen bijles-herhaling.
+// Vooraf ingeladen bijlessen (uit de PDF's) staan in js/bijlesdata.js.
 // ══════════════════════════════════════════════════════
 let _bjOpen=null; // id van de bijles die openstaat
 
 function _bjList(){ if(!Array.isArray(S.bijles)) S.bijles=[]; return S.bijles; }
+function _bjStore(){ if(!S.bvocab) S.bvocab={}; return S.bvocab; }
 function _bjId(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
 function _bjEsc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 // Quotes/backslashes breken de onclick- en data-attributen in de oefeningen
@@ -17,48 +20,113 @@ function _bjDate(iso){
   return isNaN(d)?iso:d.toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'});
 }
 function _bjFind(id){ return _bjList().find(l=>l.id===id); }
+function _bjAllItems(){ return _bjList().flatMap(l=>l.items); }
 
-// ── Koppeling met S.vocab ──
+// ── Koppeling met S.bvocab ──
 function _bjAddVocab(it){
-  if(S.vocab[it.hz]) return; // bestaat al (bijv. uit een les) — voortgang niet overschrijven
-  S.vocab[it.hz]={id:'bijles_'+it.id,nl:it.nl,tr:it.tr||'',tag:'',bijles:true,mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  const st=_bjStore();
+  if(st[it.hz]) return; // zelfde tekst staat al in een andere bijles — voortgang delen
+  st[it.hz]={id:'bijles_'+it.id,nl:it.nl,tr:it.tr||'',tag:'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
 }
-function _bjOwnsVocab(it,hz){ const v=S.vocab[hz]; return v&&v.id==='bijles_'+it.id; }
+function _bjHzInUse(hz,exceptItem){ return _bjAllItems().some(i=>i!==exceptItem&&i.hz===hz); }
 function _bjUpdateVocab(it,oldHz){
-  if(_bjOwnsVocab(it,oldHz)){
-    const v=S.vocab[oldHz];
-    if(oldHz!==it.hz){
-      // Tekst aangepast: voortgang verhuist mee naar de nieuwe tekst
-      if(S.vocab[it.hz]){ delete S.vocab[oldHz]; }
-      else { S.vocab[it.hz]=v; delete S.vocab[oldHz]; }
-    }
-    if(_bjOwnsVocab(it,it.hz)){ S.vocab[it.hz].nl=it.nl; S.vocab[it.hz].tr=it.tr||''; }
-  } else {
-    _bjAddVocab(it);
+  const st=_bjStore();
+  if(oldHz!==it.hz && st[oldHz]){
+    // Tekst aangepast: voortgang verhuist mee naar de nieuwe tekst
+    if(!st[it.hz]) st[it.hz]=st[oldHz];
+    if(!_bjHzInUse(oldHz,it)) delete st[oldHz];
   }
+  if(!st[it.hz]) _bjAddVocab(it);
+  st[it.hz].nl=it.nl; st[it.hz].tr=it.tr||'';
 }
-function _bjRemoveVocab(it){ if(_bjOwnsVocab(it,it.hz)) delete S.vocab[it.hz]; }
+function _bjRemoveVocab(it){ if(!_bjHzInUse(it.hz,it)) delete _bjStore()[it.hz]; }
+
+// ── Migratie + vooraf ingeladen bijlessen ──
+function seedBijles(){
+  let changed=false;
+  const st=_bjStore();
+  // Oude versie zette bijleswoorden in S.vocab — verhuizen naar S.bvocab
+  for(const [hz,v] of Object.entries(S.vocab||{})){
+    if(v&&typeof v.id==='string'&&v.id.startsWith('bijles_')){
+      if(!st[hz]) st[hz]=v;
+      delete S.vocab[hz];
+      changed=true;
+    }
+  }
+  if(!Array.isArray(S.bijlesSeeded)) S.bijlesSeeded=[];
+  (typeof BIJLES_PRESET!=='undefined'?BIJLES_PRESET:[]).forEach(p=>{
+    let l=_bjFind(p.id);
+    if(!l){
+      if(S.bijlesSeeded.includes(p.id)) return; // door gebruiker verwijderd
+      l={id:p.id,title:p.title,date:p.date,notes:p.notes||'',items:[],removed:[],preset:{title:p.title,date:p.date,notes:p.notes||''}};
+      _bjList().push(l);
+      S.bijlesSeeded.push(p.id);
+      changed=true;
+    }
+    // Velden die de gebruiker niet zelf heeft aangepast volgen de preset
+    if(l.preset){
+      ['title','date','notes'].forEach(f=>{
+        const nv=p[f]||'';
+        if(l.preset[f]!==nv){ if(l[f]===l.preset[f]) l[f]=nv; l.preset[f]=nv; changed=true; }
+      });
+    }
+    if(!l.removed) l.removed=[];
+    p.items.forEach((pi,idx)=>{
+      let it=l.items.find(i=>i.id===pi.id);
+      if(!it){
+        if(l.removed.includes(pi.id)) return;
+        it={id:pi.id,section:pi.section||'',hz:pi.hz,tr:pi.tr||'',nl:pi.nl,note:pi.note||'',preset:{hz:pi.hz,tr:pi.tr||'',nl:pi.nl,note:pi.note||''}};
+        const after=idx>0?l.items.findIndex(i=>i.id===p.items[idx-1].id):-1;
+        l.items.splice(after+1,0,it);
+        _bjAddVocab(it);
+        changed=true;
+        return;
+      }
+      it.section=pi.section||'';
+      if(!it.preset) return;
+      const oldHz=it.hz;
+      let touched=false;
+      ['hz','tr','nl','note'].forEach(f=>{
+        const nv=pi[f]||'';
+        if(it.preset[f]!==nv){ if(it[f]===it.preset[f]) it[f]=nv; it.preset[f]=nv; touched=true; }
+      });
+      if(touched){ _bjUpdateVocab(it,oldHz); changed=true; }
+    });
+  });
+  if(changed) save();
+}
 
 // ── Overzicht ──
+function _bjDueCount(){ return Object.values(_bjStore()).filter(isDue).length; }
+
 function renderBijles(){
+  seedBijles();
   const wrap=document.getElementById('bj-content');
   if(!wrap) return;
   if(_bjOpen && _bjFind(_bjOpen)) return renderBijlesDetail();
   _bjOpen=null;
   const list=[..._bjList()].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-  const total=list.reduce((n,l)=>n+l.items.length,0);
-  document.getElementById('bj-sub').textContent=list.length?`${list.length} ${list.length===1?'les':'lessen'} · ${total} woorden en zinnen`:'Alles wat je op bijles leert';
+  const total=Object.keys(_bjStore()).length;
+  document.getElementById('bj-sub').textContent=list.length?`${list.length} ${list.length===1?'bijles':'bijlessen'} · ${total} woorden en zinnen`:'Alles wat je op bijles leert';
   document.getElementById('bj-practice-all').style.display=total?'':'none';
   if(!list.length){
     wrap.innerHTML=`<div class="bj-empty">
       <div style="font-size:44px;margin-bottom:10px">📝</div>
       <div class="bj-empty-ttl">Nog geen bijles toegevoegd</div>
-      <div class="bj-empty-sub">Maak na elke bijles een nieuwe les aan en zet erin wat je hebt geleerd: woorden, zinnen en aantekeningen. Ze komen vanzelf in je dagelijkse herhaling.</div>
+      <div class="bj-empty-sub">Maak na elke bijles een nieuwe les aan en zet erin wat je hebt geleerd: woorden, zinnen en aantekeningen.</div>
     </div>
     <button class="btn-home" onclick="bjEditLesson()">+ Nieuwe bijles</button>`;
     return;
   }
-  wrap.innerHTML=`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
+  const due=_bjDueCount();
+  const hero=total?`<div class="review-hero${due?'':' done'}" style="margin:0 0 14px" onclick="${due?'bjStartReview()':"showToast('Geen bijleswoorden om te herhalen — kom later terug')"}">
+      <div class="rh-deco">📝</div>
+      <div class="rh-title">Bijles-herhaling</div>
+      <div class="rh-count">${due}</div>
+      <div class="rh-label">${due===1?'woord wacht':'woorden wachten'} op je</div>
+      <div class="rh-btn">${due?'Begin herhaling →':'Alles herhaald ✓'}</div>
+    </div>`:'';
+  wrap.innerHTML=hero+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
     list.map(l=>`<div class="bj-card" onclick="bjOpenLesson('${l.id}')">
       <div class="bj-card-body">
         <div class="bj-card-ttl">${_bjEsc(l.title||'Bijles')}</div>
@@ -71,6 +139,12 @@ function renderBijles(){
 
 function bjOpenLesson(id){ _bjOpen=id; renderBijles(); document.getElementById('screen-bijles').scrollTop=0; }
 function bjBack(){ _bjOpen=null; renderBijles(); }
+function bjOpenFromWord(hz){
+  const l=_bjList().find(x=>x.items.some(i=>i.hz===hz));
+  const idx=['home','review','bijles','reading','grammar','profile'].indexOf('bijles');
+  _bjOpen=l?l.id:null;
+  navTo('bijles',document.querySelectorAll('.nb')[idx]);
+}
 
 // ── Detail van één bijles ──
 function renderBijlesDetail(){
@@ -78,10 +152,15 @@ function renderBijlesDetail(){
   const wrap=document.getElementById('bj-content');
   document.getElementById('bj-sub').textContent=_bjDate(l.date);
   document.getElementById('bj-practice-all').style.display='none';
+  const st=_bjStore();
+  let lastSec=null;
   const items=l.items.map(it=>{
-    const v=S.vocab[it.hz];
+    const v=st[it.hz];
     const m=v?(v.masteryLevel||1):1;
-    return `<div class="bj-item" onclick="bjEditItem('${l.id}','${it.id}')">
+    const sec=it.section||'';
+    const head=sec!==lastSec&&sec?`<div class="gram-ch-label" style="padding:10px 2px 2px">${_bjEsc(sec)}</div>`:'';
+    lastSec=sec;
+    return head+`<div class="bj-item" onclick="bjEditItem('${l.id}','${it.id}')">
       <div class="bj-item-hz">${_bjEsc(it.hz)}</div>
       <div class="bj-item-info">
         ${it.tr?`<div class="wc-pron">${_bjEsc(it.tr)}</div>`:''}
@@ -144,9 +223,10 @@ function bjEditLesson(id){
     save(); bg.remove(); renderBijles();
   });
   if(l) modal.querySelector('#bj-del').addEventListener('click',()=>{
-    if(!confirm(`“${l.title}” verwijderen? De ${l.items.length} woorden en zinnen verdwijnen dan ook uit Mijn woorden.`))return;
-    l.items.forEach(_bjRemoveVocab);
+    if(!confirm(`“${l.title}” verwijderen? De ${l.items.length} woorden en zinnen en hun voortgang verdwijnen dan ook.`))return;
+    const items=[...l.items];
     S.bijles=_bjList().filter(x=>x.id!==l.id);
+    items.forEach(_bjRemoveVocab);
     _bjOpen=null; save(); bg.remove(); renderBijles();
   });
 }
@@ -171,7 +251,7 @@ function bjEditItem(lessonId,itemId){
     ${it?'':'<div class="bj-hint">Na toevoegen blijft dit venster open, zodat je meteen het volgende kunt invullen.</div>'}`);
   const hzInp=modal.querySelector('#bj-hz');
   attachVirtualKeyboard(hzInp);
-  setTimeout(()=>hzInp.focus(),300);
+  if(!it) setTimeout(()=>hzInp.focus(),300);
   modal.querySelector('#bj-save').addEventListener('click',()=>{
     const hz=_bjClean(hzInp.value);
     const tr=_bjClean(modal.querySelector('#bj-tr').value);
@@ -186,7 +266,8 @@ function bjEditItem(lessonId,itemId){
       save(); bg.remove(); renderBijles();
       showToast('Opgeslagen');
     } else {
-      const ni={id:_bjId(),hz,tr,nl,note};
+      const lastSec=l.items.length?l.items[l.items.length-1].section||'':'';
+      const ni={id:_bjId(),section:lastSec,hz,tr,nl,note};
       l.items.push(ni);
       _bjAddVocab(ni);
       save(); renderBijles();
@@ -197,35 +278,64 @@ function bjEditItem(lessonId,itemId){
   });
   if(it) modal.querySelector('#bj-del').addEventListener('click',()=>{
     if(!confirm(`“${it.hz}” verwijderen?`))return;
-    _bjRemoveVocab(it);
     l.items=l.items.filter(i=>i.id!==it.id);
+    if(it.preset){ if(!l.removed) l.removed=[]; l.removed.push(it.id); }
+    _bjRemoveVocab(it);
     save(); bg.remove(); renderBijles();
   });
 }
 
-// ── Oefenen ──
-function bjPractice(lessonId){
-  const lessons=lessonId?[_bjFind(lessonId)].filter(Boolean):_bjList();
-  const seen=new Set();
-  const words=[];
-  lessons.forEach(l=>l.items.forEach(it=>{
-    if(seen.has(it.hz))return;
-    seen.add(it.hz);
-    _bjAddVocab(it);
-    const v=S.vocab[it.hz];
-    words.push({hz:it.hz,nl:v.nl||it.nl,tr:v.tr||it.tr||'',masteryLevel:v.masteryLevel||1});
-  }));
+// ── Oefenen & herhalen (alleen bijleswoorden, eigen voortgang) ──
+function _bjBuildExercises(words){
+  const st=_bjStore();
+  let pool=Object.entries(st).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''}));
+  // Te weinig bijleswoorden voor 4 keuzes? Vul alleen de foute opties aan met lesswoorden.
+  if(pool.length<4) pool=pool.concat(Object.entries(S.vocab).filter(([hz])=>!st[hz]).map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||''})));
+  const r1=[],r2=[];
+  shuffle([...words]).forEach(w=>{
+    const d=shuffle(pool.filter(x=>x.hz!==w.hz&&x.nl!==w.nl));
+    if(d.length<3)return;
+    const lvl=w.masteryLevel||1;
+    const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
+    const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...d.slice(0,3).map(x=>x.nl)])};
+    const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...d.slice(0,3).map(x=>x.hz)])};
+    const listen={type:'listen',w:wd,choices:shuffle([w.nl,...d.slice(0,3).map(x=>x.nl)])};
+    if(lvl===1){ r1.push({type:'intro',w:wd,ctxSentence:null},mc_nl); r2.push(mc_hz); }
+    else if(lvl===2){ r1.push(mc_nl); r2.push({type:'type',w:wd}); }
+    else if(lvl===3){ r1.push(mc_hz); r2.push({type:'type',w:wd}); }
+    else { r1.push(listen); r2.push({type:'type',w:wd}); }
+  });
+  // Ronde 1 (kennismaken/herkennen) per woord, daarna ronde 2 door elkaar
+  return [...r1,...shuffle(r2)];
+}
+
+function bjStartSession(hzList,title){
+  const st=_bjStore();
+  const words=hzList.filter(hz=>st[hz]).map(hz=>({hz,nl:st[hz].nl,tr:st[hz].tr||'',masteryLevel:st[hz].masteryLevel||1}));
   if(!words.length){showToast('Nog niets om te oefenen');return;}
-  if(Object.keys(S.vocab).length<4){showToast('Voeg minstens 4 woorden toe om te kunnen oefenen');return;}
-  const pick=shuffle(words).slice(0,20);
+  const exs=_bjBuildExercises(words);
+  if(!exs.length){showToast('Voeg minstens 4 woorden toe om te kunnen oefenen');return;}
   CL={
     id:'_bijles',
-    title:lessonId?(lessons[0].title||'Bijles'):'Bijles',
-    xp:Math.min(60,pick.length*2),
-    words:pick.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),
-    sentences:[]
+    title:title||'Bijles',
+    xp:Math.min(60,words.length*2),
+    words:words.map(w=>({hz:w.hz,nl:w.nl,tr:w.tr})),
+    sentences:[],
+    _bjHz:new Set(words.map(w=>w.hz))
   };
-  EXS=buildReviewExercises(pick);
-  if(!EXS.length){showToast('Nog niet genoeg woorden om te oefenen');return;}
+  EXS=exs;
   _launchLesson();
+}
+
+function bjPractice(lessonId){
+  seedBijles();
+  const lessons=lessonId?[_bjFind(lessonId)].filter(Boolean):_bjList();
+  const hz=[...new Set(lessons.flatMap(l=>l.items.map(i=>i.hz)))];
+  bjStartSession(shuffle(hz).slice(0,20),lessonId?(lessons[0].title||'Bijles'):'Bijles');
+}
+
+function bjStartReview(){
+  const due=Object.entries(_bjStore()).filter(([,v])=>isDue(v)).map(([hz])=>hz);
+  if(!due.length){showToast('Geen bijleswoorden om te herhalen — kom later terug');return;}
+  bjStartSession(shuffle(due).slice(0,25),'Bijles-herhaling');
 }

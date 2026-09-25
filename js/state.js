@@ -20,6 +20,14 @@ function getLevelPct(xp){
 
 let sciIdx=0;
 
+// Bijleswoorden hebben hun eigen opslag (S.bvocab), los van de lessen.
+// _BJ_HZ = de woorden in de huidige sessie die uit de bijles komen.
+let _BJ_HZ=new Set();
+function vocabOf(hz){
+  if(_BJ_HZ.has(hz)){ if(!S.bvocab) S.bvocab={}; return S.bvocab; }
+  return S.vocab;
+}
+
 // ══════════════════════════════════════════════════════
 // SPACED REPETITION — 5-niveaus mastery systeem
 // 1=Gezien, 2=Herkend, 3=Begrijpt, 4=Beheerst, 5=Gemeisterd
@@ -59,8 +67,9 @@ function resolveVocabKey(token){
 }
 
 function updMastery(hz, ok, exType){
-  if(!S.vocab[hz])return;
-  const v=S.vocab[hz];
+  const store=vocabOf(hz);
+  if(!store[hz])return;
+  const v=store[hz];
   if(!v.firstSeen) v.firstSeen=new Date().toISOString();
   if(!v.ease) v.ease=2.5;
   if(v.consec===undefined) v.consec=0;

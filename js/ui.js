@@ -15,6 +15,7 @@ const showScreen = id => {
 };
 
 function navTo(id, btn) {
+  _BJ_HZ=new Set();
   showScreen(id);
   document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
@@ -27,6 +28,7 @@ function navTo(id, btn) {
 }
 
 function goHome(){
+  _BJ_HZ=new Set();
   showScreen('home');
   document.getElementById('bnav').style.display='flex';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -109,7 +111,7 @@ function renderHome(){
 
   // Review hero card
   const allVocab=Object.values(S.vocab);
-  const due=allVocab.filter(v=>isDue(v)).length;
+  const due=allVocab.filter(v=>isDue(v)).length+Object.values(S.bvocab||{}).filter(isDue).length;
   const total=Object.keys(S.vocab).length;
   const hero=document.getElementById('review-hero');
   if(due>0){
@@ -251,8 +253,9 @@ function renderDrillCards(){
 function renderVocab(){
   renderDrillCards();
   const search=(document.getElementById('vocab-search')?.value||'').toLowerCase().trim();
-  const ents=Object.entries(S.vocab);
-  document.getElementById('rev-sub').textContent=ents.length+' woorden geleerd';
+  const isBj=wFilter==='bijles';
+  const ents=isBj?Object.entries(S.bvocab||{}):Object.entries(S.vocab);
+  document.getElementById('rev-sub').textContent=isBj?ents.length+' bijleswoorden':ents.length+' woorden geleerd';
   let list=ents;
   if(wFilter==='learning') list=ents.filter(([,v])=>(v.masteryLevel||1)>=2&&(v.masteryLevel||1)<=3);
   else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.masteryLevel||1)>=4);
@@ -275,6 +278,14 @@ function renderVocab(){
   });
 
   const el=document.getElementById('w-list');
+  if(!ents.length&&isBj){
+    el.innerHTML=`<div style="text-align:center;padding:48px 24px">
+      <div style="font-size:48px;margin-bottom:12px">📝</div>
+      <div style="font-size:16px;font-weight:900;color:var(--ink);margin-bottom:6px">Nog geen bijleswoorden</div>
+      <div style="font-size:13px;font-weight:700;color:var(--ink-l);line-height:1.6">Voeg ze toe in de Bijles-tab.</div>
+    </div>`;
+    return;
+  }
   if(!ents.length){
     el.innerHTML=`<div style="text-align:center;padding:48px 24px">
       <div style="font-size:48px;margin-bottom:12px">🐇</div>
@@ -296,7 +307,7 @@ function renderVocab(){
     // markeer lange klanken (dubbele klinkers) in de uitspraak
     const pron=(v.tr||'').replace(/([aeiouAEIOU])\1/g,'<span class="lv">$&</span>');
     const pinned=v.pinned?'★':'☆';
-    return `<div class="wc" data-hz="${hz}" style="border-left:4px solid ${accent}">
+    return `<div class="wc" data-hz="${hz}"${isBj?' data-bj="1"':''} style="border-left:4px solid ${accent}">
       <div class="wc-hz">${hz}</div>
       <div class="wc-info">
         <div class="wc-pron">${pron}</div>
@@ -304,7 +315,7 @@ function renderVocab(){
         <div class="wc-next">${due?'Review nu klaar':'⏱ Review: '+nxt}${v.errors>0?` · ❌ ${v.errors}x fout`:''}</div>
       </div>
       <button class="spk-btn wc-spk" onclick="event.stopPropagation();speakHz('${hz}','${(v.tr||'').replace(/'/g,"\\'")}')">🔊</button>
-      <button class="wc-pin" onclick="event.stopPropagation();togglePin('${hz}')">${pinned}</button>
+      ${isBj?'':`<button class="wc-pin" onclick="event.stopPropagation();togglePin('${hz}')">${pinned}</button>`}
       <div class="m-pips">${pips}</div>
     </div>`;
   }).join('');
@@ -455,7 +466,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v69 · Sakura';
+  if(_vEl)_vEl.textContent='v70 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
@@ -676,8 +687,8 @@ function renderMasteryDistrib(){
 // ══════════════════════════════════════════════════════
 // WORD DETAIL MODAL
 // ══════════════════════════════════════════════════════
-function showWordDetail(hz){
-  const v=S.vocab[hz];if(!v)return;
+function showWordDetail(hz,bj){
+  const v=bj?(S.bvocab||{})[hz]:S.vocab[hz];if(!v)return;
   const m=v.masteryLevel||1;
   const masteryNames=['','Gezien','Herkend','Begrijpt','Beheerst','Gemeisterd'];
   const due=isDue(v);
@@ -711,7 +722,7 @@ function showWordDetail(hz){
     </div>
     <div style="display:flex;gap:8px;margin-top:4px">
       <button class="btn-check" style="position:static;flex:1" id="wd-drill">Oefen nu</button>
-      <button class="btn-check" style="position:static;flex:1;background:linear-gradient(135deg,var(--lav-l),var(--lav));color:var(--ink)" id="wd-lesson">Les</button>
+      <button class="btn-check" style="position:static;flex:1;background:linear-gradient(135deg,var(--lav-l),var(--lav));color:var(--ink)" id="wd-lesson">${bj?'Bijles':'Les'}</button>
       <button class="btn-check" style="position:static;flex:1;background:var(--ink-xl);color:var(--ink)" id="wd-close">Sluiten</button>
     </div>
     <button class="spk-btn" style="margin-top:8px;width:100%;border-radius:var(--r-xs);height:auto;padding:10px;font-size:13px;font-family:'Nunito',sans-serif;font-weight:800" onclick="speakHz('${hz}','${_esc(v.tr)}',true)">🐢 Langzaam afspelen</button>`;
@@ -720,12 +731,14 @@ function showWordDetail(hz){
   modal.querySelector('#wd-close').addEventListener('click',()=>bg.remove());
   modal.querySelector('#wd-lesson').addEventListener('click',()=>{
     bg.remove();
+    if(bj){bjOpenFromWord(hz);return;}
     const lesId=findLessonForWord(hz);
     if(lesId){startLesson(lesId);}
     else showToast('Woord niet gevonden in een les');
   });
   modal.querySelector('#wd-drill').addEventListener('click',()=>{
     bg.remove();
+    if(bj){bjStartSession([hz],'Bijles');return;}
     openOvhDirect([{hz,v,dir:m>=3?'nl_hz':'hz_nl'}]);
   });
   document.body.appendChild(bg);
