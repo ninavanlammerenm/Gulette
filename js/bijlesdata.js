@@ -196,7 +196,7 @@ Huiswerk: beantwoord de 10 oefenvragen uit de PDF hardop, zonder te spieken.`,
 },
 {
   id:'bl3',
-  title:'Les 5: uiterlijk',
+  title:'Les 3: uiterlijk',
   date:'2026-10-04',
   notes:`Uiterlijk beschrijven: lengte en postuur, haar, ogen en gezicht, kenmerken.
 
