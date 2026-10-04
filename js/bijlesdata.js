@@ -212,7 +212,7 @@ Huiswerk: beantwoord de vier oefenvragen-sets uit de PDF hardop en speel rollens
   items:[
     {id:'bl3_w0', section:'Lengte & postuur', hz:'قد بلند', tr:'ghad-boland', nl:'Lang (van lengte)'},
     {id:'bl3_w1', section:'Lengte & postuur', hz:'قد کوتاه', tr:'ghad-kootah', nl:'Klein (van lengte)'},
-    {id:'bl3_w2', section:'Lengte & postuur', hz:'قد متوسط', tr:'ghad-motevaset', nl:'Gemiddelde lengte', note:'Je docent markeerde “motevaset” — even navragen'},
+    {id:'bl3_w2', section:'Lengte & postuur', hz:'قد متوسط', tr:'ghad-motevaset', nl:'Gemiddelde lengte'},
     {id:'bl3_w3', section:'Lengte & postuur', hz:'لاغر', tr:'laaghar', nl:'Dun / slank'},
     {id:'bl3_w4', section:'Lengte & postuur', hz:'چاق', tr:'chaaq', nl:'Mollig / dik'},
     {id:'bl3_w5', section:'Lengte & postuur', hz:'خوش‌اندام', tr:'khosh-andaam', nl:'Goed gebouwd / fit'},
