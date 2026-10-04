@@ -24,7 +24,6 @@ function navTo(id, btn) {
   if(id==='profile') renderProfile();
   if(id==='home')    renderHome();
   if(id==='grammar') renderGrammarLibrary();
-  if(id==='reading') renderReadingList();
   if(id==='bijles')  renderBijles();
 }
 
@@ -476,7 +475,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v77 · Sakura';
+  if(_vEl)_vEl.textContent='v78 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════

@@ -176,7 +176,7 @@ function bjOpenLesson(id){ _bjOpen=id; renderBijles(); document.getElementById('
 function bjBack(){ _bjOpen=null; renderBijles(); }
 function bjOpenFromWord(hz){
   const l=_bjList().find(x=>x.items.some(i=>i.hz===hz));
-  const idx=['home','review','bijles','reading','grammar','profile'].indexOf('bijles');
+  const idx=_NAV.indexOf('bijles');
   _bjOpen=l?l.id:null;
   navTo('bijles',document.querySelectorAll('.nb')[idx]);
 }
