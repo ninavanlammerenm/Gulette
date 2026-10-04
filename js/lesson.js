@@ -901,6 +901,8 @@ function finishLesson(){
   document.getElementById('r-acc').textContent=CC+'/'+(CC+WC);
   document.getElementById('r-str').textContent='🔥'+S.streak;
   document.getElementById('res-sub').textContent=CL.title+' voltooid!';
+  const _rhb=document.getElementById('res-home-btn');
+  if(_rhb) _rhb.textContent=CL.id==='_bijles'?'Terug naar bijles':'Terug naar huis';
   const _pm=['Foutloos!','Perfect!','Absoluut geweldig!','Meesterlijk!','Ongeslagen! 🏆'];
   const _gm=['Zo trots!','Super gedaan!','Fantastisch!','Heel goed!'];
   const _ok=['Goed gedaan!','Niet slecht!','Blijf oefenen!'];

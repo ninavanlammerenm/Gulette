@@ -29,6 +29,14 @@ function navTo(id, btn) {
 }
 
 function goHome(){
+  // Na een bijles-sessie (klaar of gestopt) terug naar de Bijles-tab i.p.v. Thuis
+  const _act=document.querySelector('.screen.active');
+  if(CL&&CL.id==='_bijles'&&_act&&['screen-lesson','screen-result'].includes(_act.id)){
+    CL=null;
+    document.getElementById('bnav').style.display='flex';
+    navTo('bijles',document.querySelectorAll('.nb')[_NAV.indexOf('bijles')]);
+    return;
+  }
   _BJ_HZ=new Set();
   _BJ_ALIAS={};document.body.classList.remove('bj-roman-ex');
   showScreen('home');
@@ -468,7 +476,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v76 · Sakura';
+  if(_vEl)_vEl.textContent='v77 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
