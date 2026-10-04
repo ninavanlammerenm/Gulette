@@ -193,5 +193,92 @@ Huiswerk: beantwoord de 10 oefenvragen uit de PDF hardop, zonder te spieken.`,
     {id:'bl2_w65', section:'Wensen & hulp', hz:'فکر می‌کنم', tr:'fekr mi-konam', nl:'Ik denk'},
     {id:'bl2_w66', section:'Wensen & hulp', hz:'فامیل تو چطور استه؟', tr:'famil-e tu chetor asta?', nl:'Hoe gaat het met je familie?'}
   ]
+},
+{
+  id:'bl3',
+  title:'Les 5: uiterlijk',
+  date:'2026-10-04',
+  notes:`Uiterlijk beschrijven: lengte en postuur, haar, ogen en gezicht, kenmerken.
+
+Patroon: (ma) … darum = ik heb … · (oo) … daara = hij/zij heeft …
+Kleur vragen: Tu che rang … daari? (moo = haar, cheshm = ogen)
+moo-ye + kleur/soort: moo-ye siaah = zwart haar · cheshm-e aabi = blauwe ogen
+Heel = kheili (niet “sakht”)
+
+Schoonfamilie: khusoor = schoonvader · khoshoo / khusoor madar = schoonmoeder
+Wie = ki · wie nog meer = diga ki · welke = kudam
+
+Huiswerk: beantwoord de vier oefenvragen-sets uit de PDF hardop en speel rollenspel A, B en C met je docent (ook met de rollen omgedraaid).`,
+  items:[
+    {id:'bl3_w0', section:'Lengte & postuur', hz:'قد بلند', tr:'ghad-boland', nl:'Lang (van lengte)'},
+    {id:'bl3_w1', section:'Lengte & postuur', hz:'قد کوتاه', tr:'ghad-kootah', nl:'Klein (van lengte)'},
+    {id:'bl3_w2', section:'Lengte & postuur', hz:'قد متوسط', tr:'ghad-motevaset', nl:'Gemiddelde lengte', note:'Je docent markeerde “motevaset” — even navragen'},
+    {id:'bl3_w3', section:'Lengte & postuur', hz:'لاغر', tr:'laaghar', nl:'Dun / slank'},
+    {id:'bl3_w4', section:'Lengte & postuur', hz:'چاق', tr:'chaaq', nl:'Mollig / dik'},
+    {id:'bl3_w5', section:'Lengte & postuur', hz:'خوش‌اندام', tr:'khosh-andaam', nl:'Goed gebouwd / fit'},
+    {id:'bl3_w6', section:'Lengte & postuur', hz:'قد تو چطور استه؟', tr:'ghad-e tu chetor asta?', nl:'Hoe lang ben je?'},
+    {id:'bl3_w7', section:'Lengte & postuur', hz:'تو قد بلند استی یا قد کوتاه؟', tr:'tu ghad-boland asti ya ghad-kootah?', nl:'Ben je lang of klein?'},
+    {id:'bl3_w8', section:'Lengte & postuur', hz:'من قد بلند استم', tr:'ma ghad-boland astum', nl:'Ik ben lang'},
+    {id:'bl3_w9', section:'Lengte & postuur', hz:'من قد متوسط استم، نه قد بلند و نه قد کوتاه', tr:'ma ghad-motevaset astum, na ghad-boland wa na ghad-kootah', nl:'Ik ben gemiddeld lang, niet lang en niet klein'},
+    {id:'bl3_w10', section:'Lengte & postuur', hz:'برار من لاغر استه', tr:'braar-e ma laaghar asta', nl:'Mijn broer is dun'},
+    {id:'bl3_w11', section:'Lengte & postuur', hz:'آته من خیلی قد بلند و خوش‌اندام استه', tr:'ata-e ma kheili ghad-boland wa khosh-andaam asta', nl:'Mijn vader is heel lang en goed gebouwd'},
+    {id:'bl3_w12', section:'Haar', hz:'مو', tr:'moo', nl:'Haar'},
+    {id:'bl3_w13', section:'Haar', hz:'رنگ', tr:'rang', nl:'Kleur'},
+    {id:'bl3_w14', section:'Haar', hz:'موی سیاه', tr:'moo-ye siaah', nl:'Zwart haar'},
+    {id:'bl3_w15', section:'Haar', hz:'موی بور', tr:'moo-ye boor', nl:'Blond haar'},
+    {id:'bl3_w16', section:'Haar', hz:'موی قهوه‌ای', tr:'moo-ye ghahve-i', nl:'Bruin haar'},
+    {id:'bl3_w17', section:'Haar', hz:'موی بلند', tr:'moo-ye boland', nl:'Lang haar'},
+    {id:'bl3_w18', section:'Haar', hz:'موی کوتاه', tr:'moo-ye kootah', nl:'Kort haar'},
+    {id:'bl3_w19', section:'Haar', hz:'موی صاف', tr:'moo-ye saaf', nl:'Steil haar'},
+    {id:'bl3_w20', section:'Haar', hz:'موی موج‌دار', tr:'moo-ye moj-daar', nl:'Golvend haar'},
+    {id:'bl3_w21', section:'Haar', hz:'موی فری', tr:'moo-ye feri', nl:'Krullend haar', note:'Ook: koshk'},
+    {id:'bl3_w22', section:'Haar', hz:'کچل', tr:'kachal', nl:'Kaal'},
+    {id:'bl3_w23', section:'Haar', hz:'تو چه رنگ مو داری؟', tr:'tu che rang moo daari?', nl:'Welke kleur haar heb je?'},
+    {id:'bl3_w24', section:'Haar', hz:'من موی قهوه‌ای دارم', tr:'ma moo-ye ghahve-i darum', nl:'Ik heb bruin haar'},
+    {id:'bl3_w25', section:'Haar', hz:'من موی قهوه‌ای و موج‌دار دارم', tr:'ma moo-ye ghahve-i wa moj-daar darum', nl:'Ik heb bruin, golvend haar'},
+    {id:'bl3_w26', section:'Haar', hz:'آیه من موی بور و صاف داره', tr:'aya-e ma moo-ye boor wa saaf daara', nl:'Mijn moeder heeft blond, steil haar'},
+    {id:'bl3_w27', section:'Haar', hz:'برار من موی سیاه و کوتاه داره', tr:'braar-e ma moo-ye siaah wa kootah daara', nl:'Mijn broer heeft zwart, kort haar'},
+    {id:'bl3_w28', section:'Ogen & gezicht', hz:'چشم', tr:'cheshm', nl:'Oog / ogen'},
+    {id:'bl3_w29', section:'Ogen & gezicht', hz:'چشم قهوه‌ای', tr:'cheshm-e ghahve-i', nl:'Bruine ogen'},
+    {id:'bl3_w30', section:'Ogen & gezicht', hz:'چشم آبی', tr:'cheshm-e aabi', nl:'Blauwe ogen'},
+    {id:'bl3_w31', section:'Ogen & gezicht', hz:'چشم سبز', tr:'cheshm-e sabz', nl:'Groene ogen'},
+    {id:'bl3_w32', section:'Ogen & gezicht', hz:'چشم سیاه', tr:'cheshm-e siaah', nl:'Donkere ogen'},
+    {id:'bl3_w33', section:'Ogen & gezicht', hz:'صورت', tr:'soorat', nl:'Gezicht'},
+    {id:'bl3_w34', section:'Ogen & gezicht', hz:'صورت گرد', tr:'soorat-e gerd', nl:'Rond gezicht'},
+    {id:'bl3_w35', section:'Ogen & gezicht', hz:'صورت کشیده', tr:'soorat-e keshide', nl:'Ovaal / lang gezicht'},
+    {id:'bl3_w36', section:'Ogen & gezicht', hz:'پوست', tr:'poost', nl:'Huid'},
+    {id:'bl3_w37', section:'Ogen & gezicht', hz:'پوست روشن', tr:'poost-e rooshan', nl:'Lichte huid'},
+    {id:'bl3_w38', section:'Ogen & gezicht', hz:'پوست گندم‌گون', tr:'poost-e gandum-gun', nl:'Getinte huid', note:'Letterlijk: tarwekleurig'},
+    {id:'bl3_w39', section:'Ogen & gezicht', hz:'تو چه رنگ چشم داری؟', tr:'tu che rang cheshm daari?', nl:'Welke kleur ogen heb je?'},
+    {id:'bl3_w40', section:'Ogen & gezicht', hz:'من چشم آبی دارم', tr:'ma cheshm-e aabi darum', nl:'Ik heb blauwe ogen'},
+    {id:'bl3_w41', section:'Ogen & gezicht', hz:'صورت من گرد استه', tr:'soorat-e ma gerd asta', nl:'Mijn gezicht is rond'},
+    {id:'bl3_w42', section:'Ogen & gezicht', hz:'شبیه', tr:'shabi', nl:'Lijkend op'},
+    {id:'bl3_w43', section:'Ogen & gezicht', hz:'همه می‌گن، من شبیه مادرم استم', tr:'hama mugan, ma shabi-ye madaram astum', nl:'Iedereen zegt dat ik op mijn moeder lijk'},
+    {id:'bl3_w44', section:'Uiterlijk', hz:'زیبا', tr:'ziba', nl:'Mooi'},
+    {id:'bl3_w45', section:'Uiterlijk', hz:'مقبول', tr:'maqbool', nl:'Knap / aantrekkelijk', note:'Ook: khosh-shakl'},
+    {id:'bl3_w46', section:'Uiterlijk', hz:'خوش‌تیپ', tr:'khosh-tip', nl:'Stijlvol / goed gekleed'},
+    {id:'bl3_w47', section:'Uiterlijk', hz:'خوش‌خنده', tr:'khosh-khanda', nl:'Vrolijk / lacht graag'},
+    {id:'bl3_w48', section:'Uiterlijk', hz:'عینکی', tr:'aynaki', nl:'Met bril'},
+    {id:'bl3_w49', section:'Uiterlijk', hz:'ریش‌دار', tr:'reesh-daar', nl:'Met baard'},
+    {id:'bl3_w50', section:'Uiterlijk', hz:'جوان', tr:'jawan', nl:'Jong'},
+    {id:'bl3_w51', section:'Uiterlijk', hz:'پیر', tr:'peer', nl:'Oud (van een persoon)'},
+    {id:'bl3_w52', section:'Uiterlijk', hz:'مهربان', tr:'mehrabaan', nl:'Lief / vriendelijk'},
+    {id:'bl3_w53', section:'Uiterlijk', hz:'نادر', tr:'nader', nl:'Zeldzaam'},
+    {id:'bl3_w54', section:'Uiterlijk', hz:'شوهر تو عینکی استه؟', tr:'shohar-e tu aynaki asta?', nl:'Draagt je man een bril?'},
+    {id:'bl3_w55', section:'Uiterlijk', hz:'بله، او عینکی استه', tr:'bale, oo aynaki asta', nl:'Ja, hij draagt een bril'},
+    {id:'bl3_w56', section:'Uiterlijk', hz:'او همیشه خوش‌خنده استه', tr:'oo hamesha khosh-khanda asta', nl:'Hij/zij lacht altijd'},
+    {id:'bl3_w57', section:'Mensen & vragen', hz:'کی', tr:'ki', nl:'Wie?', note:'Zelfde letters als kai (wanneer), andere uitspraak'},
+    {id:'bl3_w58', section:'Mensen & vragen', hz:'دیگه کی؟', tr:'diga ki?', nl:'Wie nog meer?'},
+    {id:'bl3_w59', section:'Mensen & vragen', hz:'کدام', tr:'kudam', nl:'Welke'},
+    {id:'bl3_w60', section:'Mensen & vragen', hz:'همه', tr:'hama', nl:'Iedereen / alles'},
+    {id:'bl3_w61', section:'Mensen & vragen', hz:'خسر', tr:'khusoor', nl:'Schoonvader'},
+    {id:'bl3_w62', section:'Mensen & vragen', hz:'خشو', tr:'khoshoo', nl:'Schoonmoeder', note:'Ook: khusoor madar'},
+    {id:'bl3_w63', section:'Mensen & vragen', hz:'دوست پسر', tr:'dust pesar', nl:'Vriend (relatie)', note:'Mijn vriend = dust pesar-am'},
+    {id:'bl3_w64', section:'Mensen & vragen', hz:'رفیق', tr:'rafeeq', nl:'Vriend / vriendin'},
+    {id:'bl3_w65', section:'Mensen & vragen', hz:'پسر', tr:'pesar', nl:'Jongen'},
+    {id:'bl3_w66', section:'Mensen & vragen', hz:'آفرین!', tr:'aafarin!', nl:'Goed zo!'},
+    {id:'bl3_w67', section:'Mensen & vragen', hz:'دقیق استه', tr:'daqeeq asta', nl:'Precies / dat klopt'},
+    {id:'bl3_w68', section:'Mensen & vragen', hz:'گم شده', tr:'gum shuda', nl:'Verdwaald / kwijt'}
+  ]
 }
 ];
