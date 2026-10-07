@@ -23,3 +23,13 @@ Zie het geheugenbestand over Hazaragi vs. Iraans Farsi (verplichte woordenlijst,
 ## Altijd naar main pushen
 
 De app draait live vanaf `main`. Zet daarom ELKE wijziging ook direct in `main` (na het committen op de werkbranch: `git push origin HEAD:main`, of eerst `main` binnenhalen/mergen als die verder is). Wijzigingen die alleen op een werkbranch staan, komen niet in de app van de gebruiker. Dit is expliciet door de gebruiker gevraagd.
+
+## Bijles-PDF's verwerken (Bijles-tab)
+
+De gebruiker stuurt PDF's van haar Hazaragi-bijles. Elke PDF wordt een preset-bijles in `js/bijlesdata.js` (`BIJLES_PRESET`), met ids `bl{n}_w{index}` — bestaande ids nooit wijzigen of hergebruiken (voortgang hangt eraan; tekst mag wel worden aangepast).
+- Het gedrukte deel van de PDF is een sjabloon met fouten; de getypte aantekeningen van de docent zijn leidend. Kleurmarkeringen (geel/roze) betekenen niet automatisch "fout" — alleen aanpassen als de docent er een verbetering bij zet.
+- Vaste correcties van de docent: khaar → kaar, sakht/khel → kheili, saba → farda, dinooz → dirooz, erooz → emrooz, yak-kham → yak-kam, ghosna → gushna, rahmat → tashakkur, mukhawum → mi-khayum / mi-khaam.
+- Het lesnummer in de PDF klopt vaak niet (les 5 was les 3, les 8 was les 4): nummer opvolgend en meld het.
+- Nederlandse betekenissen (`nl`) moeten uniek zijn over alle bijlessen heen (anders verwarrend bij meerkeuze/typen); geen `'`, `"`, `\` of backtick in de teksten.
+- **Nieuwe werkwoordsvormen** uit een les toevoegen aan `BJ_VERBS` in `js/bijles.js` (familie + Hazaragi-schrift + Roman-varianten + betekenis), zodat de oefening "Werkwoorden" ze herkent. Controleer na het toevoegen hoeveel bijleszinnen een herkend werkwoord hebben.
+- Twijfelgevallen niet stilletjes aanpassen: markeren en in het antwoord vermelden zodat ze het bij de docent kan navragen.
