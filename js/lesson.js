@@ -419,11 +419,11 @@ function rCloze(ex,body){
   const ltrs=['A','B','C','D'];
   const blankedHz=s.hz.replace(w.hz,'<span class="cloze-blank">___</span>');
   body.innerHTML=`
-    <div class="type-pill">Vul de zin aan</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Welk woord past in de zin?${tagBadgeHTML(wordTag(w))}</p>
+    <div class="type-pill">${ex.title||'Vul de zin aan'}</div>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">${ex.q||'Welk woord past in de zin?'}${tagBadgeHTML(wordTag(w))}</p>
     <div class="ctx-card" style="margin-bottom:20px">
       <div class="ctx-sentence">${blankedHz}</div>
-      <div class="ctx-tr">${s.tr.replace(w.tr,'___')}</div>
+      ${s.tr?`<div class="ctx-tr">${s.tr.replace(w.tr,'___')}</div>`:''}
       <div class="ctx-nl">"${s.nl}"</div>
     </div>
     <div class="choices">${choices.map((c,i)=>`
@@ -431,7 +431,7 @@ function rCloze(ex,body){
         <span class="ch-ltr">${ltrs[i]}</span>
         <div style="display:flex;flex-direction:column;gap:2px">
           <span style="font-family:'Noto Naskh Arabic',serif;font-size:24px;direction:rtl;line-height:1.5">${c}</span>
-          <span class="hz-roman" style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${CL&&CL.words?CL.words.find(x=>x.hz===c)?.tr||'':S.vocab[c]?.tr||''}</span>
+          <span class="hz-roman" style="font-size:11px;font-weight:700;color:var(--ink-l);font-style:italic">${ex.trs?(ex.trs[c]||''):CL&&CL.words?CL.words.find(x=>x.hz===c)?.tr||'':S.vocab[c]?.tr||''}</span>
         </div>
       </button>`).join('')}
     </div>`;
@@ -723,6 +723,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     showFB(true,'Goed!',nl,clozeSent?'':correct);
     sparkles();
     updMastery(correct,true,'mc');
+    if(clozeSent&&CL&&CL._bjHz) updMastery(clozeSent,true,'mc');
   }else{
     CC_COMBO=0;
     btn.classList.add('ng');WC++;
@@ -730,7 +731,9 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     document.querySelectorAll('.ch-btn').forEach(b=>{
       if(b.dataset.chosen===correct)b.classList.add('ok');
     });
-    const requeued=requeueWrong(correct);
+    const _bjCloze=clozeSent&&CL&&CL._bjHz;
+    const requeued=_bjCloze?(_bjRequeueCurrent(),true):requeueWrong(correct);
+    if(_bjCloze) updMastery(clozeSent,false,'mc');
     trackWrong(correct,nl,tr);
     trackConfusion(correct, chosen);
     const _tip2=_getWordTip(correct);
@@ -769,11 +772,11 @@ function rOrder(ex,body){
   const correct=correctWords.join(' ');
 
   body.innerHTML=`
-    <div class="type-pill">Zinsvolgorde</div>
-    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">Vertaal naar Afghaans:</p>
+    <div class="type-pill">${ex.title||'Zinsvolgorde'}</div>
+    <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">${ex.q||'Vertaal naar Afghaans:'}</p>
     <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;border:1.5px solid var(--rose-l)">
       <div style="font-size:16px;font-weight:700;color:var(--ink)">"${s.nl}"</div>
-      <div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
+      ${s.tr?`<div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>`:''}
     </div>
     <div class="wb-answer" id="ord-ans"></div>
     <div class="wb-bank" id="ord-bnk">${bank.map(w=>`
@@ -834,6 +837,7 @@ function chkOrder(correct,nl,tr){
     showFB(true,'Perfect! Juiste volgorde!',nl,'');
     sparkles();
     words.forEach(hz=>updMastery(hz,true,'order'));
+    if(CL&&CL._bjHz) updMastery(correct,true,'order');
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
@@ -843,7 +847,17 @@ function chkOrder(correct,nl,tr){
       if(v) trackWrong(hz,v.nl,v.tr);
       updMastery(hz,false,'order');
     });
+    if(CL&&CL._bjHz){ updMastery(correct,false,'order'); _bjRequeueCurrent(); }
   }
+}
+
+// Bijles: een fout beantwoorde zin/werkwoord-oefening komt één keer terug aan het eind
+function _bjRequeueCurrent(){
+  const ex=EXS[EI];
+  if(!ex||ex.requeued)return;
+  const copy={...ex,requeued:true};
+  if(copy.choices) copy.choices=shuffle([...copy.choices]);
+  EXS.push(copy);
 }
 
 function startChapterReview(chId){

@@ -75,6 +75,8 @@ function resolveVocabKey(token){
 
 function updMastery(hz, ok, exType){
   hz=bjKey(hz);
+  // Bijles-sessie: nooit de voortgang van gewone lessenwoorden aanraken
+  if(typeof CL!=='undefined'&&CL&&CL.id==='_bijles'&&!_BJ_HZ.has(hz))return;
   const store=vocabOf(hz);
   if(!store[hz])return;
   const v=store[hz];

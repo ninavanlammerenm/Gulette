@@ -160,7 +160,8 @@ function renderBijles(){
         <button class="fc${_bjPracticeScript()==='dari'?' on':''}" onclick="bjSetPracticeScript('dari')">دری Dari</button>
         <button class="fc${_bjPracticeScript()==='roman'?' on':''}" onclick="bjSetPracticeScript('roman')">Roman</button>
       </span>
-    </div>`:'';
+    </div>
+    ${_bjExtraButtons('')}`:'';
   wrap.innerHTML=_bjScriptBar()+hero+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
     list.map(l=>`<div class="bj-card" onclick="bjOpenLesson('${l.id}')">
       <div class="bj-card-body">
@@ -219,6 +220,7 @@ function renderBijlesDetail(){
       <button class="btn-home" style="flex:1" onclick="bjEditItem('${l.id}')">+ Woord of zin</button>
       ${l.items.length?`<button class="btn-home" style="flex:1;background:linear-gradient(145deg,#8AAF7A,#5A9A5A)" onclick="bjPractice('${l.id}')">Oefenen</button>`:''}
     </div>
+    ${_bjExtraButtons(l.id)}
     <div class="bj-items">${items||'<div class="bj-empty-sub" style="text-align:center;padding:20px">Nog niets toegevoegd. Tik op “+ Woord of zin”.</div>'}</div>`;
 }
 
@@ -392,4 +394,130 @@ function bjStartReview(){
   const due=Object.entries(_bjStore()).filter(([,v])=>isDue(v)).map(([hz])=>hz);
   if(!due.length){showToast('Geen bijleswoorden om te herhalen — kom later terug');return;}
   bjStartSession(shuffle(due).slice(0,25),'Bijles-herhaling');
+}
+
+// ══════════════════════════════════════════════════════
+// EXTRA OEFENINGEN: zinnen bouwen + werkwoorden kiezen
+// ══════════════════════════════════════════════════════
+// Werkwoordsvormen uit de bijlessen. tr: varianten zoals ze in de zinnen
+// voorkomen (eerste = standaard). Foute keuzes komen bij voorkeur uit
+// hetzelfde werkwoord (andere persoon), zodat je echt op de vervoeging let.
+const BJ_VERBS=[
+  {fam:'zijn',forms:[['استم','astum','ik ben'],['استی','asti','jij bent'],['استه','asta','hij/zij/het is'],['استید','asted','u bent / jullie zijn'],['بود','bood','was'],['نیست','nest','is niet']]},
+  {fam:'hebben',forms:[['دارم','darum|daram','ik heb'],['داری','dari|daari','jij hebt'],['داره','daara','hij/zij heeft'],['ندارم','nadarum|nadaram','ik heb niet'],['داشتم','dashtum','ik had']]},
+  {fam:'doen',forms:[['می‌کنم','mukunum|mi-konam','ik doe'],['می‌کنی','mukuni','jij doet'],['می‌کنه','mukuna','hij/zij doet'],['نمی‌کنم','nami-konam','ik doe niet']]},
+  {fam:'willen',forms:[['می‌خایم','mi-khayum','ik wil'],['نمی‌خایم','nami-khayum','ik wil niet'],['می‌خوام','mi-khaam','ik wil (mi-khaam)']]},
+  {fam:'eten/drinken',forms:[['می‌خوری','mukhuri','jij eet/drinkt'],['خوردم','khurdam','ik heb gegeten'],['خوردید','khurdid','u heeft gegeten'],['بخور','bukhur','eet!']]},
+  {fam:'gaan',forms:[['می‌ریم','murem','wij gaan']]},
+  {fam:'zien',forms:[['می‌بینم','mubinum','ik zie']]},
+  {fam:'studeren',forms:[['می‌خوانم','mi-khanum|mukhanum','ik studeer'],['می‌خوانی','mukhani','jij studeert']]},
+  {fam:'weten',forms:[['نمی‌دانم','nami-danom','ik weet het niet'],['نمی‌فهمم','nami-famum','ik begrijp het niet']]},
+  {fam:'regenen',forms:[['می‌باره','mubaara','het regent'],['نمی‌باره','nemubaara','het regent niet']]},
+  {fam:'zeggen',forms:[['می‌گن','mugan','ze zeggen']]},
+  {fam:'worden',forms:[['می‌شم','mayshum','ik word'],['می‌شه','maysha','het wordt']]},
+].map(v=>({fam:v.fam,forms:v.forms.map(([hz,tr,nl])=>({hz,trs:tr.split('|'),tr:tr.split('|')[0],nl,fam:v.fam}))}));
+const _BJ_ALLFORMS=BJ_VERBS.flatMap(v=>v.forms);
+const _bjPunct=/^[؟?!.,،:;«»"()]+|[؟?!.,،:;«»"()]+$/g;
+const _bjCore=t=>t.replace(_bjPunct,'');
+
+function _bjExtraButtons(lessonId){
+  const arg=lessonId?`'${lessonId}'`:'';
+  return `<div class="bj-extra-row">
+    <button class="bj-extra-btn" onclick="bjStartExtra('order',${arg||'null'})">🧩<span>Zinnen bouwen</span></button>
+    <button class="bj-extra-btn" onclick="bjStartExtra('verb',${arg||'null'})">🔤<span>Werkwoorden</span></button>
+  </div>`;
+}
+
+// Roman-alias (zelfde als bij gewone bijles-oefeningen)
+function _bjAliasMaps(roman){
+  const st=_bjStore(), alias={}, toRm={};
+  if(roman){
+    Object.entries(st).forEach(([hz,v])=>{
+      const r=(v.tr||'').trim();
+      if(r&&!alias[r]&&!st[r]){ alias[r]=hz; toRm[hz]=r; const j=r.split(/\s+/).join(' '); if(j!==r&&!alias[j]) alias[j]=hz; }
+    });
+  }
+  return {alias,toRm};
+}
+
+// Vind het (laatste) werkwoord in een zin; geeft de kern-token + positie terug
+function _bjFindVerb(text,roman){
+  const toks=text.split(/\s+/);
+  for(let i=toks.length-1;i>=0;i--){
+    const core=_bjCore(toks[i]);
+    const f=roman?_BJ_ALLFORMS.find(x=>x.trs.includes(core.toLowerCase())):_BJ_ALLFORMS.find(x=>x.hz===core);
+    if(f){
+      // rCloze vervangt het eerste voorkomen — dat moet precies dit woord zijn
+      let pos=0; for(let k=0;k<i;k++) pos+=toks[k].length+1;
+      pos+=toks[i].indexOf(core);
+      if(text.indexOf(core)!==pos) return null;
+      return {core,form:f};
+    }
+  }
+  return null;
+}
+
+function _bjVerbChoices(form,correctLabel,roman){
+  const lbl=f=>roman?f.tr:f.hz;
+  const same=BJ_VERBS.find(v=>v.fam===form.fam).forms.filter(f=>f!==form&&f.nl!==form.nl);
+  const other=_BJ_ALLFORMS.filter(f=>f.fam!==form.fam);
+  const picks=[...shuffle(same),...shuffle(other)].map(lbl).filter(x=>x!==correctLabel);
+  const uniq=[...new Set(picks)].slice(0,3);
+  return shuffle([correctLabel,...uniq]);
+}
+
+function bjStartExtra(kind,lessonId){
+  seedBijles();
+  const st=_bjStore();
+  const roman=_bjPracticeScript()==='roman';
+  const lessons=lessonId?[_bjFind(lessonId)].filter(Boolean):_bjList();
+  const seen=new Set();
+  const sents=lessons.flatMap(l=>l.items).filter(it=>{
+    if(seen.has(it.hz)||!st[it.hz])return false; seen.add(it.hz);
+    const n=it.hz.trim().split(/\s+/).length;
+    return n>=3&&n<=10&&!it.hz.includes('…');
+  });
+  const {alias}=_bjAliasMaps(roman);
+  const textOf=it=>roman?(it.tr||'').trim():it.hz.trim();
+  const exs=[], used=new Set(), trs={};
+  if(kind==='order'){
+    const pool=sents.filter(it=>textOf(it));
+    shuffle(pool).slice(0,10).forEach(it=>{
+      const toks=textOf(it).split(/\s+/);
+      const others=new Set(pool.filter(x=>x!==it).flatMap(x=>textOf(x).split(/\s+/)));
+      toks.forEach(t=>others.delete(t));
+      exs.push({type:'order',title:'Zinnen bouwen',q:'Zet de woorden in de goede volgorde:',
+        s:{hz:toks.join(' '),nl:it.nl,tr:roman?'':(it.tr||'')},distractors:shuffle([...others]).slice(0,2)});
+      used.add(it.hz);
+    });
+  } else {
+    shuffle(sents).forEach(it=>{
+      if(exs.length>=10)return;
+      const text=textOf(it); if(!text)return;
+      const v=_bjFindVerb(text,roman); if(!v)return;
+      let sTr='', wTr='';
+      if(!roman&&it.tr){
+        const tv=_bjFindVerb(it.tr.trim(),true);
+        if(tv&&tv.form===v.form){ sTr=it.tr.trim(); wTr=tv.core; }
+      }
+      const choices=_bjVerbChoices(v.form,v.core,roman);
+      if(!roman) choices.forEach(c=>{ const f=_BJ_ALLFORMS.find(x=>x.hz===c); if(f) trs[c]=f.tr; });
+      exs.push({type:'cloze',title:'Werkwoord kiezen',q:'Kies het juiste werkwoord:',trs:roman?{}:{...trs},
+        s:{hz:text,nl:it.nl,tr:sTr},w:{hz:v.core,nl:`${v.form.nl} (${v.form.fam})`,tr:wTr},choices});
+      used.add(it.hz);
+    });
+  }
+  if(!exs.length){showToast(kind==='order'?'Nog geen zinnen om te bouwen':'Nog geen zinnen met een werkwoord gevonden');return;}
+  CL={
+    id:'_bijles',
+    title:kind==='order'?'Zinnen bouwen':'Werkwoorden',
+    xp:Math.min(60,exs.length*4),
+    words:[],
+    sentences:[],
+    _bjHz:used,
+    _bjAlias:alias,
+    _bjRoman:roman
+  };
+  EXS=exs;
+  _launchLesson();
 }
