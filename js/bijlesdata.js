@@ -280,5 +280,88 @@ Huiswerk: beantwoord de vier oefenvragen-sets uit de PDF hardop en speel rollens
     {id:'bl3_w67', section:'Mensen & vragen', hz:'دقیق استه', tr:'daqeeq asta', nl:'Precies / dat klopt'},
     {id:'bl3_w68', section:'Mensen & vragen', hz:'گم شده', tr:'gum shuda', nl:'Verdwaald / kwijt'}
   ]
+},
+{
+  id:'bl4',
+  title:'Les 4: tijd, dagen en planning',
+  date:'2026-10-07',
+  notes:`Tijd, dagen van de week en planning.
+
+Hoe laat? Saat chand (baja) asta? → saat char-e baja asta = het is vier uur
+Half = nim · 2:30 = do wa nim of do o si
+Kwart over drie = se o panzda · kwart voor vijf = panzda kam panj
+Minuten: da daqiqa kam do = tien voor twee · panj daqiqa tir shuda = vijf over
+
+Hebben: emrooz … darum (vandaag heb ik) · farda … darum (morgen heb ik) · dirooz … dashtum (gisteren had ik)
+Ik wil = mi-khaam (ook: mi-khayum) · Ik ben blij = khoshum / khosh-halum
+Shanba (zaterdag) is de eerste dag van de Afghaanse week; juma (vrijdag) is de familiedag.
+
+Huiswerk: beantwoord de drie sets oefenvragen hardop en oefen dialoog A, B en C met je docent (ook met de rollen omgedraaid).`,
+  items:[
+    {id:'bl4_w0', section:'Hoe laat is het?', hz:'ساعت چند بجه استه؟', tr:'saat chand baja asta?', nl:'Hoe laat is het nu?'},
+    {id:'bl4_w1', section:'Hoe laat is het?', hz:'بجه', tr:'baja', nl:'Uur (bij het noemen van de tijd)', note:'saat char-e baja = vier uur'},
+    {id:'bl4_w2', section:'Hoe laat is het?', hz:'ساعت چار بجه استه', tr:'saat char-e baja asta', nl:'Het is vier uur (met baja)'},
+    {id:'bl4_w3', section:'Hoe laat is het?', hz:'نیم', tr:'nim', nl:'Half'},
+    {id:'bl4_w4', section:'Hoe laat is het?', hz:'ساعت دو و نیم استه', tr:'saat do wa nim asta', nl:'Het is half drie (2:30)', note:'Ook: do o si (twee en dertig)'},
+    {id:'bl4_w5', section:'Hoe laat is het?', hz:'دو و سی', tr:'do o si', nl:'2:30 (twee en dertig)'},
+    {id:'bl4_w6', section:'Hoe laat is het?', hz:'ساعت سه و پانزده استه', tr:'saat se o panzda asta', nl:'Het is kwart over drie (3:15)'},
+    {id:'bl4_w7', section:'Hoe laat is het?', hz:'پانزده کم پنج استه', tr:'panzda kam panj asta', nl:'Het is kwart voor vijf (4:45)'},
+    {id:'bl4_w8', section:'Hoe laat is het?', hz:'ده دقیقه کم دو استه', tr:'da daqiqa kam do asta', nl:'Het is tien voor twee (1:50)'},
+    {id:'bl4_w9', section:'Hoe laat is het?', hz:'پنج دقیقه تیر شده', tr:'panj daqiqa tir shuda', nl:'Het is vijf over (vijf minuten voorbij)'},
+    {id:'bl4_w10', section:'Hoe laat is het?', hz:'تیر شده', tr:'tir shuda', nl:'Voorbij / over (bij de tijd)'},
+    {id:'bl4_w11', section:'Hoe laat is het?', hz:'صبح', tr:'subh', nl:'Ochtend', note:'Ook: sabh'},
+    {id:'bl4_w12', section:'Hoe laat is het?', hz:'چاشت', tr:'chasht', nl:'Middag (rond twaalf uur)', note:'Ook: zohr'},
+    {id:'bl4_w13', section:'Hoe laat is het?', hz:'پیشین', tr:'peshin', nl:'Namiddag', note:'Ook: bad az chasht'},
+    {id:'bl4_w14', section:'Hoe laat is het?', hz:'شب', tr:'shab', nl:'Avond / nacht', note:'Ook: shaw'},
+    {id:'bl4_w15', section:'Hoe laat is het?', hz:'وقت چای استه!', tr:'wakht-e chai asta!', nl:'Het is theetijd!'},
+    {id:'bl4_w16', section:'Hoe laat is het?', hz:'تشکر استاد، یک‌کم چای گرم می‌خوام', tr:'tashakkur ustaad, yak-kam chai-ye garm mi-khaam', nl:'Dank u, ik wil graag een beetje warme thee', note:'mi-khaam = ik wil (ook: mi-khayum)'},
+    {id:'bl4_w17', section:'Dagen van de week', hz:'روز', tr:'roz', nl:'Dag'},
+    {id:'bl4_w18', section:'Dagen van de week', hz:'هفته', tr:'hafta', nl:'Week'},
+    {id:'bl4_w19', section:'Dagen van de week', hz:'شنبه', tr:'shanba', nl:'Zaterdag', note:'Eerste dag van de Afghaanse week'},
+    {id:'bl4_w20', section:'Dagen van de week', hz:'یکشنبه', tr:'yak-shanba', nl:'Zondag'},
+    {id:'bl4_w21', section:'Dagen van de week', hz:'دوشنبه', tr:'do-shanba', nl:'Maandag'},
+    {id:'bl4_w22', section:'Dagen van de week', hz:'سه‌شنبه', tr:'se-shanba', nl:'Dinsdag'},
+    {id:'bl4_w23', section:'Dagen van de week', hz:'چارشنبه', tr:'char-shanba', nl:'Woensdag'},
+    {id:'bl4_w24', section:'Dagen van de week', hz:'پنجشنبه', tr:'panj-shanba', nl:'Donderdag'},
+    {id:'bl4_w25', section:'Dagen van de week', hz:'جمعه', tr:'juma', nl:'Vrijdag', note:'Weekend en familiedag'},
+    {id:'bl4_w26', section:'Dagen van de week', hz:'پس‌فردا', tr:'pas-farda', nl:'Overmorgen'},
+    {id:'bl4_w27', section:'Dagen van de week', hz:'پری دیروز', tr:'pari-dirooz', nl:'Eergisteren'},
+    {id:'bl4_w28', section:'Dagen van de week', hz:'این هفته', tr:'in hafta', nl:'Deze week'},
+    {id:'bl4_w29', section:'Dagen van de week', hz:'هفته بعدی', tr:'hafta-ye badi', nl:'Volgende week'},
+    {id:'bl4_w30', section:'Dagen van de week', hz:'امروز چه روز استه؟', tr:'emrooz che roz asta?', nl:'Welke dag is het vandaag?'},
+    {id:'bl4_w31', section:'Dagen van de week', hz:'امروز دوشنبه استه', tr:'emrooz do-shanba asta', nl:'Vandaag is het maandag'},
+    {id:'bl4_w32', section:'Dagen van de week', hz:'فردا سه‌شنبه استه', tr:'farda se-shanba asta', nl:'Morgen is het dinsdag'},
+    {id:'bl4_w33', section:'Dagen van de week', hz:'جمعه ساعت پنج می‌ریم خانه فامیل', tr:'juma saat-e panj murem khana-ye faamil', nl:'Vrijdag om vijf uur gaan we naar de familie'},
+    {id:'bl4_w34', section:'Dagen van de week', hz:'خوب استه! جمعه فامیل را می‌بینم، خیلی خوشحالم', tr:'khub asta! juma faamil ra mubinum, kheili khosh-halum', nl:'Fijn! Vrijdag zie ik de familie, ik ben heel blij'},
+    {id:'bl4_w35', section:'Dagen van de week', hz:'خوشم', tr:'khoshum', nl:'Ik ben blij', note:'Ook: khosh-halum'},
+    {id:'bl4_w36', section:'Dagen van de week', hz:'مکتب', tr:'maktab', nl:'School'},
+    {id:'bl4_w37', section:'Dagen van de week', hz:'هیچ کار نمی‌کنم', tr:'hich kaar nami-konam', nl:'Ik doe niets'},
+    {id:'bl4_w38', section:'Dagen van de week', hz:'امروز وقت دارم', tr:'emrooz wakht darum', nl:'Vandaag heb ik tijd'},
+    {id:'bl4_w39', section:'Dagen van de week', hz:'فردا کار دارم', tr:'farda kaar darum', nl:'Morgen heb ik werk'},
+    {id:'bl4_w40', section:'Dagen van de week', hz:'دیروز وقت داشتم', tr:'dirooz wakht dashtum', nl:'Gisteren had ik tijd', note:'dashtum = ik had'},
+    {id:'bl4_w41', section:'Planning & tijdsduur', hz:'از … تا …', tr:'az … ta …', nl:'Van … tot …'},
+    {id:'bl4_w42', section:'Planning & tijdsduur', hz:'چند ساعت؟', tr:'chand saat?', nl:'Hoeveel uur?'},
+    {id:'bl4_w43', section:'Planning & tijdsduur', hz:'یک ساعت', tr:'yak saat', nl:'Eén uur (tijdsduur)'},
+    {id:'bl4_w44', section:'Planning & tijdsduur', hz:'دو ساعت', tr:'do saat', nl:'Twee uur (tijdsduur)'},
+    {id:'bl4_w45', section:'Planning & tijdsduur', hz:'خیلی وقت', tr:'kheili wakht', nl:'Lange tijd / veel tijd'},
+    {id:'bl4_w46', section:'Planning & tijdsduur', hz:'وقت دارم', tr:'wakht darum', nl:'Ik heb tijd'},
+    {id:'bl4_w47', section:'Planning & tijdsduur', hz:'وقت ندارم', tr:'wakht nadarum', nl:'Ik heb geen tijd'},
+    {id:'bl4_w48', section:'Planning & tijdsduur', hz:'از ساعت هشت تا چار', tr:'az saat-e hasht ta char', nl:'Van acht tot vier uur'},
+    {id:'bl4_w49', section:'Planning & tijdsduur', hz:'ساعت چند می‌ریم؟', tr:'saat-e chand murem?', nl:'Hoe laat gaan we?'},
+    {id:'bl4_w50', section:'Planning & tijdsduur', hz:'از ساعت چند تا ساعت چند کار می‌کنی؟', tr:'az saat-e chand ta saat-e chand kaar mukuni?', nl:'Van hoe laat tot hoe laat werk je?'},
+    {id:'bl4_w51', section:'Planning & tijdsduur', hz:'من از ساعت هشت صبح تا ساعت چار پیشین کار می‌کنم', tr:'ma az saat-e hasht-e subh ta saat-e char-e peshin kaar mukunum', nl:'Ik werk van acht uur in de ochtend tot vier uur in de middag'},
+    {id:'bl4_w52', section:'Planning & tijdsduur', hz:'چند ساعت کار می‌کنی؟', tr:'chand saat kaar mukuni?', nl:'Hoeveel uur werk je?'},
+    {id:'bl4_w53', section:'Planning & tijdsduur', hz:'بعد از کار', tr:'bad az kaar', nl:'Na het werk'},
+    {id:'bl4_w54', section:'Planning & tijdsduur', hz:'چه برنامه استه؟', tr:'che programa asta?', nl:'Wat is het plan?'},
+    {id:'bl4_w55', section:'Planning & tijdsduur', hz:'تیار', tr:'tayar', nl:'Klaar / gereed'},
+    {id:'bl4_w56', section:'Dagritme', hz:'هر روز', tr:'har roz', nl:'Elke dag'},
+    {id:'bl4_w57', section:'Dagritme', hz:'از خواب بیدار می‌شم', tr:'az khwab bedar mayshum', nl:'Ik word wakker'},
+    {id:'bl4_w58', section:'Dagritme', hz:'من هر روز ساعت هفت صبح از خواب بیدار می‌شم', tr:'ma har roz saat-e haft-e subh az khwab bedar mayshum', nl:'Ik word elke dag om zeven uur wakker'},
+    {id:'bl4_w59', section:'Dagritme', hz:'صبحانه', tr:'sobhana', nl:'Ontbijt'},
+    {id:'bl4_w60', section:'Dagritme', hz:'نان پیشین', tr:'naan-e peshin', nl:'Lunch'},
+    {id:'bl4_w61', section:'Dagritme', hz:'کار من خلاص می‌شه', tr:'kaar-e ma khalas maysha', nl:'Mijn werk is klaar'},
+    {id:'bl4_w62', section:'Dagritme', hz:'مرکز خرید', tr:'markaz-e kharid', nl:'Winkelcentrum'},
+    {id:'bl4_w63', section:'Dagritme', hz:'خوش بگذره!', tr:'khosh bogzara!', nl:'Veel plezier!'}
+  ]
 }
 ];
