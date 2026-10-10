@@ -837,7 +837,7 @@ function chkOrder(correct,nl,tr){
     showFB(true,'Perfect! Juiste volgorde!',nl,'');
     sparkles();
     words.forEach(hz=>updMastery(hz,true,'order'));
-    if(CL&&CL._bjHz) updMastery(correct,true,'order');
+    if(CL&&CL._bjHz) updMastery(correct,true,'type');
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
@@ -847,7 +847,7 @@ function chkOrder(correct,nl,tr){
       if(v) trackWrong(hz,v.nl,v.tr);
       updMastery(hz,false,'order');
     });
-    if(CL&&CL._bjHz){ updMastery(correct,false,'order'); _bjRequeueCurrent(); }
+    if(CL&&CL._bjHz){ updMastery(correct,false,'type'); _bjRequeueCurrent(); }
   }
 }
 
@@ -1016,7 +1016,7 @@ function showGrammarHint(){
 function startDailyReview(){
   const allEntries=Object.entries(S.vocab);
   const due=allEntries.filter(([,v])=>isDue(v));
-  const bjDueN=bjInDaily()?Object.values(S.bvocab||{}).filter(isDue).length:0;
+  const bjDueN=bjInDaily()?Object.entries(S.bvocab||{}).filter(([hz,v])=>bjDailyOk(hz,v)).length:0;
   if(due.length===0&&bjDueN===0){showToast('Geen reviews nu! Kom later terug.');return;}
 
   const dueSlice=shuffle(due).slice(0,25);
@@ -1035,7 +1035,7 @@ function startDailyReview(){
   }));
   // Bijleswoorden die klaar staan doen mee (eigen voortgang in S.bvocab)
   const inReview=new Set(reviewWords.map(w=>w.hz));
-  const bjDue=bjInDaily()?Object.entries(S.bvocab||{}).filter(([hz,v])=>isDue(v)&&!inReview.has(hz)):[];
+  const bjDue=bjInDaily()?Object.entries(S.bvocab||{}).filter(([hz,v])=>bjDailyOk(hz,v)&&!inReview.has(hz)):[];
   const bjHz=new Set();
   shuffle(bjDue).slice(0,10).forEach(([hz,v])=>{
     bjHz.add(hz);

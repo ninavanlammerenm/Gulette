@@ -120,7 +120,7 @@ function renderHome(){
 
   // Review hero card
   const allVocab=Object.values(S.vocab);
-  const due=allVocab.filter(v=>isDue(v)).length+(bjInDaily()?Object.values(S.bvocab||{}).filter(isDue).length:0);
+  const due=allVocab.filter(v=>isDue(v)).length+(bjInDaily()?Object.entries(S.bvocab||{}).filter(([hz,v])=>bjDailyOk(hz,v)).length:0);
   const total=Object.keys(S.vocab).length;
   const hero=document.getElementById('review-hero');
   if(due>0){
@@ -475,7 +475,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v82 · Sakura';
+  if(_vEl)_vEl.textContent='v83 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════

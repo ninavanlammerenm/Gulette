@@ -25,6 +25,8 @@ let sciIdx=0;
 let _BJ_HZ=new Set();
 // Doen bijleswoorden mee in de dagelijkse herhaling? Standaard niet (los).
 function bjInDaily(){ return S.bjInDaily===true; }
+// Bijles-item mag mee in de dagelijkse herhaling: al geleerd, aan de beurt, en een woord (geen zin)
+function bjDailyOk(hz,v){ return !!v&&v.intro===true&&isDue(v)&&hz.trim().split(/\s+/).length<3; }
 // Bij oefenen in Roman is de getoonde tekst Latijns; _BJ_ALIAS vertaalt die
 // terug naar de echte sleutel in S.bvocab (voor voortgang en uitspraak).
 let _BJ_ALIAS={};

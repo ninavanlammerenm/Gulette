@@ -786,9 +786,17 @@ body.bj-roman-ex .wb-answer,body.bj-roman-ex .wb-bank,body.bj-roman-ex .w-tile,b
 body.bj-roman-ex .hz-script{font-size:30px;font-weight:900;text-align:center;overflow-wrap:anywhere;line-height:1.3}
 body.bj-roman-ex .t-inp{font-size:18px;text-align:left}
 body.bj-roman-ex #l-body [style*="font-size:42px"]{font-size:24px!important}
-.bj-extra-row{display:flex;gap:8px;margin:0 0 14px}
-.bj-extra-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--white);border:1.5px solid var(--rose-l);border-radius:var(--r-sm);padding:12px 10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;color:var(--rose-d);cursor:pointer;box-shadow:var(--sh)}
-.bj-extra-btn:active{transform:scale(.98)}
+.bj-bar{height:6px;background:var(--ink-xl);border-radius:6px;overflow:hidden;margin-top:6px}
+.bj-bar-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-d));border-radius:6px;transition:width .3s}
+.bj-card-steps{display:flex;gap:12px;font-size:11.5px;font-weight:800;color:var(--ink-m);margin-top:6px}
+.bj-steps{background:var(--white);border:1px solid var(--ink-xl);border-radius:var(--r-sm);box-shadow:var(--sh);padding:12px 14px;margin-bottom:12px;display:flex;flex-direction:column;gap:10px}
+.bj-step-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;color:var(--ink)}
+.bj-step-top span{font-size:12px;font-weight:800;color:var(--ink-m)}
+.bj-step.locked{opacity:.6}
+.bj-practice-btn{margin-bottom:4px;background:linear-gradient(145deg,#8AAF7A,#5A9A5A)}
+.bj-link-btn{display:block;width:100%;background:none;border:none;font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:800;color:var(--rose-d);text-decoration:underline;cursor:pointer;padding:6px;margin-bottom:10px}
+.bj-tabs{display:flex;gap:7px;margin:0 0 12px;flex-wrap:wrap}
+.bj-lock-note{background:var(--rose-xl);border:1px solid var(--rose-l);border-radius:var(--r-sm);padding:10px 12px;font-size:12.5px;font-weight:700;color:var(--ink-m);line-height:1.5;margin-bottom:10px}
 .bj-hint{font-size:11.5px;font-weight:700;color:var(--ink-l);text-align:center;margin-top:10px}
 
 body.dark-mode{background:#2A1F1A}
