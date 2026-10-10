@@ -355,11 +355,11 @@ Huiswerk: beantwoord de drie sets oefenvragen hardop en oefen dialoog A, B en C 
     {id:'bl4_w54', section:'Planning & tijdsduur', hz:'چه برنامه استه؟', tr:'che programa asta?', nl:'Wat is het plan?'},
     {id:'bl4_w55', section:'Planning & tijdsduur', hz:'تیار', tr:'tayar', nl:'Klaar / gereed'},
     {id:'bl4_w56', section:'Dagritme', hz:'هر روز', tr:'har roz', nl:'Elke dag'},
-    {id:'bl4_w57', section:'Dagritme', hz:'از خواب بیدار می‌شم', tr:'az khwab bedar mayshum', nl:'Ik word wakker'},
-    {id:'bl4_w58', section:'Dagritme', hz:'من هر روز ساعت هفت صبح از خواب بیدار می‌شم', tr:'ma har roz saat-e haft-e subh az khwab bedar mayshum', nl:'Ik word elke dag om zeven uur wakker'},
+    {id:'bl4_w57', section:'Dagritme', hz:'از خواب بیدار می‌شم', tr:'az khwab bedar mi-shum', nl:'Ik word wakker', note:'mi-shum: de klinker na de m spreek je nauwelijks uit (klinkt als m’shum)'},
+    {id:'bl4_w58', section:'Dagritme', hz:'من هر روز ساعت هفت صبح از خواب بیدار می‌شم', tr:'ma har roz saat-e haft-e subh az khwab bedar mi-shum', nl:'Ik word elke dag om zeven uur wakker'},
     {id:'bl4_w59', section:'Dagritme', hz:'صبحانه', tr:'sobhana', nl:'Ontbijt'},
     {id:'bl4_w60', section:'Dagritme', hz:'نان پیشین', tr:'naan-e peshin', nl:'Lunch'},
-    {id:'bl4_w61', section:'Dagritme', hz:'کار من خلاص می‌شه', tr:'kaar-e ma khalas maysha', nl:'Mijn werk is klaar'},
+    {id:'bl4_w61', section:'Dagritme', hz:'کار من خلاص می‌شه', tr:'kaar-e ma khalas mi-sha', nl:'Mijn werk is klaar'},
     {id:'bl4_w62', section:'Dagritme', hz:'مرکز خرید', tr:'markaz-e kharid', nl:'Winkelcentrum'},
     {id:'bl4_w63', section:'Dagritme', hz:'خوش بگذره!', tr:'khosh bogzara!', nl:'Veel plezier!'}
   ]
@@ -378,6 +378,7 @@ Zijn (verleden): ma budum · tu budi · oo bud · mo budim · shuma budin · ona
 
 Voor = qabl az · na = bad az · daarna = bad · meestal = mamullan
 Met mi-: mi-shoyam (ik was) · mi-khurum (ik eet) · mi-binum (ik kijk) · mi-shum (ik word)
+Bij mi-shum / mi-sha spreek je de klinker na de m nauwelijks uit: het klinkt als m’shum / m’sha.
 In/op = da (niet dar): da khana = thuis · da kaar = op het werk
 
 Huiswerk: beantwoord de zes oefenvragen en vertel je eigen dagritme (dialoog A en B).`,
