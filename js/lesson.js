@@ -322,6 +322,7 @@ function renderEx(){
   else if(ex.type==='order')   rOrder(ex,body);
   else if(ex.type==='listen')     rListen(ex,body);
   else if(ex.type==='phase_break') rPhaseBreak(ex,body);
+  else if(ex.type==='answer') bjRenderAnswer(ex,body);
   else nextEx();
 }
 
@@ -778,10 +779,10 @@ function rOrder(ex,body){
   body.innerHTML=`
     <div class="type-pill">${ex.title||'Zinsvolgorde'}</div>
     <p style="font-size:15px;font-weight:800;color:var(--ink);margin-bottom:14px">${ex.q||'Vertaal naar Afghaans:'}</p>
-    <div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;border:1.5px solid var(--rose-l)">
+    ${ex.src?`<div class="ctx-card" style="margin-bottom:16px"><div class="ctx-sentence">${ex.src}</div></div>`:`<div style="background:var(--rose-xl);border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;border:1.5px solid var(--rose-l)">
       <div style="font-size:16px;font-weight:700;color:var(--ink)">"${s.nl}"</div>
       ${s.tr?`<div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>`:''}
-    </div>
+    </div>`}
     <div class="wb-answer" id="ord-ans"></div>
     <div class="wb-bank" id="ord-bnk">${bank.map(w=>`
       <button class="w-tile" data-action="ordmove" data-word="${w}">${w}</button>`).join('')}
@@ -829,6 +830,8 @@ function chkSentenceMC(btn,chosen,correct,hz,tr){
 
 function chkOrder(correct,nl,tr){
   if(WAITING)return;WAITING=true;
+  const _ex=EXS[EI]||{};
+  const _bjType=_ex.bjExType||'order_bj', _bjKeyHz=_ex.key||correct;
   const tiles=document.getElementById('ord-ans').querySelectorAll('.ans');
   const ans=Array.from(tiles).map(t=>t.dataset.word).join(' ');
   const words=correct.split(' ').filter(Boolean).map(resolveVocabKey);
@@ -837,21 +840,21 @@ function chkOrder(correct,nl,tr){
     CC_COMBO++;
     if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
     sfxCorrect();
-    setTimeout(()=>speakHz(correct),300);
-    showFB(true,'Perfect! Juiste volgorde!',nl,'');
+    if(!(_ex.bjExType==='conj_bj'&&CL&&CL._bjRoman)) setTimeout(()=>speakHz(correct),300);
+    showFB(true,_ex.bjExType==='conj_bj'?'Goed vervoegd!':'Perfect! Juiste volgorde!',nl,'');
     sparkles();
     words.forEach(hz=>updMastery(hz,true,'order'));
-    if(CL&&CL._bjHz) updMastery(correct,true,'order_bj');
+    if(CL&&CL._bjHz) updMastery(_bjKeyHz,true,_bjType);
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
-    showFB(false,_encourageMsg(),'Juist: '+tr,correct);
+    showFB(false,_encourageMsg(),'Juist: '+(tr||correct),correct);
     words.forEach(hz=>{
       const v=S.vocab[hz];
       if(v) trackWrong(hz,v.nl,v.tr);
       updMastery(hz,false,'order');
     });
-    if(CL&&CL._bjHz){ updMastery(correct,false,'order_bj'); _bjRequeueCurrent(); }
+    if(CL&&CL._bjHz){ updMastery(_bjKeyHz,false,_bjType); _bjRequeueCurrent(); }
   }
 }
 

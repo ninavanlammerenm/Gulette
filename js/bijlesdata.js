@@ -432,3 +432,47 @@ Huiswerk: beantwoord de zes oefenvragen en vertel je eigen dagritme (dialoog A e
   ]
 }
 ];
+
+// ══════════════════════════════════════════════════════
+// OEFENVRAGEN VAN DE DOCENT — per bijles (ids nooit hergebruiken)
+// expect: Hazaragi-werkwoordsvormen die in het antwoord horen (achteraan)
+// ══════════════════════════════════════════════════════
+const BIJLES_QUESTIONS={
+  bl1:[
+    {id:'bl1_q0', q:'چطور استی؟', qtr:'chetor asti?', nl:'Hoe gaat het met je?', expect:['استم'], ex:'khub astum, khoda ra shukr', exhz:'خوب استم، خدا را شکر'},
+    {id:'bl1_q1', q:'نام تو چی استه؟', qtr:'naam-e tu che asta?', nl:'Hoe heet je?', expect:['استه'], ex:'naam-e ma Nina asta', exhz:'نام من نینا استه'},
+    {id:'bl1_q2', q:'تو از کجا استی؟', qtr:'tu az kuja asti?', nl:'Waar kom je vandaan?', expect:['استم'], ex:'ma az Holland astum', exhz:'من از هالند استم'},
+    {id:'bl1_q3', q:'کجا زندگی می‌کنی؟', qtr:'kuja zendagi mukuni?', nl:'Waar woon je?', expect:['می‌کنم'], ex:'ma da Holland zendagi mukunum', exhz:'من دَ هالند زندگی می‌کنم'},
+    {id:'bl1_q4', q:'تو برار یا خوار داری؟', qtr:'tu braar ya khuaar dari?', nl:'Heb je broers of zussen?', expect:['دارم','ندارم'], ex:'ma yak braar darum', exhz:'من یک برار دارم'},
+    {id:'bl1_q5', q:'امروز هوا چطور استه؟', qtr:'emrooz hawa chetor asta?', nl:'Hoe is het weer vandaag?', expect:['استه'], ex:'emrooz hawa sard wa abri asta', exhz:'امروز هوا سرد و ابری استه'}
+  ],
+  bl2:[
+    {id:'bl2_q0', q:'چای می‌خوری یا آب؟', qtr:'chai mukhuri ya aab?', nl:'Wil je thee of water?', expect:['می‌خایم','می‌خوام'], ex:'tashakkur, yak-kam chai mi-khayum', exhz:'تشکر، یک‌کم چای می‌خایم'},
+    {id:'bl2_q1', q:'نان خوردید یا گشنه استی؟', qtr:'naan khurdid ya gushna asti?', nl:'Heb je gegeten of heb je honger?', expect:['خوردم','استم'], ex:'aree, khurdam, seer astum', exhz:'آری، خوردم، سیر استم'},
+    {id:'bl2_q2', q:'ساعت چند استه؟', qtr:'saat chand asta?', nl:'Hoe laat is het?', expect:['استه'], ex:'saat char asta', exhz:'ساعت چار استه'},
+    {id:'bl2_q3', q:'فردا وقت داری؟', qtr:'farda wakht dari?', nl:'Heb je morgen tijd?', expect:['دارم','ندارم'], ex:'bale, farda saat do wakht darum', exhz:'بله، فردا ساعت دو وقت دارم'},
+    {id:'bl2_q4', q:'کمک می‌کنی؟', qtr:'kumak mukuni?', nl:'Help je mee?', expect:['می‌کنم'], ex:'bale, kumak mukunum', exhz:'بله، کمک می‌کنم'}
+  ],
+  bl3:[
+    {id:'bl3_q0', q:'تو قد بلند استی یا قد کوتاه؟', qtr:'tu ghad-boland asti ya ghad-kootah?', nl:'Ben je lang of klein?', expect:['استم'], ex:'ma ghad-motevaset astum', exhz:'من قد متوسط استم'},
+    {id:'bl3_q1', q:'تو چه رنگ مو داری؟', qtr:'tu che rang moo daari?', nl:'Welke kleur haar heb je?', expect:['دارم'], ex:'ma moo-ye ghahve-i darum', exhz:'من موی قهوه‌ای دارم'},
+    {id:'bl3_q2', q:'تو چه رنگ چشم داری؟', qtr:'tu che rang cheshm daari?', nl:'Welke kleur ogen heb je?', expect:['دارم'], ex:'ma cheshm-e aabi darum', exhz:'من چشم آبی دارم'},
+    {id:'bl3_q3', q:'آیه تو چه رنگ مو داره؟', qtr:'aya-e tu che rang moo daara?', nl:'Welke kleur haar heeft je moeder?', expect:['داره'], ex:'aya-e ma moo-ye boor daara', exhz:'آیه من موی بور داره'},
+    {id:'bl3_q4', q:'صورت تو چطور استه؟', qtr:'soorat-e tu chetor asta?', nl:'Hoe ziet je gezicht eruit?', expect:['استه'], ex:'soorat-e ma gerd asta', exhz:'صورت من گرد استه'}
+  ],
+  bl4:[
+    {id:'bl4_q0', q:'ساعت چند بجه استه؟', qtr:'saat chand baja asta?', nl:'Hoe laat is het nu?', expect:['استه'], ex:'saat do wa nim asta', exhz:'ساعت دو و نیم استه'},
+    {id:'bl4_q1', q:'امروز چه روز استه؟', qtr:'emrooz che roz asta?', nl:'Welke dag is het vandaag?', expect:['استه'], ex:'emrooz do-shanba asta', exhz:'امروز دوشنبه استه'},
+    {id:'bl4_q2', q:'از ساعت چند تا ساعت چند کار می‌کنی؟', qtr:'az saat-e chand ta saat-e chand kaar mukuni?', nl:'Van hoe laat tot hoe laat werk je?', expect:['می‌کنم'], ex:'az saat-e hasht ta char kaar mukunum', exhz:'از ساعت هشت تا چار کار می‌کنم'},
+    {id:'bl4_q3', q:'جمعه وقت داری؟', qtr:'juma wakht dari?', nl:'Heb je vrijdag tijd?', expect:['دارم','ندارم'], ex:'bale, juma wakht darum', exhz:'بله، جمعه وقت دارم'},
+    {id:'bl4_q4', q:'چند ساعت کار می‌کنی؟', qtr:'chand saat kaar mukuni?', nl:'Hoeveel uur werk je?', expect:['می‌کنم'], ex:'ma hasht saat kaar mukunum', exhz:'من هشت ساعت کار می‌کنم'}
+  ],
+  bl5:[
+    {id:'bl5_q0', q:'ساعت چند از خواب بیدار می‌شی؟', qtr:'saat-e chand az khwab bedar mi-shi?', nl:'Hoe laat word je wakker?', expect:['می‌شم'], ex:'ma saat-e haft-e subh bedar mi-shum', exhz:'من ساعت هفت صبح بیدار می‌شم'},
+    {id:'bl5_q1', q:'دَ نان صبح چه می‌خوری؟', qtr:'da naan-e subh che mukhuri?', nl:'Wat eet je bij het ontbijt?', expect:['می‌خورم'], ex:'ma chai wa naan mi-khurum', exhz:'من چای و نان می‌خورم'},
+    {id:'bl5_q2', q:'ساعت چند خانه می‌آیی؟', qtr:'saat-e chand khana mi-yayi?', nl:'Hoe laat kom je thuis?', expect:['می‌آیم'], ex:'saat-e panj khana mi-yum', exhz:'ساعت پنج خانه می‌آیم'},
+    {id:'bl5_q3', q:'پیش از خواب چه می‌کنی؟', qtr:'pesh az khwab che mukuni?', nl:'Wat doe je voor het slapen?', expect:['می‌خوانم','می‌زنیم','می‌بینم','می‌کنم'], ex:'kitab mi-khanum', exhz:'کتاب می‌خوانم'},
+    {id:'bl5_q4', q:'دیروز کجا بودی؟', qtr:'dirooz kuja budi?', nl:'Waar was je gisteren?', expect:['بودم'], ex:'dirooz ma da kaar budum', exhz:'دیروز من دَ کار بودم'},
+    {id:'bl5_q5', q:'ساعت چند خواب می‌شی؟', qtr:'saat-e chand khwab mi-shi?', nl:'Hoe laat ga je slapen?', expect:['می‌شم'], ex:'ma saat-e da khwab mi-shum', exhz:'من ساعت ده خواب می‌شم'}
+  ]
+};

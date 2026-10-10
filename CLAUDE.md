@@ -32,4 +32,6 @@ De gebruiker stuurt PDF's van haar Hazaragi-bijles. Elke PDF wordt een preset-bi
 - Het lesnummer in de PDF klopt vaak niet (les 5 was les 3, les 8 was les 4): nummer opvolgend en meld het.
 - Nederlandse betekenissen (`nl`) moeten uniek zijn over alle bijlessen heen (anders verwarrend bij meerkeuze/typen); geen `'`, `"`, `\` of backtick in de teksten.
 - **Nieuwe werkwoordsvormen** uit een les toevoegen aan `BJ_VERBS` in `js/bijles.js` (familie + Hazaragi-schrift + Roman-varianten + betekenis), zodat de oefening "Werkwoorden" ze herkent. Controleer na het toevoegen hoeveel bijleszinnen een herkend werkwoord hebben.
+- Werkwoordsvormen in `BJ_VERBS` krijgen ook een persoon (`1s` ik, `2s` jij, `3s` hij/zij, `1p` wij, `2p` jullie/u, `3p` zij) — nodig voor de oefening "Vervoegen" (zin omzetten naar andere persoon/tijd).
+- **Oefenvragen** uit de PDF (de "unanswered questions") toevoegen aan `BIJLES_QUESTIONS` in `js/bijlesdata.js` (ids `bl{n}_q{index}`), met `expect` = de werkwoordsvorm(en) die in het antwoord horen, plus een voorbeeldantwoord (`ex` Roman, `exhz` Dari). Toegepaste vaste correcties ook hier.
 - Twijfelgevallen niet stilletjes aanpassen: markeren en in het antwoord vermelden zodat ze het bij de docent kan navragen.

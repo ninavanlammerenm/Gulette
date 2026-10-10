@@ -86,7 +86,7 @@ function updMastery(hz, ok, exType){
   if(!v.ease) v.ease=2.5;
   if(v.consec===undefined) v.consec=0;
 
-  const isType=exType==='type'||exType==='order_bj';
+  const isType=exType==='type'||exType==='order_bj'||exType==='conj_bj';
   const isHint=exType==='hint';
   const isMc=['mc','mc_nl','mc_hz','wb','listen','order','sentence_mc','verb_bj'].includes(exType);
 

@@ -201,7 +201,7 @@ function renderBijles(){
         <button class="fc${_bjPracticeScript()==='roman'?' on':''}" onclick="bjSetPracticeScript('roman')">Roman</button>
       </span>
     </div>`:'';
-  wrap.innerHTML=_bjScriptBar()+hero+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
+  wrap.innerHTML=_bjScriptBar()+(_bjLessonSoon()?_bjPrepCard():'')+hero+(_bjLessonSoon()?'':_bjPrepCard())+_bjDayRow()+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
     list.map(l=>{
       const s=_bjLessonStats(l);
       return `<div class="bj-card" onclick="bjOpenLesson('${l.id}')">
@@ -263,10 +263,17 @@ function renderBijlesDetail(){
   const s=_bjLessonStats(l);
   if(_bjTab==='notes'&&!l.notes) _bjTab='words';
   if(_bjTab==='sents'&&!s.sents.length) _bjTab='words';
+  const qs=_bjQuestions(l.id);
+  if(_bjTab==='qs'&&!qs.length) _bjTab='words';
   const due=_bjDueKeys([l]).length, nw=Math.min(_bjNewPerSession(due),_bjNewCandidates([l]).length);
   const tab=(k,lbl)=>`<button class="fc${_bjTab===k?' on':''}" onclick="bjSetTab('${k}')">${lbl}</button>`;
   let body='';
   if(_bjTab==='notes') body=`<div class="bj-notes">${_bjEsc(l.notes).replace(/\n/g,'<br>')}</div>`;
+  else if(_bjTab==='qs') body=`<button class="btn-home" style="margin-bottom:12px" onclick="bjStartQuestions('${l.id}')">Beantwoord de vragen</button>
+    <div class="bj-items">${qs.map(q=>`<div class="bj-item" style="cursor:default">
+      ${_bjScript()==='roman'?'':`<div class="bj-item-hz">${_bjEsc(q.q)}</div>`}
+      <div class="bj-item-info">${_bjScript()==='dari'?'':`<div class="${_bjScript()==='roman'?'bj-item-rm':'bj-roman'}">${_bjEsc(q.qtr)}</div>`}<div class="wc-nl">${_bjEsc(q.nl)}</div></div>
+    </div>`).join('')}</div>`;
   else if(_bjTab==='sents') body=(s.unlocked?'':`<div class="bj-lock-note">🔒 De zinnen komen in je oefeningen zodra je ${Math.round(_bjUnlock()*100)}% van de woorden herkent — nog ${s.needed} ${s.needed===1?'woord':'woorden'}. Bekijken kan al wel.</div>`)
     +`<div class="bj-items">${_bjItemList(l,s.sents,st)}</div>`;
   else body=`<div class="bj-items">${_bjItemList(l,s.words,st)||'<div class="bj-empty-sub" style="text-align:center;padding:20px">Nog geen losse woorden. Tik op “+ Woord of zin”.</div>'}</div>`;
@@ -289,7 +296,7 @@ function renderBijlesDetail(){
     ${l.items.length?`<button class="btn-home bj-practice-btn" onclick="bjPractice('${l.id}')">Oefenen${due||nw?` · ${due?due+' herhalen':''}${due&&nw?', ':''}${nw?nw+' nieuw':''}`:''}</button>
     <button class="bj-link-btn" onclick="bjPracticeAll('${l.id}')">Toch alles oefenen (ook zinnen)</button>`:''}
     ${_bjScriptBar()}
-    <div class="bj-tabs">${tab('words',`Woorden (${s.words.length})`)}${s.sents.length?tab('sents',`Zinnen (${s.sents.length})`):''}${l.notes?tab('notes','Aantekeningen'):''}</div>
+    <div class="bj-tabs">${tab('words',`Woorden (${s.words.length})`)}${s.sents.length?tab('sents',`Zinnen (${s.sents.length})`):''}${qs.length?tab('qs',`Vragen (${qs.length})`):''}${l.notes?tab('notes','Aantekeningen'):''}</div>
     ${body}
     <button class="bj-link-btn" style="margin-top:14px" onclick="bjEditItem('${l.id}')">+ Woord of zin toevoegen</button>`;
 }
@@ -425,7 +432,10 @@ function _bjBuildExercises(words,show,roman){
       else if(lvl===2){ r1.push(verb||mc_nl); r2.push(order); }
       else { r1.push(verb||listen); r2.push(order); }
       // Werkwoord hier vaak fout, of dit werkwoord verwar je vaker: extra werkwoord-oefening
-      if(verb&&lvl>1&&((w.miss.verb||0)>=1||_bjWeakFams().has(_bjFindVerb(w.hz.trim(),roman).form.fam))) r2.push({...verb,choices:shuffle([...verb.choices])});
+      const weakVerb=verb&&((w.miss.verb||0)>=1||_bjWeakFams().has(_bjFindVerb(w.hz.trim(),roman).form.fam));
+      if(weakVerb&&lvl>1) r2.push({...verb,choices:shuffle([...verb.choices])});
+      // Vervoegen (zin omzetten): vanaf niveau 3, of eerder als het werkwoord lastig is
+      if(lvl>=3||(weakVerb&&lvl>=2)){ const tr=_bjTransform(w,roman); if(tr) r2.push(tr); }
       return;
     }
     const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...d.slice(0,3).map(x=>x.hz)])};
@@ -458,16 +468,18 @@ function _bjVerbExercise(w,roman){
 function _bjPracticeScript(){ return S.bjPracticeScript==='roman'?'roman':'dari'; }
 function bjSetPracticeScript(m){ S.bjPracticeScript=m; save(); renderBijles(); }
 
-function bjStartSession(hzList,title){
+function bjStartSession(hzList,title,opts){
+  opts=opts||{};
   const st=_bjStore();
   const roman=_bjPracticeScript()==='roman';
   // Roman: toon de uitspraak als 'woord'; alias koppelt die terug aan de echte sleutel
   const {alias,toRm}=_bjAliasMaps(roman);
   const show=hz=>toRm[hz]||hz;
   const keys=hzList.filter(hz=>st[hz]);
-  const words=keys.map(hz=>({hz:show(hz),nl:st[hz].nl,tr:toRm[hz]?'':(st[hz].tr||''),masteryLevel:st[hz].masteryLevel||1,sent:hz.trim().split(/\s+/).length>=3,diff:_bjDiff(st[hz]),miss:st[hz].miss||{}}));
-  if(!words.length){showToast('Nog niets om te oefenen');return;}
-  const exs=_bjBuildExercises(words,show,roman);
+  const words=keys.map(hz=>({key:hz,hz:show(hz),nl:st[hz].nl,tr:toRm[hz]?'':(st[hz].tr||''),masteryLevel:st[hz].masteryLevel||1,sent:hz.trim().split(/\s+/).length>=3,diff:_bjDiff(st[hz]),miss:st[hz].miss||{}}));
+  const qs=(opts.questions||[]).map(_bjAnswerEx);
+  if(!words.length&&!qs.length){showToast('Nog niets om te oefenen');return;}
+  const exs=[...(words.length?_bjBuildExercises(words,show,roman):[]),...qs];
   if(!exs.length){showToast('Voeg minstens 4 woorden toe om te kunnen oefenen');return;}
   keys.forEach(hz=>{ st[hz].intro=true; });
   save();
@@ -500,7 +512,7 @@ function bjStartReview(lessonId){
   }
   if(!keys.length){showToast('Alles herhaald — kom later terug');return;}
   const l=lessonId&&lessons[0];
-  bjStartSession([...new Set(keys)],l?(l.title||'Bijles'):'Bijles-herhaling');
+  bjStartSession([...new Set(keys)],l?(l.title||'Bijles'):'Bijles-herhaling',{questions:_bjPickQuestions(lessons,1)});
 }
 function bjPractice(lessonId){ bjStartReview(lessonId); }
 // 'Toch alles oefenen': zonder stappen, alles van de les door elkaar
@@ -517,23 +529,24 @@ function bjPracticeAll(lessonId){
 // voorkomen (eerste = standaard). Foute keuzes komen bij voorkeur uit
 // hetzelfde werkwoord (andere persoon), zodat je echt op de vervoeging let.
 const BJ_VERBS=[
-  {fam:'zijn',forms:[['استم','astum','ik ben'],['استی','asti','jij bent'],['استه','asta','hij/zij/het is'],['استیم','astem','wij zijn'],['استید','asted','u bent / jullie zijn'],['استن','astan','zij zijn'],['نیست','nest','is niet']]},
-  {fam:'zijn (verleden)',forms:[['بودم','budum','ik was'],['بودی','budi','jij was'],['بود','bud|bood','hij/zij/het was'],['بودیم','budim','wij waren'],['بودین','budin','u was / jullie waren'],['بودن','budan','zij waren']]},
-  {fam:'hebben',forms:[['دارم','darum|daram','ik heb'],['داری','dari|daari','jij hebt'],['داره','daara','hij/zij heeft'],['ندارم','nadarum|nadaram','ik heb niet'],['داشتم','dashtum','ik had']]},
-  {fam:'doen',forms:[['می‌کنم','mukunum|mi-konam','ik doe'],['می‌کنی','mukuni','jij doet'],['می‌کنه','mukuna','hij/zij doet'],['نمی‌کنم','nami-konam','ik doe niet'],['نمی‌کنه','nami-kuna','het doet niet']]},
+  // [Hazaragi, Roman-varianten, betekenis, persoon] — persoon: 1s ik · 2s jij · 3s hij/zij · 1p wij · 2p jullie/u · 3p zij
+  {fam:'zijn',forms:[['استم','astum','ik ben','1s'],['استی','asti','jij bent','2s'],['استه','asta','hij/zij/het is','3s'],['استیم','astem','wij zijn','1p'],['استید','asted','u bent / jullie zijn','2p'],['استن','astan','zij zijn','3p'],['نیست','nest','is niet']]},
+  {fam:'zijn (verleden)',forms:[['بودم','budum','ik was','1s'],['بودی','budi','jij was','2s'],['بود','bud|bood','hij/zij/het was','3s'],['بودیم','budim','wij waren','1p'],['بودین','budin','u was / jullie waren','2p'],['بودن','budan','zij waren','3p']]},
+  {fam:'hebben',forms:[['دارم','darum|daram','ik heb','1s'],['داری','dari|daari','jij hebt','2s'],['داره','daara','hij/zij heeft','3s'],['ندارم','nadarum|nadaram','ik heb niet'],['داشتم','dashtum','ik had']]},
+  {fam:'doen',forms:[['می‌کنم','mukunum|mi-konam','ik doe','1s'],['می‌کنی','mukuni','jij doet','2s'],['می‌کنه','mukuna','hij/zij doet','3s'],['نمی‌کنم','nami-konam','ik doe niet'],['نمی‌کنه','nami-kuna','het doet niet']]},
   {fam:'willen',forms:[['می‌خایم','mi-khayum','ik wil'],['نمی‌خایم','nami-khayum','ik wil niet'],['می‌خوام','mi-khaam','ik wil (mi-khaam)']]},
-  {fam:'eten/drinken',forms:[['می‌خوری','mukhuri','jij eet/drinkt'],['خوردم','khurdam','ik heb gegeten'],['خوردید','khurdid','u heeft gegeten'],['بخور','bukhur','eet!'],['می‌خورم','mi-khurum','ik eet'],['می‌خوریم','mi-khurem','wij eten']]},
+  {fam:'eten/drinken',forms:[['می‌خوری','mukhuri','jij eet/drinkt','2s'],['خوردم','khurdam','ik heb gegeten'],['خوردید','khurdid','u heeft gegeten'],['بخور','bukhur','eet!'],['می‌خورم','mi-khurum','ik eet','1s'],['می‌خوریم','mi-khurem','wij eten','1p']]},
   {fam:'gaan',forms:[['می‌ریم','murem','wij gaan']]},
   {fam:'zien',forms:[['می‌بینم','mubinum|mi-binum','ik zie']]},
-  {fam:'wassen',forms:[['می‌شویم','mi-shoyam','ik was']]},
-  {fam:'komen',forms:[['می‌آیم','mi-yum','ik kom'],['می‌آیی','mi-yayi','jij komt']]},
+  {fam:'wassen',forms:[['می‌شویم','mi-shoyam','ik was (me)']]},
+  {fam:'komen',forms:[['می‌آیم','mi-yum','ik kom','1s'],['می‌آیی','mi-yayi','jij komt','2s']]},
   {fam:'praten',forms:[['می‌زنیم','mi-zanem','wij praten (gap mi-zanem)']]},
-  {fam:'studeren',forms:[['می‌خوانم','mi-khanum|mukhanum','ik studeer'],['می‌خوانی','mukhani','jij studeert']]},
+  {fam:'studeren',forms:[['می‌خوانم','mi-khanum|mukhanum','ik studeer','1s'],['می‌خوانی','mukhani','jij studeert','2s']]},
   {fam:'weten',forms:[['نمی‌دانم','nami-danom','ik weet het niet'],['نمی‌فهمم','nami-famum','ik begrijp het niet']]},
   {fam:'regenen',forms:[['می‌باره','mubaara','het regent'],['نمی‌باره','nemubaara','het regent niet']]},
   {fam:'zeggen',forms:[['می‌گن','mugan','ze zeggen']]},
-  {fam:'worden',forms:[['می‌شم','mayshum|mi-shum','ik word'],['می‌شی','mi-shi|mayshi','jij wordt'],['می‌شه','maysha|mi-sha','het wordt']]},
-].map(v=>({fam:v.fam,forms:v.forms.map(([hz,tr,nl])=>({hz,trs:tr.split('|'),tr:tr.split('|')[0],nl,fam:v.fam}))}));
+  {fam:'worden',forms:[['می‌شم','mi-shum|mayshum','ik word','1s'],['می‌شی','mi-shi|mayshi','jij wordt','2s'],['می‌شه','mi-sha|maysha','het wordt','3s']]},
+].map(v=>({fam:v.fam,forms:v.forms.map(([hz,tr,nl,p])=>({hz,trs:tr.split('|'),tr:tr.split('|')[0],nl,p:p||'',fam:v.fam}))}));
 const _BJ_ALLFORMS=BJ_VERBS.flatMap(v=>v.forms);
 const _bjPunct=/^[؟?!.,،:;«»"()]+|[؟?!.,،:;«»"()]+$/g;
 const _bjCore=t=>t.replace(_bjPunct,'');
@@ -584,7 +597,7 @@ function _bjVerbChoices(form,correctLabel,roman){
 // S.bjLog = {sess:[{d,c,w}], verb:{'goedHz|gekozenHz': aantal}}
 // Per item (S.bvocab): hist = laatste 8 antwoorden, miss = {meaning,order,verb,type,spelling}
 function _bjLog(){ if(!S.bjLog) S.bjLog={sess:[],verb:{}}; if(!S.bjLog.verb) S.bjLog.verb={}; if(!S.bjLog.sess) S.bjLog.sess=[]; return S.bjLog; }
-const _BJ_CAT={order_bj:'order',verb_bj:'verb',type:'type',hint:'type'};
+const _BJ_CAT={order_bj:'order',verb_bj:'verb',conj_bj:'verb',type:'type',hint:'type'};
 
 function bjNoteResult(v,ok,exType){
   v.hist=[...(v.hist||[]),!!ok].slice(-8);
@@ -692,8 +705,9 @@ function _bjInsights(){
   // 4. Tempo
   const acc=_bjAccuracy();
   if(acc!==null){
-    const pct=Math.round(acc*100), nw=_bjNewPerSession(_bjDueKeys(_bjList()).length);
-    out.push(`📈 Je scoort ${pct}% in je laatste sessies — ${acc>=0.8?`je krijgt ${nw} nieuwe items per keer`:acc>=0.65?`rustig tempo: ${nw} nieuwe per keer`:`eerst herhalen: maar ${nw} nieuwe per keer`}.`);
+    const due=_bjDueKeys(_bjList()).length, pct=Math.round(acc*100), nw=_bjNewPerSession(due);
+    const n=`${nw} ${nw===1?'nieuw item':'nieuwe items'} per keer`;
+    out.push(`📈 Je scoort ${pct}% in je laatste sessies — ${due>=25?`er staat veel te herhalen (${due}), dus eerst bijwerken: ${n}`:acc>=0.8?`lekker tempo: ${n}`:acc>=0.65?`rustig tempo: ${n}`:`eerst goed herhalen: ${n}`}.`);
   }
   return {lines:out,hard:hard.length};
 }
@@ -715,4 +729,191 @@ function bjStartWeak(){
   const keys=[...hard,..._bjFocusSentences(lessons,hard,4)];
   if(!keys.length){showToast('Nog geen zwakke punten gevonden — goed bezig!');return;}
   bjStartSession(keys,'Zwakke punten');
+}
+
+// ══════════════════════════════════════════════════════
+// VERVOEGEN — een zin omzetten naar een andere persoon of tijd
+// ══════════════════════════════════════════════════════
+const BJ_PRON={'1s':['من','ma'],'2s':['تو','tu'],'3s':['او','oo'],'1p':['مو','mo'],'2p':['شما','shuma'],'3p':['اونا','ona']};
+const BJ_PNL={'1s':'ik','2s':'jij','3s':'hij/zij','1p':'wij','2p':'jullie / u','3p':'zij (meervoud)'};
+const BJ_TENSE={'zijn':'zijn (verleden)','zijn (verleden)':'zijn'};
+const BJ_YDAY=['دیروز','dirooz'], BJ_TODAY=['امروز','emrooz'];
+function _bjFormLabel(f,roman,styleOf){
+  if(!roman) return f.hz;
+  const pref=(styleOf||'').slice(0,2).toLowerCase();
+  return f.trs.find(t=>t.slice(0,2)===pref)||f.tr;
+}
+// Geeft een omzet-oefening voor deze zin, of null als dat niet kan
+function _bjTransform(w,roman){
+  const text=w.hz.trim(), toks=text.split(/\s+/);
+  const v=_bjFindVerb(text,roman); if(!v||!v.form.p) return null;
+  const P=v.form.p, R=roman?1:0;
+  const vi=toks.findIndex(t=>_bjCore(t)===v.core); if(vi<0) return null;
+  const fam=BJ_VERBS.find(x=>x.fam===v.form.fam);
+  // Onderwerp (voornaamwoord) vooraan of na dirooz/emrooz?
+  let pi=-1;
+  for(let i=0;i<Math.min(2,vi);i++){ if(_bjCore(toks[i]).toLowerCase()===BJ_PRON[P][R]) { pi=i; break; } }
+  const opts=[];
+  if(pi>=0){
+    fam.forms.filter(f=>f.p&&f.p!==P&&BJ_PRON[f.p]).forEach(f=>opts.push({kind:'person',f}));
+  }
+  const tf=BJ_TENSE[fam.fam]&&BJ_VERBS.find(x=>x.fam===BJ_TENSE[fam.fam]).forms.find(f=>f.p===P);
+  if(tf) opts.push({kind:'tense',f:tf});
+  if(!opts.length) return null;
+  const o=opts[Math.floor(Math.random()*opts.length)];
+  const out=[...toks];
+  const vtok=toks[vi], newVerb=_bjFormLabel(o.f,roman,v.core);
+  out[vi]=vtok.replace(v.core,newVerb);
+  let instr;
+  if(o.kind==='person'){
+    out[pi]=toks[pi].replace(_bjCore(toks[pi]),BJ_PRON[o.f.p][R]);
+    instr=`Zeg dezelfde zin over <b>${BJ_PNL[o.f.p]}</b> (${BJ_PRON[o.f.p][R]}):`;
+  } else {
+    const toPast=o.f.fam==='zijn (verleden)';
+    const y=BJ_YDAY[R], t=BJ_TODAY[R];
+    const ti=out.findIndex(x=>{const c=_bjCore(x).toLowerCase(); return c===t||c===y;});
+    if(toPast){ if(ti>=0) out[ti]=out[ti].replace(_bjCore(out[ti]),y); else out.unshift(y); }
+    else { if(ti>=0) out.splice(ti,1); }
+    instr=toPast?'Zet de zin in de <b>verleden tijd</b> (gisteren):':'Zet de zin in de <b>tegenwoordige tijd</b> (nu):';
+  }
+  const target=out.join(' ');
+  if(target===text) return null;
+  // Lokwoorden: het oude werkwoord en een andere vorm van hetzelfde werkwoord
+  const lure=[_bjFormLabel(v.form,roman,v.core),...shuffle(fam.forms.filter(f=>f!==o.f&&f!==v.form&&f.p)).slice(0,1).map(f=>_bjFormLabel(f,roman,v.core))];
+  const tks=new Set(target.split(' ').map(_bjCore));
+  return {type:'order',title:'Vervoegen',q:instr,src:text,bjExType:'conj_bj',key:w.key,
+    s:{hz:target,nl:'',tr:''},distractors:lure.filter(x=>!tks.has(x))};
+}
+
+// ══════════════════════════════════════════════════════
+// OEFENVRAGEN — vraag van de docent zelf beantwoorden
+// ══════════════════════════════════════════════════════
+function _bjQuestions(lessonId){ return (typeof BIJLES_QUESTIONS!=='undefined'&&BIJLES_QUESTIONS[lessonId])||[]; }
+// Vragen van lessen waarvan je de woorden al (grotendeels) kent
+function _bjPickQuestions(lessons,max){
+  const st=_bjStore(), log=_bjLog(); log.q=log.q||{};
+  const qs=lessons.filter(l=>{ const s=_bjLessonStats(l); return s.words.length&&s.wk/s.words.length>=0.5; })
+    .flatMap(l=>_bjQuestions(l.id));
+  // Vragen die nog niet (goed) beantwoord zijn eerst
+  return qs.map(q=>({q,score:(log.q[q.id]?log.q[q.id].ok:0)+Math.random()})).sort((a,b)=>a.score-b.score).slice(0,max).map(x=>x.q);
+}
+function _bjAnswerEx(q){ return {type:'answer',q}; }
+
+function bjRenderAnswer(ex,body){
+  const roman=!!(CL&&CL._bjRoman), q=ex.q;
+  body.innerHTML=`
+    <div class="type-pill">Vraag van je docent</div>
+    <div class="ctx-card" style="margin-bottom:14px">
+      <div class="ctx-sentence">${roman?q.qtr:q.q}</div>
+      ${roman?'':`<div class="ctx-tr">${q.qtr}</div>`}
+      <div class="ctx-nl">"${q.nl}"</div>
+    </div>
+    <button class="spk-btn" style="margin:0 auto 12px" data-hz="${_bjEsc(q.q)}" onclick="speakHz(this.dataset.hz)">🔊</button>
+    <p style="font-size:14px;font-weight:800;color:var(--ink);margin-bottom:8px">Geef zelf antwoord — typ in Roman of in Dari:</p>
+    <input class="t-inp bj-ans-inp" id="bj-ans" dir="auto" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Bijv. ${_bjEsc(roman?q.ex:q.ex)}">
+    <button class="btn-check" id="bj-ans-btn">Controleer ✓</button>`;
+  const inp=document.getElementById('bj-ans');
+  inp.placeholder='Typ je antwoord…';
+  const go=()=>bjCheckAnswer(q,inp.value);
+  document.getElementById('bj-ans-btn').addEventListener('click',go);
+  inp.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
+}
+
+function bjCheckAnswer(q,val){
+  if(WAITING)return;
+  val=(val||'').trim();
+  if(!val){ document.getElementById('bj-ans').focus(); return; }
+  WAITING=true;
+  document.getElementById('bj-ans').blur();
+  // Per zinsdeel (tussen komma's/punten) kijken of het werkwoord achteraan staat
+  const clauses=val.split(/[،,.!?؟;]+/).map(c=>c.trim().split(/\s+/).map(_bjCore).filter(Boolean)).filter(c=>c.length);
+  const exp=q.expect.map(h=>_BJ_ALLFORMS.find(f=>f.hz===h)).filter(Boolean);
+  const ends=clauses.map(c=>_bjFormOf(c[c.length-1])).filter(Boolean);
+  const all=clauses.flat().map(_bjFormOf).filter(Boolean);
+  const okEnd=ends.find(f=>exp.includes(f));
+  const misplaced=!okEnd&&all.some(f=>exp.includes(f));
+  const wrongEnd=!okEnd&&!misplaced&&ends[ends.length-1];
+  const lastForm=okEnd||wrongEnd;
+  const anyIdx=all.length?0:-1;
+  const roman=!!(CL&&CL._bjRoman);
+  const nm=f=>`${roman?f.tr:f.hz+' ('+f.tr+')'} = ${f.nl}`;
+  const example=`Voorbeeld: ${roman?q.ex:q.exhz+' — '+q.ex}`;
+  const log=_bjLog(); log.q=log.q||{}; const ql=log.q[q.id]=log.q[q.id]||{n:0,ok:0};
+  ql.n++;
+  let ok=null, title, hint;
+  if(okEnd){
+    ok=true; title='Goed! Het werkwoord klopt';
+    hint=`Je gebruikt ${nm(okEnd)}. ${example}`;
+  } else if(misplaced){
+    ok=false; title='Het werkwoord moet achteraan';
+    hint=`Het juiste werkwoord staat erin, maar in het Hazaragi komt het aan het eind van de zin. ${example}`;
+  } else if(wrongEnd){
+    ok=false; const e=exp.find(f=>f.fam===wrongEnd.fam)||exp[0];
+    title='Bijna — kijk naar het werkwoord';
+    hint=`Je gebruikte ${nm(wrongEnd)}, maar hier past ${nm(e)}. ${example}`;
+    bjLogVerbError(e.hz,wrongEnd.hz);
+  } else if(anyIdx>=0){
+    ok=false; title='Het werkwoord moet achteraan';
+    hint=`In het Hazaragi staat het werkwoord aan het eind van de zin. ${example}`;
+  } else {
+    title='Vergelijk met het voorbeeld';
+    hint=`Ik herken geen werkwoord dat ik ken — misschien klopt het, check het bij je docent. ${example}`;
+  }
+  if(ok===true){ CC++; LXP+=8; CC_COMBO++; ql.ok++; sfxCorrect(); sparkles(); }
+  else if(ok===false){ WC++; CC_COMBO=0; sfxWrong(); }
+  save();
+  // Volledige uitleg ook onder de vraag (de balk onderin is kort)
+  const body=document.getElementById('l-body');
+  const card=document.createElement('div');
+  card.className='bj-ans-fb '+(ok===true?'ok':ok===false?'ng':'');
+  card.innerHTML=`<div class="bj-ans-fb-ttl">${_bjEsc(title)}</div><div>${_bjEsc(hint)}</div>`;
+  body.appendChild(card);
+  document.getElementById('bj-ans-btn').style.display='none';
+  showFB(ok!==false,title,ok===true?'Goed gedaan!':'Lees de uitleg hierboven',''); 
+}
+
+// ══════════════════════════════════════════════════════
+// VOORBEREIDEN OP JE BIJLES
+// ══════════════════════════════════════════════════════
+const BJ_DAYS=['zo','ma','di','wo','do','vr','za'];
+function bjSetDay(d){ S.bjDay=(S.bjDay===d?null:d); save(); renderBijles(); }
+function _bjDayRow(){
+  return `<div class="bj-daily-row bj-day-row"><span>Mijn bijlesdag <small>(voor de voorbereiding)</small></span><span class="bj-day-chips">${[1,2,3,4,5,6,0].map(d=>`<button class="fc${S.bjDay===d?' on':''}" onclick="bjSetDay(${d})">${BJ_DAYS[d]}</button>`).join('')}</span></div>`;
+}
+// 'today' / 'tomorrow' / null
+function _bjLessonSoon(){
+  if(S.bjDay===null||S.bjDay===undefined) return null;
+  const d=new Date().getDay();
+  if(d===S.bjDay) return 'today';
+  if((d+1)%7===S.bjDay) return 'tomorrow';
+  return null;
+}
+function _bjPrepCard(){
+  const soon=_bjLessonSoon();
+  if(!_bjList().length) return '';
+  if(soon) return `<div class="bj-prep" onclick="bjStartPrep()">
+      <div class="bj-prep-ttl">📅 ${soon==='today'?'Vandaag bijles!':'Morgen bijles!'}</div>
+      <div class="bj-prep-sub">Bereid je voor: de vorige les, je zwakke punten en de vragen van je docent (± 10 min).</div>
+      <div class="bj-prep-btn">Voorbereiden →</div>
+    </div>`;
+  return `<button class="bj-link-btn" style="margin-top:-6px" onclick="bjStartPrep()">📅 Voorbereiden op je bijles</button>`;
+}
+function bjStartPrep(){
+  seedBijles();
+  const st=_bjStore(), lessons=_bjLessonsOrdered();
+  if(!lessons.length) return;
+  const last=lessons[lessons.length-1];
+  const lastKeys=[...new Set(last.items.map(i=>i.hz))];
+  const known=_bjByPriority(lastKeys.filter(hz=>_bjIntro(st[hz]))).slice(0,10);
+  const fresh=known.length<6?_bjNewCandidates([last]).slice(0,6-known.length):[];
+  const hard=Object.keys(st).filter(hz=>_bjIntro(st[hz])&&(st[hz].hist||[]).length>=2&&_bjDiff(st[hz])>=0.45&&!lastKeys.includes(hz)).sort((a,b)=>_bjDiff(st[b])-_bjDiff(st[a])).slice(0,5);
+  let keys=[...known,...fresh,...hard];
+  keys=keys.concat(_bjFocusSentences(lessons,keys,2));
+  const qs=[..._bjQuestions(last.id).slice(0,4),..._bjPickQuestions(lessons.slice(0,-1),1)];
+  bjStartSession([...new Set(keys)],'Voorbereiden op je bijles',{questions:qs});
+}
+function bjStartQuestions(lessonId){
+  const qs=shuffle([..._bjQuestions(lessonId)]);
+  if(!qs.length){showToast('Nog geen vragen bij deze les');return;}
+  bjStartSession([],'Vragen van je docent',{questions:qs});
 }
