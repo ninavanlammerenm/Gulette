@@ -23,7 +23,7 @@ Wanneer: “kai” in een vraag, “waqti” in een bijzin (als/wanneer …).
 
 Groet voor iemand die gewerkt heeft: Manda nabashid! → antwoord: Zinda bashid!
 
-Nog navragen bij je docent: “Waqti khaba astoom” — wat betekent dit precies?`,
+“Waqti khaba astoom” is waarschijnlijk een typfout voor “waqti (da) khana astum” = als ik thuis ben (de b en n liggen naast elkaar op het toetsenbord).`,
   items:[
     // ── Groeten ──
     {id:'bl1_w0', section:'Groeten', hz:'سلام', tr:'salaam', nl:'Hallo'},
@@ -362,6 +362,72 @@ Huiswerk: beantwoord de drie sets oefenvragen hardop en oefen dialoog A, B en C 
     {id:'bl4_w61', section:'Dagritme', hz:'کار من خلاص می‌شه', tr:'kaar-e ma khalas maysha', nl:'Mijn werk is klaar'},
     {id:'bl4_w62', section:'Dagritme', hz:'مرکز خرید', tr:'markaz-e kharid', nl:'Winkelcentrum'},
     {id:'bl4_w63', section:'Dagritme', hz:'خوش بگذره!', tr:'khosh bogzara!', nl:'Veel plezier!'}
+  ]
+},
+{
+  id:'bl5',
+  title:'Les 5: dagelijkse routine',
+  date:'2026-10-10',
+  notes:`Dagelijkse routine (ochtend, werk, avond) en het werkwoord zijn.
+
+Zinsvolgorde: onderwerp + rest + werkwoord — het werkwoord staat altijd achteraan.
+Ma khoshhal astum = ik ben blij · Dirooz ma da kaar budum = gisteren was ik op het werk
+
+Zijn (nu): ma astum · tu asti · oo asta · mo astem · shuma asted · ona astan
+Zijn (verleden): ma budum · tu budi · oo bud · mo budim · shuma budin · ona budan
+
+Voor = qabl az · na = bad az · daarna = bad · meestal = mamullan
+Met mi-: mi-shoyam (ik was) · mi-khurum (ik eet) · mi-binum (ik kijk) · mi-shum (ik word)
+In/op = da (niet dar): da khana = thuis · da kaar = op het werk
+
+Huiswerk: beantwoord de zes oefenvragen en vertel je eigen dagritme (dialoog A en B).`,
+  items:[
+    {id:'bl5_w0', section:'Ochtend', hz:'بیدار می‌شم', tr:'bedar mi-shum', nl:'Ik word wakker (korte vorm)'},
+    {id:'bl5_w1', section:'Ochtend', hz:'ساعت چند از خواب بیدار می‌شی؟', tr:'saat-e chand az khwab bedar mi-shi?', nl:'Hoe laat word je wakker?'},
+    {id:'bl5_w2', section:'Ochtend', hz:'دندان', tr:'dandan', nl:'Tand / tanden'},
+    {id:'bl5_w3', section:'Ochtend', hz:'صورت و دندان خود را می‌شویم', tr:'soorat wa dandan-e khud ra mi-shoyam', nl:'Ik was mijn gezicht en poets mijn tanden'},
+    {id:'bl5_w4', section:'Ochtend', hz:'نان صبح', tr:'naan-e subh', nl:'Ochtendmaaltijd'},
+    {id:'bl5_w5', section:'Ochtend', hz:'چای و نان صبح می‌خورم', tr:'chai wa naan-e subh mi-khurum', nl:'Ik drink thee en eet mijn ontbijt'},
+    {id:'bl5_w6', section:'Ochtend', hz:'پنیر', tr:'paneer', nl:'Kaas'},
+    {id:'bl5_w7', section:'Ochtend', hz:'من چای گرم، پنیر و نان می‌خورم', tr:'ma chai-ye garm, paneer wa naan mi-khurum', nl:'Ik drink warme thee en eet kaas en brood'},
+    {id:'bl5_w8', section:'Ochtend', hz:'تیار می‌شم', tr:'tayar mi-shum', nl:'Ik maak me klaar'},
+    {id:'bl5_w9', section:'Ochtend', hz:'از خانه بیرون می‌شم', tr:'az khana berun mi-shum', nl:'Ik ga de deur uit'},
+    {id:'bl5_w10', section:'Ochtend', hz:'قبل از', tr:'qabl az', nl:'Voor (in tijd)'},
+    {id:'bl5_w11', section:'Ochtend', hz:'بعد از', tr:'bad az', nl:'Na (in tijd)'},
+    {id:'bl5_w12', section:'Ochtend', hz:'بعد', tr:'bad', nl:'Daarna / volgende'},
+    {id:'bl5_w13', section:'Werk & lunch', hz:'از ساعت هشت تا چار کار می‌کنم', tr:'az saat-e hasht ta char kaar mukunum', nl:'Ik werk van acht tot vier'},
+    {id:'bl5_w14', section:'Werk & lunch', hz:'نان چاشت', tr:'naan-e chasht', nl:'Middageten'},
+    {id:'bl5_w15', section:'Werk & lunch', hz:'همراه', tr:'hamra-ye', nl:'Met (samen met)'},
+    {id:'bl5_w16', section:'Werk & lunch', hz:'همکار', tr:'hamkaar', nl:'Collega'},
+    {id:'bl5_w17', section:'Werk & lunch', hz:'همراه همکارها نان می‌خورم', tr:'hamra-ye hamkaar-ho naan mi-khurum', nl:'Ik eet samen met mijn collega’s'},
+    {id:'bl5_w18', section:'Werk & lunch', hz:'کار تو ساعت چند خلاص می‌شه؟', tr:'kaar-e tu saat-e chand khalas mi-sha?', nl:'Hoe laat is jouw werk klaar?'},
+    {id:'bl5_w19', section:'Werk & lunch', hz:'خانه می‌آیم', tr:'khana mi-yum', nl:'Ik kom thuis'},
+    {id:'bl5_w20', section:'Werk & lunch', hz:'ساعت چند خانه می‌آیی؟', tr:'saat-e chand khana mi-yayi?', nl:'Hoe laat kom je thuis?'},
+    {id:'bl5_w21', section:'Werk & lunch', hz:'دیروز من دَ کار بودم', tr:'dirooz ma da kaar budum', nl:'Gisteren was ik op het werk'},
+    {id:'bl5_w22', section:'Werk & lunch', hz:'فرق نمی‌کنه', tr:'farq nami-kuna', nl:'Maakt niet uit / kan me niet schelen'},
+    {id:'bl5_w23', section:'Avond & weekend', hz:'نان شب', tr:'naan-e shab', nl:'Avondeten'},
+    {id:'bl5_w24', section:'Avond & weekend', hz:'همراه فامیل نان می‌خوریم', tr:'hamra-ye faamil naan mi-khurem', nl:'We eten samen met de familie'},
+    {id:'bl5_w25', section:'Avond & weekend', hz:'تی‌وی می‌بینم', tr:'TV mi-binum', nl:'Ik kijk tv'},
+    {id:'bl5_w26', section:'Avond & weekend', hz:'کتاب می‌خوانم', tr:'kitab mi-khanum', nl:'Ik lees een boek'},
+    {id:'bl5_w27', section:'Avond & weekend', hz:'همراه فامیل گپ می‌زنیم', tr:'hamra-ye faamil gap mi-zanem', nl:'We praten met de familie', note:'gap = praatje / gesprek'},
+    {id:'bl5_w28', section:'Avond & weekend', hz:'خواب می‌شم', tr:'khwab mi-shum', nl:'Ik ga slapen'},
+    {id:'bl5_w29', section:'Avond & weekend', hz:'معمولاً', tr:'mamullan', nl:'Meestal / gewoonlijk'},
+    {id:'bl5_w30', section:'Avond & weekend', hz:'من معمولاً ساعت ده یا یازده شب خواب می‌شم', tr:'ma mamullan saat-e da ya yazda-e shab khwab mi-shum', nl:'Ik ga meestal om tien of elf uur slapen'},
+    {id:'bl5_w31', section:'Avond & weekend', hz:'پیش از خواب چه می‌کنی؟', tr:'pesh az khwab che mukuni?', nl:'Wat doe je voor het slapen?'},
+    {id:'bl5_w32', section:'Avond & weekend', hz:'آخر هفته', tr:'aakhir-e hafta', nl:'Weekend'},
+    {id:'bl5_w33', section:'Zijn: nu en verleden', hz:'من دَ خانه استم', tr:'ma da khana astum', nl:'Ik ben thuis'},
+    {id:'bl5_w34', section:'Zijn: nu en verleden', hz:'تو خوشحال استی', tr:'tu khoshhal asti', nl:'Jij bent blij'},
+    {id:'bl5_w35', section:'Zijn: nu en verleden', hz:'او دَ کار استه', tr:'oo da kaar asta', nl:'Hij/zij is op het werk'},
+    {id:'bl5_w36', section:'Zijn: nu en verleden', hz:'مو تیار استیم', tr:'mo tayar astem', nl:'Wij zijn klaar'},
+    {id:'bl5_w37', section:'Zijn: nu en verleden', hz:'شما خوب استید', tr:'shuma khub asted', nl:'Het gaat goed met u / jullie'},
+    {id:'bl5_w38', section:'Zijn: nu en verleden', hz:'اونا', tr:'ona', nl:'Zij (meervoud)'},
+    {id:'bl5_w39', section:'Zijn: nu en verleden', hz:'اونا دَ شهر استن', tr:'ona da shahr astan', nl:'Zij zijn in de stad'},
+    {id:'bl5_w40', section:'Zijn: nu en verleden', hz:'دیروز من دَ خانه بودم', tr:'dirooz ma da khana budum', nl:'Gisteren was ik thuis'},
+    {id:'bl5_w41', section:'Zijn: nu en verleden', hz:'تو دیروز خسته بودی', tr:'tu dirooz khasta budi', nl:'Jij was gisteren moe'},
+    {id:'bl5_w42', section:'Zijn: nu en verleden', hz:'او دیروز دَ دفتر بود', tr:'oo dirooz da daftar bud', nl:'Hij/zij was gisteren op kantoor'},
+    {id:'bl5_w43', section:'Zijn: nu en verleden', hz:'دیروز مو دَ مهمانی بودیم', tr:'dirooz mo da mehmani budim', nl:'Gisteren waren we op een feest'},
+    {id:'bl5_w44', section:'Zijn: nu en verleden', hz:'شما دیروز تیار بودین', tr:'shuma dirooz tayar budin', nl:'Jullie waren gisteren klaar'},
+    {id:'bl5_w45', section:'Zijn: nu en verleden', hz:'اونا دیروز دَ شهر بودن', tr:'ona dirooz da shahr budan', nl:'Zij waren gisteren in de stad'}
   ]
 }
 ];

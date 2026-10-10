@@ -403,18 +403,22 @@ function bjStartReview(){
 // voorkomen (eerste = standaard). Foute keuzes komen bij voorkeur uit
 // hetzelfde werkwoord (andere persoon), zodat je echt op de vervoeging let.
 const BJ_VERBS=[
-  {fam:'zijn',forms:[['استم','astum','ik ben'],['استی','asti','jij bent'],['استه','asta','hij/zij/het is'],['استید','asted','u bent / jullie zijn'],['بود','bood','was'],['نیست','nest','is niet']]},
+  {fam:'zijn',forms:[['استم','astum','ik ben'],['استی','asti','jij bent'],['استه','asta','hij/zij/het is'],['استیم','astem','wij zijn'],['استید','asted','u bent / jullie zijn'],['استن','astan','zij zijn'],['نیست','nest','is niet']]},
+  {fam:'zijn (verleden)',forms:[['بودم','budum','ik was'],['بودی','budi','jij was'],['بود','bud|bood','hij/zij/het was'],['بودیم','budim','wij waren'],['بودین','budin','u was / jullie waren'],['بودن','budan','zij waren']]},
   {fam:'hebben',forms:[['دارم','darum|daram','ik heb'],['داری','dari|daari','jij hebt'],['داره','daara','hij/zij heeft'],['ندارم','nadarum|nadaram','ik heb niet'],['داشتم','dashtum','ik had']]},
-  {fam:'doen',forms:[['می‌کنم','mukunum|mi-konam','ik doe'],['می‌کنی','mukuni','jij doet'],['می‌کنه','mukuna','hij/zij doet'],['نمی‌کنم','nami-konam','ik doe niet']]},
+  {fam:'doen',forms:[['می‌کنم','mukunum|mi-konam','ik doe'],['می‌کنی','mukuni','jij doet'],['می‌کنه','mukuna','hij/zij doet'],['نمی‌کنم','nami-konam','ik doe niet'],['نمی‌کنه','nami-kuna','het doet niet']]},
   {fam:'willen',forms:[['می‌خایم','mi-khayum','ik wil'],['نمی‌خایم','nami-khayum','ik wil niet'],['می‌خوام','mi-khaam','ik wil (mi-khaam)']]},
-  {fam:'eten/drinken',forms:[['می‌خوری','mukhuri','jij eet/drinkt'],['خوردم','khurdam','ik heb gegeten'],['خوردید','khurdid','u heeft gegeten'],['بخور','bukhur','eet!']]},
+  {fam:'eten/drinken',forms:[['می‌خوری','mukhuri','jij eet/drinkt'],['خوردم','khurdam','ik heb gegeten'],['خوردید','khurdid','u heeft gegeten'],['بخور','bukhur','eet!'],['می‌خورم','mi-khurum','ik eet'],['می‌خوریم','mi-khurem','wij eten']]},
   {fam:'gaan',forms:[['می‌ریم','murem','wij gaan']]},
-  {fam:'zien',forms:[['می‌بینم','mubinum','ik zie']]},
+  {fam:'zien',forms:[['می‌بینم','mubinum|mi-binum','ik zie']]},
+  {fam:'wassen',forms:[['می‌شویم','mi-shoyam','ik was']]},
+  {fam:'komen',forms:[['می‌آیم','mi-yum','ik kom'],['می‌آیی','mi-yayi','jij komt']]},
+  {fam:'praten',forms:[['می‌زنیم','mi-zanem','wij praten (gap mi-zanem)']]},
   {fam:'studeren',forms:[['می‌خوانم','mi-khanum|mukhanum','ik studeer'],['می‌خوانی','mukhani','jij studeert']]},
   {fam:'weten',forms:[['نمی‌دانم','nami-danom','ik weet het niet'],['نمی‌فهمم','nami-famum','ik begrijp het niet']]},
   {fam:'regenen',forms:[['می‌باره','mubaara','het regent'],['نمی‌باره','nemubaara','het regent niet']]},
   {fam:'zeggen',forms:[['می‌گن','mugan','ze zeggen']]},
-  {fam:'worden',forms:[['می‌شم','mayshum','ik word'],['می‌شه','maysha','het wordt']]},
+  {fam:'worden',forms:[['می‌شم','mayshum|mi-shum','ik word'],['می‌شی','mi-shi|mayshi','jij wordt'],['می‌شه','maysha|mi-sha','het wordt']]},
 ].map(v=>({fam:v.fam,forms:v.forms.map(([hz,tr,nl])=>({hz,trs:tr.split('|'),tr:tr.split('|')[0],nl,fam:v.fam}))}));
 const _BJ_ALLFORMS=BJ_VERBS.flatMap(v=>v.forms);
 const _bjPunct=/^[؟?!.,،:;«»"()]+|[؟?!.,،:;«»"()]+$/g;
@@ -458,7 +462,9 @@ function _bjFindVerb(text,roman){
 }
 
 function _bjVerbChoices(form,correctLabel,roman){
-  const lbl=f=>roman?f.tr:f.hz;
+  // Roman: kies bij voorkeur de variant met dezelfde schrijfwijze als het antwoord (mi-… / may-…)
+  const pref=correctLabel.slice(0,2).toLowerCase();
+  const lbl=f=>roman?(f.trs.find(t=>t.slice(0,2)===pref)||f.tr):f.hz;
   const same=BJ_VERBS.find(v=>v.fam===form.fam).forms.filter(f=>f!==form&&f.nl!==form.nl);
   const other=_BJ_ALLFORMS.filter(f=>f.fam!==form.fam);
   const picks=[...shuffle(same),...shuffle(other)].map(lbl).filter(x=>x!==correctLabel);
