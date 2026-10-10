@@ -797,6 +797,12 @@ body.bj-roman-ex #l-body [style*="font-size:42px"]{font-size:24px!important}
 .bj-link-btn{display:block;width:100%;background:none;border:none;font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:800;color:var(--rose-d);text-decoration:underline;cursor:pointer;padding:6px;margin-bottom:10px}
 .bj-tabs{display:flex;gap:7px;margin:0 0 12px;flex-wrap:wrap}
 .bj-lock-note{background:var(--rose-xl);border:1px solid var(--rose-l);border-radius:var(--r-sm);padding:10px 12px;font-size:12.5px;font-weight:700;color:var(--ink-m);line-height:1.5;margin-bottom:10px}
+.bj-insights{background:var(--white);border:1px solid var(--ink-xl);border-left:4px solid var(--lav,#B8A9D9);border-radius:var(--r-sm);box-shadow:var(--sh);padding:12px 14px;margin:0 0 14px}
+.bj-ins-line{font-size:13px;font-weight:700;color:var(--ink-m);line-height:1.5;margin-top:6px}
+.bj-ins-line b{color:var(--ink)}
+.bj-ins-item{display:block;margin:4px 0 0 22px;font-size:15px;font-weight:800;color:var(--ink)}
+.bj-ins-item bdi{font-family:'Noto Naskh Arabic','Nunito',serif}
+.bj-ins-item small{font-size:11.5px;font-weight:700;color:var(--ink-l);margin-left:6px}
 .bj-hint{font-size:11.5px;font-weight:700;color:var(--ink-l);text-align:center;margin-top:10px}
 
 body.dark-mode{background:#2A1F1A}

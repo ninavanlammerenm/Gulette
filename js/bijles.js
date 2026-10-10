@@ -127,7 +127,7 @@ function seedBijles(){
 // ── Stappen: eerst woorden, dan zinnen ──
 // Woorden = items van 1-2 woorden; zinnen = 3+ woorden. Zinnen van een les gaan
 // pas mee in de (nieuwe) oefenstof als je 70% van de woorden van die les herkent.
-const BJ_UNLOCK=0.7, BJ_NEW_PER_SESSION=8;
+// Drempel en tempo passen zich aan (zie ZELFLEREND hieronder)
 let _bjTab='words';
 function _bjIsSentence(it){ return it.hz.trim().split(/\s+/).length>=3; }
 function _bjKnown(v){ return !!v && (v.masteryLevel||1)>=2; }
@@ -137,8 +137,9 @@ function _bjLessonStats(l){
   const words=l.items.filter(i=>!_bjIsSentence(i)), sents=l.items.filter(_bjIsSentence);
   const wk=words.filter(i=>_bjKnown(st[i.hz])).length;
   const sk=sents.filter(i=>_bjKnown(st[i.hz])).length;
-  const unlocked=!words.length||wk/words.length>=BJ_UNLOCK;
-  const needed=Math.max(0,Math.ceil(words.length*BJ_UNLOCK)-wk);
+  const th=_bjUnlock();
+  const unlocked=!words.length||wk/words.length>=th;
+  const needed=Math.max(0,Math.ceil(words.length*th)-wk);
   return {words,sents,wk,sk,unlocked,needed};
 }
 function _bjLessonsOrdered(){ return [..._bjList()].sort((a,b)=>(a.date||'').localeCompare(b.date||'')); }
@@ -179,7 +180,7 @@ function renderBijles(){
     return;
   }
   const all=_bjLessonsOrdered();
-  const due=_bjDueKeys(all).length, nw=Math.min(BJ_NEW_PER_SESSION,_bjNewCandidates(all).length);
+  const due=_bjDueKeys(all).length, nw=Math.min(_bjNewPerSession(due),_bjNewCandidates(all).length);
   const active=due||nw;
   const hero=total?`<div class="review-hero${active?'':' done'}" style="margin:0 0 14px" onclick="${active?'bjStartReview()':"showToast('Alles herhaald — kom later terug')"}">
       <div class="rh-deco">📝</div>
@@ -188,6 +189,7 @@ function renderBijles(){
       <div class="rh-label">te herhalen${nw?` · ${nw} nieuw`:''}</div>
       <div class="rh-btn">${active?'Begin →':'Alles herhaald ✓'}</div>
     </div>
+    ${_bjInsightsCard()}
     <div class="bj-daily-row">
       <span>Ook in de dagelijkse herhaling</span>
       <button class="fc${bjInDaily()?' on':''}" onclick="bjToggleDaily()">${bjInDaily()?'Aan':'Uit'}</button>
@@ -261,11 +263,11 @@ function renderBijlesDetail(){
   const s=_bjLessonStats(l);
   if(_bjTab==='notes'&&!l.notes) _bjTab='words';
   if(_bjTab==='sents'&&!s.sents.length) _bjTab='words';
-  const due=_bjDueKeys([l]).length, nw=Math.min(BJ_NEW_PER_SESSION,_bjNewCandidates([l]).length);
+  const due=_bjDueKeys([l]).length, nw=Math.min(_bjNewPerSession(due),_bjNewCandidates([l]).length);
   const tab=(k,lbl)=>`<button class="fc${_bjTab===k?' on':''}" onclick="bjSetTab('${k}')">${lbl}</button>`;
   let body='';
   if(_bjTab==='notes') body=`<div class="bj-notes">${_bjEsc(l.notes).replace(/\n/g,'<br>')}</div>`;
-  else if(_bjTab==='sents') body=(s.unlocked?'':`<div class="bj-lock-note">🔒 De zinnen komen in je oefeningen zodra je ${Math.round(BJ_UNLOCK*100)}% van de woorden herkent — nog ${s.needed} ${s.needed===1?'woord':'woorden'}. Bekijken kan al wel.</div>`)
+  else if(_bjTab==='sents') body=(s.unlocked?'':`<div class="bj-lock-note">🔒 De zinnen komen in je oefeningen zodra je ${Math.round(_bjUnlock()*100)}% van de woorden herkent — nog ${s.needed} ${s.needed===1?'woord':'woorden'}. Bekijken kan al wel.</div>`)
     +`<div class="bj-items">${_bjItemList(l,s.sents,st)}</div>`;
   else body=`<div class="bj-items">${_bjItemList(l,s.words,st)||'<div class="bj-empty-sub" style="text-align:center;padding:20px">Nog geen losse woorden. Tik op “+ Woord of zin”.</div>'}</div>`;
   wrap.innerHTML=`
@@ -407,7 +409,8 @@ function _bjBuildExercises(words,show,roman){
     const pool=w.sent?sPool:wPool;
     const d=shuffle(pool.filter(x=>x.hz!==w.hz&&x.nl!==w.nl));
     if(d.length<3)return;
-    const lvl=w.masteryLevel||1;
+    // Gaat het vaak mis? Dan een stapje makkelijker (herkennen vóór zelf maken)
+    const lvl=Math.max(1,(w.masteryLevel||1)-((w.diff||0)>=0.5&&(w.masteryLevel||1)>1?1:0));
     const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
     const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...d.slice(0,3).map(x=>x.nl)])};
     const listen={type:'listen',w:wd,choices:shuffle([w.nl,...d.slice(0,3).map(x=>x.nl)])};
@@ -421,6 +424,8 @@ function _bjBuildExercises(words,show,roman){
       if(lvl===1){ r1.push({type:'intro',w:wd,ctxSentence:null},mc_nl); r2.push(order); }
       else if(lvl===2){ r1.push(verb||mc_nl); r2.push(order); }
       else { r1.push(verb||listen); r2.push(order); }
+      // Werkwoord hier vaak fout, of dit werkwoord verwar je vaker: extra werkwoord-oefening
+      if(verb&&lvl>1&&((w.miss.verb||0)>=1||_bjWeakFams().has(_bjFindVerb(w.hz.trim(),roman).form.fam))) r2.push({...verb,choices:shuffle([...verb.choices])});
       return;
     }
     const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...d.slice(0,3).map(x=>x.hz)])};
@@ -460,7 +465,7 @@ function bjStartSession(hzList,title){
   const {alias,toRm}=_bjAliasMaps(roman);
   const show=hz=>toRm[hz]||hz;
   const keys=hzList.filter(hz=>st[hz]);
-  const words=keys.map(hz=>({hz:show(hz),nl:st[hz].nl,tr:toRm[hz]?'':(st[hz].tr||''),masteryLevel:st[hz].masteryLevel||1,sent:hz.trim().split(/\s+/).length>=3}));
+  const words=keys.map(hz=>({hz:show(hz),nl:st[hz].nl,tr:toRm[hz]?'':(st[hz].tr||''),masteryLevel:st[hz].masteryLevel||1,sent:hz.trim().split(/\s+/).length>=3,diff:_bjDiff(st[hz]),miss:st[hz].miss||{}}));
   if(!words.length){showToast('Nog niets om te oefenen');return;}
   const exs=_bjBuildExercises(words,show,roman);
   if(!exs.length){showToast('Voeg minstens 4 woorden toe om te kunnen oefenen');return;}
@@ -485,7 +490,10 @@ function bjStartReview(lessonId){
   seedBijles();
   const st=_bjStore();
   const lessons=lessonId?[_bjFind(lessonId)].filter(Boolean):_bjLessonsOrdered();
-  let keys=[...shuffle(_bjDueKeys(lessons)).slice(0,20),..._bjNewCandidates(lessons).slice(0,BJ_NEW_PER_SESSION)];
+  const dueKeys=_bjByPriority(_bjDueKeys(lessons)).slice(0,20);
+  let keys=[...dueKeys,..._bjNewCandidates(lessons).slice(0,_bjNewPerSession(dueKeys.length))];
+  // Werkwoorden die je verwart: een paar extra zinnen met dat werkwoord erbij
+  keys=keys.concat(_bjFocusSentences(lessons,keys,3));
   if(!keys.length&&lessonId){
     // Alles van deze les herhaald: oefen dan gewoon wat je al kent
     keys=shuffle(lessons.flatMap(l=>l.items.map(i=>i.hz)).filter(hz=>_bjIntro(st[hz]))).slice(0,15);
@@ -568,4 +576,143 @@ function _bjVerbChoices(form,correctLabel,roman){
   const picks=[...shuffle(same),...shuffle(other)].map(lbl).filter(x=>x!==correctLabel);
   const uniq=[...new Set(picks)].slice(0,3);
   return shuffle([correctLabel,...uniq]);
+}
+
+// ══════════════════════════════════════════════════════
+// ZELFLEREND — inschatten, tempo aanpassen, fouten herkennen
+// ══════════════════════════════════════════════════════
+// S.bjLog = {sess:[{d,c,w}], verb:{'goedHz|gekozenHz': aantal}}
+// Per item (S.bvocab): hist = laatste 8 antwoorden, miss = {meaning,order,verb,type,spelling}
+function _bjLog(){ if(!S.bjLog) S.bjLog={sess:[],verb:{}}; if(!S.bjLog.verb) S.bjLog.verb={}; if(!S.bjLog.sess) S.bjLog.sess=[]; return S.bjLog; }
+const _BJ_CAT={order_bj:'order',verb_bj:'verb',type:'type',hint:'type'};
+
+function bjNoteResult(v,ok,exType){
+  v.hist=[...(v.hist||[]),!!ok].slice(-8);
+  const cat=_BJ_CAT[exType]||'meaning';
+  v.miss=v.miss||{};
+  if(!ok) v.miss[cat]=(v.miss[cat]||0)+1;
+  else if(v.miss[cat]>0) v.miss[cat]--; // gaat het weer goed, dan telt de oude fout minder mee
+}
+function bjNoteSpelling(hz){
+  const v=_bjStore()[bjKey(hz)]; if(!v)return;
+  v.miss=v.miss||{}; v.miss.spelling=(v.miss.spelling||0)+1; save();
+}
+function _bjFormOf(x){ x=String(x||''); return _BJ_ALLFORMS.find(f=>f.hz===x)||_BJ_ALLFORMS.find(f=>f.trs.includes(x.toLowerCase())); }
+function bjLogVerbError(correct,chosen){
+  const a=_bjFormOf(correct), b=_bjFormOf(chosen); if(!a||!b)return;
+  const log=_bjLog(), k=a.hz+'|'+b.hz;
+  log.verb[k]=(log.verb[k]||0)+1; save();
+}
+function bjVerbCorrect(correct){
+  const a=_bjFormOf(correct); if(!a)return;
+  const log=_bjLog();
+  Object.keys(log.verb).forEach(k=>{ if(k.startsWith(a.hz+'|')){ log.verb[k]--; if(log.verb[k]<=0) delete log.verb[k]; } });
+  save();
+}
+function bjLogSession(c,w){
+  const log=_bjLog();
+  log.sess.push({d:Date.now(),c,w}); log.sess=log.sess.slice(-12); save();
+}
+
+// Score van de laatste sessies (null = nog te weinig gegevens)
+function _bjAccuracy(){
+  const s=_bjLog().sess.slice(-5); let c=0,w=0;
+  s.forEach(x=>{c+=x.c;w+=x.w;});
+  return c+w>=10?c/(c+w):null;
+}
+// Moeilijkheid van een item voor jou (0 = makkelijk, 1 = gaat steeds mis)
+function _bjDiff(v){
+  const h=(v&&v.hist)||[];
+  if(!h.length) return 0.3;
+  return (h.filter(x=>!x).length+0.3)/(h.length+1);
+}
+// Tempo: hoeveel nieuwe stof per sessie — op basis van je score en wat er nog openstaat
+function _bjNewPerSession(dueCount){
+  const a=_bjAccuracy();
+  let n=a===null?8:a>=0.9?12:a>=0.8?10:a>=0.65?6:3;
+  if(dueCount>=40) n=Math.min(n,1); else if(dueCount>=25) n=Math.min(n,3);
+  return n;
+}
+// Wanneer de zinnen opengaan: sneller als het goed gaat, later als het lastig is
+function _bjUnlock(){ const a=_bjAccuracy(); return a===null?0.7:a>=0.85?0.6:a>=0.7?0.7:0.8; }
+// Wat aan de beurt is: moeilijkste en langst achterstallige eerst
+function _bjByPriority(keys){
+  const st=_bjStore(), now=Date.now();
+  const score=hz=>{ const v=st[hz]; const over=v.nr?Math.max(0,(now-new Date(v.nr))/864e5):1; return _bjDiff(v)*3+Math.min(over,10)/5+Math.random()*0.3; };
+  return [...keys].sort((a,b)=>score(b)-score(a));
+}
+// Werkwoordfamilies die je de laatste tijd verwart
+function _bjWeakFams(){
+  const fams=new Set();
+  Object.entries(_bjLog().verb).forEach(([k,n])=>{ if(n>=2){ const f=_bjFormOf(k.split('|')[0]); if(f) fams.add(f.fam); } });
+  return fams;
+}
+function _bjFocusSentences(lessons,exclude,max){
+  const fams=_bjWeakFams(); if(!fams.size) return [];
+  const st=_bjStore(), ex=new Set(exclude);
+  const cands=lessons.flatMap(l=>l.items).filter(it=>_bjIsSentence(it)&&!ex.has(it.hz)&&_bjIntro(st[it.hz])&&(()=>{const v=_bjFindVerb(it.hz.trim(),false);return v&&fams.has(v.form.fam);})());
+  return shuffle([...new Set(cands.map(i=>i.hz))]).slice(0,max);
+}
+// Typen: één letter verschil (bij langere woorden twee) telt als bijna goed
+function bjNearMiss(a,b){
+  if(!a||!b) return false;
+  const max=b.length>=10?2:b.length>=4?1:0;
+  if(!max||Math.abs(a.length-b.length)>max) return false;
+  let prev=Array.from({length:b.length+1},(_,i)=>i);
+  for(let i=1;i<=a.length;i++){
+    const cur=[i];
+    for(let j=1;j<=b.length;j++) cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+    prev=cur;
+  }
+  return prev[b.length]<=max;
+}
+
+// ── Inzichten: wat gaat er mis? ──
+function _bjInsights(){
+  const st=_bjStore(), roman=_bjPracticeScript()==='roman', out=[];
+  const fm=f=>roman?`<b>${_bjEsc(f.tr)}</b>`:`<b><bdi>${_bjEsc(f.hz)}</bdi></b> (${_bjEsc(f.tr)})`;
+  // 1. Werkwoordvormen die je verwart
+  const pairs=Object.entries(_bjLog().verb).sort((a,b)=>b[1]-a[1]).filter(([,n])=>n>=2);
+  if(pairs.length){
+    const [k,n]=pairs[0]; const [a,b]=k.split('|').map(_bjFormOf);
+    if(a&&b) out.push(`🔤 Je haalt ${fm(a)} = ${_bjEsc(a.nl)} en ${fm(b)} = ${_bjEsc(b.nl)} door elkaar (${n}×). Daar krijg je nu extra oefeningen voor.`);
+  }
+  // 2. Soort fouten
+  const tot={order:0,spelling:0,meaning:0,type:0};
+  Object.values(st).forEach(v=>{ if(v.miss) Object.keys(tot).forEach(c=>tot[c]+=v.miss[c]||0); });
+  const tips={order:n=>`🧩 Woordvolgorde gaat nog vaak mis (${n}×). Tip: het werkwoord staat in het Hazaragi altijd achteraan.`,
+    spelling:n=>`✏️ Je typt vaak bijna goed (${n}× een kleine spelfout). Let op lange klinkers en de kh/gh-klanken.`,
+    meaning:n=>`💭 Betekenissen haal je soms door elkaar (${n}×). Die woorden komen vaker terug.`,
+    type:n=>`⌨️ Zelf typen is nog lastig (${n}×). Die woorden krijg je eerst weer als meerkeuze.`};
+  const top=Object.entries(tot).filter(([,n])=>n>=3).sort((a,b)=>b[1]-a[1])[0];
+  if(top) out.push(tips[top[0]](top[1]));
+  // 3. Moeilijkste woorden/zinnen
+  const hard=Object.entries(st).filter(([,v])=>(v.hist||[]).length>=2&&_bjDiff(v)>=0.45).sort((a,b)=>_bjDiff(b[1])-_bjDiff(a[1])).slice(0,3);
+  if(hard.length) out.push(`🎯 Lastig voor jou:${hard.map(([hz,v])=>`<span class="bj-ins-item"><bdi>${_bjEsc(roman?(v.tr||hz):hz)}</bdi> <small>${_bjEsc(v.nl)}</small></span>`).join('')}`);
+  // 4. Tempo
+  const acc=_bjAccuracy();
+  if(acc!==null){
+    const pct=Math.round(acc*100), nw=_bjNewPerSession(_bjDueKeys(_bjList()).length);
+    out.push(`📈 Je scoort ${pct}% in je laatste sessies — ${acc>=0.8?`je krijgt ${nw} nieuwe items per keer`:acc>=0.65?`rustig tempo: ${nw} nieuwe per keer`:`eerst herhalen: maar ${nw} nieuwe per keer`}.`);
+  }
+  return {lines:out,hard:hard.length};
+}
+function _bjInsightsCard(){
+  const ins=_bjInsights();
+  if(!ins.lines.length) return '';
+  const weak=ins.hard||_bjWeakFams().size;
+  return `<div class="bj-insights">
+    <div class="bj-notes-lbl">Hoe gaat het?</div>
+    ${ins.lines.map(l=>`<div class="bj-ins-line">${l}</div>`).join('')}
+    ${weak?`<button class="bj-link-btn" style="margin:6px 0 0;text-align:left;padding:0" onclick="bjStartWeak()">Oefen je zwakke punten →</button>`:''}
+  </div>`;
+}
+// Gerichte sessie: moeilijkste items + zinnen met werkwoorden die je verwart
+function bjStartWeak(){
+  seedBijles();
+  const st=_bjStore(), lessons=_bjLessonsOrdered();
+  const hard=Object.keys(st).filter(hz=>_bjIntro(st[hz])&&(st[hz].hist||[]).length>=2).sort((a,b)=>_bjDiff(st[b])-_bjDiff(st[a])).slice(0,10);
+  const keys=[...hard,..._bjFocusSentences(lessons,hard,4)];
+  if(!keys.length){showToast('Nog geen zwakke punten gevonden — goed bezig!');return;}
+  bjStartSession(keys,'Zwakke punten');
 }

@@ -612,7 +612,10 @@ function rType(ex,body){
     checking=true;
 
     const _nm=CL&&CL._bjRoman?normRm:normAr;
-    if(_nm(val)===_nm(correct)){
+    const _exact=_nm(val)===_nm(correct);
+    // Bijles: één letter verschil = bijna goed (telt goed, met spelhint)
+    const _near=!_exact&&!retryMode&&CL&&CL._bjHz&&typeof bjNearMiss==='function'&&bjNearMiss(_nm(val),_nm(correct));
+    if(_exact||_near){
       inp.blur();
       inp.classList.add('ok');
       sfxCorrect();
@@ -626,9 +629,10 @@ function rType(ex,body){
         CC++;LXP+=10;
         CC_COMBO++;
         if(CC_COMBO>=3){LXP+=CC_COMBO>=5?3:1;showComboIndicator(CC_COMBO);}
-        showFB(true,'Uitstekend!',w.nl,correct);
+        showFB(true,_near?'Bijna goed — let op de spelling':'Uitstekend!',_near?`Juist: ${correct}`:w.nl,correct);
         sparkles();
         updMastery(correct,true,'type');
+        if(_near) bjNoteSpelling(correct);
       }
     } else {
       if(!retryMode){
@@ -723,7 +727,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     showFB(true,'Goed!',nl,clozeSent?'':correct);
     sparkles();
     updMastery(correct,true,'mc');
-    if(clozeSent&&CL&&CL._bjHz) updMastery(clozeSent,true,'mc');
+    if(clozeSent&&CL&&CL._bjHz){ updMastery(clozeSent,true,'verb_bj'); bjVerbCorrect(correct); }
   }else{
     CC_COMBO=0;
     btn.classList.add('ng');WC++;
@@ -733,7 +737,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     });
     const _bjCloze=clozeSent&&CL&&CL._bjHz;
     const requeued=_bjCloze?(_bjRequeueCurrent(),true):requeueWrong(correct);
-    if(_bjCloze) updMastery(clozeSent,false,'mc');
+    if(_bjCloze){ updMastery(clozeSent,false,'verb_bj'); bjLogVerbError(correct,chosen); }
     trackWrong(correct,nl,tr);
     trackConfusion(correct, chosen);
     const _tip2=_getWordTip(correct);
@@ -837,7 +841,7 @@ function chkOrder(correct,nl,tr){
     showFB(true,'Perfect! Juiste volgorde!',nl,'');
     sparkles();
     words.forEach(hz=>updMastery(hz,true,'order'));
-    if(CL&&CL._bjHz) updMastery(correct,true,'type');
+    if(CL&&CL._bjHz) updMastery(correct,true,'order_bj');
   }else{
     WC++;CC_COMBO=0;
     sfxWrong();
@@ -847,7 +851,7 @@ function chkOrder(correct,nl,tr){
       if(v) trackWrong(hz,v.nl,v.tr);
       updMastery(hz,false,'order');
     });
-    if(CL&&CL._bjHz){ updMastery(correct,false,'type'); _bjRequeueCurrent(); }
+    if(CL&&CL._bjHz){ updMastery(correct,false,'order_bj'); _bjRequeueCurrent(); }
   }
 }
 
@@ -952,6 +956,7 @@ function finishLesson(){
     }
   }
 
+  if(CL.id==='_bijles'&&typeof bjLogSession==='function') bjLogSession(CC,WC);
   showScreen('result');
   sfxFinish();
   confetti();

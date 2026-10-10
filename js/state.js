@@ -86,9 +86,9 @@ function updMastery(hz, ok, exType){
   if(!v.ease) v.ease=2.5;
   if(v.consec===undefined) v.consec=0;
 
-  const isType=exType==='type';
+  const isType=exType==='type'||exType==='order_bj';
   const isHint=exType==='hint';
-  const isMc=['mc','mc_nl','mc_hz','wb','listen','order','sentence_mc'].includes(exType);
+  const isMc=['mc','mc_nl','mc_hz','wb','listen','order','sentence_mc','verb_bj'].includes(exType);
 
   if(ok){
     v.consec++;
@@ -138,6 +138,8 @@ function updMastery(hz, ok, exType){
 
   // compat: sync old field for any code still reading it
   v.mastery=Math.max(0,lvl-1);
+  // Bijles: onthoud wat er goed/fout gaat (voor het zelflerende systeem)
+  if(store===S.bvocab&&typeof bjNoteResult==='function') bjNoteResult(v,ok,exType);
   save();
 }
 
