@@ -156,6 +156,8 @@ body{font-family:'Nunito',sans-serif;background:#FFFAF7;display:flex;justify-con
 .hearts{display:flex;gap:2px;font-size:17px;flex-shrink:0}
 
 .l-body{flex:1;padding:16px 16px 140px;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
+/* Onderdelen niet laten samendrukken als de oefening langer is dan het scherm (lange zinnen) */
+.l-body>*{flex-shrink:0}
 
 /* Type pill */
 .type-pill{display:inline-flex;align-items:center;gap:6px;background:var(--rose-xl);border-radius:50px;padding:6px 14px;font-size:11px;font-weight:900;color:var(--rose-d);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px;align-self:flex-start}
@@ -817,6 +819,17 @@ body.bj-roman-ex .bj-ans-inp,.bj-ans-inp{direction:ltr}
 .bj-ans-fb.ok{border-left-color:#8AAF7A}
 .bj-ans-fb.ng{border-left-color:var(--rose-d)}
 .bj-ans-fb-ttl{font-weight:900;color:var(--ink);margin-bottom:4px}
+.bj-ans-ex{margin-top:8px;padding-top:8px;border-top:1px dashed var(--ink-xl);color:var(--ink);font-weight:800}
+.bj-ans-ex span{color:var(--ink-l);font-weight:800}
+.bj-ans-ex-tr{font-style:italic;color:var(--rose-d);font-size:12.5px;margin-top:2px}
+.bj-ans-judge-lbl{margin-top:12px;font-size:12px;font-weight:900;color:var(--ink-l);text-transform:uppercase;letter-spacing:.6px}
+.bj-ans-judge{display:flex;gap:8px;margin-top:6px}
+.bj-judge{flex:1;border-radius:var(--r-sm);padding:12px 8px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;cursor:pointer;border:1.5px solid var(--ink-xl);background:var(--white)}
+.bj-judge.ok{color:#5A8A4A;border-color:#B8D4A8}
+.bj-judge.ng{color:var(--rose-d);border-color:var(--rose-l)}
+.bj-judge.sel.ok{background:#E8F3E0}
+.bj-judge.sel.ng{background:var(--rose-xl)}
+.bj-judge:disabled:not(.sel){opacity:.4}
 .bj-hint{font-size:11.5px;font-weight:700;color:var(--ink-l);text-align:center;margin-top:10px}
 
 body.dark-mode{background:#2A1F1A}

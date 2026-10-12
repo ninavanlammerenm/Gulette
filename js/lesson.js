@@ -518,6 +518,9 @@ function tileMove(tile, word, zoneId){
   };
   zone.appendChild(t);
   zone.classList.add('has');
+  // Lange zinnen: houd het antwoordvak en de rest in beeld
+  const bank=tile.closest('.wb-bank');
+  (bank||zone).scrollIntoView({block:'nearest',behavior:'smooth'});
 }
 function wbMove(tile,word){tileMove(tile,word,'wb-ans');}
 function ordMove(tile,word){tileMove(tile,word,'ord-ans');}

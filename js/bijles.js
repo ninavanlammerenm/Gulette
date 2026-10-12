@@ -435,7 +435,8 @@ function _bjBuildExercises(words,show,roman){
       const weakVerb=verb&&((w.miss.verb||0)>=1||_bjWeakFams().has(_bjFindVerb(w.hz.trim(),roman).form.fam));
       if(weakVerb&&lvl>1) r2.push({...verb,choices:shuffle([...verb.choices])});
       // Vervoegen (zin omzetten): vanaf niveau 3, of eerder als het werkwoord lastig is
-      if(lvl>=3||(weakVerb&&lvl>=2)){ const tr=_bjTransform(w,roman); if(tr) r2.push(tr); }
+      const canPast=(()=>{const vv=_bjFindVerb(w.hz.trim(),roman);return vv&&BJ_PAST[vv.form.hz]&&!/[?؟]\s*$/.test(w.hz.trim());})();
+      if(lvl>=3||(lvl>=2&&(weakVerb||canPast))){ const tr=_bjTransform(w,roman); if(tr) r2.push(tr); }
       return;
     }
     const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...d.slice(0,3).map(x=>x.hz)])};
@@ -736,7 +737,8 @@ function bjStartWeak(){
 // ══════════════════════════════════════════════════════
 const BJ_PRON={'1s':['من','ma'],'2s':['تو','tu'],'3s':['او','oo'],'1p':['مو','mo'],'2p':['شما','shuma'],'3p':['اونا','ona']};
 const BJ_PNL={'1s':'ik','2s':'jij','3s':'hij/zij','1p':'wij','2p':'jullie / u','3p':'zij (meervoud)'};
-const BJ_TENSE={'zijn':'zijn (verleden)','zijn (verleden)':'zijn'};
+// Tegenwoordige tijd → verleden tijd (alleen vormen die de docent heeft gegeven)
+const BJ_PAST={'استم':'بودم','استی':'بودی','استه':'بود','استیم':'بودیم','استید':'بودین','استن':'بودن','دارم':'داشتم','می‌خورم':'خوردم'};
 const BJ_YDAY=['دیروز','dirooz'], BJ_TODAY=['امروز','emrooz'];
 function _bjFormLabel(f,roman,styleOf){
   if(!roman) return f.hz;
@@ -757,10 +759,18 @@ function _bjTransform(w,roman){
   if(pi>=0){
     fam.forms.filter(f=>f.p&&f.p!==P&&BJ_PRON[f.p]).forEach(f=>opts.push({kind:'person',f}));
   }
-  const tf=BJ_TENSE[fam.fam]&&BJ_VERBS.find(x=>x.fam===BJ_TENSE[fam.fam]).forms.find(f=>f.p===P);
-  if(tf) opts.push({kind:'tense',f:tf});
-  if(!opts.length) return null;
-  const o=opts[Math.floor(Math.random()*opts.length)];
+  // Verleden tijd alleen bij zinnen waar dat logisch klinkt: begint met een persoon of 'vandaag',
+  // geen vraag, geen naam of vaste uitdrukking (anders krijg je 'gisteren heette ik…')
+  const first=_bjCore(toks[0]).toLowerCase();
+  // Ook geen vaste kenmerken (lengte, haar, ogen, afkomst, familie, smaak): 'gisteren had ik blauwe ogen' klinkt raar
+  const fixed=/(نام|naam|خدا|khoda|هالند|holland|قد |ghad-|موی|moo-ye|چشم|cheshm|برار|braar|خوار|khuaar|خوش دارم|khosh darum|همیشه|hamesha)/i;
+  let pastOk=!/[?؟]\s*$/.test(text)&&(Object.values(BJ_PRON).some(p=>p[R]===first)||first===BJ_TODAY[R])&&!fixed.test(text);
+  // 'hebben' alleen bij tijd of werk (vandaag heb ik tijd → gisteren had ik tijd)
+  if(v.form.fam==='hebben'&&!/(وقت|wakht|کار|kaar)/i.test(text)) pastOk=false;
+  const tf=pastOk&&BJ_PAST[v.form.hz]&&_BJ_ALLFORMS.find(f=>f.hz===BJ_PAST[v.form.hz]);
+  if(!opts.length&&!tf) return null;
+  // Verleden tijd maken krijgt voorrang (de helft van de keren, of altijd als er geen persoon-wissel kan)
+  const o=tf&&(!opts.length||Math.random()<0.5)?{kind:'tense',f:tf}:opts[Math.floor(Math.random()*opts.length)];
   const out=[...toks];
   const vtok=toks[vi], newVerb=_bjFormLabel(o.f,roman,v.core);
   out[vi]=vtok.replace(v.core,newVerb);
@@ -769,17 +779,16 @@ function _bjTransform(w,roman){
     out[pi]=toks[pi].replace(_bjCore(toks[pi]),BJ_PRON[o.f.p][R]);
     instr=`Zeg dezelfde zin over <b>${BJ_PNL[o.f.p]}</b> (${BJ_PRON[o.f.p][R]}):`;
   } else {
-    const toPast=o.f.fam==='zijn (verleden)';
     const y=BJ_YDAY[R], t=BJ_TODAY[R];
     const ti=out.findIndex(x=>{const c=_bjCore(x).toLowerCase(); return c===t||c===y;});
-    if(toPast){ if(ti>=0) out[ti]=out[ti].replace(_bjCore(out[ti]),y); else out.unshift(y); }
-    else { if(ti>=0) out.splice(ti,1); }
-    instr=toPast?'Zet de zin in de <b>verleden tijd</b> (gisteren):':'Zet de zin in de <b>tegenwoordige tijd</b> (nu):';
+    if(ti>=0) out[ti]=out[ti].replace(_bjCore(out[ti]),y); else out.unshift(y);
+    instr='Zet de zin in de <b>verleden tijd</b> (gisteren):';
   }
   const target=out.join(' ');
   if(target===text) return null;
   // Lokwoorden: het oude werkwoord en een andere vorm van hetzelfde werkwoord
-  const lure=[_bjFormLabel(v.form,roman,v.core),...shuffle(fam.forms.filter(f=>f!==o.f&&f!==v.form&&f.p)).slice(0,1).map(f=>_bjFormLabel(f,roman,v.core))];
+  const lureFam=BJ_VERBS.find(x=>x.fam===o.f.fam)||fam;
+  const lure=[_bjFormLabel(v.form,roman,v.core),...shuffle(lureFam.forms.filter(f=>f!==o.f&&f!==v.form&&f.p)).slice(0,1).map(f=>_bjFormLabel(f,roman,v.core))];
   const tks=new Set(target.split(' ').map(_bjCore));
   return {type:'order',title:'Vervoegen',q:instr,src:text,bjExType:'conj_bj',key:w.key,
     s:{hz:target,nl:'',tr:''},distractors:lure.filter(x=>!tks.has(x))};
@@ -840,36 +849,51 @@ function bjCheckAnswer(q,val){
   const example=`Voorbeeld: ${roman?q.ex:q.exhz+' — '+q.ex}`;
   const log=_bjLog(); log.q=log.q||{}; const ql=log.q[q.id]=log.q[q.id]||{n:0,ok:0};
   ql.n++;
-  let ok=null, title, hint;
+  let auto=null, title, hint, verbErr=null;
   if(okEnd){
-    ok=true; title='Goed! Het werkwoord klopt';
-    hint=`Je gebruikt ${nm(okEnd)}. ${example}`;
+    auto=true; title='Het werkwoord lijkt te kloppen';
+    hint=`Je gebruikt ${nm(okEnd)}.`;
   } else if(misplaced){
-    ok=false; title='Het werkwoord moet achteraan';
-    hint=`Het juiste werkwoord staat erin, maar in het Hazaragi komt het aan het eind van de zin. ${example}`;
+    auto=false; title='Let op: het werkwoord hoort achteraan';
+    hint='Het juiste werkwoord staat erin, maar in het Hazaragi komt het aan het eind van de zin.';
   } else if(wrongEnd){
-    ok=false; const e=exp.find(f=>f.fam===wrongEnd.fam)||exp[0];
-    title='Bijna — kijk naar het werkwoord';
-    hint=`Je gebruikte ${nm(wrongEnd)}, maar hier past ${nm(e)}. ${example}`;
-    bjLogVerbError(e.hz,wrongEnd.hz);
+    auto=false; const e=exp.find(f=>f.fam===wrongEnd.fam)||exp[0];
+    title='Kijk nog eens naar het werkwoord';
+    hint=`Je gebruikte ${nm(wrongEnd)}, maar hier past waarschijnlijk ${nm(e)}.`;
+    verbErr=[e.hz,wrongEnd.hz];
   } else if(anyIdx>=0){
-    ok=false; title='Het werkwoord moet achteraan';
-    hint=`In het Hazaragi staat het werkwoord aan het eind van de zin. ${example}`;
+    auto=false; title='Let op: het werkwoord hoort achteraan';
+    hint='In het Hazaragi staat het werkwoord aan het eind van de zin.';
   } else {
     title='Vergelijk met het voorbeeld';
-    hint=`Ik herken geen werkwoord dat ik ken — misschien klopt het, check het bij je docent. ${example}`;
+    hint='Ik herken geen werkwoord dat ik ken — vergelijk het zelf met het voorbeeld.';
   }
-  if(ok===true){ CC++; LXP+=8; CC_COMBO++; ql.ok++; sfxCorrect(); sparkles(); }
-  else if(ok===false){ WC++; CC_COMBO=0; sfxWrong(); }
-  save();
-  // Volledige uitleg ook onder de vraag (de balk onderin is kort)
+  // Uitleg + voorbeeld tonen; JIJ beslist of het goed of fout was
   const body=document.getElementById('l-body');
   const card=document.createElement('div');
-  card.className='bj-ans-fb '+(ok===true?'ok':ok===false?'ng':'');
-  card.innerHTML=`<div class="bj-ans-fb-ttl">${_bjEsc(title)}</div><div>${_bjEsc(hint)}</div>`;
+  card.className='bj-ans-fb '+(auto===true?'ok':auto===false?'ng':'');
+  card.innerHTML=`<div class="bj-ans-fb-ttl">💡 ${_bjEsc(title)}</div>
+    <div>${_bjEsc(hint)}</div>
+    <div class="bj-ans-ex"><span>Voorbeeld:</span> ${_bjEsc(roman?q.ex:q.exhz)}${roman?'':`<div class="bj-ans-ex-tr">${_bjEsc(q.ex)}</div>`}</div>
+    <div class="bj-ans-judge-lbl">Wat vind je zelf?</div>
+    <div class="bj-ans-judge">
+      <button class="bj-judge ok" id="bj-judge-ok">✓ Ik had het goed</button>
+      <button class="bj-judge ng" id="bj-judge-ng">✗ Ik had het fout</button>
+    </div>`;
   body.appendChild(card);
   document.getElementById('bj-ans-btn').style.display='none';
-  showFB(ok!==false,title,ok===true?'Goed gedaan!':'Lees de uitleg hierboven',''); 
+  card.scrollIntoView({block:'nearest',behavior:'smooth'});
+  const judge=ok=>{
+    card.querySelectorAll('.bj-judge').forEach(b=>b.disabled=true);
+    (ok?card.querySelector('#bj-judge-ok'):card.querySelector('#bj-judge-ng')).classList.add('sel');
+    if(ok){ CC++; LXP+=8; CC_COMBO++; ql.ok++; sfxCorrect(); sparkles(); }
+    else { WC++; CC_COMBO=0; sfxWrong(); if(verbErr) bjLogVerbError(verbErr[0],verbErr[1]); }
+    save();
+    showFB(ok,ok?'Goed gedaan!':'Volgende keer beter',ok?'Op naar de volgende':'Kijk nog even naar het voorbeeld','');
+  };
+  card.querySelector('#bj-judge-ok').addEventListener('click',()=>judge(true));
+  card.querySelector('#bj-judge-ng').addEventListener('click',()=>judge(false));
+  save();
 }
 
 // ══════════════════════════════════════════════════════
