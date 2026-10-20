@@ -430,6 +430,128 @@ Huiswerk: beantwoord de zes oefenvragen en vertel je eigen dagritme (dialoog A e
     {id:'bl5_w44', section:'Zijn: nu en verleden', hz:'شما دیروز تیار بودین', tr:'shuma dirooz tayar budin', nl:'Jullie waren gisteren klaar'},
     {id:'bl5_w45', section:'Zijn: nu en verleden', hz:'اونا دیروز دَ شهر بودن', tr:'ona dirooz da shahr budan', nl:'Zij waren gisteren in de stad'}
   ]
+},
+{
+  id:'bl6',
+  title:'Les 6: thuis en kamers',
+  date:'2026-10-20',
+  notes:`Je huis beschrijven, meubels en waar iets staat, en gasten ontvangen.
+
+Groot = kalaan / buzurg · klein = khurd / kuchak · hoog = buland · hoeveel = chand
+Open = baaz · dicht = basta · verdieping = tabagha · boven = tabagh-e bala
+Waar staat het? rooye (op) · zir-e (onder) · pesh-e (voor) · pusht-e (achter) · paloo-ye (naast) · gusha-e (in de hoek van)
+Zitkamer = otagh-e nesheman · plafond = saghf · bed = takht · knus = danj
+
+Huiswerk: geef een rondleiding door je huis (dialoog A) en oefen het ontvangen van gasten (dialoog B).`,
+  items:[
+    {id:'bl6_w0', section:'Huis & kamers', hz:'خانه', tr:'khana', nl:'Huis / thuis'},
+    {id:'bl6_w1', section:'Huis & kamers', hz:'اتاق', tr:'otagh', nl:'Kamer'},
+    {id:'bl6_w2', section:'Huis & kamers', hz:'اتاق خواب', tr:'otagh-e khwab', nl:'Slaapkamer'},
+    {id:'bl6_w3', section:'Huis & kamers', hz:'اتاق مهمان', tr:'otagh-e mehmaan', nl:'Gastenkamer / woonkamer'},
+    {id:'bl6_w4', section:'Huis & kamers', hz:'اتاق نشیمن', tr:'otagh-e nesheman', nl:'Zitkamer'},
+    {id:'bl6_w5', section:'Huis & kamers', hz:'آشپزخانه', tr:'ashpaz-khana', nl:'Keuken'},
+    {id:'bl6_w6', section:'Huis & kamers', hz:'تشناب', tr:'tashnaab', nl:'Badkamer / toilet', note:'Ook: hammam'},
+    {id:'bl6_w7', section:'Huis & kamers', hz:'باغچه', tr:'baghcha', nl:'Tuin'},
+    {id:'bl6_w8', section:'Huis & kamers', hz:'حیاط', tr:'hayat', nl:'Binnenplaats / erf'},
+    {id:'bl6_w9', section:'Huis & kamers', hz:'بام', tr:'baam', nl:'Dak'},
+    {id:'bl6_w10', section:'Huis & kamers', hz:'سقف', tr:'saghf', nl:'Plafond'},
+    {id:'bl6_w11', section:'Huis & kamers', hz:'دروازه', tr:'darwaza', nl:'Deur / poort', note:'Ook: dar'},
+    {id:'bl6_w12', section:'Huis & kamers', hz:'کلکین', tr:'kalkin', nl:'Raam', note:'Ook: panjara'},
+    {id:'bl6_w13', section:'Huis & kamers', hz:'طبقه', tr:'tabagha', nl:'Verdieping'},
+    {id:'bl6_w14', section:'Huis & kamers', hz:'طبقه بالا', tr:'tabagh-e bala', nl:'Bovenverdieping'},
+    {id:'bl6_w15', section:'Huis & kamers', hz:'کلان', tr:'kalaan', nl:'Groot', note:'Ook: buzurg'},
+    {id:'bl6_w16', section:'Huis & kamers', hz:'خورد', tr:'khurd', nl:'Klein', note:'Ook: kuchak'},
+    {id:'bl6_w17', section:'Huis & kamers', hz:'بلند', tr:'buland', nl:'Hoog'},
+    {id:'bl6_w18', section:'Huis & kamers', hz:'باز', tr:'baaz', nl:'Open'},
+    {id:'bl6_w19', section:'Huis & kamers', hz:'بسته', tr:'basta', nl:'Dicht / gesloten'},
+    {id:'bl6_w20', section:'Huis & kamers', hz:'چند', tr:'chand', nl:'Hoeveel'},
+    {id:'bl6_w21', section:'Huis & kamers', hz:'درخت', tr:'derakht', nl:'Boom'},
+    {id:'bl6_w22', section:'Huis & kamers', hz:'خانه تو چطور استه؟ کلان استه یا خورد؟', tr:'khana-ye tu chetor asta? kalaan asta ya khurd?', nl:'Hoe is je huis? Is het groot of klein?'},
+    {id:'bl6_w23', section:'Huis & kamers', hz:'خانه من یک‌کم کلان و خیلی مقبول استه', tr:'khana-ye ma yak-kam kalaan wa kheili maqbool asta', nl:'Mijn huis is vrij groot en heel mooi'},
+    {id:'bl6_w24', section:'Huis & kamers', hz:'خانه تو چند اتاق خواب داره؟', tr:'khana-ye tu chand otagh-e khwab daara?', nl:'Hoeveel slaapkamers heeft je huis?'},
+    {id:'bl6_w25', section:'Huis & kamers', hz:'خانه من سه اتاق خواب و دو تشناب داره', tr:'khana-ye ma se otagh-e khwab wa do tashnaab daara', nl:'Mijn huis heeft drie slaapkamers en twee badkamers'},
+    {id:'bl6_w26', section:'Huis & kamers', hz:'من یک باغچه خورد و مقبول هم دارم', tr:'ma yak baghcha-ye khurd wa maqbool ham darum', nl:'Ik heb ook een kleine, mooie tuin'},
+    {id:'bl6_w27', section:'Huis & kamers', hz:'خانه من دَ طبقه دوم استه', tr:'khana-ye ma da tabagha-ye dowum asta', nl:'Mijn huis is op de tweede verdieping'},
+    {id:'bl6_w28', section:'Meubels & waar iets staat', hz:'روی', tr:'rooye', nl:'Op (bovenop)', note:'Ook: bala-ye'},
+    {id:'bl6_w29', section:'Meubels & waar iets staat', hz:'زیر', tr:'zir-e', nl:'Onder'},
+    {id:'bl6_w30', section:'Meubels & waar iets staat', hz:'پیش', tr:'pesh-e', nl:'Voor (vóór iets)'},
+    {id:'bl6_w31', section:'Meubels & waar iets staat', hz:'پشت', tr:'pusht-e', nl:'Achter'},
+    {id:'bl6_w32', section:'Meubels & waar iets staat', hz:'پهلوی', tr:'paloo-ye', nl:'Naast', note:'Ook: kenaar-e'},
+    {id:'bl6_w33', section:'Meubels & waar iets staat', hz:'میان', tr:'miyan-e', nl:'Tussen / in het midden'},
+    {id:'bl6_w34', section:'Meubels & waar iets staat', hz:'گوشه', tr:'gusha-e', nl:'In de hoek van'},
+    {id:'bl6_w35', section:'Meubels & waar iets staat', hz:'میز', tr:'mez', nl:'Tafel'},
+    {id:'bl6_w36', section:'Meubels & waar iets staat', hz:'چوکی', tr:'chawkai', nl:'Stoel', note:'Ook: sanli'},
+    {id:'bl6_w37', section:'Meubels & waar iets staat', hz:'کوپ', tr:'kope', nl:'Bank (om op te zitten)'},
+    {id:'bl6_w38', section:'Meubels & waar iets staat', hz:'تخت', tr:'takht', nl:'Bed'},
+    {id:'bl6_w39', section:'Meubels & waar iets staat', hz:'گلیم', tr:'gilaam', nl:'Kleed / tapijt', note:'Ook: farsh'},
+    {id:'bl6_w40', section:'Meubels & waar iets staat', hz:'بخاری', tr:'bukhari', nl:'Kachel'},
+    {id:'bl6_w41', section:'Meubels & waar iets staat', hz:'صفا و روشن', tr:'safa wa rooshan', nl:'Schoon en licht'},
+    {id:'bl6_w42', section:'Meubels & waar iets staat', hz:'جابه‌جا', tr:'jaa-ba-jaa', nl:'Opgeruimd / op zijn plek'},
+    {id:'bl6_w43', section:'Meubels & waar iets staat', hz:'دَ اتاق نشیمن کوپ‌ها پیش میز استه', tr:'da otagh-e nesheman kope-ho pesh-e mez asta', nl:'In de zitkamer staan de banken voor de tafel'},
+    {id:'bl6_w44', section:'Meubels & waar iets staat', hz:'همه چیز جابه‌جا استه', tr:'hama chiz jaa-ba-jaa asta', nl:'Alles staat op zijn plek'},
+    {id:'bl6_w45', section:'Meubels & waar iets staat', hz:'تخت دَ گوشه اتاق استه', tr:'takht da gusha-e otagh asta', nl:'Het bed staat in de hoek van de kamer'},
+    {id:'bl6_w46', section:'Gasten ontvangen', hz:'خوش آمدید', tr:'khush amadid', nl:'Welkom'},
+    {id:'bl6_w47', section:'Gasten ontvangen', hz:'خانه خود تو استه!', tr:'khana-ye khud-e tu asta!', nl:'Doe alsof je thuis bent!'},
+    {id:'bl6_w48', section:'Gasten ontvangen', hz:'جای تو دَ قلب مو استه', tr:'jaa-ye tu da qalb-e mo asta', nl:'Je hebt een plek in ons hart', note:'Ook: dil (hart)'},
+    {id:'bl6_w49', section:'Gasten ontvangen', hz:'بفرمایید بشینید، زحمت نکشید!', tr:'be-farmaeed neshined, zahmat nakashid!', nl:'Ga zitten, doe geen moeite!'},
+    {id:'bl6_w50', section:'Gasten ontvangen', hz:'پیش بخاری بشینید، سرد استه!', tr:'pesh-e bukhari neshined, sard asta!', nl:'Ga bij de kachel zitten, het is koud!'},
+    {id:'bl6_w51', section:'Gasten ontvangen', hz:'خانه مو را روشن کدید!', tr:'khana-ye mo ra rooshan kadid!', nl:'Jullie brengen licht in ons huis!', note:'Om gasten welkom te heten'},
+    {id:'bl6_w52', section:'Gasten ontvangen', hz:'هر وقت بیایید، خوش آمدید!', tr:'har wakht biyaid, khush amadid!', nl:'Kom wanneer je wilt, je bent altijd welkom!'},
+    {id:'bl6_w53', section:'Gasten ontvangen', hz:'آب و چای تیار استه!', tr:'aab wa chai tayar asta!', nl:'Water en thee staan klaar!'},
+    {id:'bl6_w54', section:'Gasten ontvangen', hz:'خانه دنج و گرم', tr:'khana-ye danj wa garm', nl:'Een knus en warm huis'},
+    {id:'bl6_w55', section:'Gasten ontvangen', hz:'خانه شما آباد باشه!', tr:'khana-ye shuma aabaad basha!', nl:'Moge uw huis bloeien!', note:'Zegen bij het weggaan'}
+  ]
+},
+{
+  id:'bl7',
+  title:'Les 7: spullen zoeken',
+  date:'2026-10-20',
+  notes:`Spullen in huis, vragen waar iets is en zeggen dat je iets kwijt bent of gevonden hebt.
+
+Waar is mijn …? = … -e ma kojast? · Van wie is dit? = in … az ki asta? → in … az ma asta (van mij)
+Dit / dat = in / aan · deze / die (meervoud) = inha (inaa) / aanha (oona)
+Bril dragen: aynak mi-zanum (ik) · aynak mi-zana (hij/zij)
+Iets kwijt: … gum shuda · gevonden: paida kadum · waar heb je het gelegd? kuja guzashti?
+Ra staat achter het lijdend voorwerp: mobile-e khud ra (je eigen telefoon)
+
+Let op: de PDF was deels verkeerd afgedrukt (de dialogen vallen van de pagina af).`,
+  items:[
+    {id:'bl7_w0', section:'Spullen', hz:'کلید', tr:'kelid', nl:'Sleutel'},
+    {id:'bl7_w1', section:'Spullen', hz:'پیسه', tr:'pisa', nl:'Geld', note:'Ook: pool'},
+    {id:'bl7_w2', section:'Spullen', hz:'پولدار', tr:'pool-daar', nl:'Rijk'},
+    {id:'bl7_w3', section:'Spullen', hz:'کیف', tr:'keef', nl:'Tas / portemonnee'},
+    {id:'bl7_w4', section:'Spullen', hz:'پاسپورت', tr:'passport', nl:'Paspoort'},
+    {id:'bl7_w5', section:'Spullen', hz:'موبایل', tr:'mobile', nl:'Mobiele telefoon'},
+    {id:'bl7_w6', section:'Spullen', hz:'عینک', tr:'aynak', nl:'Bril'},
+    {id:'bl7_w7', section:'Spullen', hz:'عینک می‌زنم', tr:'aynak mi-zanum', nl:'Ik draag een bril'},
+    {id:'bl7_w8', section:'Spullen', hz:'عینک می‌زنه', tr:'aynak mi-zana', nl:'Hij/zij draagt een bril'},
+    {id:'bl7_w9', section:'Spullen', hz:'کتاب', tr:'kitaab', nl:'Boek'},
+    {id:'bl7_w10', section:'Spullen', hz:'قلم', tr:'qalam', nl:'Pen'},
+    {id:'bl7_w11', section:'Spullen', hz:'ریموت', tr:'remot', nl:'Afstandsbediening'},
+    {id:'bl7_w12', section:'Spullen', hz:'این', tr:'in', nl:'Dit / deze'},
+    {id:'bl7_w13', section:'Spullen', hz:'آن', tr:'aan', nl:'Dat / die'},
+    {id:'bl7_w14', section:'Spullen', hz:'اینها', tr:'inha', nl:'Deze (meervoud)', note:'Ook: inaa'},
+    {id:'bl7_w15', section:'Spullen', hz:'آنها', tr:'aanha', nl:'Die (meervoud)', note:'Ook: oona'},
+    {id:'bl7_w16', section:'Spullen', hz:'هر کس', tr:'har kas', nl:'Ieder persoon', note:'Ook: hama'},
+    {id:'bl7_w17', section:'Spullen', hz:'را', tr:'ra', nl:'Woordje achter het lijdend voorwerp', note:'Bijv. mobile-e khud ra = je (eigen) telefoon'},
+    {id:'bl7_w18', section:'Waar is…?', hz:'داخل', tr:'daakhil-e', nl:'In / binnenin'},
+    {id:'bl7_w19', section:'Waar is…?', hz:'کلید من کجاست؟', tr:'kelid-e ma kojast?', nl:'Waar is mijn sleutel?'},
+    {id:'bl7_w20', section:'Waar is…?', hz:'موبایل تو کجاست؟', tr:'mobile-e tu kojast?', nl:'Waar is jouw telefoon?'},
+    {id:'bl7_w21', section:'Waar is…?', hz:'این کیف از کی استه؟', tr:'in keef az ki asta?', nl:'Van wie is deze tas?'},
+    {id:'bl7_w22', section:'Waar is…?', hz:'این کیف از من استه', tr:'in keef az ma asta', nl:'Deze tas is van mij'},
+    {id:'bl7_w23', section:'Waar is…?', hz:'نه، این از من نیست', tr:'ney, in az ma nest', nl:'Nee, dit is niet van mij'},
+    {id:'bl7_w24', section:'Waar is…?', hz:'روی میز استه', tr:'rooye mez asta', nl:'Het ligt op tafel'},
+    {id:'bl7_w25', section:'Waar is…?', hz:'داخل کیف تو استه', tr:'daakhil-e keef-e tu asta', nl:'Het zit in jouw tas'},
+    {id:'bl7_w26', section:'Waar is…?', hz:'پهلوی موبایل استه', tr:'paloo-ye mobile asta', nl:'Het ligt naast de telefoon'},
+    {id:'bl7_w27', section:'Waar is…?', hz:'گوشه اتاق استه', tr:'gusha-e otagh asta', nl:'Het staat in de hoek van de kamer'},
+    {id:'bl7_w28', section:'Kwijt en gevonden', hz:'کلید من گم شده!', tr:'kelid-e ma gum shuda!', nl:'Mijn sleutel is kwijt!'},
+    {id:'bl7_w29', section:'Kwijt en gevonden', hz:'کجا گذاشتی؟', tr:'kuja guzashti?', nl:'Waar heb je het gelegd?'},
+    {id:'bl7_w30', section:'Kwijt en gevonden', hz:'یاد من رفته!', tr:'yad-e ma rafta!', nl:'Ik ben het vergeten!'},
+    {id:'bl7_w31', section:'Kwijt en gevonden', hz:'خبر داری کجا استه؟', tr:'khabar dari kuja asta?', nl:'Weet je waar het is?'},
+    {id:'bl7_w32', section:'Kwijt en gevonden', hz:'من پیدا کدم!', tr:'ma paida kadum!', nl:'Ik heb het gevonden!'},
+    {id:'bl7_w33', section:'Kwijt en gevonden', hz:'اینجا استه، بیا بگیر!', tr:'inja asta, biya beger!', nl:'Hier is het, kom het pakken!'},
+    {id:'bl7_w34', section:'Kwijt en gevonden', hz:'کمک می‌کنی پیدا کنیم؟', tr:'kumak mukuni paida kunem?', nl:'Help je mee zoeken?'}
+  ]
 }
 ];
 
@@ -474,5 +596,17 @@ const BIJLES_QUESTIONS={
     {id:'bl5_q3', q:'پیش از خواب چه می‌کنی؟', qtr:'pesh az khwab che mukuni?', nl:'Wat doe je voor het slapen?', expect:['می‌خوانم','می‌زنیم','می‌بینم','می‌کنم'], ex:'kitab mi-khanum', exhz:'کتاب می‌خوانم'},
     {id:'bl5_q4', q:'دیروز کجا بودی؟', qtr:'dirooz kuja budi?', nl:'Waar was je gisteren?', expect:['بودم'], ex:'dirooz ma da kaar budum', exhz:'دیروز من دَ کار بودم'},
     {id:'bl5_q5', q:'ساعت چند خواب می‌شی؟', qtr:'saat-e chand khwab mi-shi?', nl:'Hoe laat ga je slapen?', expect:['می‌شم'], ex:'ma saat-e da khwab mi-shum', exhz:'من ساعت ده خواب می‌شم'}
+  ],
+  bl6:[
+    {id:'bl6_q0', q:'خانه تو کجا استه و چطور خانه استه؟', qtr:'khana-ye tu kuja asta wa chetor khana asta?', nl:'Waar is je huis en hoe is het?', expect:['استه'], ex:'khana-ye ma da Holland asta, kalaan wa maqbool asta', exhz:'خانه من دَ هالند استه، کلان و مقبول استه'},
+    {id:'bl6_q1', q:'خانه تو چند اتاق خواب داره؟', qtr:'khana-ye tu chand otagh-e khwab daara?', nl:'Hoeveel slaapkamers heeft je huis?', expect:['داره'], ex:'khana-ye ma se otagh-e khwab daara', exhz:'خانه من سه اتاق خواب داره'},
+    {id:'bl6_q2', q:'دَ اتاق خواب تو تخت کجا استه؟', qtr:'da otagh-e khwab-e tu takht kuja asta?', nl:'Waar staat het bed in je slaapkamer?', expect:['استه'], ex:'takht paloo-ye kalkin asta', exhz:'تخت پهلوی کلکین استه'},
+    {id:'bl6_q3', q:'باغچه یا حیاط هم داری؟', qtr:'baghcha ya hayat ham dari?', nl:'Heb je ook een tuin of binnenplaats?', expect:['دارم','ندارم'], ex:'bale, yak baghcha-ye khurd darum', exhz:'بله، یک باغچه خورد دارم'}
+  ],
+  bl7:[
+    {id:'bl7_q0', q:'کلید تو کجاست؟', qtr:'kelid-e tu kojast?', nl:'Waar is jouw sleutel?', expect:['استه'], ex:'rooye mez asta', exhz:'روی میز استه'},
+    {id:'bl7_q1', q:'این عینک از تو استه؟', qtr:'in aynak az tu asta?', nl:'Is deze bril van jou?', expect:['استه','نیست'], ex:'bale, in aynak az ma asta', exhz:'بله، این عینک از من استه'},
+    {id:'bl7_q2', q:'موبایل تو کجا استه؟', qtr:'mobile-e tu kuja asta?', nl:'Waar is jouw telefoon?', expect:['استه'], ex:'daakhil-e keef-e ma asta', exhz:'داخل کیف من استه'},
+    {id:'bl7_q3', q:'تو عینک می‌زنی؟', qtr:'tu aynak mi-zani?', nl:'Draag jij een bril?', expect:['می‌زنم'], ex:'bale, ma aynak mi-zanum', exhz:'بله، من عینک می‌زنم'}
   ]
 };

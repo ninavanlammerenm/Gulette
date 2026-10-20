@@ -533,7 +533,7 @@ const BJ_VERBS=[
   // [Hazaragi, Roman-varianten, betekenis, persoon] — persoon: 1s ik · 2s jij · 3s hij/zij · 1p wij · 2p jullie/u · 3p zij
   {fam:'zijn',forms:[['استم','astum','ik ben','1s'],['استی','asti','jij bent','2s'],['استه','asta','hij/zij/het is','3s'],['استیم','astem','wij zijn','1p'],['استید','asted','u bent / jullie zijn','2p'],['استن','astan','zij zijn','3p'],['نیست','nest','is niet']]},
   {fam:'zijn (verleden)',forms:[['بودم','budum','ik was','1s'],['بودی','budi','jij was','2s'],['بود','bud|bood','hij/zij/het was','3s'],['بودیم','budim','wij waren','1p'],['بودین','budin','u was / jullie waren','2p'],['بودن','budan','zij waren','3p']]},
-  {fam:'hebben',forms:[['دارم','darum|daram','ik heb','1s'],['داری','dari|daari','jij hebt','2s'],['داره','daara','hij/zij heeft','3s'],['ندارم','nadarum|nadaram','ik heb niet'],['داشتم','dashtum','ik had']]},
+  {fam:'hebben',forms:[['دارم','darum|daram','ik heb','1s'],['داری','dari|daari','jij hebt','2s'],['داره','daara','hij/zij heeft','3s'],['دارید','daared','u heeft / jullie hebben','2p'],['ندارم','nadarum|nadaram','ik heb niet'],['داشتم','dashtum','ik had']]},
   {fam:'doen',forms:[['می‌کنم','mukunum|mi-konam','ik doe','1s'],['می‌کنی','mukuni','jij doet','2s'],['می‌کنه','mukuna','hij/zij doet','3s'],['نمی‌کنم','nami-konam','ik doe niet'],['نمی‌کنه','nami-kuna','het doet niet']]},
   {fam:'willen',forms:[['می‌خایم','mi-khayum','ik wil'],['نمی‌خایم','nami-khayum','ik wil niet'],['می‌خوام','mi-khaam','ik wil (mi-khaam)']]},
   {fam:'eten/drinken',forms:[['می‌خوری','mukhuri','jij eet/drinkt','2s'],['خوردم','khurdam','ik heb gegeten'],['خوردید','khurdid','u heeft gegeten'],['بخور','bukhur','eet!'],['می‌خورم','mi-khurum','ik eet','1s'],['می‌خوریم','mi-khurem','wij eten','1p']]},
@@ -541,12 +541,14 @@ const BJ_VERBS=[
   {fam:'zien',forms:[['می‌بینم','mubinum|mi-binum','ik zie']]},
   {fam:'wassen',forms:[['می‌شویم','mi-shoyam','ik was (me)']]},
   {fam:'komen',forms:[['می‌آیم','mi-yum','ik kom','1s'],['می‌آیی','mi-yayi','jij komt','2s']]},
-  {fam:'praten',forms:[['می‌زنیم','mi-zanem','wij praten (gap mi-zanem)']]},
+  {fam:'zanan (dragen/praten)',forms:[['می‌زنم','mi-zanum','ik draag (aynak mi-zanum)','1s'],['می‌زنی','mi-zani','jij draagt','2s'],['می‌زنه','mi-zana','hij/zij draagt','3s'],['می‌زنیم','mi-zanem','wij praten (gap mi-zanem)','1p']]},
+  {fam:'doen (verleden)',forms:[['کدم','kadum','ik heb gedaan (paida kadum)','1s'],['کدید','kadid','jullie hebben gedaan','2p']]},
+  {fam:'leggen',forms:[['گذاشتی','guzashti','jij hebt gelegd']]},
   {fam:'studeren',forms:[['می‌خوانم','mi-khanum|mukhanum','ik studeer','1s'],['می‌خوانی','mukhani','jij studeert','2s']]},
   {fam:'weten',forms:[['نمی‌دانم','nami-danom','ik weet het niet'],['نمی‌فهمم','nami-famum','ik begrijp het niet']]},
   {fam:'regenen',forms:[['می‌باره','mubaara','het regent'],['نمی‌باره','nemubaara','het regent niet']]},
   {fam:'zeggen',forms:[['می‌گن','mugan','ze zeggen']]},
-  {fam:'worden',forms:[['می‌شم','mi-shum|mayshum','ik word','1s'],['می‌شی','mi-shi|mayshi','jij wordt','2s'],['می‌شه','mi-sha|maysha','het wordt','3s']]},
+  {fam:'worden',forms:[['می‌شم','mi-shum|mayshum','ik word','1s'],['می‌شی','mi-shi|mayshi','jij wordt','2s'],['می‌شه','mi-sha|maysha','het wordt','3s'],['شده','shuda','is geworden (gum shuda = kwijt)']]},
 ].map(v=>({fam:v.fam,forms:v.forms.map(([hz,tr,nl,p])=>({hz,trs:tr.split('|'),tr:tr.split('|')[0],nl,p:p||'',fam:v.fam}))}));
 const _BJ_ALLFORMS=BJ_VERBS.flatMap(v=>v.forms);
 const _bjPunct=/^[؟?!.,،:;«»"()]+|[؟?!.,،:;«»"()]+$/g;
@@ -738,7 +740,7 @@ function bjStartWeak(){
 const BJ_PRON={'1s':['من','ma'],'2s':['تو','tu'],'3s':['او','oo'],'1p':['مو','mo'],'2p':['شما','shuma'],'3p':['اونا','ona']};
 const BJ_PNL={'1s':'ik','2s':'jij','3s':'hij/zij','1p':'wij','2p':'jullie / u','3p':'zij (meervoud)'};
 // Tegenwoordige tijd → verleden tijd (alleen vormen die de docent heeft gegeven)
-const BJ_PAST={'استم':'بودم','استی':'بودی','استه':'بود','استیم':'بودیم','استید':'بودین','استن':'بودن','دارم':'داشتم','می‌خورم':'خوردم'};
+const BJ_PAST={'استم':'بودم','استی':'بودی','استه':'بود','استیم':'بودیم','استید':'بودین','استن':'بودن','دارم':'داشتم','می‌خورم':'خوردم','می‌کنم':'کدم'};
 const BJ_YDAY=['دیروز','dirooz'], BJ_TODAY=['امروز','emrooz'];
 function _bjFormLabel(f,roman,styleOf){
   if(!roman) return f.hz;
