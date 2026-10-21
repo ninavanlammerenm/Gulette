@@ -50,7 +50,7 @@ function _bjAllItems(){ return _bjList().flatMap(l=>l.items); }
 function _bjAddVocab(it){
   const st=_bjStore();
   if(st[it.hz]) return; // zelfde tekst staat al in een andere bijles — voortgang delen
-  st[it.hz]={id:'bijles_'+it.id,nl:it.nl,tr:it.tr||'',tag:'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:new Date().toISOString(),typeCorrect:0,typeLast5:[],mcCorrect:0};
+  st[it.hz]={id:'bijles_'+it.id,nl:it.nl,tr:it.tr||'',tag:'',mastery:0,masteryLevel:1,nr:null,errors:0,firstSeen:null,typeCorrect:0,typeLast5:[],mcCorrect:0};
 }
 function _bjHzInUse(hz,exceptItem){ return _bjAllItems().some(i=>i!==exceptItem&&i.hz===hz); }
 function _bjUpdateVocab(it,oldHz){
@@ -80,6 +80,11 @@ function seedBijles(){
   // Stappen-systeem: items met voortgang gelden als al geleerd (intro)
   for(const v of Object.values(st)){
     if(v&&v.intro===undefined){ v.intro=(v.masteryLevel||1)>1||(v.mcCorrect||0)>0||(v.typeCorrect||0)>0||(v.errors||0)>0; changed=true; }
+  }
+  // Eenmalig: nog niet geoefende items hadden de toevoegdatum als 'eerst gezien' — weghalen
+  if(!S.bjFirstSeenFix){
+    for(const v of Object.values(st)){ if(v&&!v.intro) v.firstSeen=null; }
+    S.bjFirstSeenFix=true; changed=true;
   }
   if(!Array.isArray(S.bijlesSeeded)) S.bijlesSeeded=[];
   (typeof BIJLES_PRESET!=='undefined'?BIJLES_PRESET:[]).forEach(p=>{
@@ -501,7 +506,8 @@ function bjStartSession(hzList,title,opts){
   if(!words.length&&!qs.length){showToast('Nog niets om te oefenen');return;}
   const exs=[...(words.length?_bjBuildExercises(words,show,roman):[]),...qs];
   if(!exs.length){showToast('Voeg minstens 4 woorden toe om te kunnen oefenen');return;}
-  keys.forEach(hz=>{ st[hz].intro=true; });
+  // 'Eerst gezien' = de eerste keer dat je het oefent (niet wanneer de les is toegevoegd)
+  keys.forEach(hz=>{ if(!st[hz].intro) st[hz].firstSeen=new Date().toISOString(); st[hz].intro=true; });
   save();
   CL={
     id:'_bijles',
