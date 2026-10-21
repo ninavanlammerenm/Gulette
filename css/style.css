@@ -830,6 +830,7 @@ body.bj-roman-ex .bj-ans-inp,.bj-ans-inp{direction:ltr}
 .bj-judge.sel.ok{background:#E8F3E0}
 .bj-judge.sel.ng{background:var(--rose-xl)}
 .bj-judge:disabled:not(.sel){opacity:.4}
+.bj-skip-btn{margin-top:18px;color:var(--ink-l);font-size:12px}
 .bj-hint{font-size:11.5px;font-weight:700;color:var(--ink-l);text-align:center;margin-top:10px}
 
 body.dark-mode{background:#2A1F1A}

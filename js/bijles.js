@@ -148,7 +148,7 @@ function _bjNewCandidates(lessons){
   const st=_bjStore(), seen=new Set(), out=[];
   lessons.forEach(l=>{
     const s=_bjLessonStats(l);
-    const add=it=>{ const v=st[it.hz]; if(!v||_bjIntro(v)||seen.has(it.hz))return; seen.add(it.hz); out.push(it.hz); };
+    const add=it=>{ const v=st[it.hz]; if(!v||_bjIntro(v)||_bjSnoozed(v)||seen.has(it.hz))return; seen.add(it.hz); out.push(it.hz); };
     s.words.forEach(add);
     if(s.unlocked) s.sents.forEach(add);
   });
@@ -157,7 +157,26 @@ function _bjNewCandidates(lessons){
 // Alleen wat je al eens geleerd hebt telt als 'te herhalen'
 function _bjDueKeys(lessons){
   const st=_bjStore();
-  return [...new Set(lessons.flatMap(l=>l.items.map(i=>i.hz)))].filter(hz=>_bjIntro(st[hz])&&isDue(st[hz]));
+  return [...new Set(lessons.flatMap(l=>l.items.map(i=>i.hz)))].filter(hz=>_bjIntro(st[hz])&&isDue(st[hz])&&!_bjSnoozed(st[hz]));
+}
+function _bjSnoozed(v){ return !!v&&v.snooze&&v.snooze>Date.now(); }
+const BJ_COOLDOWN=8*3600e3, BJ_MAX_HARD=3, BJ_MAX_SENT=5;
+// Kies wat aan de beurt is, met afwisseling: niet steeds dezelfde lastige zinnen
+function _bjPickDue(keys,max){
+  const st=_bjStore(), now=Date.now();
+  let pool=keys.filter(hz=>st[hz]&&!_bjSnoozed(st[hz]));
+  // Afkoelen: wat je de afgelopen 8 uur hebt gezien, komt pas terug als er te weinig anders is
+  const rested=pool.filter(hz=>!st[hz].seenAt||now-st[hz].seenAt>BJ_COOLDOWN);
+  if(rested.length>=Math.min(8,pool.length)) pool=rested;
+  const out=[]; let hard=0, sent=0;
+  for(const hz of _bjByPriority(pool)){
+    if(out.length>=max) break;
+    const isS=hz.trim().split(/\s+/).length>=3, isH=_bjDiff(st[hz])>=0.45;
+    if(isS&&sent>=BJ_MAX_SENT) continue;
+    if(isH&&hard>=BJ_MAX_HARD) continue;
+    out.push(hz); if(isS) sent++; if(isH) hard++;
+  }
+  return out;
 }
 function _bjBar(n,t){ const p=t?Math.round(n/t*100):0; return `<div class="bj-bar"><div class="bj-bar-fill" style="width:${p}%"></div></div>`; }
 
@@ -503,10 +522,11 @@ function bjStartReview(lessonId){
   seedBijles();
   const st=_bjStore();
   const lessons=lessonId?[_bjFind(lessonId)].filter(Boolean):_bjLessonsOrdered();
-  const dueKeys=_bjByPriority(_bjDueKeys(lessons)).slice(0,20);
-  let keys=[...dueKeys,..._bjNewCandidates(lessons).slice(0,_bjNewPerSession(dueKeys.length))];
-  // Werkwoorden die je verwart: een paar extra zinnen met dat werkwoord erbij
-  keys=keys.concat(_bjFocusSentences(lessons,keys,3));
+  const allDue=_bjDueKeys(lessons);
+  const dueKeys=_bjPickDue(allDue,20);
+  let keys=[...dueKeys,..._bjNewCandidates(lessons).slice(0,_bjNewPerSession(allDue.length))];
+  // Werkwoorden die je verwart: hooguit één extra zin (die je een dag niet hebt gezien)
+  keys=keys.concat(_bjFocusSentences(lessons,keys,1));
   if(!keys.length&&lessonId){
     // Alles van deze les herhaald: oefen dan gewoon wat je al kent
     keys=shuffle(lessons.flatMap(l=>l.items.map(i=>i.hz)).filter(hz=>_bjIntro(st[hz]))).slice(0,15);
@@ -603,6 +623,7 @@ function _bjLog(){ if(!S.bjLog) S.bjLog={sess:[],verb:{}}; if(!S.bjLog.verb) S.b
 const _BJ_CAT={order_bj:'order',verb_bj:'verb',conj_bj:'verb',type:'type',hint:'type'};
 
 function bjNoteResult(v,ok,exType){
+  v.seenAt=Date.now();
   v.hist=[...(v.hist||[]),!!ok].slice(-8);
   const cat=_BJ_CAT[exType]||'meaning';
   v.miss=v.miss||{};
@@ -654,7 +675,8 @@ function _bjUnlock(){ const a=_bjAccuracy(); return a===null?0.7:a>=0.85?0.6:a>=
 // Wat aan de beurt is: moeilijkste en langst achterstallige eerst
 function _bjByPriority(keys){
   const st=_bjStore(), now=Date.now();
-  const score=hz=>{ const v=st[hz]; const over=v.nr?Math.max(0,(now-new Date(v.nr))/864e5):1; return _bjDiff(v)*3+Math.min(over,10)/5+Math.random()*0.3; };
+  // Moeilijkheid weegt mee, maar met genoeg toeval zodat het afwisselt
+  const score=hz=>{ const v=st[hz]; const over=v.nr?Math.max(0,(now-new Date(v.nr))/864e5):1; return _bjDiff(v)*1.5+Math.min(over,10)/5+Math.random()*1.5; };
   return [...keys].sort((a,b)=>score(b)-score(a));
 }
 // Werkwoordfamilies die je de laatste tijd verwart
@@ -666,7 +688,8 @@ function _bjWeakFams(){
 function _bjFocusSentences(lessons,exclude,max){
   const fams=_bjWeakFams(); if(!fams.size) return [];
   const st=_bjStore(), ex=new Set(exclude);
-  const cands=lessons.flatMap(l=>l.items).filter(it=>_bjIsSentence(it)&&!ex.has(it.hz)&&_bjIntro(st[it.hz])&&(()=>{const v=_bjFindVerb(it.hz.trim(),false);return v&&fams.has(v.form.fam);})());
+  const now=Date.now();
+  const cands=lessons.flatMap(l=>l.items).filter(it=>_bjIsSentence(it)&&!ex.has(it.hz)&&_bjIntro(st[it.hz])&&!_bjSnoozed(st[it.hz])&&!(st[it.hz].seenAt&&now-st[it.hz].seenAt<24*3600e3)&&(()=>{const v=_bjFindVerb(it.hz.trim(),false);return v&&fams.has(v.form.fam);})());
   return shuffle([...new Set(cands.map(i=>i.hz))]).slice(0,max);
 }
 // Typen: één letter verschil (bij langere woorden twee) telt als bijna goed
@@ -942,4 +965,38 @@ function bjStartQuestions(lessonId){
   const qs=shuffle([..._bjQuestions(lessonId)]);
   if(!qs.length){showToast('Nog geen vragen bij deze les');return;}
   bjStartSession([],'Vragen van je docent',{questions:qs});
+}
+
+// ══════════════════════════════════════════════════════
+// ZIN EVEN OVERSLAAN — 'Deze zin een week overslaan'
+// ══════════════════════════════════════════════════════
+function _bjExKey(ex){
+  if(!ex) return null;
+  const raw=ex.key||(ex.s&&ex.s.hz)||(ex.w&&ex.w.hz);
+  if(!raw) return null;
+  const k=bjKey(raw), st=_bjStore();
+  if(st[k]) return k;
+  // Werkwoord-oefening: zin zit in ex.s
+  if(ex.s&&st[bjKey(ex.s.hz)]) return bjKey(ex.s.hz);
+  return null;
+}
+function bjAfterRender(){
+  if(!CL||CL.id!=='_bijles') return;
+  const ex=EXS[EI], k=_bjExKey(ex);
+  if(!k||k.trim().split(/\s+/).length<3) return; // alleen bij zinnen
+  const btn=document.createElement('button');
+  btn.className='bj-link-btn bj-skip-btn';
+  btn.textContent='⏭ Deze zin een week overslaan';
+  btn.onclick=()=>bjSkipSentence(k);
+  document.getElementById('l-body').appendChild(btn);
+}
+function bjSkipSentence(k){
+  const v=_bjStore()[k]; if(!v) return;
+  v.snooze=Date.now()+7*864e5;
+  save();
+  // Rest van deze sessie: ook niet meer
+  const rest=EXS.slice(EI+1).filter(e=>_bjExKey(e)!==k);
+  EXS=[...EXS.slice(0,EI+1),...rest];
+  showToast('Deze zin zie je een week niet');
+  WAITING=false; hideFB(); nextEx();
 }

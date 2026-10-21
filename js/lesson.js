@@ -323,7 +323,8 @@ function renderEx(){
   else if(ex.type==='listen')     rListen(ex,body);
   else if(ex.type==='phase_break') rPhaseBreak(ex,body);
   else if(ex.type==='answer') bjRenderAnswer(ex,body);
-  else nextEx();
+  else { nextEx(); return; }
+  if(typeof bjAfterRender==='function') bjAfterRender();
 }
 
 function rIntro(ex,body){
