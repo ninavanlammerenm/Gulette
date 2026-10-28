@@ -552,6 +552,70 @@ Let op: de PDF was deels verkeerd afgedrukt (de dialogen vallen van de pagina af
     {id:'bl7_w33', section:'Kwijt en gevonden', hz:'اینجا استه، بیا بگیر!', tr:'inja asta, biya beger!', nl:'Hier is het, kom het pakken!'},
     {id:'bl7_w34', section:'Kwijt en gevonden', hz:'کمک می‌کنی پیدا کنیم؟', tr:'kumak mukuni paida kunem?', nl:'Help je mee zoeken?'}
   ]
+},
+{
+  id:'bl8',
+  title:'Les 8: eten en smaak',
+  date:'2026-10-28',
+  notes:`Wat je lekker vindt, Afghaanse en Hazaragi gerechten, ingrediënten en smaak.
+
+Ik hou van … = ma … ra khosh darum · ik hou niet van … = ma … ra khosh nadarum
+Ik vind … heerlijk = maana … khosh me-ya · hou jij van …? = tu … ra khosh dari?
+Smaak: tund (pittig) · shor (te zout) · namakin (hartig) · shirin (zoet) · tursh (zuur) · bimaza (flauw)
+
+Deze PDF had (nog) geen aantekeningen van je docent. Vaste verbeteringen zijn toegepast (kheili, gushna, sard, mi-khurem).
+Weggelaten: de zinnen met me-soorem (erin doen / opdienen) — dat werkwoord heeft je docent eerder vervangen; vraag na wat het moet zijn.
+
+Huiswerk: beantwoord de vijf huiswerkvragen hardop en oefen dialoog 1 tot en met 4.`,
+  items:[
+    {id:'bl8_w0', section:'Lekker of niet', hz:'غذا', tr:'ghaza', nl:'Eten / maaltijd'},
+    {id:'bl8_w1', section:'Lekker of niet', hz:'خوش دارم', tr:'khosh darum', nl:'Ik hou van / ik vind lekker', note:'ma … ra khosh darum'},
+    {id:'bl8_w2', section:'Lekker of niet', hz:'خوش ندارم', tr:'khosh nadarum', nl:'Ik hou niet van / ik vind niet lekker'},
+    {id:'bl8_w3', section:'Lekker of niet', hz:'خوش داری؟', tr:'khosh dari?', nl:'Vind jij het lekker?'},
+    {id:'bl8_w4', section:'Lekker of niet', hz:'غذای مزه‌دار', tr:'ghaza-ye mazadar', nl:'Lekker eten'},
+    {id:'bl8_w5', section:'Lekker of niet', hz:'تند', tr:'tund', nl:'Pittig / scherp'},
+    {id:'bl8_w6', section:'Lekker of niet', hz:'شور', tr:'shor', nl:'Te zout'},
+    {id:'bl8_w7', section:'Lekker of niet', hz:'گشنه استم', tr:'gushna astum', nl:'Ik heb honger'},
+    {id:'bl8_w8', section:'Lekker of niet', hz:'سیر استم', tr:'seer astum', nl:'Ik zit vol'},
+    {id:'bl8_w9', section:'Lekker of niet', hz:'تو چه غذا را خوش داری؟', tr:'tu che ghaza ra khosh dari?', nl:'Wat voor eten vind je lekker?'},
+    {id:'bl8_w10', section:'Lekker of niet', hz:'من غذای مزه‌دار و گرم را خوش دارم', tr:'ma ghaza-ye mazadar wa garm ra khosh darum', nl:'Ik hou van lekker, warm eten'},
+    {id:'bl8_w11', section:'Lekker of niet', hz:'من غذای تند را خوش ندارم', tr:'ma ghaza-ye tund ra khosh nadarum', nl:'Ik hou niet van pittig eten'},
+    {id:'bl8_w12', section:'Lekker of niet', hz:'نان افغانی خیلی مزه‌دار استه', tr:'naan-e afghani kheili mazadar asta', nl:'Afghaans brood is heel lekker'},
+    {id:'bl8_w13', section:'Lekker of niet', hz:'مانه غذای گرم خوش میایه', tr:'maana ghaza-ye garm khosh me-ya', nl:'Ik geniet van warm eten', note:'maana … khosh me-ya = ik vind … heerlijk'},
+    {id:'bl8_w14', section:'Gerechten', hz:'قروتی', tr:'qorooti', nl:'Qorooti (Hazaragi gerecht met gedroogde yoghurt en brood)'},
+    {id:'bl8_w15', section:'Gerechten', hz:'آشک', tr:'ashak', nl:'Ashak (pasteitjes met prei)'},
+    {id:'bl8_w16', section:'Gerechten', hz:'منتو', tr:'manto', nl:'Manto (pasteitjes met gehakt)'},
+    {id:'bl8_w17', section:'Gerechten', hz:'شوربا', tr:'shorba', nl:'Soep (shorba)'},
+    {id:'bl8_w18', section:'Gerechten', hz:'کچری قروت', tr:'kichiri qoroot', nl:'Kichiri (rijst met mungbonen en qoroot)'},
+    {id:'bl8_w19', section:'Gerechten', hz:'قابلی پلو', tr:'qabili palaw', nl:'Qabili palaw (rijst met wortel en rozijnen)', note:'In de PDF: pulao'},
+    {id:'bl8_w20', section:'Gerechten', hz:'نان افغانی', tr:'naan-e afghani', nl:'Afghaans brood'},
+    {id:'bl8_w21', section:'Gerechten', hz:'سبزی', tr:'sabzi', nl:'Spinaziegerecht', note:'Ook: palak'},
+    {id:'bl8_w22', section:'Gerechten', hz:'سیخ کباب', tr:'seekh-kabaab', nl:'Kebab aan een spies'},
+    {id:'bl8_w23', section:'Gerechten', hz:'من قروتی و منتو خوردم، خیلی مزه‌دار بود!', tr:'ma qorooti wa manto khurdam, kheili mazadar bud!', nl:'Ik heb qorooti en manto gegeten, het was heel lekker!'},
+    {id:'bl8_w24', section:'Gerechten', hz:'مانه قروتی همراه نان گرم خوش میایه', tr:'maana qorooti hamra-ye naan-e garm khosh me-ya', nl:'Ik vind qorooti met warm brood heerlijk'},
+    {id:'bl8_w25', section:'Gerechten', hz:'جمعه بعدی بیا خانه مو، آشک و شوربا می‌خوریم', tr:'juma-ye badi biya khana-ye mo, ashak wa shorba mi-khurem', nl:'Kom volgende vrijdag bij ons, we eten ashak en soep'},
+    {id:'bl8_w26', section:'Ingrediënten & smaak', hz:'گوشت گوسفند', tr:'goosht-e gospand', nl:'Lamsvlees'},
+    {id:'bl8_w27', section:'Ingrediënten & smaak', hz:'گوشت مرغ', tr:'goosht-e murgh', nl:'Kip (vlees)'},
+    {id:'bl8_w28', section:'Ingrediënten & smaak', hz:'گوشت گاو', tr:'goosht-e gow', nl:'Rundvlees'},
+    {id:'bl8_w29', section:'Ingrediënten & smaak', hz:'سبزیجات', tr:'sabzijat', nl:'Groenten'},
+    {id:'bl8_w30', section:'Ingrediënten & smaak', hz:'پیاز', tr:'piaaz', nl:'Ui'},
+    {id:'bl8_w31', section:'Ingrediënten & smaak', hz:'سیر', tr:'seer', nl:'Knoflook', note:'Zelfde schrijfwijze als seer = vol'},
+    {id:'bl8_w32', section:'Ingrediënten & smaak', hz:'روغن', tr:'roghan', nl:'Olie'},
+    {id:'bl8_w33', section:'Ingrediënten & smaak', hz:'نمک', tr:'namak', nl:'Zout (het product)'},
+    {id:'bl8_w34', section:'Ingrediënten & smaak', hz:'زردچوبه', tr:'zarchuba', nl:'Kurkuma'},
+    {id:'bl8_w35', section:'Ingrediënten & smaak', hz:'مصاله', tr:'masala', nl:'Kruiden'},
+    {id:'bl8_w36', section:'Ingrediënten & smaak', hz:'کچالو', tr:'kachalo', nl:'Aardappel'},
+    {id:'bl8_w37', section:'Ingrediënten & smaak', hz:'نخود', tr:'nakhod', nl:'Kikkererwten'},
+    {id:'bl8_w38', section:'Ingrediënten & smaak', hz:'نمکین', tr:'namakin', nl:'Hartig / zoutig'},
+    {id:'bl8_w39', section:'Ingrediënten & smaak', hz:'شیرین', tr:'shirin', nl:'Zoet'},
+    {id:'bl8_w40', section:'Ingrediënten & smaak', hz:'ترش', tr:'tursh', nl:'Zuur'},
+    {id:'bl8_w41', section:'Ingrediënten & smaak', hz:'بی‌مزه', tr:'bimaza', nl:'Smakeloos / flauw'},
+    {id:'bl8_w42', section:'Ingrediënten & smaak', hz:'من غذای نمکین را خوش دارم، اما میوه شیرین را هم خوش دارم', tr:'ma ghaza-ye namakin ra khosh darum, amma mewa-ye shirin ra ham khosh darum', nl:'Ik hou van hartig eten, maar ook van zoet fruit'},
+    {id:'bl8_w43', section:'Koken & gasten', hz:'پخته می‌کنم', tr:'pukhsa mukunum', nl:'Ik kook', note:'In de PDF: pukhsa — vraag of het pukhta is'},
+    {id:'bl8_w44', section:'Koken & gasten', hz:'من قابلی پلو، منتو و سبزی پخته می‌کنم', tr:'ma qabili palaw, manto wa sabzi pukhsa mukunum', nl:'Ik kook qabili palaw, manto en spinazie'},
+    {id:'bl8_w45', section:'Koken & gasten', hz:'نان گرم هم می‌خرم', tr:'naan-e garm ham mi-kharum', nl:'Ik koop ook warm brood'},
+    {id:'bl8_w46', section:'Koken & gasten', hz:'چای سبز', tr:'chai-ye sabz', nl:'Groene thee'}
+  ]
 }
 ];
 
@@ -608,5 +672,12 @@ const BIJLES_QUESTIONS={
     {id:'bl7_q1', q:'این عینک از تو استه؟', qtr:'in aynak az tu asta?', nl:'Is deze bril van jou?', expect:['استه','نیست'], ex:'bale, in aynak az ma asta', exhz:'بله، این عینک از من استه'},
     {id:'bl7_q2', q:'موبایل تو کجا استه؟', qtr:'mobile-e tu kuja asta?', nl:'Waar is jouw telefoon?', expect:['استه'], ex:'daakhil-e keef-e ma asta', exhz:'داخل کیف من استه'},
     {id:'bl7_q3', q:'تو عینک می‌زنی؟', qtr:'tu aynak mi-zani?', nl:'Draag jij een bril?', expect:['می‌زنم'], ex:'bale, ma aynak mi-zanum', exhz:'بله، من عینک می‌زنم'}
+  ],
+  bl8:[
+    {id:'bl8_q0', q:'تو چه غذا را خوش داری؟', qtr:'tu che ghaza ra khosh dari?', nl:'Wat voor eten vind je lekker?', expect:['دارم'], ex:'ma qorooti ra khosh darum, chun kheili mazadar asta', exhz:'من قروتی را خوش دارم، چون خیلی مزه‌دار استه'},
+    {id:'bl8_q1', q:'چه غذا را خوش نداری؟', qtr:'che ghaza ra khosh nadari?', nl:'Welk eten vind je niet lekker?', expect:['ندارم'], ex:'ma ghaza-ye kheili tund ra khosh nadarum', exhz:'من غذای خیلی تند را خوش ندارم'},
+    {id:'bl8_q2', q:'تو دَ خانه پخته می‌کنی یا از بیرون می‌خری؟', qtr:'tu da khana pukhsa mukuni ya az berun mi-khari?', nl:'Kook je thuis of koop je eten buiten de deur?', expect:['می‌کنم','می‌خرم'], ex:'ma da khana pukhsa mukunum', exhz:'من دَ خانه پخته می‌کنم'},
+    {id:'bl8_q3', q:'تو گوشت مرغ را خوش داری یا گوشت گوسفند را؟', qtr:'tu goosht-e murgh ra khosh dari ya goosht-e gospand ra?', nl:'Hou je meer van kip of van lamsvlees?', expect:['دارم'], ex:'ma goosht-e murgh ra khosh darum', exhz:'من گوشت مرغ را خوش دارم'},
+    {id:'bl8_q4', q:'وقتی فامیل میایه، چه غذا پخته می‌کنی؟', qtr:'waqti faamil me-ya, che ghaza pukhsa mukuni?', nl:'Wat kook je als de familie komt?', expect:['می‌کنم'], ex:'ma manto wa qabili palaw pukhsa mukunum', exhz:'من منتو و قابلی پلو پخته می‌کنم'}
   ]
 };
