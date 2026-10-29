@@ -4,6 +4,8 @@
 // hergebruiken, daar hangt de voortgang aan. Tekst (hz/tr/nl/note) mag wel
 // aangepast worden: bijles.js zet die wijziging door zonder voortgang te verliezen.
 // ══════════════════════════════════════════════════════
+// Items die uit een bijles zijn gehaald — ids nooit hergebruiken
+const BIJLES_RETIRED=['bl4_w16'];
 const BIJLES_PRESET=[
 {
   id:'bl1',
@@ -314,7 +316,6 @@ Huiswerk: beantwoord de drie sets oefenvragen hardop en oefen dialoog A, B en C 
     {id:'bl4_w13', section:'Hoe laat is het?', hz:'پیشین', tr:'peshin', nl:'Namiddag', note:'Ook: bad az chasht'},
     {id:'bl4_w14', section:'Hoe laat is het?', hz:'شب', tr:'shab', nl:'Avond / nacht', note:'Ook: shaw'},
     {id:'bl4_w15', section:'Hoe laat is het?', hz:'وقت چای استه!', tr:'wakht-e chai asta!', nl:'Het is theetijd!'},
-    {id:'bl4_w16', section:'Hoe laat is het?', hz:'تشکر استاد، یک‌کم چای گرم می‌خوام', tr:'tashakkur ustaad, yak-kam chai-ye garm mi-khaam', nl:'Dank u, ik wil graag een beetje warme thee', note:'mi-khaam = ik wil (ook: mi-khayum)'},
     {id:'bl4_w17', section:'Dagen van de week', hz:'روز', tr:'roz', nl:'Dag'},
     {id:'bl4_w18', section:'Dagen van de week', hz:'هفته', tr:'hafta', nl:'Week'},
     {id:'bl4_w19', section:'Dagen van de week', hz:'شنبه', tr:'shanba', nl:'Zaterdag', note:'Eerste dag van de Afghaanse week'},
@@ -664,7 +665,7 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop en speel het rollenspel in he
     {id:'bl9_w30', section:'Bestellen', hz:'قند و میوه خشک بفرمایید!', tr:'ghand wa mewa-ye khushk be-farmaeed!', nl:'Neem wat suiker en gedroogd fruit!'},
     {id:'bl9_w31', section:'De rekening', hz:'حساب', tr:'hisab', nl:'De rekening'},
     {id:'bl9_w32', section:'De rekening', hz:'ببخشید، حساب چند استه؟', tr:'bebakhshid, hisab chand asta?', nl:'Pardon, hoeveel is de rekening?'},
-    {id:'bl9_w33', section:'De rekening', hz:'این حساب بیست دالر استه', tr:'in hisab bist dalar asta', nl:'Deze rekening is twintig dollar'},
+    {id:'bl9_w33', section:'De rekening', hz:'این حساب بیست یورو استه', tr:'in hisab bist yuro asta', nl:'Deze rekening is twintig euro'},
     {id:'bl9_w34', section:'De rekening', hz:'زحمت نکشید، من پیسه می‌دم!', tr:'zahmat nakashid, ma pisa me-dum!', nl:'Doe geen moeite, ik betaal!'},
     {id:'bl9_w35', section:'De rekening', hz:'نه استاد، امروز من پیسه می‌دم!', tr:'ney ustaad, emrooz ma pisa me-dum!', nl:'Nee leraar, vandaag betaal ik!'},
     {id:'bl9_w36', section:'De rekening', hz:'خانه آباد!', tr:'khana aabaad!', nl:'Dankjewel! (letterlijk: moge je huis bloeien)'},

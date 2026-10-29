@@ -104,6 +104,13 @@ function seedBijles(){
       });
     }
     if(!l.removed) l.removed=[];
+    // Uitgefaseerde items (BIJLES_RETIRED) weghalen, ook als ze al in je bijles stonden
+    (typeof BIJLES_RETIRED!=='undefined'?BIJLES_RETIRED:[]).forEach(rid=>{
+      const it=l.items.find(i=>i.id===rid); if(!it) return;
+      l.items=l.items.filter(i=>i!==it);
+      if(!l.removed.includes(rid)) l.removed.push(rid);
+      _bjRemoveVocab(it); changed=true;
+    });
     p.items.forEach((pi,idx)=>{
       let it=l.items.find(i=>i.id===pi.id);
       if(!it){
@@ -615,7 +622,8 @@ function _bjVerbChoices(form,correctLabel,roman){
   // Roman: kies bij voorkeur de variant met dezelfde schrijfwijze als het antwoord (mi-… / may-…)
   const pref=correctLabel.slice(0,2).toLowerCase();
   const lbl=f=>roman?(f.trs.find(t=>t.slice(0,2)===pref)||f.tr):f.hz;
-  const same=BJ_VERBS.find(v=>v.fam===form.fam).forms.filter(f=>f!==form&&f.nl!==form.nl);
+  const base=n=>n.replace(/\s*\(.*\)\s*/g,'').trim();
+  const same=BJ_VERBS.find(v=>v.fam===form.fam).forms.filter(f=>f!==form&&base(f.nl)!==base(form.nl));
   const other=_BJ_ALLFORMS.filter(f=>f.fam!==form.fam);
   const picks=[...shuffle(same),...shuffle(other)].map(lbl).filter(x=>x!==correctLabel);
   const uniq=[...new Set(picks)].slice(0,3);
