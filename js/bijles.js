@@ -567,6 +567,7 @@ const BJ_VERBS=[
   {fam:'zien',forms:[['می‌بینم','mubinum|mi-binum','ik zie']]},
   {fam:'wassen',forms:[['می‌شویم','mi-shoyam','ik was (me)']]},
   {fam:'komen',forms:[['می‌آیم','mi-yum','ik kom','1s'],['می‌آیی','mi-yayi','jij komt','2s'],['میایه','me-ya','het komt / bevalt (khosh me-ya)','3s']]},
+  {fam:'geven',forms:[['می‌دم','me-dum','ik geef / ik betaal','1s'],['می‌دی','me-di','jij geeft','2s'],['می‌ده','me-da','hij/zij geeft','3s']]},
   {fam:'kopen',forms:[['می‌خرم','mi-kharum','ik koop','1s'],['می‌خری','mi-khari','jij koopt','2s']]},
   {fam:'zanan (dragen/praten)',forms:[['می‌زنم','mi-zanum','ik draag (aynak mi-zanum)','1s'],['می‌زنی','mi-zani','jij draagt','2s'],['می‌زنه','mi-zana','hij/zij draagt','3s'],['می‌زنیم','mi-zanem','wij praten (gap mi-zanem)','1p']]},
   {fam:'doen (verleden)',forms:[['کدم','kadum','ik heb gedaan (paida kadum)','1s'],['کدید','kadid','jullie hebben gedaan','2p']]},

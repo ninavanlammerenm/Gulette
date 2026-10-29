@@ -616,6 +616,60 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop en oefen dialoog 1 tot en met
     {id:'bl8_w45', section:'Koken & gasten', hz:'نان گرم هم می‌خرم', tr:'naan-e garm ham mi-kharum', nl:'Ik koop ook warm brood'},
     {id:'bl8_w46', section:'Koken & gasten', hz:'چای سبز', tr:'chai-ye sabz', nl:'Groene thee'}
   ]
+},
+{
+  id:'bl9',
+  title:'Les 9: café en thee',
+  date:'2026-10-29',
+  notes:`Bestellen in een theehuis of café, iets zoets erbij en de rekening betalen.
+
+Ik wil … = ma … mi-khayum (of mi-khaam) · breng … = … biyar / beleefd: biyared
+Ik ook = man ham (manam, maam) · alleen = faghat · met = ba (baa)
+Zoet of bitter: shirin / talkh (zonder suiker) · suiker = ghand
+Betalen: ma pisa me-dum (ik betaal / ik geef het geld)
+Bedanken: khair bebini · khana aabaad! (in plaats van rahmat)
+
+Huiswerk: beantwoord de vijf huiswerkvragen hardop en speel het rollenspel in het theehuis.`,
+  items:[
+    {id:'bl9_w0', section:'Drankjes & iets zoets', hz:'چای سیاه', tr:'chai-ye siaah', nl:'Zwarte thee'},
+    {id:'bl9_w1', section:'Drankjes & iets zoets', hz:'شیرچای', tr:'shir-chai', nl:'Melkthee'},
+    {id:'bl9_w2', section:'Drankjes & iets zoets', hz:'قهوه', tr:'qahwa', nl:'Koffie'},
+    {id:'bl9_w3', section:'Drankjes & iets zoets', hz:'آب معدنی', tr:'aab-e madani', nl:'Mineraalwater'},
+    {id:'bl9_w4', section:'Drankjes & iets zoets', hz:'آب یخ', tr:'aab-e yakh', nl:'Koud water / ijswater'},
+    {id:'bl9_w5', section:'Drankjes & iets zoets', hz:'جلیبی', tr:'jalabi', nl:'Jalebi (zoete lekkernij)'},
+    {id:'bl9_w6', section:'Drankjes & iets zoets', hz:'شیرینی', tr:'shirini', nl:'Zoetigheden / gebak'},
+    {id:'bl9_w7', section:'Drankjes & iets zoets', hz:'کلچه و کیک', tr:'kolcha wa kak', nl:'Koekjes en cake', note:'Je docent markeerde de laatste a van kaka'},
+    {id:'bl9_w8', section:'Drankjes & iets zoets', hz:'میوه خشک', tr:'mewa-ye khushk', nl:'Gedroogd fruit en noten'},
+    {id:'bl9_w9', section:'Drankjes & iets zoets', hz:'چایخانه', tr:'chai-khana', nl:'Theehuis'},
+    {id:'bl9_w10', section:'Drankjes & iets zoets', hz:'نوشیدنی', tr:'nowshidani', nl:'Drankje'},
+    {id:'bl9_w11', section:'Drankjes & iets zoets', hz:'نوشیدن', tr:'nowshidan', nl:'Drinken'},
+    {id:'bl9_w12', section:'Drankjes & iets zoets', hz:'پیاله', tr:'piyaala', nl:'Kop (theekop)'},
+    {id:'bl9_w13', section:'Drankjes & iets zoets', hz:'فنجان', tr:'fenjan', nl:'Kopje (koffiekop)'},
+    {id:'bl9_w14', section:'Drankjes & iets zoets', hz:'قند', tr:'ghand', nl:'Suiker'},
+    {id:'bl9_w15', section:'Drankjes & iets zoets', hz:'تلخ', tr:'talkh', nl:'Bitter / zonder suiker'},
+    {id:'bl9_w16', section:'Bestellen', hz:'لطفاً', tr:'lotfan', nl:'Alstublieft'},
+    {id:'bl9_w17', section:'Bestellen', hz:'بیار', tr:'biyar', nl:'Breng! (tegen één persoon)', note:'Ook: biyaresh'},
+    {id:'bl9_w18', section:'Bestellen', hz:'بیارید', tr:'biyared', nl:'Breng! (beleefd)'},
+    {id:'bl9_w19', section:'Bestellen', hz:'با', tr:'ba', nl:'Met (kort woord)', note:'Ook: baa'},
+    {id:'bl9_w20', section:'Bestellen', hz:'فقط', tr:'faghat', nl:'Alleen / maar'},
+    {id:'bl9_w21', section:'Bestellen', hz:'من هم', tr:'man ham', nl:'Ik ook', note:'Ook: manam, maam'},
+    {id:'bl9_w22', section:'Bestellen', hz:'عجیبه', tr:'ajeeba', nl:'Het is vreemd'},
+    {id:'bl9_w23', section:'Bestellen', hz:'من یک فنجان قهوه می‌خایم', tr:'ma yak fenjan qahwa mi-khayum', nl:'Ik wil graag een kopje koffie'},
+    {id:'bl9_w24', section:'Bestellen', hz:'من یک پیاله چای سبز و یک‌کم جلیبی می‌خایم', tr:'ma yak piyaala chai-ye sabz wa yak-kam jalabi mi-khayum', nl:'Ik wil een kop groene thee en een beetje jalebi'},
+    {id:'bl9_w25', section:'Bestellen', hz:'لطفاً چای سبز گرم بیارید', tr:'lotfan chai-ye sabz-e garm biyared', nl:'Breng alstublieft warme groene thee'},
+    {id:'bl9_w26', section:'Bestellen', hz:'ببخشید، آب یخ داری؟', tr:'bebakhshid, aab-e yakh dari?', nl:'Pardon, heeft u koud water?'},
+    {id:'bl9_w27', section:'Bestellen', hz:'قهوه تو شیرین استه یا تلخ؟', tr:'qahwa-ye tu shirin asta ya talkh?', nl:'Is je koffie zoet of zonder suiker?'},
+    {id:'bl9_w28', section:'Bestellen', hz:'من یک‌کم قند می‌خایم', tr:'ma yak-kam ghand mi-khayum', nl:'Ik wil een beetje suiker'},
+    {id:'bl9_w29', section:'Bestellen', hz:'تشکر، من هم قهوه شیرین می‌خایم', tr:'tashakkur, man ham qahwa-ye shirin mi-khayum', nl:'Dank je, ik wil ook zoete koffie'},
+    {id:'bl9_w30', section:'Bestellen', hz:'قند و میوه خشک بفرمایید!', tr:'ghand wa mewa-ye khushk be-farmaeed!', nl:'Neem wat suiker en gedroogd fruit!'},
+    {id:'bl9_w31', section:'De rekening', hz:'حساب', tr:'hisab', nl:'De rekening'},
+    {id:'bl9_w32', section:'De rekening', hz:'ببخشید، حساب چند استه؟', tr:'bebakhshid, hisab chand asta?', nl:'Pardon, hoeveel is de rekening?'},
+    {id:'bl9_w33', section:'De rekening', hz:'این حساب بیست دالر استه', tr:'in hisab bist dalar asta', nl:'Deze rekening is twintig dollar'},
+    {id:'bl9_w34', section:'De rekening', hz:'زحمت نکشید، من پیسه می‌دم!', tr:'zahmat nakashid, ma pisa me-dum!', nl:'Doe geen moeite, ik betaal!'},
+    {id:'bl9_w35', section:'De rekening', hz:'نه استاد، امروز من پیسه می‌دم!', tr:'ney ustaad, emrooz ma pisa me-dum!', nl:'Nee leraar, vandaag betaal ik!'},
+    {id:'bl9_w36', section:'De rekening', hz:'خانه آباد!', tr:'khana aabaad!', nl:'Dankjewel! (letterlijk: moge je huis bloeien)'},
+    {id:'bl9_w37', section:'De rekening', hz:'خیر ببینی', tr:'khair bebini', nl:'Dank je (letterlijk: moge je het goede zien)', note:'Je docent gebruikt dit in plaats van rahmat'}
+  ]
 }
 ];
 
@@ -679,5 +733,12 @@ const BIJLES_QUESTIONS={
     {id:'bl8_q2', q:'تو دَ خانه پخته می‌کنی یا از بیرون می‌خری؟', qtr:'tu da khana pukhsa mukuni ya az berun mi-khari?', nl:'Kook je thuis of koop je eten buiten de deur?', expect:['می‌کنم','می‌خرم'], ex:'ma da khana pukhsa mukunum', exhz:'من دَ خانه پخته می‌کنم'},
     {id:'bl8_q3', q:'تو گوشت مرغ را خوش داری یا گوشت گوسفند را؟', qtr:'tu goosht-e murgh ra khosh dari ya goosht-e gospand ra?', nl:'Hou je meer van kip of van lamsvlees?', expect:['دارم'], ex:'ma goosht-e murgh ra khosh darum', exhz:'من گوشت مرغ را خوش دارم'},
     {id:'bl8_q4', q:'وقتی فامیل میایه، چه غذا پخته می‌کنی؟', qtr:'waqti faamil me-ya, che ghaza pukhsa mukuni?', nl:'Wat kook je als de familie komt?', expect:['می‌کنم'], ex:'ma manto wa qabili palaw pukhsa mukunum', exhz:'من منتو و قابلی پلو پخته می‌کنم'}
+  ],
+  bl9:[
+    {id:'bl9_q0', q:'دَ چایخانه چای سبز می‌خوری یا قهوه؟', qtr:'da chai-khana chai-ye sabz mukhuri ya qahwa?', nl:'Drink je in het theehuis groene thee of koffie?', expect:['می‌خایم','می‌خوام'], ex:'ma chai-ye sabz mi-khayum, tashakkur', exhz:'من چای سبز می‌خایم، تشکر'},
+    {id:'bl9_q1', q:'قهوه گرم را خوش داری یا آب یخ؟', qtr:'qahwa-ye garm ra khosh dari ya aab-e yakh?', nl:'Hou je van warme koffie of van koud water?', expect:['دارم'], ex:'ma qahwa-ye garm ra khosh darum', exhz:'من قهوه گرم را خوش دارم'},
+    {id:'bl9_q2', q:'وقتی حساب میایه، تو چه می‌گی؟', qtr:'waqti hisab me-ya, tu che mugi?', nl:'Wat zeg je als de rekening komt?', expect:['می‌دم'], ex:'zahmat nakashid, ma pisa me-dum', exhz:'زحمت نکشید، من پیسه می‌دم'},
+    {id:'bl9_q3', q:'چای تو قند داره یا تلخ می‌خوری؟', qtr:'chai-ye tu ghand daara ya talkh mukhuri?', nl:'Doe je suiker in je thee of drink je hem zonder?', expect:['می‌خورم','داره'], ex:'ma chai-ye talkh mi-khurum', exhz:'من چای تلخ می‌خورم'},
+    {id:'bl9_q4', q:'کدام شیرینی را خوش داری؟', qtr:'kudam shirini ra khosh dari?', nl:'Welke zoetigheid vind je lekker?', expect:['دارم'], ex:'ma jalabi ra khosh darum', exhz:'من جلیبی را خوش دارم'}
   ]
 };
