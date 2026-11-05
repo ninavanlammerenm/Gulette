@@ -35,3 +35,8 @@ De gebruiker stuurt PDF's van haar Hazaragi-bijles. Elke PDF wordt een preset-bi
 - Werkwoordsvormen in `BJ_VERBS` krijgen ook een persoon (`1s` ik, `2s` jij, `3s` hij/zij, `1p` wij, `2p` jullie/u, `3p` zij) — nodig voor de oefening "Vervoegen" (zin omzetten naar andere persoon/tijd).
 - **Oefenvragen** uit de PDF (de "unanswered questions") toevoegen aan `BIJLES_QUESTIONS` in `js/bijlesdata.js` (ids `bl{n}_q{index}`), met `expect` = de werkwoordsvorm(en) die in het antwoord horen, plus een voorbeeldantwoord (`ex` Roman, `exhz` Dari). Toegepaste vaste correcties ook hier.
 - Twijfelgevallen niet stilletjes aanpassen: markeren en in het antwoord vermelden zodat ze het bij de docent kan navragen.
+
+## Werkwoorden-tab (`js/werkwoorden.js`)
+
+Traint welk werkwoord / hulpwerkwoord je gebruikt (niet de vervoeging). Lijst `WW_RAW` met ids `ww_…` (nooit wijzigen/hergebruiken); samengestelde werkwoorden = woord (`core`) + hulpwerkwoord (`h`: kardan/mukunum, shudan/mi-shum, dashtan/darum, zadan/mi-zanum, dadan/me-dum). Eigen voortgang in `S.wwvocab` (sessie-id `_ww`), los van bijles en lessen.
+- Komt er bij een nieuwe bijles een nieuw werkwoord bij (vooral woord + hulpwerkwoord), voeg het dan ook toe aan `WW_RAW`. Voorbeeldzinnen komen automatisch uit de bijleszinnen.

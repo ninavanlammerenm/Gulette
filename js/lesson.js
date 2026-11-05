@@ -732,7 +732,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     showFB(true,'Goed!',nl,clozeSent?'':correct);
     sparkles();
     updMastery(correct,true,'mc');
-    if(clozeSent&&CL&&CL._bjHz){ updMastery(clozeSent,true,'verb_bj'); bjVerbCorrect(correct); }
+    if(clozeSent&&CL&&CL._bjHz){ updMastery(clozeSent,true,'verb_bj'); if(CL.id!=='_ww') bjVerbCorrect(correct); }
   }else{
     CC_COMBO=0;
     btn.classList.add('ng');WC++;
@@ -742,7 +742,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     });
     const _bjCloze=clozeSent&&CL&&CL._bjHz;
     const requeued=_bjCloze?(_bjRequeueCurrent(),true):requeueWrong(correct);
-    if(_bjCloze){ updMastery(clozeSent,false,'verb_bj'); bjLogVerbError(correct,chosen); }
+    if(_bjCloze){ updMastery(clozeSent,false,'verb_bj'); if(CL.id!=='_ww') bjLogVerbError(correct,chosen); else wwLogMix(correct,chosen); }
     trackWrong(correct,nl,tr);
     trackConfusion(correct, chosen);
     const _tip2=_getWordTip(correct);
@@ -927,7 +927,7 @@ function finishLesson(){
   document.getElementById('r-str').textContent='🔥'+S.streak;
   document.getElementById('res-sub').textContent=CL.title+' voltooid!';
   const _rhb=document.getElementById('res-home-btn');
-  if(_rhb) _rhb.textContent=CL.id==='_bijles'?'Terug naar bijles':'Terug naar huis';
+  if(_rhb) _rhb.textContent=CL.id==='_bijles'?'Terug naar bijles':CL.id==='_ww'?'Terug naar werkwoorden':'Terug naar huis';
   const _pm=['Foutloos!','Perfect!','Absoluut geweldig!','Meesterlijk!','Ongeslagen! 🏆'];
   const _gm=['Zo trots!','Super gedaan!','Fantastisch!','Heel goed!'];
   const _ok=['Goed gedaan!','Niet slecht!','Blijf oefenen!'];

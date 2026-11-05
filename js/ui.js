@@ -25,15 +25,17 @@ function navTo(id, btn) {
   if(id==='home')    renderHome();
   if(id==='grammar') renderGrammarLibrary();
   if(id==='bijles')  renderBijles();
+  if(id==='verbs')   renderWW();
 }
 
 function goHome(){
   // Na een bijles-sessie (klaar of gestopt) terug naar de Bijles-tab i.p.v. Thuis
   const _act=document.querySelector('.screen.active');
-  if(CL&&CL.id==='_bijles'&&_act&&['screen-lesson','screen-result'].includes(_act.id)){
+  if(CL&&(CL.id==='_bijles'||CL.id==='_ww')&&_act&&['screen-lesson','screen-result'].includes(_act.id)){
+    const tab=CL.id==='_ww'?'verbs':'bijles';
     CL=null;
     document.getElementById('bnav').style.display='flex';
-    navTo('bijles',document.querySelectorAll('.nb')[_NAV.indexOf('bijles')]);
+    navTo(tab,document.querySelectorAll('.nb')[_NAV.indexOf(tab)]);
     return;
   }
   _BJ_HZ=new Set();
@@ -475,7 +477,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v92 · Sakura';
+  if(_vEl)_vEl.textContent='v93 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════

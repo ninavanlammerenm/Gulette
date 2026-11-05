@@ -33,7 +33,11 @@ let _BJ_ALIAS={};
 function bjKey(hz){ return _BJ_ALIAS[hz]||hz; }
 function vocabOf(hz){
   hz=bjKey(hz);
-  if(_BJ_HZ.has(hz)){ if(!S.bvocab) S.bvocab={}; return S.bvocab; }
+  if(_BJ_HZ.has(hz)){
+    // Werkwoorden-tab heeft een eigen opslag, los van bijles en lessen
+    if(typeof CL!=='undefined'&&CL&&CL.id==='_ww'){ if(!S.wwvocab) S.wwvocab={}; return S.wwvocab; }
+    if(!S.bvocab) S.bvocab={}; return S.bvocab;
+  }
   return S.vocab;
 }
 
@@ -78,7 +82,7 @@ function resolveVocabKey(token){
 function updMastery(hz, ok, exType){
   hz=bjKey(hz);
   // Bijles-sessie: nooit de voortgang van gewone lessenwoorden aanraken
-  if(typeof CL!=='undefined'&&CL&&CL.id==='_bijles'&&!_BJ_HZ.has(hz))return;
+  if(typeof CL!=='undefined'&&CL&&(CL.id==='_bijles'||CL.id==='_ww')&&!_BJ_HZ.has(hz))return;
   const store=vocabOf(hz);
   if(!store[hz])return;
   const v=store[hz];
@@ -139,7 +143,7 @@ function updMastery(hz, ok, exType){
   // compat: sync old field for any code still reading it
   v.mastery=Math.max(0,lvl-1);
   // Bijles: onthoud wat er goed/fout gaat (voor het zelflerende systeem)
-  if(store===S.bvocab&&typeof bjNoteResult==='function') bjNoteResult(v,ok,exType);
+  if((store===S.bvocab||store===S.wwvocab)&&typeof bjNoteResult==='function') bjNoteResult(v,ok,exType);
   save();
 }
 
