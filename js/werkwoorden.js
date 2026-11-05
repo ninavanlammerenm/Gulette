@@ -19,7 +19,7 @@ const WW_HELP={
   dadan:{nl:'geven',ico:'🎁',expl:'Voor geven en betalen.',
     forms:{'1s':['می‌دم','me-dum','ik geef'],'2s':['می‌دی','me-di','jij geeft'],'3s':['می‌ده','me-da','het geeft']},fams:['geven']},
 };
-const WW_ORDER=['kardan','shudan','dashtan','zadan','dadan',''];
+const WW_ORDER=['kardan','shudan','dashtan','zadan','dadan','','imp'];
 
 const WW_RAW=[
   // woord + mukunum (doen)
@@ -29,17 +29,21 @@ const WW_RAW=[
   {id:'ww_fekr',nl:'denken',say:'ik denk',h:'kardan',core:['فکر','fekr','gedachte']},
   {id:'ww_pukhsa',nl:'koken',say:'ik kook',h:'kardan',core:['پخته','pukhsa','gekookt']},
   {id:'ww_paida',nl:'vinden',say:'ik vind (iets terug)',h:'kardan',core:['پیدا','paida','gevonden']},
+  {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},
   {id:'ww_bedar',nl:'wakker worden',say:'ik word wakker',h:'shudan',core:['بیدار','bedar','wakker']},
   {id:'ww_tayar',nl:'je klaarmaken',say:'ik maak me klaar',h:'shudan',core:['تیار','tayar','klaar']},
   {id:'ww_berun',nl:'naar buiten gaan',say:'ik ga naar buiten',h:'shudan',core:['بیرون','berun','buiten']},
   {id:'ww_khalas',nl:'klaar / afgelopen zijn',say:'het is afgelopen',h:'shudan',p:'3s',core:['خلاص','khalas','klaar, op']},
+  {id:'ww_gum',nl:'kwijt zijn',say:'het is kwijt',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['گم','gum','kwijt']},
+  {id:'ww_tir',nl:'voorbij zijn (tijd)',say:'het is over (vijf over…)',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['تیر','tir','voorbij']},
   // woord + darum (hebben)
   {id:'ww_khosh',nl:'houden van',say:'ik hou van / vind lekker',h:'dashtan',core:['خوش','khosh','fijn']},
   {id:'ww_wakht',nl:'tijd hebben',say:'ik heb tijd',h:'dashtan',core:['وقت','wakht','tijd']},
   {id:'ww_kaardarum',nl:'werk te doen hebben',say:'ik heb werk te doen',h:'dashtan',core:['کار','kaar','werk']},
   {id:'ww_khabar',nl:'ervan weten',say:'weet jij ervan?',h:'dashtan',p:'2s',core:['خبر','khabar','nieuws']},
+  {id:'ww_khoshmeya',nl:'heerlijk vinden',say:'ik vind het heerlijk (het bevalt me)',h:'dashtan',p:'3s',hf:['میایه','me-ya','het komt'],fams:['komen'],avoid:['dashtan'],core:['خوش','khosh','fijn'],note:'maana … khosh me-ya — vergelijk: khosh darum = ik hou van'},
   // woord + mi-zanum (slaan)
   {id:'ww_gap',nl:'praten',say:'ik praat',h:'zadan',core:['گپ','gap','gesprek']},
   {id:'ww_aynak',nl:'een bril dragen',say:'ik draag een bril',h:'zadan',core:['عینک','aynak','bril']},
@@ -57,12 +61,25 @@ const WW_RAW=[
   {id:'ww_budan',nl:'zijn',say:'ik ben',hz:'استم',tr:'astum',fam:'zijn'},
   {id:'ww_danistan',nl:'(niet) weten',say:'ik weet het niet',hz:'نمی‌دانم',tr:'nami-danom',fam:'weten'},
   {id:'ww_fahmidan',nl:'(niet) begrijpen',say:'ik begrijp het niet',hz:'نمی‌فهمم',tr:'nami-famum',fam:'weten'},
+  {id:'ww_dashtan',nl:'hebben',say:'ik heb',hz:'دارم',tr:'darum',fam:'hebben'},
+  {id:'ww_budum',nl:'zijn (verleden)',say:'ik was',hz:'بودم',tr:'budum',fam:'zijn (verleden)'},
+  {id:'ww_baridan',nl:'regenen',say:'het regent',hz:'می‌باره',tr:'mubaara',fam:'regenen'},
+  {id:'ww_guftan',nl:'zeggen',say:'ze zeggen',hz:'می‌گن',tr:'mugan',fam:'zeggen'},
+  {id:'ww_guzashtan',nl:'leggen / neerzetten',say:'jij hebt het gelegd',hz:'گذاشتی',tr:'guzashti',fam:'leggen'},
+  {id:'ww_yad',nl:'vergeten',say:'ik ben het vergeten',hz:'یاد من رفته',tr:'yad-e ma rafta',fam:''},
+  // opdrachten (gebiedende wijs)
+  {id:'ww_neshined',nl:'gaan zitten',say:'ga zitten! (beleefd)',hz:'بشینید',tr:'neshined',fam:'',g:'imp'},
+  {id:'ww_biya',nl:'komen (opdracht)',say:'kom!',hz:'بیا',tr:'biya',fam:'',g:'imp'},
+  {id:'ww_beger',nl:'pakken',say:'pak het!',hz:'بگیر',tr:'beger',fam:'',g:'imp'},
+  {id:'ww_biyared',nl:'brengen',say:'breng! (beleefd)',hz:'بیارید',tr:'biyared',fam:'',g:'imp'},
+  {id:'ww_bukhur',nl:'eten (opdracht)',say:'eet!',hz:'بخور',tr:'bukhur',fam:'',g:'imp'},
+  {id:'ww_zahmat',nl:'moeite doen',say:'doe geen moeite!',hz:'زحمت نکشید',tr:'zahmat nakashid',fam:'',g:'imp'},
 ];
 // Volledige vorm per werkwoord (woord + hulpwerkwoord in de juiste persoon)
 const WW=WW_RAW.map(e=>{
-  if(!e.h) return {...e,core:null,p:'1s',fams:[e.fam]};
-  const p=e.p||'1s', f=WW_HELP[e.h].forms[p];
-  return {...e,p,hz:e.core[0]+' '+f[0],tr:e.core[1]+' '+f[1],core:{hz:e.core[0],tr:e.core[1],nl:e.core[2]},helper:{hz:f[0],tr:f[1],nl:f[2]},fams:WW_HELP[e.h].fams};
+  if(!e.h) return {...e,core:null,p:'1s',fams:e.fam?[e.fam]:[],grp:e.g||''};
+  const p=e.p||'1s', f=e.hf||WW_HELP[e.h].forms[p];
+  return {...e,p,hz:e.core[0]+' '+f[0],tr:e.core[1]+' '+f[1],core:{hz:e.core[0],tr:e.core[1],nl:e.core[2]},helper:{hz:f[0],tr:f[1],nl:f[2]},fams:e.fams||WW_HELP[e.h].fams,grp:e.h};
 });
 
 function _wwStore(){ if(!S.wwvocab) S.wwvocab={}; return S.wwvocab; }
@@ -103,6 +120,13 @@ function _wwSentences(e,roman){
       else if(f.fam==='weten'&&f.hz!==e.hz) continue;
       seen.add(text); out.push({text,nl:it.nl,tr:it.tr||'',form:f,vi:i}); return;
     }
+    // Werkwoorden zonder familie in de werkwoordenlijst (opdrachten, uitdrukkingen): letterlijk zoeken
+    if(!e.fams.length||e.hf){
+      const want=(R?e.tr:e.hz).split(/\s+/).map(t=>_bjCore(t).toLowerCase());
+      for(let i=0;i+want.length<=cores.length;i++){
+        if(want.every((w,j)=>cores[i+j]===w)){ seen.add(text); out.push({text,nl:it.nl,tr:it.tr||'',form:{p:e.p},vi:i}); return; }
+      }
+    }
   }));
   return out;
 }
@@ -113,6 +137,7 @@ function _wwBuild(entries,roman){
   const r1=[],r2=[], extraWords=[];
   const show=e=>roman?e.tr:e.hz;
   const others=WW.filter(x=>!x.core);
+  const othersFor=e=>{ const same=others.filter(x=>x!==e&&x.grp===e.grp&&x.say!==e.say); return same.length>=3?same:others.filter(x=>x!==e&&x.say!==e.say); };
   shuffle([...entries]).forEach(e=>{
     const v=_wwV(e);
     const lvl=Math.max(1,(v.masteryLevel||1)-(_bjDiff(v)>=0.5&&(v.masteryLevel||1)>1?1:0));
@@ -120,7 +145,7 @@ function _wwBuild(entries,roman){
     // 1. Welk werkwoord? (zelfde woord met andere hulpwerkwoorden als valkuil)
     let choices;
     if(e.core){
-      const wrong=shuffle(Object.keys(WW_HELP).filter(k=>k!==e.h)).slice(0,2).map(k=>{
+      const wrong=shuffle(Object.keys(WW_HELP).filter(k=>k!==e.h&&!(e.avoid||[]).includes(k))).slice(0,2).map(k=>{
         const f=WW_HELP[k].forms[e.p]||WW_HELP[k].forms['1s'];
         const lab=roman?e.core.tr+' '+f[1]:e.core.hz+' '+f[0];
         extraWords.push({hz:lab,nl:'',tr:roman?'':e.core.tr+' '+f[1]});
@@ -129,14 +154,14 @@ function _wwBuild(entries,roman){
       const other=shuffle(WW.filter(x=>x!==e&&x.say!==e.say)).slice(0,1).map(show);
       choices=shuffle([show(e),...wrong,...other]);
     } else {
-      choices=shuffle([show(e),...shuffle(others.filter(x=>x!==e&&x.say!==e.say)).slice(0,3).map(show)]);
+      choices=shuffle([show(e),...shuffle(othersFor(e)).slice(0,3).map(show)]);
     }
     const which={type:'mc_hz',w:wd,choices};
     // 2. Welk hulpwerkwoord?
     let help=null;
     if(e.core){
-      const keys=Object.keys(WW_HELP);
-      const labs=keys.map(k=>{const f=WW_HELP[k].forms[e.p]||WW_HELP[k].forms['1s'];return [f[0],f[1]];});
+      const keys=Object.keys(WW_HELP).filter(k=>k!==e.h&&!(e.avoid||[]).includes(k));
+      const labs=[[e.helper.hz,e.helper.tr],...keys.map(k=>{const f=WW_HELP[k].forms[e.p]||WW_HELP[k].forms['1s'];return [f[0],f[1]];})];
       const correct=_wwLabel([e.helper.hz,e.helper.tr],roman);
       const opts=shuffle(labs.map(x=>_wwLabel(x,roman)).filter(x=>x!==correct)).slice(0,3);
       const trs={}; if(!roman) labs.forEach(x=>{trs[x[0]]=x[1];});
@@ -151,8 +176,8 @@ function _wwBuild(entries,roman){
       const toks=s.text.split(/\s+/);
       const p=s.form.p||e.p;
       const lure=e.core
-        ? shuffle(Object.keys(WW_HELP).filter(k=>k!==e.h)).slice(0,2).map(k=>_wwLabel(WW_HELP[k].forms[p]||WW_HELP[k].forms['1s'],roman))
-        : shuffle(others.filter(x=>x!==e&&x.fam!==e.fam)).slice(0,2).map(show);
+        ? shuffle(Object.keys(WW_HELP).filter(k=>k!==e.h&&!(e.avoid||[]).includes(k))).slice(0,2).map(k=>_wwLabel(WW_HELP[k].forms[p]||WW_HELP[k].forms['1s'],roman))
+        : shuffle(othersFor(e).filter(x=>!e.fam||x.fam!==e.fam)).slice(0,2).map(show);
       const tk=new Set(toks.map(_bjCore));
       build={type:'order',title:'Maak de zin',q:'Zet de woorden in de goede volgorde:',bjExType:'order_bj',key:e.hz,
         s:{hz:toks.join(' '),nl:s.nl,tr:roman?'':s.tr},distractors:lure.filter(x=>!tk.has(x))};
@@ -193,7 +218,7 @@ function wwStartSession(list,title){
 }
 // Herhaling: wat aan de beurt is (moeilijkste eerst, met afwisseling) + een paar nieuwe
 function wwStartReview(group){
-  const pool=WW.filter(e=>group===undefined||group===null||(e.h||'')===group);
+  const pool=WW.filter(e=>group===undefined||group===null||e.grp===group);
   const st=_wwStore(), now=Date.now();
   let due=pool.filter(_wwDue);
   const rested=due.filter(e=>!st[e.hz].seenAt||now-st[e.hz].seenAt>8*3600e3);
@@ -202,7 +227,7 @@ function wwStartReview(group){
   const fresh=pool.filter(e=>!_wwIntro(e)).slice(0,WW_NEW_PER_SESSION);
   let list=[...due,...fresh];
   if(!list.length&&group!==undefined&&group!==null) list=shuffle(pool).slice(0,8); // groep al geleerd: gewoon oefenen
-  wwStartSession(list,group!==undefined&&group!==null?(group?`Hulpwerkwoord: ${WW_HELP[group].forms['1s'][1]}`:'Gewone werkwoorden'):'Werkwoorden');
+  wwStartSession(list,group!==undefined&&group!==null?(WW_HELP[group]?`Hulpwerkwoord: ${WW_HELP[group].forms['1s'][1]}`:group==='imp'?'Opdrachten':'Gewone werkwoorden'):'Werkwoorden');
 }
 
 // ── Scherm ──
@@ -218,13 +243,14 @@ function renderWW(){
   const mixLine=mix?(()=>{const [a,b]=mix[0].split('|');const fa=WW_HELP[a].forms['1s'],fb=WW_HELP[b].forms['1s'];
     return `<div class="bj-insights"><div class="bj-notes-lbl">Let op</div><div class="bj-ins-line">Je kiest vaak <b>${_bjEsc(fb[1])}</b> (${WW_HELP[b].nl}) waar <b>${_bjEsc(fa[1])}</b> (${WW_HELP[a].nl}) hoort (${mix[1]}×). Kijk nog eens naar de groep “${WW_HELP[a].nl}”.</div></div>`;})():'';
   const groups=WW_ORDER.map(k=>{
-    const items=WW.filter(e=>(e.h||'')===k);
-    const h=k?WW_HELP[k]:null;
+    const items=WW.filter(e=>e.grp===k);
+    const h=WW_HELP[k]||null;
     const head=h?`<div class="ww-group-head"><span class="ww-ico">${h.ico}</span><div><div class="ww-group-ttl">… + ${fmt(h.forms['1s'][0],h.forms['1s'][1])} <span class="ww-group-nl">(${h.nl})</span></div><div class="ww-group-expl">${h.expl}</div></div></div>`
+      :k==='imp'?`<div class="ww-group-head"><span class="ww-ico">👉</span><div><div class="ww-group-ttl">Opdrachten</div><div class="ww-group-expl">Als je iemand iets vraagt of aanbiedt: kom, ga zitten, pak, breng.</div></div></div>`
       :`<div class="ww-group-head"><span class="ww-ico">⭐</span><div><div class="ww-group-ttl">Gewone werkwoorden</div><div class="ww-group-expl">Zonder hulpwerkwoord: het werkwoord zelf draagt de betekenis.</div></div></div>`;
     const rows=items.map(e=>`<div class="ww-row" data-hz="${_bjEsc(e.hz)}" data-tr="${_bjEsc(e.tr)}" onclick="speakHz(this.dataset.hz,this.dataset.tr)">
         <div class="ww-row-nl">${_bjEsc(e.nl)}</div>
-        <div class="ww-row-hz">${e.core?`${fmt(e.core.hz,e.core.tr)} <span class="ww-plus">+</span> ${fmt(e.helper.hz,e.helper.tr)}`:fmt(e.hz,e.tr)}</div>
+        <div class="ww-row-hz">${e.core?`${fmt(e.core.hz,e.core.tr)} <span class="ww-plus">+</span> ${fmt(e.helper.hz,e.helper.tr)}`:fmt(e.hz,e.tr)}${e.note?`<div class="bj-item-note">${_bjEsc(e.note)}</div>`:''}</div>
         <div class="m-pips">${masteryPips(_wwIntro(e)?_wwLvl(e):0)}</div>
       </div>`).join('');
     return `<div class="ww-group">${head}${rows}<button class="bj-link-btn" style="margin:6px 0 0" onclick="wwStartReview('${k}')">Oefen deze groep →</button></div>`;
