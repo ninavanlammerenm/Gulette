@@ -568,7 +568,7 @@ const BJ_VERBS=[
   {fam:'zijn (verleden)',forms:[['بودم','budum','ik was','1s'],['بودی','budi','jij was','2s'],['بود','bud|bood','hij/zij/het was','3s'],['بودیم','budim','wij waren','1p'],['بودین','budin','u was / jullie waren','2p'],['بودن','budan','zij waren','3p']]},
   {fam:'hebben',forms:[['دارم','darum|daram','ik heb','1s'],['داری','dari|daari','jij hebt','2s'],['داره','daara','hij/zij heeft','3s'],['دارید','daared','u heeft / jullie hebben','2p'],['ندارم','nadarum|nadaram','ik heb niet'],['نداری','nadari','jij hebt niet'],['داشتم','dashtum','ik had']]},
   {fam:'doen',forms:[['می‌کنم','mukunum|mi-konam','ik doe','1s'],['می‌کنی','mukuni','jij doet','2s'],['می‌کنه','mukuna','hij/zij doet','3s'],['نمی‌کنم','nami-konam','ik doe niet'],['نمی‌کنه','nami-kuna','het doet niet']]},
-  {fam:'willen',forms:[['می‌خایم','mi-khayum','ik wil'],['نمی‌خایم','nami-khayum','ik wil niet'],['می‌خوام','mi-khaam','ik wil (mi-khaam)']]},
+  {fam:'willen',forms:[['می‌خایم','mi-khayum','ik wil'],['نمی‌خایم','nami-khayum','ik wil niet'],['می‌خوام','mi-khaam','ik wil (mi-khaam)'],['می‌خایی','mi-khayi','jij wilt','2s']]},
   {fam:'eten/drinken',forms:[['می‌خوری','mukhuri','jij eet/drinkt','2s'],['خوردم','khurdam|khurdum','ik heb gegeten'],['خوردید','khurdid','u heeft gegeten'],['بخور','bukhur','eet!'],['می‌خورم','mi-khurum','ik eet','1s'],['می‌خوریم','mi-khurem','wij eten','1p']]},
   {fam:'gaan',forms:[['می‌ریم','murem','wij gaan']]},
   {fam:'zien',forms:[['می‌بینم','mubinum|mi-binum','ik zie']]},
@@ -582,7 +582,9 @@ const BJ_VERBS=[
   {fam:'studeren',forms:[['می‌خوانم','mi-khanum|mukhanum','ik studeer','1s'],['می‌خوانی','mukhani','jij studeert','2s']]},
   {fam:'weten',forms:[['نمی‌دانم','nami-danom','ik weet het niet'],['نمی‌فهمم','nami-famum','ik begrijp het niet']]},
   {fam:'regenen',forms:[['می‌باره','mubaara','het regent'],['نمی‌باره','nemubaara','het regent niet']]},
-  {fam:'zeggen',forms:[['می‌گن','mugan','ze zeggen']]},
+  {fam:'zeggen',forms:[['می‌گن','mugan','ze zeggen','3p'],['می‌گم','mugum|me-gum','ik zeg','1s']]},
+  {fam:'aantrekken',forms:[['می‌پوشم','mi-pushum|mi-pusham|me-poshum','ik trek aan / ik draag','1s'],['می‌پوشی','mi-pushi|me-poshi','jij trekt aan / jij draagt','2s'],['پوشیدم','pushidum|posidim|poshidum','ik heb aangetrokken','1s'],['پوشیدی','pushidi|poshidi','jij hebt aangetrokken','2s'],['بپوش','be-push','trek aan!']]},
+  {fam:'uittrekken',forms:[['آوردم','awardum|awardam','ik heb uitgetrokken (dar awardum)','1s']]},
   {fam:'worden',forms:[['می‌شم','mi-shum|mayshum','ik word','1s'],['می‌شی','mi-shi|mayshi','jij wordt','2s'],['می‌شه','mi-sha|maysha','het wordt','3s'],['شده','shuda','is geworden (gum shuda = kwijt)']]},
 ].map(v=>({fam:v.fam,forms:v.forms.map(([hz,tr,nl,p])=>({hz,trs:tr.split('|'),tr:tr.split('|')[0],nl,p:p||'',fam:v.fam}))}));
 const _BJ_ALLFORMS=BJ_VERBS.flatMap(v=>v.forms);

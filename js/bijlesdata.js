@@ -671,6 +671,98 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop en speel het rollenspel in he
     {id:'bl9_w36', section:'De rekening', hz:'خانه آباد!', tr:'khana aabaad!', nl:'Dankjewel! (letterlijk: moge je huis bloeien)'},
     {id:'bl9_w37', section:'De rekening', hz:'خیر ببینی', tr:'khair bebini', nl:'Dank je (letterlijk: moge je het goede zien)', note:'Je docent gebruikt dit in plaats van rahmat'}
   ]
+},
+{
+  id:'bl10',
+  title:'Les 10: kleding',
+  date:'2026-11-05',
+  notes:`Kleren, kleuren, maten, aankleden en complimenten over iemands kleding.
+
+Aantrekken / dragen = pushidan · ik trek aan = ma mi-pushum · ik heb aan = ma pushidum
+Uittrekken: dar awardum (ik heb het uitgetrokken)
+Het staat je goed = ba tu khub miga · je kleren zijn heel mooi = lebas-e tu kheili maqbool asta
+Man = mard · vrouw = zan · mensen = mardoom · alleen = faghat · tot nu toe = ta hala
+Kauwgom = adams
+
+Huiswerk: beantwoord de zes huiswerkvragen hardop en oefen de gesprekken in de kledingwinkel en op het familiefeest.`,
+  items:[
+    {id:'bl10_w0', section:'Kleding', hz:'لباس', tr:'lebas', nl:'Kleren / kleding'},
+    {id:'bl10_w1', section:'Kleding', hz:'پیراهن', tr:'peraahan', nl:'Overhemd / shirt'},
+    {id:'bl10_w2', section:'Kleding', hz:'تی‌شرت', tr:'t-shirt', nl:'T-shirt'},
+    {id:'bl10_w3', section:'Kleding', hz:'پتلون', tr:'patloon', nl:'Broek', note:'Ook: sholwaar'},
+    {id:'bl10_w4', section:'Kleding', hz:'شلوار جین', tr:'sholwaar-e jeans', nl:'Spijkerbroek'},
+    {id:'bl10_w5', section:'Kleding', hz:'دامن', tr:'daman', nl:'Rok'},
+    {id:'bl10_w6', section:'Kleding', hz:'لباس زنانه', tr:'lebas-e zanana', nl:'Jurk'},
+    {id:'bl10_w7', section:'Kleding', hz:'کوت و شلوار', tr:'kot wa sholwaar', nl:'Kostuum (pak)'},
+    {id:'bl10_w8', section:'Kleding', hz:'واسکت', tr:'wasokat', nl:'Gilet'},
+    {id:'bl10_w9', section:'Kleding', hz:'کوت', tr:'kot', nl:'Colbert / jasje'},
+    {id:'bl10_w10', section:'Traditionele kleding', hz:'پیراهن تنبان', tr:'perahan tumban', nl:'Traditioneel hemd met wijde broek'},
+    {id:'bl10_w11', section:'Traditionele kleding', hz:'واسکت گلدوزی', tr:'wasokat-e gilaam-dozi', nl:'Geborduurd gilet', note:'In de PDF: gilaam-dozi — vraag of het gul-dozi is'},
+    {id:'bl10_w12', section:'Traditionele kleding', hz:'لباس هزارگی', tr:'lebas-e Hazaragi', nl:'Hazaragi jurk (geborduurd)'},
+    {id:'bl10_w13', section:'Traditionele kleding', hz:'چپن', tr:'chapan', nl:'Chapan (lange gewatteerde mantel)'},
+    {id:'bl10_w14', section:'Traditionele kleding', hz:'پتو', tr:'patoo', nl:'Wollen omslagdoek'},
+    {id:'bl10_w15', section:'Traditionele kleding', hz:'دستمال سر', tr:'dastmal-e sar', nl:'Hoofddoek'},
+    {id:'bl10_w16', section:'Traditionele kleding', hz:'چادر', tr:'chador', nl:'Lange sjaal / chador'},
+    {id:'bl10_w17', section:'Winterkleding', hz:'کوت گرم', tr:'kot-e garm', nl:'Warme winterjas'},
+    {id:'bl10_w18', section:'Winterkleding', hz:'سویتر', tr:'sweter', nl:'Trui'},
+    {id:'bl10_w19', section:'Winterkleding', hz:'جاکت', tr:'jaakat', nl:'Jack', note:'Je docent: jaakat in plaats van sertuk'},
+    {id:'bl10_w20', section:'Winterkleding', hz:'دستکش', tr:'dast-kash', nl:'Handschoenen'},
+    {id:'bl10_w21', section:'Winterkleding', hz:'کلاه گرم', tr:'kolah-e garm', nl:'Warme muts'},
+    {id:'bl10_w22', section:'Winterkleding', hz:'روسری', tr:'roo-sari', nl:'Sjaal', note:'Je docent: roo-sari in plaats van maqnaa'},
+    {id:'bl10_w23', section:'Winterkleding', hz:'جوراب پشمی', tr:'joorab-e pashmi', nl:'Wollen sokken'},
+    {id:'bl10_w24', section:'Schoenen & accessoires', hz:'کفش', tr:'kafsh', nl:'Schoenen', note:'Je docent: kafsh in plaats van payza'},
+    {id:'bl10_w25', section:'Schoenen & accessoires', hz:'چپلی', tr:'chappli', nl:'Sandalen'},
+    {id:'bl10_w26', section:'Schoenen & accessoires', hz:'بوت چرمی', tr:'boot-e charmi', nl:'Leren laarzen'},
+    {id:'bl10_w27', section:'Schoenen & accessoires', hz:'کمربند', tr:'kamarband', nl:'Riem'},
+    {id:'bl10_w28', section:'Schoenen & accessoires', hz:'نکتایی', tr:'necktie', nl:'Stropdas', note:'Je docent schrijft gewoon het Engelse woord'},
+    {id:'bl10_w29', section:'Schoenen & accessoires', hz:'کیف دستی', tr:'keef-e dasti', nl:'Handtas'},
+    {id:'bl10_w30', section:'Schoenen & accessoires', hz:'ساعت دستی', tr:'saat-e dasti', nl:'Polshorloge'},
+    {id:'bl10_w31', section:'Kleuren & maten', hz:'رنگ لباس تو چی استه؟', tr:'rang-e lebas-e tu che asta?', nl:'Welke kleur hebben je kleren?'},
+    {id:'bl10_w32', section:'Kleuren & maten', hz:'سیاه', tr:'siyah', nl:'Zwart'},
+    {id:'bl10_w33', section:'Kleuren & maten', hz:'سفید', tr:'safed', nl:'Wit'},
+    {id:'bl10_w34', section:'Kleuren & maten', hz:'سرخ', tr:'soorkh', nl:'Rood'},
+    {id:'bl10_w35', section:'Kleuren & maten', hz:'آبی', tr:'aabi', nl:'Blauw'},
+    {id:'bl10_w36', section:'Kleuren & maten', hz:'سبز', tr:'sabz', nl:'Groen'},
+    {id:'bl10_w37', section:'Kleuren & maten', hz:'زرد', tr:'zard', nl:'Geel'},
+    {id:'bl10_w38', section:'Kleuren & maten', hz:'گلابی', tr:'soorati', nl:'Roze', note:'In de PDF: soorati — vraag of het gulaabi is'},
+    {id:'bl10_w39', section:'Kleuren & maten', hz:'قهوه‌یی', tr:'qahwa-i', nl:'Bruin'},
+    {id:'bl10_w40', section:'Kleuren & maten', hz:'خاکستری', tr:'khakestari', nl:'Grijs'},
+    {id:'bl10_w41', section:'Kleuren & maten', hz:'سرمه‌یی', tr:'soormay-i', nl:'Donkerblauw'},
+    {id:'bl10_w42', section:'Kleuren & maten', hz:'سایز', tr:'saiz', nl:'Maat (kleding)'},
+    {id:'bl10_w43', section:'Kleuren & maten', hz:'سایز خورد', tr:'saiz-e khurd', nl:'Maat S'},
+    {id:'bl10_w44', section:'Kleuren & maten', hz:'سایز متوسط', tr:'saiz-e motevaset', nl:'Maat M'},
+    {id:'bl10_w45', section:'Kleuren & maten', hz:'سایز کلان', tr:'saiz-e kalaan', nl:'Maat L', note:'In de PDF: koochak / bozorg — in je eerdere bijles khurd / kalaan'},
+    {id:'bl10_w46', section:'Losse woorden', hz:'مرد', tr:'mard', nl:'Man'},
+    {id:'bl10_w47', section:'Losse woorden', hz:'مردم', tr:'mardoom', nl:'Mensen'},
+    {id:'bl10_w48', section:'Losse woorden', hz:'بعضی‌ها', tr:'bazi-ha', nl:'Sommigen / iemand', note:'Je docent: someone = bazi-ha'},
+    {id:'bl10_w49', section:'Losse woorden', hz:'تا حالا', tr:'ta hala', nl:'Tot nu toe'},
+    {id:'bl10_w50', section:'Losse woorden', hz:'ادامس', tr:'adams', nl:'Kauwgom'},
+    {id:'bl10_w51', section:'Aankleden', hz:'پوشیدن', tr:'pushidan', nl:'Aantrekken / dragen (kleding)'},
+    {id:'bl10_w52', section:'Aankleden', hz:'می‌پوشم', tr:'mi-pushum', nl:'Ik trek aan / ik draag', note:'Je docent schreef: man mi pusham'},
+    {id:'bl10_w53', section:'Aankleden', hz:'پوشیدم', tr:'pushidum', nl:'Ik heb aangetrokken (ik heb aan)', note:'Je docent schreef: ma posidim'},
+    {id:'bl10_w54', section:'Aankleden', hz:'در آوردم', tr:'dar awardum', nl:'Ik heb uitgetrokken', note:'Je docent schreef: dar awardam'},
+    {id:'bl10_w55', section:'Aankleden', hz:'لباس گرم بپوش، سرد استه!', tr:'lebas-e garm be-push, sard asta!', nl:'Trek warme kleren aan, het is koud!'},
+    {id:'bl10_w56', section:'Aankleden', hz:'سایز متوسط می‌پوشم', tr:'saiz-e motevaset mi-pushum', nl:'Ik draag maat M'},
+    {id:'bl10_w57', section:'Aankleden', hz:'این سایز تو استه؟', tr:'in saiz-e tu asta?', nl:'Is dit jouw maat?'},
+    {id:'bl10_w58', section:'Aankleden', hz:'سایز تو چی استه؟', tr:'saiz-e tu che asta?', nl:'Wat is jouw maat?'},
+    {id:'bl10_w59', section:'Aankleden', hz:'سایز من متوسط استه', tr:'saiz-e ma motevaset asta', nl:'Mijn maat is M'},
+    {id:'bl10_w60', section:'Complimenten', hz:'لباس تو خیلی مقبول استه!', tr:'lebas-e tu kheili maqbool asta!', nl:'Je kleren zijn heel mooi!'},
+    {id:'bl10_w61', section:'Complimenten', hz:'به تو خوب میگه', tr:'ba tu khub miga', nl:'Het staat je goed', note:'Je docent: khub miga in plaats van me-yaya'},
+    {id:'bl10_w62', section:'Complimenten', hz:'لباس اوشو را چطور تعریف می‌کنی؟', tr:'lebas-e osho ra chetor tarif mukuni?', nl:'Hoe geef je een compliment over hun kleren?'},
+    {id:'bl10_w63', section:'Complimenten', hz:'فامیل خیلی خوشحال می‌شه', tr:'faamil kheili khosh-hal mi-sha', nl:'De familie wordt heel blij'},
+    {id:'bl10_w64', section:'Gesprekken', hz:'امروز چه لباس پوشیدی؟', tr:'emrooz che lebas pushidi?', nl:'Wat heb je vandaag aan?'},
+    {id:'bl10_w65', section:'Gesprekken', hz:'من امروز پیراهن آبی و شلوار جین پوشیدم', tr:'ma emrooz peraahan-e aabi wa sholwaar-e jeans pushidum', nl:'Ik heb vandaag een blauw shirt en een spijkerbroek aan'},
+    {id:'bl10_w66', section:'Gesprekken', hz:'دَ مهمانی فامیل لباس هزارگی می‌پوشی؟', tr:'da mehmani-ye faamil lebas-e Hazaragi mi-pushi?', nl:'Draag je een Hazaragi jurk op familiefeesten?'},
+    {id:'bl10_w67', section:'Gesprekken', hz:'من لباس هزارگی و واسکت گلدوزی را خوش دارم', tr:'ma lebas-e Hazaragi wa wasokat-e gilaam-dozi ra khosh darum', nl:'Ik hou van de Hazaragi jurk en het geborduurde gilet'},
+    {id:'bl10_w68', section:'Gesprekken', hz:'هوا سرد استه! چه می‌پوشی؟', tr:'hawa sard asta! che mi-pushi?', nl:'Het is koud! Wat trek je aan?'},
+    {id:'bl10_w69', section:'Gesprekken', hz:'من کوت گرم، روسری و کلاه گرم می‌پوشم', tr:'ma kot-e garm, roo-sari wa kolah-e garm mi-pushum', nl:'Ik trek een warme jas, sjaal en muts aan'},
+    {id:'bl10_w70', section:'Gesprekken', hz:'دستکش هم فراموش نکو!', tr:'dast-kash ham faramosh naku!', nl:'Vergeet je handschoenen ook niet!', note:'In de PDF stond dit woord in Dari-schrift dat niet goed werd weergegeven — controleer'},
+    {id:'bl10_w71', section:'Gesprekken', hz:'فردا مو دَ دکان لباس می‌ریم', tr:'farda mo da dukan-e lebas murem', nl:'Morgen gaan we naar de kledingwinkel'},
+    {id:'bl10_w72', section:'Gesprekken', hz:'تو چه لباس می‌خایی؟', tr:'tu che lebas mi-khayi?', nl:'Welke kleren wil jij?'},
+    {id:'bl10_w73', section:'Gesprekken', hz:'من یک کوت گرم سیاه می‌خایم', tr:'ma yak kot-e garm-e siyah mi-khayum', nl:'Ik wil een warme zwarte jas'},
+    {id:'bl10_w74', section:'Gesprekken', hz:'عینک و کفش گرم هم می‌خایم', tr:'aynak wa kafsh-e garm ham mi-khayum', nl:'Ik wil ook een bril en warme schoenen'},
+    {id:'bl10_w75', section:'Gesprekken', hz:'ببخشید دکاندار، این جاکت چند دالر استه؟', tr:'bebakhshid dukan-dar, in jaakat chand dollar asta?', nl:'Pardon winkelier, hoeveel dollar kost deze jas?'}
+  ]
 }
 ];
 
@@ -741,5 +833,13 @@ const BIJLES_QUESTIONS={
     {id:'bl9_q2', q:'وقتی حساب میایه، تو چه می‌گی؟', qtr:'waqti hisab me-ya, tu che mugi?', nl:'Wat zeg je als de rekening komt?', expect:['می‌دم'], ex:'zahmat nakashid, ma pisa me-dum', exhz:'زحمت نکشید، من پیسه می‌دم'},
     {id:'bl9_q3', q:'چای تو قند داره یا تلخ می‌خوری؟', qtr:'chai-ye tu ghand daara ya talkh mukhuri?', nl:'Doe je suiker in je thee of drink je hem zonder?', expect:['می‌خورم','داره'], ex:'ma chai-ye talkh mi-khurum', exhz:'من چای تلخ می‌خورم'},
     {id:'bl9_q4', q:'کدام شیرینی را خوش داری؟', qtr:'kudam shirini ra khosh dari?', nl:'Welke zoetigheid vind je lekker?', expect:['دارم'], ex:'ma jalabi ra khosh darum', exhz:'من جلیبی را خوش دارم'}
+  ],
+  bl10:[
+    {id:'bl10_q0', q:'امروز چه لباس پوشیدی و رنگ لباس تو چی استه؟', qtr:'emrooz che lebas pushidi wa rang-e lebas-e tu che asta?', nl:'Wat heb je vandaag aan en welke kleur heeft het?', expect:['پوشیدم'], ex:'ma emrooz peraahan-e safed wa sholwaar-e jeans-e aabi pushidum', exhz:'من امروز پیراهن سفید و شلوار جین آبی پوشیدم'},
+    {id:'bl10_q1', q:'دَ زمستان و هوای سرد، چه لباس گرم می‌پوشی؟', qtr:'da zamestan wa hawa-ye sard, che lebas-e garm mi-pushi?', nl:'Welke warme kleren draag je in de winter als het koud is?', expect:['می\u200cپوشم'], ex:'ma kot-e garm, kolah-e pashmi wa dast-kash mi-pushum', exhz:'من کوت گرم، کلاه پشمی و دستکش می‌پوشم'},
+    {id:'bl10_q2', q:'سایز لباس و کفش تو چی استه؟', qtr:'saiz-e lebas wa kafsh-e tu che asta?', nl:'Wat is je kledingmaat en wat voor schoenen wil je?', expect:['استه','دارم'], ex:'saiz-e lebas-e ma motevaset asta wa kafsh-e garm khosh darum', exhz:'سایز لباس من متوسط استه و کفش گرم خوش دارم'},
+    {id:'bl10_q3', q:'لباس سنتی هزارگی را خوش داری؟', qtr:'lebas-e sunnati-ye Hazaragi ra khosh dari?', nl:'Hou je van traditionele Hazaragi kleding?', expect:['دارم'], ex:'aree, ma wasokat-e gilaam-dozi wa lebas-e Hazaragi ra kheili khosh darum', exhz:'آری، من واسکت گلدوزی و لباس هزارگی را خیلی خوش دارم'},
+    {id:'bl10_q4', q:'چطور لباس خوار یا آیه شوی خود را تعریف می‌کنی؟', qtr:'chetor lebas-e khuaar ya aya-ye shoy-e khud ra tarif mukuni?', nl:'Hoe geef je een compliment over de kleren van de zus of moeder van je man?', expect:['استه'], ex:'lebas-e tu kheili maqbool asta! ba tu khub miga', exhz:'لباس تو خیلی مقبول استه! به تو خوب میگه'},
+    {id:'bl10_q5', q:'وقتی از دکان لباس می‌خری، چطور قیمت جاکت را می‌پرسی؟', qtr:'waqti az dukan lebas mi-khari, chetor qimat-e jaakat ra mi-pursi?', nl:'Hoe vraag je in de winkel naar de prijs van een jas?', expect:['استه'], ex:'bebakhshid dukan-dar, in jaakat-e garm chand dollar asta?', exhz:'ببخشید دکاندار، این جاکت گرم چند دالر استه؟'}
   ]
 };

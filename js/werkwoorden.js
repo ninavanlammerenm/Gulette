@@ -29,6 +29,8 @@ const WW_RAW=[
   {id:'ww_fekr',nl:'denken',say:'ik denk',h:'kardan',core:['فکر','fekr','gedachte']},
   {id:'ww_pukhsa',nl:'koken',say:'ik kook',h:'kardan',core:['پخته','pukhsa','gekookt']},
   {id:'ww_paida',nl:'vinden',say:'ik vind (iets terug)',h:'kardan',core:['پیدا','paida','gevonden']},
+  {id:'ww_tarif',nl:'een compliment geven',say:'jij geeft een compliment',h:'kardan',p:'2s',core:['تعریف','tarif','lof']},
+  {id:'ww_faramosh',nl:'vergeten (iets)',say:'ik vergeet het',h:'kardan',core:['فراموش','faramosh','vergeten']},
   {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},
@@ -36,6 +38,7 @@ const WW_RAW=[
   {id:'ww_tayar',nl:'je klaarmaken',say:'ik maak me klaar',h:'shudan',core:['تیار','tayar','klaar']},
   {id:'ww_berun',nl:'naar buiten gaan',say:'ik ga naar buiten',h:'shudan',core:['بیرون','berun','buiten']},
   {id:'ww_khalas',nl:'klaar / afgelopen zijn',say:'het is afgelopen',h:'shudan',p:'3s',core:['خلاص','khalas','klaar, op']},
+  {id:'ww_khoshhal',nl:'blij worden',say:'hij/zij wordt blij',h:'shudan',p:'3s',core:['خوشحال','khosh-hal','blij']},
   {id:'ww_gum',nl:'kwijt zijn',say:'het is kwijt',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['گم','gum','kwijt']},
   {id:'ww_tir',nl:'voorbij zijn (tijd)',say:'het is over (vijf over…)',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['تیر','tir','voorbij']},
   // woord + darum (hebben)
@@ -66,6 +69,8 @@ const WW_RAW=[
   {id:'ww_baridan',nl:'regenen',say:'het regent',hz:'می‌باره',tr:'mubaara',fam:'regenen'},
   {id:'ww_guftan',nl:'zeggen',say:'ze zeggen',hz:'می‌گن',tr:'mugan',fam:'zeggen'},
   {id:'ww_guzashtan',nl:'leggen / neerzetten',say:'jij hebt het gelegd',hz:'گذاشتی',tr:'guzashti',fam:'leggen'},
+  {id:'ww_pushidan',nl:'aantrekken / dragen (kleding)',say:'ik trek aan',hz:'می‌پوشم',tr:'mi-pushum',fam:'aantrekken'},
+  {id:'ww_darawardan',nl:'uittrekken',say:'ik heb het uitgetrokken',hz:'در آوردم',tr:'dar awardum',fam:'uittrekken'},
   {id:'ww_yad',nl:'vergeten',say:'ik ben het vergeten',hz:'یاد من رفته',tr:'yad-e ma rafta',fam:''},
   // opdrachten (gebiedende wijs)
   {id:'ww_neshined',nl:'gaan zitten',say:'ga zitten! (beleefd)',hz:'بشینید',tr:'neshined',fam:'',g:'imp'},
