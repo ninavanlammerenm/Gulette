@@ -724,7 +724,7 @@ Huiswerk: beantwoord de zes huiswerkvragen hardop en oefen de gesprekken in de k
     {id:'bl10_w35', section:'Kleuren & maten', hz:'آبی', tr:'aabi', nl:'Blauw'},
     {id:'bl10_w36', section:'Kleuren & maten', hz:'سبز', tr:'sabz', nl:'Groen'},
     {id:'bl10_w37', section:'Kleuren & maten', hz:'زرد', tr:'zard', nl:'Geel'},
-    {id:'bl10_w38', section:'Kleuren & maten', hz:'گلابی', tr:'soorati', nl:'Roze', note:'In de PDF: soorati — vraag of het gulaabi is'},
+    {id:'bl10_w38', section:'Kleuren & maten', hz:'صورتی', tr:'soorati', nl:'Roze'},
     {id:'bl10_w39', section:'Kleuren & maten', hz:'قهوه‌یی', tr:'qahwa-i', nl:'Bruin'},
     {id:'bl10_w40', section:'Kleuren & maten', hz:'خاکستری', tr:'khakestari', nl:'Grijs'},
     {id:'bl10_w41', section:'Kleuren & maten', hz:'سرمه‌یی', tr:'soormay-i', nl:'Donkerblauw'},
