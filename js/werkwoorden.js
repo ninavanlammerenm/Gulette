@@ -173,27 +173,14 @@ function _wwBuild(entries,roman){
       help={type:'cloze',title:'Welk hulpwerkwoord?',q:`Welk hulpwerkwoord hoort bij <b>${e.core[roman?'tr':'hz']}</b> (${e.core.nl})?`,trs,
         s:{hz:show(e),nl:e.say,tr:roman?'':e.tr},w:{hz:correct,nl:`${e.helper.nl} — ${e.nl}`,tr:roman?'':e.helper.tr},choices:shuffle([correct,...opts])};
     }
-    // 3. Maak de zin (uit je bijles) met verkeerde hulpwerkwoorden als lokwoord
-    const sents=_wwSentences(e,roman);
-    let build=null;
-    if(sents.length){
-      const s=sents[Math.floor(Math.random()*sents.length)];
-      const toks=s.text.split(/\s+/);
-      const p=s.form.p||e.p;
-      const lure=e.core
-        ? shuffle(Object.keys(WW_HELP).filter(k=>k!==e.h&&!(e.avoid||[]).includes(k))).slice(0,2).map(k=>_wwLabel(WW_HELP[k].forms[p]||WW_HELP[k].forms['1s'],roman))
-        : shuffle(othersFor(e).filter(x=>!e.fam||x.fam!==e.fam)).slice(0,2).map(show);
-      const tk=new Set(toks.map(_bjCore));
-      build={type:'order',title:'Maak de zin',q:'Zet de woorden in de goede volgorde:',bjExType:'order_bj',key:e.hz,
-        s:{hz:toks.join(' '),nl:s.nl,tr:roman?'':s.tr},distractors:lure.filter(x=>!tk.has(x))};
-    }
     // 4. Zelf typen
     const type={type:'type',w:wd};
     const part=(hz,tr)=>roman?tr:`${hz} (${tr})`;
     const intro={type:'intro',w:{...wd,tip:e.core?`${part(e.core.hz,e.core.tr)} = ${e.core.nl}  +  ${part(e.helper.hz,e.helper.tr)} = ${e.helper.nl}`:`Gewoon werkwoord (zonder hulpwerkwoord): ${e.nl}`},ctxSentence:null};
     if(lvl===1){ r1.push(intro,which); r2.push(help||which); }
-    else if(lvl===2){ r1.push(help||which); r2.push(build||which); }
-    else { r1.push(which); r2.push(type); if(build) r2.push(build); }
+    // Geen hele zinnen bouwen in deze tab: alleen het juiste werkwoord kiezen of typen
+    else if(lvl===2){ r1.push(help||which); r2.push(which); }
+    else { r1.push(which); r2.push(type); }
   });
   return {exs:[...r1,...shuffle(r2)],extraWords};
 }
