@@ -900,3 +900,10 @@ body.dark-mode .drill-card{background:#352820;border-color:#4A3028}
   .les-card:hover{transform:scale(1.03)}
   .wc:hover{transform:translateY(-1px);box-shadow:var(--sh-m)}
 }
+
+.bj-done-badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:99px;background:#DDF3E4;color:#2E8B57;font-size:11px;font-weight:900;vertical-align:middle}
+.bj-done-check{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#3BAA6B;color:#fff;font-size:15px;font-weight:900}
+.bj-card-done{border-color:#BFE5CC}
+.bj-step-done .bj-bar-fill{background:#3BAA6B}
+.bj-step-done .bj-step-top b{color:#2E8B57}
+.bj-step-note{font-size:12px;font-weight:700;color:var(--ink-m);margin-top:6px;line-height:1.4}

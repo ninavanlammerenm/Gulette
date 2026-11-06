@@ -152,7 +152,10 @@ function _bjLessonStats(l){
   const th=_bjUnlock();
   const unlocked=!words.length||wk/words.length>=th;
   const needed=Math.max(0,Math.ceil(words.length*th)-wk);
-  return {words,sents,wk,sk,unlocked,needed};
+  // Gemasterd: elk woord en elke zin minstens op niveau 4 (groen). Blijft gewoon in de herhaling.
+  const mk=l.items.filter(i=>st[i.hz]&&(st[i.hz].masteryLevel||1)>=4).length;
+  const mastered=l.items.length>0&&mk===l.items.length;
+  return {words,sents,wk,sk,unlocked,needed,mk,mastered};
 }
 function _bjLessonsOrdered(){ return [..._bjList()].sort((a,b)=>(a.date||'').localeCompare(b.date||'')); }
 // Nieuwe stof die nu aan de beurt is: oudste les eerst, woorden voor zinnen
@@ -235,9 +238,9 @@ function renderBijles(){
   wrap.innerHTML=_bjScriptBar()+(_bjLessonSoon()?_bjPrepCard():'')+hero+(_bjLessonSoon()?'':_bjPrepCard())+_bjDayRow()+`<button class="btn-home" style="margin-bottom:14px" onclick="bjEditLesson()">+ Nieuwe bijles</button>`+
     list.map(l=>{
       const s=_bjLessonStats(l);
-      return `<div class="bj-card" onclick="bjOpenLesson('${l.id}')">
+      return `<div class="bj-card${s.mastered?' bj-card-done':''}" onclick="bjOpenLesson('${l.id}')">
       <div class="bj-card-body">
-        <div class="bj-card-ttl">${_bjEsc(l.title||'Bijles')}</div>
+        <div class="bj-card-ttl">${_bjEsc(l.title||'Bijles')}${s.mastered?' <span class="bj-done-badge">✓ Gemasterd</span>':''}</div>
         <div class="bj-card-meta">${_bjDate(l.date)}</div>
         <div class="bj-card-steps">
           <span>Woorden ${s.wk}/${s.words.length}${s.words.length&&s.unlocked?' ✓':''}</span>
@@ -245,7 +248,7 @@ function renderBijles(){
         </div>
         ${_bjBar(s.wk+s.sk,l.items.length)}
       </div>
-      <div class="bj-card-arr">→</div>
+      <div class="bj-card-arr">${s.mastered?'<span class="bj-done-check">✓</span>':'→'}</div>
     </div>`;}).join('');
 }
 
@@ -323,6 +326,11 @@ function renderBijlesDetail(){
         <div class="bj-step-top"><b>Stap 2 · Zinnen</b><span>${s.unlocked?`${s.sk}/${s.sents.length} geleerd`:`🔒 nog ${s.needed} ${s.needed===1?'woord':'woorden'}`}</span></div>
         ${_bjBar(s.unlocked?s.sk:0,s.sents.length)}
       </div>`:''}
+      <div class="bj-step${s.mastered?' bj-step-done':''}">
+        <div class="bj-step-top"><b>${s.mastered?'✓ Gemasterd':'Stap 3 · Masteren'}</b><span>${s.mk}/${l.items.length} groen</span></div>
+        ${_bjBar(s.mk,l.items.length)}
+        ${s.mastered?'<div class="bj-step-note">Je kent alles uit deze les. Af en toe komt het nog terug in de herhaling, zodat je het niet vergeet.</div>':''}
+      </div>
     </div>
     ${l.items.length?`<button class="btn-home bj-practice-btn" onclick="bjPractice('${l.id}')">Oefenen${due||nw?` · ${due?due+' herhalen':''}${due&&nw?', ':''}${nw?nw+' nieuw':''}`:''}</button>
     <button class="bj-link-btn" onclick="bjPracticeAll('${l.id}')">Toch alles oefenen (ook zinnen)</button>`:''}
