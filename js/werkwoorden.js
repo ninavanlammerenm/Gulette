@@ -48,7 +48,7 @@ const WW_UITLEG={
 <i>kaar darum</i> = ik heb iets te doen (ik ben bezig, heb geen tijd)</p>
 <p><b>En:</b> <i>khosh darum</i> = ik hou ervan (ik ben het onderwerp), maar <i>khosh me-ya</i> = het bevalt me (het ding is het onderwerp, het komt fijn bij mij aan).</p>
 <p><b>Vormen:</b> <i>darum</i> ik · <i>dari</i> jij · <i>daara</i> hij/zij · niet: <i>nadarum</i>.</p>`,
-  zadan:`<p><b>De logica:</b> <i>zadan</i> betekent letterlijk <b>slaan</b>. Hier is het een vaste combinatie, geen regel die je kunt afleiden. Gewoon onthouden, het zijn er maar twee:</p>
+  zadan:`<p><b>De logica:</b> <i>zadan</i> betekent letterlijk <b>slaan</b>. Je gebruikt het vaak voor een korte, snelle handeling of iets wat je ergens op zet of tegenaan doet: kloppen, aanraken, bellen, een bril opzetten. Het blijven vaste combinaties, die leer je per woord. In je bijles had je er tot nu toe twee:</p>
 <p><i>gap mi-zanem</i> = wij praten / kletsen (vergelijk: een praatje maken)<br>
 <i>aynak mi-zanum</i> = ik draag een bril (vergelijk: een bril opzetten)</p>
 <p><b>Valkuil:</b> kleren dragen is <b>niet</b> <i>mi-zanum</i>, maar <i>mi-pushum</i>. Een bril zet je op (<i>mi-zanum</i>), kleren trek je aan (<i>mi-pushum</i>).</p>

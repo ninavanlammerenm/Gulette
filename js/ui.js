@@ -477,7 +477,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v99 · Sakura';
+  if(_vEl)_vEl.textContent='v100 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
