@@ -21,6 +21,61 @@ const WW_HELP={
 };
 const WW_ORDER=['kardan','shudan','dashtan','zadan','dadan','','imp'];
 
+// Uitleg per groep: de logica achter het hulpwerkwoord
+const WW_UITLEG={
+  kardan:`<p><b>De logica:</b> het eerste woord is een <b>ding</b> (een zelfstandig naamwoord): <i>kaar</i> = werk, <i>zendagi</i> = leven, <i>kumak</i> = hulp, <i>fekr</i> = gedachte. Met <i>mukunum</i> (ik doe / ik maak) maak je van dat ding een actie. Jij bent zelf actief bezig.</p>
+<p><b>Ezelsbrug:</b> kun je in het Nederlands zeggen <b>ik doe / ik maak [woord]</b>? Dan is het <i>mukunum</i>.<br>
+<i>kaar mukunum</i> = ik doe werk = ik werk<br>
+<i>kumak mukunum</i> = ik doe hulp = ik help<br>
+<i>paida mukunum</i> = ik maak het gevonden = ik vind het</p>
+<p><b>Net als in het Nederlands:</b> <i>farq nami-kuna</i> = het maakt geen verschil = maakt niet uit.</p>
+<p><b>Vormen:</b> <i>mukunum</i> ik · <i>mukuni</i> jij · <i>mukuna</i> hij/zij · verleden: <i>kadum</i> ik heb gedaan (<i>paida kadum</i> = ik heb het gevonden).</p>`,
+  shudan:`<p><b>De logica:</b> er <b>verandert</b> iets. Je gaat van de ene toestand naar de andere: van slapen naar wakker, van niet klaar naar klaar. Je doet het niet echt, het gebeurt met je. Het eerste woord is vaak een eigenschap: <i>bedar</i> (wakker), <i>tayar</i> (klaar), <i>khosh-hal</i> (blij), <i>gum</i> (kwijt).</p>
+<p><b>Ezelsbrug:</b> past <b>worden</b> of <b>raken</b> in het Nederlands? Dan is het <i>mi-shum</i>.<br>
+<i>bedar mi-shum</i> = ik word wakker<br>
+<i>khwab mi-shum</i> = ik raak in slaap = ik ga slapen<br>
+<i>berun mi-shum</i> = ik raak buiten = ik ga naar buiten<br>
+<i>khosh-hal mi-sha</i> = hij/zij wordt blij</p>
+<p><b>shuda</b> = is geworden, voor iets wat al gebeurd is: <i>gum shuda</i> = het is kwijtgeraakt, <i>tir shuda</i> = het is voorbij.</p>
+<p><b>Vormen:</b> <i>mi-shum</i> ik · <i>mi-shi</i> jij · <i>mi-sha</i> hij/zij (je hoort ook <i>mayshum</i>).</p>`,
+  dashtan:`<p><b>De logica:</b> geen actie en geen verandering, maar iets wat je <b>hebt</b>: tijd, werk, een gevoel, kennis. Het is een toestand.</p>
+<p><b>Ezelsbrug:</b> past <b>ik heb</b> in de letterlijke vertaling? Dan is het <i>darum</i>.<br>
+<i>wakht darum</i> = ik heb tijd<br>
+<i>khosh darum</i> = ik heb het fijn ermee = ik hou ervan<br>
+<i>khabar dari?</i> = heb jij nieuws? = weet jij ervan?</p>
+<p><b>Grootste valkuil:</b><br>
+<i>kaar mukunum</i> = ik werk (ik ben aan het werk)<br>
+<i>kaar darum</i> = ik heb iets te doen (ik ben bezig, heb geen tijd)</p>
+<p><b>En:</b> <i>khosh darum</i> = ik hou ervan (ik ben het onderwerp), maar <i>khosh me-ya</i> = het bevalt me (het ding is het onderwerp, het komt fijn bij mij aan).</p>
+<p><b>Vormen:</b> <i>darum</i> ik · <i>dari</i> jij · <i>daara</i> hij/zij · niet: <i>nadarum</i>.</p>`,
+  zadan:`<p><b>De logica:</b> <i>zadan</i> betekent letterlijk <b>slaan</b>. Hier is het een vaste combinatie, geen regel die je kunt afleiden. Gewoon onthouden, het zijn er maar twee:</p>
+<p><i>gap mi-zanem</i> = wij praten / kletsen (vergelijk: een praatje maken)<br>
+<i>aynak mi-zanum</i> = ik draag een bril (vergelijk: een bril opzetten)</p>
+<p><b>Valkuil:</b> kleren dragen is <b>niet</b> <i>mi-zanum</i>, maar <i>mi-pushum</i>. Een bril zet je op (<i>mi-zanum</i>), kleren trek je aan (<i>mi-pushum</i>).</p>
+<p><b>Vormen:</b> <i>mi-zanum</i> ik · <i>mi-zani</i> jij · <i>mi-zana</i> hij/zij · <i>mi-zanem</i> wij.</p>`,
+  dadan:`<p><b>De logica:</b> iets gaat <b>van jou naar een ander</b>. <i>pisa me-dum</i> = ik geef geld = ik betaal.</p>
+<p><b>Vormen:</b> <i>me-dum</i> ik · <i>me-di</i> jij · <i>me-da</i> hij/zij.</p>`,
+  '':`<p><b>De logica:</b> deze hebben <b>geen hulpwerkwoord</b> nodig. Het werkwoord zelf zegt al wat je doet. Vaak zijn het de basisacties: eten, gaan, komen, zien, kopen, willen, weten, aantrekken.</p>
+<p><b>Herkennen:</b> het is één woord, meestal met <i>mi-</i> of <i>mu-</i> ervoor: <i>mi-khurum</i> (ik eet), <i>mubinum</i> (ik zie), <i>mi-kharum</i> (ik koop), <i>mi-pushum</i> (ik trek aan).</p>
+<p><b>Ezelsbrug:</b> kun je het niet ombouwen tot <b>ik doe / ik word / ik heb [iets]</b>? Dan is het meestal een gewoon werkwoord.</p>
+<p><b>De uitgang vertelt wie:</b> <i>-um</i> ik · <i>-i</i> jij · <i>-a</i> hij/zij · <i>-em</i> wij · <i>-ed</i> jullie/u · <i>-an</i> zij.<br>
+<i>mi-</i> ervoor = nu / gewoonte. Zonder <i>mi-</i> en met <i>-d-</i> = verleden: <i>khurdum</i> (ik heb gegeten), <i>budum</i> (ik was).</p>`,
+  imp:`<p><b>De logica:</b> zo zeg je dat iemand iets moet doen, of je biedt iets aan.</p>
+<p><b>Herkennen:</b> geen <i>mi-</i>, maar <i>be-</i> of <i>bi-</i> ervoor: <i>bukhur</i> (eet!), <i>beger</i> (pak!), <i>biya</i> (kom!), <i>be-push</i> (trek aan!).</p>
+<p><b>Beleefd of tegen meer mensen:</b> <i>-ed</i> of <i>-id</i> erachter: <i>biyared</i> (breng), <i>neshined</i> (ga zitten), <i>be-farmaeed</i> (alstublieft, ga uw gang).</p>
+<p><b>Niet doen:</b> <i>na-</i> in plaats van <i>be-</i>: <i>zahmat nakashid</i> (doe geen moeite), <i>faramosh naku</i> (vergeet niet).</p>`
+};
+const WW_KIES=`<p>Stel jezelf deze vragen, in deze volgorde:</p>
+<ol>
+<li><b>Is het een basisactie</b> (eten, gaan, komen, zien, kopen, willen, aantrekken)? → gewoon werkwoord, zonder hulpwerkwoord.</li>
+<li><b>Doe of maak je actief iets</b> (werk, hulp, wonen, koken)? → <i>mukunum</i></li>
+<li><b>Word of raak je iets</b> (wakker, klaar, blij, kwijt)? → <i>mi-shum</i></li>
+<li><b>Heb je iets</b> (tijd, werk te doen, een gevoel)? → <i>darum</i></li>
+<li><b>Praten of een bril</b>? → <i>mi-zanum</i> · <b>geven of betalen</b>? → <i>me-dum</i></li>
+</ol>
+<p>Het blijft taal: het klopt niet altijd 100%. Maar zo zit je meestal goed.</p>`;
+
+
 const WW_RAW=[
   // woord + mukunum (doen)
   {id:'ww_kaar',nl:'werken',say:'ik werk',h:'kardan',core:['کار','kaar','werk']},
@@ -245,7 +300,8 @@ function renderWW(){
         <div class="ww-row-hz">${e.core?`${fmt(e.core.hz,e.core.tr)} <span class="ww-plus">+</span> ${fmt(e.helper.hz,e.helper.tr)}`:fmt(e.hz,e.tr)}${e.note?`<div class="bj-item-note">${_bjEsc(e.note)}</div>`:''}</div>
         <div class="m-pips">${masteryPips(_wwIntro(e)?_wwLvl(e):0)}</div>
       </div>`).join('');
-    return `<div class="ww-group">${head}${rows}<button class="bj-link-btn" style="margin:6px 0 0" onclick="wwStartReview('${k}')">Oefen deze groep →</button></div>`;
+    const uitleg=WW_UITLEG[k]?`<details class="ww-uitleg"><summary>Uitleg: wanneer gebruik je dit?</summary><div class="ww-uitleg-body">${WW_UITLEG[k]}</div></details>`:'';
+    return `<div class="ww-group">${head}${uitleg}${rows}<button class="bj-link-btn" style="margin:6px 0 0" onclick="wwStartReview('${k}')">Oefen deze groep →</button></div>`;
   }).join('');
   wrap.innerHTML=`
     <div class="ww-explain">
@@ -253,7 +309,8 @@ function renderWW(){
       Veel Hazaragi-werkwoorden zijn <b>een woord + een hulpwerkwoord</b>:<br>
       ${fmt('کار','kaar')} (werk) + ${fmt('می‌کنم','mukunum')} (ik doe) = <b>ik werk</b><br>
       ${fmt('خواب','khwab')} (slaap) + ${fmt('می‌شم','mi-shum')} (ik word) = <b>ik ga slapen</b><br>
-      Welk hulpwerkwoord erbij hoort, volgt niet uit het Nederlands — dat leer je per werkwoord. Daar oefen je hier op.
+      Welk hulpwerkwoord erbij hoort, volgt niet altijd uit het Nederlands — maar er zit wel een logica achter.
+      <details class="ww-uitleg"><summary>Hoe kies je het goede werkwoord?</summary><div class="ww-uitleg-body">${WW_KIES}</div></details>
     </div>
     <div class="review-hero${due||nw?'':' done'}" style="margin:0 0 14px" onclick="${due||nw?'wwStartReview()':"showToast('Alles herhaald — kom later terug')"}">
       <div class="rh-deco">🔤</div>
