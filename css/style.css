@@ -918,3 +918,8 @@ body.dark-mode .drill-card{background:#352820;border-color:#4A3028}
 .ww-uitleg-body ol{margin:0 0 9px;padding-left:20px}
 .ww-uitleg-body li{margin-bottom:4px}
 .ww-uitleg-body i{color:var(--rose-d);font-weight:800}
+
+.ww-kop{font-size:12px;font-weight:900;color:var(--gold-d);text-transform:uppercase;letter-spacing:.5px;margin:12px 0 6px;padding-top:10px;border-top:1px dashed rgba(196,136,58,.35)}
+.ww-vt{border-collapse:collapse;margin:0 0 9px;font-size:13px}
+.ww-vt td{padding:2px 14px 2px 0;vertical-align:top}
+.ww-vt td:first-child{color:var(--ink-m)}
