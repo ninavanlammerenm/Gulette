@@ -175,6 +175,40 @@ function wwLogMix(correct,chosen){
   const log=_wwLog(), k=a+'|'+b; log.mix[k]=(log.mix[k]||0)+1; save();
 }
 
+// ── Invuloefening: alleen het werkwoord, alle keuzes in dezelfde vorm ──
+const WW_PERS={'1s':'ik','2s':'jij','3s':'hij/zij','1p':'wij','2p':'jullie/u','3p':'zij'};
+const WW_HELPFAMS=['doen','doen (verleden)','worden','hebben','zanan (dragen/praten)','geven'];
+function _wwPast(f){
+  if(/verleden/.test(f.fam)) return true;
+  if(/^(mi|mu|me|may|nami|nemu)/.test(f.tr)) return false;
+  if(f.fam==='zijn'||(f.fam==='hebben'&&!/dasht/.test(f.tr))) return false;
+  return true;
+}
+function _wwFill(e,roman){
+  const coreOf=t=>WW.some(x=>x.core&&(roman?x.core.tr:x.core.hz)===t);
+  // Bij gewone werkwoorden geen zinnen waar het werkwoord deel is van een samenstelling (khosh me-ya)
+  const sents=_wwSentences(e,roman).filter(s=>s.form&&s.form.hz&&s.form.p&&(e.core||s.vi===0||!coreOf(_bjCore(s.text.split(/\s+/)[s.vi-1]).toLowerCase())));
+  if(!sents.length) return null;
+  const s=sents[Math.floor(Math.random()*sents.length)];
+  const f=s.form, past=_wwPast(f);
+  const toks=s.text.split(/\s+/), correct=_bjCore(toks[s.vi]);
+  const baseNl=x=>x.nl.replace(/\s*\(.*\)\s*/g,'').trim();
+  let pool=_BJ_ALLFORMS.filter(x=>x.p===f.p&&_wwPast(x)===past&&!e.fams.includes(x.fam)&&x.fam!==f.fam&&baseNl(x)!==baseNl(f));
+  if(e.core) pool=pool.filter(x=>WW_HELPFAMS.includes(x.fam)&&!(e.avoid||[]).some(k=>(WW_HELP[k].fams||[]).includes(x.fam)));
+  const lab=x=>roman?x.tr:x.hz;
+  const seen=new Set([correct]), opts=[];
+  shuffle(pool).forEach(x=>{ const l=lab(x); if(opts.length<3&&!seen.has(l)){ seen.add(l); opts.push(x); } });
+  if(opts.length<2) return null;
+  // Uitspraak onder de keuzes, en het werkwoord in de Roman-regel wegstrepen
+  const trs={}; if(!roman){ trs[correct]=f.tr; opts.forEach(x=>{trs[x.hz]=x.tr;}); }
+  const trTok=(s.tr||'').split(/\s+/).map(_bjCore).find(t=>f.trs.includes(t.toLowerCase()))||f.tr;
+  const pers=WW_PERS[f.p]||'';
+  return {type:'cloze',title:'Vul het werkwoord in',key:e.hz,
+    q:`Welk werkwoord past? Alle keuzes staan in de <b>${pers}-vorm</b>, ${past?'verleden tijd':'nu'}.`,trs,
+    s:{hz:s.text,nl:s.nl,tr:roman?'':s.tr},w:{hz:correct,nl:`${f.tr} = ${f.nl}`,tr:roman?'':trTok},
+    choices:shuffle([correct,...opts.map(lab)])};
+}
+
 // ── Zinnen uit je bijles waarin dit werkwoord voorkomt ──
 function _wwSentences(e,roman){
   const out=[], seen=new Set();
@@ -239,14 +273,16 @@ function _wwBuild(entries,roman){
       help={type:'cloze',title:'Welk hulpwerkwoord?',q:`Welk hulpwerkwoord hoort bij <b>${e.core[roman?'tr':'hz']}</b> (${e.core.nl})?`,trs,
         s:{hz:show(e),nl:e.say,tr:roman?'':e.tr},w:{hz:correct,nl:`${e.helper.nl} — ${e.nl}`,tr:roman?'':e.helper.tr},choices:shuffle([correct,...opts])};
     }
+    // 3. Vul het werkwoord in: zin uit je bijles, alle keuzes in dezelfde persoon en tijd
+    const fill=_wwFill(e,roman);
     // 4. Zelf typen
     const type={type:'type',w:wd};
     const part=(hz,tr)=>roman?tr:`${hz} (${tr})`;
     const intro={type:'intro',w:{...wd,tip:e.core?`${part(e.core.hz,e.core.tr)} = ${e.core.nl}  +  ${part(e.helper.hz,e.helper.tr)} = ${e.helper.nl}`:`Gewoon werkwoord (zonder hulpwerkwoord): ${e.nl}`},ctxSentence:null};
     if(lvl===1){ r1.push(intro,which); r2.push(help||which); }
     // Geen hele zinnen bouwen in deze tab: alleen het juiste werkwoord kiezen of typen
-    else if(lvl===2){ r1.push(help||which); r2.push(which); }
-    else { r1.push(which); r2.push(type); }
+    else if(lvl===2){ r1.push(help||which); r2.push(fill||which); }
+    else { r1.push(which); r2.push(type); if(fill) r2.push(fill); }
   });
   return {exs:[...r1,...shuffle(r2)],extraWords};
 }

@@ -732,7 +732,8 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     showFB(true,'Goed!',nl,clozeSent?'':correct);
     sparkles();
     updMastery(correct,true,'mc');
-    if(clozeSent&&CL&&CL._bjHz){ updMastery(clozeSent,true,'verb_bj'); if(CL.id!=='_ww') bjVerbCorrect(correct); }
+    const _ck=(typeof EXS!=='undefined'&&EXS[EI]&&EXS[EI].key)||clozeSent;
+    if(clozeSent&&CL&&CL._bjHz){ updMastery(_ck,true,'verb_bj'); if(CL.id!=='_ww') bjVerbCorrect(correct); }
   }else{
     CC_COMBO=0;
     btn.classList.add('ng');WC++;
@@ -742,7 +743,7 @@ function chkMC_hz(btn,chosen,correct,nl,tr){
     });
     const _bjCloze=clozeSent&&CL&&CL._bjHz;
     const requeued=_bjCloze?(_bjRequeueCurrent(),true):requeueWrong(correct);
-    if(_bjCloze){ updMastery(clozeSent,false,'verb_bj'); if(CL.id!=='_ww') bjLogVerbError(correct,chosen); else wwLogMix(correct,chosen); }
+    if(_bjCloze){ updMastery((EXS[EI]&&EXS[EI].key)||clozeSent,false,'verb_bj'); if(CL.id!=='_ww') bjLogVerbError(correct,chosen); else wwLogMix(correct,chosen); }
     trackWrong(correct,nl,tr);
     trackConfusion(correct, chosen);
     const _tip2=_getWordTip(correct);
