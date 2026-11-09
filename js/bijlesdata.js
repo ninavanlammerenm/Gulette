@@ -44,7 +44,7 @@ Groet voor iemand die gewerkt heeft: Manda nabashid! → antwoord: Zinda bashid!
     {id:'bl1_w13', section:'Groeten', hz:'مانده نباشید', tr:'manda nabashid', nl:'Goed gewerkt! (letterlijk: moge je niet moe zijn)', note:'Groet voor iemand die gewerkt heeft'},
     {id:'bl1_w14', section:'Groeten', hz:'زنده باشید', tr:'zinda bashid', nl:'Dank je (letterlijk: moge je lang leven)', note:'Vaste reactie op مانده نباشید'},
     {id:'bl1_w15', section:'Groeten', hz:'تشکر', tr:'tashakkur', nl:'Dank je'},
-    {id:'bl1_w16', section:'Groeten', hz:'رحمت', tr:'rahmat', nl:'Bedankt (ander woord dan tashakkur)', note:'Betekent hetzelfde als تشکر'},
+    {id:'bl1_w16', section:'Groeten', hz:'رحمت', tr:'rahmat', nl:'Bedankt (ander woord dan tashakkur)', note:'Je docent gebruikt liever tashakkur of khair bebini'},
     {id:'bl1_w17', section:'Groeten', hz:'استاد', tr:'ustaad', nl:'Leraar / meester'},
     {id:'bl1_w18', section:'Groeten', hz:'جان', tr:'jaan', nl:'Lieve (achter een naam)', note:'Nina jaan = lieve Nina'},
     // ── Kennismaking ──
@@ -353,7 +353,7 @@ Huiswerk: beantwoord de drie sets oefenvragen hardop en oefen dialoog A, B en C 
     {id:'bl4_w51', section:'Planning & tijdsduur', hz:'من از ساعت هشت صبح تا ساعت چار پیشین کار می‌کنم', tr:'ma az saat-e hasht-e subh ta saat-e char-e peshin kaar mukunum', nl:'Ik werk van acht uur in de ochtend tot vier uur in de middag'},
     {id:'bl4_w52', section:'Planning & tijdsduur', hz:'چند ساعت کار می‌کنی؟', tr:'chand saat kaar mukuni?', nl:'Hoeveel uur werk je?'},
     {id:'bl4_w53', section:'Planning & tijdsduur', hz:'بعد از کار', tr:'bad az kaar', nl:'Na het werk'},
-    {id:'bl4_w54', section:'Planning & tijdsduur', hz:'چه برنامه استه؟', tr:'che programa asta?', nl:'Wat is het plan?'},
+    {id:'bl4_w54', section:'Planning & tijdsduur', hz:'چه پروگرام استه؟', tr:'che programa asta?', nl:'Wat is het plan?'},
     {id:'bl4_w55', section:'Planning & tijdsduur', hz:'تیار', tr:'tayar', nl:'Klaar / gereed'},
     {id:'bl4_w56', section:'Dagritme', hz:'هر روز', tr:'har roz', nl:'Elke dag'},
     {id:'bl4_w57', section:'Dagritme', hz:'از خواب بیدار می‌شم', tr:'az khwab bedar mi-shum', nl:'Ik word wakker', note:'mi-shum: de klinker na de m spreek je nauwelijks uit (klinkt als m’shum)'},
