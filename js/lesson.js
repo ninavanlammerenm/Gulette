@@ -492,6 +492,7 @@ function rWB(ex,body){
       <div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>
     </div>
     <div class="wb-answer" id="wb-ans"></div>
+    <div class="wb-hint">Tik om weg te halen · sleep om te verplaatsen</div>
     <div class="wb-bank" id="wb-bnk">${shuf.map(w=>`
       <button class="w-tile" data-action="wbmove" data-word="${w}">${w}</button>`).join('')}</div>
     <button class="btn-check" id="btn-check-wb" disabled>Controleer ✓</button>`;
@@ -513,15 +514,69 @@ function tileMove(tile, word, zoneId){
   t.textContent=word;
   t.dataset.word=word;
   t.onclick=()=>{
+    if(t._dragged){ t._dragged=false; return; }
     t.remove();
     tile.classList.remove('placed');
     if(zone.querySelectorAll('.ans').length===0)zone.classList.remove('has');
   };
+  _tileDraggable(t,zone);
   zone.appendChild(t);
   zone.classList.add('has');
   // Lange zinnen: houd het antwoordvak en de rest in beeld
   const bank=tile.closest('.wb-bank');
   (bank||zone).scrollIntoView({block:'nearest',behavior:'smooth'});
+}
+// Woorden in het antwoordvak verslepen naar een andere plek (tikken = weghalen)
+function _tileDraggable(t,zone){
+  let sx=0,sy=0,down=false,drag=false,ghost=null,pid=null;
+  const place=(x,y)=>{
+    const rtl=getComputedStyle(zone).direction==='rtl';
+    const others=[...zone.querySelectorAll('.ans')].filter(o=>o!==t);
+    let target=null,before=true;
+    for(const o of others){
+      const r=o.getBoundingClientRect();
+      if(y<r.top-6||y>r.bottom+6) continue;
+      if(x>=r.left-4&&x<=r.right+4){ target=o; const right=x>r.left+r.width/2; before=rtl?right:!right; break; }
+    }
+    if(!target){
+      // Op een lege plek: kies de dichtstbijzijnde tegel op die regel, anders aan het eind
+      const row=others.filter(o=>{const r=o.getBoundingClientRect();return y>=r.top-6&&y<=r.bottom+6;});
+      if(row.length){
+        const first=row[0].getBoundingClientRect(), last=row[row.length-1].getBoundingClientRect();
+        const pastEnd=rtl?x<last.left:x>last.right, beforeStart=rtl?x>first.right:x<first.left;
+        if(pastEnd){ target=row[row.length-1]; before=false; }
+        else if(beforeStart){ target=row[0]; before=true; }
+      } else if(others.length&&y<others[0].getBoundingClientRect().top){ target=others[0]; before=true; }
+      else { zone.appendChild(t); return; }
+    }
+    if(target) zone.insertBefore(t,before?target:target.nextSibling);
+  };
+  // Luisteren op window: de tegel verhuist tijdens het slepen in de DOM
+  const move=e=>{
+    if(!down||e.pointerId!==pid) return;
+    if(!drag){
+      if(Math.hypot(e.clientX-sx,e.clientY-sy)<8) return;
+      drag=true;
+      const r=t.getBoundingClientRect();
+      ghost=t.cloneNode(true); ghost.classList.add('w-tile-ghost');
+      ghost.style.width=r.width+'px'; ghost.style.height=r.height+'px';
+      document.body.appendChild(ghost);
+      t.classList.add('w-tile-dragging');
+    }
+    if(e.cancelable) e.preventDefault();
+    ghost.style.left=(e.clientX-ghost.offsetWidth/2)+'px'; ghost.style.top=(e.clientY-ghost.offsetHeight/2)+'px';
+    place(e.clientX,e.clientY);
+  };
+  const end=e=>{
+    if(!down||(e&&e.pointerId!==pid)) return; down=false;
+    window.removeEventListener('pointermove',move); window.removeEventListener('pointerup',end); window.removeEventListener('pointercancel',end);
+    if(drag){ t._dragged=true; setTimeout(()=>{t._dragged=false;},350); }
+    drag=false; if(ghost){ ghost.remove(); ghost=null; } t.classList.remove('w-tile-dragging');
+  };
+  t.addEventListener('pointerdown',e=>{
+    if(WAITING) return; down=true; drag=false; sx=e.clientX; sy=e.clientY; pid=e.pointerId;
+    window.addEventListener('pointermove',move,{passive:false}); window.addEventListener('pointerup',end); window.addEventListener('pointercancel',end);
+  });
 }
 function wbMove(tile,word){tileMove(tile,word,'wb-ans');}
 function ordMove(tile,word){tileMove(tile,word,'ord-ans');}
@@ -789,6 +844,7 @@ function rOrder(ex,body){
       ${s.tr?`<div class="hz-roman" style="font-size:12px;font-weight:700;color:var(--rose);font-style:italic;margin-top:4px">${s.tr}</div>`:''}
     </div>`}
     <div class="wb-answer" id="ord-ans"></div>
+    <div class="wb-hint">Tik om weg te halen · sleep om te verplaatsen</div>
     <div class="wb-bank" id="ord-bnk">${bank.map(w=>`
       <button class="w-tile" data-action="ordmove" data-word="${w}">${w}</button>`).join('')}
     </div>

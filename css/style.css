@@ -923,3 +923,8 @@ body.dark-mode .drill-card{background:#352820;border-color:#4A3028}
 .ww-vt{border-collapse:collapse;margin:0 0 9px;font-size:13px}
 .ww-vt td{padding:2px 14px 2px 0;vertical-align:top}
 .ww-vt td:first-child{color:var(--ink-m)}
+
+.w-tile.ans{touch-action:none;user-select:none;-webkit-user-select:none}
+.w-tile-dragging{opacity:.3}
+.w-tile-ghost{position:fixed;z-index:9999;pointer-events:none;margin:0;transform:scale(1.08);box-shadow:0 8px 20px rgba(0,0,0,.18);opacity:.95}
+.wb-hint{font-size:11.5px;font-weight:700;color:var(--ink-l);margin:-4px 0 10px;text-align:center}
