@@ -203,6 +203,10 @@
         🧪
       </button>
     </div>
+    <div id="voice-row" class="fs-row" style="display:none;margin-bottom:10px">
+      <span class="fs-row-lbl">Stem</span>
+      <select id="voice-sel" onchange="setFaVoice(this.value)" style="flex:1;max-width:62%;border:1px solid var(--ink-xl);border-radius:var(--r-xs);padding:8px;font-family:'Nunito',sans-serif;font-weight:800;color:var(--ink);background:var(--white)"></select>
+    </div>
     <button id="listen-skip-btn" onclick="toggleSkipListening()" class="prof-btn prof-btn-blue" style="margin-bottom:4px">
       Luisteroefeningen: AAN
     </button>

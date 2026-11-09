@@ -109,12 +109,15 @@ let _faVoice=null;
 function _pickFaVoice(){
   if(!('speechSynthesis' in window)) return null;
   const vs=window.speechSynthesis.getVoices()||[];
+  const pref=(typeof S!=='undefined'&&S)?S.faVoice:null;
+  if(pref==='auto'){ _faVoice=null; return null; }
+  if(pref){ const m=vs.find(v=>v.voiceURI===pref||v.name===pref); if(m){ _faVoice=m; return m; } }
   _faVoice=vs.find(v=>/^(fa|prs|pes)([-_]|$)/i.test(v.lang))||vs.find(v=>/persian|farsi|dari|perzisch|persisch/i.test(v.name))||null;
   return _faVoice;
 }
 if('speechSynthesis' in window){
   _pickFaVoice();
-  try{ window.speechSynthesis.addEventListener('voiceschanged',_pickFaVoice); }catch(e){ window.speechSynthesis.onvoiceschanged=_pickFaVoice; }
+  try{ window.speechSynthesis.addEventListener('voiceschanged',()=>{ _pickFaVoice(); if(typeof renderVoicePicker==='function') renderVoicePicker(); }); }catch(e){ window.speechSynthesis.onvoiceschanged=_pickFaVoice; }
 }
 
 function testAudio(){
@@ -145,4 +148,25 @@ function testAudio(){
     const app=(window.navigator.standalone||matchMedia('(display-mode: standalone)').matches)?'app':'browser';
     showToast(`Test: ${v.name} · gestart: ${log.start?'ja':'nee'} · klaar: ${log.end?'ja':'nee'}${log.err?' · fout: '+log.err:''} · stemmen: ${ss.getVoices().length} · ${app}${ios?' · iOS '+ios:''}`,15000);
   },3500);
+}
+
+// Stemkeuze op het profielscherm: alle Perzische stemmen + automatisch
+function _faVoices(){
+  if(!('speechSynthesis' in window)) return [];
+  return (window.speechSynthesis.getVoices()||[]).filter(v=>/^(fa|prs|pes)([-_]|$)/i.test(v.lang)||/persian|farsi|dari/i.test(v.name));
+}
+function renderVoicePicker(){
+  const row=document.getElementById('voice-row'), sel=document.getElementById('voice-sel');
+  if(!row||!sel) return;
+  const vs=_faVoices();
+  if(!vs.length){ row.style.display='none'; return; }
+  row.style.display='';
+  const cur=S.faVoice||(_faVoice?_faVoice.voiceURI:'');
+  const esc=x=>String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  sel.innerHTML=vs.map(v=>`<option value="${esc(v.voiceURI)}"${v.voiceURI===cur?' selected':''}>${esc(v.name)}${v.localService===false?' (online)':''}</option>`).join('')
+    +`<option value="auto"${cur==='auto'?' selected':''}>Automatisch (telefoon kiest)</option>`;
+}
+function setFaVoice(val){
+  S.faVoice=val; save(); _ttsNoVoice=false; _pickFaVoice();
+  speakHz('سلام، چطور استی؟');
 }

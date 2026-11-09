@@ -477,7 +477,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v105 · Sakura';
+  if(_vEl)_vEl.textContent='v106 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
@@ -606,6 +606,7 @@ function updateSoundBtn(){
   btn.classList.toggle('prof-btn-blue',on);
   if(!on){btn.style.background='var(--ink-xl)';btn.style.color='var(--ink-m)';}
   else{btn.style.background='';btn.style.color='';}
+  if(typeof renderVoicePicker==='function') renderVoicePicker();
 }
 
 function toggleSkipListening(){
