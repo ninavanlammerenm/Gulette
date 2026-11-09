@@ -64,7 +64,8 @@ const TTS_FALLBACK_WORDS=new Set(['آو','آش']);
 function speakHz(text, trOrSlow, slow){
   if(S.soundOn===false||!('speechSynthesis' in window)||!text)return;
   if(typeof bjKey==='function') text=bjKey(text);
-  window.speechSynthesis.cancel();
+  if(window.speechSynthesis.speaking||window.speechSynthesis.pending) window.speechSynthesis.cancel();
+  try{ window.speechSynthesis.resume(); }catch(e){}
   let tr=null;
   if(typeof trOrSlow==='string') tr=trOrSlow;
   else if(typeof trOrSlow==='boolean') slow=trOrSlow;
@@ -82,16 +83,27 @@ function speakHz(text, trOrSlow, slow){
   for(const [from,to] of Object.entries(TTS_CORRECTIONS)){
     corrected=corrected.split(from).join(to);
   }
-  const utt=new SpeechSynthesisUtterance(corrected);
   // Na telefoon-updates pikt lang='fa' alleen niet altijd meer de stem op:
-  // kies de Perzische stem daarom expliciet als die er is
+  // kies de Perzische stem daarom expliciet als die er is.
+  // Meteen spreken (iOS laat alleen geluid toe direct na een tik).
+  // Blijft het stil, dan nog één keer proberen zonder vaste stem.
   const v=_faVoice||_pickFaVoice();
-  if(v){ utt.voice=v; utt.lang=v.lang; } else utt.lang='fa-IR';
-  utt.rate=slow?0.5:0.78;
-  utt.pitch=1.0;
-  // iOS slikt soms een spreekopdracht direct na cancel(): even wachten
-  setTimeout(()=>{ try{ window.speechSynthesis.resume(); }catch(e){} window.speechSynthesis.speak(utt); },60);
+  const make=withVoice=>{
+    const u=new SpeechSynthesisUtterance(corrected);
+    if(withVoice&&v){ u.voice=v; u.lang=v.lang; } else u.lang=v?v.lang:'fa-IR';
+    u.rate=slow?0.5:0.78; u.pitch=1.0; u.volume=1;
+    return u;
+  };
+  const utt=make(true);
+  let started=false, retried=false;
+  const retry=()=>{ if(window.speechSynthesis.speaking) started=true; if(started||retried||!v) return; retried=true; _ttsNoVoice=true; window.speechSynthesis.cancel(); window.speechSynthesis.speak(make(false)); };
+  utt.onstart=utt.onend=()=>{ started=true; };
+  utt.onerror=retry;
+  if(_ttsNoVoice){ window.speechSynthesis.speak(make(false)); return; }
+  window.speechSynthesis.speak(utt);
+  setTimeout(retry,1500);
 }
+let _ttsNoVoice=false;
 
 let _faVoice=null;
 function _pickFaVoice(){
