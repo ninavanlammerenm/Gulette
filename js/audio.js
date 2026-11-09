@@ -83,6 +83,8 @@ function speakHz(text, trOrSlow, slow){
   for(const [from,to] of Object.entries(TTS_CORRECTIONS)){
     corrected=corrected.split(from).join(to);
   }
+  // Online stem (als de stem op de telefoon geen geluid geeft)
+  if(typeof S!=='undefined'&&S.faVoice==='online'){ _speakOnline(corrected,slow); return; }
   // Na telefoon-updates pikt lang='fa' alleen niet altijd meer de stem op:
   // kies de Perzische stem daarom expliciet als die er is.
   // Meteen spreken (iOS laat alleen geluid toe direct na een tik).
@@ -110,7 +112,7 @@ function _pickFaVoice(){
   if(!('speechSynthesis' in window)) return null;
   const vs=window.speechSynthesis.getVoices()||[];
   const pref=(typeof S!=='undefined'&&S)?S.faVoice:null;
-  if(pref==='auto'){ _faVoice=null; return null; }
+  if(pref==='auto'||pref==='online'){ _faVoice=null; return null; }
   if(pref){ const m=vs.find(v=>v.voiceURI===pref||v.name===pref); if(m){ _faVoice=m; return m; } }
   _faVoice=vs.find(v=>/^(fa|prs|pes)([-_]|$)/i.test(v.lang))||vs.find(v=>/persian|farsi|dari|perzisch|persisch/i.test(v.name))||null;
   return _faVoice;
@@ -121,6 +123,7 @@ if('speechSynthesis' in window){
 }
 
 function testAudio(){
+  if(typeof S!=='undefined'&&S.faVoice==='online'){ showToast('🔊 Online stem (internet nodig)',3000); speakHz('سلام، چطور استی؟'); return; }
   if(!('speechSynthesis' in window)){showToast('❌ Spraak niet beschikbaar op dit apparaat');return;}
   const v=_pickFaVoice();
   const isIOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
@@ -159,14 +162,28 @@ function renderVoicePicker(){
   const row=document.getElementById('voice-row'), sel=document.getElementById('voice-sel');
   if(!row||!sel) return;
   const vs=_faVoices();
-  if(!vs.length){ row.style.display='none'; return; }
+  if(!vs.length&&S.faVoice!=='online'){ row.style.display='none'; return; }
   row.style.display='';
   const cur=S.faVoice||(_faVoice?_faVoice.voiceURI:'');
   const esc=x=>String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
   sel.innerHTML=vs.map(v=>`<option value="${esc(v.voiceURI)}"${v.voiceURI===cur?' selected':''}>${esc(v.name)}${v.localService===false?' (online)':''}</option>`).join('')
-    +`<option value="auto"${cur==='auto'?' selected':''}>Automatisch (telefoon kiest)</option>`;
+    +`<option value="auto"${cur==='auto'?' selected':''}>Automatisch (telefoon kiest)</option>`
+    +`<option value="online"${cur==='online'?' selected':''}>Online stem (internet nodig)</option>`;
 }
 function setFaVoice(val){
   S.faVoice=val; save(); _ttsNoVoice=false; _pickFaVoice();
   speakHz('سلام، چطور استی؟');
+}
+
+// Online stem: Perzische spraak van Google Translate, afgespeeld als gewoon geluid.
+// Werkt ook als de telefoonstem stil blijft; heeft internet nodig.
+let _onlineAudio=null;
+function _speakOnline(text,slow){
+  try{ if(_onlineAudio){ _onlineAudio.pause(); } }catch(e){}
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+  const url='https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=fa&q='+encodeURIComponent(text.slice(0,190));
+  const a=new Audio(url);
+  a.playbackRate=slow?0.7:0.95;
+  _onlineAudio=a;
+  a.play().catch(()=>{ if(typeof showToast==='function') showToast('Online stem lukt niet — heb je internet?'); });
 }

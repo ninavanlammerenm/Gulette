@@ -1,4 +1,4 @@
-const CACHE = 'gulette-v106';
+const CACHE = 'gulette-v107';
 const LOCAL = [
   './',
   './index.html',
@@ -34,6 +34,8 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
+  // Online uitspraak (audio) niet via de service worker: iOS speelt dat anders niet af
+  if (url.hostname === 'translate.google.com') return;
   if (url.origin === location.origin) {
     e.respondWith(
       fetch(e.request)
