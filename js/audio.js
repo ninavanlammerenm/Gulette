@@ -53,8 +53,8 @@ function sfxFinish(){
 
 // ══════════════════════════════════════════════════════
 // TTS — Hazaragi uitspreken
-// Strategie: probeer altijd lang='fa' (iOS pikt gedownloade
-// Perzische stem automatisch op zonder getVoices() nodig).
+// Strategie: kies expliciet de Perzische stem (fa/fa-IR) als die er is,
+// anders lang='fa-IR' en laat het systeem kiezen.
 // Bij fout: spreek romanisering uit met standaardstem.
 // ══════════════════════════════════════════════════════
 
@@ -83,22 +83,40 @@ function speakHz(text, trOrSlow, slow){
     corrected=corrected.split(from).join(to);
   }
   const utt=new SpeechSynthesisUtterance(corrected);
-  utt.lang='fa';
+  // Na telefoon-updates pikt lang='fa' alleen niet altijd meer de stem op:
+  // kies de Perzische stem daarom expliciet als die er is
+  const v=_faVoice||_pickFaVoice();
+  if(v){ utt.voice=v; utt.lang=v.lang; } else utt.lang='fa-IR';
   utt.rate=slow?0.5:0.78;
   utt.pitch=1.0;
-  window.speechSynthesis.speak(utt);
+  // iOS slikt soms een spreekopdracht direct na cancel(): even wachten
+  setTimeout(()=>{ try{ window.speechSynthesis.resume(); }catch(e){} window.speechSynthesis.speak(utt); },60);
+}
+
+let _faVoice=null;
+function _pickFaVoice(){
+  if(!('speechSynthesis' in window)) return null;
+  const vs=window.speechSynthesis.getVoices()||[];
+  _faVoice=vs.find(v=>/^(fa|prs|pes)([-_]|$)/i.test(v.lang))||vs.find(v=>/persian|farsi|dari|perzisch|persisch/i.test(v.name))||null;
+  return _faVoice;
+}
+if('speechSynthesis' in window){
+  _pickFaVoice();
+  try{ window.speechSynthesis.addEventListener('voiceschanged',_pickFaVoice); }catch(e){ window.speechSynthesis.onvoiceschanged=_pickFaVoice; }
 }
 
 function testAudio(){
   if(!('speechSynthesis' in window)){showToast('❌ Spraak niet beschikbaar op dit apparaat');return;}
-  const vs=window.speechSynthesis.getVoices();
-  const fa=vs.filter(v=>v.lang.startsWith('fa'));
+  const v=_pickFaVoice();
+  const isIOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   let msg;
-  if(fa.length){
-    msg='🔊 Modus: Afghaans (fa) — '+fa[0].name;
+  if(v){
+    msg='🔊 Perzische stem: '+v.name+' ('+v.lang+')';
+  } else if(isIOS){
+    msg='⚠️ Geen Perzische stem gevonden. Ga naar Instellingen › Toegankelijkheid › Gesproken materiaal › Stemmen › Perzisch en download een stem. Sluit daarna de app helemaal af en open hem opnieuw.';
   } else {
-    msg='⚠️ Geen Perzische stem gevonden — installeer een Perzische stemenpakket voor spraak';
+    msg='⚠️ Geen Perzische stem gevonden. Ga naar Instellingen › Tekst-naar-spraak › Google Spraakservices › Spraakgegevens installeren › Perzisch. Sluit daarna de app af en open hem opnieuw.';
   }
-  showToast(msg);
+  showToast(msg,v?3000:10000);
   speakHz('سلام');
 }

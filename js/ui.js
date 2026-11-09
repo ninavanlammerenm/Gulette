@@ -477,7 +477,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v102 · Sakura';
+  if(_vEl)_vEl.textContent='v103 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
@@ -756,9 +756,9 @@ function showWordDetail(hz,bj){
   speakHz(hz,v.tr);
 }
 
-function showToast(msg){
+function showToast(msg,ms){
   const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2600);
+  clearTimeout(showToast._t); showToast._t=setTimeout(()=>t.classList.remove('show'),ms||2600);
 }
 
 // ══════════════════════════════════════════════════════
