@@ -129,6 +129,20 @@ function testAudio(){
   } else {
     msg='⚠️ Geen Perzische stem gevonden. Ga naar Instellingen › Tekst-naar-spraak › Google Spraakservices › Spraakgegevens installeren › Perzisch. Sluit daarna de app af en open hem opnieuw.';
   }
-  showToast(msg,v?3000:10000);
-  speakHz('سلام');
+  if(!v){ showToast(msg,10000); speakHz('سلام'); return; }
+  // Diagnose: spreek direct uit en meld wat er gebeurt
+  const ss=window.speechSynthesis;
+  if(ss.speaking||ss.pending) ss.cancel();
+  try{ ss.resume(); }catch(e){}
+  const u=new SpeechSynthesisUtterance('سلام، چطور استی؟');
+  u.voice=v; u.lang=v.lang; u.rate=0.8; u.volume=1;
+  const log={start:false,end:false,err:''};
+  u.onstart=()=>{log.start=true;}; u.onend=()=>{log.end=true;}; u.onerror=e=>{log.err=e.error||'onbekend';};
+  ss.speak(u);
+  showToast(msg+' — even testen…',3000);
+  setTimeout(()=>{
+    const ios=(navigator.userAgent.match(/OS (\d+)_(\d+)/)||[]).slice(1).join('.');
+    const app=(window.navigator.standalone||matchMedia('(display-mode: standalone)').matches)?'app':'browser';
+    showToast(`Test: ${v.name} · gestart: ${log.start?'ja':'nee'} · klaar: ${log.end?'ja':'nee'}${log.err?' · fout: '+log.err:''} · stemmen: ${ss.getVoices().length} · ${app}${ios?' · iOS '+ios:''}`,15000);
+  },3500);
 }
