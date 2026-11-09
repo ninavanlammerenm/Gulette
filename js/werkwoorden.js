@@ -62,7 +62,7 @@ const WW_UITLEG={
 <i>mi-</i> ervoor = nu / gewoonte. Zonder <i>mi-</i> en met <i>-d-</i> = verleden: <i>khurdum</i> (ik heb gegeten), <i>budum</i> (ik was).</p>`,
   imp:`<p><b>De logica:</b> zo zeg je dat iemand iets moet doen, of je biedt iets aan.</p>
 <p><b>Herkennen:</b> geen <i>mi-</i>, maar <i>be-</i> of <i>bi-</i> ervoor: <i>bukhur</i> (eet!), <i>beger</i> (pak!), <i>biya</i> (kom!), <i>be-push</i> (trek aan!).</p>
-<p><b>Beleefd of tegen meer mensen:</b> <i>-ed</i> of <i>-id</i> erachter: <i>biyared</i> (breng), <i>neshined</i> (ga zitten), <i>be-farmaeed</i> (alstublieft, ga uw gang).</p>
+<p><b>Beleefd of tegen meer mensen:</b> <i>-ed</i> of <i>-id</i> erachter: <i>biyared</i> (breng), <i>beshined</i> (ga zitten; tegen één persoon: <i>beshin</i>), <i>be-farmaeed</i> (alstublieft, ga uw gang).</p>
 <p><b>Niet doen:</b> <i>na-</i> in plaats van <i>be-</i>: <i>zahmat nakashid</i> (doe geen moeite), <i>faramosh naku</i> (vergeet niet).</p>`
 };
 
@@ -139,7 +139,7 @@ const WW_RAW=[
   {id:'ww_darawardan',nl:'uittrekken',say:'ik heb het uitgetrokken',hz:'در آوردم',tr:'dar awardum',fam:'uittrekken'},
   {id:'ww_yad',nl:'vergeten',say:'ik ben het vergeten',hz:'یاد من رفته',tr:'yad-e ma rafta',fam:''},
   // opdrachten (gebiedende wijs)
-  {id:'ww_neshined',nl:'gaan zitten',say:'ga zitten! (beleefd)',hz:'بشینید',tr:'neshined',fam:'',g:'imp'},
+  {id:'ww_neshined',nl:'gaan zitten',say:'ga zitten! (beleefd)',hz:'بشینید',tr:'beshined',fam:'',g:'imp'},
   {id:'ww_biya',nl:'komen (opdracht)',say:'kom!',hz:'بیا',tr:'biya',fam:'',g:'imp'},
   {id:'ww_beger',nl:'pakken',say:'pak het!',hz:'بگیر',tr:'beger',fam:'',g:'imp'},
   {id:'ww_biyared',nl:'brengen',say:'breng! (beleefd)',hz:'بیارید',tr:'biyared',fam:'',g:'imp'},
