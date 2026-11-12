@@ -261,12 +261,29 @@ function renderDrillCards(){
   el.innerHTML=html;
 }
 
+function _vocabDedupe(list){
+  const nHz=h=>String(h||'').replace(/[\u200c\u200d\u064B-\u0652\s؟?!.,،]/g,'').replace(/ي/g,'ی').replace(/ك/g,'ک');
+  const nTr=t=>String(t||'').toLowerCase().replace(/[^a-z]/g,'').replace(/(.)\1+/g,'$1');
+  const nNl=t=>String(t||'').toLowerCase().replace(/\(.*?\)/g,'').replace(/[^a-zà-ÿ]/g,'');
+  const best=new Map(), keyOf=new Map();
+  const score=v=>(v.masteryLevel||1)*100+(v.mcCorrect||0)+(v.typeCorrect||0);
+  for(const [hz,v] of list){
+    const k1='h:'+nHz(hz), k2=v.tr&&v.nl?'t:'+nTr(v.tr)+'|'+nNl(v.nl):null;
+    const k=keyOf.get(k1)||(k2&&keyOf.get(k2))||k1;
+    keyOf.set(k1,k); if(k2) keyOf.set(k2,k);
+    const cur=best.get(k);
+    if(!cur||score(v)>score(cur[1])) best.set(k,[hz,v]);
+  }
+  return [...best.values()];
+}
+
 function renderVocab(){
   renderDrillCards();
   const search=(document.getElementById('vocab-search')?.value||'').toLowerCase().trim();
   const isBj=wFilter==='bijles';
   const ents=isBj?Object.entries(S.bvocab||{}):Object.entries(S.vocab);
-  document.getElementById('rev-sub').textContent=isBj?ents.length+' bijleswoorden':ents.length+' woorden geleerd';
+  const _uniq=_vocabDedupe(ents).length;
+  document.getElementById('rev-sub').textContent=isBj?_uniq+' bijleswoorden':_uniq+' woorden geleerd';
   let list=ents;
   if(wFilter==='learning') list=ents.filter(([,v])=>(v.masteryLevel||1)>=2&&(v.masteryLevel||1)<=3);
   else if(wFilter==='mastered') list=ents.filter(([,v])=>(v.masteryLevel||1)>=4);
@@ -279,6 +296,10 @@ function renderVocab(){
     (v.nl||'').toLowerCase().includes(search)||
     (v.tr||'').toLowerCase().includes(search)
   );
+
+  // Dubbele woorden maar één keer tonen (zelfde woord met een andere schrijfwijze,
+  // of hetzelfde woord in twee lessen): het exemplaar met de meeste voortgang blijft staan
+  list=_vocabDedupe(list);
 
   // Sorteren: review-klaar eerst, dan oplopend op mastery (laag = meeste aandacht nodig)
   list=list.sort(([,a],[,b])=>{
@@ -477,7 +498,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v113 · Sakura';
+  if(_vEl)_vEl.textContent='v114 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
