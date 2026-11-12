@@ -763,6 +763,86 @@ Huiswerk: beantwoord de zes huiswerkvragen hardop en oefen de gesprekken in de k
     {id:'bl10_w74', section:'Gesprekken', hz:'عینک و کفش گرم هم می‌خایم', tr:'aynak wa kafsh-e garm ham mi-khayum', nl:'Ik wil ook een bril en warme schoenen'},
     {id:'bl10_w75', section:'Gesprekken', hz:'ببخشید دکاندار، این جاکت چند دالر استه؟', tr:'bebakhshid dukan-dar, in jaakat chand dollar asta?', nl:'Pardon winkelier, hoeveel dollar kost deze jas?'}
   ]
+},
+{
+  id:'bl11',
+  title:'Les 11: weer, seizoenen en vervoer',
+  date:'2026-11-12',
+  notes:`Het weer, de vier seizoenen, met de auto, bus of fiets gaan en de weg vragen.
+
+Iets leuk vinden = khosh amadan: qahwa khosh-am me-ya (ik vind koffie lekker) · khosh-e tu me-ya (jij) · khosh-esh me-ya (hij/zij)
+Komen (amadan): mi-yum ik · mi-yayi jij · me-ya hij/zij · mi-yem wij · mi-yan zij
+Met de auto/fiets/het vliegtuig = ba motar / ba do-charkha / ba tayyara mi-rum
+Winderig = baadi asta · dichtbij = nazdik · alles zoals altijd = karai-ye hamishagi
+
+Huiswerk: beantwoord de zes huiswerkvragen hardop en speel het rollenspel in de auto naar je schoonfamilie.`,
+  items:[
+    {id:'bl11_w0', section:'Weer', hz:'هوا گرم استه', tr:'hawa garm asta', nl:'Het is warm (weer)'},
+    {id:'bl11_w1', section:'Weer', hz:'امروز هوا سرد استه', tr:'emrooz hawa sard asta', nl:'Vandaag is het koud'},
+    {id:'bl11_w2', section:'Weer', hz:'هوا آفتابی استه', tr:'hawa aftaabi asta', nl:'Het is zonnig'},
+    {id:'bl11_w3', section:'Weer', hz:'هوا ابری استه', tr:'hawa abri asta', nl:'Het is bewolkt'},
+    {id:'bl11_w4', section:'Weer', hz:'باران می‌باره', tr:'baaraan mubaara', nl:'Het regent'},
+    {id:'bl11_w5', section:'Weer', hz:'برف می‌باره', tr:'barf mubaara', nl:'Het sneeuwt'},
+    {id:'bl11_w6', section:'Weer', hz:'بادی استه', tr:'baadi asta', nl:'Het waait', note:'Je docent: baadi asta voor winderig'},
+    {id:'bl11_w7', section:'Weer', hz:'هوا طوفانی استه', tr:'hawa toofaani asta', nl:'Het stormt'},
+    {id:'bl11_w8', section:'Weer', hz:'درجه', tr:'daraja', nl:'Graad (temperatuur)'},
+    {id:'bl11_w9', section:'Weer', hz:'درجه هوا بیست و پنج استه', tr:'daraja-ye hawa bist o panj asta', nl:'Het is 25 graden'},
+    {id:'bl11_w10', section:'Weer', hz:'کارای همیشگی', tr:'karai-ye hamishagi', nl:'Alles zoals altijd', note:'Je docent schreef: karaiee hamishagi — controleer de spelling'},
+    {id:'bl11_w11', section:'Iets leuk vinden', hz:'خوش آمدن', tr:'khosh amadan', nl:'Leuk vinden / bevallen'},
+    {id:'bl11_w12', section:'Iets leuk vinden', hz:'دوست داشتن', tr:'dost dashtan', nl:'Houden van (dost dashtan)'},
+    {id:'bl11_w13', section:'Iets leuk vinden', hz:'قهوه خوشم میایه', tr:'qahwa khosh-am me-ya', nl:'Ik vind koffie lekker', note:'Je docent: caffee khusham mi aya'},
+    {id:'bl11_w14', section:'Iets leuk vinden', hz:'قهوه خوش تو میایه', tr:'qahwa khosh-e tu me-ya', nl:'Jij vindt koffie lekker'},
+    {id:'bl11_w15', section:'Iets leuk vinden', hz:'قهوه خوش حسیب میایه', tr:'qahwa khosh-e Hasib me-ya', nl:'Hasib vindt koffie lekker'},
+    {id:'bl11_w16', section:'Iets leuk vinden', hz:'سارا جینز خوشش میایه', tr:'Sara jeans khosh-esh me-ya', nl:'Sara vindt jeans leuk'},
+    {id:'bl11_w17', section:'Seizoenen', hz:'فصل', tr:'fasl', nl:'Seizoen'},
+    {id:'bl11_w18', section:'Seizoenen', hz:'بهار', tr:'bahaar', nl:'Lente'},
+    {id:'bl11_w19', section:'Seizoenen', hz:'تابستان', tr:'taabestan', nl:'Zomer'},
+    {id:'bl11_w20', section:'Seizoenen', hz:'خزان', tr:'khazaan', nl:'Herfst'},
+    {id:'bl11_w21', section:'Seizoenen', hz:'زمستان', tr:'zamestan', nl:'Winter'},
+    {id:'bl11_w22', section:'Seizoenen', hz:'گل‌ها باز می‌شه', tr:'gul-ho baaz mi-sha', nl:'De bloemen gaan open', note:'In de PDF: baas maysha'},
+    {id:'bl11_w23', section:'Seizoenen', hz:'برگ‌ها زرد می‌شه', tr:'barg-ho zard mi-sha', nl:'De bladeren worden geel'},
+    {id:'bl11_w24', section:'Seizoenen', hz:'تو چه فصل را خوش داری؟', tr:'tu che fasl ra khosh dari?', nl:'Welk seizoen vind jij fijn?'},
+    {id:'bl11_w25', section:'Seizoenen', hz:'من بهار را خیلی خوش دارم', tr:'ma bahaar ra kheili khosh darum', nl:'Ik hou heel erg van de lente'},
+    {id:'bl11_w26', section:'Seizoenen', hz:'چون', tr:'chun', nl:'Omdat / want'},
+    {id:'bl11_w27', section:'Seizoenen', hz:'مو فصل بهار را خیلی خوش داریم، چون هوا نه گرم استه نه سرد', tr:'mo fasl-e bahaar ra kheili khosh darem, chun hawa na garm asta na sard', nl:'Wij houden van de lente, want het is niet warm en niet koud'},
+    {id:'bl11_w28', section:'Seizoenen', hz:'دَ زمستان چه می‌کنید وقتی هوا خیلی سرد می‌شه؟', tr:'da zamestan che mukuned waqti hawa kheili sard mi-sha?', nl:'Wat doen jullie in de winter als het heel koud wordt?'},
+    {id:'bl11_w29', section:'Seizoenen', hz:'مو دَ خانه پیش بخاری می‌شینیم', tr:'mo da khana pesh-e bukhari mi-shinem', nl:'Thuis zitten we bij de kachel', note:'In de PDF: neshinem'},
+    {id:'bl11_w30', section:'Seizoenen', hz:'چای گرم می‌خوریم', tr:'chai-ye garm mi-khurem', nl:'We drinken warme thee'},
+    {id:'bl11_w31', section:'Vervoer', hz:'موتر', tr:'motar', nl:'Auto'},
+    {id:'bl11_w32', section:'Vervoer', hz:'تکسی', tr:'taxi', nl:'Taxi'},
+    {id:'bl11_w33', section:'Vervoer', hz:'بس', tr:'bus', nl:'Bus'},
+    {id:'bl11_w34', section:'Vervoer', hz:'ایستگاه', tr:'istgah', nl:'Halte / station'},
+    {id:'bl11_w35', section:'Vervoer', hz:'پیاده', tr:'piyada', nl:'Te voet / lopend'},
+    {id:'bl11_w36', section:'Vervoer', hz:'طیاره', tr:'tayyara', nl:'Vliegtuig'},
+    {id:'bl11_w37', section:'Vervoer', hz:'دوچرخه', tr:'do-charkha', nl:'Fiets', note:'Je docent zegt ook gewoon bicycle'},
+    {id:'bl11_w38', section:'Vervoer', hz:'سفر', tr:'safar', nl:'Reis'},
+    {id:'bl11_w39', section:'Vervoer', hz:'کرایه', tr:'keraya', nl:'Ritprijs / huurprijs'},
+    {id:'bl11_w40', section:'Vervoer', hz:'من با موتر می‌رم', tr:'ma ba motar mi-rum', nl:'Ik ga met de auto', note:'Je docent: ba motar mi room'},
+    {id:'bl11_w41', section:'Vervoer', hz:'من با دوچرخه می‌رم', tr:'ma ba do-charkha mi-rum', nl:'Ik ga met de fiets'},
+    {id:'bl11_w42', section:'Vervoer', hz:'من پیاده می‌رم', tr:'ma piyada mi-rum', nl:'Ik ga lopend'},
+    {id:'bl11_w43', section:'Vervoer', hz:'مو با طیاره سفر می‌کنیم', tr:'mo ba tayyara safar mukunem', nl:'Wij reizen met het vliegtuig'},
+    {id:'bl11_w44', section:'Vervoer', hz:'کرایه تکسی چند می‌شه؟', tr:'keraya-ye taxi chand mi-sha?', nl:'Hoeveel kost de taxi?'},
+    {id:'bl11_w45', section:'Vervoer', hz:'تو هر روز چطور دَ کار می‌ری؟', tr:'tu har rooz chetor da kaar mi-ri?', nl:'Hoe ga jij elke dag naar je werk?'},
+    {id:'bl11_w46', section:'Vervoer', hz:'من معمولاً با موتر خود می‌رم، چون خیلی آسان استه', tr:'ma mamoolan ba motar-e khud mi-rum, chun kheili aasaan asta', nl:'Meestal ga ik met mijn eigen auto, want dat is heel makkelijk'},
+    {id:'bl11_w47', section:'Vervoer', hz:'ایستگاه بس پالوی خانه مو استه', tr:'istgah-e bus paloo-ye khana-ye mo asta', nl:'De bushalte is naast ons huis'},
+    {id:'bl11_w48', section:'De weg vragen', hz:'راست برو', tr:'rast boro', nl:'Ga rechtdoor'},
+    {id:'bl11_w49', section:'De weg vragen', hz:'به دست راست بپیچ', tr:'ba dast-e raast bepich', nl:'Sla rechtsaf'},
+    {id:'bl11_w50', section:'De weg vragen', hz:'به دست چپ بپیچ', tr:'ba dast-e chap bepich', nl:'Sla linksaf'},
+    {id:'bl11_w51', section:'De weg vragen', hz:'آسان', tr:'aasaan', nl:'Makkelijk'},
+    {id:'bl11_w52', section:'De weg vragen', hz:'کنار', tr:'kenaar-e', nl:'Naast / langs'},
+    {id:'bl11_w53', section:'De weg vragen', hz:'نزدیک', tr:'nazdik', nl:'Dichtbij', note:'Je docent: nazdik in plaats van kardik'},
+    {id:'bl11_w54', section:'De weg vragen', hz:'دور', tr:'door', nl:'Ver weg'},
+    {id:'bl11_w55', section:'De weg vragen', hz:'خیلی نزدیک استه', tr:'kheili nazdik asta', nl:'Het is heel dichtbij'},
+    {id:'bl11_w56', section:'De weg vragen', hz:'خیلی دور استه', tr:'kheili door asta', nl:'Het is heel ver'},
+    {id:'bl11_w57', section:'De weg vragen', hz:'خانه مو خیلی دور استه یا نزدیک؟', tr:'khana-ye mo kheili door asta ya nazdik?', nl:'Is ons huis ver of dichtbij?'},
+    {id:'bl11_w58', section:'De weg vragen', hz:'خانه مو پالوی دکان نان استه', tr:'khana-ye mo paloo-ye dukan-e naan asta', nl:'Ons huis is naast de bakkerij'},
+    {id:'bl11_w59', section:'Onderweg', hz:'با موتر می‌ریم یا با بس؟', tr:'ba motar murem ya ba bus?', nl:'Gaan we met de auto of met de bus?'},
+    {id:'bl11_w60', section:'Onderweg', hz:'پیش آته و آیه تو می‌ریم', tr:'pesh-e ata wa aya-e tu murem', nl:'We gaan naar jouw ouders'},
+    {id:'bl11_w61', section:'Onderweg', hz:'بلد', tr:'balad', nl:'De weg weten / bekend met'},
+    {id:'bl11_w62', section:'Onderweg', hz:'آدرس خانه اوشو را بلد استی؟', tr:'aadres-e khana-ye osho ra balad asti?', nl:'Weet je de weg naar hun huis?', note:'In de PDF stonden hier blokjes; uit de lengte afgeleid: balad asti'},
+    {id:'bl11_w63', section:'Onderweg', hz:'راست می‌ریم، بعد به دست چپ می‌پیچیم', tr:'rast murem, bad ba dast-e chap mi-pichem', nl:'We gaan rechtdoor en dan slaan we linksaf'},
+    {id:'bl11_w64', section:'Onderweg', hz:'خانه اوشو پالوی پارک استه', tr:'khana-ye osho paloo-ye park asta', nl:'Hun huis is naast het park'}
+  ]
 }
 ];
 
@@ -841,5 +921,13 @@ const BIJLES_QUESTIONS={
     {id:'bl10_q3', q:'لباس سنتی هزارگی را خوش داری؟', qtr:'lebas-e sunnati-ye Hazaragi ra khosh dari?', nl:'Hou je van traditionele Hazaragi kleding?', expect:['دارم'], ex:'aree, ma wasokat-e gilaam-dozi wa lebas-e Hazaragi ra kheili khosh darum', exhz:'آری، من واسکت گلدوزی و لباس هزارگی را خیلی خوش دارم'},
     {id:'bl10_q4', q:'چطور لباس خوار یا آیه شوی خود را تعریف می‌کنی؟', qtr:'chetor lebas-e khuaar ya aya-ye shoy-e khud ra tarif mukuni?', nl:'Hoe geef je een compliment over de kleren van de zus of moeder van je man?', expect:['استه'], ex:'lebas-e tu kheili maqbool asta! ba tu khub miga', exhz:'لباس تو خیلی مقبول استه! به تو خوب میگه'},
     {id:'bl10_q5', q:'وقتی از دکان لباس می‌خری، چطور قیمت جاکت را می‌پرسی؟', qtr:'waqti az dukan lebas mi-khari, chetor qimat-e jaakat ra mi-pursi?', nl:'Hoe vraag je in de winkel naar de prijs van een jas?', expect:['استه'], ex:'bebakhshid dukan-dar, in jaakat-e garm chand dollar asta?', exhz:'ببخشید دکاندار، این جاکت گرم چند دالر استه؟'}
+  ],
+  bl11:[
+    {id:'bl11_q0', q:'امروز دَ شهر تو هوا چطور استه؟', qtr:'emrooz da shahr-e tu hawa chetor asta?', nl:'Hoe is het weer vandaag in jouw stad (en hoeveel graden)?', expect:['استه'], ex:'emrooz da shahr-e mo hawa aftaabi asta wa bist daraja asta', exhz:'امروز دَ شهر مو هوا آفتابی استه و بیست درجه استه'},
+    {id:'bl11_q1', q:'کدام فصل را بیشتر خوش داری و چرا؟', qtr:'kudam fasl ra beshtar khosh dari wa chera?', nl:'Welk seizoen vind je het fijnst en waarom?', expect:['دارم'], ex:'ma fasl-e bahaar ra kheili khosh darum, chun hawa na garm asta na sard', exhz:'من فصل بهار را خیلی خوش دارم، چون هوا نه گرم استه نه سرد'},
+    {id:'bl11_q2', q:'معمولاً چطور دَ کار یا دَ دکان می‌ری؟', qtr:'mamoolan chetor da kaar ya da dukan mi-ri?', nl:'Hoe ga je meestal naar je werk of naar de winkel?', expect:['می\u200cرم'], ex:'ma mamoolan ba motar-e khud mi-rum', exhz:'من معمولاً با موتر خود می‌رم'},
+    {id:'bl11_q3', q:'راه خانه خود را چطور نشان می‌دی؟', qtr:'raah-e khana-ye khud ra chetor neshan me-di?', nl:'Hoe leg je de weg naar je huis uit?', expect:['استه'], ex:'rast boro, ba dast-e chap bepich, khana-ye mo paloo-ye park asta', exhz:'راست برو، به دست چپ بپیچ، خانه مو پالوی پارک استه'},
+    {id:'bl11_q4', q:'دَ زمستان وقتی هوا خیلی سرد می‌شه، چه می‌پوشی و چه می‌خوری؟', qtr:'da zamestan waqti hawa kheili sard mi-sha, che mi-pushi wa che mukhuri?', nl:'Wat draag en drink je in de winter als het heel koud wordt?', expect:['می\u200cپوشم','می\u200cخورم'], ex:'da zamestan ma lebas-e garm mi-pushum wa chai-ye garm mi-khurum', exhz:'دَ زمستان من لباس گرم می‌پوشم و چای گرم می‌خورم'},
+    {id:'bl11_q5', q:'از راننده تکسی چطور کرایه را می‌پرسی؟', qtr:'az raananda-ye taxi chetor keraya ra mi-pursi?', nl:'Hoe vraag je de taxichauffeur wat de rit kost?', expect:['می\u200cشه'], ex:'bebakhshid, keraya chand mi-sha? in pisa-ye tu, khana aabaad!', exhz:'ببخشید، کرایه چند می‌شه؟ این پیسه تو، خانه آباد!'}
   ]
 };

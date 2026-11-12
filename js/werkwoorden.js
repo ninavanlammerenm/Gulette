@@ -97,6 +97,7 @@ const WW_RAW=[
   {id:'ww_paida',nl:'vinden',say:'ik vind (iets terug)',h:'kardan',core:['پیدا','paida','gevonden']},
   {id:'ww_tarif',nl:'een compliment geven',say:'jij geeft een compliment',h:'kardan',p:'2s',core:['تعریف','tarif','lof']},
   {id:'ww_faramosh',nl:'vergeten (iets)',say:'ik vergeet het',h:'kardan',core:['فراموش','faramosh','vergeten']},
+  {id:'ww_safar',nl:'reizen',say:'wij reizen',h:'kardan',p:'1p',hf:['می‌کنیم','mukunem','wij doen'],core:['سفر','safar','reis']},
   {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},
@@ -105,6 +106,8 @@ const WW_RAW=[
   {id:'ww_berun',nl:'naar buiten gaan',say:'ik ga naar buiten',h:'shudan',core:['بیرون','berun','buiten']},
   {id:'ww_khalas',nl:'klaar / afgelopen zijn',say:'het is afgelopen',h:'shudan',p:'3s',core:['خلاص','khalas','klaar, op']},
   {id:'ww_khoshhal',nl:'blij worden',say:'hij/zij wordt blij',h:'shudan',p:'3s',core:['خوشحال','khosh-hal','blij']},
+  {id:'ww_baaz',nl:'opengaan',say:'het gaat open',h:'shudan',p:'3s',core:['باز','baaz','open']},
+  {id:'ww_sardshudan',nl:'koud worden',say:'het wordt koud',h:'shudan',p:'3s',core:['سرد','sard','koud']},
   {id:'ww_gum',nl:'kwijt zijn',say:'het is kwijt',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['گم','gum','kwijt']},
   {id:'ww_tir',nl:'voorbij zijn (tijd)',say:'het is over (vijf over…)',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['تیر','tir','voorbij']},
   // woord + darum (hebben)
@@ -112,7 +115,7 @@ const WW_RAW=[
   {id:'ww_wakht',nl:'tijd hebben',say:'ik heb tijd',h:'dashtan',core:['وقت','wakht','tijd']},
   {id:'ww_kaardarum',nl:'werk te doen hebben',say:'ik heb werk te doen',h:'dashtan',core:['کار','kaar','werk']},
   {id:'ww_khabar',nl:'ervan weten',say:'weet jij ervan?',h:'dashtan',p:'2s',core:['خبر','khabar','nieuws']},
-  {id:'ww_khoshmeya',nl:'heerlijk vinden',say:'ik vind het heerlijk (het bevalt me)',h:'dashtan',p:'3s',hf:['میایه','me-ya','het komt'],fams:['komen'],avoid:['dashtan'],core:['خوش','khosh','fijn'],note:'maana … khosh me-ya — vergelijk: khosh darum = ik hou van'},
+  {id:'ww_khoshmeya',nl:'heerlijk vinden',say:'ik vind het heerlijk (het bevalt me)',h:'dashtan',p:'3s',hf:['میایه','me-ya','het komt'],fams:['komen'],avoid:['dashtan'],core:['خوش','khosh','fijn'],note:'qahwa khosh-am me-ya = ik vind koffie lekker · khosh-e tu me-ya = jij · khosh-esh me-ya = hij/zij — vergelijk: khosh darum = ik hou van'},
   // woord + mi-zanum (slaan)
   {id:'ww_gap',nl:'praten',say:'ik praat',h:'zadan',core:['گپ','gap','gesprek']},
   {id:'ww_aynak',nl:'een bril dragen',say:'ik draag een bril',h:'zadan',core:['عینک','aynak','bril']},
@@ -137,6 +140,8 @@ const WW_RAW=[
   {id:'ww_guzashtan',nl:'leggen / neerzetten',say:'jij hebt het gelegd',hz:'گذاشتی',tr:'guzashti',fam:'leggen'},
   {id:'ww_pushidan',nl:'aantrekken / dragen (kleding)',say:'ik trek aan',hz:'می‌پوشم',tr:'mi-pushum',fam:'aantrekken'},
   {id:'ww_darawardan',nl:'uittrekken',say:'ik heb het uitgetrokken',hz:'در آوردم',tr:'dar awardum',fam:'uittrekken'},
+  {id:'ww_pichidan',nl:'afslaan (links/rechts)',say:'wij slaan af',hz:'می‌پیچیم',tr:'mi-pichem',fam:'afslaan'},
+  {id:'ww_shishtan',nl:'zitten',say:'wij zitten',hz:'می‌شینیم',tr:'mi-shinem',fam:'zitten'},
   {id:'ww_yad',nl:'vergeten',say:'ik ben het vergeten',hz:'یاد من رفته',tr:'yad-e ma rafta',fam:''},
   // opdrachten (gebiedende wijs)
   {id:'ww_neshined',nl:'gaan zitten',say:'ga zitten! (beleefd)',hz:'بشینید',tr:'beshined',fam:'',g:'imp'},
@@ -144,6 +149,8 @@ const WW_RAW=[
   {id:'ww_beger',nl:'pakken',say:'pak het!',hz:'بگیر',tr:'beger',fam:'',g:'imp'},
   {id:'ww_biyared',nl:'brengen',say:'breng! (beleefd)',hz:'بیارید',tr:'biyared',fam:'',g:'imp'},
   {id:'ww_bukhur',nl:'eten (opdracht)',say:'eet!',hz:'بخور',tr:'bukhur',fam:'',g:'imp'},
+  {id:'ww_bepich',nl:'afslaan (opdracht)',say:'sla af!',hz:'بپیچ',tr:'bepich',fam:'',g:'imp'},
+  {id:'ww_boro',nl:'gaan (opdracht)',say:'ga!',hz:'برو',tr:'boro',fam:'',g:'imp'},
   {id:'ww_zahmat',nl:'moeite doen',say:'doe geen moeite!',hz:'زحمت نکشید',tr:'zahmat nakashid',fam:'',g:'imp'},
 ];
 // Volledige vorm per werkwoord (woord + hulpwerkwoord in de juiste persoon)
