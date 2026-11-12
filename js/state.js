@@ -555,5 +555,20 @@ function simDistractors(target,pool,n){
     scored.push({x,s:_simScore(ti,_simInfo(x))+Math.random()*2.5});
   }
   scored.sort((a,b)=>b.s-a.s);
-  return scored.slice(0,n).map(o=>o.x);
+  // Geen dubbele: niet twee opties met hetzelfde woord, zoals Bruin en Bruin haar of Bruine ogen
+  // Zelfde woord, ook met een andere uitgang: bruin/bruine, regen/regent
+  const same=(a,b)=>{ if(a===b) return true; const [s,l]=a.length<=b.length?[a,b]:[b,a]; return s.length>=4&&l.startsWith(s)&&l.length-s.length<=2; };
+  const SYN={mama:'moeder',papa:'vader',pa:'vader',ma:'moeder',opa:'grootvader',oma:'grootmoeder',kleren:'kleding',hoi:'hallo',echtgenoot:'man',echtgenote:'vrouw',schoonmoeder:'moeder',schoonvader:'vader'};
+  const core=x=>_simInfo(x).nw.map(w=>SYN[w]||w);
+  const overlaps=(A,B)=>{ const [sm,lg]=A.length<=B.length?[A,B]:[B,A]; if(!sm.length) return false; return sm.every(w=>lg.some(v=>same(w,v))); };
+  const chosen=[core(target)], out=[], rest=[];
+  for(const o of scored){
+    if(out.length>=n) break;
+    const c=core(o.x);
+    if(chosen.some(k=>overlaps(k,c))){ rest.push(o.x); continue; }
+    chosen.push(c); out.push(o.x);
+  }
+  // Te weinig over? Dan toch aanvullen, liever dan een vraag met twee opties
+  for(const x of rest){ if(out.length>=n) break; out.push(x); }
+  return out;
 }
