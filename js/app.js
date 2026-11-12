@@ -20,6 +20,8 @@ document.addEventListener('touchend',e=>{
   const dx=e.changedTouches[0].clientX-_txStart;
   const dy=e.changedTouches[0].clientY-_tyStart;
   if(Math.abs(dx)<60||Math.abs(dy)>Math.abs(dx)*0.65)return;
+  // In een bijles: naar rechts vegen = terug naar het bijles-overzicht
+  if(activeId==='bijles'&&dx>0&&typeof _bjOpen!=='undefined'&&_bjOpen){ bjBack(); return; }
   const cur=_NAV.indexOf(activeId);
   const next=dx<0?Math.min(cur+1,_NAV.length-1):Math.max(cur-1,0);
   if(next===cur)return;

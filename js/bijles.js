@@ -253,7 +253,9 @@ function renderBijles(){
 }
 
 function bjOpenLesson(id){ _bjOpen=id; _bjTab='words'; renderBijles(); document.getElementById('screen-bijles').scrollTop=0; }
-function bjBack(){ _bjOpen=null; renderBijles(); }
+function bjBack(){ _bjOpen=null; renderBijles(); const sc=document.getElementById('screen-bijles'); if(sc) sc.scrollTop=0; }
+// Tik op de Bijles-knop onderin: altijd terug naar het bijles-overzicht
+function bjTabTap(btn){ _bjOpen=null; navTo('bijles',btn); const sc=document.getElementById('screen-bijles'); if(sc) sc.scrollTop=0; }
 function bjSetTab(t){ _bjTab=t; renderBijles(); }
 function bjOpenFromWord(hz){
   const l=_bjList().find(x=>x.items.some(i=>i.hz===hz));
