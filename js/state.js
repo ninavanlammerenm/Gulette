@@ -472,3 +472,88 @@ function applyMasteryDecay(){
   save();
 }
 
+
+// ══════════════════════════════════════════════════════
+// SLIMME FOUTE OPTIES — kies meerkeuze-opties die op het goede antwoord lijken
+// (zelfde onderwerp, gedeelde woorden, zelfde soort), met wat toeval voor afwisseling
+// ══════════════════════════════════════════════════════
+const _SIM_GROUPS={
+  kleur:['zwart','wit','rood','blauw','groen','geel','roze','bruin','grijs','oranje','paars','kleur'],
+  getal:['een','twee','drie','vier','vijf','zes','zeven','acht','negen','tien','elf','twaalf','twintig','dertig','veertig','vijftig','zestig','honderd','duizend','getal','nummer'],
+  dag:['maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag','zondag','vandaag','morgen','gisteren','week','weekend','maand','jaar'],
+  tijd:['uur','minuut','ochtend','middag','avond','nacht','tijd','laat','vroeg','straks','nu','altijd','soms','nooit'],
+  familie:['vader','moeder','broer','zus','oom','tante','opa','oma','zoon','dochter','kind','kinderen','familie','ouders','neef','nicht','schoon','echtgeno','man','vrouw','baby','papa','mama'],
+  eten:['thee','koffie','water','melk','brood','rijst','vlees','fruit','appel','suiker','eten','drink','soep','kaas','groente','spinazie','kop','kopje','glas','bord','lekker','zoet','bitter','zout','honger','dorst','ontbijt','lunch','diner','maaltijd','koek','cake','gebak','noten','yoghurt','olie','ijs','theehuis','rekening'],
+  kleding:['broek','shirt','jurk','rok','jas','jack','trui','muts','sjaal','sokken','schoen','laars','laarzen','riem','tas','kleding','kleren','hoofddoek','handschoen','gilet','bril','horloge','kostuum','sandalen','stropdas','colbert','maat','dragen','aantrek'],
+  lichaam:['hoofd','haar','oog','ogen','neus','mond','oor','oren','hand','handen','voet','voeten','been','arm','buik','rug','tand','gezicht','lang','kort','dik','dun','lengte'],
+  weer:['weer','zon','zonnig','regen','sneeuw','wind','waait','storm','warm','koud','bewolkt','graden','seizoen','lente','zomer','herfst','winter','heet'],
+  vervoer:['auto','bus','taxi','fiets','vliegtuig','halte','station','links','rechts','rechtdoor','dichtbij','ver','lopend','reis','reizen','weg','straat','afslaan'],
+  huis:['huis','kamer','keuken','deur','raam','tuin','bed','stoel','tafel','kachel','badkamer','woonkamer','slaapkamer','dak','vloer'],
+  gevoel:['blij','verdrietig','moe','ziek','boos','bang','goed','slecht','gelukkig','druk','rustig'],
+  vraag:['wie','wat','waar','wanneer','waarom','hoe','welk','welke','hoeveel'],
+  groet:['hallo','hoi','dag','ziens','bedankt','dank','welkom','alstublieft','pardon','sorry','goedemorgen','gegroet']
+};
+const _SIM_STOP=new Set(['de','het','een','van','ik','jij','je','is','zijn','en','of','met','in','op','te','voor','naar','niet','ook','dat','die','er','we','wij','u','hij','zij','ze','mijn','jouw','heel','erg','nog','al','maar','om','aan','bij','dit','deze','ben','bent','heb','hebt','heeft']);
+const _SIM_HZSTOP=new Set(['استه','است','من','تو','را','و','دَ','از','یک','هم','خیلی','مو','او','اوشو','چه','نه','بله']);
+function _simNlWords(s){ return String(s||'').toLowerCase().split(/[^a-zà-ÿ]+/).filter(w=>w.length>=2&&!_SIM_STOP.has(w)); }
+function _simGroups(words){
+  const g=new Set();
+  for(const [k,stems] of Object.entries(_SIM_GROUPS)) for(const w of words) for(const st of stems){
+    if(w===st||(st.length>=4&&(w.startsWith(st)||w.endsWith(st)))){ g.add(k); break; }
+  }
+  return g;
+}
+let _SIM_SEC=null;
+function _simSection(hz){
+  if(!_SIM_SEC){
+    _SIM_SEC={};
+    try{ CHAPTERS.forEach(ch=>ch.lessons.forEach(l=>(l.words||[]).forEach(w=>{ if(!_SIM_SEC[w.hz]) _SIM_SEC[w.hz]=ch.id+'/'+l.id; }))); }catch(e){}
+    try{ (typeof BIJLES_PRESET!=='undefined'?BIJLES_PRESET:[]).forEach(l=>l.items.forEach(it=>{ _SIM_SEC[it.hz]=l.id+'/'+(it.section||''); if(it.tr) _SIM_SEC[it.tr]=_SIM_SEC[it.hz]; })); }catch(e){}
+  }
+  return _SIM_SEC[hz]||'';
+}
+function _simInfo(x){
+  if(x._sim) return x._sim;
+  const nw=_simNlWords(x.nl);
+  const toks=String(x.hz||'').replace(/[؟?!.,،:]/g,'').split(/\s+/).filter(t=>t&&!_SIM_HZSTOP.has(t));
+  const info={nw,groups:_simGroups(nw),toks:new Set(toks),n:String(x.hz||'').trim().split(/\s+/).length,sec:x.section||_simSection(x.hz)};
+  try{ Object.defineProperty(x,'_sim',{value:info,enumerable:false,configurable:true}); }catch(e){}
+  return info;
+}
+function _simScore(a,b){
+  let sc=0;
+  // Zelfde onderwerp (thee/koffie, kleuren, familie…)
+  for(const g of a.groups) if(b.groups.has(g)) sc+=3;
+  // Gedeelde of verwante Nederlandse woorden (kop / theekop)
+  for(const x of a.nw) for(const y of b.nw){
+    if(x===y) sc+=3;
+    else{
+      // Samenstelling: theekop ~ kop (rest minstens 3 letters, dus niet brood ~ rood)
+      const [sh,lo]=x.length<=y.length?[x,y]:[y,x];
+      if(sh.length>=3&&lo.length-sh.length>=3&&(lo.startsWith(sh)||lo.endsWith(sh))) sc+=2;
+    }
+  }
+  // Gedeelde Hazaragi-woorden (chai-ye siaah / chai-ye sabz)
+  for(const t of a.toks) if(b.toks.has(t)) sc+=2;
+  // Zelfde les-onderdeel
+  if(a.sec&&a.sec===b.sec) sc+=2;
+  // Zelfde soort: los woord of zin van ongeveer dezelfde lengte
+  const dn=Math.abs(a.n-b.n); sc+=dn===0?1.5:dn<=1?1:dn<=3?0:-4;
+  // Een zin die het hele antwoord al bevat is geen goede foute optie (los woord vs. zin ermee)
+  if(a.n<=2&&b.n>=3&&a.nw.length&&a.nw.every(w=>b.nw.includes(w))) sc-=6;
+  return sc;
+}
+// target: {hz,nl}; pool: [{hz,nl,...}] → n opties uit pool (nooit gelijk aan target, geen dubbele)
+function simDistractors(target,pool,n){
+  n=n||3;
+  const ti=_simInfo(target);
+  const seenNl=new Set([String(target.nl||'').toLowerCase()]), seenHz=new Set([target.hz]);
+  const scored=[];
+  for(const x of pool){
+    if(!x||seenHz.has(x.hz)||seenNl.has(String(x.nl||'').toLowerCase())) continue;
+    seenHz.add(x.hz); seenNl.add(String(x.nl||'').toLowerCase());
+    scored.push({x,s:_simScore(ti,_simInfo(x))+Math.random()*2.5});
+  }
+  scored.sort((a,b)=>b.s-a.s);
+  return scored.slice(0,n).map(o=>o.x);
+}

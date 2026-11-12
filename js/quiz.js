@@ -157,13 +157,13 @@ function _renderOvhMC(hz,v,dir){
              <div class="ovh-dutch">${v.tr||''}</div>
              <div class="ovh-latin">${pron}</div>`;
     correct=v.nl;
-    const dist=shuffle(allWords.filter(([h])=>h!==hz)).slice(0,3).map(([,d])=>d.nl);
+    const dist=simDistractors({hz,nl:v.nl},allWords.filter(([h])=>h!==hz).map(([h,d])=>({hz:h,nl:d.nl})),3).map(x=>x.nl);
     _ovhChoices=shuffle([correct,...dist]);
   } else {
     prompt=`<div class="ovh-nl-word">${v.nl}</div>
              <div class="ovh-latin" style="margin-top:4px">${v.tr||''}</div>`;
     correct=hz;
-    const dist=shuffle(allWords.filter(([h])=>h!==hz)).slice(0,3).map(([h])=>h);
+    const dist=simDistractors({hz,nl:v.nl},allWords.filter(([h])=>h!==hz).map(([h,d])=>({hz:h,nl:d.nl})),3).map(x=>x.hz);
     _ovhChoices=shuffle([correct,...dist]);
   }
 
@@ -438,7 +438,7 @@ function renderSpeedQ(){
   if(!_speedActive)return;
   const words=Object.entries(S.vocab);
   const [hz,v]=words[Math.floor(Math.random()*words.length)];
-  const dists=shuffle(words.filter(([h])=>h!==hz)).slice(0,3).map(([,d])=>d.nl);
+  const dists=simDistractors({hz,nl:v.nl},words.filter(([h])=>h!==hz).map(([h,d])=>({hz:h,nl:d.nl})),3).map(x=>x.nl);
   const choices=shuffle([v.nl,...dists]);
   const ltrs=['A','B','C','D'];
   const body=document.getElementById('ovh-body');

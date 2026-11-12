@@ -371,7 +371,7 @@ function generateQuestion(type, words, sentences, level, existing){
       const pool = words.filter(w => !usedWords.has(w.hz));
       if(pool.length < 4) return null;
       const w = pool[Math.floor(Math.random()*pool.length)];
-      const dists = shuffle(words.filter(x=>x.nl!==w.nl)).slice(0,3).map(x=>x.nl);
+      const dists = simDistractors(w,words.filter(x=>x.nl!==w.nl),3).map(x=>x.nl);
       return {
         type:'mc', skill:'vocab_hz_nl', targetWord:w.hz,
         prompt: w.hz, promptType:'hz',
@@ -385,7 +385,7 @@ function generateQuestion(type, words, sentences, level, existing){
       const pool = words.filter(w => !usedWords.has(w.hz));
       if(pool.length < 4) return null;
       const w = pool[Math.floor(Math.random()*pool.length)];
-      const dists = shuffle(words.filter(x=>x.hz!==w.hz)).slice(0,3).map(x=>x.hz);
+      const dists = simDistractors(w,words.filter(x=>x.hz!==w.hz),3).map(x=>x.hz);
       return {
         type:'mc', skill:'vocab_nl_hz', targetWord:w.hz,
         prompt: w.nl, promptType:'nl',
@@ -403,7 +403,7 @@ function generateQuestion(type, words, sentences, level, existing){
       const idx = Math.floor(Math.random() * parts.length);
       const answer = parts[idx];
       const blanked = [...parts]; blanked[idx] = '___';
-      const dists = shuffle(words.map(w=>w.hz).filter(h=>h!==answer && h.length < answer.length+4)).slice(0,3);
+      const dists = simDistractors({hz:answer,nl:(words.find(w=>w.hz===answer)||{}).nl||''},words.filter(w=>w.hz!==answer && w.hz.length < answer.length+4),3).map(w=>w.hz);
       if(dists.length < 3) return generateQuestion('vocab_hz_nl', words, sentences, level, existing);
       return {
         type:'cloze', skill:'grammar_cloze', targetWord: answer,
@@ -419,7 +419,7 @@ function generateQuestion(type, words, sentences, level, existing){
       const pool = words.filter(w => !usedWords.has(w.hz));
       if(pool.length < 4) return null;
       const w = pool[Math.floor(Math.random()*pool.length)];
-      const dists = shuffle(words.filter(x=>x.nl!==w.nl)).slice(0,3).map(x=>x.nl);
+      const dists = simDistractors(w,words.filter(x=>x.nl!==w.nl),3).map(x=>x.nl);
       return {
         type:'listen', skill:'listening', targetWord:w.hz,
         hz: w.hz,

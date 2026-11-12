@@ -458,8 +458,8 @@ function _bjBuildExercises(words,show,roman){
     // Gaat het vaak mis? Dan een stapje makkelijker (herkennen vóór zelf maken)
     const lvl=Math.max(1,(w.masteryLevel||1)-((w.diff||0)>=0.5&&(w.masteryLevel||1)>1?1:0));
     const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
-    const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...d.slice(0,3).map(x=>x.nl)])};
-    const listen={type:'listen',w:wd,choices:shuffle([w.nl,...d.slice(0,3).map(x=>x.nl)])};
+    const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])};
+    const listen={type:'listen',w:wd,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])};
     if(w.sent){
       // Zinnen: betekenis → zin bouwen → werkwoord kiezen
       const toks=w.hz.trim().split(/\s+/);
@@ -478,7 +478,7 @@ function _bjBuildExercises(words,show,roman){
       if(lvl>=3||(lvl>=2&&(weakVerb||canPast))){ const tr=_bjTransform(w,roman); if(tr) r2.push(tr); }
       return;
     }
-    const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...d.slice(0,3).map(x=>x.hz)])};
+    const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...simDistractors(w,d,3).map(x=>x.hz)])};
     if(lvl===1){ r1.push({type:'intro',w:wd,ctxSentence:null},mc_nl); r2.push(mc_hz); }
     else if(lvl===2){ r1.push(mc_nl); r2.push({type:'type',w:wd}); }
     else if(lvl===3){ r1.push(mc_hz); r2.push({type:'type',w:wd}); }

@@ -73,7 +73,7 @@ function buildExercises(lesson){
     // Nieuwe woorden: mc_nl (eerste blootstelling)
     shuffle([...batch]).forEach(w=>{
       const d=seenWords.filter(x=>x.hz!==w.hz);
-      if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+      if(d.length>=3) exs.push({type:'mc_nl',w,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])});
     });
 
     // Oude woorden: moeilijkheid stijgt per ronde
@@ -83,24 +83,24 @@ function buildExercises(lesson){
         shuffle([...prevSeen]).slice(0,3).forEach(w=>{
           const d=seenWords.filter(x=>x.hz!==w.hz);
           if(d.length<3)return;
-          exs.push({type:'mc_hz',w,choices:shuffle([w.hz,..._pickDistractors(w.hz,d,3,doneLessons).map(x=>x.hz)])});
+          exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...simDistractors(w,d,3).map(x=>x.hz)])});
         });
         shuffle([...prevSeen]).slice(0,2).forEach(w=>{
           const d=seenWords.filter(x=>x.hz!==w.hz);
           if(d.length<3)return;
-          exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+          exs.push({type:'listen',w,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])});
         });
       } else if(batchNum>=2){
         // Ronde 3+ → listen + mc_hz + typen voor eerder geziene woorden
         shuffle([...prevSeen]).slice(0,2).forEach(w=>{
           const d=seenWords.filter(x=>x.hz!==w.hz);
           if(d.length<3)return;
-          exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+          exs.push({type:'listen',w,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])});
         });
         shuffle([...prevSeen]).slice(0,3).forEach(w=>{
           const d=seenWords.filter(x=>x.hz!==w.hz);
           if(d.length<3)return;
-          exs.push({type:'mc_hz',w,choices:shuffle([w.hz,..._pickDistractors(w.hz,d,3,doneLessons).map(x=>x.hz)])});
+          exs.push({type:'mc_hz',w,choices:shuffle([w.hz,...simDistractors(w,d,3).map(x=>x.hz)])});
         });
         shuffle([...prevSeen]).slice(0,2).forEach(w=>exs.push({type:'type',w}));
       }
@@ -113,7 +113,7 @@ function buildExercises(lesson){
   shuffle([...allWords]).slice(0,3).forEach(w=>{
     const d=allWords.filter(x=>x.hz!==w.hz);
     if(d.length<3)return;
-    exs.push({type:'listen',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+    exs.push({type:'listen',w,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])});
   });
 
   // Zinsoefeningen (alleen als de les sentences heeft)
@@ -125,7 +125,7 @@ function buildExercises(lesson){
     shuffle([...ss]).slice(0,2).forEach(s=>{
       const d=sentPool.filter(x=>x.nl!==s.nl);
       if(d.length<3)return;
-      exs.push({type:'sentence_mc',s,choices:shuffle([s.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+      exs.push({type:'sentence_mc',s,choices:shuffle([s.nl,...simDistractors(s,d,3).map(x=>x.nl)])});
     });
 
     // Cloze: vul het ontbrekende woord in
@@ -133,7 +133,7 @@ function buildExercises(lesson){
       const match=allWords.find(w=>s.hz.includes(w.hz));
       if(!match)return;
       const d=allWords.filter(x=>x.hz!==match.hz);
-      if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...shuffle(d).slice(0,3).map(x=>x.hz)])});
+      if(d.length>=3) exs.push({type:'cloze',s,w:match,choices:shuffle([match.hz,...simDistractors(match,d,3).map(x=>x.hz)])});
     });
 
     // WB: sleep woordtegels om de zin te bouwen
@@ -160,8 +160,8 @@ function buildExercises(lesson){
       if(d.length<3)return;
       const useHz=w.masteryLevel>=3;
       exs.push(useHz
-        ?{type:'mc_hz',w,choices:shuffle([w.hz,...shuffle(d).slice(0,3).map(x=>x.hz)]),interleaved:true}
-        :{type:'mc_nl',w,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),interleaved:true});
+        ?{type:'mc_hz',w,choices:shuffle([w.hz,...simDistractors(w,d,3).map(x=>x.hz)]),interleaved:true}
+        :{type:'mc_nl',w,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)]),interleaved:true});
     });
   }
 
@@ -210,9 +210,9 @@ function buildReviewExercises(words,noSentHz){
     if(distractors.length<3)return;
     const lvl=w.masteryLevel||1;
     const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
-    const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])};
-    const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...shuffle(distractors).slice(0,3).map(x=>x.hz)])};
-    const listen={type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(distractors).slice(0,3).map(x=>x.nl)])};
+    const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...simDistractors(w,distractors,3).map(x=>x.nl)])};
+    const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...simDistractors(w,distractors,3).map(x=>x.hz)])};
+    const listen={type:'listen',w:wd,choices:shuffle([w.nl,...simDistractors(w,distractors,3).map(x=>x.nl)])};
 
     if(lvl===1){
       exs.push({type:'intro',w:wd,ctxSentence:null});
@@ -237,10 +237,10 @@ function buildReviewExercises(words,noSentHz){
           const wordDistractors=shuffle(distractors.map(x=>x.hz).filter(hz=>!s.hz.includes(hz))).slice(0,2);
           exs.push({type:'order',s,distractors:wordDistractors});
         } else if(lvl===3){
-          exs.push({type:'cloze',s,w:wd,choices:shuffle([w.hz,...shuffle(distractors).slice(0,3).map(x=>x.hz)])});
+          exs.push({type:'cloze',s,w:wd,choices:shuffle([w.hz,...simDistractors(w,distractors,3).map(x=>x.hz)])});
         } else {
           const d=sentPool.filter(x=>x.nl!==s.nl);
-          if(d.length>=3) exs.push({type:'sentence_mc',s,choices:shuffle([s.nl,...shuffle(d).slice(0,3).map(x=>x.nl)])});
+          if(d.length>=3) exs.push({type:'sentence_mc',s,choices:shuffle([s.nl,...simDistractors(s,d,3).map(x=>x.nl)])});
         }
         sentBudget--;
       }
@@ -377,8 +377,8 @@ function requeueWrong(hz){
   // Wissel tussen mc_nl en listen — niet altijd hetzelfde
   const useListen=Math.random()>0.5;
   EXS.push(useListen
-    ?{type:'listen',w:wd,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),requeued:true}
-    :{type:'mc_nl',w:wd,choices:shuffle([w.nl,...shuffle(d).slice(0,3).map(x=>x.nl)]),requeued:true}
+    ?{type:'listen',w:wd,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)]),requeued:true}
+    :{type:'mc_nl',w:wd,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)]),requeued:true}
   );
   return true;
 }

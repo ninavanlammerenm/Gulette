@@ -373,8 +373,8 @@ function renderQT(){
   }
   const [hz,v]=_qtWords[_qtIdx];
   const allWords=Object.entries(S.vocab);
-  const distractors=shuffle(allWords.filter(([h])=>h!==hz));
-  _qtChoices=shuffle([v.nl,...distractors.slice(0,3).map(([,d])=>d.nl)]);
+  const distractors=simDistractors({hz,nl:v.nl},allWords.filter(([h])=>h!==hz).map(([h,d])=>({hz:h,nl:d.nl})),3);
+  _qtChoices=shuffle([v.nl,...distractors.map(x=>x.nl)]);
   const ltrs=['A','B','C','D'];
   const _esc=s=>(s||'').replace(/'/g,"\\'");
   document.getElementById('qt-body').innerHTML=`
@@ -477,7 +477,7 @@ function renderProfile(){
   updateSkipListeningBtn();
   updateFontBtns();
   const _vEl=document.getElementById('app-version');
-  if(_vEl)_vEl.textContent='v111 · Sakura';
+  if(_vEl)_vEl.textContent='v112 · Sakura';
 }
 
 // ══════════════════════════════════════════════════════
