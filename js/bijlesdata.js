@@ -772,7 +772,7 @@ Huiswerk: beantwoord de zes huiswerkvragen hardop en oefen de gesprekken in de k
 
 Iets leuk vinden = khosh amadan: qahwa khosh-am me-ya (ik vind koffie lekker) · khosh-e tu me-ya (jij) · khosh-esh me-ya (hij/zij)
 Komen (amadan): mi-yum ik · mi-yayi jij · me-ya hij/zij · mi-yem wij · mi-yan zij
-Met de auto/fiets/het vliegtuig = ba motar / ba do-charkha / ba tayyara mi-rum
+Met de auto/fiets/het vliegtuig = ba motar / ba bicycle / ba tayyara mi-rum
 Winderig = baadi asta · dichtbij = nazdik · alles zoals altijd = karai-ye hamishagi
 
 Huiswerk: beantwoord de zes huiswerkvragen hardop en speel het rollenspel in de auto naar je schoonfamilie.`,
@@ -814,11 +814,11 @@ Huiswerk: beantwoord de zes huiswerkvragen hardop en speel het rollenspel in de 
     {id:'bl11_w34', section:'Vervoer', hz:'ایستگاه', tr:'istgah', nl:'Halte / station'},
     {id:'bl11_w35', section:'Vervoer', hz:'پیاده', tr:'piyada', nl:'Te voet / lopend'},
     {id:'bl11_w36', section:'Vervoer', hz:'طیاره', tr:'tayyara', nl:'Vliegtuig'},
-    {id:'bl11_w37', section:'Vervoer', hz:'دوچرخه', tr:'do-charkha', nl:'Fiets', note:'Je docent zegt ook gewoon bicycle'},
+    {id:'bl11_w37', section:'Vervoer', hz:'بایسکل', tr:'bicycle', nl:'Fiets'},
     {id:'bl11_w38', section:'Vervoer', hz:'سفر', tr:'safar', nl:'Reis'},
     {id:'bl11_w39', section:'Vervoer', hz:'کرایه', tr:'keraya', nl:'Ritprijs / huurprijs'},
     {id:'bl11_w40', section:'Vervoer', hz:'من با موتر می‌رم', tr:'ma ba motar mi-rum', nl:'Ik ga met de auto', note:'Je docent: ba motar mi room'},
-    {id:'bl11_w41', section:'Vervoer', hz:'من با دوچرخه می‌رم', tr:'ma ba do-charkha mi-rum', nl:'Ik ga met de fiets'},
+    {id:'bl11_w41', section:'Vervoer', hz:'من با بایسکل می‌رم', tr:'ma ba bicycle mi-rum', nl:'Ik ga met de fiets'},
     {id:'bl11_w42', section:'Vervoer', hz:'من پیاده می‌رم', tr:'ma piyada mi-rum', nl:'Ik ga lopend'},
     {id:'bl11_w43', section:'Vervoer', hz:'مو با طیاره سفر می‌کنیم', tr:'mo ba tayyara safar mukunem', nl:'Wij reizen met het vliegtuig'},
     {id:'bl11_w44', section:'Vervoer', hz:'کرایه تکسی چند می‌شه؟', tr:'keraya-ye taxi chand mi-sha?', nl:'Hoeveel kost de taxi?'},
