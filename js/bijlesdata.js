@@ -612,8 +612,8 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop en oefen dialoog 1 tot en met
     {id:'bl8_w40', section:'Ingrediënten & smaak', hz:'ترش', tr:'tursh', nl:'Zuur'},
     {id:'bl8_w41', section:'Ingrediënten & smaak', hz:'بی‌مزه', tr:'bimaza', nl:'Smakeloos / flauw'},
     {id:'bl8_w42', section:'Ingrediënten & smaak', hz:'من غذای نمکین را خوش دارم، اما میوه شیرین را هم خوش دارم', tr:'ma ghaza-ye namakin ra khosh darum, amma mewa-ye shirin ra ham khosh darum', nl:'Ik hou van hartig eten, maar ook van zoet fruit'},
-    {id:'bl8_w43', section:'Koken & gasten', hz:'پخته می‌کنم', tr:'pukhsa mukunum', nl:'Ik kook', note:'In de PDF: pukhsa — vraag of het pukhta is'},
-    {id:'bl8_w44', section:'Koken & gasten', hz:'من قابلی پلو، منتو و سبزی پخته می‌کنم', tr:'ma qabili palaw, manto wa sabzi pukhsa mukunum', nl:'Ik kook qabili palaw, manto en spinazie'},
+    {id:'bl8_w43', section:'Koken & gasten', hz:'پخته می‌کنم', tr:'pukhta mukunum', nl:'Ik kook'},
+    {id:'bl8_w44', section:'Koken & gasten', hz:'من قابلی پلو، منتو و سبزی پخته می‌کنم', tr:'ma qabili palaw, manto wa sabzi pukhta mukunum', nl:'Ik kook qabili palaw, manto en spinazie'},
     {id:'bl8_w45', section:'Koken & gasten', hz:'نان گرم هم می‌خرم', tr:'naan-e garm ham mi-kharum', nl:'Ik koop ook warm brood'},
     {id:'bl8_w46', section:'Koken & gasten', hz:'چای سبز', tr:'chai-ye sabz', nl:'Groene thee'}
   ]
@@ -903,9 +903,9 @@ const BIJLES_QUESTIONS={
   bl8:[
     {id:'bl8_q0', q:'تو چه غذا را خوش داری؟', qtr:'tu che ghaza ra khosh dari?', nl:'Wat voor eten vind je lekker?', expect:['دارم'], ex:'ma qorooti ra khosh darum, chun kheili mazadar asta', exhz:'من قروتی را خوش دارم، چون خیلی مزه‌دار استه'},
     {id:'bl8_q1', q:'چه غذا را خوش نداری؟', qtr:'che ghaza ra khosh nadari?', nl:'Welk eten vind je niet lekker?', expect:['ندارم'], ex:'ma ghaza-ye kheili tund ra khosh nadarum', exhz:'من غذای خیلی تند را خوش ندارم'},
-    {id:'bl8_q2', q:'تو دَ خانه پخته می‌کنی یا از بیرون می‌خری؟', qtr:'tu da khana pukhsa mukuni ya az berun mi-khari?', nl:'Kook je thuis of koop je eten buiten de deur?', expect:['می‌کنم','می‌خرم'], ex:'ma da khana pukhsa mukunum', exhz:'من دَ خانه پخته می‌کنم'},
+    {id:'bl8_q2', q:'تو دَ خانه پخته می‌کنی یا از بیرون می‌خری؟', qtr:'tu da khana pukhta mukuni ya az berun mi-khari?', nl:'Kook je thuis of koop je eten buiten de deur?', expect:['می‌کنم','می‌خرم'], ex:'ma da khana pukhta mukunum', exhz:'من دَ خانه پخته می‌کنم'},
     {id:'bl8_q3', q:'تو گوشت مرغ را خوش داری یا گوشت گوسفند را؟', qtr:'tu goosht-e murgh ra khosh dari ya goosht-e gospand ra?', nl:'Hou je meer van kip of van lamsvlees?', expect:['دارم'], ex:'ma goosht-e murgh ra khosh darum', exhz:'من گوشت مرغ را خوش دارم'},
-    {id:'bl8_q4', q:'وقتی فامیل میایه، چه غذا پخته می‌کنی؟', qtr:'waqti faamil me-ya, che ghaza pukhsa mukuni?', nl:'Wat kook je als de familie komt?', expect:['می‌کنم'], ex:'ma manto wa qabili palaw pukhsa mukunum', exhz:'من منتو و قابلی پلو پخته می‌کنم'}
+    {id:'bl8_q4', q:'وقتی فامیل میایه، چه غذا پخته می‌کنی؟', qtr:'waqti faamil me-ya, che ghaza pukhta mukuni?', nl:'Wat kook je als de familie komt?', expect:['می‌کنم'], ex:'ma manto wa qabili palaw pukhta mukunum', exhz:'من منتو و قابلی پلو پخته می‌کنم'}
   ],
   bl9:[
     {id:'bl9_q0', q:'دَ چایخانه چای سبز می‌خوری یا قهوه؟', qtr:'da chai-khana chai-ye sabz mukhuri ya qahwa?', nl:'Drink je in het theehuis groene thee of koffie?', expect:['می‌خایم','می‌خوام'], ex:'ma chai-ye sabz mi-khayum, tashakkur', exhz:'من چای سبز می‌خایم، تشکر'},

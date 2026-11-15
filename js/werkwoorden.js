@@ -93,7 +93,7 @@ const WW_RAW=[
   {id:'ww_zendagi',nl:'wonen',say:'ik woon',h:'kardan',core:['زندگی','zendagi','leven']},
   {id:'ww_kumak',nl:'helpen',say:'ik help',h:'kardan',core:['کمک','kumak','hulp']},
   {id:'ww_fekr',nl:'denken',say:'ik denk',h:'kardan',core:['فکر','fekr','gedachte']},
-  {id:'ww_pukhsa',nl:'koken',say:'ik kook',h:'kardan',core:['پخته','pukhsa','gekookt']},
+  {id:'ww_pukhta',nl:'koken',say:'ik kook',h:'kardan',core:['پخته','pukhta','gekookt']},
   {id:'ww_paida',nl:'vinden',say:'ik vind (iets terug)',h:'kardan',core:['پیدا','paida','gevonden']},
   {id:'ww_tarif',nl:'een compliment geven',say:'jij geeft een compliment',h:'kardan',p:'2s',core:['تعریف','tarif','lof']},
   {id:'ww_faramosh',nl:'vergeten (iets)',say:'ik vergeet het',h:'kardan',core:['فراموش','faramosh','vergeten']},
