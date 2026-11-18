@@ -684,7 +684,9 @@ Het staat je goed = ba tu khub miga · je kleren zijn heel mooi = lebas-e tu khe
 Man = mard · vrouw = zan · mensen = mardoom · alleen = faghat · tot nu toe = ta hala
 Kauwgom = adams
 
-Huiswerk: beantwoord de zes huiswerkvragen hardop en oefen de gesprekken in de kledingwinkel en op het familiefeest.`,
+Huiswerk: beantwoord de zes huiswerkvragen hardop en oefen de gesprekken in de kledingwinkel en op het familiefeest.
+
+Uit de oefenplaten (Tamrin) kwamen erbij: passen (tang / gashad, imtehan mukunum), feestkleding, sportschoenen, paraplu en duur / goedkoop.`,
   items:[
     {id:'bl10_w0', section:'Kleding', hz:'لباس', tr:'lebas', nl:'Kleren / kleding'},
     {id:'bl10_w1', section:'Kleding', hz:'پیراهن', tr:'peraahan', nl:'Overhemd / shirt'},
@@ -761,7 +763,23 @@ Huiswerk: beantwoord de zes huiswerkvragen hardop en oefen de gesprekken in de k
     {id:'bl10_w72', section:'Gesprekken', hz:'تو چه لباس می‌خایی؟', tr:'tu che lebas mi-khayi?', nl:'Welke kleren wil jij?'},
     {id:'bl10_w73', section:'Gesprekken', hz:'من یک کوت گرم سیاه می‌خایم', tr:'ma yak kot-e garm-e siyah mi-khayum', nl:'Ik wil een warme zwarte jas'},
     {id:'bl10_w74', section:'Gesprekken', hz:'عینک و کفش گرم هم می‌خایم', tr:'aynak wa kafsh-e garm ham mi-khayum', nl:'Ik wil ook een bril en warme schoenen'},
-    {id:'bl10_w75', section:'Gesprekken', hz:'ببخشید دکاندار، این جاکت چند دالر استه؟', tr:'bebakhshid dukan-dar, in jaakat chand dollar asta?', nl:'Pardon winkelier, hoeveel dollar kost deze jas?'}
+    {id:'bl10_w75', section:'Gesprekken', hz:'ببخشید دکاندار، این جاکت چند دالر استه؟', tr:'bebakhshid dukan-dar, in jaakat chand dollar asta?', nl:'Pardon winkelier, hoeveel dollar kost deze jas?'},
+    {id:'bl10_w76', section:'Schoenen & accessoires', hz:'موزه بارانی', tr:'moza-ye baaraani', nl:'Regenlaarzen'},
+    {id:'bl10_w77', section:'Schoenen & accessoires', hz:'کفش ورزشی', tr:'kafsh-e varzeshi', nl:'Sportschoenen / sneakers', note:'In de PDF: payza-ye varzeshi'},
+    {id:'bl10_w78', section:'Schoenen & accessoires', hz:'سایز کفش', tr:'saiz-e kafsh', nl:'Schoenmaat'},
+    {id:'bl10_w79', section:'Schoenen & accessoires', hz:'قسم', tr:'qesm', nl:'Soort'},
+    {id:'bl10_w80', section:'Schoenen & accessoires', hz:'تو چه قسم کفش را خوش داری؟', tr:'tu che qesm kafsh ra khosh dari?', nl:'Van wat voor schoenen hou jij?'},
+    {id:'bl10_w81', section:'Schoenen & accessoires', hz:'چتر', tr:'chatr', nl:'Paraplu'},
+    {id:'bl10_w82', section:'Schoenen & accessoires', hz:'زیور', tr:'zewar', nl:'Sieraden'},
+    {id:'bl10_w83', section:'Traditionele kleding', hz:'لباس رسمی', tr:'lebas-e rasmi', nl:'Nette kleding'},
+    {id:'bl10_w84', section:'Traditionele kleding', hz:'لباس مهمانی', tr:'lebas-e mehmani', nl:'Feestkleding'},
+    {id:'bl10_w85', section:'Traditionele kleding', hz:'چادر زری', tr:'chador-e zari', nl:'Sjaal met gouddraad'},
+    {id:'bl10_w86', section:'Passen & prijs', hz:'تنگ', tr:'tang', nl:'Strak / te klein'},
+    {id:'bl10_w87', section:'Passen & prijs', hz:'گشاد', tr:'gashad', nl:'Wijd / te ruim'},
+    {id:'bl10_w88', section:'Passen & prijs', hz:'این لباس به تو تنگ استه یا گشاد؟', tr:'in lebas ba tu tang asta ya gashad?', nl:'Zit deze kleding je te strak of te wijd?'},
+    {id:'bl10_w89', section:'Passen & prijs', hz:'امتحان می‌کنم', tr:'imtehan mukunum', nl:'Ik pas het (kleding)', note:'In de PDF: imtehan kaddun'},
+    {id:'bl10_w90', section:'Passen & prijs', hz:'قیمت', tr:'qimat', nl:'Duur / prijs'},
+    {id:'bl10_w91', section:'Passen & prijs', hz:'ارزان', tr:'arzan', nl:'Goedkoop'}
   ]
 },
 {
@@ -775,7 +793,9 @@ Komen (amadan): mi-yum ik · mi-yayi jij · me-ya hij/zij · mi-yem wij · mi-ya
 Met de auto/fiets/het vliegtuig = ba motar / ba bicycle / ba tayyara mi-rum
 Winderig = baadi asta · dichtbij = nazdik · alles zoals altijd = karai-ye hamishagi
 
-Huiswerk: beantwoord de zes huiswerkvragen hardop en speel het rollenspel in de auto naar je schoonfamilie.`,
+Huiswerk: beantwoord de zes huiswerkvragen hardop en speel het rollenspel in de auto naar je schoonfamilie.
+
+Uit de oefenplaten (Tamrin) kwamen erbij: tram en trein, instappen (sawar mi-shum), fietsen, wandelen (qadam mi-zanan), van … tot (az … taa … chand asta?) en echtpaar (zan-o shawhar).`,
   items:[
     {id:'bl11_w0', section:'Weer', hz:'هوا گرم استه', tr:'hawa garm asta', nl:'Het is warm (weer)'},
     {id:'bl11_w1', section:'Weer', hz:'امروز هوا سرد استه', tr:'emrooz hawa sard asta', nl:'Vandaag is het koud'},
@@ -841,7 +861,25 @@ Huiswerk: beantwoord de zes huiswerkvragen hardop en speel het rollenspel in de 
     {id:'bl11_w61', section:'Onderweg', hz:'بلد', tr:'balad', nl:'De weg weten / bekend met'},
     {id:'bl11_w62', section:'Onderweg', hz:'آدرس خانه اوشو را بلد استی؟', tr:'aadres-e khana-ye osho ra balad asti?', nl:'Weet je de weg naar hun huis?', note:'In de PDF stonden hier blokjes; uit de lengte afgeleid: balad asti'},
     {id:'bl11_w63', section:'Onderweg', hz:'راست می‌ریم، بعد به دست چپ می‌پیچیم', tr:'rast murem, bad ba dast-e chap mi-pichem', nl:'We gaan rechtdoor en dan slaan we linksaf'},
-    {id:'bl11_w64', section:'Onderweg', hz:'خانه اوشو پالوی پارک استه', tr:'khana-ye osho paloo-ye park asta', nl:'Hun huis is naast het park'}
+    {id:'bl11_w64', section:'Onderweg', hz:'خانه اوشو پالوی پارک استه', tr:'khana-ye osho paloo-ye park asta', nl:'Hun huis is naast het park'},
+    {id:'bl11_w65', section:'Weer', hz:'هوا بارانی استه', tr:'hawa baaraani asta', nl:'Het is regenachtig'},
+    {id:'bl11_w66', section:'Weer', hz:'هوا برفی و سرد استه', tr:'hawa barfi wa sard asta', nl:'Het is besneeuwd en koud', note:'In de PDF: barfi wa yakh'},
+    {id:'bl11_w67', section:'Weer', hz:'هوا آفتابی و شیرین استه', tr:'hawa aftaabi wa shirin asta', nl:'Het is heerlijk zonnig'},
+    {id:'bl11_w68', section:'Seizoenen', hz:'گل‌های تولیپ', tr:'gul-ho-ye tulip', nl:'Tulpen'},
+    {id:'bl11_w69', section:'Onderweg', hz:'دریا', tr:'derya', nl:'Gracht', note:'Eigenlijk rivier; in de oefenplaten voor de gracht'},
+    {id:'bl11_w70', section:'Onderweg', hz:'پل', tr:'pul', nl:'Brug'},
+    {id:'bl11_w71', section:'Onderweg', hz:'قدم می‌زنن', tr:'qadam mi-zanan', nl:'Zij wandelen', note:'Je docent: they walk = qadam mi zanan'},
+    {id:'bl11_w72', section:'Onderweg', hz:'زن و شوهر', tr:'zan-o shawhar', nl:'Echtpaar / man en vrouw', note:'Je docent: ook zawj'},
+    {id:'bl11_w73', section:'Onderweg', hz:'زوج', tr:'zawj', nl:'Stel / paar'},
+    {id:'bl11_w74', section:'Onderweg', hz:'فامیل مهربان', tr:'faamil-e mehriban', nl:'Lieve familie'},
+    {id:'bl11_w75', section:'Vervoer', hz:'ترام', tr:'tram', nl:'Tram'},
+    {id:'bl11_w76', section:'Vervoer', hz:'ایستگاه ترام', tr:'istgah-e tram', nl:'Tramhalte'},
+    {id:'bl11_w77', section:'Vervoer', hz:'استیشن ترین', tr:'station-e train', nl:'Treinstation'},
+    {id:'bl11_w78', section:'Vervoer', hz:'سوار می‌شم', tr:'sawar mi-shum', nl:'Ik stap in', note:'In de PDF: swar shudun'},
+    {id:'bl11_w79', section:'Vervoer', hz:'بایسکل‌دوانی می‌کنم', tr:'bicycle-dawani mukunum', nl:'Ik fiets', note:'In de PDF: baiskel-dawani'},
+    {id:'bl11_w80', section:'Vervoer', hz:'دریور تکسی', tr:'driver-e taxi', nl:'Taxichauffeur'},
+    {id:'bl11_w81', section:'Vervoer', hz:'تا', tr:'taa', nl:'Tot (van … tot …)'},
+    {id:'bl11_w82', section:'Vervoer', hz:'از استیشن تا خانه چند استه؟', tr:'az station taa khana chand asta?', nl:'Hoeveel kost het van het station naar huis?', note:'Je docent: … taa … chand ast?'}
   ]
 }
 ];
@@ -920,7 +958,8 @@ const BIJLES_QUESTIONS={
     {id:'bl10_q2', q:'سایز لباس و کفش تو چی استه؟', qtr:'saiz-e lebas wa kafsh-e tu che asta?', nl:'Wat is je kledingmaat en wat voor schoenen wil je?', expect:['استه','دارم'], ex:'saiz-e lebas-e ma motevaset asta wa kafsh-e garm khosh darum', exhz:'سایز لباس من متوسط استه و کفش گرم خوش دارم'},
     {id:'bl10_q3', q:'لباس سنتی هزارگی را خوش داری؟', qtr:'lebas-e sunnati-ye Hazaragi ra khosh dari?', nl:'Hou je van traditionele Hazaragi kleding?', expect:['دارم'], ex:'aree, ma wasokat-e gilaam-dozi wa lebas-e Hazaragi ra kheili khosh darum', exhz:'آری، من واسکت گلدوزی و لباس هزارگی را خیلی خوش دارم'},
     {id:'bl10_q4', q:'چطور لباس خوار یا آیه شوی خود را تعریف می‌کنی؟', qtr:'chetor lebas-e khuaar ya aya-ye shoy-e khud ra tarif mukuni?', nl:'Hoe geef je een compliment over de kleren van de zus of moeder van je man?', expect:['استه'], ex:'lebas-e tu kheili maqbool asta! ba tu khub miga', exhz:'لباس تو خیلی مقبول استه! به تو خوب میگه'},
-    {id:'bl10_q5', q:'وقتی از دکان لباس می‌خری، چطور قیمت جاکت را می‌پرسی؟', qtr:'waqti az dukan lebas mi-khari, chetor qimat-e jaakat ra mi-pursi?', nl:'Hoe vraag je in de winkel naar de prijs van een jas?', expect:['استه'], ex:'bebakhshid dukan-dar, in jaakat-e garm chand dollar asta?', exhz:'ببخشید دکاندار، این جاکت گرم چند دالر استه؟'}
+    {id:'bl10_q5', q:'وقتی از دکان لباس می‌خری، چطور قیمت جاکت را می‌پرسی؟', qtr:'waqti az dukan lebas mi-khari, chetor qimat-e jaakat ra mi-pursi?', nl:'Hoe vraag je in de winkel naar de prijs van een jas?', expect:['استه'], ex:'bebakhshid dukan-dar, in jaakat-e garm chand dollar asta?', exhz:'ببخشید دکاندار، این جاکت گرم چند دالر استه؟'},
+    {id:'bl10_q6', q:'دَ مهمانی چه لباس می‌پوشی؟', qtr:'da mehmani che lebas mi-pushi?', nl:'Wat draag je op een feest?', expect:['می\u200cپوشم'], ex:'da mehmani ma lebas-e Hazaragi wa chador-e zari mi-pushum', exhz:'دَ مهمانی من لباس هزارگی و چادر زری می‌پوشم'}
   ],
   bl11:[
     {id:'bl11_q0', q:'امروز دَ شهر تو هوا چطور استه؟', qtr:'emrooz da shahr-e tu hawa chetor asta?', nl:'Hoe is het weer vandaag in jouw stad (en hoeveel graden)?', expect:['استه'], ex:'emrooz da shahr-e mo hawa aftaabi asta wa bist daraja asta', exhz:'امروز دَ شهر مو هوا آفتابی استه و بیست درجه استه'},
@@ -928,6 +967,8 @@ const BIJLES_QUESTIONS={
     {id:'bl11_q2', q:'معمولاً چطور دَ کار یا دَ دکان می‌ری؟', qtr:'mamoolan chetor da kaar ya da dukan mi-ri?', nl:'Hoe ga je meestal naar je werk of naar de winkel?', expect:['می\u200cرم'], ex:'ma mamoolan ba motar-e khud mi-rum', exhz:'من معمولاً با موتر خود می‌رم'},
     {id:'bl11_q3', q:'راه خانه خود را چطور نشان می‌دی؟', qtr:'raah-e khana-ye khud ra chetor neshan me-di?', nl:'Hoe leg je de weg naar je huis uit?', expect:['استه'], ex:'rast boro, ba dast-e chap bepich, khana-ye mo paloo-ye park asta', exhz:'راست برو، به دست چپ بپیچ، خانه مو پالوی پارک استه'},
     {id:'bl11_q4', q:'دَ زمستان وقتی هوا خیلی سرد می‌شه، چه می‌پوشی و چه می‌خوری؟', qtr:'da zamestan waqti hawa kheili sard mi-sha, che mi-pushi wa che mukhuri?', nl:'Wat draag en drink je in de winter als het heel koud wordt?', expect:['می\u200cپوشم','می\u200cخورم'], ex:'da zamestan ma lebas-e garm mi-pushum wa chai-ye garm mi-khurum', exhz:'دَ زمستان من لباس گرم می‌پوشم و چای گرم می‌خورم'},
-    {id:'bl11_q5', q:'از راننده تکسی چطور کرایه را می‌پرسی؟', qtr:'az raananda-ye taxi chetor keraya ra mi-pursi?', nl:'Hoe vraag je de taxichauffeur wat de rit kost?', expect:['می\u200cشه'], ex:'bebakhshid, keraya chand mi-sha? in pisa-ye tu, khana aabaad!', exhz:'ببخشید، کرایه چند می‌شه؟ این پیسه تو، خانه آباد!'}
+    {id:'bl11_q5', q:'از راننده تکسی چطور کرایه را می‌پرسی؟', qtr:'az raananda-ye taxi chetor keraya ra mi-pursi?', nl:'Hoe vraag je de taxichauffeur wat de rit kost?', expect:['می\u200cشه'], ex:'bebakhshid, keraya chand mi-sha? in pisa-ye tu, khana aabaad!', exhz:'ببخشید، کرایه چند می‌شه؟ این پیسه تو، خانه آباد!'},
+    {id:'bl11_q6', q:'دَ شهر با چه می‌ری، با ترام یا با بایسکل؟', qtr:'da shahr ba che mi-ri, ba tram ya ba bicycle?', nl:'Hoe ga je in de stad, met de tram of de fiets?', expect:['می\u200cرم'], ex:'ma da shahr ba bicycle mi-rum', exhz:'من دَ شهر با بایسکل می‌رم'},
+    {id:'bl11_q7', q:'فامیل دَ آخر هفته چه می‌کنه؟', qtr:'faamil da aakhir-e hafta che mukuna?', nl:'Wat doet je familie in het weekend?', expect:['می\u200cزنیم','می\u200cریم'], ex:'da aakhir-e hafta mo da park qadam mi-zanem', exhz:'دَ آخر هفته مو دَ پارک قدم می‌زنیم'}
   ]
 };

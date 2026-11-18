@@ -48,9 +48,10 @@ const WW_UITLEG={
 <i>kaar darum</i> = ik heb iets te doen (ik ben bezig, heb geen tijd)</p>
 <p><b>En:</b> <i>khosh darum</i> = ik hou ervan (ik ben het onderwerp), maar <i>khosh me-ya</i> = het bevalt me (het ding is het onderwerp, het komt fijn bij mij aan).</p>
 <p><b>Vormen:</b> <i>darum</i> ik · <i>dari</i> jij · <i>daara</i> hij/zij · niet: <i>nadarum</i>.</p>`,
-  zadan:`<p><b>De logica:</b> <i>zadan</i> betekent letterlijk <b>slaan</b>. Je gebruikt het vaak voor een korte, snelle handeling of iets wat je ergens op zet of tegenaan doet: kloppen, aanraken, bellen, een bril opzetten. Het blijven vaste combinaties, die leer je per woord. In je bijles had je er tot nu toe twee:</p>
+  zadan:`<p><b>De logica:</b> <i>zadan</i> betekent letterlijk <b>slaan</b>. Je gebruikt het vaak voor een korte, snelle handeling of iets wat je ergens op zet of tegenaan doet: kloppen, aanraken, bellen, een bril opzetten. Het blijven vaste combinaties, die leer je per woord. In je bijles had je er tot nu toe drie:</p>
 <p><i>gap mi-zanem</i> = wij praten / kletsen (vergelijk: een praatje maken)<br>
-<i>aynak mi-zanum</i> = ik draag een bril (vergelijk: een bril opzetten)</p>
+<i>aynak mi-zanum</i> = ik draag een bril (vergelijk: een bril opzetten)<br>
+<i>qadam mi-zanan</i> = zij wandelen (letterlijk: stappen zetten)</p>
 <p><b>Valkuil:</b> kleren dragen is <b>niet</b> <i>mi-zanum</i>, maar <i>mi-pushum</i>. Een bril zet je op (<i>mi-zanum</i>), kleren trek je aan (<i>mi-pushum</i>).</p>
 <p><b>Vormen:</b> <i>mi-zanum</i> ik · <i>mi-zani</i> jij · <i>mi-zana</i> hij/zij · <i>mi-zanem</i> wij.</p>`,
   dadan:`<p><b>De logica:</b> iets gaat <b>van jou naar een ander</b>. <i>pisa me-dum</i> = ik geef geld = ik betaal.</p>
@@ -98,6 +99,8 @@ const WW_RAW=[
   {id:'ww_tarif',nl:'een compliment geven',say:'jij geeft een compliment',h:'kardan',p:'2s',core:['تعریف','tarif','lof']},
   {id:'ww_faramosh',nl:'vergeten (iets)',say:'ik vergeet het',h:'kardan',core:['فراموش','faramosh','vergeten']},
   {id:'ww_safar',nl:'reizen',say:'wij reizen',h:'kardan',p:'1p',hf:['می‌کنیم','mukunem','wij doen'],core:['سفر','safar','reis']},
+  {id:'ww_imtehan',nl:'passen (kleding)',say:'ik pas het',h:'kardan',core:['امتحان','imtehan','proef']},
+  {id:'ww_fietsen',nl:'fietsen',say:'ik fiets',h:'kardan',core:['بایسکل‌دوانی','bicycle-dawani','fietsen']},
   {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},
@@ -108,6 +111,7 @@ const WW_RAW=[
   {id:'ww_khoshhal',nl:'blij worden',say:'hij/zij wordt blij',h:'shudan',p:'3s',core:['خوشحال','khosh-hal','blij']},
   {id:'ww_baaz',nl:'opengaan',say:'het gaat open',h:'shudan',p:'3s',core:['باز','baaz','open']},
   {id:'ww_sardshudan',nl:'koud worden',say:'het wordt koud',h:'shudan',p:'3s',core:['سرد','sard','koud']},
+  {id:'ww_sawar',nl:'instappen',say:'ik stap in',h:'shudan',core:['سوار','sawar','opgestapt']},
   {id:'ww_gum',nl:'kwijt zijn',say:'het is kwijt',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['گم','gum','kwijt']},
   {id:'ww_tir',nl:'voorbij zijn (tijd)',say:'het is over (vijf over…)',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['تیر','tir','voorbij']},
   // woord + darum (hebben)
@@ -120,6 +124,7 @@ const WW_RAW=[
   {id:'ww_gap',nl:'praten',say:'ik praat',h:'zadan',core:['گپ','gap','gesprek']},
   {id:'ww_aynak',nl:'een bril dragen',say:'ik draag een bril',h:'zadan',core:['عینک','aynak','bril']},
   // woord + me-dum (geven)
+  {id:'ww_qadam',nl:'wandelen',say:'zij wandelen',h:'zadan',p:'3p',hf:['می‌زنن','mi-zanan','zij slaan'],core:['قدم','qadam','stap']},
   {id:'ww_pisa',nl:'betalen',say:'ik betaal',h:'dadan',core:['پیسه','pisa','geld']},
   // gewone werkwoorden (zonder hulpwerkwoord)
   {id:'ww_khastan',nl:'willen',say:'ik wil',hz:'می‌خایم',tr:'mi-khayum',fam:'willen'},
