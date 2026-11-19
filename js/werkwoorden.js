@@ -60,7 +60,10 @@ const WW_UITLEG={
 <p><b>Herkennen:</b> het is één woord, meestal met <i>mi-</i> of <i>mu-</i> ervoor: <i>mi-khurum</i> (ik eet), <i>mubinum</i> (ik zie), <i>mi-kharum</i> (ik koop), <i>mi-pushum</i> (ik trek aan).</p>
 <p><b>Ezelsbrug:</b> kun je het niet ombouwen tot <b>ik doe / ik word / ik heb [iets]</b>? Dan is het meestal een gewoon werkwoord.</p>
 <p><b>De uitgang vertelt wie:</b> <i>-um</i> ik · <i>-i</i> jij · <i>-a</i> hij/zij · <i>-em</i> wij · <i>-ed</i> jullie/u · <i>-an</i> zij.<br>
-<i>mi-</i> ervoor = nu / gewoonte. Zonder <i>mi-</i> en met <i>-d-</i> = verleden: <i>khurdum</i> (ik heb gegeten), <i>budum</i> (ik was).</p>`,
+<i>mi-</i> ervoor = nu / gewoonte. Zonder <i>mi-</i> en met <i>-d-</i> = verleden: <i>khurdum</i> (ik heb gegeten), <i>budum</i> (ik was).</p>
+<p><b>Willen + werkwoord:</b> na <i>mi-khayum</i> (ik wil) of <i>ghasd darum</i> (ik ben van plan) komt de <b>be-vorm</b>, niet de <i>mi-</i>vorm:<br>
+<i>ma ba supermarket mi-rum</i> = ik ga naar de supermarkt<br>
+<i>ma mi-khayum ba supermarket be-rum</i> = ik wil naar de supermarkt gaan</p>`,
   imp:`<p><b>De logica:</b> zo zeg je dat iemand iets moet doen, of je biedt iets aan.</p>
 <p><b>Herkennen:</b> geen <i>mi-</i>, maar <i>be-</i> of <i>bi-</i> ervoor: <i>bukhur</i> (eet!), <i>beger</i> (pak!), <i>biya</i> (kom!), <i>be-push</i> (trek aan!).</p>
 <p><b>Beleefd of tegen meer mensen:</b> <i>-ed</i> of <i>-id</i> erachter: <i>biyared</i> (breng), <i>beshined</i> (ga zitten; tegen één persoon: <i>beshin</i>), <i>be-farmaeed</i> (alstublieft, ga uw gang).</p>
@@ -101,6 +104,10 @@ const WW_RAW=[
   {id:'ww_safar',nl:'reizen',say:'wij reizen',h:'kardan',p:'1p',hf:['می‌کنیم','mukunem','wij doen'],core:['سفر','safar','reis']},
   {id:'ww_imtehan',nl:'passen (kleding)',say:'ik pas het',h:'kardan',core:['امتحان','imtehan','proef']},
   {id:'ww_fietsen',nl:'fietsen',say:'ik fiets',h:'kardan',core:['بایسکل‌دوانی','bicycle-dawani','fietsen']},
+  {id:'ww_kansel',nl:'afzeggen',say:'ik zeg het af',h:'kardan',core:['کنسل','kansel','afgezegd']},
+  {id:'ww_rest',nl:'uitrusten',say:'ik rust uit',h:'kardan',core:['رست','rest','rust']},
+  {id:'ww_fix',nl:'een tijd afspreken',say:'wij spreken een tijd af',h:'kardan',p:'1p',hf:['می‌کنیم','mukunem','wij doen'],core:['فیکس','fix','vast']},
+  {id:'ww_hamaahang',nl:'afstemmen',say:'wij stemmen af',h:'kardan',p:'1p',hf:['می‌کنیم','mukunem','wij doen'],core:['هماهنگ','ham-aahang','afgestemd']},
   {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},
@@ -118,6 +125,7 @@ const WW_RAW=[
   {id:'ww_khosh',nl:'houden van',say:'ik hou van / vind lekker',h:'dashtan',core:['خوش','khosh','fijn']},
   {id:'ww_wakht',nl:'tijd hebben',say:'ik heb tijd',h:'dashtan',core:['وقت','wakht','tijd']},
   {id:'ww_kaardarum',nl:'werk te doen hebben',say:'ik heb werk te doen',h:'dashtan',core:['کار','kaar','werk']},
+  {id:'ww_ghasd',nl:'van plan zijn',say:'ik ben van plan',h:'dashtan',core:['قصد','ghasd','plan']},
   {id:'ww_khabar',nl:'ervan weten',say:'weet jij ervan?',h:'dashtan',p:'2s',core:['خبر','khabar','nieuws']},
   {id:'ww_khoshmeya',nl:'heerlijk vinden',say:'ik vind het heerlijk (het bevalt me)',h:'dashtan',p:'3s',hf:['میایه','me-ya','het komt'],fams:['komen'],avoid:['dashtan'],core:['خوش','khosh','fijn'],note:'qahwa khosh-am me-ya = ik vind koffie lekker · khosh-e tu me-ya = jij · khosh-esh me-ya = hij/zij — vergelijk: khosh darum = ik hou van'},
   // woord + mi-zanum (slaan)

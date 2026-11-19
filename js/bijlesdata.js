@@ -881,6 +881,71 @@ Uit de oefenplaten (Tamrin) kwamen erbij: tram en trein, instappen (sawar mi-shu
     {id:'bl11_w81', section:'Vervoer', hz:'تا', tr:'taa', nl:'Tot (van … tot …)'},
     {id:'bl11_w82', section:'Vervoer', hz:'از استیشن تا خانه چند استه؟', tr:'az station taa khana chand asta?', nl:'Hoeveel kost het van het station naar huis?', note:'Je docent: … taa … chand ast?'}
   ]
+},
+{
+  id:'bl12',
+  title:'Les 12: plannen en afspraken',
+  date:'2026-11-19',
+  notes:`Plannen maken, afspreken, afzeggen en beleefd bedanken.
+
+Willen + werkwoord: na mi-khayum komt de be-vorm, niet de mi-vorm.
+ma ba supermarket mi-rum = ik ga naar de supermarkt
+ma mi-khayum ba supermarket be-rum = ik wil naar de supermarkt gaan
+Ook: ghasd darum (ik ben van plan) + be-vorm · gharar asta (het is afgesproken)
+
+Druk = masroof · vrij = bekaar · geschikt = munaseb · afspraak = gharar-o-madaar · afspraak maken = gharar mandan
+Bedanken: tashakkur fawq-ul-ada · khair bebined · lutf dared · khasta nabashed (dank voor je moeite)
+
+Let op: deze PDF was in Kabul-Dari geschreven (astam, me-konam, shoma). In de app staat het in dezelfde vorm als je andere lessen (astum, mukunum, mi-rum).
+
+Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
+  items:[
+    {id:'bl12_w0', section:'Plannen & tijd', hz:'برنامه', tr:'barnama', nl:'Plan / programma', note:'Ook: program'},
+    {id:'bl12_w1', section:'Plannen & tijd', hz:'فرصت', tr:'fursat', nl:'Tijd / gelegenheid'},
+    {id:'bl12_w2', section:'Plannen & tijd', hz:'قرار و مدار', tr:'gharar-o-madaar', nl:'Afspraak', note:'Je docent: madaar'},
+    {id:'bl12_w3', section:'Plannen & tijd', hz:'بیکار', tr:'bekaar', nl:'Vrij / niets te doen', note:'Je docent: bekaar in plaats van free / khali'},
+    {id:'bl12_w4', section:'Plannen & tijd', hz:'مصروف', tr:'masroof', nl:'Druk / bezet', note:'Je docent: masroof in plaats van shulugh'},
+    {id:'bl12_w5', section:'Plannen & tijd', hz:'امروز شب', tr:'emrooz shaw', nl:'Vanavond'},
+    {id:'bl12_w6', section:'Plannen & tijd', hz:'فردا پیشین', tr:'farda peshin', nl:'Morgenmiddag'},
+    {id:'bl12_w7', section:'Plannen & tijd', hz:'چکر', tr:'chakkar', nl:'Uitje / rondje lopen'},
+    {id:'bl12_w8', section:'Plannen & tijd', hz:'پیکنیک', tr:'picnic', nl:'Picknick / dagje uit', note:'Je docent: picnic in plaats van safa raftan'},
+    {id:'bl12_w9', section:'Plannen & tijd', hz:'قرار ماندن', tr:'gharar mandan', nl:'Een afspraak maken', note:'Je docent: mandan'},
+    {id:'bl12_w10', section:'Plannen & tijd', hz:'کنسل کردن', tr:'kansel kardan', nl:'Afzeggen / annuleren'},
+    {id:'bl12_w11', section:'Plannen & tijd', hz:'مناسب', tr:'munaseb', nl:'Geschikt / komt goed uit', note:'Je docent: munaseb in plaats van mosaid'},
+    {id:'bl12_w12', section:'Plannen & tijd', hz:'هماهنگ شدن', tr:'ham-aahang shudan', nl:'Afstemmen / contact houden'},
+    {id:'bl12_w13', section:'Plannen & tijd', hz:'کار و بار', tr:'kaar-o-bar', nl:'Dagelijkse klusjes'},
+    {id:'bl12_w14', section:'Plannen & tijd', hz:'با هم', tr:'ba ham', nl:'Samen'},
+    {id:'bl12_w15', section:'Plannen & tijd', hz:'یک سر', tr:'yak sar', nl:'Even (langskomen)'},
+    {id:'bl12_w16', section:'Plannen & tijd', hz:'دمه', tr:'damma-ye', nl:'Vlak voor / bij (een plek)'},
+    {id:'bl12_w17', section:'Willen + werkwoord', hz:'من به سوپرمارکیت می‌رم', tr:'ma ba supermarket mi-rum', nl:'Ik ga naar de supermarkt', note:'Je docent: ma ba supermarket me ram'},
+    {id:'bl12_w18', section:'Willen + werkwoord', hz:'من می‌خایم به سوپرمارکیت بروم', tr:'ma mi-khayum ba supermarket be-rum', nl:'Ik wil naar de supermarkt gaan', note:'Je docent: na mi-khayum komt be-rum (niet mi-rum)'},
+    {id:'bl12_w19', section:'Willen + werkwoord', hz:'من فردا می‌خایم بروم', tr:'ma farda mi-khayum be-rum', nl:'Ik wil morgen gaan'},
+    {id:'bl12_w20', section:'Willen + werkwoord', hz:'قصد دارم', tr:'ghasd darum', nl:'Ik ben van plan'},
+    {id:'bl12_w21', section:'Willen + werkwoord', hz:'قرار استه', tr:'gharar asta', nl:'Het is afgesproken / gepland'},
+    {id:'bl12_w22', section:'Willen + werkwoord', hz:'دوست دارم دَ خانه باشم', tr:'dost darum da khana bashum', nl:'Ik ben graag thuis', note:'Je docent: dust daroom dar khana bashoom'},
+    {id:'bl12_w23', section:'Willen + werkwoord', hz:'رست می‌کنم', tr:'rest mukunum', nl:'Ik rust uit'},
+    {id:'bl12_w24', section:'Afspreken', hz:'فردا پیشین وقت دارم، می‌تانیم ببینیم', tr:'farda peshin wakht darum, mi-tanem bebinem', nl:'Morgenmiddag heb ik tijd, dan kunnen we afspreken', note:'In de PDF: me-tonim be-binim'},
+    {id:'bl12_w25', section:'Afspreken', hz:'برنامه آخر هفته من پر استه، بعداً هماهنگ می‌کنیم', tr:'barnama-ye aakhir-e hafta-ye ma pur asta, badan ham-aahang mukunem', nl:'Mijn weekend zit vol, we stemmen later af', note:'Je docent markeerde pur ast rood — vraag na'},
+    {id:'bl12_w26', section:'Afspreken', hz:'هر وقتی که برای تو مناسب بود، من دَ خدمت استم', tr:'har waqti ki ba tu munaseb bud, ma da khedmat astum', nl:'Wanneer het jou uitkomt, sta ik klaar'},
+    {id:'bl12_w27', section:'Afspreken', hz:'ساعت چار دمه کافی فیکس می‌کنیم', tr:'saat-e char damma-ye cafe fix mukunem', nl:'We spreken om vier uur af voor het café'},
+    {id:'bl12_w28', section:'Afspreken', hz:'مجبور استم', tr:'majboor astum', nl:'Ik moet wel / ik ben gedwongen'},
+    {id:'bl12_w29', section:'Afspreken', hz:'ببخشید، قرار امروز را مجبور استم کنسل کنم', tr:'bebakhshed, gharar-e emrooz ra majboor astum kansel kunum', nl:'Sorry, ik moet de afspraak van vandaag afzeggen'},
+    {id:'bl12_w30', section:'Afspreken', hz:'اگر وقت داشتید، یک سر خانه مو بیایید', tr:'agar wakht dashted, yak sar khana-ye mo biyaid', nl:'Als u tijd heeft, kom even langs bij ons'},
+    {id:'bl12_w31', section:'Afspreken', hz:'هر چه که شما بفرمایید، مو راضی استیم', tr:'har che ki shuma be-farmaeed, mo razi astem', nl:'Wat u voorstelt, vinden wij goed'},
+    {id:'bl12_w32', section:'Afspreken', hz:'آخر هفته دَ خانه استم و رست می‌کنم', tr:'aakhir-e hafta da khana astum wa rest mukunum', nl:'In het weekend ben ik thuis en rust ik uit'},
+    {id:'bl12_w33', section:'Bedanken & wensen', hz:'تشکر فوق‌العاده', tr:'tashakkur fawq-ul-ada', nl:'Heel erg bedankt'},
+    {id:'bl12_w34', section:'Bedanken & wensen', hz:'تشکر فراوان', tr:'tashakkur-e frawan', nl:'Hartelijk dank'},
+    {id:'bl12_w35', section:'Bedanken & wensen', hz:'خیر ببینید', tr:'khair bebined', nl:'Het ga u goed (bedankje, beleefd)', note:'Beleefde vorm van khair bebini'},
+    {id:'bl12_w36', section:'Bedanken & wensen', hz:'لطف دارید', tr:'lutf dared', nl:'U bent heel vriendelijk'},
+    {id:'bl12_w37', section:'Bedanken & wensen', hz:'خسته نباشید', tr:'khasta nabashed', nl:'Dank voor je moeite (wees niet moe)', note:'Je docent: khasta na bashid'},
+    {id:'bl12_w38', section:'Bedanken & wensen', hz:'به امید دیدار', tr:'ba omed-e didar', nl:'Hopelijk tot snel'},
+    {id:'bl12_w39', section:'Bedanken & wensen', hz:'به چشم', tr:'ba chashm', nl:'Komt goed / met plezier'},
+    {id:'bl12_w40', section:'Bedanken & wensen', hz:'خیلی عالی', tr:'kheili aali', nl:'Heel goed / geweldig'},
+    {id:'bl12_w41', section:'Gesprek', hz:'آخر هفته چه برنامه داری؟', tr:'aakhir-e hafta che barnama dari?', nl:'Wat zijn je plannen voor het weekend?'},
+    {id:'bl12_w42', section:'Gesprek', hz:'فردا پیشین مصروف استی یا بیکار؟', tr:'farda peshin masroof asti ya bekaar?', nl:'Ben je morgenmiddag druk of vrij?'},
+    {id:'bl12_w43', section:'Gesprek', hz:'کی وقت داری که با هم یک چای بخوریم؟', tr:'kay wakht dari ki ba ham yak chai bukhurem?', nl:'Wanneer heb je tijd om samen thee te drinken?'},
+    {id:'bl12_w44', section:'Gesprek', hz:'امروز شب می‌خایم همراه فامیل خانه خاله خود بروم', tr:'emrooz shaw mi-khayum hamra-ye faamil khana-ye khaala-ye khud be-rum', nl:'Vanavond wil ik met de familie naar mijn tante gaan'}
+  ]
 }
 ];
 
@@ -970,5 +1035,12 @@ const BIJLES_QUESTIONS={
     {id:'bl11_q5', q:'از راننده تکسی چطور کرایه را می‌پرسی؟', qtr:'az raananda-ye taxi chetor keraya ra mi-pursi?', nl:'Hoe vraag je de taxichauffeur wat de rit kost?', expect:['می\u200cشه'], ex:'bebakhshid, keraya chand mi-sha? in pisa-ye tu, khana aabaad!', exhz:'ببخشید، کرایه چند می‌شه؟ این پیسه تو، خانه آباد!'},
     {id:'bl11_q6', q:'دَ شهر با چه می‌ری، با ترام یا با بایسکل؟', qtr:'da shahr ba che mi-ri, ba tram ya ba bicycle?', nl:'Hoe ga je in de stad, met de tram of de fiets?', expect:['می\u200cرم'], ex:'ma da shahr ba bicycle mi-rum', exhz:'من دَ شهر با بایسکل می‌رم'},
     {id:'bl11_q7', q:'فامیل دَ آخر هفته چه می‌کنه؟', qtr:'faamil da aakhir-e hafta che mukuna?', nl:'Wat doet je familie in het weekend?', expect:['می\u200cزنیم','می\u200cریم'], ex:'da aakhir-e hafta mo da park qadam mi-zanem', exhz:'دَ آخر هفته مو دَ پارک قدم می‌زنیم'}
+  ],
+  bl12:[
+    {id:'bl12_q0', q:'فردا پیشین چه برنامه داری؟', qtr:'farda peshin che barnama dari?', nl:'Wat ga je morgenmiddag doen? (gebruik mi-khayum + be-)', expect:['می\u200cخایم'], ex:'farda peshin mi-khayum hamra-ye faamil da bazaar be-rum', exhz:'فردا پیشین می‌خایم همراه فامیل دَ بازار بروم'},
+    {id:'bl12_q1', q:'آخر هفته وقت داری؟', qtr:'aakhir-e hafta wakht dari?', nl:'Heb je dit weekend tijd? (zeg beleefd dat het vol zit)', expect:['استه','می\u200cکنیم'], ex:'bebakhshed, barnama-ye aakhir-e hafta-ye ma pur asta, badan ham-aahang mukunem', exhz:'ببخشید، برنامه آخر هفته من پر استه، بعداً هماهنگ می‌کنیم'},
+    {id:'bl12_q2', q:'کی با هم یک قهوه بخوریم؟', qtr:'kay ba ham yak qahwa bukhurem?', nl:'Wanneer drinken we samen koffie? (spreek een tijd af)', expect:['می\u200cکنیم'], ex:'saat-e se damma-ye cafe fix mukunem', exhz:'ساعت سه دمه کافی فیکس می‌کنیم'},
+    {id:'bl12_q3', q:'وقتی کسی تو را کمک می‌کنه، چه می‌گی؟', qtr:'waqti kasi tu ra kumak mukuna, che mugi?', nl:'Wat zeg je als iemand je helpt?', expect:['دارید'], ex:'tashakkur fawq-ul-ada, khair bebined! lutf dared', exhz:'تشکر فوق‌العاده، خیر ببینید! لطف دارید'},
+    {id:'bl12_q4', q:'یکشنبه چه می‌کنی؟', qtr:'yak-shanba che mukuni?', nl:'Wat doe je op zondag?', expect:['استم','می\u200cکنم'], ex:'yak-shanba da khana astum wa rest mukunum', exhz:'یکشنبه دَ خانه استم و رست می‌کنم'}
   ]
 };
