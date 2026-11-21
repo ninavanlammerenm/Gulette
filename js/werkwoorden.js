@@ -241,7 +241,7 @@ function _wwSentences(e,roman){
   (typeof _bjList==='function'?_bjList():[]).forEach(l=>l.items.forEach(it=>{
     const text=(roman?(it.tr||''):it.hz).trim();
     if(!text||seen.has(text)) return;
-    const toks=text.split(/\s+/); if(toks.length<3||toks.length>9||text.includes('…')) return;
+    const toks=text.split(/\s+/); if(toks.length<3||toks.length>14||text.includes('…')) return;
     const cores=toks.map(t=>_bjCore(t).toLowerCase());
     for(let i=0;i<toks.length;i++){
       const f=_bjFormOf(cores[i]);
