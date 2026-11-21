@@ -108,6 +108,11 @@ const WW_RAW=[
   {id:'ww_rest',nl:'uitrusten',say:'ik rust uit',h:'kardan',core:['رست','rest','rust']},
   {id:'ww_fix',nl:'een tijd afspreken',say:'wij spreken een tijd af',h:'kardan',p:'1p',hf:['می‌کنیم','mukunem','wij doen'],core:['فیکس','fix','vast']},
   {id:'ww_hamaahang',nl:'afstemmen',say:'wij stemmen af',h:'kardan',p:'1p',hf:['می‌کنیم','mukunem','wij doen'],core:['هماهنگ','ham-aahang','afgestemd']},
+  {id:'ww_tayarkardan',nl:'klaarmaken (iets)',say:'ik maak het klaar',h:'kardan',core:['تیار','tayar','klaar'],note:'vergelijk: tayar mi-shum = ik maak me klaar'},
+  {id:'ww_dawat',nl:'uitnodigen',say:'ik nodig uit',h:'kardan',core:['دعوت','dawat','uitnodiging']},
+  {id:'ww_varzesh',nl:'sporten',say:'ik sport',h:'kardan',core:['ورزش','varzesh','sport']},
+  {id:'ww_book',nl:'boeken / reserveren',say:'ik boek',h:'kardan',core:['بوک','book','boeking']},
+  {id:'ww_kharid',nl:'boodschappen doen',say:'ik doe boodschappen',h:'kardan',core:['خرید','kharid','aankoop']},
   {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},

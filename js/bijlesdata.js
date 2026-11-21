@@ -898,7 +898,10 @@ Bedanken: tashakkur fawq-ul-ada · khair bebined · lutf dared · khasta nabashe
 
 Let op: deze PDF was in Kabul-Dari geschreven (astam, me-konam, shoma). In de app staat het in dezelfde vorm als je andere lessen (astum, mukunum, mi-rum).
 
-Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
+Huiswerk: beantwoord de vijf huiswerkvragen hardop.
+
+Uit de oefenplaten (visual practice) kwamen erbij: reizen en boeken, dokter en kapper, sporten, gasten en verjaardag, winkelen, vrije dag en een afspraak verzetten (diga wakht).
+Let op: tayar mukunum = iets klaarmaken · tayar mi-shum = jezelf klaarmaken.`,
   items:[
     {id:'bl12_w0', section:'Plannen & tijd', hz:'برنامه', tr:'barnama', nl:'Plan / programma', note:'Ook: program'},
     {id:'bl12_w1', section:'Plannen & tijd', hz:'فرصت', tr:'fursat', nl:'Tijd / gelegenheid'},
@@ -944,7 +947,52 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
     {id:'bl12_w41', section:'Gesprek', hz:'آخر هفته چه برنامه داری؟', tr:'aakhir-e hafta che barnama dari?', nl:'Wat zijn je plannen voor het weekend?'},
     {id:'bl12_w42', section:'Gesprek', hz:'فردا پیشین مصروف استی یا بیکار؟', tr:'farda peshin masroof asti ya bekaar?', nl:'Ben je morgenmiddag druk of vrij?'},
     {id:'bl12_w43', section:'Gesprek', hz:'کی وقت داری که با هم یک چای بخوریم؟', tr:'kay wakht dari ki ba ham yak chai bukhurem?', nl:'Wanneer heb je tijd om samen thee te drinken?'},
-    {id:'bl12_w44', section:'Gesprek', hz:'امروز شب می‌خایم همراه فامیل خانه خاله خود بروم', tr:'emrooz shaw mi-khayum hamra-ye faamil khana-ye khaala-ye khud be-rum', nl:'Vanavond wil ik met de familie naar mijn tante gaan'}
+    {id:'bl12_w44', section:'Gesprek', hz:'امروز شب می‌خایم همراه فامیل خانه خاله خود بروم', tr:'emrooz shaw mi-khayum hamra-ye faamil khana-ye khaala-ye khud be-rum', nl:'Vanavond wil ik met de familie naar mijn tante gaan'},
+    {id:'bl12_w45', section:'Reizen', hz:'سفر خارج', tr:'safar-e kharej', nl:'Reis naar het buitenland'},
+    {id:'bl12_w46', section:'Reizen', hz:'سفر ترین', tr:'safar-e train', nl:'Treinreis'},
+    {id:'bl12_w47', section:'Reizen', hz:'بلیت', tr:'bilit', nl:'Kaartje / ticket'},
+    {id:'bl12_w48', section:'Reizen', hz:'بلیت طیاره', tr:'bilit-e tayyara', nl:'Vliegticket'},
+    {id:'bl12_w49', section:'Reizen', hz:'بوک می‌کنم', tr:'book mukunum', nl:'Ik boek / reserveer'},
+    {id:'bl12_w50', section:'Reizen', hz:'هفته بعدی قصد دارم به سفر خارج بروم', tr:'hafta-ye badi ghasd darum ba safar-e kharej be-rum', nl:'Volgende week ben ik van plan naar het buitenland te gaan'},
+    {id:'bl12_w51', section:'Reizen', hz:'ایستگاه مرکزی', tr:'istgah-e markazi', nl:'Centraal station'},
+    {id:'bl12_w52', section:'Reizen', hz:'سفر روزانه', tr:'safar-e rozana', nl:'Dagtochtje'},
+    {id:'bl12_w53', section:'Reizen', hz:'فردا می‌خایم با ترین به ایستگاه مرکزی بروم', tr:'farda mi-khayum ba train ba istgah-e markazi be-rum', nl:'Morgen wil ik met de trein naar het centraal station'},
+    {id:'bl12_w54', section:'Afspraken', hz:'قرار داکتر', tr:'gharar-e daktor', nl:'Afspraak bij de dokter'},
+    {id:'bl12_w55', section:'Afspraken', hz:'وقت گرفتن', tr:'wakht giriftan', nl:'Een tijd boeken (dokter of kapper)'},
+    {id:'bl12_w56', section:'Afspraken', hz:'صبح وقت', tr:'sobh-e wakht', nl:'Vroeg in de ochtend'},
+    {id:'bl12_w57', section:'Afspraken', hz:'دکان دوا', tr:'dukan-e dawa', nl:'Apotheek'},
+    {id:'bl12_w58', section:'Afspraken', hz:'فردا صبح وقت همراه داکتر قرار دارم', tr:'farda sobh-e wakht hamra-ye daktor gharar darum', nl:'Morgen vroeg heb ik een afspraak met de dokter'},
+    {id:'bl12_w59', section:'Afspraken', hz:'آرایشگاه', tr:'aaraayeshgah', nl:'Kapsalon / schoonheidssalon'},
+    {id:'bl12_w60', section:'Afspraken', hz:'جیم', tr:'gym', nl:'Sportschool'},
+    {id:'bl12_w61', section:'Afspraken', hz:'ورزش می‌کنم', tr:'varzesh mukunum', nl:'Ik sport'},
+    {id:'bl12_w62', section:'Afspraken', hz:'دوشنبه و چارشنبه می‌خایم به جیم بروم و ورزش کنم', tr:'do-shanba wa char-shanba mi-khayum ba gym be-rum wa varzesh kunum', nl:'Op maandag en woensdag wil ik naar de sportschool om te sporten'},
+    {id:'bl12_w63', section:'Afspraken', hz:'میتینگ', tr:'meeting', nl:'Vergadering'},
+    {id:'bl12_w64', section:'Afspraken', hz:'ای هفته برنامه من پر استه', tr:'in hafta barnama-ye ma pur asta', nl:'Deze week zit mijn planning vol'},
+    {id:'bl12_w65', section:'Thuis & feest', hz:'مهمان‌ها', tr:'mehmaan-ho', nl:'Gasten'},
+    {id:'bl12_w66', section:'Thuis & feest', hz:'مهمانی می‌کنم', tr:'mehmani mukunum', nl:'Ik ontvang gasten (etentje)'},
+    {id:'bl12_w67', section:'Thuis & feest', hz:'تیار می‌کنم', tr:'tayar mukunum', nl:'Ik maak het klaar', note:'Vergelijk: tayar mi-shum = ik maak me klaar'},
+    {id:'bl12_w68', section:'Thuis & feest', hz:'امروز شب مهمان‌ها میاین و من قابلی پلو تیار می‌کنم', tr:'emrooz shaw mehmaan-ho mi-yan wa ma qabili palaw tayar mukunum', nl:'Vanavond komen er gasten en ik maak qabili palaw klaar'},
+    {id:'bl12_w69', section:'Thuis & feest', hz:'جشن تولد', tr:'jashn-e tawallud', nl:'Verjaardagsfeest'},
+    {id:'bl12_w70', section:'Thuis & feest', hz:'دعوت می‌کنم', tr:'dawat mukunum', nl:'Ik nodig uit'},
+    {id:'bl12_w71', section:'Thuis & feest', hz:'امروز شب جشن تولد استه و مهمان‌ها را دعوت می‌کنم', tr:'emrooz shaw jashn-e tawallud asta wa mehmaan-ho ra dawat mukunum', nl:'Vanavond is het verjaardagsfeest en ik nodig gasten uit'},
+    {id:'bl12_w72', section:'Thuis & feest', hz:'خانه نو', tr:'khana-ye naw', nl:'Nieuw huis'},
+    {id:'bl12_w73', section:'Thuis & feest', hz:'سامان خانه', tr:'saamaan-e khana', nl:'Huisraad / spullen'},
+    {id:'bl12_w74', section:'Thuis & feest', hz:'کلید خانه', tr:'kalid-e khana', nl:'Huissleutel'},
+    {id:'bl12_w75', section:'Thuis & feest', hz:'بازارگردی', tr:'bazar-gardi', nl:'Winkelen / rondslenteren'},
+    {id:'bl12_w76', section:'Thuis & feest', hz:'خرید می‌کنم', tr:'kharid mukunum', nl:'Ik doe boodschappen / ik winkel'},
+    {id:'bl12_w77', section:'Thuis & feest', hz:'لباس نو', tr:'lebas-e naw', nl:'Nieuwe kleren'},
+    {id:'bl12_w78', section:'Thuis & feest', hz:'آخر هفته می‌خایم به دکان‌ها بروم و لباس نو خرید کنم', tr:'aakhir-e hafta mi-khayum ba dukan-ho be-rum wa lebas-e naw kharid kunum', nl:'In het weekend wil ik naar de winkels om nieuwe kleren te kopen'},
+    {id:'bl12_w79', section:'Vrije tijd', hz:'روز تعطیلی', tr:'roz-e tateeli', nl:'Vrije dag'},
+    {id:'bl12_w80', section:'Vrije tijd', hz:'خوشگوار', tr:'khosh-gawar', nl:'Aangenaam'},
+    {id:'bl12_w81', section:'Vrije tijd', hz:'هوای خوش', tr:'hawa-ye khosh', nl:'Lekker weer'},
+    {id:'bl12_w82', section:'Vrije tijd', hz:'موزیم', tr:'museum', nl:'Museum'},
+    {id:'bl12_w83', section:'Vrije tijd', hz:'تکت', tr:'ticket', nl:'Toegangskaartje'},
+    {id:'bl12_w84', section:'Vrije tijd', hz:'میز دو نفره', tr:'mez-e do-nafara', nl:'Tafel voor twee'},
+    {id:'bl12_w85', section:'Vrije tijd', hz:'رستورانت', tr:'restaurant', nl:'Restaurant'},
+    {id:'bl12_w86', section:'Vrije tijd', hz:'برای نان شب میز دو نفره را دَ رستورانت بوک می‌کنم', tr:'baraye naan-e shab mez-e do-nafara ra da restaurant book mukunum', nl:'Ik reserveer een tafel voor twee in het restaurant voor het avondeten'},
+    {id:'bl12_w87', section:'Verzetten', hz:'دیگه وقت', tr:'diga wakht', nl:'Een andere keer'},
+    {id:'bl12_w88', section:'Verzetten', hz:'ببخشید، امروز وقت ندارم، قصد دارم قرار را به دیگه وقت هماهنگ کنم', tr:'bebakhshed, emrooz wakht nadarum, ghasd darum gharar ra ba diga wakht ham-aahang kunum', nl:'Sorry, vandaag heb ik geen tijd, ik wil de afspraak naar een andere keer verzetten', note:'In de PDF: time nadarum'},
+    {id:'bl12_w89', section:'Verzetten', hz:'هماهنگ می‌شیم', tr:'ham-aahang mi-shem', nl:'We nemen contact op'}
   ]
 }
 ];

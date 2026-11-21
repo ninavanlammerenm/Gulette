@@ -589,7 +589,7 @@ const BJ_VERBS=[
   {fam:'zitten',forms:[['می‌شینیم','mi-shinem','wij zitten','1p']]},
   {fam:'zien',forms:[['می‌بینم','mubinum|mi-binum','ik zie']]},
   {fam:'wassen',forms:[['می‌شویم','mi-shoyam','ik was (me)']]},
-  {fam:'komen',forms:[['می‌آیم','mi-yum','ik kom','1s'],['می‌آیی','mi-yayi','jij komt','2s'],['میایه','me-ya','het komt / bevalt (khosh me-ya)','3s']]},
+  {fam:'komen',forms:[['می‌آیم','mi-yum','ik kom','1s'],['می‌آیی','mi-yayi','jij komt','2s'],['میایه','me-ya','het komt / bevalt (khosh me-ya)','3s'],['میاین','mi-yan','zij komen','3p']]},
   {fam:'geven',forms:[['می‌دم','me-dum','ik geef / ik betaal','1s'],['می‌دی','me-di','jij geeft','2s'],['می‌ده','me-da','hij/zij geeft','3s']]},
   {fam:'kopen',forms:[['می‌خرم','mi-kharum','ik koop','1s'],['می‌خری','mi-khari','jij koopt','2s']]},
   {fam:'zanan (dragen/praten)',forms:[['می‌زنم','mi-zanum','ik draag (aynak mi-zanum)','1s'],['می‌زنی','mi-zani','jij draagt','2s'],['می‌زنه','mi-zana','hij/zij draagt','3s'],['می‌زنیم','mi-zanem','wij praten (gap mi-zanem)','1p'],['می‌زنن','mi-zanan','zij wandelen (qadam mi-zanan)','3p']]},
@@ -601,7 +601,7 @@ const BJ_VERBS=[
   {fam:'zeggen',forms:[['می‌گن','mugan','ze zeggen','3p'],['می‌گم','mugum|me-gum','ik zeg','1s']]},
   {fam:'aantrekken',forms:[['می‌پوشم','mi-pushum|mi-pusham|me-poshum','ik trek aan / ik draag','1s'],['می‌پوشی','mi-pushi|me-poshi','jij trekt aan / jij draagt','2s'],['پوشیدم','pushidum|posidim|poshidum','ik heb aangetrokken','1s'],['پوشیدی','pushidi|poshidi','jij hebt aangetrokken','2s'],['بپوش','be-push','trek aan!']]},
   {fam:'uittrekken',forms:[['آوردم','awardum|awardam','ik heb uitgetrokken (dar awardum)','1s']]},
-  {fam:'worden',forms:[['می‌شم','mi-shum|mayshum','ik word','1s'],['می‌شی','mi-shi|mayshi','jij wordt','2s'],['می‌شه','mi-sha|maysha','het wordt','3s'],['شده','shuda','is geworden (gum shuda = kwijt)']]},
+  {fam:'worden',forms:[['می‌شم','mi-shum|mayshum','ik word','1s'],['می‌شی','mi-shi|mayshi','jij wordt','2s'],['می‌شه','mi-sha|maysha','het wordt','3s'],['می‌شیم','mi-shem','wij worden','1p'],['شده','shuda','is geworden (gum shuda = kwijt)']]},
 ].map(v=>({fam:v.fam,forms:v.forms.map(([hz,tr,nl,p])=>({hz,trs:tr.split('|'),tr:tr.split('|')[0],nl,p:p||'',fam:v.fam}))}));
 const _BJ_ALLFORMS=BJ_VERBS.flatMap(v=>v.forms);
 const _bjPunct=/^[؟?!.,،:;«»"()]+|[؟?!.,،:;«»"()]+$/g;
