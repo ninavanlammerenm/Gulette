@@ -994,6 +994,59 @@ Let op: tayar mukunum = iets klaarmaken · tayar mi-shum = jezelf klaarmaken.`,
     {id:'bl12_w88', section:'Verzetten', hz:'ببخشید، امروز وقت ندارم، قصد دارم قرار را به دیگه وقت هماهنگ کنم', tr:'bebakhshed, emrooz wakht nadarum, ghasd darum gharar ra ba diga wakht ham-aahang kunum', nl:'Sorry, vandaag heb ik geen tijd, ik wil de afspraak naar een andere keer verzetten', note:'In de PDF: time nadarum'},
     {id:'bl12_w89', section:'Verzetten', hz:'هماهنگ می‌شیم', tr:'ham-aahang mi-shem', nl:'We nemen contact op'}
   ]
+},
+{
+  id:'bl13',
+  title:'Les 13: gewoontes en hoe vaak',
+  date:'2026-11-23',
+  notes:`Vertellen hoe vaak je iets doet, en zinnen aan elkaar plakken.
+
+Hoe vaak: hamesha (altijd) · mamullan (meestal) · gahi oghat (soms) · kam-tar (zelden) · hargiz / hich wakht (nooit)
+Bij nooit hoort een ontkenning: oo hargiz chai-ye talkh nami-khura (hij drinkt nooit bittere thee)
+Volgorde: ik + hoe vaak + werkwoord: ma mamullan saat-e haft bedar mi-shum
+
+Verbindingswoorden: wa (en) · amma (maar) · chun-ki (omdat) · pas (dus)
+
+Let op: ook deze PDF was in Kabul-Dari (me-konam, me-khoram, hameshe). In de app staat het in de vorm van je andere lessen (mukunum, mi-khurum, hamesha). Woorden die al in les 5 (dagelijkse routine) staan, zoals bedar mi-shum en khwab mi-shum, staan hier niet nog een keer.
+
+Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
+  items:[
+    {id:'bl13_w0', section:'Hoe vaak?', hz:'همیشه', tr:'hamesha', nl:'Altijd'},
+    {id:'bl13_w1', section:'Hoe vaak?', hz:'گاهی اوقات', tr:'gahi oghat', nl:'Soms'},
+    {id:'bl13_w2', section:'Hoe vaak?', hz:'کمتر', tr:'kam-tar', nl:'Zelden'},
+    {id:'bl13_w3', section:'Hoe vaak?', hz:'هرگز', tr:'hargiz', nl:'Nooit (met ontkenning: nami-…)'},
+    {id:'bl13_w4', section:'Hoe vaak?', hz:'هیچ وقت', tr:'hich wakht', nl:'Nooit (hich wakht)'},
+    {id:'bl13_w5', section:'Hoe vaak?', hz:'هر شب', tr:'har shaw', nl:'Elke avond'},
+    {id:'bl13_w6', section:'Hoe vaak?', hz:'هر صبح', tr:'har subh', nl:'Elke ochtend'},
+    {id:'bl13_w7', section:'Hoe vaak?', hz:'هر هفته', tr:'har hafta', nl:'Elke week'},
+    {id:'bl13_w8', section:'Hoe vaak?', hz:'روزانه', tr:'rozana', nl:'Dagelijks'},
+    {id:'bl13_w9', section:'Hoe vaak?', hz:'روزهای کاری', tr:'rooz-ho-ye kaari', nl:'Werkdagen'},
+    {id:'bl13_w10', section:'Verbindingswoorden', hz:'و', tr:'wa', nl:'En'},
+    {id:'bl13_w11', section:'Verbindingswoorden', hz:'اما', tr:'amma', nl:'Maar'},
+    {id:'bl13_w12', section:'Verbindingswoorden', hz:'پس', tr:'pas', nl:'Dus'},
+    {id:'bl13_w13', section:'Verbindingswoorden', hz:'صحت', tr:'sehat', nl:'Gezondheid'},
+    {id:'bl13_w14', section:'Verbindingswoorden', hz:'پیاده‌روی', tr:'piyada-rawi', nl:'Wandeling'},
+    {id:'bl13_w15', section:'Gewoontes', hz:'من معمولاً ساعت هفت صبح بیدار می‌شم', tr:'ma mamullan saat-e haft-e subh bedar mi-shum', nl:'Ik word meestal om zeven uur s ochtends wakker'},
+    {id:'bl13_w16', section:'Gewoontes', hz:'او همیشه دَ خانه رست می‌کنه و تی‌وی تماشا می‌کنه', tr:'oo hamesha da khana rest mukuna wa TV tamasha mukuna', nl:'Hij of zij rust altijd thuis uit en kijkt tv'},
+    {id:'bl13_w17', section:'Gewoontes', hz:'معمولاً آخر هفته همراه فامیل پیکنیک می‌ریم', tr:'mamullan aakhir-e hafta hamra-ye faamil picnic murem', nl:'In het weekend gaan we meestal met de familie picknicken', note:'In de PDF: be safa me-rum'},
+    {id:'bl13_w18', section:'Gewoontes', hz:'من گاهی اوقات دَ پارک پیاده‌روی می‌کنم', tr:'ma gahi oghat da park piyada-rawi mukunum', nl:'Ik wandel soms in het park'},
+    {id:'bl13_w19', section:'Gewoontes', hz:'او هرگز چای تلخ نمی‌خوره', tr:'oo hargiz chai-ye talkh nami-khura', nl:'Hij of zij drinkt nooit thee zonder suiker'},
+    {id:'bl13_w20', section:'Gewoontes', hz:'او هرگز دوا نمی‌خوره', tr:'oo hargiz dawa nami-khura', nl:'Hij of zij neemt nooit medicijnen'},
+    {id:'bl13_w21', section:'Gewoontes', hz:'هر صبح پیش از کار یک فنجان قهوه می‌خورم', tr:'har subh pesh az kaar yak fenjan qahwa mi-khurum', nl:'Elke ochtend voor het werk drink ik een kop koffie'},
+    {id:'bl13_w22', section:'Gewoontes', hz:'هر هفته همراه فامیل خانه آته و آیه می‌ریم', tr:'har hafta hamra-ye faamil khana-ye ata wa aya murem', nl:'Elke week gaan we met de familie naar het huis van (schoon)ouders'},
+    {id:'bl13_w23', section:'Gewoontes', hz:'روزانه ساعت پنج پیشین از کار خلاص می‌شم', tr:'rozana saat-e panj-e peshin az kaar khalas mi-shum', nl:'Elke dag ben ik om vijf uur klaar met werk'},
+    {id:'bl13_w24', section:'Gewoontes', hz:'هر وقت مناسب بود، زنگ بزن', tr:'har wakht munaseb bud, zang bezan', nl:'Bel maar wanneer het je uitkomt', note:'In de PDF: call be-zan'},
+    {id:'bl13_w25', section:'Zinnen verbinden', hz:'من صبح بیدار می‌شم و یک فنجان قهوه می‌خورم', tr:'ma subh bedar mi-shum wa yak fenjan qahwa mi-khurum', nl:'Ik word wakker en drink een kop koffie'},
+    {id:'bl13_w26', section:'Zinnen verbinden', hz:'روزهای کاری ساعت هفت بیدار می‌شم اما آخر هفته رست می‌کنم', tr:'rooz-ho-ye kaari saat-e haft bedar mi-shum amma aakhir-e hafta rest mukunum', nl:'Op werkdagen word ik om zeven uur wakker, maar in het weekend rust ik uit'},
+    {id:'bl13_w27', section:'Zinnen verbinden', hz:'من روزانه پیاده‌روی می‌کنم چونکه برای صحت خوب استه', tr:'ma rozana piyada-rawi mukunum chun-ki baraye sehat khub asta', nl:'Ik wandel elke dag omdat het goed is voor de gezondheid'},
+    {id:'bl13_w28', section:'Zinnen verbinden', hz:'امروز هوا خوشگوار استه، پس به پارک می‌رم', tr:'emrooz hawa khosh-gawar asta, pas ba park mi-rum', nl:'Vandaag is het lekker weer, dus ik ga naar het park'},
+    {id:'bl13_w29', section:'Gesprek', hz:'بعد از نان صبح چه کار می‌کنی؟', tr:'bad az naan-e subh che kaar mukuni?', nl:'Wat doe je na het ontbijt?'},
+    {id:'bl13_w30', section:'Gesprek', hz:'صبح ساعت هشت و نیم به کار می‌رم، چونکه ساعت نه کار من شروع می‌شه', tr:'subh saat-e hasht-o-nim ba kaar mi-rum, chun-ki saat-e noh kaar-e ma shuru mi-sha', nl:'Ik ga om half negen naar mijn werk, want om negen uur begint het'},
+    {id:'bl13_w31', section:'Gesprek', hz:'شروع می‌شه', tr:'shuru mi-sha', nl:'Het begint'},
+    {id:'bl13_w32', section:'Gesprek', hz:'چه وقت از کار خلاص می‌شی؟', tr:'che wakht az kaar khalas mi-shi?', nl:'Wanneer ben je klaar met werken?'},
+    {id:'bl13_w33', section:'Gesprek', hz:'آخر هفته خیلی خوش گذشت', tr:'aakhir-e hafta kheili khosh guzasht', nl:'Het weekend was heel gezellig'},
+    {id:'bl13_w34', section:'Gesprek', hz:'گشادی می‌کنم', tr:'gashadi mukunum', nl:'Ik doe het rustig aan', note:'In de PDF: gashad-i me-konam — vraag na of dat klopt'}
+  ]
 }
 ];
 
@@ -1090,5 +1143,12 @@ const BIJLES_QUESTIONS={
     {id:'bl12_q2', q:'کی با هم یک قهوه بخوریم؟', qtr:'kay ba ham yak qahwa bukhurem?', nl:'Wanneer drinken we samen koffie? (spreek een tijd af)', expect:['می\u200cکنیم'], ex:'saat-e se damma-ye cafe fix mukunem', exhz:'ساعت سه دمه کافی فیکس می‌کنیم'},
     {id:'bl12_q3', q:'وقتی کسی تو را کمک می‌کنه، چه می‌گی؟', qtr:'waqti kasi tu ra kumak mukuna, che mugi?', nl:'Wat zeg je als iemand je helpt?', expect:['دارید'], ex:'tashakkur fawq-ul-ada, khair bebined! lutf dared', exhz:'تشکر فوق‌العاده، خیر ببینید! لطف دارید'},
     {id:'bl12_q4', q:'یکشنبه چه می‌کنی؟', qtr:'yak-shanba che mukuni?', nl:'Wat doe je op zondag?', expect:['استم','می\u200cکنم'], ex:'yak-shanba da khana astum wa rest mukunum', exhz:'یکشنبه دَ خانه استم و رست می‌کنم'}
+  ],
+  bl13:[
+    {id:'bl13_q0', q:'هر صبح همیشه چه می‌کنی، و چه کار را هرگز نمی‌کنی؟', qtr:'har subh hamesha che mukuni, wa che kaar ra hargiz nami-kuni?', nl:'Wat doe je elke ochtend altijd, en wat doe je nooit? (hamesha en hargiz)', expect:['می\u200cخورم'], ex:'ma hamesha subh qahwa mi-khurum, amma hargiz chai-ye talkh nami-khurum', exhz:'من همیشه صبح قهوه می‌خورم، اما هرگز چای تلخ نمی‌خورم'},
+    {id:'bl13_q1', q:'چرا وقت خواب می‌شی؟', qtr:'chera wakht khwab mi-shi?', nl:'Waarom ga je vroeg slapen? (gebruik chun-ki)', expect:['می\u200cشم'], ex:'ma wakht khwab mi-shum chun-ki subh wakht kaar darum', exhz:'من وقت خواب می‌شم چونکه صبح وقت کار دارم'},
+    {id:'bl13_q2', q:'روزهای کاری و آخر هفته ساعت چند بیدار می‌شی؟', qtr:'rooz-ho-ye kaari wa aakhir-e hafta saat-e chand bedar mi-shi?', nl:'Hoe laat word je wakker op werkdagen en in het weekend? (gebruik amma)', expect:['می\u200cشم'], ex:'rooz-ho-ye kaari saat-e haft bedar mi-shum amma aakhir-e hafta saat-e noh bedar mi-shum', exhz:'روزهای کاری ساعت هفت بیدار می‌شم اما آخر هفته ساعت نه بیدار می‌شم'},
+    {id:'bl13_q3', q:'کار کردن را برای مو و اونا بگو', qtr:'kaar kardan ra baraye mo wa ona bugo', nl:'Vervoeg werken voor wij en zij', expect:['می\u200cکنیم','می\u200cکنن'], ex:'mo kaar mukunem, ona kaar mukunan', exhz:'مو کار می‌کنیم، اونا کار می‌کنن'},
+    {id:'bl13_q4', q:'آخر هفته تو چطور گذشت؟', qtr:'aakhir-e hafta-ye tu chetor guzasht?', nl:'Hoe was je weekend?', expect:['گذشت'], ex:'tashakkur fawq-ul-ada! aakhir-e hafta kheili khosh guzasht. khana aabaad!', exhz:'تشکر فوق‌العاده! آخر هفته خیلی خوش گذشت. خانه آباد!'}
   ]
 };

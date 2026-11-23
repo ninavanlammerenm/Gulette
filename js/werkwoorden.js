@@ -113,6 +113,8 @@ const WW_RAW=[
   {id:'ww_varzesh',nl:'sporten',say:'ik sport',h:'kardan',core:['ورزش','varzesh','sport']},
   {id:'ww_book',nl:'boeken / reserveren',say:'ik boek',h:'kardan',core:['بوک','book','boeking']},
   {id:'ww_kharid',nl:'boodschappen doen',say:'ik doe boodschappen',h:'kardan',core:['خرید','kharid','aankoop']},
+  {id:'ww_tamasha',nl:'kijken (tv)',say:'hij/zij kijkt tv',h:'kardan',p:'3s',core:['تماشا','tamasha','het kijken']},
+  {id:'ww_piyadarawi',nl:'een wandeling maken',say:'ik wandel',h:'kardan',core:['پیاده‌روی','piyada-rawi','wandeling']},
   {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},
@@ -124,6 +126,7 @@ const WW_RAW=[
   {id:'ww_baaz',nl:'opengaan',say:'het gaat open',h:'shudan',p:'3s',core:['باز','baaz','open']},
   {id:'ww_sardshudan',nl:'koud worden',say:'het wordt koud',h:'shudan',p:'3s',core:['سرد','sard','koud']},
   {id:'ww_sawar',nl:'instappen',say:'ik stap in',h:'shudan',core:['سوار','sawar','opgestapt']},
+  {id:'ww_shuru',nl:'beginnen',say:'het begint',h:'shudan',p:'3s',core:['شروع','shuru','begin']},
   {id:'ww_gum',nl:'kwijt zijn',say:'het is kwijt',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['گم','gum','kwijt']},
   {id:'ww_tir',nl:'voorbij zijn (tijd)',say:'het is over (vijf over…)',h:'shudan',p:'3s',hf:['شده','shuda','is geworden'],core:['تیر','tir','voorbij']},
   // woord + darum (hebben)
