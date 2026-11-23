@@ -893,7 +893,7 @@ ma ba supermarket mi-rum = ik ga naar de supermarkt
 ma mi-khayum ba supermarket be-rum = ik wil naar de supermarkt gaan
 Ook: ghasd darum (ik ben van plan) + be-vorm · gharar asta (het is afgesproken)
 
-Druk = masroof · vrij = bekaar · geschikt = munaseb · afspraak = gharar-o-madaar · afspraak maken = gharar mandan
+Druk = masroof · vrij = bekaar · geschikt = mosaid of munaseb · uit wandelen = safa raftan · afspraak = gharar-o-madaar · afspraak maken = gharar mandan
 Bedanken: tashakkur fawq-ul-ada · khair bebined · lutf dared · khasta nabashed (dank voor je moeite)
 
 Let op: deze PDF was in Kabul-Dari geschreven (astam, me-konam, shoma). In de app staat het in dezelfde vorm als je andere lessen (astum, mukunum, mi-rum).
@@ -911,10 +911,10 @@ Let op: tayar mukunum = iets klaarmaken · tayar mi-shum = jezelf klaarmaken.`,
     {id:'bl12_w5', section:'Plannen & tijd', hz:'امروز شب', tr:'emrooz shaw', nl:'Vanavond'},
     {id:'bl12_w6', section:'Plannen & tijd', hz:'فردا پیشین', tr:'farda peshin', nl:'Morgenmiddag'},
     {id:'bl12_w7', section:'Plannen & tijd', hz:'چکر', tr:'chakkar', nl:'Uitje / rondje lopen'},
-    {id:'bl12_w8', section:'Plannen & tijd', hz:'پیکنیک', tr:'picnic', nl:'Picknick / dagje uit', note:'Je docent: picnic in plaats van safa raftan'},
+    {id:'bl12_w8', section:'Plannen & tijd', hz:'پیکنیک', tr:'picnic', nl:'Picknick / dagje uit'},
     {id:'bl12_w9', section:'Plannen & tijd', hz:'قرار ماندن', tr:'gharar mandan', nl:'Een afspraak maken', note:'Je docent: mandan'},
     {id:'bl12_w10', section:'Plannen & tijd', hz:'کنسل کردن', tr:'kansel kardan', nl:'Afzeggen / annuleren'},
-    {id:'bl12_w11', section:'Plannen & tijd', hz:'مناسب', tr:'munaseb', nl:'Geschikt / komt goed uit', note:'Je docent: munaseb in plaats van mosaid'},
+    {id:'bl12_w11', section:'Plannen & tijd', hz:'مناسب', tr:'munaseb', nl:'Geschikt / komt goed uit', note:'Ook: mosaid'},
     {id:'bl12_w12', section:'Plannen & tijd', hz:'هماهنگ شدن', tr:'ham-aahang shudan', nl:'Afstemmen / contact houden'},
     {id:'bl12_w13', section:'Plannen & tijd', hz:'کار و بار', tr:'kaar-o-bar', nl:'Dagelijkse klusjes'},
     {id:'bl12_w14', section:'Plannen & tijd', hz:'با هم', tr:'ba ham', nl:'Samen'},
@@ -929,7 +929,7 @@ Let op: tayar mukunum = iets klaarmaken · tayar mi-shum = jezelf klaarmaken.`,
     {id:'bl12_w23', section:'Willen + werkwoord', hz:'رست می‌کنم', tr:'rest mukunum', nl:'Ik rust uit'},
     {id:'bl12_w24', section:'Afspreken', hz:'فردا پیشین وقت دارم، می‌تانیم ببینیم', tr:'farda peshin wakht darum, mi-tanem bebinem', nl:'Morgenmiddag heb ik tijd, dan kunnen we afspreken', note:'In de PDF: me-tonim be-binim'},
     {id:'bl12_w25', section:'Afspreken', hz:'برنامه آخر هفته من پر استه، بعداً هماهنگ می‌کنیم', tr:'barnama-ye aakhir-e hafta-ye ma pur asta, badan ham-aahang mukunem', nl:'Mijn weekend zit vol, we stemmen later af', note:'Je docent markeerde pur ast rood — vraag na'},
-    {id:'bl12_w26', section:'Afspreken', hz:'هر وقتی که برای تو مناسب بود، من دَ خدمت استم', tr:'har waqti ki ba tu munaseb bud, ma da khedmat astum', nl:'Wanneer het jou uitkomt, sta ik klaar'},
+    {id:'bl12_w26', section:'Afspreken', hz:'هر وقتی که برای تو مساعد بود، من دَ خدمت استم', tr:'har waqti ki ba tu mosaid bud, ma da khedmat astum', nl:'Wanneer het jou uitkomt, sta ik klaar'},
     {id:'bl12_w27', section:'Afspreken', hz:'ساعت چار دمه کافی فیکس می‌کنیم', tr:'saat-e char damma-ye cafe fix mukunem', nl:'We spreken om vier uur af voor het café'},
     {id:'bl12_w28', section:'Afspreken', hz:'مجبور استم', tr:'majboor astum', nl:'Ik moet wel / ik ben gedwongen'},
     {id:'bl12_w29', section:'Afspreken', hz:'ببخشید، قرار امروز را مجبور استم کنسل کنم', tr:'bebakhshed, gharar-e emrooz ra majboor astum kansel kunum', nl:'Sorry, ik moet de afspraak van vandaag afzeggen'},
@@ -992,7 +992,8 @@ Let op: tayar mukunum = iets klaarmaken · tayar mi-shum = jezelf klaarmaken.`,
     {id:'bl12_w86', section:'Vrije tijd', hz:'برای نان شب میز دو نفره را دَ رستورانت بوک می‌کنم', tr:'baraye naan-e shab mez-e do-nafara ra da restaurant book mukunum', nl:'Ik reserveer een tafel voor twee in het restaurant voor het avondeten'},
     {id:'bl12_w87', section:'Verzetten', hz:'دیگه وقت', tr:'diga wakht', nl:'Een andere keer'},
     {id:'bl12_w88', section:'Verzetten', hz:'ببخشید، امروز وقت ندارم، قصد دارم قرار را به دیگه وقت هماهنگ کنم', tr:'bebakhshed, emrooz wakht nadarum, ghasd darum gharar ra ba diga wakht ham-aahang kunum', nl:'Sorry, vandaag heb ik geen tijd, ik wil de afspraak naar een andere keer verzetten', note:'In de PDF: time nadarum'},
-    {id:'bl12_w89', section:'Verzetten', hz:'هماهنگ می‌شیم', tr:'ham-aahang mi-shem', nl:'We nemen contact op'}
+    {id:'bl12_w89', section:'Verzetten', hz:'هماهنگ می‌شیم', tr:'ham-aahang mi-shem', nl:'We nemen contact op'},
+    {id:'bl12_w90', section:'Plannen & tijd', hz:'صفا رفتن', tr:'safa raftan', nl:'Uit wandelen / flaneren'}
   ]
 },
 {
@@ -1028,14 +1029,14 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
     {id:'bl13_w14', section:'Verbindingswoorden', hz:'پیاده‌روی', tr:'piyada-rawi', nl:'Wandeling'},
     {id:'bl13_w15', section:'Gewoontes', hz:'من معمولاً ساعت هفت صبح بیدار می‌شم', tr:'ma mamullan saat-e haft-e subh bedar mi-shum', nl:'Ik word meestal om zeven uur s ochtends wakker'},
     {id:'bl13_w16', section:'Gewoontes', hz:'او همیشه دَ خانه رست می‌کنه و تی‌وی تماشا می‌کنه', tr:'oo hamesha da khana rest mukuna wa TV tamasha mukuna', nl:'Hij of zij rust altijd thuis uit en kijkt tv'},
-    {id:'bl13_w17', section:'Gewoontes', hz:'معمولاً آخر هفته همراه فامیل پیکنیک می‌ریم', tr:'mamullan aakhir-e hafta hamra-ye faamil picnic murem', nl:'In het weekend gaan we meestal met de familie picknicken', note:'In de PDF: be safa me-rum'},
+    {id:'bl13_w17', section:'Gewoontes', hz:'معمولاً آخر هفته همراه فامیل به صفا می‌ریم', tr:'mamullan aakhir-e hafta hamra-ye faamil ba safa murem', nl:'In het weekend gaan we meestal met de familie uit wandelen'},
     {id:'bl13_w18', section:'Gewoontes', hz:'من گاهی اوقات دَ پارک پیاده‌روی می‌کنم', tr:'ma gahi oghat da park piyada-rawi mukunum', nl:'Ik wandel soms in het park'},
     {id:'bl13_w19', section:'Gewoontes', hz:'او هرگز چای تلخ نمی‌خوره', tr:'oo hargiz chai-ye talkh nami-khura', nl:'Hij of zij drinkt nooit thee zonder suiker'},
     {id:'bl13_w20', section:'Gewoontes', hz:'او هرگز دوا نمی‌خوره', tr:'oo hargiz dawa nami-khura', nl:'Hij of zij neemt nooit medicijnen'},
     {id:'bl13_w21', section:'Gewoontes', hz:'هر صبح پیش از کار یک فنجان قهوه می‌خورم', tr:'har subh pesh az kaar yak fenjan qahwa mi-khurum', nl:'Elke ochtend voor het werk drink ik een kop koffie'},
     {id:'bl13_w22', section:'Gewoontes', hz:'هر هفته همراه فامیل خانه آته و آیه می‌ریم', tr:'har hafta hamra-ye faamil khana-ye ata wa aya murem', nl:'Elke week gaan we met de familie naar het huis van (schoon)ouders'},
     {id:'bl13_w23', section:'Gewoontes', hz:'روزانه ساعت پنج پیشین از کار خلاص می‌شم', tr:'rozana saat-e panj-e peshin az kaar khalas mi-shum', nl:'Elke dag ben ik om vijf uur klaar met werk'},
-    {id:'bl13_w24', section:'Gewoontes', hz:'هر وقت مناسب بود، زنگ بزن', tr:'har wakht munaseb bud, zang bezan', nl:'Bel maar wanneer het je uitkomt', note:'In de PDF: call be-zan'},
+    {id:'bl13_w24', section:'Gewoontes', hz:'هر وقت مساعد بود، زنگ بزن', tr:'har wakht mosaid bud, zang bezan', nl:'Bel maar wanneer het je uitkomt', note:'In de PDF: call be-zan'},
     {id:'bl13_w25', section:'Zinnen verbinden', hz:'من صبح بیدار می‌شم و یک فنجان قهوه می‌خورم', tr:'ma subh bedar mi-shum wa yak fenjan qahwa mi-khurum', nl:'Ik word wakker en drink een kop koffie'},
     {id:'bl13_w26', section:'Zinnen verbinden', hz:'روزهای کاری ساعت هفت بیدار می‌شم اما آخر هفته رست می‌کنم', tr:'rooz-ho-ye kaari saat-e haft bedar mi-shum amma aakhir-e hafta rest mukunum', nl:'Op werkdagen word ik om zeven uur wakker, maar in het weekend rust ik uit'},
     {id:'bl13_w27', section:'Zinnen verbinden', hz:'من روزانه پیاده‌روی می‌کنم چونکه برای صحت خوب استه', tr:'ma rozana piyada-rawi mukunum chun-ki baraye sehat khub asta', nl:'Ik wandel elke dag omdat het goed is voor de gezondheid'},
