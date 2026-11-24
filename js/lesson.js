@@ -152,7 +152,7 @@ function buildExercises(lesson){
   // Interleaving: eerder geleerde woorden mixen
   const knownHzSet=new Set(allWords.map(w=>w.hz));
   const knownPool=Object.entries(S.vocab)
-    .filter(([hz,v])=>!knownHzSet.has(hz)&&(v.masteryLevel||1)<5)
+    .filter(([hz,v])=>!knownHzSet.has(hz)&&(v.masteryLevel||1)<4)
     .map(([hz,v])=>({hz,nl:v.nl,tr:v.tr||'',masteryLevel:v.masteryLevel||1}));
   if(knownPool.length>=4){
     shuffle(knownPool).slice(0,2).forEach(w=>{
@@ -210,6 +210,8 @@ function buildReviewExercises(words,noSentHz){
     if(distractors.length<3)return;
     const lvl=w.masteryLevel||1;
     const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
+    // Gemasterd (niveau 4+): alleen nog zelf uitschrijven, geen meerkeuze of zinsoefening
+    if(lvl>=4){ exs.push({type:'type',w:wd}); return; }
     const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...simDistractors(w,distractors,3).map(x=>x.nl)])};
     const mc_hz={type:'mc_hz',w:wd,choices:shuffle([w.hz,...simDistractors(w,distractors,3).map(x=>x.hz)])};
     const listen={type:'listen',w:wd,choices:shuffle([w.nl,...simDistractors(w,distractors,3).map(x=>x.nl)])};

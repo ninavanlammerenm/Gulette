@@ -307,6 +307,8 @@ function _wwBuild(entries,roman){
     const type={type:'type',w:wd};
     const part=(hz,tr)=>roman?tr:`${hz} (${tr})`;
     const intro={type:'intro',w:{...wd,tip:e.core?`${part(e.core.hz,e.core.tr)} = ${e.core.nl}  +  ${part(e.helper.hz,e.helper.tr)} = ${e.helper.nl}`:`Gewoon werkwoord (zonder hulpwerkwoord): ${e.nl}`},ctxSentence:null};
+    // Gemasterd (niveau 4+): alleen nog zelf uitschrijven
+    if((v.masteryLevel||1)>=4){ r2.push(type); return; }
     if(lvl===1){ r1.push(intro,which); r2.push(help||which); }
     // Geen hele zinnen bouwen in deze tab: alleen het juiste werkwoord kiezen of typen
     else if(lvl===2){ r1.push(help||which); r2.push(fill||which); }

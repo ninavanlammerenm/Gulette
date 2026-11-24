@@ -5,7 +5,7 @@
 // aangepast worden: bijles.js zet die wijziging door zonder voortgang te verliezen.
 // ══════════════════════════════════════════════════════
 // Items die uit een bijles zijn gehaald — ids nooit hergebruiken
-const BIJLES_RETIRED=['bl4_w16'];
+const BIJLES_RETIRED=['bl4_w16','bl12_w37'];
 const BIJLES_PRESET=[
 {
   id:'bl1',
@@ -41,7 +41,7 @@ Groet voor iemand die gewerkt heeft: Manda nabashid! → antwoord: Zinda bashid!
     {id:'bl1_w10', section:'Groeten', hz:'هیچی!', tr:'hichi!', nl:'Niks bijzonders!', note:'Antwoord op چه خبر؟'},
     {id:'bl1_w11', section:'Groeten', hz:'خبر خاص نیست', tr:'khabar-e khas nest', nl:'Niets bijzonders'},
     {id:'bl1_w12', section:'Groeten', hz:'همه خوب استه', tr:'hama khub asta', nl:'Alles is goed'},
-    {id:'bl1_w13', section:'Groeten', hz:'مانده نباشید', tr:'manda nabashid', nl:'Goed gewerkt! (letterlijk: moge je niet moe zijn)', note:'Groet voor iemand die gewerkt heeft'},
+    {id:'bl1_w13', section:'Groeten', hz:'مانده نباشید', tr:'manda nabashid', nl:'Goed gewerkt! (letterlijk: moge je niet moe zijn)', note:'Groet voor iemand die gewerkt heeft · zelfde als khasta nabashed'},
     {id:'bl1_w14', section:'Groeten', hz:'زنده باشید', tr:'zinda bashid', nl:'Dank je (letterlijk: moge je lang leven)', note:'Vaste reactie op مانده نباشید'},
     {id:'bl1_w15', section:'Groeten', hz:'تشکر', tr:'tashakkur', nl:'Dank je'},
     {id:'bl1_w16', section:'Groeten', hz:'رحمت', tr:'rahmat', nl:'Bedankt (ander woord dan tashakkur)', note:'Je docent gebruikt liever tashakkur of khair bebini'},
@@ -894,7 +894,7 @@ ma mi-khayum ba supermarket be-rum = ik wil naar de supermarkt gaan
 Ook: ghasd darum (ik ben van plan) + be-vorm · gharar asta (het is afgesproken)
 
 Druk = masroof · vrij = bekaar · geschikt = mosaid of munaseb · uit wandelen = safa raftan · afspraak = gharar-o-madaar · afspraak maken = gharar mandan
-Bedanken: tashakkur fawq-ul-ada · khair bebined · lutf dared · khasta nabashed (dank voor je moeite)
+Bedanken: tashakkur fawq-ul-ada · khair bebined · lutf dared · manda nabashid of khasta nabashed (dank voor je moeite, allebei hetzelfde — staat in les 1)
 
 Let op: deze PDF was in Kabul-Dari geschreven (astam, me-konam, shoma). In de app staat het in dezelfde vorm als je andere lessen (astum, mukunum, mi-rum).
 

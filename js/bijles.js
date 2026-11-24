@@ -460,6 +460,8 @@ function _bjBuildExercises(words,show,roman){
     // Gaat het vaak mis? Dan een stapje makkelijker (herkennen vóór zelf maken)
     const lvl=Math.max(1,(w.masteryLevel||1)-((w.diff||0)>=0.5&&(w.masteryLevel||1)>1?1:0));
     const wd={hz:w.hz,nl:w.nl,tr:w.tr||''};
+    // Gemasterd (groen, niveau 4+): geen meerkeuze meer, alleen zelf uitschrijven
+    if((w.masteryLevel||1)>=4){ r1.push({type:'type',w:wd}); return; }
     const mc_nl={type:'mc_nl',w:wd,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])};
     const listen={type:'listen',w:wd,choices:shuffle([w.nl,...simDistractors(w,d,3).map(x=>x.nl)])};
     if(w.sent){
