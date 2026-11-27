@@ -1048,6 +1048,60 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
     {id:'bl13_w33', section:'Gesprek', hz:'آخر هفته خیلی خوش گذشت', tr:'aakhir-e hafta kheili khosh guzasht', nl:'Het weekend was heel gezellig'},
     {id:'bl13_w34', section:'Gesprek', hz:'گشادی می‌کنم', tr:'gashadi mukunum', nl:'Ik doe het rustig aan', note:'In de PDF: gashad-i me-konam — vraag na of dat klopt'}
   ]
+},
+{
+  id:'bl14',
+  title:'Les 14: iets dringend nodig hebben',
+  date:'2026-11-27',
+  notes:`Zeggen dat je iets nodig hebt, om hulp vragen en bedanken.
+
+Nodig hebben: ma ba … zaroorat darum · ook: lazim darum
+Nodig of willen? zaroorat darum / lazim darum = echt nodig (dokter, medicijn) · mi-khayum = graag willen (koffie, thee)
+Vervoegen: zaroorat darum (ik) · dari (jij) · daara (hij/zij) · darem (wij) · dared (u/jullie) · daran (zij)
+Beleefd vragen: lotfan ba ma kumak kuned! · lotfan jaldi kuned!
+Dringend = fawri · snel = jaldi · ziek = bimar · koorts = tab
+
+Let op: ook deze PDF was in Kabul-Dari (konen, daren, khane-tan aabad). In de app staat het in de vorm van je andere lessen (kuned, dared, khana aabaad). Pool (geld) staat er niet in: je hebt al pisa.
+
+Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
+  items:[
+    {id:'bl14_w0', section:'Nodig hebben', hz:'ضرورت', tr:'zaroorat', nl:'Behoefte / noodzaak'},
+    {id:'bl14_w1', section:'Nodig hebben', hz:'ضرورت دارم', tr:'zaroorat darum', nl:'Ik heb nodig'},
+    {id:'bl14_w2', section:'Nodig hebben', hz:'لازم دارم', tr:'lazim darum', nl:'Ik heb het echt nodig', note:'In de PDF: lazam darum'},
+    {id:'bl14_w3', section:'Nodig hebben', hz:'کمک', tr:'kumak', nl:'Hulp'},
+    {id:'bl14_w4', section:'Nodig hebben', hz:'فوری', tr:'fawri', nl:'Dringend / meteen'},
+    {id:'bl14_w5', section:'Nodig hebben', hz:'جلدی', tr:'jaldi', nl:'Snel'},
+    {id:'bl14_w6', section:'Nodig hebben', hz:'آب آشامیدنی', tr:'aab-e aashamidani', nl:'Drinkwater'},
+    {id:'bl14_w7', section:'Nodig hebben', hz:'دوا', tr:'dawa', nl:'Medicijn'},
+    {id:'bl14_w8', section:'Nodig hebben', hz:'داکتر', tr:'daktor', nl:'Dokter'},
+    {id:'bl14_w9', section:'Nodig hebben', hz:'شفاخانه', tr:'shafa-khana', nl:'Ziekenhuis'},
+    {id:'bl14_w10', section:'Nodig hebben', hz:'چارجر موبایل', tr:'charger-e mobile', nl:'Telefoonoplader'},
+    {id:'bl14_w11', section:'Nodig hebben', hz:'انترنت', tr:'internet', nl:'Internet / wifi'},
+    {id:'bl14_w12', section:'Nodig hebben', hz:'قضیه', tr:'qaziya', nl:'Zaak / situatie'},
+    {id:'bl14_w13', section:'Nodig hebben', hz:'بیمار', tr:'bimar', nl:'Ziek'},
+    {id:'bl14_w14', section:'Nodig hebben', hz:'تب دارم', tr:'tab darum', nl:'Ik heb koorts'},
+    {id:'bl14_w15', section:'Nodig hebben', hz:'تشکر زیاد', tr:'tashakkur-e ziad', nl:'Veel dank'},
+    {id:'bl14_w16', section:'Om hulp vragen', hz:'من فوری به آب آشامیدنی ضرورت دارم', tr:'ma fawri ba aab-e aashamidani zaroorat darum', nl:'Ik heb dringend drinkwater nodig'},
+    {id:'bl14_w17', section:'Om hulp vragen', hz:'لطفاً به من کمک کنید، این قضیه فوری استه!', tr:'lotfan ba ma kumak kuned, in qaziya fawri asta!', nl:'Help me alstublieft, het is dringend!'},
+    {id:'bl14_w18', section:'Om hulp vragen', hz:'من به داکتر و دوا فوری ضرورت دارم', tr:'ma ba daktor wa dawa fawri zaroorat darum', nl:'Ik heb dringend een dokter en medicijnen nodig'},
+    {id:'bl14_w19', section:'Om hulp vragen', hz:'ببخشید، چارجر موبایل دارید؟', tr:'bebakhshed, charger-e mobile dared?', nl:'Pardon, heeft u een telefoonoplader?'},
+    {id:'bl14_w20', section:'Om hulp vragen', hz:'موبایل من چارج نداره', tr:'mobile-e ma charge nadara', nl:'Mijn telefoon is leeg'},
+    {id:'bl14_w21', section:'Om hulp vragen', hz:'لطفاً جلدی کنید!', tr:'lotfan jaldi kuned!', nl:'Schiet alstublieft op!'},
+    {id:'bl14_w22', section:'Om hulp vragen', hz:'ببخشید، پسورد وایفای شما چی استه؟', tr:'bebakhshed, password-e WiFi-e shuma che asta?', nl:'Pardon, wat is uw wifi-wachtwoord?'},
+    {id:'bl14_w23', section:'Om hulp vragen', hz:'من خیلی بیمار استم، لطفاً مرا به شفاخانه ببرید', tr:'ma kheili bimar astum, lotfan ma ra ba shafa-khana bebured', nl:'Ik ben erg ziek, breng me alstublieft naar het ziekenhuis', note:'In de PDF: be-baren — vraag na'},
+    {id:'bl14_w24', section:'Om hulp vragen', hz:'خیلی به من کمک کدید', tr:'kheili ba ma kumak kadid', nl:'U heeft me heel erg geholpen', note:'In de PDF: komak kaddeshen'},
+    {id:'bl14_w25', section:'Om hulp vragen', hz:'لطف دارید، تشکر زیاد!', tr:'lutf dared, tashakkur-e ziad!', nl:'U bent heel vriendelijk, veel dank!'},
+    {id:'bl14_w26', section:'Zinnen verbinden', hz:'من به آب و غذا فوری ضرورت دارم', tr:'ma ba aab wa ghaza fawri zaroorat darum', nl:'Ik heb dringend water en eten nodig'},
+    {id:'bl14_w27', section:'Zinnen verbinden', hz:'من به کمک ضرورت دارم، اما وقت خیلی کم استه', tr:'ma ba kumak zaroorat darum, amma wakht kheili kam asta', nl:'Ik heb hulp nodig, maar er is weinig tijd'},
+    {id:'bl14_w28', section:'Zinnen verbinden', hz:'من به دوا ضرورت دارم چونکه خیلی بیمار استم', tr:'ma ba dawa zaroorat darum chun-ki kheili bimar astum', nl:'Ik heb medicijnen nodig omdat ik erg ziek ben'},
+    {id:'bl14_w29', section:'Zinnen verbinden', hz:'این قضیه فوری استه، پس لطفاً جلدی کنید', tr:'in qaziya fawri asta, pas lotfan jaldi kuned', nl:'Dit is dringend, dus schiet alstublieft op'},
+    {id:'bl14_w30', section:'Gesprek', hz:'خیریت استه؟ چی شده؟', tr:'khairiyat asta? che shuda?', nl:'Is alles goed? Wat is er gebeurd?'},
+    {id:'bl14_w31', section:'Gesprek', hz:'مو فوری تکسی می‌گیریم', tr:'mo fawri taxi mi-girem', nl:'We nemen meteen een taxi'},
+    {id:'bl14_w32', section:'Gesprek', hz:'آری، به چشم! اینجا چارجر استه', tr:'aree, ba chashm! inja charger asta', nl:'Ja, natuurlijk! Hier is een oplader'},
+    {id:'bl14_w33', section:'Gesprek', hz:'می‌خایم به فامیل زنگ بزنم', tr:'mi-khayum ba faamil zang bezanum', nl:'Ik wil mijn familie bellen', note:'In de PDF: call be-zanam en zang be-zanen'},
+    {id:'bl14_w34', section:'Nodig of willen', hz:'دوا لازم دارم', tr:'dawa lazim darum', nl:'Ik heb medicijnen nodig'},
+    {id:'bl14_w35', section:'Nodig of willen', hz:'یک چای می‌خایم', tr:'yak chai mi-khayum', nl:'Ik wil graag een thee'}
+  ]
 }
 ];
 
@@ -1151,5 +1205,12 @@ const BIJLES_QUESTIONS={
     {id:'bl13_q2', q:'روزهای کاری و آخر هفته ساعت چند بیدار می‌شی؟', qtr:'rooz-ho-ye kaari wa aakhir-e hafta saat-e chand bedar mi-shi?', nl:'Hoe laat word je wakker op werkdagen en in het weekend? (gebruik amma)', expect:['می\u200cشم'], ex:'rooz-ho-ye kaari saat-e haft bedar mi-shum amma aakhir-e hafta saat-e noh bedar mi-shum', exhz:'روزهای کاری ساعت هفت بیدار می‌شم اما آخر هفته ساعت نه بیدار می‌شم'},
     {id:'bl13_q3', q:'کار کردن را برای مو و اونا بگو', qtr:'kaar kardan ra baraye mo wa ona bugo', nl:'Vervoeg werken voor wij en zij', expect:['می\u200cکنیم','می\u200cکنن'], ex:'mo kaar mukunem, ona kaar mukunan', exhz:'مو کار می‌کنیم، اونا کار می‌کنن'},
     {id:'bl13_q4', q:'آخر هفته تو چطور گذشت؟', qtr:'aakhir-e hafta-ye tu chetor guzasht?', nl:'Hoe was je weekend?', expect:['گذشت'], ex:'tashakkur fawq-ul-ada! aakhir-e hafta kheili khosh guzasht. khana aabaad!', exhz:'تشکر فوق‌العاده! آخر هفته خیلی خوش گذشت. خانه آباد!'}
+  ],
+  bl14:[
+    {id:'bl14_q0', q:'وقتی تشنه استی، چه می‌گی؟', qtr:'waqti teshna asti, che mugi?', nl:'Wat zeg je als je dorst hebt? (gebruik chun-ki)', expect:['دارم'], ex:'ma fawri ba aab-e aashamidani zaroorat darum chun-ki teshna astum', exhz:'من فوری به آب آشامیدنی ضرورت دارم چونکه تشنه استم'},
+    {id:'bl14_q1', q:'اگر بیمار استی، چه می‌گی؟', qtr:'agar bimar asti, che mugi?', nl:'Wat zeg je als je ziek bent? (dokter en medicijn, met wa of chun-ki)', expect:['دارم'], ex:'ma ba daktor wa dawa fawri zaroorat darum chun-ki tab darum', exhz:'من به داکتر و دوا فوری ضرورت دارم چونکه تب دارم'},
+    {id:'bl14_q2', q:'موبایل تو چارج نداره، از کسی چه می‌پرسی؟', qtr:'mobile-e tu charge nadara, az kasi che mi-pursi?', nl:'Je telefoon is leeg. Wat vraag je aan iemand?', expect:['دارید'], ex:'bebakhshed, charger-e mobile dared? mobile-e ma charge nadara', exhz:'ببخشید، چارجر موبایل دارید؟ موبایل من چارج نداره'},
+    {id:'bl14_q3', q:'وقتی کسی به تو کمک کد، چطور تشکر می‌کنی؟', qtr:'waqti kasi ba tu kumak kad, chetor tashakkur mukuni?', nl:'Hoe bedank je iemand die je geholpen heeft?', expect:['دارید'], ex:'tashakkur fawq-ul-ada! khana aabaad, lutf dared!', exhz:'تشکر فوق‌العاده! خانه آباد، لطف دارید!'},
+    {id:'bl14_q4', q:'یک چیز که لازم داری و یک چیز که می‌خایی را بگو', qtr:'yak chiz ki lazim dari wa yak chiz ki mi-khayi ra bugo', nl:'Noem iets wat je nodig hebt en iets wat je graag wilt', expect:['دارم','می\u200cخایم'], ex:'ma dawa lazim darum. ma yak chai mi-khayum', exhz:'من دوا لازم دارم. من یک چای می‌خایم'}
   ]
 };
