@@ -116,6 +116,7 @@ const WW_RAW=[
   {id:'ww_kharid',nl:'boodschappen doen',say:'ik doe boodschappen',h:'kardan',core:['خرید','kharid','aankoop']},
   {id:'ww_tamasha',nl:'kijken (tv)',say:'hij/zij kijkt tv',h:'kardan',p:'3s',core:['تماشا','tamasha','het kijken']},
   {id:'ww_piyadarawi',nl:'een wandeling maken',say:'ik wandel',h:'kardan',core:['پیاده‌روی','piyada-rawi','wandeling']},
+  {id:'ww_tawsif',nl:'beschrijven',say:'ik beschrijf',h:'kardan',core:['توصیف','tawsif','beschrijving']},
   {id:'ww_farq',nl:'uitmaken',say:'het maakt niet uit',h:'kardan',p:'3s',hf:['نمی‌کنه','nami-kuna','het doet niet'],core:['فرق','farq','verschil']},
   // woord + mi-shum (worden)
   {id:'ww_khwab',nl:'gaan slapen',say:'ik ga slapen',h:'shudan',core:['خواب','khwab','slaap']},

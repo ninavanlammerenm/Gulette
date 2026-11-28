@@ -1102,6 +1102,56 @@ Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
     {id:'bl14_w34', section:'Nodig of willen', hz:'دوا لازم دارم', tr:'dawa lazim darum', nl:'Ik heb medicijnen nodig'},
     {id:'bl14_w35', section:'Nodig of willen', hz:'یک چای می‌خایم', tr:'yak chai mi-khayum', nl:'Ik wil graag een thee'}
   ]
+},
+{
+  id:'bl15',
+  title:'Les 15: karakter beschrijven',
+  date:'2026-11-28',
+  notes:`Mensen beschrijven: hoe iemand is (karakter) en wat iemand heeft.
+
+Iets hebben: oo reesh wa burut daara (hij heeft een baard en snor) · zij hebben = daran
+Iets zijn: khaala-ye ma kheili mehrabaan asta (mijn tante is heel lief) · zij zijn = astan (niet hainan)
+Verbinden: wa (en) · amma (maar) · chun-ki (omdat) · pas (dus)
+
+Van je docent: zerak (pienter) · bad-rang (lelijk) · moo-safed (grijs haar, voor een oudere) · albata ki (natuurlijk) · tashakkur kheili ziad (heel hartelijk bedankt)
+
+Uiterlijk (lengte, haar, ogen, huid) staat al in les 3 en is hier niet herhaald. Ook deze PDF was in Kabul-Dari; in de app staat het in de vorm van je andere lessen.
+
+Huiswerk: beantwoord de vijf huiswerkvragen hardop.`,
+  items:[
+    {id:'bl15_w0', section:'Karakter', hz:'اخلاق', tr:'akhlaq', nl:'Karakter / manieren'},
+    {id:'bl15_w1', section:'Karakter', hz:'خوش‌رو', tr:'khosh-rooy', nl:'Opgewekt / vriendelijk'},
+    {id:'bl15_w2', section:'Karakter', hz:'خوش‌اخلاق', tr:'khosh-akhlaq', nl:'Goedaardig'},
+    {id:'bl15_w3', section:'Karakter', hz:'هوشیار', tr:'hoshiyar', nl:'Slim'},
+    {id:'bl15_w4', section:'Karakter', hz:'زیرک', tr:'zerak', nl:'Pienter / scherp', note:'Je docent: zerak'},
+    {id:'bl15_w5', section:'Karakter', hz:'آرام', tr:'aram', nl:'Rustig'},
+    {id:'bl15_w6', section:'Karakter', hz:'با ادب', tr:'ba-adab', nl:'Beleefd'},
+    {id:'bl15_w7', section:'Karakter', hz:'سخاوتمند', tr:'sakhawat-mand', nl:'Vrijgevig'},
+    {id:'bl15_w8', section:'Karakter', hz:'مهمان‌دوست', tr:'mehmaan-dost', nl:'Gastvrij'},
+    {id:'bl15_w9', section:'Karakter', hz:'زحمتکش', tr:'zahmat-kash', nl:'Hardwerkend'},
+    {id:'bl15_w10', section:'Karakter', hz:'قوی', tr:'qawi', nl:'Sterk'},
+    {id:'bl15_w11', section:'Karakter', hz:'بدرنگ', tr:'bad-rang', nl:'Lelijk', note:'Je docent: ugly = bad-rang'},
+    {id:'bl15_w12', section:'Mensen', hz:'موسفید', tr:'moo-safed', nl:'Grijs haar (oudere)', note:'Je docent: moie safid, in plaats van spein-geesh'},
+    {id:'bl15_w13', section:'Mensen', hz:'ریش و بروت', tr:'reesh wa burut', nl:'Baard en snor'},
+    {id:'bl15_w14', section:'Mensen', hz:'پدرکلان', tr:'padar-kalaan', nl:'Opa'},
+    {id:'bl15_w15', section:'Mensen', hz:'خاله', tr:'khaala', nl:'Tante (zus van moeder)'},
+    {id:'bl15_w16', section:'Mensen', hz:'همکار نو', tr:'hamkaar-e naw', nl:'Nieuwe collega'},
+    {id:'bl15_w17', section:'Mensen', hz:'البته که', tr:'albata ki', nl:'Natuurlijk / uiteraard', note:'Je docent: of course = albata ki'},
+    {id:'bl15_w18', section:'Mensen', hz:'تشکر خیلی زیاد', tr:'tashakkur kheili ziad', nl:'Heel hartelijk bedankt', note:'Je docent: kheili ziad in plaats van fawq-ul-ada'},
+    {id:'bl15_w19', section:'Zinnen', hz:'خاله من خیلی مهربان و خوش‌اخلاق استه', tr:'khaala-ye ma kheili mehrabaan wa khosh-akhlaq asta', nl:'Mijn tante is heel lief en goedaardig'},
+    {id:'bl15_w20', section:'Zinnen', hz:'پدرکلان من موسفید و خیلی با ادب استه', tr:'padar-kalaan-e ma moo-safed wa kheili ba-adab asta', nl:'Mijn opa heeft grijs haar en is heel beleefd'},
+    {id:'bl15_w21', section:'Zinnen', hz:'این دختر هوشیار خیلی زحمتکش استه', tr:'in dokhtar-e hoshiyar kheili zahmat-kash asta', nl:'Dit slimme meisje werkt heel hard'},
+    {id:'bl15_w22', section:'Zinnen', hz:'او ریش و بروت داره و قد متوسط استه', tr:'oo reesh wa burut daara wa ghad-motevaset asta', nl:'Hij heeft een baard en snor en is gemiddeld lang'},
+    {id:'bl15_w23', section:'Zinnen', hz:'معمولاً افغان‌ها خیلی مهربان استن', tr:'mamullan afghan-ho kheili mehrabaan astan', nl:'Afghanen zijn meestal heel vriendelijk', note:'Je docent: astan in plaats van hainan'},
+    {id:'bl15_w24', section:'Zinnen', hz:'او همیشه خوش‌رو استه و با ادب گپ می‌زنه', tr:'oo hamesha khosh-rooy asta wa ba-adab gap mi-zana', nl:'Hij of zij is altijd opgewekt en praat beleefd'},
+    {id:'bl15_w25', section:'Zinnen', hz:'تشکر خیلی زیاد! شما خیلی مهربان استید', tr:'tashakkur kheili ziad! shuma kheili mehrabaan asted', nl:'Heel erg bedankt! U bent heel lief'},
+    {id:'bl15_w26', section:'Zinnen verbinden', hz:'او لاغر استه اما خیلی قوی و زحمتکش استه', tr:'oo laaghar asta amma kheili qawi wa zahmat-kash asta', nl:'Hij of zij is dun maar heel sterk en hardwerkend'},
+    {id:'bl15_w27', section:'Zinnen verbinden', hz:'من خاله خود را خوش دارم چونکه خیلی مهربان استه', tr:'ma khaala-ye khud ra khosh darum chun-ki kheili mehrabaan asta', nl:'Ik hou van mijn tante omdat ze heel lief is'},
+    {id:'bl15_w28', section:'Zinnen verbinden', hz:'او خیلی با ادب و هوشیار استه، پس همه او را خوش دارن', tr:'oo kheili ba-adab wa hoshiyar asta, pas hama oo ra khosh daran', nl:'Hij of zij is beleefd en slim, dus iedereen mag hem of haar'},
+    {id:'bl15_w29', section:'Gesprek', hz:'اخلاقش چطور استه؟', tr:'akhlaq-esh chetor asta?', nl:'Hoe is zijn of haar karakter?'},
+    {id:'bl15_w30', section:'Gesprek', hz:'اونا خیلی سخاوتمند و مهمان‌دوست استن', tr:'ona kheili sakhawat-mand wa mehmaan-dost astan', nl:'Zij zijn heel vrijgevig en gastvrij'},
+    {id:'bl15_w31', section:'Gesprek', hz:'او خیلی آرام و با ادب استه، اما دَ کار خود خیلی زحمتکش و زیرک استه', tr:'oo kheili aram wa ba-adab asta, amma da kaar-e khud kheili zahmat-kash wa zerak asta', nl:'Ze is rustig en beleefd, maar in haar werk heel hardwerkend en pienter'}
+  ]
 }
 ];
 
@@ -1212,5 +1262,12 @@ const BIJLES_QUESTIONS={
     {id:'bl14_q2', q:'موبایل تو چارج نداره، از کسی چه می‌پرسی؟', qtr:'mobile-e tu charge nadara, az kasi che mi-pursi?', nl:'Je telefoon is leeg. Wat vraag je aan iemand?', expect:['دارید'], ex:'bebakhshed, charger-e mobile dared? mobile-e ma charge nadara', exhz:'ببخشید، چارجر موبایل دارید؟ موبایل من چارج نداره'},
     {id:'bl14_q3', q:'وقتی کسی به تو کمک کد، چطور تشکر می‌کنی؟', qtr:'waqti kasi ba tu kumak kad, chetor tashakkur mukuni?', nl:'Hoe bedank je iemand die je geholpen heeft?', expect:['دارید'], ex:'tashakkur fawq-ul-ada! khana aabaad, lutf dared!', exhz:'تشکر فوق‌العاده! خانه آباد، لطف دارید!'},
     {id:'bl14_q4', q:'یک چیز که لازم داری و یک چیز که می‌خایی را بگو', qtr:'yak chiz ki lazim dari wa yak chiz ki mi-khayi ra bugo', nl:'Noem iets wat je nodig hebt en iets wat je graag wilt', expect:['دارم','می\u200cخایم'], ex:'ma dawa lazim darum. ma yak chai mi-khayum', exhz:'من دوا لازم دارم. من یک چای می‌خایم'}
+  ],
+  bl15:[
+    {id:'bl15_q0', q:'مادر یا خاله خود را توصیف کو', qtr:'madar ya khaala-ye khud ra tawsif ku', nl:'Beschrijf je moeder of tante: uiterlijk en twee karaktereigenschappen', expect:['استه','داره'], ex:'khaala-ye ma ghad-motevaset asta wa moo-ye boland daara. oo kheili mehrabaan wa khosh-rooy asta', exhz:'خاله من قد متوسط استه و موی بلند داره. او خیلی مهربان و خوش‌رو استه'},
+    {id:'bl15_q1', q:'شوهر یا برار خود را توصیف کو', qtr:'shohar ya braar-e khud ra tawsif ku', nl:'Beschrijf je man of broer: lengte, haar, baard en karakter', expect:['استه','داره'], ex:'oo ghad-boland asta wa moo-ye siaah daara. oo reesh wa burut daara wa kheili zahmat-kash asta', exhz:'او قد بلند استه و موی سیاه داره. او ریش و بروت داره و خیلی زحمتکش استه'},
+    {id:'bl15_q2', q:'کی را خیلی خوش داری و چرا؟', qtr:'ki ra kheili khosh dari wa chera?', nl:'Van wie hou je heel erg, en waarom? (gebruik chun-ki)', expect:['دارم'], ex:'ma khaala-ye khud ra kheili khosh darum chun-ki oo kheili mehrabaan asta', exhz:'من خاله خود را خیلی خوش دارم چونکه او خیلی مهربان استه'},
+    {id:'bl15_q3', q:'دو چیز مخالف را با اما بگو', qtr:'do chiz-e mukhalif ra ba amma bugo', nl:'Noem twee tegenstellingen met amma (bijv. dun maar sterk)', expect:['استه'], ex:'oo laaghar asta amma kheili qawi wa zahmat-kash asta', exhz:'او لاغر استه اما خیلی قوی و زحمتکش استه'},
+    {id:'bl15_q4', q:'به کسی یک تعریف خوب بگو', qtr:'ba kasi yak tarif-e khub bugo', nl:'Geef iemand een beleefd compliment over zijn of haar karakter', expect:['استید'], ex:'tashakkur kheili ziad! shuma kheili mehrabaan asted', exhz:'تشکر خیلی زیاد! شما خیلی مهربان استید'}
   ]
 };
